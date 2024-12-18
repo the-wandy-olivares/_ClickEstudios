@@ -13,7 +13,7 @@ class Dashboard(TemplateView):
 
 class Pos(TemplateView):
     def get(self, request):
-        return render(request, 'estudios/pos.html')
+        return render(request, 'pos/pos.html')
 
 
 class Service(TemplateView):
