@@ -86,3 +86,81 @@ class ServiceDelete(DeleteView):
     def get_success_url(self):
         # Retorna la URL a la que redirigirá después de un submit exitoso
         return reverse_lazy('estudios:service')
+
+
+# Plans
+class Plan(TemplateView):
+    template_name = 'plan/plan.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['plans'] = models.Plan.objects.all()
+        return context
+
+
+class PlanDetail(DetailView):
+    model = models.Plan
+    template_name = 'plan/plan-detail.html'
+    context_object_name = 'plan'
+
+
+class PlanCreate(CreateView):
+    model = models.Plan
+    form_class = forms.Plan
+    template_name = 'plan/plan-create.html'
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def form_valid(self, form):
+        # Guarda el objeto y redirige al éxito
+        self.object = form.save()
+        return redirect(self.get_success_url())
+
+    def form_invalid(self, form):
+        print(form.errors)
+        return self.render_to_response(self.get_context_data(form=form))
+
+    def get_success_url(self):
+        # Retorna la URL a la que redirigirá después de un submit exitoso
+        return reverse_lazy('estudios:plan')
+
+
+
+class PlanUpdate(UpdateView):
+        model = models.Plan
+        form_class = forms.Plan
+        template_name = 'plan/plan-update.html'
+
+        def get_context_data(self, **kwargs):
+            context = super().get_context_data(**kwargs)
+            return context
+
+
+        def form_valid(self, form):
+                    # Guarda el objeto y redirige al éxito
+                print(form)
+                self.object = form.save()
+                return redirect(self.get_success_url())
+
+        def form_invalid(self, form):
+            print(form.errors)
+            return self.render_to_response(self.get_context_data(form=form))
+
+        def get_success_url(self):
+            # Retorna la URL a la que redirigirá después de un submit exitoso
+            return reverse_lazy('estudios:plan')
+
+
+class PlanDelete(DeleteView):
+    model = models.Plan
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def get_success_url(self):
+        # Retorna la URL a la que redirigirá después de un submit exitoso
+        return reverse_lazy('estudios:plan')

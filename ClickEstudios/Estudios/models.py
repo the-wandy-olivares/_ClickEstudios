@@ -66,7 +66,7 @@ class Service(models.Model):
 class Plan(models.Model):
       service = models.ForeignKey(Service, on_delete=models.CASCADE, blank=True, null=True, related_name='planes')
       name = models.CharField(max_length=100, blank=False, null=False)
-      description = models.TextField()
+      description = models.TextField( blank=True, null=True)
       price = models.IntegerField(blank=False, null=False)
       img = models.ImageField(upload_to='media/planes', null=True, blank=True)
       img_back = models.ImageField(upload_to='media/planes', null=True, blank=True)

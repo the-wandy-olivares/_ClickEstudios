@@ -6,3 +6,5 @@ from . import models
 admin.site.register(models.Empleado)
 admin.site.register(models.Estudios)
 admin.site.register(models.Service)
+admin.site.register(models.Plan)
+

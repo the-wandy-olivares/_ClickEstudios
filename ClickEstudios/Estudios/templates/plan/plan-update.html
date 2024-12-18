@@ -1,0 +1,69 @@
+{% extends "base/base.html" %}
+{% block content %}
+      <style>
+            #id_img {
+                  display: none; 
+            }
+            .circle {
+                        width: 100px;
+                        height: 100px;
+                        border-radius: 50%;
+                        background-color:rgb(89, 89, 89);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+                        background-size: cover;
+                        background-position: center;
+            }
+      </style>
+      <section>
+            
+            <div class="container">
+                  <div id="circle" class="circle" style='
+                  {% if object.img %}
+                        background-image: url({{object.img.url}});
+                  {% endif %}
+                        ' 
+                  onclick="document.getElementById('id_img').click()">
+                        Cargar img
+                  </div>
+                  <form action="" method="post"  enctype="multipart/form-data">
+                       
+                        {% csrf_token %}
+                        <div>
+                              {{form.service}}
+                        </div>
+                        <div> 
+                              {{form.name}}
+                        </div>
+                        <div>
+                              {{form.price}}
+                        </div>
+                        <div>
+                              {{form.img}}
+                        </div>
+                        <div>
+                              <a href="{% url "estudios:plan" %}"> Atras </a>
+                              {% comment %} <a href="{% url "estudios:plan-delete" object.id %}"> Eliminar </a> {% endcomment %}
+                              <button>
+                                    Crear
+                              </button>
+                        </div>
+                  </form>
+            </div>
+
+      </section>
+      <script>
+              document.getElementById('id_img').addEventListener('change', function(event) {
+                        const file = event.target.files[0];
+                        if (file) {
+                                const reader = new FileReader();
+                                reader.onload = function(e) {
+                                          document.getElementById('circle').style.backgroundImage = `url(${e.target.result})`;
+                                }
+                                reader.readAsDataURL(file);
+                        }
+              });
+      </script>
+{% endblock  %}
