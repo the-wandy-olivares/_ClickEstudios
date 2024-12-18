@@ -26,7 +26,7 @@ urlpatterns = [
 
 # Ventas
       path('sale/', views.Sale.as_view(), name='sale'),
-            path('sale-create/', views.SaleCreate.as_view(), name='sale-create'),
+            path('sale-create/<int:pk>', views.SaleCreate.as_view(), name='sale-create'),
                         path('sale/<int:pk>/', views.SaleDetail.as_view(), name='sale-detail'),
                   path('sale-update/<int:pk>/', views.SaleUpdate.as_view(), name='sale-update'),
 ]

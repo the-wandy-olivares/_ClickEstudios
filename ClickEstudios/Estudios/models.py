@@ -63,6 +63,17 @@ class Service(models.Model):
             return self.name
 
 
+class Like(models.Model):
+      plan = models.ForeignKey('Plan', on_delete=models.CASCADE, blank=True, null=True, related_name='likes')
+      date = models.DateTimeField(auto_now_add=True)
+      
+      class Meta:
+            verbose_name = 'like'
+            verbose_name_plural = 'likes'
+      
+      def __str__(self):
+            return self.plan.name
+
 class Plan(models.Model):
       service = models.ForeignKey(Service, on_delete=models.CASCADE, blank=True, null=True, related_name='planes')
       name = models.CharField(max_length=100, blank=False, null=False)
@@ -75,13 +86,15 @@ class Plan(models.Model):
       
       time = models.TimeField(verbose_name="Hora de inicio", blank=True, null=True, default="08:00")
 
-
       class Meta:
             verbose_name = 'plan'
             verbose_name_plural = 'planes'
       
       def __str__(self):
             return self.name
+
+
+
 
 
 class Caracteristica(models.Model):
