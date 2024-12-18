@@ -23,8 +23,6 @@ db.sqlite3-journal
 local_settings.py
 
 # Static files
-staticfiles/
-static/
 media/
 
 # Django migrations
