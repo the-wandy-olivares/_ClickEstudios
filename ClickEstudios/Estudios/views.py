@@ -37,7 +37,7 @@ class ServiceDetail(DetailView):
 
         def get_context_data(self, **kwargs):
                 context = super().get_context_data(**kwargs)
-                context['plan'] = models.Plan.objects.get(service=self.object)
+                context['plans'] = models.Plan.objects.filter(service=self.object)
                 return context
 
 
