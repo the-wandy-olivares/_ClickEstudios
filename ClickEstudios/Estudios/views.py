@@ -18,6 +18,7 @@ class Pos(TemplateView):
         context = super().get_context_data(**kwargs)
         context['service_choices'] = models.Service.objects.all()
         context['plan_choices'] = models.Plan.objects.all()
+        context['sales'] = models.Sale.objects.all()
         return context
 
 class Service(TemplateView):
@@ -36,8 +37,9 @@ class ServiceDetail(DetailView):
 
         def get_context_data(self, **kwargs):
                 context = super().get_context_data(**kwargs)
-                context['plans'] = models.Plan.objects.filter(service=self.object)
+                context['plan'] = models.Plan.objects.get(service=self.object)
                 return context
+
 
 class ServiceCreate(CreateView):
         model = models.Service
@@ -202,16 +204,24 @@ class SaleCreate(CreateView):
         return context
 
     def form_valid(self, form):
+        plan_id = self.kwargs.get('pk')
+        if plan_id:
+            plan = models.Plan.objects.get(pk=plan_id)
+            form.instance.name_plan = plan.name
+            form.instance.description_plan = plan.description
+            form.instance.price_plan = plan.price
+
         # Guarda el objeto y redirige al éxito
         self.object = form.save()
         return redirect(self.get_success_url())
 
     def form_invalid(self, form):
+        print(form.errors)
         return self.render_to_response(self.get_context_data(form=form))
 
     def get_success_url(self):
         # Retorna la URL a la que redirigirá después de un submit exitoso
-        return reverse_lazy('estudios:sale')
+        return reverse_lazy('estudios:pos')
 
 
 class SaleUpdate(UpdateView):

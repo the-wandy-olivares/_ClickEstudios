@@ -50,23 +50,26 @@ class Sale(forms.ModelForm):
             fields = [
                   'client', 'name_plan', 'description_plan', 'price_plan', 'is_active',
                   'mount', 'is_reserve', 'payment', 'start_proces_date', 'end_proces_date',
-                  'finalize', 'date_choice', 'time', 'credit_fiscal'
+                  'finalize', 'date_choice', 'time', 'credit_fiscal', 'name_client', 'email_client', 'phone_client', 'is_cliente'
             ]
             widgets = {
-                  'client': forms.Select(attrs={'class': 'form-control'}),
-                  'name_plan': forms.TextInput(attrs={'class': 'form-control'}),
-                  'description_plan': forms.Textarea(attrs={'class': 'form-control'}),
-                  'price_plan': forms.NumberInput(attrs={'class': 'form-control'}),
-                  'is_active': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
-                  'mount': forms.NumberInput(attrs={'class': 'form-control'}),
-                  'is_reserve': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
-                  'payment': forms.NumberInput(attrs={'class': 'form-control'}),
-                  'start_proces_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
-                  'end_proces_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
-                  'finalize': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
-                  'date_choice': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
-                  'time': forms.TimeInput(attrs={'class': 'form-control', 'type': 'time'}),
-                  'credit_fiscal': forms.CheckboxInput(attrs={'class': 'form-check-input'})
+                    'client': forms.Select(attrs={'class': 'form-control'}),
+                    'name_plan': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre del plan'}),
+                    'description_plan': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Descripción del plan'}),
+                    'price_plan': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Precio del plan'}),
+                    'is_active': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+                    'mount': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Monto'}),
+                    'is_reserve': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+                    'payment': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Pago'}),
+                    'start_proces_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date', 'placeholder': 'Fecha de inicio'}),
+                    'end_proces_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date', 'placeholder': 'Fecha de fin'}),
+                    'finalize': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+                    'date_choice': forms.DateInput(attrs={'class': 'form-control', 'type': 'date', 'placeholder': 'Fecha de elección'}),
+                    'time': forms.TimeInput(attrs={'class': 'form-control', 'type': 'time', 'placeholder': 'Hora'}),
+                    'credit_fiscal': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+                    'name_client': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre del cliente'}),
+                    'email_client': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Correo electrónico del cliente'}),
+                    'phone_client': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Teléfono del cliente'}),
             }
 
 

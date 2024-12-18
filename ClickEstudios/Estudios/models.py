@@ -159,7 +159,15 @@ class Client(models.Model):
 # de la venta, el cliente, el plan, los adicionales, el monto, el pago, las fechas de inicio
 # y finalización, y el estado de la venta.
 class Sale(models.Model):
+#  Datos del usuario o cliente
+      name_client = models.CharField(max_length=100, blank=True, null=True)
+      email_client = models.EmailField(max_length=100, blank=True, null=True)
+      phone_client = models.CharField(max_length=20, blank=True, null=True)
+
+      is_cliente = models.BooleanField(default=False) # Si el cliente es nuevo
       client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='client_sale', null=True, blank=True)
+
+
 
 # Datas de plan escogido
       name_plan = models.CharField(max_length=100, blank=True, null=True)
@@ -171,7 +179,7 @@ class Sale(models.Model):
 # Estado de la venta
       mount = models.IntegerField(blank=True, null=True) # Monto de la reserva
       is_reserve = models.BooleanField(default=False) # Reserva de la venta
-      payment = models.IntegerField(blank=False, null=True) # Pago de la venta
+      payment = models.IntegerField(blank=True, null=True) # Pago de la venta
 
 # Procesos de fotografias
       start_proces_date = models.DateField(verbose_name="Fecha de inicio", blank=True, null=True)
@@ -187,7 +195,7 @@ class Sale(models.Model):
 
 
       def __str__(self):
-            return f"Venta del {self.start_date} al {self.end_date}"
+            return f"Venta del {self.date} "
 
 
 

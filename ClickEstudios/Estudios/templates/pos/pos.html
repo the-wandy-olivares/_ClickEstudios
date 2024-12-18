@@ -11,6 +11,16 @@
                         {% include "service/service-select.html" %}
                   </div>
             {% endif %}
+
+
+            <div>
+                  {% if sales %}
+                  <div class='mt-5'>
+                        {% include "sale/sale.html" %}
+                  </div>
+            {% endif %}
+
+            </div>
       </section>
 
 {% endblock  %}
