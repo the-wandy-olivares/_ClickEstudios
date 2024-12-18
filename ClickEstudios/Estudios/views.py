@@ -12,9 +12,13 @@ class Dashboard(TemplateView):
 
 
 class Pos(TemplateView):
-    def get(self, request):
-        return render(request, 'pos/pos.html')
+    template_name = 'pos/pos.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['service_choices'] = models.Service.objects.all()
+        context['plan_choices'] = models.Plan.objects.all()
+        return context
 
 class Service(TemplateView):
         template_name = 'service/service.html'
@@ -25,9 +29,15 @@ class Service(TemplateView):
             return context
 
 class ServiceDetail(DetailView):
-      model = models.Service
-      template_name = 'service/service-detail.html'
-      context_object_name = 'service'
+        model = models.Service
+        template_name = 'service/service-detail.html'
+        context_object_name = 'service'
+
+
+        def get_context_data(self, **kwargs):
+                context = super().get_context_data(**kwargs)
+                context['plans'] = models.Plan.objects.filter(service=self.object)
+                return context
 
 class ServiceCreate(CreateView):
         model = models.Service
@@ -164,3 +174,63 @@ class PlanDelete(DeleteView):
     def get_success_url(self):
         # Retorna la URL a la que redirigirá después de un submit exitoso
         return reverse_lazy('estudios:plan')
+
+
+
+class Sale(TemplateView):
+    template_name = 'sale/sale.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['sales'] = models.Sale.objects.all()
+        return context
+
+
+class SaleDetail(DetailView):
+    model = models.Sale
+    template_name = 'sale/sale-detail.html'
+    context_object_name = 'sale'
+
+
+class SaleCreate(CreateView):
+    model = models.Sale
+    form_class = forms.Sale
+    template_name = 'sale/sale-create.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def form_valid(self, form):
+        # Guarda el objeto y redirige al éxito
+        self.object = form.save()
+        return redirect(self.get_success_url())
+
+    def form_invalid(self, form):
+        return self.render_to_response(self.get_context_data(form=form))
+
+    def get_success_url(self):
+        # Retorna la URL a la que redirigirá después de un submit exitoso
+        return reverse_lazy('estudios:sale')
+
+
+class SaleUpdate(UpdateView):
+    model = models.Sale
+    form_class = forms.Sale
+    template_name = 'sale/sale-update.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def form_valid(self, form):
+        # Guarda el objeto y redirige al éxito
+        self.object = form.save()
+        return redirect(self.get_success_url())
+
+    def form_invalid(self, form):
+        return self.render_to_response(self.get_context_data(form=form))
+
+    def get_success_url(self):
+        # Retorna la URL a la que redirigirá después de un submit exitoso
+        return reverse_lazy('estudios:sale')

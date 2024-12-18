@@ -2,7 +2,16 @@
 {% block content %}
 
 
-      
+      <section>
+            <div class='d-flex'>
+                  {% include "service/filter-services.html" %}
+            </div>
+            {% if service_select %}
+                  <div class='mt-5'>
+                        {% include "service/service-select.html" %}
+                  </div>
+            {% endif %}
+      </section>
 
 {% endblock  %}
 

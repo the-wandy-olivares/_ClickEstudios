@@ -11,7 +11,7 @@ urlpatterns = [
 # Servcios
       path('service/', views.Service.as_view(), name='service'),
             path('service-create/', views.ServiceCreate.as_view(), name='service-create'),
-                        path('service/<int:pk>/', views.ServiceDetail.as_view(), name='service-detail'),
+                        path('service-detail/<int:pk>/', views.ServiceDetail.as_view(), name='service-detail'),
                   path('service-update/<int:pk>/', views.ServiceUpdate.as_view(), name='service-update'),
       path('service-delete/<int:pk>/', views.ServiceDelete.as_view(), name='service-delete'),
 
@@ -22,4 +22,11 @@ urlpatterns = [
                         path('plan/<int:pk>/', views.PlanDetail.as_view(), name='plan-detail'),
                   path('plan-update/<int:pk>/', views.PlanUpdate.as_view(), name='plan-update'),
       path('plan-delete/<int:pk>/', views.PlanDelete.as_view(), name='plan-delete'),
+
+
+# Ventas
+      path('sale/', views.Sale.as_view(), name='sale'),
+            path('sale-create/', views.SaleCreate.as_view(), name='sale-create'),
+                        path('sale/<int:pk>/', views.SaleDetail.as_view(), name='sale-detail'),
+                  path('sale-update/<int:pk>/', views.SaleUpdate.as_view(), name='sale-update'),
 ]
