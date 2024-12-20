@@ -6,26 +6,31 @@
                   background-image: url("{{p.img_back.url}}"); 
             {% endif %}
 
-            background-size: cover; background-repeat: no-repeat; width: 320px; height: 360px; border-radius: 2.6rem;'>
+            background-size: cover; background-repeat: no-repeat; width: 320px; height: 430px; border-radius: 2.6rem;'>
                   <div style='
                         -webkit-backdrop-filter: blur(40px) !important;
-                        backdrop-filter: blur(40px) !important;' class='h-100 w-100 bg-black bg-opacity-50 m-0 p-2'>
+                        backdrop-filter: blur(40px) !important;' class='h-100 w-100 bg-black bg-opacity-50 m-0 p-3 pt-2'>
                         <div class=" m-0 " style="">
                               {% if p.img %}
                                     <img src="{{p.img.url}}" alt="No se puede cargar la imagen" 
                                           style="width: 95px; height: 95px; border-radius: 2rem;
-                                          border: 8px solid #000;" class="rounded-circle">
+                                          border: 8px solid #000;" class="rounded-circle me-3">
                               {% endif %}
                               <span>
-                                    <strong class="text-white bg-black bg-opacity-50 p-3 ps-4 pe-4 rounded-5">
-                                          {% if p.price %}
+                                    <strong class="text-white  p-3 ps-3 pe-3 rounded-5" style="font-size: 13px;">
+                                          <!-- {% if p.price %}
                                                 ${{p.price|intcomma}}.00
-                                          {% endif %}
+                                          {% endif %} -->
                                     </strong>
                               </span>
                         </div>
-                        <h5 class='mt-4' style="font-weight: bold; font-style: italic;">{{p.name}}</h5>
-                        <span class="d-flex">
+                        <h5 class='m-0 p-0 mt-4' style="font-weight: bold; font-style: italic;">
+                                {{ p.name|truncatechars:31 }}
+                        </h5>
+                        {% if p.price %}
+                               ${{p.price|intcomma}}.00
+                        {% endif %}
+                        <span class="d-flex mt-3">
                               {% if p.likes %}
                                     {% for i in p.likes.all %}
                                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-star-fill ms-1 me-1 text-warning" viewBox="0 0 16 16">
@@ -34,26 +39,26 @@
                                     {% endfor %}
                               {% endif %}
                         </span>
-                        <div style='height: 5.8rem;' class='overflow-auto pt-2'>   
+                        <div style='height: 5.7rem;' class='overflow-auto '>   
                                 {% if p.caracteristicas.all %}
                                        {% for p in  p.caracteristicas.all %}
-                                          <li class="list-group-item" style="font-size: 14px;">
-                                                  {{p.name}}
+                                          <li class="" style="font-size: 14px; list-style:circle;">
+                                                  {{p.name|truncatechars:32}} 
                                           </li>
                                        {% endfor %}
                               {% endif %}
                         </div>
       
                         <!-- Butones de elcciones-->
-                         <div class="d-flex justify-content-center">
+                         <div class="d-flex justify-content-center flex-wrap">
                               <a href="{% url "estudios:sale-create" p.id %}" 
                                     class="btn btn-primary bg-transparent text-white-50  border-0 me-4" 
                                     style="font-size: 16px; font-weight: bold ; ">
-                                    Comprar ahora
+                                    Adquerir ahora
                               </a>
 
                               <a href="" 
-                                    class="btn btn-danger p-2 ps-3 pe-3 bg-warning text-black rounded-5 border-0" style='font-weight: bold;'>
+                                    class="btn btn-danger mt-2 p-2 w-100 ps-3 pe-3 bg-warning text-black rounded-5 border-0" style='font-weight: bold;'>
                                     Agendar
                               </a>
                          </div>
