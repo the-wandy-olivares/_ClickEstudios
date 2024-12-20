@@ -1,17 +1,6 @@
 {% extends "base/base.html" %}
 {% block content %}
       <style>
-            body {
-                  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-                  margin: 0;
-                  padding: 0;
-
-            }
-            .gallery {
-                  display: flex;
-                  flex-wrap: wrap;
-                  padding: 5px;
-            }
             .gallery-item {
                   margin: 5px;
                   border-radius: 10px;
@@ -36,34 +25,32 @@
       }
       </style>
         
-    
-      <div class="gallery overflow-auto d-flex justify-content-start align-content-start">
+      <!-- Gallery -->
+      <div class="gallery overflow-auto d-flex flex-wrap justify-content-start align-content-start">
             {% for moment in moments %}
-            
                   <span class="w-100 d-flex mt-5">
+                        <!-- Agregar imagen solo si hay maximo de 6 -->
                         {% if moment.img_moments.all|length < 6 %}
-                              <a id="{{moment.id}}"  onclick="Open(this.id)" class=" mb-5 end-0  open-img"
-                                    style="cursor: pointer;">
+                              <a id="{{moment.id}}"  onclick="OpenFile(this.id)" class=" mb-5 end-0  open-img"style="cursor: pointer;">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
                                           <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
                                     </svg>         
                               </a> 
                         {% endif %}
-           
-                              <img src="{{moment.img.url}}" class="rounded-circle" 
-                              style='width: 40px; height: 40px; border: solid #3a3a39 4px;' alt="">
-                           
-                          
+                        <img src="{{moment.img.url}}" class="rounded-circle" 
+                        style='width: 40px; height: 40px; border: solid #3a3a39 4px;'>
                         <h6 style="margin-top: 20px !important;" class=" text-white">
-                              {{moment.name}}</h6>
-                        </span>
+                              {{moment.name}}
+                        </h6>
+                  </span>
 
                   {% for m in moment.img_moments.all %}
                         <div class="gallery-item position-relative">
+                              <!-- Eliminar imagen -->
                               <form action="" method="post">
                                     {% csrf_token %}
                                     <img src="{{m.img.url}}"
-                                    style="max-width: 20rem; transition-delay: 0.{{ forloop.counter }}s;" alt="Imagen 1">
+                                    style="max-width: 20rem; transition-delay: 0.{{ forloop.counter }}s;">
                                     <input type="number" name='delete' value="{{m.id}}" class="d-none">   
                                     <button type="submit" class="btn  bg-black  position-absolute top-0 end-0  rounded-circle text-white-50" 
                                     style='width: 50px; height: 50px;'>X</button>   
@@ -73,6 +60,7 @@
             {% endfor %}
       </div>
 
+      <!-- Crear  nueva imagen a categoria selecionada -->
       <form action="" method="post" class="d-none" enctype="multipart/form-data">
             {% csrf_token %}
             <input type="file" name="img" id="img" accept="image/*">
@@ -80,23 +68,18 @@
             <button type="submit" class="btn-submit">Enviar</button>
       </form>
 
-
-
       <script>
-
-
+            // Script para abrir el input file 
             document.getElementById('img').addEventListener('change', function() {
                   document.querySelector('.btn-submit').click();
             });
             
-            function Open(id){     
-                  document.getElementById('id').value = id;
-                  document.getElementById('img').click();
-            }
+            // Funcion para abrir el input file 
+            let  OpenFile = (id) => {     
+                  document.querySelector('#id').value = id;
+                  document.querySelector('#img').click();
+            };
             
-
       </script>
-
-
 
 {% endblock  %}
