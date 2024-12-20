@@ -346,3 +346,13 @@ class Gallery(TemplateView):
             img = models.ImgMoment.objects.get(pk=request.POST.get('delete'))
             img.delete()
         return self.render_to_response(self.get_context_data())
+    
+
+
+class Caja(TemplateView):
+    template_name = 'caja/caja.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['sales'] = models.Sale.objects.all()
+        return context

@@ -32,4 +32,9 @@ urlpatterns = [
 
 # Galeria
       path('gallery/', views.Gallery.as_view(), name='gallery'),
+
+#  Caja administrativa, balance, cierre de caja, apertura de caja, etc
+      path('caja/', views.Caja.as_view(), name='caja'),
+            # path('caja-create/', views.cajaCreate.as_view(), name='caja-create'),
+            #       path('caja-update/<int:pk>/', views.cajaUpdate.as_view(), name='caja-update'),
 ]
