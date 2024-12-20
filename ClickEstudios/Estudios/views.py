@@ -321,6 +321,14 @@ class Estudios(TemplateView):
         if request.POST.get('delete'):
                 adicional = models.Adicional.objects.get(pk=request.POST.get('delete'))
                 adicional.delete()
-                
-
+            
         return self.render_to_response(self.get_context_data())
+    
+
+class Gallery(TemplateView):
+    template_name = 'gallery/gallery.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['moments'] = models.Moment.objects.all()
+        return context
