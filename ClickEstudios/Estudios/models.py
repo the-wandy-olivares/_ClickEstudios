@@ -173,13 +173,14 @@ class Sale(models.Model):
       name_plan = models.CharField(max_length=100, blank=True, null=True)
       description_plan = models.TextField(blank=True, null=True)
       price_plan = models.IntegerField(blank=True, null=True)
+      img = models.ImageField(upload_to='media/ventas', null=True, blank=True)
       date = models.DateTimeField(auto_now_add=True)
       is_active = models.BooleanField(default=True)
 
 # Estado de la venta
-      mount = models.IntegerField(blank=True, null=True) # Monto de la reserva
+      mount = models.IntegerField(blank=True, null=True, default=0) # Monto de la reserva
       is_reserve = models.BooleanField(default=False) # Reserva de la venta
-      payment = models.IntegerField(blank=True, null=True) # Pago de la venta
+      payment = models.BooleanField(blank=True, null=True) # Pago de la venta
 
 # Procesos de fotografias
       start_proces_date = models.DateField(verbose_name="Fecha de inicio", blank=True, null=True)

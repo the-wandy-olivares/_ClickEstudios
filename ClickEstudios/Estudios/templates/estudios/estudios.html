@@ -1,0 +1,114 @@
+{% extends "base/base.html" %}
+{% block content %}
+{% load humanize %}
+<section style="position: relative; min-height: 100vh; width: 100%;"
+      class=' text-white overflow-scroll'>
+      {% comment %} <header style="position: sticky; top: 0; width: 100%;  padding: 10px; text-align: center;">
+            <h1>Header</h1>
+      </header> {% endcomment %}
+      
+      <main style="padding-top: 60px; padding-bottom: 60px; height: 100vh;">
+            
+            <div class='d-flex'>
+                  <span>
+                        <img src="{{sale.img.url}}" width='100' height='100' 
+                        class='rounded-circle'  alt="">
+                  </span>
+
+                  <span>
+                        <h5>{{ sale.name_client }}</h5>
+                        <p class='p-0 m-0'>{{ sale.name_plan }}</p>
+                        <p class='p-0 m-0'>{{ sale.description_plan }}</p>
+                        <p class='p-0 m-0'>{{ sale.price_plan|intcomma }}.00</p>
+                  </span>
+            </div>
+
+            <div class='adicional d-none'>
+                  <form action="" method="post">
+                        {% csrf_token %}
+                        <input class='adicionales-input' type="text" name="name"  id="name" placeholder="Nombre">
+                        <input class='adicionales-input' type="text" name="description" id="description" placeholder="Descripción">
+                        <input class='adicionales-input' type="number" name="price" id="price" placeholder="Precio">
+                        <button class='btn-send d-none '>
+                                Agregar
+                        </button>
+                  </form>
+            </div>
+
+            <span>
+                  <button id='open-adicional'>
+                        Agrega adicional
+                  </button>
+            </span>
+
+            {% if adicionales %}
+                  {% include "component/table-adicional.html" %}
+            {% endif %}
+
+            <!-- Factura -->
+             <div class='factura  d-none position-absolute top-0 z-2'>
+                  {% include "component/factura.html" %}
+             </div>
+      </main>
+      
+      <!-- Footer -->
+      <footer class='pb-5 d-flex justify-content-end w-100' style="position: sticky; bottom: 0; width: 100%;  padding: 10px; text-align: center;" >
+            <div>
+                  <p class='p-0 m-0'>Total: ${{ total|intcomma }}.00</p>
+                  <p class='p-0 m-0'>Adicionales: ${{ total_adicionales|intcomma }}.00</p>
+            </div>
+            <div>
+                  <button class='show-button pe-3 ps-3'>
+                        Visualizar 
+                  </button>
+                  <button class='show-button pe-3 ps-3'>
+                        Impirmir 
+                  </button>
+            </div>
+      </footer>
+</section>
+
+
+
+<!-- Enviar formulario-->
+<script>
+      const inputs = document.querySelectorAll('.adicionales-input');
+      const btnSend = document.querySelector('.btn-send');
+
+      inputs.forEach(input => {
+            input.addEventListener('input', function() {
+                  let allFilled = true;
+                  inputs.forEach(inp => {
+                              if (inp.value === '') {
+                                    allFilled = false;
+                               }
+                        });
+                  if (allFilled) {
+                        btnSend.classList.remove('d-none');
+                  } else {
+                        btnSend.classList.add('d-none');
+                  }
+            });
+      });
+
+
+
+
+</script>
+<!-- Abril formulario-->
+<script>
+      document.querySelector('#open-adicional').addEventListener('click', function() {
+            document.querySelector('.adicional').classList.toggle('d-none');
+      });
+</script>
+
+<!-- Visualizar factura-->
+<script>
+      document.querySelector('.show-button').addEventListener('click', function() {
+            document.querySelector('.factura').classList.toggle('d-none');
+      });
+</script>
+
+
+
+{% endblock  %}

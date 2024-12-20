@@ -1,0 +1,53 @@
+{% extends "base/base.html" %}
+{% block content %}
+{% load humanize %}
+
+      <section class='d-flex flex-wrap align-content-start h-100 w-100 '>
+                  <div style="width: 320px;" class=' text-white bg-white bg-opacity-25 m-2 rounded shadow-sm'>
+                        
+                        <div class='d-flex flex-wrap w-100 p-3'>
+                              {% if sale.is_cliente %}
+                                          <h5 class="text-primary">{{ sale.name }}</h5>
+                              {% else %}
+                                    <span class='w-100'>
+                                          <p class="mb-1">
+                                                {% if sale.name_client %}
+                                                            <strong>Nombre:</strong> {{ sale.name_client }}
+                                                {% endif %}
+                                          </p>
+                                          <p class="mb-1">
+                                                {% if sale.phone_client %}
+                                                            <strong>Teléfono:</strong> {{ sale.phone_client }}
+                                                {% endif %}
+                                          </p>
+                                          <p class="mb-1">
+                                                {% if sale.email_client %}
+                                                            <strong>Email:</strong> {{ sale.email_client }}
+                                                {% endif %}
+                                          </p>
+                                    </span>
+                                    <span>
+                                    <strong class="text-white bg-dark bg-opacity-75 p-2 rounded">
+                                                {% if sale.price_plan %}
+                                                      ${{sale.price_plan|intcomma}}.00
+                                                {% endif %}
+                                    </strong>
+                                    </span>
+                              {% endif %} 
+                        </div>
+                  <div>
+
+                        <form action="" method="post">
+                              {% csrf_token %}
+                              <input type="number" name="mount" value="500">
+                              <button id='reserve-{{ sale.id }}'>
+                                    Aplicar
+                              </button>
+                        </form>
+            
+                  </div>
+            </div>
+      </section>
+
+
+{% endblock  %}

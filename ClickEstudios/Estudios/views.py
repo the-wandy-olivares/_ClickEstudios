@@ -21,6 +21,7 @@ class Pos(TemplateView):
         context['sales'] = models.Sale.objects.all()
         return context
 
+
 class Service(TemplateView):
         template_name = 'service/service.html'
 
@@ -188,10 +189,47 @@ class Sale(TemplateView):
         return context
 
 
-class SaleDetail(DetailView):
+class SaleReserver(TemplateView):
     model = models.Sale
-    template_name = 'sale/sale-detail.html'
-    context_object_name = 'sale'
+    form_class = forms.Sale
+    template_name = 'sale/sale-reserver.html'
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['sale'] = models.Sale.objects.get(pk=self.kwargs.get('pk'))
+        return context
+    
+
+    def post(self, request, *args, **kwargs):
+        new_mount = request.POST.get('mount')
+        if new_mount:
+
+            sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
+            # Process the sale reservation logic here
+            # For example, mark the sale as reserved
+
+            
+            # Reservar la venta
+            sale.is_reserve = True
+            if sale.is_reserve:
+                if sale.mount >= sale.price_plan:
+                    sale.mount = sale.price_plan
+                    sale.payment = True
+                    print('Pago realizado', sale.payment)
+                else:
+                    sale.mount += int(new_mount)
+            else:
+                if sale.mount >= sale.price_plan:
+                    sale.mount = sale.price_plan
+                    sale.payment = True
+                else:
+                     sale.mount = int(new_mount)
+            sale.save()
+
+
+            return redirect('estudios:pos')
+        return self.render_to_response(self.get_context_data())
 
 
 class SaleCreate(CreateView):
@@ -208,6 +246,7 @@ class SaleCreate(CreateView):
         if plan_id:
             plan = models.Plan.objects.get(pk=plan_id)
             form.instance.name_plan = plan.name
+            form.instance.img = plan.img
             form.instance.description_plan = plan.description
             form.instance.price_plan = plan.price
 
@@ -244,3 +283,44 @@ class SaleUpdate(UpdateView):
     def get_success_url(self):
         # Retorna la URL a la que redirigirá después de un submit exitoso
         return reverse_lazy('estudios:sale')
+    
+
+
+class Estudios(TemplateView):
+    template_name = 'estudios/estudios.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
+
+        total = sale.price_plan
+        if sale.sale_adicionales.all():
+            for adicional in sale.sale_adicionales.all():
+                total += adicional.price
+        context['sale'] = sale
+        context['total'] = total
+        context['total_adicionales'] = total - sale.price_plan
+        context['adicionales'] = sale.sale_adicionales.all()
+        return context
+
+
+
+    def post(self, request, *args, **kwargs):
+        print('mmm?', request.POST.get('name'))
+        if request.POST.get('name'):
+            print('entro')
+            sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
+            a = models.Adicional(
+                    sale=sale,
+                    name= request.POST.get('name'),
+                    description= request.POST.get('description'),
+                    price= int(request.POST.get('price'))
+            )
+            a.save()
+
+        if request.POST.get('delete'):
+                adicional = models.Adicional.objects.get(pk=request.POST.get('delete'))
+                adicional.delete()
+                
+
+        return self.render_to_response(self.get_context_data())

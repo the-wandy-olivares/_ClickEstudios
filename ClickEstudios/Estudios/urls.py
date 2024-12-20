@@ -7,6 +7,11 @@ app_name = 'estudios'
 urlpatterns = [
       path('dashboard/', views.Dashboard.as_view(), name='dashboard'),
             path('pos/', views.Pos.as_view(), name='pos'),
+
+
+# Estudios
+      path('estudios/<int:pk>', views.Estudios.as_view(), name='estudios'),
+
      
 # Servcios
       path('service/', views.Service.as_view(), name='service'),
@@ -27,6 +32,6 @@ urlpatterns = [
 # Ventas
       path('sale/', views.Sale.as_view(), name='sale'),
             path('sale-create/<int:pk>', views.SaleCreate.as_view(), name='sale-create'),
-                        path('sale/<int:pk>/', views.SaleDetail.as_view(), name='sale-detail'),
+                        path('sale/<int:pk>/', views.SaleReserver.as_view(), name='sale-reserver'),
                   path('sale-update/<int:pk>/', views.SaleUpdate.as_view(), name='sale-update'),
 ]

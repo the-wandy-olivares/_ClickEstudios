@@ -1,0 +1,31 @@
+{% load humanize %}
+<table class="table table-striped">
+      <thead>
+            <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Descripción</th>
+                  <th scope="col">Precio</th>
+                  <th>
+                        Acciones
+                  </th>
+            </tr>
+      </thead>
+      <tbody>
+            {% for adicional in adicionales %}
+            <tr>
+                  <th scope="row">{{ forloop.counter }}</th>
+                  <td>{{ adicional.name }}</td>
+                  <td>{{ adicional.description }}</td>
+                  <td>{{ adicional.price|intcomma }}.00</td>
+                  <td>
+                        <form action="" method="post" class="d-inline">
+                              {% csrf_token %}
+                              <input type="hidden" name="delete" value="{{ adicional.id }}">
+                              <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                        </form>
+                  </td>
+            </tr>
+            {% endfor %}
+      </tbody>
+</table>
