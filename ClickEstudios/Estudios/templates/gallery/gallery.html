@@ -10,8 +10,7 @@
             .gallery {
                   display: flex;
                   flex-wrap: wrap;
-                  justify-content: center;
-                  padding: 20px;
+                  padding: 5px;
             }
             .gallery-item {
                   margin: 5px;
@@ -24,10 +23,11 @@
                   display: block;
                   width: 100%;
                   height: auto;
-                  border-radius: 1.5rem;
+                  border-radius: 2rem;
             }
             .gallery-item:hover {
                   transform: scale(1.05);
+                  cursor: pointer;
             }
             .galley-a {
             color: #ffc107;
@@ -35,27 +35,68 @@
             transform: scale(1.1);
       }
       </style>
-        <a href="{% url "estudios:service-create" %}" class="position-absolute top-0 mt-5 me-5 end-0 m-3">
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
-                </svg>         
-      </a> 
+        
     
-      <div class="gallery overflow-auto d-flex justify-content-start">
+      <div class="gallery overflow-auto d-flex justify-content-start align-content-start">
             {% for moment in moments %}
-                  <span class="w-100 d-flex">
-                        <img src="{{moment.img.url}}" class="rounded-circle" 
-                        style='width: 40px; height: 40px; border: solid #3a3a39 4px;' alt="">
+            
+                  <span class="w-100 d-flex mt-5">
+                        {% if moment.img_moments.all|length < 6 %}
+                              <a id="{{moment.id}}"  onclick="Open(this.id)" class=" mb-5 end-0  open-img"
+                                    style="cursor: pointer;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+                                    </svg>         
+                              </a> 
+                        {% endif %}
+           
+                              <img src="{{moment.img.url}}" class="rounded-circle" 
+                              style='width: 40px; height: 40px; border: solid #3a3a39 4px;' alt="">
+                           
+                          
                         <h6 style="margin-top: 20px !important;" class=" text-white">
                               {{moment.name}}</h6>
-                  </span>
-                  {% for m in moment.img_moments.all %}
+                        </span>
 
-                        <div class="gallery-item">
-                              <img data-aos="zoom-in" src="{{m.img.url}}"
-                               style="max-width: 15rem; transition-delay: 0.{{ forloop.counter }}s;" alt="Imagen 1">
+                  {% for m in moment.img_moments.all %}
+                        <div class="gallery-item position-relative">
+                              <form action="" method="post">
+                                    {% csrf_token %}
+                                    <img src="{{m.img.url}}"
+                                    style="max-width: 20rem; transition-delay: 0.{{ forloop.counter }}s;" alt="Imagen 1">
+                                    <input type="number" name='delete' value="{{m.id}}" class="d-none">   
+                                    <button type="submit" class="btn  bg-black  position-absolute top-0 end-0  rounded-circle text-white-50" 
+                                    style='width: 50px; height: 50px;'>X</button>   
+                              </form>
                         </div>
                   {% endfor %}
             {% endfor %}
       </div>
+
+      <form action="" method="post" class="d-none" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="img" id="img" accept="image/*">
+            <input type="text"  name="id" id="id">
+            <button type="submit" class="btn-submit">Enviar</button>
+      </form>
+
+
+
+      <script>
+
+
+            document.getElementById('img').addEventListener('change', function() {
+                  document.querySelector('.btn-submit').click();
+            });
+            
+            function Open(id){     
+                  document.getElementById('id').value = id;
+                  document.getElementById('img').click();
+            }
+            
+
+      </script>
+
+
+
 {% endblock  %}

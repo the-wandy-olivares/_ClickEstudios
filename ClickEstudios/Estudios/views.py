@@ -332,3 +332,17 @@ class Gallery(TemplateView):
         context = super().get_context_data(**kwargs)
         context['moments'] = models.Moment.objects.all()
         return context
+    
+
+    def post(self, request, *args, **kwargs):
+        if request.FILES.get('img'):
+            print(request.POST.get('id'))
+            moment = models.ImgMoment(
+                 moment=models.Moment.objects.get(pk=int(request.POST.get('id'))),
+                 img=request.FILES['img'])
+            moment.save()
+
+        if request.POST.get('delete'):
+            img = models.ImgMoment.objects.get(pk=request.POST.get('delete'))
+            img.delete()
+        return self.render_to_response(self.get_context_data())
