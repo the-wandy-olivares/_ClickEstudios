@@ -222,8 +222,6 @@ class Adicional(models.Model):
 class Box(models.Model):
       user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='box', null=True, blank=True)
 
-
-
 # Estado de caja 
       open = models.BooleanField(default=True)
       date_opening = models.DateTimeField(auto_now_add=True)

@@ -435,3 +435,28 @@ class Box(TemplateView):
         context['balance_caja'] = balance_caja
 
         return self.render_to_response(context)
+    
+
+
+class BoxCreate(TemplateView):
+    model = models.Box
+    template_name = 'box/box-create.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_open'] = models.Box.objects.filter(open=True).exists()
+        return context
+
+
+    def post(self, request, *args, **kwargs):
+        if request.POST.get('open'):
+            box = models.Box(
+                user=request.user
+            )
+            box.save()
+        if request.POST.get('close'):
+            box = models.Box.objects.filter(open=True).latest('id')
+            box.open = False
+            box.save()
+        return redirect('estudios:box')
+

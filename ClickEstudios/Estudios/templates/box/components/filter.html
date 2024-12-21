@@ -1,35 +1,39 @@
-<form method="post" class="d-flex justify-content-between mb-3">
-      {% csrf_token %}
-      <select name="tipo" class="form-select me-2">
-            <option value="todos" {% if request.POST.tipo == "todos" %}selected{% endif %}>Todos</option>
-            <option value="ingreso" {% if request.POST.tipo == "ingreso" %}selected{% endif %}>Ingresos</option>
-            <option value="gasto" {% if request.POST.tipo == "gasto" %}selected{% endif %}>Gastos</option>
-      </select>
-      <select name="caja" class="form-select me-2" onchange="document.getElementById('selected-caja').innerText = this.options[this.selectedIndex].text;">
-            <option value="todas" {% if request.POST.caja == "todas" %}selected{% endif %}>Todas las Cajas</option>
-            {% for caja in cajas %}
-            <option value="{{ caja.id }}" {% if request.POST.caja == caja.id|stringformat:"s" %}selected{% endif %}>
-                  Caja #{{ forloop.counter }} </option>
-            {% endfor %}
-      </select>
-
-      <select name="year" class="form-select me-2">
-            <option value="todos" {% if request.POST.year == "todos" %}selected{% endif %}>Todos los Años</option>
-            {% for year in years %}
-            <option value="{{ year }}" {% if request.POST.year == year|stringformat:"s" %}selected{% endif %}>{{ year }}</option>
-            {% endfor %}
-      </select>
-      <select name="mes_inicio" class="form-select me-2">
-            <option value="todos" {% if request.POST.mes_inicio == "todos" %}selected{% endif %}>Mes Inicio</option>
-            {% for mes in meses %}
-            <option value="{{ mes.numero }}" {% if request.POST.mes_inicio == mes.numero|stringformat:"s" %}selected{% endif %}>{{ mes.nombre }}</option>
-            {% endfor %}
-      </select>
-      <select name="mes_fin" class="form-select me-2">
-            <option value="todos" {% if request.POST.mes_fin == "todos" %}selected{% endif %}>Mes Fin</option>
-            {% for mes in meses %}
-            <option value="{{ mes.numero }}" {% if request.POST.mes_fin == mes.numero|stringformat:"s" %}selected{% endif %}>{{ mes.nombre }}</option>
-            {% endfor %}
-      </select>
-      <button type="submit" class="btn btn-primary">Filtrar</button>
-</form>
+<div class="d-flex w-100 justify-content-between">
+      <form method="post" class="d-flex w-100 justify-content-between mb-3">
+            {% csrf_token %}
+            <select name="tipo" class="form-select me-2  rounded-start-5" >
+                  <option value="todos" {% if request.POST.tipo == "todos" %}selected{% endif %}>Todos</option>
+                  <option value="ingreso" {% if request.POST.tipo == "ingreso" %}selected{% endif %}>Ingresos</option>
+                  <option value="gasto" {% if request.POST.tipo == "gasto" %}selected{% endif %}>Gastos</option>
+            </select>
+            <select name="caja" class="form-select me-2" onchange="document.getElementById('selected-caja').innerText = this.options[this.selectedIndex].text;">
+                  <option value="todas" {% if request.POST.caja == "todas" %}selected{% endif %}>Todas las Cajas</option>
+                  {% for caja in cajas %}
+                  <option value="{{ caja.id }}" {% if request.POST.caja == caja.id|stringformat:"s" %}selected{% endif %}>
+                        Caja #{{ forloop.counter }} </option>
+                  {% endfor %}
+            </select>
+      
+            <select name="year" class="form-select me-2">
+                  <option value="todos" {% if request.POST.year == "todos" %}selected{% endif %}>Todos los Años</option>
+                  {% for year in years %}
+                  <option value="{{ year }}" {% if request.POST.year == year|stringformat:"s" %}selected{% endif %}>{{ year }}</option>
+                  {% endfor %}
+            </select>
+            <select name="mes_inicio" class="form-select me-2">
+                  <option value="todos" {% if request.POST.mes_inicio == "todos" %}selected{% endif %}>Mes Inicio</option>
+                  {% for mes in meses %}
+                  <option value="{{ mes.numero }}" {% if request.POST.mes_inicio == mes.numero|stringformat:"s" %}selected{% endif %}>{{ mes.nombre }}</option>
+                  {% endfor %}
+            </select>
+            <select name="mes_fin" class="form-select me-2">
+                  <option value="todos" {% if request.POST.mes_fin == "todos" %}selected{% endif %}>Mes Fin</option>
+                  {% for mes in meses %}
+                  <option value="{{ mes.numero }}" {% if request.POST.mes_fin == mes.numero|stringformat:"s" %}selected{% endif %}>{{ mes.nombre }}</option>
+                  {% endfor %}
+            </select>
+            <button type="submit" class="btn btn-warning rounded-end-5"
+            style="font-weight: bold;">Filtrar</button>
+      </form>
+      
+</div>

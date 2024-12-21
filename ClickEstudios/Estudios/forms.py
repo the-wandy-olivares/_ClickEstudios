@@ -86,3 +86,15 @@ class Adicional(forms.ModelForm):
                   'price': forms.NumberInput(attrs={'class': 'form-control'}),
 
             }
+
+
+class Box(forms.ModelForm):
+      class Meta:
+            model = models.Box
+            fields = [ 'user', 'open', 'date_close']
+            widgets = {
+
+            'user': forms.Select(attrs={'class': 'form-control'}),
+            'open': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'date_close': forms.DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime-local'}),
+            }
