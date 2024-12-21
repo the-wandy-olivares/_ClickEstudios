@@ -217,3 +217,53 @@ class Adicional(models.Model):
 
 
 
+# Administrar Caja del estudio
+
+class Box(models.Model):
+      user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='box', null=True, blank=True)
+
+
+
+# Estado de caja 
+      open = models.BooleanField(default=True)
+      date_opening = models.DateTimeField(auto_now_add=True)
+      date_close = models.DateTimeField(null=True, blank=True)
+
+      def __str__(self):
+            return f" Caja {'abierta' if self.open else ' cerrada'} por {self.user.first_name} {self.user.last_name}"
+
+
+# Movimientos de caja
+class Movements(models.Model):
+      TYPE_CHOICE = [
+            ('ingreso', 'Ingreso'),
+            ('gasto', 'Gasto'),
+
+            # Moviemientos de cierre
+            ('cierre', 'Cierre'),
+            ('apertura', 'Apertura'),
+
+            #  Movimientos de edición, creación, eliminación
+            ('editar', 'Editar'),
+            ('crear', 'Crear'),
+            ('eliminar', 'Eliminar'),
+
+            # Movimientos de ventas
+            ('venta', 'Venta'),
+            ('reserva', 'Reserva'),
+            ('pago', 'Pago'),
+            ('finalizar', 'Finalizar'),
+
+      ]
+
+      box = models.ForeignKey(Box, on_delete=models.CASCADE, related_name='movements', null=True, blank=True)
+      type = models.CharField(max_length=15, choices=TYPE_CHOICE)
+      mount = models.IntegerField(default=0, blank=False, null=False)
+      description = models.TextField(default='Sin descripción', blank=True, null=True)
+      date = models.DateTimeField(auto_now_add=True)
+
+# Historial de movientos
+      user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_move', null=True, blank=True)
+
+      def __str__(self):
+            return f"{self.type.capitalize()} de {'Efectuando caja' if self.mount else 'Movimiento'} el {self.date}"
