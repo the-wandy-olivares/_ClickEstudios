@@ -1,5 +1,7 @@
 {% load humanize %}
 {% for p in  plans %}
+
+
       <a href="{% url "estudios:plan-update" p.id %}">
             <div class='p-0 d-flex overflow-hidden' style='
             {% if p.img_back %}

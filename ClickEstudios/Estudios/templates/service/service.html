@@ -1,6 +1,14 @@
 {% extends "base/base.html" %}
 {% block content %}
  
+      <style>
+            .nav .services {
+                  color: #ffc107;
+                  font-weight: bolder;
+                  transform: scale(1.1);
+            }
+      </style>
+
       <section class='d-flex'>
             <a href="{% url "estudios:service-create" %}">
                   <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-patch-plus-fill" viewBox="0 0 16 16">

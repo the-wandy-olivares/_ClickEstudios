@@ -1,6 +1,13 @@
 {% extends "base/base.html" %}
 {% block content %}
-      <div class="bg-black mt-4 d-flex flex-wrap">
+      <style>
+            .nav .dashboard {
+                  color: #ffc107;
+                  font-weight: bolder;
+                  transform: scale(1.1);
+            }
+      </style>
+      <div class="bg-black mt-4 d-flex flex-wrap overflow-auto">
 
             <div class="d-flex flex-wrap">
                   <div class="bg-gray-800 p-4 rounded-lg shadow-md">
@@ -15,7 +22,7 @@
                         </h2>
                         <canvas id="barChart"></canvas>
                   </div>
-                  <div class="bg-gray-800 p-4 rounded-lg shadow-md">
+                  <div class="bg-gray-800 p-4 rounded-lg w-75 shadow-md">
                         <h2 class="text-white text-xl mb-2">
                               Año, años y 5 años
                         </h2>

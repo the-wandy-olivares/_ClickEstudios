@@ -10,7 +10,9 @@
                   <option value="todas" {% if request.POST.caja == "todas" %}selected{% endif %}>Todas las Cajas</option>
                   {% for caja in cajas %}
                   <option value="{{ caja.id }}" {% if request.POST.caja == caja.id|stringformat:"s" %}selected{% endif %}>
-                        Caja #{{ forloop.counter }} </option>
+                         #{{ forloop.counter }} 
+                         {{caja.user.first_name}} {{caja.user.last_name}} 
+                  </option>
                   {% endfor %}
             </select>
       
