@@ -459,4 +459,14 @@ class BoxCreate(TemplateView):
             box.open = False
             box.save()
         return redirect('estudios:box')
+    
+
+
+class Admin(TemplateView):
+    template_name = 'admin/admin.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['users'] = models.User.objects.all()
+        return context
 

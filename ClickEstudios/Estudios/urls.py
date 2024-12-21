@@ -37,4 +37,7 @@ urlpatterns = [
       path('box/', views.Box.as_view(), name='box'),
             path('box-create/', views.BoxCreate.as_view(), name='box-create'),
             #       path('caja-update/<int:pk>/', views.cajaUpdate.as_view(), name='caja-update'),
+
+#  Caja administrativa, balance, cierre de caja, apertura de caja, etc
+      path('admin', views.Admin.as_view(), name='admin'),
 ]
