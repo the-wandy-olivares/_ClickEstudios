@@ -1,7 +1,16 @@
 {% load humanize %}
+<style>
+      td
+      {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 14px;
+
+      }
+</style>
 <table class="w-100 text-white">
       <thead>
             <tr>
+                  <th>#</th>
                   <th>Fecha</th>
                   <th>Descripción</th>
                   <th>Monto</th>
@@ -12,6 +21,7 @@
             {% if movimientos  %}
                   {% for movimiento in movimientos %}
                   <tr class="movimiento-row" data-tipo="{{ movimiento.tipo }}">
+                        <td>  {{ forloop.counter }} </td>
                         <td>{{ movimiento.date|date:"d/m/Y" }}</td>
                         <td>{{ movimiento.description }}</td>
                         <td> ${{ movimiento.mount|intcomma }}.00</td>

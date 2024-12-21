@@ -18,18 +18,19 @@
                               {% include "box/components/table.html" %}
                         </div>
                   </div>
-                  <div class="position-sticky bottom-0 w-100">
-                        <a href="{% url "estudios:box-create" %}" class='mb-3'> 
-                              <button class='btn bg-danger rounded-5 text-white '
-                              >Cerrar  caja</button>
-                        </a>
-                        <div class="col-md-6">
-                              <st>Balance de Apertura: {{ balance_apertura }}</st>
+                  <div class="position-sticky bottom-0 d-flex  w-100 ">
+                     
+                 
+                        <div class="w-75 d-flex justify-content-start">
+                              <h6 class="p-0 m-0 mt-2 ms-3 "> <span  style="font-family: Kavoon, serif;">Igresos</span> ${{ ingresos|intcomma }}.00</h6>
+                              <h6 class="p-0 m-0 mt-2 ms-3 "> <span  style="font-family: Kavoon, serif;">Gastos</span> ${{ egresos|intcomma }}.00</h6>
+                              <h6 class="p-0 m-0 mt-2 ms-3 "> <span  style="font-family: Kavoon, serif;">Balance</span> ${{ balance_caja|intcomma }}.00</h6>
                         </div>
-                        <div class="col-md-6">
-                              <h6>Ingresos: ${{ ingresos|intcomma }}.00</h6>
-                              <h6>Gastos: ${{ egresos|intcomma }}.00</h6>
-                              <h6>Balance en Caja: ${{ balance_caja|intcomma }}.00</h6>
+                        <div class="justify-content-end w-25 d-flex flex-wrap align-content-center">
+                              <a href="{% url "estudios:box-create" %}" class=''> 
+                                    <button style="width: 8rem; font-weight: bold;" class='btn bg-danger rounded-5 text-white '
+                                    >Cerrar  caja</button>
+                              </a>
                         </div>
                   </div>
                   
