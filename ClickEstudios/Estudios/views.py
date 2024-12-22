@@ -18,7 +18,8 @@ class Pos(TemplateView):
         context = super().get_context_data(**kwargs)
         context['service_choices'] = models.Service.objects.all()
         context['plan_choices'] = models.Plan.objects.all()
-        context['sales'] = models.Sale.objects.all()
+        context['sales'] = models.Sale.objects.filter(is_reserve=False)
+        context['sales_reservers'] = models.Sale.objects.filter(is_reserve=True)
         return context
 
 

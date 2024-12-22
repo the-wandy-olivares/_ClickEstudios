@@ -15,7 +15,7 @@
             }
       </style>
 
-      <section>
+      <section class="overflow-hidden">
             <span class="reloj font-delius position-absolute end-0 me-5 mt-3 d-flex justify-content-center align-content-center flex-wrap text-white"
                 style="font-size: 18px;" ></span>
             <div class='d-flex'>
@@ -26,18 +26,25 @@
                   </button>
                   {% include "service/filter-services.html" %}
             </div>
+
             {% if service_select %}
                   <div class='mt-5'>
                         {% include "service/service-select.html" %}
                   </div>
             {% endif %}
 
-            <div>
-                  {% if sales %}
-                  <div class='mt-5'>
+
+            {% if sales %}
+                  <div>
                         {% include "sale/sale.html" %}
                   </div>
             {% endif %}
+
+            {% if sales_reservers %}
+                  <div class='mt-5 d-flex overflow-auto'>
+                        {% include "sale/sale-resevers.html" %}
+                  </div>
+      {% endif %} 
 
             </div>
       </section>
