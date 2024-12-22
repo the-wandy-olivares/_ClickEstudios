@@ -13,17 +13,30 @@
             font-family: "Delius", serif;
             font-style: normal;
             }
+
+            .search {
+                  width: 10rem;
+                  border-radius: 2rem;
+                  background-color: #000000;
+                  border: 0;
+                  color: white; 
+            }
+            .search::placeholder {
+                  color: rgba(255, 255, 255, 0.829);
+            }
+
       </style>
 
       <section class="overflow-hidden">
             <span class="reloj font-delius position-absolute end-0 me-5 mt-3 d-flex justify-content-center align-content-center flex-wrap text-white"
-                style="font-size: 18px;" ></span>
+            style="font-size: 18px;" ></span>
             <div class='d-flex'>
                   <button class="bg-transparent border-0 me-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search text-white" viewBox="0 0 16 16">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-                      </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search text-white" viewBox="0 0 16 16">
+                              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                        </svg>
                   </button>
+                  <input type="text" class="form-control search text-white bg-transparent border-0 text-white" placeholder="Buscar cliente">
                   {% include "service/filter-services.html" %}
             </div>
 
@@ -33,15 +46,34 @@
                   </div>
             {% endif %}
 
-
+            
+            <div>
+                  <h6 class="text-white-50 mt-5">
+                        Citas sin confirmar
+                  </h6>
+            </div>
             {% if sales %}
                   <div>
                         {% include "sale/sale.html" %}
                   </div>
+                  {% else %}
+                  <div style="min-width: 500px; cursor: pointer; max-width: 500px; border: 6px solid rgb(47, 47, 47); border-radius: 3rem; height: 17rem;" class=' text-white m-2 shadow-sm d-flex justify-content-center align-content-center flex-wrap'>
+                        <h6 style="font-weight: bold; font-size: 18px;">
+                              No hay reservaciones
+                        </h6>
+                        <p class="m-3 p-2 text-white-50" style="text-align: justify;">
+                              Puedes buscar un cliente para realizar una reservación o seleccionar un servicio para reservar un plan y realizar una reserva una cita
+                        </p>
+                  </div>
             {% endif %}
 
             {% if sales_reservers %}
-                  <div class='mt-5 d-flex overflow-auto'>
+                  <div>
+                        <h6 class="text-white-50 mt-5">
+                              Reservaciones confirmadas
+                        </h6>
+                  </div>
+                  <div class='mt-1 d-flex overflow-auto'>
                         {% include "sale/sale-resevers.html" %}
                   </div>
       {% endif %} 

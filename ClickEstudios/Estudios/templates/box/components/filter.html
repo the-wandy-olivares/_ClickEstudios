@@ -1,7 +1,16 @@
+<style>
+      .form-select
+      {
+            background-color: rgb(33, 33, 33);
+            border: none;
+            color: white; 
+            text-align: center; font-weight: bold;
+      }
+</style>
 <div class="d-flex w-100 justify-content-between">
       <form method="post" class="d-flex w-100 justify-content-between mb-3">
             {% csrf_token %}
-            <select name="tipo" class="form-select me-2  rounded-start-5" >
+            <select name="tipo" class="form-select me-2  rounded-start-2" >
                   <option value="todos" {% if request.POST.tipo == "todos" %}selected{% endif %}>Todos</option>
                   <option value="ingreso" {% if request.POST.tipo == "ingreso" %}selected{% endif %}>Ingresos</option>
                   <option value="gasto" {% if request.POST.tipo == "gasto" %}selected{% endif %}>Gastos</option>

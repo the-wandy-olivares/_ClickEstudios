@@ -188,8 +188,8 @@ class Sale(models.Model):
       finalize = models.BooleanField(default=False) # Procesos de fotografias finalizado
 
 # Cuando se acordo la venta (cita)
-      date_choice = models.DateField(verbose_name="Fecha final", blank=True, null=True) # Fecha de la cita
-      time = models.TimeField(verbose_name="Hora de inicio", blank=True, null=True, default="08:00")  #hora de inicio de la cita
+      date_choice = models.DateField(verbose_name="Fecha seleccionada", blank=True, null=True) # Fecha de la cita
+      time = models.TimeField(verbose_name="Hora seleccionada", blank=True, null=True, default="08:00")  #hora de inicio de la cita
 
 # Datos para la factura
       credit_fiscal = models.BooleanField(default=False) # Factura con crédito fiscal

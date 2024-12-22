@@ -21,7 +21,7 @@
 </style>
 <section class="d-flex w-100 overflow-auto ">
             {% for s in sales_reservers %}
-                        <div style="min-width: 500px; max-width: 500px; border: 6px solid rgb(47, 47, 47); border-radius: 3rem;" class=' text-white m-2 shadow-sm'>
+                        <div style="min-width: 500px; max-width: 500px; border: 6px solid rgb(47, 47, 47); border-radius: 3rem; cursor: pointer;" class=' text-white m-2 shadow-sm'>
                                 <div class='d-flex flex-wrap w-100  ' >
                                           <div>
                                                 {% if s.img %}
@@ -40,7 +40,7 @@
                                                       <h5 class="text-primary">{{ s.name }}</h5>
                                           {% else %}
                                                             {% if s.name_client %}
-                                                                    <strong>Nombre:</strong> {{ s.name_client }}
+                                                                  <strong>Nombre y apellidos:</strong> {{ s.name_client|slice:":20" }}
                                                             {% endif %}
                                                   </p>
                                                   <p class="mb-0">
@@ -49,12 +49,18 @@
                                                                     {{ s.phone_client }}
                                                             {% endif %}
                                                   </p>
-                                                  <p class="mb-1">
+                                                  <p class="mb-0">
                                                         <strong>Correo:</strong> 
                                                             {% if s.email_client %}
-                                                                    {{ s.email_client }}
+                                                                      {{ s.email_client|slice:":49" }}
                                                             {% endif %}
                                                   </p>
+                                                  <p class="mb-1">
+                                                      <strong>Fecha de reserva:</strong> 
+                                                          {% if s.date_choice %}
+                                                                  {{ s.date_choice|date:"d/m/Y" }} - {{ s.time }}
+                                                          {% endif %}
+                                                </p>
                                              </span>
                                              <span class="ps-3">
                                                 <strong class="text-white bg-dark bg-opacity-75 p-2 rounded">
