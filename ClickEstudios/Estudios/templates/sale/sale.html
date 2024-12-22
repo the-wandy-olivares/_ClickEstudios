@@ -19,28 +19,40 @@
             
       }
 </style>
-<section class="d-flex w-100 overflow-auto">
+<section class="d-flex flex-wrap w-100 overflow-auto ">
 
             {% for s in sales %}
-                        <div style="width: 320px;" class=' text-white bg-white bg-opacity-25 m-2 rounded shadow-sm'>
-                                <div class='d-flex flex-wrap w-100 p-3'>
+                        <div style="width: 500px; border: 6px solid gray; border-radius: 3rem;" class=' text-white m-2 shadow-sm'>
+                                <div class='d-flex flex-wrap w-100 p-2 ' >
+                                          <div>
+                                                {% if s.img %}
+                                                      <img src="{{s.img.url}}" style='width: 80px; height: 80px; ' class='rounded-circle' alt="">
+                                                {% endif %}
+                                              <span>
+                                                    <strong style='font-size: 17px; text-transform: uppercase; '>
+                                                            {{s.name_plan}}
+                                                    </strong>
+                                              </span>
+                                          </div>
+                                          <span class='w-100 mt-3'>
+                                               <p class="mb-0">
                                           {% if s.is_cliente %}
                                                       <h5 class="text-primary">{{ s.name }}</h5>
                                           {% else %}
-                                             <span class='w-100'>
-                                                  <p class="mb-1">
                                                             {% if s.name_client %}
                                                                     <strong>Nombre:</strong> {{ s.name_client }}
                                                             {% endif %}
                                                   </p>
-                                                  <p class="mb-1">
+                                                  <p class="mb-0">
+                                                        <strong>Teléfono:</strong> 
                                                             {% if s.phone_client %}
-                                                                    <strong>Teléfono:</strong> {{ s.phone_client }}
+                                                                    {{ s.phone_client }}
                                                             {% endif %}
                                                   </p>
                                                   <p class="mb-1">
+                                                        <strong>Correo:</strong> 
                                                             {% if s.email_client %}
-                                                                    <strong>Email:</strong> {{ s.email_client }}
+                                                                    {{ s.email_client }}
                                                             {% endif %}
                                                   </p>
                                              </span>
@@ -50,9 +62,9 @@
                                                                   ${{s.price_plan|intcomma}}.00
                                                             {% endif %}
                                                 </strong>
-                                                {% if s.is_reserve %}
+                                                {% comment %} {% if s.is_reserve %}
                                                       {{ s.mount }}
-                                                {% endif %}
+                                                {% endif %} {% endcomment %}
                                              </span>
                                           {% endif %}
                                 </div>
@@ -61,17 +73,21 @@
                                           Editar 
                                     </button> {% endcomment %}
                                     {% if s.payment %}
-                                          <a href="{% url "estudios:estudios" s.id %}">
-                                                <button id='reserve-{{ s.id }}'>
-                                                      Iniciar session
-                                                </button>
-                                          </a>
-                                          {% else %}
-                                          <a href="{% url "estudios:sale-reserver" s.id %}">
-                                                <button id='reserve-{{ s.id }}'>
-                                                      Reservar
-                                                </button>
-                                          </a>
+                                          <div class='d-flex justify-content-end'>
+                                                <a href="{% url "estudios:estudios" s.id %}">
+                                                      <button id='reserve-{{ s.id }}'>
+                                                            Ir al estudio
+                                                      </button>
+                                                </a>
+                                          </div>
+                                    {% else %}
+                                          <div class='d-flex justify-content-end'>
+                                                <a href="{% url "estudios:sale-reserver" s.id %}">
+                                                      <button id='reserve-{{ s.id }}'>
+                                                            Reservar
+                                                      </button>
+                                                </a>
+                                          </div>
                                     {% endif %}
                               </div>
                         </div>
