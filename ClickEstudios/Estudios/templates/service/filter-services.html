@@ -1,24 +1,11 @@
 <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Servicios
+      <button class="btn btn-secondary bg-white bg-opacity-10 bg-transparent border-0 rounded-3 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Listados de servicios
       </button>
       <ul class="dropdown-menu">
             {% for s in service_choices %}
                      <li><a class="dropdown-item" 
                         href="{% url "estudios:service-detail" s.id %}"> {{s.name}} </a></li>
-            {% endfor %}
-
-      </ul>
-    </div>
-
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Planes
-      </button>
-      <ul class="dropdown-menu">
-            {% for p in plan_choices %}
-                     <li><a class="dropdown-item" 
-                        href="{% url "estudios:service-detail" p.id %}"> {{p.name}} </a></li>
             {% endfor %}
 
       </ul>

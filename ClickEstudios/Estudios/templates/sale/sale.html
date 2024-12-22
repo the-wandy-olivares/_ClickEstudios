@@ -20,13 +20,13 @@
       }
 </style>
 <section class="d-flex flex-wrap w-100 overflow-auto ">
-
             {% for s in sales %}
-                        <div style="width: 500px; border: 6px solid gray; border-radius: 3rem;" class=' text-white m-2 shadow-sm'>
-                                <div class='d-flex flex-wrap w-100 p-2 ' >
+                        <div style="width: 500px; border: 6px solid rgb(47, 47, 47); border-radius: 3rem;" class=' text-white m-2 shadow-sm'>
+                                <div class='d-flex flex-wrap w-100  ' >
                                           <div>
                                                 {% if s.img %}
-                                                      <img src="{{s.img.url}}" style='width: 80px; height: 80px; ' class='rounded-circle' alt="">
+                                                      <img src="{{s.img.url}}" 
+                                                      style='width: 50px; height: 50px; ' class='rounded-circle' alt="">
                                                 {% endif %}
                                               <span>
                                                     <strong style='font-size: 17px; text-transform: uppercase; '>
@@ -34,7 +34,7 @@
                                                     </strong>
                                               </span>
                                           </div>
-                                          <span class='w-100 mt-3'>
+                                          <span class='w-100 mt-2 ps-3'>
                                                <p class="mb-0">
                                           {% if s.is_cliente %}
                                                       <h5 class="text-primary">{{ s.name }}</h5>
@@ -56,7 +56,7 @@
                                                             {% endif %}
                                                   </p>
                                              </span>
-                                             <span>
+                                             <span class="ps-3">
                                                 <strong class="text-white bg-dark bg-opacity-75 p-2 rounded">
                                                             {% if s.price_plan %}
                                                                   ${{s.price_plan|intcomma}}.00
@@ -75,15 +75,15 @@
                                     {% if s.payment %}
                                           <div class='d-flex justify-content-end'>
                                                 <a href="{% url "estudios:estudios" s.id %}">
-                                                      <button id='reserve-{{ s.id }}'>
-                                                            Ir al estudio
+                                                      <button id='reserve-{{ s.id }}'  class="bg-warning rounded-start-4 border-0 rounded-end-5 p-2 " style="font-weight: bold;">
+                                                            Ir a estudios
                                                       </button>
                                                 </a>
                                           </div>
                                     {% else %}
                                           <div class='d-flex justify-content-end'>
                                                 <a href="{% url "estudios:sale-reserver" s.id %}">
-                                                      <button id='reserve-{{ s.id }}'>
+                                                      <button id='reserve-{{ s.id }}' class="bg-white bg-opacity-10 text-white border-0 rounded-5 p-2 pe-3 ps-3" style="font-weight: bold;">
                                                             Reservar
                                                       </button>
                                                 </a>

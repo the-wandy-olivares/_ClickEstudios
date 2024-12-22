@@ -1,16 +1,29 @@
 {% extends "base/base.html" %}
 {% block content %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Delius&display=swap" rel="stylesheet">
       <style>
             .nav .pos {
                   color: #ffc107;
                   font-weight: bolder;
                   transform: scale(1.1);
             }
-
+            .font-delius {
+            font-family: "Delius", serif;
+            font-style: normal;
+            }
       </style>
 
       <section>
+            <span class="reloj font-delius position-absolute end-0 me-5 mt-3 d-flex justify-content-center align-content-center flex-wrap text-white"
+                style="font-size: 18px;" ></span>
             <div class='d-flex'>
+                  <button class="bg-transparent border-0 me-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search text-white" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                      </svg>
+                  </button>
                   {% include "service/filter-services.html" %}
             </div>
             {% if service_select %}
@@ -28,7 +41,22 @@
 
             </div>
       </section>
+      <script>
+            function updateClock() {
+                  const reloj = document.querySelector('.reloj');
+                  const now = new Date();
+                  let hours = now.getHours();
+                  const minutes = now.getMinutes();
+                  const ampm = hours >= 12 ? 'pm' : 'am';
+                  hours = hours % 12;
+                  hours = hours ? hours : 12; // the hour '0' should be '12'
+                  const strTime = hours + ':' + (minutes < 10 ? '0' + minutes : minutes) + ' ' + ampm;
+                  reloj.textContent = strTime;
+            }
 
+            setInterval(updateClock, 1000);
+            updateClock();
+      </script>
 {% endblock  %}
 
 
