@@ -69,7 +69,9 @@
                                                             {% endif %}
                                                 </strong>
                                                  {% if s.is_reserve %}
-                                                      {{ s.debit_mount }}
+                                                      {% if s.debit_mount  != 0 %}
+                                                            ${{ s.debit_mount|intcomma }}.00
+                                                      {% endif %}
                                                 {% endif %} 
                                              </span>
                                           {% endif %}

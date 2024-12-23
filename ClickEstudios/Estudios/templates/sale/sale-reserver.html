@@ -3,7 +3,7 @@
 {% load humanize %}
 
       <section class='d-flex flex-wrap align-content-start h-100 w-100 '>
-                  <div style="width: 320px;" class=' text-white bg-white bg-opacity-25 m-2 rounded shadow-sm'>
+            <div style="min-width: 520px; max-width: 520px; border: 6px solid rgb(47, 47, 47); border-radius: 3rem; cursor: pointer; min-height: 12rem;" class=' text-white m-2 shadow-sm'>
                         
                         <div class='d-flex flex-wrap w-100 p-3'>
                               {% if sale.is_cliente %}
@@ -39,10 +39,12 @@
 
                   <form action="" method="post">
                         {% csrf_token %}
-                        <input type="number" name="mount" max={{sale.debit_mount}} value="{{sale.debit_mount}}" class='form-control' placeholder='Monto a aplicar' id='mount'>
-                        <button id='reserve-{{ sale.id }}'>
-                              Aplicar
-                        </button>
+                        <div class='d-flex'>
+                              <input type="number" name="mount" max={{sale.debit_mount}} value="{{sale.debit_mount}}" class='form-control bg-white text-white border-0 p-2 bg-opacity-10 rounded-5' placeholder='Monto a aplicar' id='mount'>
+                              <button id='reserve-{{ sale.id }}' class='ms-2 rounded-5 btn btn-primary' style='width: 10rem;'>
+                                    Aplicar pago
+                              </button>
+                        </div>
                   </form>
             
                   </div>
@@ -50,13 +52,21 @@
       </section>
       <script>
             document.addEventListener("DOMContentLoaded", function() {
-                  const input = document.querySelector('#mount');
-                  input.addEventListener('input', function() {
-                        const max = parseFloat(this.getAttribute('max'));
-                        if (parseFloat(this.value) > max) {
-                              this.value = max;
-                        }
-                  });
+                        const input = document.querySelector('#mount');
+                        input.addEventListener('input', function() {
+                                      const max = parseFloat(this.getAttribute('max'));
+                                      if (parseFloat(this.value) > max) {
+                                                  this.value = max;
+                                      }
+                                      if (isNaN(this.value) || this.value < 0) {
+                                                  this.value = '';
+                                      }
+                        });
+                        input.addEventListener('keypress', function(e) {
+                                      if (e.key < '0' || e.key > '9') {
+                                                  e.preventDefault();
+                                      }
+                        });
             });
       </script>
 {% endblock  %}
