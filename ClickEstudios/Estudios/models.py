@@ -190,7 +190,8 @@ class Sale(models.Model):
 
 # Cuando se acordo la venta (cita)
       date_choice = models.DateField(verbose_name="Fecha seleccionada", blank=True, null=True) # Fecha de la cita
-      time = models.TimeField(verbose_name="Hora seleccionada", blank=True, null=True, default="08:00")  #hora de inicio de la cita
+      HOUR_CHOICES = [(f"{hour:02d}:00", f"{hour:02d}:00") for hour in range(8, 18)]
+      time = models.CharField(max_length=5, choices=HOUR_CHOICES, verbose_name="Hora seleccionada", blank=True, null=True, default="08:00")
 
 # Datos para la factura
       credit_fiscal = models.BooleanField(default=False) # Factura con crédito fiscal

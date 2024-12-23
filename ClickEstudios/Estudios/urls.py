@@ -27,8 +27,9 @@ urlpatterns = [
 # Ventas
       path('sale/', views.Sale.as_view(), name='sale'),
             path('sale-create/<int:pk>', views.SaleCreate.as_view(), name='sale-create'),
-                        path('sale/<int:pk>/', views.SaleReserver.as_view(), name='sale-reserver'),
+                        path('salec', views.SaleReserver.as_view(), name='sale-reserver'),
                   path('sale-update/<int:pk>/', views.SaleUpdate.as_view(), name='sale-update'),
+            path('sale-create-date-choice/<int:pk>/', views.SaleCreateDateChoice.as_view(), name='sale-create-date-choice'),
 
 # Galeria
       path('gallery/', views.Gallery.as_view(), name='gallery'),

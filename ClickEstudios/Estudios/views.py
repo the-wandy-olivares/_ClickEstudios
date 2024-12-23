@@ -293,6 +293,40 @@ class SaleUpdate(UpdateView):
     
 
 
+class SaleCreateDateChoice(CreateView):
+        model = models.Sale
+        form_class = forms.Sale
+        template_name = 'sale/sale-create-date-choice.html'
+
+        def get_context_data(self, **kwargs):
+            context = super().get_context_data(**kwargs)
+            return context
+
+        def form_valid(self, form):
+            plan_id = self.kwargs.get('pk')
+            if plan_id:
+                plan = models.Plan.objects.get(pk=plan_id)
+                form.instance.name_plan = plan.name
+                form.instance.debit_mount = plan.price
+                form.instance.img = plan.img
+                form.instance.description_plan = plan.description
+                form.instance.price_plan = plan.price
+
+            # Guarda el objeto y redirige al éxito
+            self.object = form.save()
+            return redirect(self.get_success_url())
+
+        def form_invalid(self, form):
+            print(form.errors)
+            return self.render_to_response(self.get_context_data(form=form))
+
+        def get_success_url(self):
+            # Retorna la URL a la que redirigirá después de un submit exitoso
+            return reverse_lazy('estudios:pos')
+
+    
+
+
 class Estudios(TemplateView):
     template_name = 'estudios/estudios.html'
 

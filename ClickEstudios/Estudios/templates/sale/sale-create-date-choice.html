@@ -1,0 +1,151 @@
+{% extends "base/base.html" %}
+{% block content %}
+      <head>
+            <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css' rel='stylesheet' />
+            <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
+      </head>
+
+      <section class='overflow-auto'>
+            <form action="" method="post">
+                  {% csrf_token %}
+                  
+                  <div style="min-width: 520px; max-width: 520px; border: 6px solid rgb(47, 47, 47); border-radius: 3rem; cursor: pointer;" class=' text-white m-2 shadow-sm'>
+                        {{form.name_client}}
+                        {{form.phone_client}}
+                        {{form.email_client}}
+                  </div>
+                  <label for="contact_preference" class="text-white">Preferencia de contacto:</label>
+                  <select id="contact_preference" name="contact_preference" onchange="toggleContactFields()">
+                        <!-- <option value="none">Ninguno</option> -->
+                        <option value="email">Correo</option>
+                        <option value="phone">Numero</option>
+                        <option value="both">Ambos</option>
+                  </select>
+                    <div>
+                              <button id="submit_button" class="d-none">Enviar</button>
+                    </div>
+
+                  <div>
+
+                        {{form.date_choice}}
+                        <div>
+                            <label for="year_choice" class="text-white">Año:</label>
+                            <select id="year_choice" name="year_choice" onchange="updateDateChoice()">
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                                <option value="2025">2025</option>
+                                <!-- Add more years as needed -->
+                            </select>
+                        </div>
+                        <div>
+                            <label for="month_choice" class="text-white">Mes:</label>
+                            <select id="month_choice" name="month_choice" onchange="updateDateChoice()">
+                                <option value="1">Enero</option>
+                                <option value="2">Febrero</option>
+                                <option value="3">Marzo</option>
+                                <option value="4">Abril</option>
+                                <option value="5">Mayo</option>
+                                <option value="6">Junio</option>
+                                <option value="7">Julio</option>
+                                <option value="8">Agosto</option>
+                                <option value="9">Septiembre</option>
+                                <option value="10">Octubre</option>
+                                <option value="11">Noviembre</option>
+                                <option value="12">Diciembre</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="day_choice" class="text-white">Día:</label>
+                            <select id="day_choice" name="day_choice" onchange="updateDateChoice()">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                            </select>
+                        </div>
+                        
+                        <script>
+                            function updateDateChoice() {
+                                var year = document.getElementById('year_choice').value;
+                                var month = document.getElementById('month_choice').value;
+                                var day = document.getElementById('day_choice').value;
+                        
+                                // Convertir a cadenas y rellenar con ceros
+                                var formattedMonth = month.toString().padStart(2, '0');
+                                var formattedDay = day.toString().padStart(2, '0');
+                        
+                                var dateChoice = year + '-' + formattedMonth + '-' + formattedDay;
+                        
+                                // Actualizar el valor del campo oculto
+                                document.getElementById('id_date_choice').value = dateChoice;
+                            }
+                        </script>
+                  </div>
+
+            </form>
+            <script>
+                    function toggleContactFields() {
+                              var preference = document.getElementById('contact_preference').value;
+                              var phoneField = document.querySelector('#id_phone_client');
+                              var emailField = document.querySelector('#id_email_client');
+                              if (preference === 'none') {
+                                      phoneField.style.display = 'none';
+                                      emailField.style.display = 'none';
+                              } else if (preference === 'email') {
+                                      phoneField.style.display = 'none';
+                                      emailField.style.display = 'block';
+                              } else if (preference === 'phone') {
+                                      phoneField.style.display = 'block';
+                                      emailField.style.display = 'none';
+                              } else if (preference === 'both') {
+                                      phoneField.style.display = 'block';
+                                      emailField.style.display = 'block';
+                              }
+                    }
+
+                    // Initialize the fields based on the current selection
+                    document.addEventListener('DOMContentLoaded', function() {
+                              toggleContactFields();
+                    });
+
+                  document.getElementById('id_name_client').addEventListener('input', function() {
+                        var submitButton = document.getElementById('submit_button');
+                        if (this.value.length > 4) {
+                              submitButton.classList.remove('d-none');
+                        } else {
+                              submitButton.classList.add('d-none');
+                        }
+                  });
+                    
+            </script>
+
+      </section>
+
+{% endblock  %}
