@@ -1,4 +1,4 @@
-{% load humanize %}
+{% load humanize %} {% load static %}
 <style>
     .invoice   * {
         margin: 0;
@@ -72,13 +72,13 @@
 </style>
 <div class="invoice">
     <div class="header  d-flex  m-0 p-0 position-relative" style="height: 9rem;">
-            {% if company.logo.url %}
-                <img src="{{company.logo.url}}"  class="object-fit-cover position-absolute   start-0"  width="150"  alt="Click Estudios">
-            {% endif %}
+            {% comment %} {% if company.logo.url %} {% endcomment %}
+                <img src="{% static 'img/icons/logo-black.png' %}"   class="object-fit-cover position-absolute   start-0"  width="150"  alt="Click Estudios">
+            {% comment %} {% endif %} {% endcomment %}
     </div>
 
     <!-- Encabezado -->
-    <div class="details d-flex   flex-wrap m-0 mb-2 " style="margin-top: 0rem !important;">
+    <div class="details d-flex flex-wrap m-0 mb-2 " style="margin-top: 0rem !important;">
 
             <p class="w-100" style="font-size: 14px !important;">
                 <strong>RNC:</strong> 133-22445-3
@@ -87,7 +87,8 @@
                 <strong>Fecha:</strong>  <span class="date text-black"></span> 
             </p>
             <p class="w-100" style="font-size: 14px !important;">
-                    <strong class="text-capitalize">Cliente:</strong> {{ sale.name_client }}
+                    <strong class="text-capitalize">Cliente:</strong> 
+                        <span class='text-capitalize'> {{ sale.name_client }} </span>
             </p>
             {% if sale.type_sale_ncf == True %}
                 <p class="w-100" style="font-size: 14px !important;">
@@ -138,20 +139,20 @@
                 <input type="number"  class="d-none"value="{{sale.itbis}}"  id="itbis">
                 <tr>
                       <td>1</td>
-                      <td> {{sale.plan.name}} - {{sale.plan.description}} </td>
-                      <td class='price-unitario'> </td>
-                      <td class="ITIBIS"></td>
-                      <td class="TOTAL">{{sale.plan.price|intcomma}}.00 </td>
+                      <td> {{sale.name_plan}} - {{sale.description_plan}} </td>
+                      <td class='price-unitario'> ${{sale_price_unitario}}</td>
+                      <td class="ITIBIS"> ${{sale_itebis}} </td>
+                      <td class="TOTAL">${{sale.price_plan|intcomma}}.00 </td>
                 </tr>
-                {% if sale.opciones.all%}
-                        {% for option in opciones %}
+                {% if adicionales %}
+                        {% for option in adicionales %}
                             <tr>
                                 <td>1</td>
-                                <td>{{ option.name }} - {{ option.description }}</td>
+                                <td class='text-capitalize'>{{ option.name }} - {{ option.description }}</td>
                                 <td class='option-price'></td>
-                                <td class='option-itibis' data-price="{{ option.preci }}">{{ option.sale.itbis }}%</td> 
-                                <td class='option-total' data-price="{{ option.preci }}">
-                                        {{ option.preci|floatformat:2|intcomma }}
+                                <td class='option-itibis' data-price="{{ option.price }}">{{ option.sale.itbis }}%</td> 
+                                <td class='option-total' data-price="{{ option.price }}">
+                                        ${{ option.price|floatformat:2|intcomma }}
                                 </td> 
                             </tr>
                         {% endfor %}
@@ -168,15 +169,15 @@
                   <tbody>
                       <tr>
                           <td style="padding: 8px; font-weight: bold; color: black;">Neto</td>
-                          <td style="padding: 8px; text-align: right;" class="NETO" ></td>
+                          <td style="padding: 8px; text-align: right;" class="NETsO" > ${{total|intcomma}} </td>
                       </tr>
                       <tr>
                           <td style="padding: 8px; font-weight: bold; color: black;">ITBIS</td>
-                          <td style="padding: 8px; text-align: right; " class="ITIBIS_NETO"></td>
+                          <td style="padding: 8px; text-align: right; " class="ITIBIS_NETOz">${{total_itebis|intcomma}}</td>
                       </tr>
                       <tr>
                           <td style="padding: 8px; font-weight: bold; color: black;">Total</td>
-                          <td style="padding: 8px; text-align: right;" class="TOTAL_NETO"></td>
+                          <td style="padding: 8px; text-align: right;" class="TOTAL_NETOz">${{total_con_i|intcomma}}.00</td>
                       </tr>
                   </tbody>
               </table>

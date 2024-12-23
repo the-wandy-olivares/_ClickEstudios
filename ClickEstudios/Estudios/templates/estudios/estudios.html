@@ -16,7 +16,7 @@
                   </span>
 
                   <span>
-                        <h5>{{ sale.name_client }}</h5>
+                        <h5 class='text-capitalize'>{{ sale.name_client }}</h5>
                         <p class='p-0 m-0'>{{ sale.name_plan }}</p>
                         <p class='p-0 m-0'>{{ sale.description_plan }}</p>
                         <p class='p-0 m-0'>{{ sale.price_plan|intcomma }}.00</p>
@@ -46,15 +46,15 @@
             {% endif %}
 
             <!-- Factura -->
-             <div class='factura  d-none position-absolute top-0 z-2'>
+             <div class='factura  d-none position-absolute start-0  top-0 z-2'>
                   {% include "component/factura.html" %}
              </div>
       </main>
       
       <!-- Footer -->
-      <footer class='pb-5 d-flex justify-content-end w-100' style="position: sticky; bottom: 0; width: 100%;  padding: 10px; text-align: center;" >
+      <footer class='pb-5 d-flex justify-content-end w-100 bg-black' style="position: sticky; bottom: 0; width: 100%;  padding: 10px; text-align: center;" >
             <div>
-                  <p class='p-0 m-0'>Total: ${{ total|intcomma }}.00</p>
+                  <p class='p-0 m-0'>Total: ${{ total_sin|intcomma }}.00</p>
                   <p class='p-0 m-0'>Adicionales: ${{ total_adicionales|intcomma }}.00</p>
             </div>
             <div>

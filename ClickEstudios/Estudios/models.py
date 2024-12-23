@@ -196,6 +196,7 @@ class Sale(models.Model):
       credit_fiscal = models.BooleanField(default=False) # Factura con crédito fiscal
 
 
+
       def __str__(self):
             return f"Venta del {self.date} "
 

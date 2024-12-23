@@ -299,15 +299,22 @@ class Estudios(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
-
+        sale_itebis = sale.price_plan * 0.18
         total = sale.price_plan
         if sale.sale_adicionales.all():
             for adicional in sale.sale_adicionales.all():
                 total += adicional.price
+
+        total_itebis = total * 0.18
+        context['total_itebis'] = total_itebis
         context['sale'] = sale
-        context['total'] = total
+        context['total_con_i'] = total 
+        context['total_sin'] = total
+        context['total'] = total - total_itebis
         context['total_adicionales'] = total - sale.price_plan
         context['adicionales'] = sale.sale_adicionales.all()
+        context['sale_itebis'] = sale_itebis
+        context['sale_price_unitario'] = sale.price_plan - sale_itebis
         return context
 
 
