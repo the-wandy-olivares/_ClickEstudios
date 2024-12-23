@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from . import views
+from . import views, ajax_views
 
 app_name = 'estudios'
 urlpatterns = [
@@ -41,4 +41,8 @@ urlpatterns = [
 
 #  Caja administrativa, balance, cierre de caja, apertura de caja, etc
       path('admin', views.Admin.as_view(), name='admin'),
+
+
+#  Funciones ajax
+      path('ajax/verify-date-choice/', ajax_views.VerifyDateChoice, name='verify-date-choice'),
 ]

@@ -2,6 +2,7 @@
 <select id="year_choice" name="year_choice" onchange="updateDateChoice()">
     <option value="2025">2025</option>
     <option value="2026">2026</option>
+    <option value="2027">2027</option>
     <!-- Add more years as needed -->
 </select>
 </div>
@@ -24,7 +25,7 @@
 </div>
 <div>
 <label for="day_choice" class="text-white">Día:</label>
-<select id="day_choice" name="day_choice" onchange="updateDateChoice()">
+<select id="day_choice" name="day_choice">
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
@@ -57,8 +58,71 @@
     <option value="30">30</option>
     <option value="31">31</option>
 </select>
-
-
+{{form.date_choice}}
 <script>
-      
+
+    day_choice = document.querySelector('#day_choice');
+
+    day_choice.addEventListener('change', function() {
+        updateDateChoice();
+        VerifyDateChoice();
+    });
+
+    month_choice = document.querySelector('#month_choice');
+    month_choice.addEventListener('change', function() {
+        updateDateChoice();
+        VerifyDateChoice();
+    });
+
+    year_choice = document.querySelector('#year_choice');
+    year_choice.addEventListener('change', function() {
+        updateDateChoice();
+        VerifyDateChoice();
+    });
+
+
+    function VerifyDateChoice(){
+        
+        $.ajax({
+            url: '/ajax/verify-date-choice/',
+            data: {
+                date_choice: document.querySelector('#id_date_choice').value,
+            },
+            success: function(response) {
+                var timeSelect = document.querySelector('#id_time');
+                timeSelect.innerHTML = ''; // Clear existing options
+
+                if (response.true) {
+                    // Handle the case where the date is available
+                    console.log("Date is available", response.available_hours);
+                    response.available_hours.forEach(function(hour) {
+                        var option = document.createElement('option');
+                        option.value = hour;
+                        option.text = hour;
+                        timeSelect.appendChild(option);
+                    });
+                } else {
+                    // Handle the case where the date is not available
+                    console.log("Date is not available. Available hours: ", response.available_hours);
+                    response.available_hours.forEach(function(hour) {
+                        var option = document.createElement('option');
+                        option.value = hour;
+                        option.text = hour;
+                        timeSelect.appendChild(option);
+                    });
+                }
+            },
+            error: function(error) {
+                console.log("An error occurred: ", error);
+            }
+        });        
+    }
+
+    function updateDateChoice() {
+        // Add your update logic here
+        console.log("Date choice updated");
+    }
 </script>
+
+
+
