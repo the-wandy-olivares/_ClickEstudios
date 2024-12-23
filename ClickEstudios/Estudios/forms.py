@@ -65,7 +65,9 @@ class Sale(forms.ModelForm):
                     'end_proces_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date', 'placeholder': 'Fecha de fin'}),
                     'finalize': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
                     'date_choice': forms.DateInput(attrs={'class': 'form-control', 'type': 'date', 'placeholder': 'Fecha de elección'}),
-                    'time': forms.TimeInput(attrs={'class': 'form-control', 'type': 'time', 'placeholder': 'Hora'}),
+
+                    'time': forms.Select(attrs={'class': 'form-control'}),               
+                         
                     'credit_fiscal': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
                     'name_client': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre del cliente'}),
                     'email_client': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Correo electrónico del cliente'}),
