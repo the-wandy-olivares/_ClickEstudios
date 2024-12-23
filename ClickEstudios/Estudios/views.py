@@ -18,8 +18,9 @@ class Pos(TemplateView):
         context = super().get_context_data(**kwargs)
         context['service_choices'] = models.Service.objects.all()
         context['plan_choices'] = models.Plan.objects.all()
-        context['sales'] = models.Sale.objects.filter(is_reserve=False)
-        context['sales_reservers'] = models.Sale.objects.filter(is_reserve=True)
+        context['sales'] = models.Sale.objects.filter(is_reserve=False).order_by('-id')
+        context['sales_reservers'] = models.Sale.objects.filter(is_reserve=True).order_by('-id')
+        context['box_is_open'] = models.Box.objects.filter(open=True).exists() 
         return context
 
 
@@ -205,29 +206,33 @@ class SaleReserver(TemplateView):
     def post(self, request, *args, **kwargs):
         new_mount = request.POST.get('mount')
         if new_mount:
-
             sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
-            # Process the sale reservation logic here
-            # For example, mark the sale as reserved
-
-            
             # Reservar la venta
             sale.is_reserve = True
-            if sale.is_reserve:
-                if sale.mount >= sale.price_plan:
-                    sale.mount = sale.price_plan
-                    sale.payment = True
-                    print('Pago realizado', sale.payment)
-                else:
-                    sale.mount += int(new_mount)
-            else:
-                if sale.mount >= sale.price_plan:
-                    sale.mount = sale.price_plan
-                    sale.payment = True
-                else:
-                     sale.mount = int(new_mount)
-            sale.save()
+            new_mount = int(new_mount)
 
+
+
+            sale.mount = (sale.mount or 0) + int(new_mount)
+
+            if sale.mount >= sale.price_plan:
+                sale.mount = sale.price_plan
+                sale.payment = True
+                description = 'Pago completo'
+            else:
+                description = 'Abono'
+
+            # Restar monto 
+            sale.debit_mount -= new_mount
+
+            models.Movements.objects.create(
+                user=request.user,
+                box=models.Box.objects.get(open=True),
+                mount= new_mount,
+                type='ingreso',
+                description=description
+            )
+            sale.save()
 
             return redirect('estudios:pos')
         return self.render_to_response(self.get_context_data())
@@ -247,6 +252,7 @@ class SaleCreate(CreateView):
         if plan_id:
             plan = models.Plan.objects.get(pk=plan_id)
             form.instance.name_plan = plan.name
+            form.instance.debit_mount = plan.price
             form.instance.img = plan.img
             form.instance.description_plan = plan.description
             form.instance.price_plan = plan.price
@@ -377,18 +383,18 @@ class Box(TemplateView):
         context['cajas'] = models.Box.objects.all()
         context['years'] = range(2024, 2028)  # Example range of years
         context['meses'] = [
-            {'numero': 1, 'nombre': 'Enero'},
-            {'numero': 2, 'nombre': 'Febrero'},
-            {'numero': 3, 'nombre': 'Marzo'},
-            {'numero': 4, 'nombre': 'Abril'},
-            {'numero': 5, 'nombre': 'Mayo'},
-            {'numero': 6, 'nombre': 'Junio'},
-            {'numero': 7, 'nombre': 'Julio'},
-            {'numero': 8, 'nombre': 'Agosto'},
-            {'numero': 9, 'nombre': 'Septiembre'},
-            {'numero': 10, 'nombre': 'Octubre'},
-            {'numero': 11, 'nombre': 'Noviembre'},
-            {'numero': 12, 'nombre': 'Diciembre'},
+                    {'numero': 1, 'nombre': 'Enero'},
+                    {'numero': 2, 'nombre': 'Febrero'},
+                    {'numero': 3, 'nombre': 'Marzo'},
+                    {'numero': 4, 'nombre': 'Abril'},
+                    {'numero': 5, 'nombre': 'Mayo'},
+                    {'numero': 6, 'nombre': 'Junio'},
+                    {'numero': 7, 'nombre': 'Julio'},
+                    {'numero': 8, 'nombre': 'Agosto'},
+                    {'numero': 9, 'nombre': 'Septiembre'},
+                    {'numero': 10, 'nombre': 'Octubre'},
+                    {'numero': 11, 'nombre': 'Noviembre'},
+                    {'numero': 12, 'nombre': 'Diciembre'},
         ]
         return context
 

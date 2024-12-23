@@ -178,7 +178,8 @@ class Sale(models.Model):
       is_active = models.BooleanField(default=True)
 
 # Estado de la venta
-      mount = models.IntegerField(blank=True, null=True, default=0) # Monto de la reserva
+      mount = models.IntegerField(blank=True, null=True, default=0) # Monto que abonado
+      debit_mount = models.IntegerField(blank=True, null=True, default=0) # Monto que se debe restante
       is_reserve = models.BooleanField(default=False) # Reserva de la venta
       payment = models.BooleanField(blank=True, null=True) # Pago de la venta
 

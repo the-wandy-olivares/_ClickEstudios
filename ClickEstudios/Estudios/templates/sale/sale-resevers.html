@@ -21,7 +21,7 @@
 </style>
 <section class="d-flex w-100 overflow-auto ">
             {% for s in sales_reservers %}
-                        <div style="min-width: 500px; max-width: 500px; border: 6px solid rgb(47, 47, 47); border-radius: 3rem; cursor: pointer;" class=' text-white m-2 shadow-sm'>
+                        <div style="min-width: 520px; max-width: 520px; border: 6px solid rgb(47, 47, 47); border-radius: 3rem; cursor: pointer;" class=' text-white m-2 shadow-sm'>
                                 <div class='d-flex flex-wrap w-100  ' >
                                           <div>
                                                 {% if s.img %}
@@ -36,30 +36,30 @@
                                           </div>
                                           <span class='w-100 mt-2 ps-3'>
                                                <p class="mb-0">
-                                          {% if s.is_cliente %}
-                                                      <h5 class="text-primary">{{ s.name }}</h5>
-                                          {% else %}
-                                                            {% if s.name_client %}
-                                                                  <strong>Nombre y apellidos:</strong> {{ s.name_client|slice:":20" }}
-                                                            {% endif %}
+                                                      {% if s.is_cliente %}
+                                                                  <h5 class="text-primary">{{ s.name }}</h5>
+                                                      {% else %}
+                                                      {% if s.name_client %}
+                                                            <strong>Nombre y apellidos:</strong> {{ s.name_client|slice:":20" }}
+                                                      {% endif %}
                                                   </p>
                                                   <p class="mb-0">
                                                         <strong>Teléfono:</strong> 
-                                                            {% if s.phone_client %}
-                                                                    {{ s.phone_client }}
-                                                            {% endif %}
+                                                      {% if s.phone_client %}
+                                                                  {{ s.phone_client }}
+                                                      {% endif %}
                                                   </p>
                                                   <p class="mb-0">
                                                         <strong>Correo:</strong> 
-                                                            {% if s.email_client %}
-                                                                      {{ s.email_client|slice:":49" }}
-                                                            {% endif %}
+                                                      {% if s.email_client %}
+                                                                  {{ s.email_client|slice:":49" }}
+                                                      {% endif %}
                                                   </p>
                                                   <p class="mb-1">
                                                       <strong>Fecha de reserva:</strong> 
-                                                          {% if s.date_choice %}
-                                                                  {{ s.date_choice|date:"d/m/Y" }} - {{ s.time }}
-                                                          {% endif %}
+                                                      {% if s.date_choice %}
+                                                            {{ s.date_choice|date:"d/m/Y" }} - {{ s.time }}
+                                                      {% endif %}
                                                 </p>
                                              </span>
                                              <span class="ps-3">
@@ -68,9 +68,9 @@
                                                                   ${{s.price_plan|intcomma}}.00
                                                             {% endif %}
                                                 </strong>
-                                                {% comment %} {% if s.is_reserve %}
-                                                      {{ s.mount }}
-                                                {% endif %} {% endcomment %}
+                                                 {% if s.is_reserve %}
+                                                      {{ s.debit_mount }}
+                                                {% endif %} 
                                              </span>
                                           {% endif %}
                                 </div>

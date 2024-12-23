@@ -27,9 +27,11 @@
 
       </style>
 
+
+
+{% if box_is_open  %}
       <section class="overflow-hidden">
-            <span class="reloj font-delius position-absolute end-0 me-5 mt-3 d-flex justify-content-center align-content-center flex-wrap text-white"
-            style="font-size: 18px;" ></span>
+            <span class="reloj font-delius position-absolute end-0 me-5 mt-3 d-flex justify-content-center align-content-center flex-wrap text-white"  style="font-size: 18px;" ></span>
             <div class='d-flex'>
                   <button class="bg-transparent border-0 me-3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search text-white" viewBox="0 0 16 16">
@@ -57,7 +59,7 @@
                         {% include "sale/sale.html" %}
                   </div>
                   {% else %}
-                  <div style="min-width: 500px; cursor: pointer; max-width: 500px; border: 6px solid rgb(47, 47, 47); border-radius: 3rem; height: 17rem;" class=' text-white m-2 shadow-sm d-flex justify-content-center align-content-center flex-wrap'>
+                  <div style="min-width: 520px; cursor: pointer; max-width: 520px; border: 6px solid rgb(47, 47, 47); border-radius: 3rem; height: 17rem;" class=' text-white m-2 shadow-sm d-flex justify-content-center align-content-center flex-wrap'>
                         <h6 style="font-weight: bold; font-size: 18px;">
                               No hay reservaciones
                         </h6>
@@ -76,10 +78,21 @@
                   <div class='mt-1 d-flex overflow-auto'>
                         {% include "sale/sale-resevers.html" %}
                   </div>
-      {% endif %} 
-
+               {% endif %} 
             </div>
       </section>
+      {% else %}
+      <div class='d-flex  rounded-5 justify-content-center align-content-center flex-wrap mb2 h-100 w-100'>
+            <strong class='m-0 p-0  text-warning'> Caja cerrada </strong>
+            <a href="{% url "estudios:box-create" %}" class="w-100 text-center mt-4">
+                  <button class="btn bg-white bg-opacity-10 text-white  rounded-5 p-2 ps-4 pe-4">
+                        Abrir Caja <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-right-circle-fill" viewBox="0 0 16 16">
+                              <path d="M0 8a8 8 0 1 0 16 0A8 8 0 0 0 0 8m5.904 2.803a.5.5 0 1 1-.707-.707L9.293 6H6.525a.5.5 0 1 1 0-1H10.5a.5.5 0 0 1 .5.5v3.975a.5.5 0 0 1-1 0V6.707z"/>
+                              </svg>
+                  </button>
+            </a>
+      </div>
+{% endif %}
       <script>
             function updateClock() {
                   const reloj = document.querySelector('.reloj');

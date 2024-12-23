@@ -12,17 +12,17 @@
                                     <span class='w-100'>
                                           <p class="mb-1">
                                                 {% if sale.name_client %}
-                                                            <strong>Nombre:</strong> {{ sale.name_client }}
+                                                      <strong>Nombre:</strong> {{ sale.name_client }}
                                                 {% endif %}
                                           </p>
                                           <p class="mb-1">
                                                 {% if sale.phone_client %}
-                                                            <strong>Teléfono:</strong> {{ sale.phone_client }}
+                                                      <strong>Teléfono:</strong> {{ sale.phone_client }}
                                                 {% endif %}
                                           </p>
                                           <p class="mb-1">
                                                 {% if sale.email_client %}
-                                                            <strong>Email:</strong> {{ sale.email_client }}
+                                                      <strong>Email:</strong> {{ sale.email_client }}
                                                 {% endif %}
                                           </p>
                                     </span>
@@ -37,17 +37,26 @@
                         </div>
                   <div>
 
-                        <form action="" method="post">
-                              {% csrf_token %}
-                              <input type="number" name="mount" value="500">
-                              <button id='reserve-{{ sale.id }}'>
-                                    Aplicar
-                              </button>
-                        </form>
+                  <form action="" method="post">
+                        {% csrf_token %}
+                        <input type="number" name="mount" max={{sale.debit_mount}} value="{{sale.debit_mount}}" class='form-control' placeholder='Monto a aplicar' id='mount'>
+                        <button id='reserve-{{ sale.id }}'>
+                              Aplicar
+                        </button>
+                  </form>
             
                   </div>
             </div>
       </section>
-
-
+      <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                  const input = document.querySelector('#mount');
+                  input.addEventListener('input', function() {
+                        const max = parseFloat(this.getAttribute('max'));
+                        if (parseFloat(this.value) > max) {
+                              this.value = max;
+                        }
+                  });
+            });
+      </script>
 {% endblock  %}
