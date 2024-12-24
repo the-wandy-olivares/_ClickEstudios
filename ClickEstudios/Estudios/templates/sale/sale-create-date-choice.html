@@ -1,98 +1,123 @@
 {% extends "base/base.html" %}
 {% block content %}
+      <style>
+            #id_date_choice
+            {
+                  display: none;
+            }
+            .select-date-choice select 
+            {
+
+                  background-color: rgb(44, 44, 44) !important; 
+                  border: 0;
+                  color: white !important;
+
+                  width: 100%;
+                  margin: 0.3rem;
+
+            }
+
+      </style>
       <head>
             <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css' rel='stylesheet' />
             <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
       </head>
 
-      <section class='overflow-auto'>
+      <section class='overflow-auto d-flex w-100 justify-content-center'>
             <form action="" method="post">
                   {% csrf_token %}
-                  
-                  <div style="min-width: 520px; max-width: 520px; border: 6px solid rgb(47, 47, 47); border-radius: 3rem; cursor: pointer;" class=' text-white m-2 shadow-sm'>
+                  <div class='text-white text-start'>
+                        <h6>
+                              Agenda cita
+                        </h6>
+                        <p class='text-white-50 p-0 m-0'>
+                              Por favor, selecciona la fecha y hora en la que deseas agendar tu cita.
+                        </p>
+                  </div>
+                  <div style="min-width: 320px; max-width: 820px; border: 6px solid rgb(47, 47, 47); border-radius: 2rem; cursor: pointer; " class='w-100 p-3 text-white m-2 shadow-sm'>
                         {{form.name_client}}
                         {{form.phone_client}}
                         {{form.email_client}}
+                        <label for="contact_preference" class="text-white">Preferencia de contacto:</label>
+                        <select id="contact_preference" name="contact_preference" onchange="toggleContactFields()">
+                              <!-- <option value="none">Ninguno</option> -->
+                              <option value="email">Correo</option>
+                              <option value="phone">Numero</option>
+                              <option value="both">Ambos</option>
+                        </select>
                   </div>
-                  <label for="contact_preference" class="text-white">Preferencia de contacto:</label>
-                  <select id="contact_preference" name="contact_preference" onchange="toggleContactFields()">
-                        <!-- <option value="none">Ninguno</option> -->
-                        <option value="email">Correo</option>
-                        <option value="phone">Numero</option>
-                        <option value="both">Ambos</option>
-                  </select>
-                    <div>
-                              <button id="submit_button" class="d-none">Enviar</button>
-                    </div>
+
 
                   <div>
 
-                 
-                        <div>
+                        <div class="select-date-choice d-flex w-100 justify-content-between">
                               {% include "sale/components/date_choice.html" %}
                         </div>
 
                         <!--Date Choice-->
-                        <div>
+                        <div class="">
                               {{form.time}}
                         </div>
                         
-                        <script>
-                            function updateDateChoice() {
-                                var year = document.getElementById('year_choice').value;
-                                var month = document.getElementById('month_choice').value;
-                                var day = document.getElementById('day_choice').value;
-                        
-                                // Convertir a cadenas y rellenar con ceros
-                                var formattedMonth = month.toString().padStart(2, '0');
-                                var formattedDay = day.toString().padStart(2, '0');
-                        
-                                var dateChoice = year + '-' + formattedMonth + '-' + formattedDay;
-                        
-                                // Actualizar el valor del campo oculto
-                                document.getElementById('id_date_choice').value = dateChoice;
-                            }
-                        </script>
+  
                   </div>
 
             </form>
-            <script>
-                    function toggleContactFields() {
-                              var preference = document.getElementById('contact_preference').value;
-                              var phoneField = document.querySelector('#id_phone_client');
-                              var emailField = document.querySelector('#id_email_client');
-                              if (preference === 'none') {
-                                      phoneField.style.display = 'none';
-                                      emailField.style.display = 'none';
-                              } else if (preference === 'email') {
-                                      phoneField.style.display = 'none';
-                                      emailField.style.display = 'block';
-                              } else if (preference === 'phone') {
-                                      phoneField.style.display = 'block';
-                                      emailField.style.display = 'none';
-                              } else if (preference === 'both') {
-                                      phoneField.style.display = 'block';
-                                      emailField.style.display = 'block';
-                              }
-                    }
-
-                    // Initialize the fields based on the current selection
-                    document.addEventListener('DOMContentLoaded', function() {
-                              toggleContactFields();
-                    });
-
-                  document.getElementById('id_name_client').addEventListener('input', function() {
-                        var submitButton = document.getElementById('submit_button');
-                        if (this.value.length > 4) {
-                              submitButton.classList.remove('d-none');
-                        } else {
-                              submitButton.classList.add('d-none');
-                        }
-                  });
-                    
-            </script>
-            
+  
 
       </section>
 
+      <script>
+            function updateDateChoice() {
+                var year = document.getElementById('year_choice').value;
+                var month = document.getElementById('month_choice').value;
+                var day = document.getElementById('day_choice').value;
+        
+                // Convertir a cadenas y rellenar con ceros
+                var formattedMonth = month.toString().padStart(2, '0');
+                var formattedDay = day.toString().padStart(2, '0');
+        
+                var dateChoice = year + '-' + formattedMonth + '-' + formattedDay;
+        
+                // Actualizar el valor del campo oculto
+                document.getElementById('id_date_choice').value = dateChoice;
+            }
+        </script>
+
+        <script>
+            function toggleContactFields() {
+                      var preference = document.getElementById('contact_preference').value;
+                      var phoneField = document.querySelector('#id_phone_client');
+                      var emailField = document.querySelector('#id_email_client');
+                      if (preference === 'none') {
+                              phoneField.style.display = 'none';
+                              emailField.style.display = 'none';
+                      } else if (preference === 'email') {
+                              phoneField.style.display = 'none';
+                              emailField.style.display = 'block';
+                      } else if (preference === 'phone') {
+                              phoneField.style.display = 'block';
+                              emailField.style.display = 'none';
+                      } else if (preference === 'both') {
+                              phoneField.style.display = 'block';
+                              emailField.style.display = 'block';
+                      }
+            }
+
+            // Initialize the fields based on the current selection
+            document.addEventListener('DOMContentLoaded', function() {
+                      toggleContactFields();
+            });
+
+          document.getElementById('id_name_client').addEventListener('input', function() {
+                var submitButton = document.getElementById('submit_button');
+                if (this.value.length > 4) {
+                      submitButton.classList.remove('d-none');
+                } else {
+                      submitButton.classList.add('d-none');
+                }
+          });
+            
+    </script>
+    
 {% endblock  %}

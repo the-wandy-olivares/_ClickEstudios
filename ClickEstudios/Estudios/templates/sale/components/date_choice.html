@@ -1,63 +1,75 @@
-<label for="year_choice" class="text-white">Año:</label>
-<select id="year_choice" name="year_choice" onchange="updateDateChoice()">
-    <option value="2025">2025</option>
-    <option value="2026">2026</option>
-    <option value="2027">2027</option>
-    <!-- Add more years as needed -->
+<select class="form-select" id="year_choice" name="year_choice" onchange="updateDateChoice()">
 </select>
-</div>
-<div>
-<label for="month_choice" class="text-white">Mes:</label>
-<select id="month_choice" name="month_choice" onchange="updateDateChoice()">
-    <option value="1">Enero</option>
-    <option value="2">Febrero</option>
-    <option value="3">Marzo</option>
-    <option value="4">Abril</option>
-    <option value="5">Mayo</option>
-    <option value="6">Junio</option>
-    <option value="7">Julio</option>
-    <option value="8">Agosto</option>
-    <option value="9">Septiembre</option>
-    <option value="10">Octubre</option>
-    <option value="11">Noviembre</option>
-    <option value="12">Diciembre</option>
+
+<select class="form-select" id="month_choice" name="month_choice" onchange="updateDateChoice()">
 </select>
-</div>
-<div>
-<label for="day_choice" class="text-white">Día:</label>
-<select id="day_choice" name="day_choice">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-    <option value="6">6</option>
-    <option value="7">7</option>
-    <option value="8">8</option>
-    <option value="9">9</option>
-    <option value="10">10</option>
-    <option value="11">11</option>
-    <option value="12">12</option>
-    <option value="13">13</option>
-    <option value="14">14</option>
-    <option value="15">15</option>
-    <option value="16">16</option>
-    <option value="17">17</option>
-    <option value="18">18</option>
-    <option value="19">19</option>
-    <option value="20">20</option>
-    <option value="21">21</option>
-    <option value="22">22</option>
-    <option value="23">23</option>
-    <option value="24">24</option>
-    <option value="25">25</option>
-    <option value="26">26</option>
-    <option value="27">27</option>
-    <option value="28">28</option>
-    <option value="29">29</option>
-    <option value="30">30</option>
-    <option value="31">31</option>
+
+<select class="form-select" id="day_choice" name="day_choice">
 </select>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const yearChoice = document.querySelector('#year_choice');
+        const monthChoice = document.querySelector('#month_choice');
+        const dayChoice = document.querySelector('#day_choice');
+        const currentYear = new Date().getFullYear();
+        const currentMonth = new Date().getMonth() + 1; // Months are zero-based
+        const currentDay = new Date().getDate();
+
+        // Populate year choices starting from the current year
+        for (let year = currentYear; year <= currentYear + 10; year++) {
+            const option = document.createElement('option');
+            option.value = year;
+            option.text = year;
+            yearChoice.appendChild(option);
+        }
+
+        // Populate month choices based on the current year
+        function populateMonthChoices() {
+            monthChoice.innerHTML = ''; // Clear existing options
+            const selectedYear = parseInt(yearChoice.value);
+            const startMonth = (selectedYear === currentYear) ? currentMonth : 1;
+
+            const months = [
+                "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+                "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+            ];
+
+            for (let month = startMonth; month <= 12; month++) {
+                const option = document.createElement('option');
+                option.value = month;
+                option.text = months[month - 1];
+                monthChoice.appendChild(option);
+            }
+        }
+
+        // Populate day choices based on the selected year and month
+        function populateDayChoices() {
+            dayChoice.innerHTML = ''; // Clear existing options
+            const selectedYear = parseInt(yearChoice.value);
+            const selectedMonth = parseInt(monthChoice.value);
+            const daysInMonth = new Date(selectedYear, selectedMonth, 0).getDate();
+            const startDay = (selectedYear === currentYear && selectedMonth === currentMonth) ? currentDay : 1;
+
+            for (let day = startDay; day <= daysInMonth; day++) {
+                const option = document.createElement('option');
+                option.value = day;
+                option.text = day;
+                dayChoice.appendChild(option);
+            }
+        }
+
+        yearChoice.addEventListener('change', function() {
+            populateMonthChoices();
+            populateDayChoices();
+        });
+        monthChoice.addEventListener('change', populateDayChoices);
+
+        populateMonthChoices(); // Initial population of month choices
+        populateDayChoices(); // Initial population of day choices
+    });
+</script>
+
 {{form.date_choice}}
 <script>
 
