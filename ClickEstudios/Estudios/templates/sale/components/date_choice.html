@@ -90,6 +90,8 @@
     monthChoice.addEventListener('input', VerifyDateChoice);
     yearChoice.addEventListener('input', VerifyDateChoice);
 
+
+
     function VerifyDateChoice(){
         updateDateChoice();
         $.ajax({
@@ -99,7 +101,7 @@
             },
             success: function(response) {
                 var timeSelect = document.querySelector('#id_time');
-                timeSelect.innerHTML = ''; // Clear existing options
+                timeSelect.innerHTML = '<option value="" disabled selected>Seleccione una hora</option>'; // Clear existing options and add default option
 
                 if (response.true) {
                     // Handle the case where the date is available
@@ -126,4 +128,7 @@
             }
         });        
     }
+
+
+  
 </script>
