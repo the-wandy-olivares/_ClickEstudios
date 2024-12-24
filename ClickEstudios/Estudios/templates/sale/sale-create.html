@@ -1,13 +1,13 @@
 {% extends "base/base.html" %}
 {% block content %}
       <style>
-            
+
       </style>
       <section class='overflow-auto '>
             <form action="" method="post">
                   
                   {% csrf_token %}
-            <div style="min-width: 520px; max-width: 520px; border: 6px solid rgb(47, 47, 47); border-radius: 3rem; cursor: pointer;" class=' text-white m-2 shadow-sm'>
+            <div style="min-width: 520px; max-width: 520px; border: 6px solid rgb(47, 47, 47); border-radius: 3rem; cursor: pointer;" class=' text-white m-2 input-user shadow-sm'>
                         {{form.name_client}}
                         {{form.phone_client}}
                         {{form.email_client}}

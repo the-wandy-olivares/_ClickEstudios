@@ -26,6 +26,12 @@
         padding: 0;
         box-sizing: border-box;
         font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+        user-select: none;
+    -webkit-user-select: none; /* Para navegadores WebKit (Safari, Chrome) */
+    -moz-user-select: none; /* Para Firefox */
+    -ms-user-select: none; /*
+
     }
     .blur-10 {
         -webkit-backdrop-filter: blur(10px) !important;
@@ -48,6 +54,37 @@
             {% endblock %}
       </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!--My JS-->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+      const phoneInput = document.getElementById('id_phone_client');
+
+      if (phoneInput) {
+        phoneInput.addEventListener('input', function (event) {
+          let input = phoneInput.value.replace(/\D/g, ''); // Remover todo excepto dígitos
+          let formatted = '';
+
+          if (input.length > 0) {
+            formatted += '(' + input.substring(0, 3);
+          }
+          if (input.length >= 4) {
+            formatted += ') ' + input.substring(3, 6);
+          }
+          if (input.length >= 7) {
+            formatted += '-' + input.substring(6, 10);
+          }
+
+          phoneInput.value = formatted;
+        });
+      }
+      });
+
+
+      
+      
+
+    </script>
 
     <!--Jquery-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

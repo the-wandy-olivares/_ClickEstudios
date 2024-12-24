@@ -300,6 +300,7 @@ class SaleCreateDateChoice(CreateView):
 
         def get_context_data(self, **kwargs):
             context = super().get_context_data(**kwargs)
+            context['plan'] = models.Plan.objects.get(pk=self.kwargs.get('pk'))
             return context
 
         def form_valid(self, form):

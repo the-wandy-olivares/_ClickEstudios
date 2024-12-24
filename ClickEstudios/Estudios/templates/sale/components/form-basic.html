@@ -1,0 +1,20 @@
+<style>
+      .inputs-form input
+      {
+            margin: 0.3rem;
+      }
+</style>
+<div class="inputs-form">
+      <div class="d-flex w-100">
+            {{form.name_client}}
+            {{form.phone_client}}
+            {{form.email_client}}
+      </div>
+</div>
+<label for="contact_preference" class="text-white" style="font-size: 14px;">Preferencia de contacto:</label>
+<select id="contact_preference" class="form-select" name="contact_preference" onchange="toggleContactFields()">
+      <!-- <option value="none">Ninguno</option> -->
+      <option value="phone">Numero</option>
+      <option value="email">Correo</option>
+      <option value="both">Ambos</option>
+</select>
