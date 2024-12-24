@@ -1,0 +1,71 @@
+{% extends "base/base.html" %}
+{% block content %}
+<style>
+      td {
+            color: rgba(255, 255, 255, 0.647);
+      }
+</style>
+<section class='w-100 d-flex flex-wrap align-content-start'>
+      <div class='w-100 d-flex justify-content-end' style='max-height: 2rem;'>
+            <a href="{% url "estudios:empleados-create" %}">
+                  <button class="bg-white bg-opacity-10 rounded-5 p-2 pe-3 ps-3 text-white border-0 rounded-3 p-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+                            </svg> Empleado
+                  </button>
+            </a>
+      </div> 
+      <div class='w-100 d-flex'>
+            <table class="w-100  text-white">
+                  <thead >
+                        <tr>
+                              <th>Nombre</th>
+                              <th>Apellidos</th>
+                              <th>Rol</th>
+                              <th>Email</th>
+                              <th>Acciones</th>
+                        </tr>
+                  </thead>
+                  <tbody>
+                        {% for empleado in empleados %}
+                        <tr class="pt-1">
+                              <td>{{ empleado.first_name }}</td>
+                              <td>{{ empleado.last_name }}</td>
+
+
+                                <td>
+                                          <form method="post" action="">
+                                                  {% csrf_token %}
+                                                  <input type="hidden" name="id" value="{{ empleado.id }}">
+                                                  <select name="role" class="form-control bg-black text-white-50 border-0" onchange="this.form.submit()">
+                                                            <option value="estandard" {% if empleado.profile.role == "estandard" %}selected{% endif %}>Estandar</option>
+                                                            <option value="administrativo" {% if empleado.profile.role == "administrativo" %}selected{% endif %}>Administrativo</option>
+                                                            <option value="administrador" {% if empleado.profile.role == "administrador" %}selected{% endif %}>Administrador</option>
+                                                  </select>
+                                          </form>
+                                </td>
+
+
+
+                              <td>{{ empleado.email }}</td>
+                              <td>{{ empleado.estado }}</td>
+
+                              {% comment %} {% if request.user.is_autenticate  == request.user%}
+                                    {% else %} {% endcomment %}
+                                    <td>
+                                          <a href="{% url 'estudios:empleados-delete' empleado.id %}"
+                                           class="btn btn-danger border-0 bg-transparent text-white"
+                                           style="font-weight: bold;">Eliminar</a>
+                                          <a href="{% url 'estudios:empleados-update' empleado.id %}" class="btn mt-1 rounded-5 btn-primary"
+                                          style="font-weight: bold;">Editar</a>
+                                    </td>
+                              {% comment %} {% endif %} {% endcomment %}
+
+                        </tr>
+                        {% endfor %}
+                  </tbody>
+            </table>
+      </div>
+
+</section>
+{% endblock  %}

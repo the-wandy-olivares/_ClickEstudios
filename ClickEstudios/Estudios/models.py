@@ -4,18 +4,30 @@ from django.contrib.auth.models import User
 
 
 
+class Profile(models.Model):
+      ROLE_CHOICES = [
+            ('estandard', 'Estandar'),
+            ('administrativo', 'Administrativo'),
+            ('administrador', 'Administrador'),
+      ]
+      user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile', blank=True, null=True)
+      phone = models.CharField(max_length=15, blank=True, null=True)
+      address = models.TextField(blank=True, null=True)
+      img = models.ImageField(upload_to='media/profile', null=True, blank=True)
+      role = models.CharField(max_length=30, choices=ROLE_CHOICES, default='estandard')
+
+      def __str__(self):
+            return f"{self.user.first_name} {self.user.last_name} - {self.get_role_display()}"
 
 class Empleado(models.Model):
       ROLE_CHOICES = [
-            ('admin', 'Administrador'),
-            ('supervisor', 'Supervisor'),
-            ('customer_service', 'Servicio al Cliente'),
-            ('photographer', 'Fotografo'),
-            ('editor', 'Editor'),
             ('estandard', 'Estandar'),
+            ('administrativo', 'Administrativo'),
+            ('administrador', 'Administrador'),
       ]
 
-      estudio = models.ForeignKey('Estudios', on_delete=models.CASCADE, related_name='empleados')
+      user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='empleado', default=1)
+      estudio = models.ForeignKey('Estudios', on_delete=models.CASCADE, related_name='empleados', null=True, blank=True)
       name = models.CharField(max_length=100, blank=False, null=False)
       img = models.ImageField(upload_to='media/empleados', null=True, blank=True)
       role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='estandard')

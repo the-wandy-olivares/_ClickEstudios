@@ -5,6 +5,8 @@ from django.views import View
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from . import models, forms
 from django.utils import timezone
+from django.contrib.auth.models import User
+
 
 
 class Dashboard(TemplateView):
@@ -529,3 +531,102 @@ class Admin(TemplateView):
         context['users'] = models.User.objects.all()
         return context
 
+
+
+# Empleados
+class Empleados(TemplateView):
+    template_name = 'empleados/empleados.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['empleados'] = models.User.objects.all()
+        return context
+    
+    def post(self, request, *args, **kwargs):
+        if request.POST.get('role'):
+            user = User.objects.get(pk=request.POST.get('id'))
+            user.profile.role = request.POST.get('role')
+            user.profile.save()
+        return self.render_to_response(self.get_context_data())
+    
+
+class EmpleadoCreate(CreateView):
+    model = User
+    form_class = forms.User
+    template_name = 'empleados/empleados-create.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def form_valid(self, form):
+        form.instance.username = form.instance.email
+        form.instance.first_name = form.instance.first_name
+        form.instance.last_name = form.instance.last_name
+        form.instance.set_password(form.instance.password)
+        
+
+        # Create a profile for the new user
+
+        
+        # Guarda el objeto y redirige al éxito
+        self.object = form.save()
+        models.Profile.objects.create(user=self.object)
+        return redirect(self.get_success_url())
+
+    def form_invalid(self, form):
+        print(form.errors)
+        return self.render_to_response(self.get_context_data(form=form))
+
+    def get_success_url(self):
+        # Retorna la URL a la que redirigirá después de un submit exitoso
+        return reverse_lazy('estudios:empleados')
+
+
+
+
+class EmpleadoUpdate(UpdateView):
+    model = User
+    form_class = forms.User
+    template_name = 'empleados/empleados-update.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def form_valid(self, form):
+        # Guarda el objeto y redirige al éxito
+        form.instance.first_name = form.instance.first_name
+        form.instance.last_name = form.instance.last_name
+        self.object = form.save()
+        return redirect(self.get_success_url())
+
+    def form_invalid(self, form):
+        print(form.errors)
+        return self.render_to_response(self.get_context_data(form=form))
+
+    def get_success_url(self):
+        # Retorna la URL a la que redirigirá después de un submit exitoso
+        return reverse_lazy('estudios:empleados')
+    
+
+
+
+class EmpleadoDelete(DeleteView):
+    model = User
+    template_name = 'empleados/empleados_confirm_delete.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user'] = models.User.objects.get(pk=self.kwargs.get('pk'))
+        return context
+    
+    def post(self, request, *args, **kwargs):
+        if request.POST.get('delete'):
+            user = models.User.objects.get(pk=self.kwargs.get('pk'))
+            user.delete()
+            return redirect('estudios:empleados')
+        return super().post(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse_lazy('estudios:empleados')

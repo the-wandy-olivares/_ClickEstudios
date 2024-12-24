@@ -1,6 +1,8 @@
 from django import forms
 from . import models
 
+from django.contrib.auth.models import User
+
 class Service(forms.ModelForm):
       class Meta:
             model = models.Service
@@ -100,3 +102,36 @@ class Box(forms.ModelForm):
             'open': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
             'date_close': forms.DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime-local'}),
             }
+
+
+
+
+
+class Empleado(forms.ModelForm):
+      class Meta:
+            model = models.Empleado
+            fields = ['estudio', 'name', 'img', 'role', 'is_active', 'user']
+            widgets = {
+                  'estudio': forms.Select(attrs={'class': 'form-control'}),
+                  'name': forms.TextInput(attrs={'class': 'form-control'}),
+                  'img': forms.FileInput(attrs={'class': 'form-control'}),
+                  'role': forms.Select(attrs={'class': 'form-control'}),
+                  'is_active': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+                  'user': forms.Select(attrs={'class': 'form-control'}),
+            }
+
+
+class User(forms.ModelForm):
+      class Meta:
+            model = User
+            fields = ['username', 'email', 'password', 'first_name', 'last_name']
+            widgets = {
+                    'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre de usuario'}),
+                    'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Correo electrónico'}),
+                    'password': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Contraseña'}),
+                    'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre'}),
+                    'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Apellido'}),
+            }
+
+
+

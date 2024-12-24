@@ -1,0 +1,32 @@
+{% extends "base/base.html" %}
+{% block content %}
+
+      <section class='d-flex justify-content-center align-content-center flex-wrap w-100'>
+            <div class="card bg-black text-white p-3" 
+                  style="width: 33rem; border: solid 6px #616161; border-radius: 3rem;">
+                  <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" fill="currentColor" class="bi bi-person-fill-dash" viewBox="0 0 16 16">
+                              <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M11 12h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1m0-7a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                              <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4"/>
+                            </svg>
+                  </div>
+                  <div class="card-body">
+                    <p class="card-text text-white-50 p-0">
+                              ¿Estás seguro de que deseas eliminar el usuario
+                              <strong>
+                                    {{ user.first_name }} {{ user.last_name }}
+                              </strong>?
+                    </p>
+                  </div>
+                  <div class='d-flex w-100 justify-content-end pe-3'>
+                        <a href="{% url 'estudios:empleados' %}" class="btn btn-primary bg-transparent border-0" style='font-weight: bold;'>Cancelar</a>
+                        <form method="post">
+                              {% csrf_token %}
+                              <button type="submit" class="btn btn-danger rounded-5"
+                              style='font-weight: bold;'>Eliminar</button>
+                        </form>
+                  </div>
+                </div>
+      </section>
+
+{% endblock  %}

@@ -41,6 +41,10 @@ urlpatterns = [
 
 #  Caja administrativa, balance, cierre de caja, apertura de caja, etc
       path('admin', views.Admin.as_view(), name='admin'),
+            path('empleados/', views.Empleados.as_view(), name='empleados'),
+                  path('empleados-create/', views.EmpleadoCreate.as_view(), name='empleados-create'),
+            path('empleados-update/<int:pk>/', views.EmpleadoUpdate.as_view(), name='empleados-update'),
+      path('empleados-delete/<int:pk>/', views.EmpleadoDelete.as_view(), name='empleados-delete'),
 
 
 #  Funciones ajax
