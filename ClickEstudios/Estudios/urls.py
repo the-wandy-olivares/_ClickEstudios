@@ -47,6 +47,10 @@ urlpatterns = [
       path('empleados-delete/<int:pk>/', views.EmpleadoDelete.as_view(), name='empleados-delete'),
 
 
+# Login
+      path('login/', views.Login.as_view(), name='login'),
+      path('logout/', views.Logout.as_view(), name='logout'),
+
 #  Funciones ajax
       path('ajax/verify-date-choice/', ajax_views.VerifyDateChoice, name='verify-date-choice'),
 ]

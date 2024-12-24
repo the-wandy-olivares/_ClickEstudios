@@ -6,6 +6,7 @@ from django.views.generic import TemplateView, ListView, DetailView, CreateView,
 from . import models, forms
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 
 
 
@@ -598,6 +599,7 @@ class EmpleadoUpdate(UpdateView):
         # Guarda el objeto y redirige al éxito
         form.instance.first_name = form.instance.first_name
         form.instance.last_name = form.instance.last_name
+        form.instance.set_password(form.instance.password)
         self.object = form.save()
         return redirect(self.get_success_url())
 
@@ -630,3 +632,28 @@ class EmpleadoDelete(DeleteView):
 
     def get_success_url(self):
         return reverse_lazy('estudios:empleados')
+
+
+
+class Login(TemplateView):
+    template_name = 'login/login.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def post(self, request, *args, **kwargs):
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+        if user:
+            login(request, user)
+            return redirect('estudios:dashboard')
+        return self.render_to_response(self.get_context_data())
+    
+
+
+class Logout(TemplateView):
+    def get(self, request):
+        logout(request)
+        return redirect('estudios:login')

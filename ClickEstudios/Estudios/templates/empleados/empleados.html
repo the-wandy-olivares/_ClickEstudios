@@ -20,22 +20,23 @@
             <table class="w-100  text-white">
                   <thead >
                         <tr>
-                              <th  data-aos="fade-left" style="transition-delay: 0s;">
+                              <th  data-aos="fade-left" style="transition-delay: 0s; width: 2%;">
                                     #
                               </th>
                               <th data-aos="fade-left" style="transition-delay: 0s; width: 20%;">Nombre</th>
                               <th data-aos="fade-left" style="transition-delay: 0.2s; width: 20%;">Apellidos</th>
+
                               <th data-aos="fade-left" style="transition-delay: 0.3s; width: 15%;">Role</th>
                               <th data-aos="fade-left" style="transition-delay: 0.4s; width: 20%;">Correo</th>
-                              <th data-aos="fade-left" style="transition-delay: 0.5s; width: 10%;">Acciones</th>
+                              <th data-aos="fade-left" style="transition-delay: 0.5s; width: 7%;">Acciones</th>
                         </tr>
                   </thead>
                   <tbody>
                         {% for empleado in empleados %}
                         <tr class="pt-1">
-                                <td data-aos="fade-left" style="transition-delay: 0s;">{{ forloop.counter }}</td>
+                              <td data-aos="fade-left" style="transition-delay: 0s;">{{ forloop.counter }}</td>
                               <td data-aos="fade-left" style="transition-delay: 0.1s;">{{ empleado.first_name }}</td>
-                              <td data-aos="fade-left" style="transition-delay: 0.2s;">{{ empleado.last_name }}</td>
+                              <td data-aos="fade-left" style="transition-delay: 0.2s;">{{ empleado.last_name }} </td>
 
 
                                 <td data-aos="fade-left" style="transition-delay: 0.3s;">
@@ -43,29 +44,26 @@
                                                   {% csrf_token %}
                                                   <input type="hidden" name="id" value="{{ empleado.id }}">
                                                   <select name="role" class="form-control bg-black text-white-50 border-0" onchange="this.form.submit()">
+                                                      {% if request.user.id != empleado.id %}
                                                             <option value="estandard" {% if empleado.profile.role == "estandard" %}selected{% endif %}>Estandar</option>
                                                             <option value="administrativo" {% if empleado.profile.role == "administrativo" %}selected{% endif %}>Administrativo</option>
+                                                      {% endif %}
                                                             <option value="administrador" {% if empleado.profile.role == "administrador" %}selected{% endif %}>Administrador</option>
                                                   </select>
                                           </form>
                                 </td>
-
-
-
                               <td data-aos="fade-left" style="transition-delay: 0.4s;">{{ empleado.email }}</td>
-                              <td data-aos="fade-left" style="transition-delay: 0.5s;">{{ empleado.estado }}</td>
+                              {% if request.user.id != empleado.id %}
 
-                              {% comment %} {% if request.user.is_autenticate  == request.user%}
-                                    {% else %} {% endcomment %}
-                                    <td data-aos="fade-left" style="transition-delay: 0.6s;">
-                                          <a href="{% url 'estudios:empleados-delete' empleado.id %}"
-                                           class="btn btn-danger border-0 bg-transparent text-white"
-                                           style="font-weight: bold;">Eliminar</a>
-                                          <a href="{% url 'estudios:empleados-update' empleado.id %}" class="btn mt-1 rounded-5 btn-primary"
-                                          style="font-weight: bold;">Editar</a>
+                                <td data-aos="fade-left" class="d-flex" style="transition-delay: 0.6s;">
+                                      <a href="{% url 'estudios:empleados-delete' empleado.id %}"
+                                      class="btn btn-danger border-0 mt-1 bg-transparent text-white"
+                                      style="font-weight: bold;">Eliminar</a>
+                                      <a href="{% url 'estudios:empleados-update' empleado.id %}" class="btn mt-1 rounded-5 btn-primary"
+                                      style="font-weight: bold;">Editar</a>
                                     </td>
-                              {% comment %} {% endif %} {% endcomment %}
 
+                              {% endif %}
                         </tr>
                         {% endfor %}
                   </tbody>
