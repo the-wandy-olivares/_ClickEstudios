@@ -19,8 +19,8 @@ class Pos(TemplateView):
         context = super().get_context_data(**kwargs)
         context['service_choices'] = models.Service.objects.all()
         context['plan_choices'] = models.Plan.objects.all()
-        context['sales'] = models.Sale.objects.filter(is_reserve=False).order_by('-id')
-        context['sales_reservers'] = models.Sale.objects.filter(is_reserve=True).order_by('-id')
+        context['sales'] = models.Sale.objects.filter(is_reserve=False, finalize=False).order_by('-id')
+        context['sales_reservers'] = models.Sale.objects.filter(is_reserve=True, finalize=False).order_by('-id')
         context['box_is_open'] = models.Box.objects.filter(open=True).exists() 
         context['today'] = timezone.now().date()
         context['time_now'] = timezone.now().strftime('%H:%M')
@@ -358,9 +358,8 @@ class Estudios(TemplateView):
 
 
     def post(self, request, *args, **kwargs):
-        print('mmm?', request.POST.get('name'))
+        # Agregar adicional
         if request.POST.get('name'):
-            print('entro')
             sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
             a = models.Adicional(
                     sale=sale,
@@ -370,9 +369,17 @@ class Estudios(TemplateView):
             )
             a.save()
 
+        # Eliminar adicional
         if request.POST.get('delete'):
                 adicional = models.Adicional.objects.get(pk=request.POST.get('delete'))
                 adicional.delete()
+        
+        # Finalizar venta
+        if request.POST.get('end'):
+            sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
+            sale.finalize = True
+            sale.save()
+            return redirect('estudios:pos')
             
         return self.render_to_response(self.get_context_data())
     

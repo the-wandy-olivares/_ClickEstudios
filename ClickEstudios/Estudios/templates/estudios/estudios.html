@@ -86,9 +86,13 @@
       <footer class='pb-5 d-flex justify-content-end w-100 bg-black' style="position: sticky; bottom: 0; width: 100%;  padding: 10px; text-align: center;" >
             <div>
                   <p class='p-0 m-0'>Total: ${{ total_sin|intcomma }}.00</p>
-                  <p class='p-0 m-0'>Adicionales: ${{ total_adicionales|intcomma }}.00</p>
+
+                     <p class='p-0 m-0'>Adicionales: ${{ total_adicionales|intcomma }}.00</p>
+
+
             </div>
             <div>
+                 
                   <button class='show-button border-0 text-white pe-3 ps-3 bg-transparent'
                   style="font-weight: bold;"> 
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
@@ -101,6 +105,14 @@
                         Impirmir 
                   </button>
             </div>
+            <form action="" method="post" class=' d-flex flex-wrap justify-content-center align-content-center'>
+                  {% csrf_token %}
+                  <input type="hidden" name="end" value="true" class='mt-2'>
+                  <button class='show-button border-0 p-2 rounded-5 text-white pe-3 ps-3 bg-danger'
+                  style="font-weight: bold;"> 
+                          Concuir cita
+                  </button>
+            </form>
       </footer>
 </section>
 
