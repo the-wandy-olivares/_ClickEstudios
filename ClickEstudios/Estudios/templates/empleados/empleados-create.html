@@ -1,6 +1,20 @@
 {% extends "base/base.html" %}
 {% block content %}
 
+<style>
+      .container input 
+      {
+            background-color: rgb(45, 45, 45) !important;
+            height: 3.4rem;
+            color: rgb(255, 255, 255) !important;
+            border-radius: 1.5rem;
+            border: none;
+      }
+      .container input::placeholder
+      {
+            color: rgba(255, 255, 255, 0.656);
+      }
+</style>
 
 <div class="container">
 
@@ -11,24 +25,18 @@
             </span>
             <div class="form-row d-flex">
                   <div class="form-group col-md-6">
-                        <label for="id_first_name">Nombre</label>
                         <input type="text" name="first_name" class="form-control" placeholder="Nombre" required id="id_first_name">
                   </div>
                   <div class="form-group col-md-6">
-                        <label for="id_last_name">Apellido</label>
                         <input type="text" name="last_name" class="form-control" placeholder="Apellido" required id="id_last_name">
                   </div>
             </div>
 
-
-
-            <div class="form-row d-flex flex-wrap">
-                  <div class="form-group col-md-6">
-                        <label for="id_email">Correo electrónico</label>
+            <div class="form-row d-flex flex-wrap w-100 ">   
+                  <div class="form-group w-100">
                         <input type="email" name="email" class="form-control" placeholder="Correo electrónico" required id="id_email">
                   </div>
-                  <div class="form-group col-md-6">
-                        <label for="id_password">Contraseña</label>
+                  <div class="form-group w-100">
                         <input type="password" name="password" class="form-control" placeholder="Contraseña" required id="id_password">
                   </div>
             </div>
@@ -50,13 +58,11 @@
             confirmPassword.required = true;
             confirmPassword.id = 'id_confirm_password';
 
-            const confirmPasswordLabel = document.createElement('label');
-            confirmPasswordLabel.htmlFor = 'id_confirm_password';
-            confirmPasswordLabel.innerText = 'Confirmar Contraseña';
+
 
             const formGroup = document.createElement('div');
-            formGroup.className = 'form-group';
-            formGroup.appendChild(confirmPasswordLabel);
+            formGroup.classList.add('form-group', 'w-100' )
+
             formGroup.appendChild(confirmPassword);
 
             password.parentNode.parentNode.insertBefore(formGroup, password.parentNode.nextSibling);
