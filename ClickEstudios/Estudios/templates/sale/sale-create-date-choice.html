@@ -54,7 +54,7 @@
                                           Agenda cita
                                     </strong>
                                     <p class='text-white-50 p-0 m-0'>
-                                          Por favor, selecciona la fecha y hora en la que deseas agendar tu cita.
+                                          Por favor, selecciona la fecha y hora en la que deseas agendar tu cita, no olvides escoger la hora de tu preferencia, si no escoges el sistema no podrá agendar tu cita.
                                     </p>
                               </div>
                            
@@ -71,7 +71,7 @@
 
                               <!--Time Choice-->
                               <div class="time-choice d-none">
-                                    <button class="btn btn-primary rounded-5"
+                                    <button class="btn btn-primary d-none rounded-5"
                                           style="width: 9rem;" id="submit_button">
                                           Agendar
                                     </button>
@@ -79,9 +79,19 @@
 
                               <!-- Navigation Buttons -->
                               <div class="navigation-buttons position-absolute bottom-0 d-flex justify-content-start w-100 mt-3">
-                                    <span type="button" class="btn me-1 btn-secondary d-none" id="prev_button" onclick="showPreviousSection()">Anterior</span>
-                                    <span type="button" class="btn btn-secondary" id="next_button" onclick="showNextSection()">Siguiente</span>
+                                    <span type="button" class="btn me-2 btn-secondary bg-transparent border-0 d-none" id="prev_button" onclick="showPreviousSection()">Anterior</span>
+                                    <span type="button" class="btn btn-secondary bg-warning rounded-5 text-black d-none" style="font-weight: bold;" id="next_button" onclick="showNextSection()">Siguiente</span>
                               </div>
+                              <script>
+                                          document.getElementById('id_name_client').addEventListener('input', function() {
+                                          var nextButton = document.getElementById('next_button');
+                                          if (this.value.length > 4) {
+                                                nextButton.classList.remove('d-none');
+                                          } else {
+                                                nextButton.classList.add('d-none');
+                                          }
+                                    });
+                              </script>
                         </div>
                   </section>
 
@@ -181,6 +191,24 @@
                 }
           });
             
+      document.addEventListener('DOMContentLoaded', function() {
+            var dateChoice = document.getElementById('id_date_choice');
+            var timeChoice = document.getElementById('id_time');
+            var submitButton = document.getElementById('submit_button');
+
+            function toggleSubmitButton() {
+                  if (dateChoice.value && timeChoice.value) {
+                        submitButton.classList.remove('d-none');
+                  } else {
+                        submitButton.classList.add('d-none');
+                  }
+            }
+
+            dateChoice.addEventListener('change', toggleSubmitButton);
+            timeChoice.addEventListener('change', toggleSubmitButton);
+
+            toggleSubmitButton(); // Initial check
+      });
     </script>
     
 {% endblock  %}
