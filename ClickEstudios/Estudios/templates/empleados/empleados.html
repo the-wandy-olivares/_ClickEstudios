@@ -6,12 +6,12 @@
       }
 </style>
 <section class='w-100 d-flex flex-wrap align-content-start'>
-      <div class='w-100 d-flex justify-content-end' style='max-height: 2rem;'>
+      <div data-aos="fade-left" style="transition-delay: 0.7s; max-height: 2rem;" class='w-100 d-flex justify-content-end' >
             <a href="{% url "estudios:empleados-create" %}">
                   <button class="bg-white bg-opacity-10 rounded-5 p-2 pe-3 ps-3 text-white border-0 rounded-3 p-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
                               <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
-                            </svg> Empleado
+                            </svg> Usuario
                   </button>
             </a>
       </div> 
@@ -20,21 +20,25 @@
             <table class="w-100  text-white">
                   <thead >
                         <tr>
-                              <th>Nombre</th>
-                              <th>Apellidos</th>
-                              <th>Rol</th>
-                              <th>Email</th>
-                              <th>Acciones</th>
+                              <th  data-aos="fade-left" style="transition-delay: 0s;">
+                                    #
+                              </th>
+                              <th data-aos="fade-left" style="transition-delay: 0s; width: 20%;">Nombre</th>
+                              <th data-aos="fade-left" style="transition-delay: 0.2s; width: 20%;">Apellidos</th>
+                              <th data-aos="fade-left" style="transition-delay: 0.3s; width: 15%;">Role</th>
+                              <th data-aos="fade-left" style="transition-delay: 0.4s; width: 20%;">Correo</th>
+                              <th data-aos="fade-left" style="transition-delay: 0.5s; width: 10%;">Acciones</th>
                         </tr>
                   </thead>
                   <tbody>
                         {% for empleado in empleados %}
                         <tr class="pt-1">
-                              <td>{{ empleado.first_name }}</td>
-                              <td>{{ empleado.last_name }}</td>
+                                <td data-aos="fade-left" style="transition-delay: 0s;">{{ forloop.counter }}</td>
+                              <td data-aos="fade-left" style="transition-delay: 0.1s;">{{ empleado.first_name }}</td>
+                              <td data-aos="fade-left" style="transition-delay: 0.2s;">{{ empleado.last_name }}</td>
 
 
-                                <td>
+                                <td data-aos="fade-left" style="transition-delay: 0.3s;">
                                           <form method="post" action="">
                                                   {% csrf_token %}
                                                   <input type="hidden" name="id" value="{{ empleado.id }}">
@@ -48,12 +52,12 @@
 
 
 
-                              <td>{{ empleado.email }}</td>
-                              <td>{{ empleado.estado }}</td>
+                              <td data-aos="fade-left" style="transition-delay: 0.4s;">{{ empleado.email }}</td>
+                              <td data-aos="fade-left" style="transition-delay: 0.5s;">{{ empleado.estado }}</td>
 
                               {% comment %} {% if request.user.is_autenticate  == request.user%}
                                     {% else %} {% endcomment %}
-                                    <td>
+                                    <td data-aos="fade-left" style="transition-delay: 0.6s;">
                                           <a href="{% url 'estudios:empleados-delete' empleado.id %}"
                                            class="btn btn-danger border-0 bg-transparent text-white"
                                            style="font-weight: bold;">Eliminar</a>
