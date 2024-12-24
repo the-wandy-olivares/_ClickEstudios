@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.views import View
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from . import models, forms
+from django.utils import timezone
 
 
 class Dashboard(TemplateView):
@@ -21,6 +22,8 @@ class Pos(TemplateView):
         context['sales'] = models.Sale.objects.filter(is_reserve=False).order_by('-id')
         context['sales_reservers'] = models.Sale.objects.filter(is_reserve=True).order_by('-id')
         context['box_is_open'] = models.Box.objects.filter(open=True).exists() 
+        context['today'] = timezone.now().date()
+        context['time_now'] = timezone.now().strftime('%H:%M')
         return context
 
 

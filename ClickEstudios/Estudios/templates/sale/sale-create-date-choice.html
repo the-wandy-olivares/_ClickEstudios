@@ -42,8 +42,11 @@
             <form action="" method="post" class="w-100">
                   {% csrf_token %}
     
-                  
+                  <div>
+                        {{sale}}
+                  </div>
                   <section class="d-flex w-100 mt-4">
+                        
                         <div class="w-25">
                               {% include "plan/plan-select.html" %}
                                
