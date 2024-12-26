@@ -180,7 +180,6 @@ class Sale(models.Model):
       client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='client_sale', null=True, blank=True)
 
 
-
 # Datas de plan escogido
       name_plan = models.CharField(max_length=100, blank=True, null=True)
       description_plan = models.TextField(blank=True, null=True)

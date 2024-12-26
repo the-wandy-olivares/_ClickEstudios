@@ -713,3 +713,14 @@ class Logout(TemplateView):
     def get(self, request):
         logout(request)
         return redirect('estudios:login')
+    
+
+
+class ProfileClient(DetailView):
+    model = models.Sale
+    template_name = 'profile/profile-client.html'
+    context_object_name = 'client'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context

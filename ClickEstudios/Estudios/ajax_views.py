@@ -34,16 +34,19 @@ def VerifyDateChoice(request):
 
 
 def Search(request):
-    d = request.GET.get('search', '').strip()
-    data = []
+      d = request.GET.get('search', '').strip()
+      data = []
     
-    if d:
-        if d.lower() in ['cita']:
-            data = models.Sale.objects.filter(is_reserve=True, name_client__icontains=d).values('id', 'name_client')
-        elif d.lower() in ['cliente']:
-            data = models.Sale.objects.filter(is_reserve=False, name_client__icontains=d).values('id', 'name_client')
-        else:
-            # Búsqueda general si no se especifica 'cita' o 'cliente'
-            data = models.Sale.objects.filter(name_client__icontains=d).values('id', 'name_client')
+      if d:
+            search_term = d.lower()
+            if search_term in ['citas', 'cliente']:
+                  search_term = ''  # Eliminar la palabra 'cita' o 'cliente' del término de búsqueda
+            if 'citas' in d.lower():
+                  data = models.Sale.objects.filter(is_reserve=True, finalize=False,  name_client__icontains=search_term).values('id', 'name_client')
+            elif 'cliente' in d.lower():
+                  data = models.Sale.objects.filter(is_reserve=False, finalize=False, name_client__icontains=search_term).values('id', 'name_client')
+            else:
+                  # Búsqueda general si no se especifica 'cita' o 'cliente'
+                  data = models.Sale.objects.filter(name_client__icontains=search_term).values('id', 'name_client')
 
-    return JsonResponse(list(data), safe=False)
+      return JsonResponse(list(data), safe=False)

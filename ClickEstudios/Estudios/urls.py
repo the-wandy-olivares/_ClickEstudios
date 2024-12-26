@@ -39,7 +39,6 @@ urlpatterns = [
 #  Caja administrativa, balance, cierre de caja, apertura de caja, etc
       path('box/', views.Box.as_view(), name='box'),
             path('box-create/', views.BoxCreate.as_view(), name='box-create'),
-            #       path('caja-update/<int:pk>/', views.cajaUpdate.as_view(), name='caja-update'),
 
 #  Caja administrativa, balance, cierre de caja, apertura de caja, etc
       path('admin', views.Admin.as_view(), name='admin'),
@@ -48,6 +47,8 @@ urlpatterns = [
             path('empleados-update/<int:pk>/', views.EmpleadoUpdate.as_view(), name='empleados-update'),
       path('empleados-delete/<int:pk>/', views.EmpleadoDelete.as_view(), name='empleados-delete'),
 
+# Perfil de usuario
+      path('profile-client/<int:pk>/', views.ProfileClient.as_view(), name='profile-client'),
 
 # Login
       path('login/', views.Login.as_view(), name='login'),
