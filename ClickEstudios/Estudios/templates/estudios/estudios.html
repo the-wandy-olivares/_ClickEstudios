@@ -12,6 +12,10 @@
             color: rgba(255, 255, 255, 0.646);
             font-weight: bold;
       }
+      input::placeholder
+      {
+            color: white !important;
+      }
 </style>
 <section style="position: relative; min-height: 100vh;"
       class=' text-white overflow-auto w-100'>
@@ -48,7 +52,8 @@
                   <form action="" method="post">
                         {% csrf_token %}
                         <div class='d-flex  w-100'> 
-                              <input class='form-control bg-white  bg-opacity-10 border-0 w-50 m-0 me-1 p-3 adicionales-input' type="text" name="name"  id="name" value='{{sale.name_plan}}' disabled  placeholder="Nombre" style="border-top-left-radius: 1.5rem;">
+                              <input class='form-control bg-white  bg-opacity-10 border-0 w-50 m-0 me-1 p-3 adicionales-input' type="text" name="name"  id="name"
+                               value='{{sale.name_plan}}'   placeholder="Nombre" style="border-top-left-radius: 1.5rem;">
                               <input class='form-control bg-white  bg-opacity-10 border-0 w-50 m-0 p-3 adicionales-input' type="number" name="price" id="price" placeholder="Precio"
                               style="border-top-right-radius: 1.5rem;">
                         </div>
