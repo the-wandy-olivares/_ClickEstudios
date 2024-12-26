@@ -33,6 +33,8 @@ urlpatterns = [
 
 # Galeria
       path('gallery/', views.Gallery.as_view(), name='gallery'),
+            path('moment-create/', views.MomentCreate.as_view(), name='moment-create'),
+                  path('moment-update/<int:pk>/', views.MomentUpdate.as_view(), name='moment-update'),
 
 #  Caja administrativa, balance, cierre de caja, apertura de caja, etc
       path('box/', views.Box.as_view(), name='box'),

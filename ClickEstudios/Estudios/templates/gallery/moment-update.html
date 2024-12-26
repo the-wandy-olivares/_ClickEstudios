@@ -1,0 +1,21 @@
+{% extends "base/base.html" %}
+{% block content %}
+
+      <section>
+           
+            <form action="" enctype="multipart/form-data" method="post">
+                  
+                  {% csrf_token %}
+                  {{form}}
+
+                  <a href="{% url "estudios:gallery" %}">
+                      Atras
+                        </a> 
+                  <button>
+                        Actualizar
+                  </button>
+            </form>
+
+      </section>
+
+{% endblock  %}

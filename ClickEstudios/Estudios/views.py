@@ -411,6 +411,62 @@ class Gallery(TemplateView):
     
 
 
+class MomentCreate(CreateView):
+    model = models.Moment
+    form_class = forms.Moment
+    template_name = 'gallery/moment-create.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def form_valid(self, form):
+        # Guarda el objeto y redirige al éxito
+        self.object = form.save()
+        return redirect(self.get_success_url())
+
+    def form_invalid(self, form):
+        print(form.errors)
+        return self.render_to_response(self.get_context_data(form=form))
+
+    def get_success_url(self):
+        # Retorna la URL a la que redirigirá después de un submit exitoso
+        return reverse_lazy('estudios:gallery')
+
+
+
+class MomentUpdate(UpdateView):
+    model = models.Moment
+    form_class = forms.Moment
+    template_name = 'gallery/moment-update.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def form_valid(self, form):
+        # Guarda el objeto y redirige al éxito
+        self.object = form.save()
+        return redirect(self.get_success_url())
+
+    def form_invalid(self, form):
+        print(form.errors)
+        return self.render_to_response(self.get_context_data(form=form))
+
+    def get_success_url(self):
+        # Retorna la URL a la que redirigirá después de un submit exitoso
+        return reverse_lazy('estudios:gallery')
+
+
+
+
+
+
+
+
+
+
+
 class Box(TemplateView):
     template_name = 'box/box.html'
 

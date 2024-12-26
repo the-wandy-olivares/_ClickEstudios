@@ -1,0 +1,16 @@
+{% extends "base/base.html" %}
+{% block content %}
+
+      <section>
+           
+            <form action="" method="post">
+                  {% csrf_token %}
+                  {{form}}
+                  <button>
+                        Crear
+                  </button>
+            </form>
+
+      </section>
+
+{% endblock  %}

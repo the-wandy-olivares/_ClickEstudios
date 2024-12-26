@@ -134,4 +134,13 @@ class User(forms.ModelForm):
             }
 
 
+class Moment(forms.ModelForm):
+      class Meta:
+            model = models.Moment
+            fields = ['service', 'name', 'img']
+            widgets = {
+                  'service': forms.Select(attrs={'class': 'form-control'}),
+                  'name': forms.TextInput(attrs={'class': 'form-control'}),
+                  'img': forms.FileInput(attrs={'class': 'form-control'}),
+            }
 
