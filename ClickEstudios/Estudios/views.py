@@ -8,6 +8,8 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 
+# Utilidades
+from . import utils
 
 
 class Dashboard(TemplateView):
@@ -319,8 +321,14 @@ class SaleCreateDateChoice(CreateView):
                 form.instance.description_plan = plan.description
                 form.instance.price_plan = plan.price
 
-            # Guarda el objeto y redirige al éxito
-            self.object = form.save()
+                if form.instance.email_client:
+                    utils.Send_Mail(form.instance.email_client, form.instance.name_client, plan.name, form.instance.date_choice, form.instance.time)
+                    
+                # Guarda el objeto y redirige al éxito
+                self.object = form.save()
+
+
+
             return redirect(self.get_success_url())
 
         def form_invalid(self, form):
