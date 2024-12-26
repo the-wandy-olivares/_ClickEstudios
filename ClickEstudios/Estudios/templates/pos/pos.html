@@ -42,6 +42,11 @@
                   {% include "service/filter-services.html" %}
             </div>
 
+            <!-- Resultados -->
+             <div style='margin-top: 5.5rem; width: 30rem;  border-radius: 2rem;'  class=" results-searching text-white-50  position-absolute top-0 z-3 bg-black">
+
+             </div>     
+            <!-- Service select -->
             {% if service_select %}
                   <div class='mt-5'>
                         {% include "service/service-select.html" %}
@@ -108,6 +113,48 @@
 
             setInterval(updateClock, 1000);
             updateClock();
+
+
+      // Buscar usuarios o ventas por: nombre, fecha, numero. 
+      document.querySelector('.search').addEventListener('input', function() {
+            if (this.value.length > 3) {
+                  Search();
+            }
+      });
+
+      let Search = () => {
+            let query = document.querySelector('.search').value.trim(); // Elimina espacios en blanco
+            if (query.length > 0) {
+                $.ajax({
+                    url: '/ajax/search/',
+                    data: {
+                        search: query,
+                    },
+                    success: function(response) {
+                        let resultsContainer = document.querySelector('.results-searching');
+                        resultsContainer.innerHTML = ''; // Limpia resultados anteriores
+                        if (response.length > 0) { // response es directamente un array en el backend
+                            response.forEach(item => {
+                                resultsContainer.innerHTML += `<div><a href="/show-result/">${item.name_client}</a></div>`;
+                            });
+                        } else {
+                            resultsContainer.innerHTML = '<p>No se encontraron resultados.</p>';
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error);
+                    }
+                });
+            } else {
+                document.querySelector('.results-searching').innerHTML = '';
+            }
+        };
+
+      document.querySelector('.search').addEventListener('input', function() {
+            if (this.value.trim().length === 0) {
+                  document.querySelector('.results-searching').innerHTML = '';
+            }
+      });
       </script>
 {% endblock  %}
 

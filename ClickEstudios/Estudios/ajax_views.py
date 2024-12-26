@@ -29,3 +29,21 @@ def VerifyDateChoice(request):
             'available_hours': available_hours
       }
       return JsonResponse(context, safe=False)
+
+
+
+
+def Search(request):
+    d = request.GET.get('search', '').strip()
+    data = []
+    
+    if d:
+        if d.lower() in ['cita']:
+            data = models.Sale.objects.filter(is_reserve=True, name_client__icontains=d).values('id', 'name_client')
+        elif d.lower() in ['cliente']:
+            data = models.Sale.objects.filter(is_reserve=False, name_client__icontains=d).values('id', 'name_client')
+        else:
+            # Búsqueda general si no se especifica 'cita' o 'cliente'
+            data = models.Sale.objects.filter(name_client__icontains=d).values('id', 'name_client')
+
+    return JsonResponse(list(data), safe=False)
