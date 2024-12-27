@@ -34,6 +34,7 @@ urlpatterns = [
                         path('sale-reserver/<int:pk>', views.SaleReserver.as_view(), name='sale-reserver'),
                   path('sale-update/<int:pk>/', views.SaleUpdate.as_view(), name='sale-update'),
             path('sale-create-date-choice/<int:pk>/', views.SaleCreateDateChoice.as_view(), name='sale-create-date-choice'),
+      path('sale-client-date-choice/<int:pk>/', views.SaleClientDateChoice.as_view(), name='sale-client-date-choice'),
 
 # Galeria
       path('gallery/', views.Gallery.as_view(), name='gallery'),
@@ -53,6 +54,10 @@ urlpatterns = [
 
 # Perfil de usuario
       path('profile-client/<int:pk>/', views.ProfileClient.as_view(), name='profile-client'),
+
+
+# Yes
+      path('yes/', views.Yes.as_view(), name='yes'),
 
 # Login
       path('login/', views.Login.as_view(), name='login'),

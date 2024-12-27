@@ -1,0 +1,25 @@
+<div class="d-flex flex-wrap w-100 align-content-start justify-content-center ">
+      {% if services %}
+            {% for s in  services %}
+                  <a  href="{% url "estudios:sale-client-date-choice" s.id %}" class="m-2 text-decoration-none text-white">
+                        <div style='width: 100% !important;'>
+                              <div class="mb-2 w-100" style="
+                                    background-image: url('{{s.img.url}}');
+                                    border: 8px solid #161616e9;
+                                    background-size: cover; background-repeat: no-repeat;
+                                    background-position: center;
+                                    max-width: 620px;  height: 310px; border-radius: 3rem;">
+                              </div>
+                              <div class="d-flex justify-content-center">
+                                    <span class=" text-center rounded-5 text-white  p-2 " 
+                                    style="min-width: 10rem; background-color: #161616e9;">
+                                          <strong style="font-size: 14px; ">
+                                                {{ s.name|truncatechars:20 }}
+                                          </strong>
+                                    </span>
+                              </div>
+                        </div>
+                  </a>
+            {% endfor %}
+      {% endif %}
+</div>
