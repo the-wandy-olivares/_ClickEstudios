@@ -4,6 +4,10 @@ from . import views, ajax_views
 
 app_name = 'estudios'
 urlpatterns = [
+
+#  Home
+      path('', views.Home.as_view(), name='home'),
+
       path('dashboard/', views.Dashboard.as_view(), name='dashboard'),
             path('pos/', views.Pos.as_view(), name='pos'),
 

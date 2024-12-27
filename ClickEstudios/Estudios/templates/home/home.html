@@ -1,0 +1,97 @@
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> ClickEstudios </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!--AOS-->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  </head>
+  <style>
+    * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+            user-select: none;
+            -webkit-user-select: none; /* Para navegadores WebKit (Safari, Chrome) */
+            -moz-user-select: none; /* Para Firefox */
+            -ms-user-select: none; /* For Internet Explorer and Edge */
+    }
+    .blur-10 {
+            -webkit-backdrop-filter: blur(10px) !important;
+            backdrop-filter: blur(10px) !important;
+    }
+    .blur-20 {
+            -webkit-backdrop-filter: blur(20px) !important;
+            backdrop-filter: blur(20px) !important;
+    }
+    .snowflake {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: white;
+    }
+  </style>
+
+
+  <body style="background-color:rgb(16, 16, 16); " class="p-3"> 
+
+  
+
+    <!--My JS-->
+    <script>
+
+      function createSnowflake() {
+            const snowflake = Object.assign(
+              document.createElement('div'),
+              {
+                className: 'snowflake',
+                style: `
+                left: ${Math.random() * innerWidth}px;
+                top: -5px;
+                opacity: ${Math.random()};
+                transform: scale(${Math.random() * 1.5 + 0.5});`
+              }
+            )
+        
+            document.body.appendChild(snowflake);
+        
+            let posY = -5;
+            let speed = Math.random() * 2 + 1;
+            let wobble = 0;
+        
+            function fall() {
+              posY += speed;
+              wobble += 0.02;
+              snowflake.style.top = posY + 'px';
+              snowflake.style.left =
+                parseFloat(snowflake.style.left) +
+                Math.sin(wobble) * 2 + 'px';
+        
+              posY < innerHeight
+                ? requestAnimationFrame(fall)
+                : snowflake.remove();
+            }
+        
+            fall();
+          }
+        
+          function generateSnow() {
+            setInterval(createSnowflake, 100);
+           
+          }
+        
+          generateSnow();
+          
+
+
+    </script>
+  </body>
+</html>

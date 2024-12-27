@@ -30,7 +30,7 @@
         user-select: none;
     -webkit-user-select: none; /* Para navegadores WebKit (Safari, Chrome) */
     -moz-user-select: none; /* Para Firefox */
-    -ms-user-select: none; /*
+    -ms-user-select: none; 
 
     }
     .blur-10 {
@@ -41,15 +41,20 @@
         -webkit-backdrop-filter: blur(20px) !important;
         backdrop-filter: blur(20px) !important;
     }
+    .snowflake {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background-color: white;
+    }
   </style>
-
 
   <body style="background-color:rgb(16, 16, 16); " class="p-3"> 
     {% if  request.user.is_authenticated %}
-          <main class=' p-1 d-flex '  
+          <main class=' p-1 d-flex    '  
                 style=" height: 96vh; background-color: #000000; 
                 border-radius: 2.5rem;">
-                <div class='bg-grey ms-4 me-5' style='min-width: 190px;'>
+                <div class='bg-grey nav ms-4 me-5  ' style='min-width: 190px;'>
                         {% include "component/nav.html" %}
                 </div>
                 {% block content %}
@@ -67,6 +72,52 @@
 
     <!--My JS-->
     <script>
+
+      function createSnowflake() {
+        const snowflake = Object.assign(
+          document.createElement('div'),
+          {
+            className: 'snowflake',
+            style: `
+            left: ${Math.random() * innerWidth}px;
+            top: -5px;
+            opacity: ${Math.random()};
+            transform: scale(${Math.random() * 1.5 + 0.5});`
+          }
+        )
+    
+
+        document.querySelector('.nav').appendChild(snowflake);
+    
+        let posY = -5;
+        let speed = Math.random() * 2 + 1;
+        let wobble = 0;
+    
+        function fall() {
+          posY += speed;
+          wobble += 0.02;
+          snowflake.style.top = posY + 'px';
+          snowflake.style.left =
+            parseFloat(snowflake.style.left) +
+            Math.sin(wobble) * 2 + 'px';
+    
+          posY < innerHeight
+            ? requestAnimationFrame(fall)
+            : snowflake.remove();
+        }
+    
+        fall();
+        
+      }
+    
+      function generateSnow() {
+        setInterval(createSnowflake, 100);
+       
+      }
+    
+      generateSnow();
+
+      
       document.addEventListener('DOMContentLoaded', function () {
       const phoneInput = document.getElementById('id_phone_client');
 
@@ -92,7 +143,6 @@
 
 
 
-      
       
 
     </script>
