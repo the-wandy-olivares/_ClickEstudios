@@ -45,13 +45,16 @@
       position: absolute;
       width: 4px;
       height: 4px;
-      background-color: white;
+      background-color: rgba(255, 255, 255, 0.347);
+
+
+
     }
   </style>
 
-  <body style="background-color:rgb(16, 16, 16); " class="p-3"> 
+  <body style="background-color:rgb(16, 16, 16); " class="p-3 body"> 
     {% if  request.user.is_authenticated %}
-          <main class=' p-1 d-flex    main'  
+          <main class=' p-1 d-flex  z-3  '  
                 style=" height: 96vh; background-color: #000000; 
                 border-radius: 2.5rem;">
                 <div class='bg-grey  ms-4 me-5  ' style='min-width: 190px;'>
@@ -87,7 +90,7 @@
         )
     
 
-        document.querySelector('.main').appendChild(snowflake);
+        document.querySelector('.body').appendChild(snowflake);
     
         let posY = -5;
         let speed = Math.random() * 2 + 1;
