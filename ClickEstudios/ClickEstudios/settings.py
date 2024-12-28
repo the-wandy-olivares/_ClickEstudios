@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-#a!t#rktx*5ut^&7fs0@xt-p6m)shb3pwnz8njg7w&78)dk0ee'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     '127.0.0.1', 
@@ -126,12 +126,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # Configuración del backend de correo electrónico
@@ -144,4 +143,10 @@ EMAIL_HOST_PASSWORD = 'vkxmixceoynxajmi'
 os.environ['SSL_CERT_FILE'] = certifi.where()
 
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# Configuración de archivos estáticos
+STATIC_URL = 'static/'  # URL de los archivos estáticos 
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
