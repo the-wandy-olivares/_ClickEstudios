@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.urls import path
 from . import views, ajax_views
+from django.conf import settings
+from django.conf.urls.static import static
 
 app_name = 'estudios'
 urlpatterns = [
@@ -67,3 +69,6 @@ urlpatterns = [
       path('ajax/verify-date-choice/', ajax_views.VerifyDateChoice, name='verify-date-choice'),
             path('ajax/search/', ajax_views.Search, name='search'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
