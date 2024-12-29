@@ -62,7 +62,7 @@ def GetEstudios(request):
             'name': estudio.name,
             'description': estudio.description,  # Agrega los campos que necesites
             'img': estudio.img.url if estudio.img else None,
-            'img2': estudio.img2.url if estudio.img2 else None
+            'img2': estudio.img_2.url if estudio.img_2 else None
         }
 
     return JsonResponse(data)
