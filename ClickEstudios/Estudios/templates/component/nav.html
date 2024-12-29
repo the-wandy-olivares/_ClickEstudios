@@ -154,10 +154,6 @@
                 success: function(D) {
                   document.querySelector('.img-estudios').src = D.img;
                 },
-                error: function(xhr, status, error) {
-                    console.error("Error en la solicitud AJAX:", status, error);
-                    console.log("No se pudo obtener la información. Inténtalo más tarde.");
-                }
             });
         };
 

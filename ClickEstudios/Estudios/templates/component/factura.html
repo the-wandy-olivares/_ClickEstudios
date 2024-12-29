@@ -73,7 +73,7 @@
 <div class="invoice">
     <div class="header  d-flex  m-0 p-0 position-relative" style="height: 9rem;">
             {% comment %} {% if company.logo.url %} {% endcomment %}
-                <img src="{% static 'img/icons/logo-black.png' %}"   class="object-fit-cover position-absolute   start-0"  width="150"  alt="Click Estudios">
+                <img src=""   class="img2-estudios object-fit-cover position-absolute   start-0"  width="150"  alt="Click Estudios">
             {% comment %} {% endif %} {% endcomment %}
     </div>
 
@@ -216,4 +216,21 @@
     const currentDate = new Date();
     const formattedDate = `${currentDate.getDate()}/${String(currentDate.getMonth() + 1).padStart(2, '0')}/${currentDate.getFullYear()}`;
     dateElement.textContent = formattedDate;
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+            Estudios_Factura();
+    });
+
+      let Estudios_Factura = () => {
+            $.ajax({
+                url: '/ajax/get-estudios/',
+                method: 'GET',
+                success: function(D) {
+                  document.querySelector('.img2-estudios').src = D.img2;
+                },
+            });
+        };
+
+
 </script>
