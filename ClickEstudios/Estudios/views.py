@@ -1,3 +1,4 @@
+import random
 from django.shortcuts import render, redirect   
 from django.urls import reverse_lazy
 from django.http import HttpResponse
@@ -787,25 +788,26 @@ class Home(TemplateView):
         context = super().get_context_data(**kwargs)
         context['services'] = models.Service.objects.all()
                     # Verificar si existen registros en MomentRelatedImage
-        if models.MomentRelatedImage.objects.exists():
+        if models.ImgMoment.objects.exists():
                 context['coro'] = True
                 
                 list_img = []
                 # Mezclar los elementos aleatoriamente
                 random.shuffle(list_img)
-                img_all = models.MomentRelatedImage.objects.all()
+                img_all = models.ImgMoment.objects.all()
                 for img in img_all:
                     list_img.append(img.id)
 
                 def get_img_random(element):    
-                    return models.MomentRelatedImage.objects.get(id=list_img[element])
+                    return models.ImgMoment.objects.get(id=list_img[element])
                 
                 # Asignar las imágenes a los contextos
-                context['img1'] = get_img_random(1)
-                context['img2'] = get_img_random(2)
-                context['img3'] = get_img_random(3) 
-                context['img4'] = get_img_random(4) 
-                context['img5'] = get_img_random(5)
-                context['img6'] = get_img_random(6)
+                context['img1'] = get_img_random(0)
+                context['img2'] = get_img_random(1)
+                context['img3'] = get_img_random(2) 
+                context['img4'] = get_img_random(3) 
+                context['img5'] = get_img_random(4)
+                context['img6'] = get_img_random(5)
+                context['img7'] = get_img_random(6)
         
         return context
