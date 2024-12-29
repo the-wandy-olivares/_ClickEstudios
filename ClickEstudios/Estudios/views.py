@@ -496,7 +496,11 @@ class Estudios(TemplateView):
         # Finalizar venta
         if request.POST.get('end'):
             sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
- 
+            if sale.sale_type == 'credito':
+                sale.credito_fiscal = utils.GetNCF('credito')
+            else:
+                sale.credito_fiscal = utils.GetNCF('consumidor')
+            sale.finalize = True
             sale.save()
             return redirect('estudios:pos')
             
