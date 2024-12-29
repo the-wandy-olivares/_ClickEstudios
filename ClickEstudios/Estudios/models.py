@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.core.exceptions import ValidationError
 
 
 
@@ -209,6 +209,39 @@ class Sale(models.Model):
       credit_fiscal = models.BooleanField(default=False) # Factura con crédito fiscal
 
 
+      credito_fiscal = models.CharField(
+            max_length=255,
+            blank=True,
+            null=True,
+            verbose_name="Detalles Fiscales"
+      )
+      cosumidor_final = models.CharField(
+            max_length=255,
+            blank=True,
+            null=True,
+            verbose_name="Detalles Consumidor Final"
+      )
+
+
+      # Opciones para el tipo de venta
+      SALE_TYPE_CHOICES = [
+            ('credito', 'Crédito Fiscal'),
+            ('consumidor', 'Consumidor Final'),
+      ]
+
+
+      sale_type = models.CharField(
+            max_length=13,
+            choices=SALE_TYPE_CHOICES,
+            default='consumidor',  # Por defecto: Consumidor Final
+            verbose_name="Tipo de Venta"
+      )
+      def clean(self):
+            # Validación para asegurar que solo se completa un campo según el tipo de venta
+            if self.sale_type == 'credito' and not self.credito_fiscal:
+                  raise ValidationError("Debes proporcionar detalles fiscales para Crédito Fiscal.")
+            if self.sale_type == 'consumidor' and not self.cosumidor_final:
+                  raise ValidationError("Debes proporcionar detalles para Consumidor Final.")
 
       def __str__(self):
             return f"Venta del {self.date} "
