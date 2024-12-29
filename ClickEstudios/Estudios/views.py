@@ -8,6 +8,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 
+
 # Utilidades
 from . import utils
 
@@ -785,4 +786,26 @@ class Home(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['services'] = models.Service.objects.all()
+                    # Verificar si existen registros en MomentRelatedImage
+        if models.MomentRelatedImage.objects.exists():
+                context['coro'] = True
+                
+                list_img = []
+                # Mezclar los elementos aleatoriamente
+                random.shuffle(list_img)
+                img_all = models.MomentRelatedImage.objects.all()
+                for img in img_all:
+                    list_img.append(img.id)
+
+                def get_img_random(element):    
+                    return models.MomentRelatedImage.objects.get(id=list_img[element])
+                
+                # Asignar las imágenes a los contextos
+                context['img1'] = get_img_random(1)
+                context['img2'] = get_img_random(2)
+                context['img3'] = get_img_random(3) 
+                context['img4'] = get_img_random(4) 
+                context['img5'] = get_img_random(5)
+                context['img6'] = get_img_random(6)
+        
         return context
