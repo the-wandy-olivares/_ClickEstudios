@@ -24,7 +24,7 @@
       }
 </style>
 <a href="{% url "estudios:dashboard" %}" class='mt-5'>
-      <img src="{% static 'img/icons/logo-white.png' %}" width='130' alt="Logo">
+      <img src="" class='img-estudios' width='130' alt="Logo">
 </a>
 
 <div class='nav ' style="display: flex; flex-direction: column; gap: 1rem; ">
@@ -142,4 +142,23 @@
               history.forward();
             } 
       }
+
+      document.addEventListener('DOMContentLoaded', function() {
+            Estudios();
+      });
+
+      let Estudios = () => {
+            $.ajax({
+                url: '/ajax/get-estudios/',
+                method: 'GET',
+                success: function(D) {
+                  document.querySelector('.img-estudios').src = D.img;
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error en la solicitud AJAX:", status, error);
+                    alert("No se pudo obtener la información. Inténtalo más tarde.");
+                }
+            });
+        };
+
 </script>

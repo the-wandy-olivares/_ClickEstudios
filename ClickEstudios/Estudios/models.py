@@ -45,10 +45,11 @@ class Empleado(models.Model):
 
 class Estudios(models.Model):
       user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='admin_estudio')
-      empleado = models.ForeignKey(Empleado, on_delete=models.CASCADE, related_name='empleados_estudio')
+      empleado = models.ForeignKey(Empleado, on_delete=models.CASCADE, related_name='empleados_estudio', blank=True, null=True)
       name = models.CharField(max_length=100, blank=False, null=False)
       description = models.TextField()
-      img = models.ImageField(upload_to='media/estudios', null=True, blank=True)
+      img = models.ImageField(upload_to='media/estudios', null=True, blank=True, verbose_name='Imagen blanca')
+      img_2 = models.ImageField(upload_to='media/estudios', null=True, blank=True, verbose_name='Imagen negra')
       date = models.DateTimeField(auto_now_add=True)
 
       

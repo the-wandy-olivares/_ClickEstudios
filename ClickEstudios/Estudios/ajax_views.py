@@ -50,3 +50,19 @@ def Search(request):
                   data = models.Sale.objects.filter(name_client__icontains=search_term).values('id', 'name_client')
 
       return JsonResponse(list(data), safe=False)
+
+
+
+def GetEstudios(request):
+    data = None
+    if models.Estudios.objects.filter(name='ClickEstudios').exists():
+        estudio = models.Estudios.objects.get(name='ClickEstudios')
+        data = {
+            'id': estudio.id,
+            'name': estudio.name,
+            'description': estudio.description,  # Agrega los campos que necesites
+            'img': estudio.img.url if estudio.img else None,
+            'img2': estudio.img2.url if estudio.img2 else None
+        }
+
+    return JsonResponse(data)
