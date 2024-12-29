@@ -9,27 +9,43 @@
             }
       </style>
 
-      <section class='d-flex'>
-            <a href="{% url "estudios:service-create" %}">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-patch-plus-fill" viewBox="0 0 16 16">
-                        <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0"/>
-                        </svg>           
-                  </a> 
-                  <div class="d-flex flex-wrap w-100 align-content-start ">
-                        {% if services %}
-                              {% for s in  services %}
-                                    <a href="{% url "estudios:service-update" s.id %}">
-                                          <div style='width: 320px;'>
-                                                <div class="" style="
+
+      
+      <section class='d-flex flex-wrap'>
+            <div data-aos="fade-left" style="transition-delay: 0.7s; max-height: 2rem;" class='w-100 d-flex justify-content-end' >
+                  <a href="{% url "estudios:service-create" %}">
+                        <button class="bg-white bg-opacity-10 rounded-5 p-2 pe-3 ps-3 text-white border-0 rounded-3 p-2" style='font-weight: bold;'>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+                                  </svg> Servicio
+                        </button>
+                  </a>
+            </div> 
+      
+            <div data-aos='fade-in' class="d-flex flex-wrap w-100 justify-content-center"
+            style='transition-duration: 1s;'>
+                  {% if services %}
+                        {% for s in services %}
+                              <a href="{% url "estudios:service-update" s.id %}" class="col-12 col-md-6 col-lg-3 mb-4" style=' width: 420px;'>
+                                    <div class=" " >
+                                          <div class="card-img-top w" style="
+                                                {% if s.img %}
                                                       background-image: url('{{s.img.url}}');
-                                                      background-size: cover; background-repeat: no-repeat;; width: 320px; height: 220px; border-radius: 2rem;">
-                                                </div>
-                                                <h5>{{s.name}}</h5>
+                                                {% endif %}
+                                                background-size: cover; background-repeat: no-repeat; 
+                                                filter: brightness(80%);
+                                                height: 220px; border-radius: 3rem;">
                                           </div>
-                                    </a>
-                              {% endfor %}
-                        {% endif %}
-                  </div>
+                                          <div class="card-body">
+                                                <h5 class="card-title" style='font-size: 14px;'>
+                                                      {{ s.name|truncatechars:20 }}
+                                                </h5>
+                                          </div>
+                                    </div>
+                              </a>
+                        {% endfor %}
+                  {% endif %}
+            </div>
       </section>
 
 {% endblock  %}

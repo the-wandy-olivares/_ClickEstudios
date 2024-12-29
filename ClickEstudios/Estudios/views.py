@@ -12,6 +12,9 @@ from django.contrib.auth import authenticate, login, logout
 
 # Utilidades
 from . import utils
+from PIL import Image
+from io import BytesIO
+from django.core.files.uploadedfile import InMemoryUploadedFile
 
 
 class Dashboard(TemplateView):
@@ -65,7 +68,17 @@ class ServiceCreate(CreateView):
 
 
         def form_valid(self, form):
-            # Guarda el objeto y redirige al éxito
+            img = form.instance.img
+            img_temporary = Image.open(img)
+
+            # Resize image to 720p
+            img_temporary = img_temporary.resize((1280, 720), Image.LANCZOS)
+            output_io_stream = BytesIO()
+            img_temporary.save(output_io_stream, format='JPEG', quality=65)
+            output_io_stream.seek(0)
+            form.instance.img = InMemoryUploadedFile(output_io_stream, 'ImageField', "%s.jpg" % img.name.split('.')[0], 'image/jpeg', output_io_stream.getbuffer().nbytes, None)
+
+
             self.object = form.save()
             return redirect(self.get_success_url())
 
@@ -88,6 +101,16 @@ class ServiceUpdate(UpdateView):
             return context
 
     def form_valid(self, form):
+            img = form.instance.img
+            img_temporary = Image.open(img)
+
+            # Resize image to 720p
+            img_temporary = img_temporary.resize((1280, 720), Image.LANCZOS)
+            output_io_stream = BytesIO()
+            img_temporary.save(output_io_stream, format='JPEG', quality=65)
+            output_io_stream.seek(0)
+            form.instance.img = InMemoryUploadedFile(output_io_stream, 'ImageField', "%s.jpg" % img.name.split('.')[0], 'image/jpeg', output_io_stream.getbuffer().nbytes, None)
+
                 # Guarda el objeto y redirige al éxito
             self.object = form.save()
             return redirect(self.get_success_url())
@@ -140,6 +163,24 @@ class PlanCreate(CreateView):
         return context
 
     def form_valid(self, form):
+        img = form.instance.img
+        img_temporary = Image.open(img)
+        
+        # Resize image to 720p
+        img_temporary = img_temporary.resize((1280, 720), Image.LANCZOS)
+        output_io_stream = BytesIO()
+        img_temporary.save(output_io_stream, format='JPEG', quality=50)
+        output_io_stream.seek(0)
+        form.instance.img = InMemoryUploadedFile(output_io_stream, 'ImageField', "%s.jpg" % img.name.split('.')[0], 'image/jpeg', output_io_stream.getbuffer().nbytes, None)
+
+        # Resize image to 140p for img_back
+        img_temporary = img_temporary.resize((256, 140), Image.LANCZOS)
+        output_io_stream = BytesIO()
+        img_temporary.save(output_io_stream, format='JPEG', quality=35)
+        output_io_stream.seek(0)
+        form.instance.img_back = InMemoryUploadedFile(output_io_stream, 'ImageField', "%s_back.jpg" % img.name.split('.')[0], 'image/jpeg', output_io_stream.getbuffer().nbytes, None)
+
+
         # Guarda el objeto y redirige al éxito
         self.object = form.save()
         return redirect(self.get_success_url())
@@ -165,8 +206,23 @@ class PlanUpdate(UpdateView):
 
 
         def form_valid(self, form):
-                    # Guarda el objeto y redirige al éxito
-                print(form)
+                img = form.instance.img
+                img_temporary = Image.open(img)
+                
+                # Resize image to 720p
+                img_temporary = img_temporary.resize((1080, 720), Image.LANCZOS)
+                output_io_stream = BytesIO()
+                img_temporary.save(output_io_stream, format='JPEG', quality=85)
+                output_io_stream.seek(0)
+                form.instance.img = InMemoryUploadedFile(output_io_stream, 'ImageField', "%s.jpg" % img.name.split('.')[0], 'image/jpeg', output_io_stream.getbuffer().nbytes, None)
+
+                # Resize image to 140p for img_back
+                img_temporary = img_temporary.resize((256, 140), Image.LANCZOS)
+                output_io_stream = BytesIO()
+                img_temporary.save(output_io_stream, format='JPEG', quality=85)
+                output_io_stream.seek(0)
+                form.instance.img_back = InMemoryUploadedFile(output_io_stream, 'ImageField', "%s_back.jpg" % img.name.split('.')[0], 'image/jpeg', output_io_stream.getbuffer().nbytes, None)
+
                 self.object = form.save()
                 return redirect(self.get_success_url())
 

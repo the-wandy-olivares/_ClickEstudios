@@ -23,20 +23,20 @@
                   <div id="circle" class="circle" style='background-image: url(object.img.url);' onclick="document.getElementById('id_img').click()">
                         Cargar img
                   </div>
-                  <form action="" method="post">
-                        {% csrf_token %}
-                        <div> 
-                              {{form.name}}
-                        </div>
-                        <div>
-                              {{form.img}}
-                        </div>
-                        <div>
-                              <button>
-                                    Submi
-                              </button>
-                        </div>
-                  </form>
+                    <form action="" method="post" enctype="multipart/form-data">
+                              {% csrf_token %}
+                              <div> 
+                                      {{ form.name }}
+                              </div>
+                              <div>
+                                      {{ form.img }}
+                              </div>
+                              <div>
+                                      <button type="submit">
+                                                Submit
+                                      </button>
+                              </div>
+                    </form>
             </div>
 
       </section>

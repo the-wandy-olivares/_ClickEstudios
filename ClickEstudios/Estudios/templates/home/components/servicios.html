@@ -4,7 +4,9 @@
                   <a  href="{% url "estudios:sale-client-date-choice" s.id %}" class="m-2 text-decoration-none text-white">
                         <div style='width: 100% !important;'>
                               <div class="mb-2 w-100" style="
-                                    background-image: url('{{s.img.url}}');
+                                    {% if s.img %}
+                                          background-image: url('{{s.img.url}}');
+                                    {% endif %}
                                     border: 8px solid #161616e9;
                                     background-size: cover; background-repeat: no-repeat;
                                     background-position: center;

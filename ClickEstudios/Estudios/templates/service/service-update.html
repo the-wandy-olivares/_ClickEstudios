@@ -5,8 +5,8 @@
                   display: none; 
             }
             .circle {
-                        width: 100px;
-                        height: 100px;
+                        width: 150px;
+                        height: 150px;
                         border-radius: 50%;
                         background-color:rgb(89, 89, 89);
                         display: flex;
@@ -16,37 +16,50 @@
                         background-size: cover;
                         background-position: center;
             }
+
       </style>
-      <section>
+      <section class='d-flex flex-wrap w-100 justify-content-center align-content-center '>
             
-            <div class="container">
+            <div class="container d-flex w-100 justify-content-center">
                   
-                  <div id="circle" class="circle" style='background-image: url("{{object.img.url}}");'  
+                  <div id="circle" class="circle" style='
+                  {% if object.img %}
+                        background-image: url("{{object.img.url}}");
+                  {% endif %}
+                  '
+
                   onclick="document.getElementById('id_img').click()">
                         Cargar img
                   </div>
-                    <form action="" method="post" enctype="multipart/form-data">
+                  <div class='pt-3' style='width: 25rem;'>
+                        <form action="" method="post" enctype="multipart/form-data">
                               {% csrf_token %}
-                              <div> 
-                                      {{form.name}}
-                              </div>
-                              <div>
-                                      {{form.img}}
-                              </div>
-                              <div>
-                                    <a href="{% url "estudios:service" %}"> Atras </a>
-                                    <a href="{% url "estudios:service-delete" object.id %}">Eliminar</a>
+                              <div class="card mt-2 bg-white bg-opacity-10 rounded-4">
+                                    <div class="card-body">
+                                          <div class="form-group">
+                                                {{ form.name }}
+                                          </div>
+                                          <div class="form-group">
+                                                {{ form.img }}
+                                          </div>
+                                          <div class="form-group mt-3 d-flex">
+                                                <a class="btn btn-secondary bg-transparent border-0" href="{% url 'estudios:service' %}" style='font-weight: bold;'> Atras</a>
+                                                <a class="btn btn-danger border-0" href="{% url 'estudios:service-delete' object.id %}">Eliminar</a>
 
-                                      <button>
-                                                Submit
-                                      </button>
+                                                <button class=" btn-update rounded-5 w-100 ms-2  d-none btn btn-primary border-0" type="submit">
+                                                      Actualizar
+                                                </button>
+                                          </div>
+                                    </div>
                               </div>
                     </form>
+                  </div>
             </div>
 
       </section>
       <script>
               document.getElementById('id_img').addEventListener('change', function(event) {
+                        document.querySelector('.btn-update').classList.remove('d-none');
                         const file = event.target.files[0];
                         if (file) {
                                 const reader = new FileReader();
@@ -56,5 +69,10 @@
                                 reader.readAsDataURL(file);
                         }
               });
+              document.getElementById('id_name').addEventListener('change', function() {
+                  document.querySelector('.btn-update').classList.remove('d-none');
+              });
+
+
       </script>
 {% endblock  %}
