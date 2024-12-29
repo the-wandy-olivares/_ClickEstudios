@@ -96,8 +96,8 @@
                 </p>
             {% endif %}
             <p class="w-100" style="font-size: 14px !important;">
-                <strong>NCF:</strong> 
-                    {{sale.ncf}}
+                <strong>NCF: </strong> 
+                {{ncf}} 
             </p>
             {% if sale.type_sale_ncf == True %}
                 <p class="w-100" style="font-size: 14px !important;">
@@ -113,10 +113,10 @@
             <hr class='m-0 p-0 mb-1 '>
             <p  style="font-size: 14px !important;" class='p-0 m-0'> 
                   Válido para
-                  {% if sale.type_sale_ncf == True %}
-                        crédito fiscal 
-                        {% else %}
-                        consumidor final
+                  {% if sale.sale_type == 'consumidor'  %}
+                  consumidor final
+                  {% else %}
+                  crédito fiscal 
                   {% endif %}
             </p>
             <hr class='m-0 p-0 mb-4 mt-1'>

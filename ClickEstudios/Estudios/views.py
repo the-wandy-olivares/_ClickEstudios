@@ -468,8 +468,8 @@ class Estudios(TemplateView):
         context['adicionales'] = sale.sale_adicionales.all()
         context['sale_itebis'] = sale_itebis
         context['sale_price_unitario'] = sale.price_plan - sale_itebis
+        context['ncf'] =utils.GetNCF(sale.sale_type)
         return context
-
 
 
     def post(self, request, *args, **kwargs):
@@ -484,6 +484,10 @@ class Estudios(TemplateView):
             )
             a.save()
 
+        if request.POST.get('invoice_type'):
+            sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
+            sale.sale_type = request.POST.get('invoice_type')
+            sale.save()
         # Eliminar adicional
         if request.POST.get('delete'):
                 adicional = models.Adicional.objects.get(pk=request.POST.get('delete'))
@@ -492,7 +496,7 @@ class Estudios(TemplateView):
         # Finalizar venta
         if request.POST.get('end'):
             sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
-            sale.finalize = True
+ 
             sale.save()
             return redirect('estudios:pos')
             

@@ -210,16 +210,18 @@ class Sale(models.Model):
 
 
       credito_fiscal = models.CharField(
+            default='B01000000',
             max_length=255,
             blank=True,
             null=True,
-            verbose_name="Detalles Fiscales"
+            verbose_name="Creditos Fiscales"
       )
       cosumidor_final = models.CharField(
+            default='B02000000',
             max_length=255,
             blank=True,
             null=True,
-            verbose_name="Detalles Consumidor Final"
+            verbose_name="Consumidor Final"
       )
 
 
@@ -236,12 +238,7 @@ class Sale(models.Model):
             default='consumidor',  # Por defecto: Consumidor Final
             verbose_name="Tipo de Venta"
       )
-      def clean(self):
-            # Validación para asegurar que solo se completa un campo según el tipo de venta
-            if self.sale_type == 'credito' and not self.credito_fiscal:
-                  raise ValidationError("Debes proporcionar detalles fiscales para Crédito Fiscal.")
-            if self.sale_type == 'consumidor' and not self.cosumidor_final:
-                  raise ValidationError("Debes proporcionar detalles para Consumidor Final.")
+
 
       def __str__(self):
             return f"Venta del {self.date} "

@@ -2,6 +2,7 @@ from datetime import datetime
 from django.http import JsonResponse
 from . import models
 
+
 def VerifyDateChoice(request):
       date = request.GET.get('date_choice')
       print("Hello", date)  # Para depuración

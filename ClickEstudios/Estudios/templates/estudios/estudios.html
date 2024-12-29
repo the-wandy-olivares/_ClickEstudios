@@ -94,8 +94,18 @@
            
                   <div>
                         <p class='p-0 m-0'>Total: ${{ total_sin|intcomma }}.00</p>
-                        <p class='p-0 m-0'>Adicionales: ${{ total_adicionales|intcomma }}.00</p>
+                        <p class='p-0 m-0'>Adicionales: ${{ total_adicionales|intcomma }}.00  </p>
                   </div>
+                    <div>
+                              <form action="" method="post">
+                                      {% csrf_token %}
+                                      {% comment %} <label for="invoice_type" class="form-label">Tipo de Factura:</label> {% endcomment %}
+                                    <select name="invoice_type" id="invoice_type" class="form-select bg-black text-white rounded-5 border-0" onchange="this.form.submit()">
+                                          <option value="credito" {% if sale.sale_type == 'credito' %}selected{% endif %}>Crédito fiscal (B01) </option>
+                                          <option value="consumidor" {% if sale.sale_type == 'consumidor' %}selected{% endif %}>Consumidor final (B02) </option>
+                                    </select>
+                              </form>
+                    </div>
                   <div>
                         <button class='show-button border-0 text-white pe-3 ps-3 bg-transparent'
                         style="font-weight: bold;"> 
