@@ -941,7 +941,7 @@ class GastosCreate(TemplateView):
                     box=models.Box.objects.get(open=True),
                     mount= gasto['amount'],
                     type='gasto',
-                    description=gasto['name']
+                    description=gasto['name'],
                 )
                 g.save()
                 print(g)
