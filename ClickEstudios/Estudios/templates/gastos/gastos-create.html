@@ -1,62 +1,98 @@
 {% extends "base/base.html" %}
 {% block content %}
- 
+{% load humanize %}
+
       <style>
             input {
                   background-color: rgb(24, 24, 24) !important;
                   border: none !important; 
                   color: white !important;
-                  border-radius: 2rem !important;
+                  border-radius: 1rem !important;
                   height: 3.1rem; max-width: 15rem;
             }
             input::placeholder {
                   color: rgba(255, 255, 255, 0.67) !important;
             }
       </style>
-      <div class="container text-white ">
-            <h6 style="font-weight: bold;">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
-                        <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
-                      </svg> Agregar Gasto</h6>
-            <p class="text-white-50">
-                  Agrega un gasto para llevar un control de tus finanzas.
-            </p>
-            <form id="gastoForm" method="POST" action="">
-                  {% csrf_token %}
-                  <div class="form-group d-flex  justify-content-start">
-                        <select id="category"  class="form-control border-0 " 
-                              style="  background-color: rgb(0, 0, 0) !important;
-                              font-weight: bold;
-                              outline: none !important;
-                              width: 10rem; color: rgba(255, 255, 255, 0.67) !important;" >
-                              <option value="Servicios">Servicios</option>
-                              <option value="Alquiler">Alquiler</option>
-                              <option value="Compras">Compras</option>
-                        </select>
-                        <input  type="text" id="name" placeholder="Nombre "         class="m-1 form-control" >
-                        <input  type="number" placeholder="Costo: $231" id="amount" class="m-1 form-control" >
-                  </div>
-                  <input type="hidden" id="gastosData" name="gastosData">
-                  <button type="button" class="btn btn-primary mt-4 rounded-5" style="font-weight: bold;" onclick="agregarGasto()"> Agrega a la tabla </button>
-
+      
+      <div class="container text-white  d-flex ">
+            
+            <div class="w-50">
+                  <h6 style="font-weight: bold;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
+                              <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
+                            </svg> Agregar gasto</h6>
+                  <p class="text-white-50">
+                        Agrega un gasto para llevar un control de tus finanzas.
+                  </p>
+                  <form id="gastoForm" method="POST" action="">
+                        {% csrf_token %}
+                        <div class="form-group d-flex  justify-content-start">
+                              <select id="category"  class="form-control border-0  m-1" 
+                                    style="           background-color: rgb(24, 24, 24) !important;
+                                    border-radius: 1rem;
+                                    font-weight: bold;
+                                    outline: none !important;
+                                    min-width: 8.5rem; color: rgba(255, 255, 255, 0.67) !important;" >
+                                    <option value="Servicios">Servicios</option>
+                                    <option value="Alquiler">Alquiler</option>
+                                    <option value="Compras">Compras</option>
+                              </select>
+                              <input  type="text" id="name" placeholder="Nombre o desc.. "         class="m-1 form-control" >
+                              <input  type="number" placeholder="Costo: $231" id="amount" class="m-1 form-control" >
+                        </div>
+                        <input type="hidden" id="gastosData" name="gastosData">
+                        <button type="button" class="btn btn-primary bg-white bg-opacity-10 p-2 pe-4 ps-4 border-0 mt-2 text-white-50 w-100 " style="font-weight: bold;" onclick="agregarGasto()"> Agregar a la tabla </button>
+      
+            </div>
    
 
-            <table class="table mt-3 ">
-                  <thead>
-                        <tr>
-                              <th>Nombre</th>
-                              <th>Categoría</th>
-                              <th>Monto</th>
-                              <th>Acciones</th>
-                        </tr>
-                  </thead>
-                  <tbody id="gastosTableBody">
-                  </tbody>
-            </table>
-            <h6>Total: <span id="totalAmount">0</span></h6>
-            <button type="submit" class="btn btn-success rounded-5" id="submitButton" style="display: none; font-weight: bold;">
-                  Guardar
-            </button>
+            <div class="d-block w-75 overflow-auto">
+                  
+                  <table class="table mt-3 ">
+                        <thead>
+                              <tr>
+                                    <th>Nombre</th>
+
+                                    <th>Monto</th>
+                                    <th>Acciones</th>
+                              </tr>
+                        </thead>
+                        <tbody id="gastosTableBody">
+                        </tbody>
+                  </table>
+                  <h6>Total: <span id="totalAmount">0</span></h6>
+                  <button type="submit" class="btn btn-success rounded-5" id="submitButton" style="display: none; font-weight: bold;">
+                        Guardar
+                  </button>
+
+                  <div class="w-100 mt-4">
+                        <h6 class="text-white">Gastos de hoy</h6>
+                        <table class="table mt-3 ">
+                              <thead>
+                                    <tr>
+                                          <th>Nombre</th>
+                                          <th>Monto</th>
+                                          <th>
+                                                Realizado
+                                          </th>
+                                    </tr>
+                              </thead>
+                              <tbody>
+                                    {% for gasto in gastos %}
+                                    <tr>
+                                          <td>{{ gasto.description }}</td>
+                                          <td> ${{ gasto.mount|intcomma }}.00</td>
+                                          <td>
+                                                {{ gasto.date|date:"d/m/Y" }}
+                                          </td>
+                                    </tr>
+                                    {% endfor %}
+                              </tbody>
+                        </table>
+                  </div>
+
+            </div>
       <script>
 
       </script>
@@ -78,7 +114,6 @@
 
                         row.innerHTML = `
                               <td>${name}</td>
-                              <td>${category}</td>
                               <td>${amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                               <td><button class="btn btn-danger" onclick="eliminarGasto(this, ${amount})">Eliminar</button></td>
                         `;
