@@ -1,0 +1,93 @@
+{% extends "base/base.html" %}
+{% block content %}
+ 
+
+      <div class="container text-white ">
+            <h2>Agregar Gasto</h2>
+            <form id="gastoForm" method="POST" action="">
+                  {% csrf_token %}
+                  <div class="form-group">
+                        <label for="name">Nombre:</label>
+                        <input type="text" id="name" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                        <label for="category">Categoría:</label>
+                        <select id="category" class="form-control" required>
+                              <option value="Servicios">Servicios</option>
+                              <option value="Alquiler">Alquiler</option>
+                              <option value="Compras">Compras</option>
+                        </select>
+                  </div>
+                  <div class="form-group">
+                        <label for="amount">Monto:</label>
+                        <input type="number" id="amount" class="form-control" required>
+                  </div>
+                  <input type="hidden" id="gastosData" name="gastosData">
+                  <button type="button" class="btn btn-primary" onclick="agregarGasto()">Agregar</button>
+                  <button type="submit" class="btn btn-success">Enviar</button>
+            </form>
+
+            <h2>Lista de Gastos</h2>
+            <table class="table">
+                  <thead>
+                        <tr>
+                              <th>Nombre</th>
+                              <th>Categoría</th>
+                              <th>Monto</th>
+                              <th>Acciones</th>
+                        </tr>
+                  </thead>
+                  <tbody id="gastosTableBody">
+                  </tbody>
+            </table>
+            <h3>Total: <span id="totalAmount">0</span></h3>
+      </div>
+
+      <script>
+            let total = 0;
+            let gastos = [];
+
+            function agregarGasto() {
+                  const name = document.getElementById('name').value;
+                  const category = document.getElementById('category').value;
+                  const amount = parseFloat(document.getElementById('amount').value);
+
+                  if (name && category && !isNaN(amount)) {
+                        const tableBody = document.getElementById('gastosTableBody');
+                        const row = document.createElement('tr');
+
+                        row.innerHTML = `
+                              <td>${name}</td>
+                              <td>${category}</td>
+                              <td>${amount.toFixed(2)}</td>
+                              <td><button class="btn btn-danger" onclick="eliminarGasto(this, ${amount})">Eliminar</button></td>
+                        `;
+
+                        tableBody.appendChild(row);
+
+                        total += amount;
+                        document.getElementById('totalAmount').innerText = total.toFixed(2);
+
+                        gastos.push({ name, category, amount });
+                        document.getElementById('gastosData').value = JSON.stringify(gastos);
+
+                        document.getElementById('gastoForm').reset();
+                  }
+            }
+
+            function eliminarGasto(button, amount) {
+                  const row = button.parentElement.parentElement;
+                  const name = row.children[0].innerText;
+                  const category = row.children[1].innerText;
+
+                  row.remove();
+
+                  total -= amount;
+                  document.getElementById('totalAmount').innerText = total.toFixed(2);
+
+                  gastos = gastos.filter(gasto => !(gasto.name === name && gasto.category === category && gasto.amount === amount));
+                  document.getElementById('gastosData').value = JSON.stringify(gastos);
+            }
+      </script>
+
+{% endblock %}

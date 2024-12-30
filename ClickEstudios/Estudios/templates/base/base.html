@@ -38,6 +38,38 @@
 
     }
 
+    ::-webkit-scrollbar {
+      width: 0px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: transparent;
+    }
+    
+
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: transparent;
+    }
+    html {
+      touch-action: manipulation;
+      -ms-touch-action: manipulation;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none !important;
+      -webkit-text-size-adjust: 100%;
+      -moz-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+      
+    }
+
+ 
+
     .blur-10 {
         -webkit-backdrop-filter: blur(10px) !important;
         backdrop-filter: blur(10px) !important;

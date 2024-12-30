@@ -40,8 +40,15 @@
                   </button>
                   <input type="text" class="form-control search text-white bg-transparent border-0 text-white" placeholder="Buscar cliente">
                   {% include "service/filter-services.html" %}
-            </div>
+                  
 
+                  <a href="{% url "estudios:gastos-create" %}"  class="btn mt-2 border-0 bg-transparent text-warning" style="font-size: 14px; font-weight: bold;">
+                        + Gatos
+                  </a>
+
+            </div>
+            l
+            
             <!-- Resultados -->
              <div style='margin-top: 5.5rem; width: 30rem;  border-radius: 2rem;'  class=" results-searching text-white-50  position-absolute top-0 z-3 bg-black">
 
@@ -53,11 +60,33 @@
                   </div>
             {% endif %}
 
+
             
-            <div>
-                  <h6 class="text-white-50 mt-5">
-                        Citas sin confirmar
-                  </h6>
+            <div class="d-flex  justify-content-end">
+                    <h6 class="text-white-50 mt-5" style="font-weight: bold; position: relative;">
+                              Info
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle-fill" viewBox="0 0 16 16">
+                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247m2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
+                                  </svg>
+                              <div class="info-tooltip p-5 rounded-4" style="display: none; position: absolute; top: 100%; right: 3rem; background-color: rgb(24, 24, 24); color: white; padding: 0.5rem; border-radius: 0.5rem; white-space: nowrap;">
+                                    <strong>
+                                          Citas sin confirmar
+                                    </strong> 
+                                    <hr>
+                                    <br>
+                                      <span class="text-warning">
+                                          Son aquellas las cuales el cliente ha solicitado un servicio pero no ha realizado el pago.
+                                      </span>
+                              </div>
+                    </h6>
+                    <script>
+                              document.querySelector('h6').addEventListener('mouseover', function() {
+                                      this.querySelector('.info-tooltip').style.display = 'block';
+                              });
+                              document.querySelector('h6').addEventListener('mouseout', function() {
+                                      this.querySelector('.info-tooltip').style.display = 'none';
+                              });
+                    </script>
             </div>
             {% if sales %}
                   <div>

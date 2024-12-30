@@ -1,3 +1,4 @@
+import json
 import random
 from django.shortcuts import render, redirect   
 from django.urls import reverse_lazy
@@ -921,3 +922,32 @@ class Home(TemplateView):
                 context['img7'] = get_img_random(6)
         
         return context
+    
+
+class GastosCreate(TemplateView):
+    template_name = 'gastos/gastos-create.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def post(self, request, *args, **kwargs):
+        gastos_data = request.POST.get('gastosData')
+        if gastos_data:
+            gastos = json.loads(gastos_data)
+            for gasto in gastos:
+                g =   models.Movements.objects.create(
+                    user=request.user,
+                    box=models.Box.objects.get(open=True),
+                    mount= gasto['amount'],
+                    type='gasto',
+                    description=gasto['name']
+                )
+                g.save()
+                print(g)
+              
+        return redirect(self.get_success_url())
+
+    def get_success_url(self):
+        # Retorna la URL a la que redirigirá después de un submit exitoso
+        return reverse_lazy('estudios:gastos-create')    
