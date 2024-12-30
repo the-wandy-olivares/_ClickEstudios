@@ -73,6 +73,8 @@ class ServiceCreate(CreateView):
 
             # Resize image to 720p
             img_temporary = img_temporary.resize((1280, 720), Image.LANCZOS)
+            if img_temporary.mode == 'RGBA':
+                img_temporary = img_temporary.convert('RGB')
             output_io_stream = BytesIO()
             img_temporary.save(output_io_stream, format='JPEG', quality=65)
             output_io_stream.seek(0)
@@ -105,7 +107,10 @@ class ServiceUpdate(UpdateView):
             img_temporary = Image.open(img)
 
             # Resize image to 720p
+            # Resize image to 720p
             img_temporary = img_temporary.resize((1280, 720), Image.LANCZOS)
+            if img_temporary.mode == 'RGBA':
+                img_temporary = img_temporary.convert('RGB')
             output_io_stream = BytesIO()
             img_temporary.save(output_io_stream, format='JPEG', quality=65)
             output_io_stream.seek(0)
@@ -168,6 +173,8 @@ class PlanCreate(CreateView):
         
         # Resize image to 720p
         img_temporary = img_temporary.resize((1280, 720), Image.LANCZOS)
+        if img_temporary.mode == 'RGBA':
+            img_temporary = img_temporary.convert('RGB')
         output_io_stream = BytesIO()
         img_temporary.save(output_io_stream, format='JPEG', quality=50)
         output_io_stream.seek(0)
@@ -175,6 +182,8 @@ class PlanCreate(CreateView):
 
         # Resize image to 140p for img_back
         img_temporary = img_temporary.resize((256, 140), Image.LANCZOS)
+        if img_temporary.mode == 'RGBA':
+            img_temporary = img_temporary.convert('RGB')
         output_io_stream = BytesIO()
         img_temporary.save(output_io_stream, format='JPEG', quality=35)
         output_io_stream.seek(0)
@@ -524,6 +533,8 @@ class Gallery(TemplateView):
             
             # Resize image to 720p
             img_temporary = img_temporary.resize((1280, 720), Image.LANCZOS)
+            if img_temporary.mode == 'RGBA':
+                img_temporary = img_temporary.convert('RGB')
             output_io_stream = BytesIO()
             img_temporary.save(output_io_stream, format='JPEG', quality=50)
             output_io_stream.seek(0)
@@ -557,6 +568,8 @@ class MomentCreate(CreateView):
         
         # Resize image to 720p
         img_temporary = img_temporary.resize((1280, 720), Image.LANCZOS)
+        if img_temporary.mode == 'RGBA':
+            img_temporary = img_temporary.convert('RGB')
         output_io_stream = BytesIO()
         img_temporary.save(output_io_stream, format='JPEG', quality=50)
         output_io_stream.seek(0)
