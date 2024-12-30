@@ -6,7 +6,9 @@
                   border-radius: 10px;
                   overflow: hidd
                   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                  transition: transform 0.2s;
+                  opacity: 0.8;
+                  filter: brightness(0.8);
+                  transition-duration: 0.5s !important;
             }
             .gallery-item img {
                   display: block;
@@ -15,7 +17,8 @@
                   border-radius: 3rem;
             }
             .gallery-item:hover {
-                  transform: scale(1.05);
+                    opacity: 0.6;
+                    filter: brightness(0.6);
                   cursor: pointer;
             }
             .galley-a {
@@ -59,14 +62,14 @@
                   </span>
 
                   {% for m in moment.img_moments.all %}
-                        <div   class="col-12   col-md-6 col-lg-3 mb-4 gallery-item position-relative p-0" style=' width: 420px;'>
+                        <div id='div{{m.id}}'  class="col-12   col-md-6 col-lg-3 mb-4 gallery-item position-relative p-0" style=' width: 420px;'>
                               <!-- Eliminar imagen -->
                               <form action="" method="post" class='m-0 p-0'>
                                     {% csrf_token %}
                                     <img  src="{{m.img.url}}" class='w-100 object-fit-cover'
                                     style=" transition-delay: 0.{{ forloop.counter }}s;">
                                     <input type="number" name='delete' value="{{m.id}}" class="d-none w-100">   
-                                    <button type="submit" class="btn  bg-black p-0 d-flex justify-content-center align-content-center flex-wrap position-absolute top-0 end-0  rounded-circle text-white-50" 
+                                    <button id='{m.id}' type="submit" class="btn  bg-black p-0 d-flex justify-content-center align-content-center flex-wrap position-absolute top-0 end-0  rounded-circle text-white-50" 
                                     style='width: 40px; height: 40px;'>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
                                           <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
@@ -74,6 +77,19 @@
                                     </button>   
                               </form>
                         </div>
+                  <script>
+                        document.querySelectorAll('button[type="submit"]').forEach(button => {
+                              button.addEventListener('click', function(event) {
+                                    event.preventDefault();
+                                    let id = this.id;
+                                    let div = document.getElementById('div' + id);
+                                    if (div) {
+                                          div.classList.add('d-none');
+                                    }
+                                    this.closest('form').submit();
+                              });
+                        });
+                  </script>
                   {% endfor %}
             {% endfor %}
       </div>

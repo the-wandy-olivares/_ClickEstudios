@@ -519,9 +519,19 @@ class Gallery(TemplateView):
     def post(self, request, *args, **kwargs):
         if request.FILES.get('img'):
             print(request.POST.get('id'))
+            img = request.FILES.get('img')
+            img_temporary = Image.open(img)
+            
+            # Resize image to 720p
+            img_temporary = img_temporary.resize((1280, 720), Image.LANCZOS)
+            output_io_stream = BytesIO()
+            img_temporary.save(output_io_stream, format='JPEG', quality=50)
+            output_io_stream.seek(0)
+            img2 = InMemoryUploadedFile(output_io_stream, 'ImageField', "%s.jpg" % img.name.split('.')[0], 'image/jpeg', output_io_stream.getbuffer().nbytes, None)
             moment = models.ImgMoment(
                  moment=models.Moment.objects.get(pk=int(request.POST.get('id'))),
-                 img=request.FILES['img'])
+                 img=img2)
+
             moment.save()
 
         if request.POST.get('delete'):
@@ -542,6 +552,16 @@ class MomentCreate(CreateView):
 
     def form_valid(self, form):
         # Guarda el objeto y redirige al éxito
+        img = form.instance.img
+        img_temporary = Image.open(img)
+        
+        # Resize image to 720p
+        img_temporary = img_temporary.resize((1280, 720), Image.LANCZOS)
+        output_io_stream = BytesIO()
+        img_temporary.save(output_io_stream, format='JPEG', quality=50)
+        output_io_stream.seek(0)
+        form.instance.img = InMemoryUploadedFile(output_io_stream, 'ImageField', "%s.jpg" % img.name.split('.')[0], 'image/jpeg', output_io_stream.getbuffer().nbytes, None)
+
         self.object = form.save()
         return redirect(self.get_success_url())
 
