@@ -931,7 +931,7 @@ class GastosCreate(TemplateView):
         context = super().get_context_data(**kwargs)
 
         context['gastos'] = models.Movements.objects.filter(type='gasto', box=models.Box.objects.get(open=True), date__date=timezone.now().date())
-        print( models.Movements.objects.filter(type='gasto', box=models.Box.objects.get(open=True), ))
+
         return context
 
     def post(self, request, *args, **kwargs):
