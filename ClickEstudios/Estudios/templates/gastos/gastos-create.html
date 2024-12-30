@@ -8,11 +8,11 @@
                   {% csrf_token %}
                   <div class="form-group">
                         <label for="name">Nombre:</label>
-                        <input type="text" id="name" class="form-control" required>
+                        <input type="text" id="name" class="form-control" >
                   </div>
                   <div class="form-group">
                         <label for="category">Categoría:</label>
-                        <select id="category" class="form-control" required>
+                        <select id="category" class="form-control" >
                               <option value="Servicios">Servicios</option>
                               <option value="Alquiler">Alquiler</option>
                               <option value="Compras">Compras</option>
@@ -20,12 +20,12 @@
                   </div>
                   <div class="form-group">
                         <label for="amount">Monto:</label>
-                        <input type="number" id="amount" class="form-control" required>
+                        <input type="number" id="amount" class="form-control" >
                   </div>
                   <input type="hidden" id="gastosData" name="gastosData">
                   <button type="button" class="btn btn-primary" onclick="agregarGasto()">Agregar</button>
-                  <button type="submit" class="btn btn-success">Enviar</button>
-            </form>
+
+   
 
             <h2>Lista de Gastos</h2>
             <table class="table">
@@ -41,6 +41,11 @@
                   </tbody>
             </table>
             <h3>Total: <span id="totalAmount">0</span></h3>
+            <button type="submit" class="btn btn-success" id="submitButton" style="display: none;">Enviar</button>
+      <script>
+
+      </script>
+      </form>
       </div>
 
       <script>
@@ -72,6 +77,12 @@
                         document.getElementById('gastosData').value = JSON.stringify(gastos);
 
                         document.getElementById('gastoForm').reset();
+
+                        if(total > 0) {
+                              document.getElementById('submitButton').style.display = 'block';
+                        }
+
+
                   }
             }
 
@@ -87,6 +98,11 @@
 
                   gastos = gastos.filter(gasto => !(gasto.name === name && gasto.category === category && gasto.amount === amount));
                   document.getElementById('gastosData').value = JSON.stringify(gastos);
+                  
+                  if(total === 0) {
+                        document.getElementById('submitButton').style.display = 'none';
+                  }
+
             }
       </script>
 
