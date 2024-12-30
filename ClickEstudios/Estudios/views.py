@@ -57,6 +57,19 @@ class ServiceDetail(DetailView):
                 return context
 
 
+class ServiceClientSelect(DetailView):
+        model = models.Service
+        template_name = 'service/service-client-select.html'
+        context_object_name = 'service'
+
+
+        def get_context_data(self, **kwargs):
+                context = super().get_context_data(**kwargs)
+                context['plans'] = models.Plan.objects.filter(service=self.object)
+                return context
+
+
+
 class ServiceCreate(CreateView):
         model = models.Service
         form_class = forms.Service
