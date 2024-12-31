@@ -25,7 +25,7 @@ urlpatterns = [
 # Planes
       path('plan/', views.Plan.as_view(), name='plan'),
             path('plan-create/', views.PlanCreate.as_view(), name='plan-create'),
-                  path('plan/<int:pk>/', views.PlanDetail.as_view(), name='plan-detail'),
+                  path('plan-detail/<int:pk>/', views.PlanDetail.as_view(), name='plan-detail'),
                         path('plan-update/<int:pk>/', views.PlanUpdate.as_view(), name='plan-update'),
                   path('plan-delete/<int:pk>/', views.PlanDelete.as_view(), name='plan-delete'),
 

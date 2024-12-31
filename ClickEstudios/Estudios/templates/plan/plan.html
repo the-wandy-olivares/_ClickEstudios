@@ -19,11 +19,12 @@
                               </button>
                         </a>
                   </div> 
-                  <div data-aos='fade-in' style='transition-duration: 1s;' class="d-flex flex-wrap justify-content-center w-100 align-content-start ">
+
+                  <div style='transition-duration: 1s;' class="d-flex flex-wrap justify-content-center w-100 align-content-start  ">
                         {% if plans %}
                               {% for p in  plans %}
-                                    <a href="{% url "estudios:plan-update" p.id %}" class="col-12 col-md-6 col-lg-3 mb-4" style=' width: 420px;'>
-                                          <div style=''>
+                              <div style='width: 420px;' class="col-12 col-md-6 col-lg-3 mb-4">
+                                                 <a href="{% url "estudios:plan-update" p.id %}" class="" style=' '>
                                                 <div class="" style="
                                                 {% if p.img %}
                                                 background-image: url('{{p.img.url}}');
@@ -33,11 +34,14 @@
                                                 width: 100%; filter: brightness(80%);
                                                  height: 220px; border-radius: 3rem;">
                                                 </div>
+                                          </a>
+                                          <a href="{% url "estudios:plan-detail" p.id %}" >
                                                 <h5 
                                                 style='font-size: 14px; '>{{p.name}}</h5>
-                                          </div>
-                                    </a>
-                              {% endfor %}
+
+                                          </a>
+                                    </div>
+                                    {% endfor %}
                         {% endif %}
                   </div>
       </section>

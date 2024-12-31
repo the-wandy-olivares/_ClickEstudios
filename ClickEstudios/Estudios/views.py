@@ -171,6 +171,28 @@ class PlanDetail(DetailView):
     context_object_name = 'plan'
 
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['caracteristicas'] = models.Caracteristica.objects.filter(plan=self.object)
+        return context
+    
+    def post(self, request, *args, **kwargs):
+        if request.POST.get('name'):
+            caract = models.Caracteristica(
+                plan=models.Plan.objects.get(pk=self.kwargs.get('pk')),
+                name=request.POST.get('name'),
+            )
+            caract.save()
+        if request.POST.get('delete'):
+            caract = models.Caracteristica.objects.get(pk=request.POST.get('delete'))
+            caract.delete()
+        return redirect(self.get_success_url())
+    
+    def get_success_url(self):
+        # Retorna la URL a la que redirigirá después de un submit exitoso
+        return reverse_lazy('estudios:plan-detail', kwargs={'pk': self.kwargs.get('pk')})
+
+
 class PlanCreate(CreateView):
     model = models.Plan
     form_class = forms.Plan

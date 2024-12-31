@@ -1,0 +1,59 @@
+{% extends "base/base.html" %}
+{% block content %}
+      <style>
+            .nav .plans {
+                  color: #ffc107;
+                  font-weight: bolder;
+                  transform: scale(1.1);
+            }
+      </style>
+      <section class='d-flex'>
+            <div>
+                  {% include "plan/plan-select.html" %}
+            </div>
+            <div>
+                  {% if caracteristicas %}
+                  <div class="w-100">
+                        <table class=" bg-transparent text-white w-100 bg-danger">
+                              <thead>
+                                    <tr>
+                                          <th scope="col" style='width: 20%;'>#</th>
+                                          <th scope="col" style='width: 80%;'>Nombre</th>
+                                          <th scope="col" style='width: 20%;'>Acciones</th>
+                                    </tr>
+                              </thead>
+                              <tbody>
+
+                                    {% for c in caracteristicas %}
+                                    <tr>
+                                          <th scope="row">{{ forloop.counter }}</th>
+                                          <td>{{ c.name }}</td>
+                                          <td>
+                                                <form action="" method="post">
+                                                      {% csrf_token %}
+                                                      <input type="hidden" name="delete" value='{{c.id}}'
+                                                            style='width: 20rem; border-radius: 2rem;'>
+                                                      <button class='bg-transparent text-white border-0' style='font-size: 14px;'>
+                                                            Eliminar
+                                                      </button>
+                                                </form>
+                                          </td>
+                                    </tr>
+                                    {% endfor %}
+                              </tbody>
+                        </table>
+                  </div>
+                  {% endif %}
+                  <form action="" method="post">
+                        {% csrf_token %}
+                              <input type="text" name="name" placeholder='Nombre' class='form-control'>
+                              
+                                    <button type="submit" class='mt-1 border-0 text-black w-100 btn btn-primary bg-warning rounded-5'
+                                    style='font-weight: bold;'>
+                                          Agregar caracteristica
+                                    </button>
+                              
+                  </form>
+            </div>
+      </section>
+{% endblock %}
