@@ -2,6 +2,11 @@
 {% block content %}
 {% load humanize %}
 <style>
+      .nav .pos {
+            color: #ffc107;
+            font-weight: bolder;
+            transform: scale(1.1);
+      }
       .form-control 
       {
             color: rgba(255, 255, 255, 0.646);
@@ -101,8 +106,8 @@
                                       {% csrf_token %}
                                       {% comment %} <label for="invoice_type" class="form-label">Tipo de Factura:</label> {% endcomment %}
                                     <select name="invoice_type" id="invoice_type" class="form-select bg-black text-white rounded-5 border-0" onchange="this.form.submit()">
-                                          <option value="credito" {% if sale.sale_type == 'credito' %}selected{% endif %}>Crédito fiscal (B01) </option>
-                                          <option value="consumidor" {% if sale.sale_type == 'consumidor' %}selected{% endif %}>Consumidor final (B02) </option>
+                                          <option value="credito" {% if sale.sale_type == 'credito' %}selected{% endif %}>(B01) </option>
+                                          <option value="consumidor" {% if sale.sale_type == 'consumidor' %}selected{% endif %}> (B02) </option>
                                     </select>
                               </form>
                     </div>

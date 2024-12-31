@@ -34,16 +34,16 @@
             <span class="reloj font-delius position-absolute end-0 me-5 mt-3 d-flex justify-content-center align-content-center flex-wrap text-white"  style="font-size: 18px;" ></span>
             <div class='d-flex'>
                   <button class="bg-transparent border-0 me-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search text-white" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search text-white" viewBox="0 0 16 16">
                               <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                         </svg>
                   </button>
-                  <input type="text" class="form-control search text-white bg-transparent border-0 text-white" placeholder="Buscar cita">
+                  <input type="text" class="form-control search text-white bg-transparent border-0 text-white" placeholder="Buscador ...">
                   {% include "service/filter-services.html" %}
                   
 
                   <a href="{% url "estudios:gastos-create" %}"  class="btn mt-2 border-0 bg-transparent text-warning" style="font-size: 14px; font-weight: bold;">
-                        + Gatos
+                         Administrar gastos
                   </a>
 
             </div>
@@ -63,8 +63,8 @@
 
             
             <div class="d-flex  justify-content-end ">
-                    <h6 class="text-white-50 mt-4" style=" position: relative; cursor: pointer;">
-                             <span style="font-weight: bold; font-style: italic;">Info</span>
+                    <h6 class="text-white-50 mt-4 d-none" style=" position: relative; cursor: pointer;">
+                             <span style="font-weight: bold; font-style: italic;"></span>
                               <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-question-circle-fill" viewBox="0 0 16 16">
                                     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247m2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
                                   </svg>
@@ -92,23 +92,23 @@
                     </script>
             </div>
             {% if sales %}
-                  <div class="">
+                  <div class="mt-5">
                         {% include "sale/sale.html" %}
                   </div>
                   {% else %}
-                  <div style="min-width: 520px; cursor: pointer; max-width: 520px; border: 6px solid rgb(47, 47, 47); border-radius: 3rem; height: 17rem;" class=' text-white m-2 shadow-sm d-flex justify-content-center align-content-center flex-wrap'>
-                        <h6 style="font-weight: bold; font-size: 18px;">
+                  <div style="min-width: 520px; cursor: pointer;  border: 0px solid rgb(47, 47, 47); border-radius: 3rem; height: 17rem;" class=' text-white m-2 shadow-sm d-flex justify-content-start align-content-center flex-wrap'>
+                        <h6 class="w-100 text-start" style="font-weight: bold; font-size: 18px; font-style: italic;">
                               No hay reservaciones
                         </h6>
-                        <p class="m-3 p-2 text-white-50" style="text-align: justify;">
-                              Puedes buscar un cliente para realizar una reservación o seleccionar un servicio para reservar un plan y realizar una reserva una cita. 
+                        <p class="m-3  ms-0 mt-0 p-2 ps-0 pt-0 text-white-50" style="text-align: justify;">
+                              Puedes buscar un cliente para realizar una reservación o seleccionar un servicio para reservar un plan y realizar una reserva una cita
                         </p>
                   </div>
             {% endif %}
 
             {% if sales_reservers %}
 
-                  <div class=' d-flex overflow-auto  ' >
+                  <div class=' d-flex overflow-auto  mt-4 ' >
                         {% include "sale/sale-resevers.html" %}
                   </div>
                {% endif %} 
@@ -136,7 +136,7 @@
                   hours = hours % 12;
                   hours = hours ? hours : 12; // the hour '0' should be '12'
                   const strTime = hours + ':' + (minutes < 10 ? '0' + minutes : minutes) + ' ' + ampm;
-                  reloj.textContent = strTime;
+                  reloj.textContent =  strTime;
             }
 
             setInterval(updateClock, 1000);
