@@ -1,7 +1,7 @@
 {% extends "base/base.html" %}
 {% block content %}
 
-      <section>
+      <section class=' d-flex align-content-center flex-wrap'>
             {% load humanize %} {% load static %}
             <style>
                 .invoice   * {
@@ -90,10 +90,10 @@
                         <p class="w-100" style="font-size: 14px !important;">
                             <strong>Fecha:</strong>  <span class="date text-black"></span> 
                         </p>
-                        <p class="w-100" style="font-size: 14px !important;">
+                        {% comment %} <p class="w-100" style="font-size: 14px !important;">
                                 <strong class="text-capitalize">Cliente:</strong> 
                                     <span class='text-capitalize'> {{ sale.name_client }} </span>
-                        </p>
+                        </p> {% endcomment %}
                         {% if sale.type_sale_ncf == True %}
                             <p class="w-100" style="font-size: 14px !important;">
                                     <strong>RNC cliente:</strong> 131-24041-2
@@ -143,10 +143,10 @@
                             <input type="number"  class="d-none" style="display: none;" value="{{sale.itbis}}"  id="itbis">
                             <tr>
                                   <td>1</td>
-                                  <td> {{sale.name_plan}} - {{sale.description_plan}} </td>
+                                  <td> {{factura.description}} - {{sale.description_plan}} </td>
                                   <td class='price-unitario'> ${{sale_price_unitario}}</td>
                                   <td class="ITIBIS"> ${{sale_itebis}} </td>
-                                  <td class="TOTAL">${{sale.price_plan|intcomma}}.00 </td>
+                                  <td class="TOTAL">${{factura.mount|intcomma}}.00 </td>
                             </tr>
                             {% if adicionales %}
                                     {% for option in adicionales %}
@@ -186,6 +186,12 @@
                               </tbody>
                           </table>
                   </div>
+              </div>
+              <div class='align-content-end'>
+                  <button onclick="PrintInvoice()" class='show-button rounded-5 p-2 pe-3 ps-3 bg-warning text-black border-0'
+                  style="font-weight: bold; height: 2.5rem;">
+                  Impirmir 
+            </button>
               </div>
             
               <script>
@@ -239,5 +245,118 @@
             
             </script>
       </section>
+      <script>
+            function PrintInvoice() {
+                        const invoice = document.querySelector('.invoice').innerHTML; // Obtener el contenido del div
+                        const newWindow = window.open('', '_blank'); // Abrir nueva ventana
+                        newWindow.document.open();
+                        newWindow.document.write(`
+                            <html>
+                                <head>
+                                    <title>Imprimir Factura</title>
+                                    <style>
+                                        /* Agrega aquí tus estilos para la impresión */
+                                        * {
+                              margin: 0;
+                              padding: 0;
+                              box-sizing: border-box;
+                              font-family: Arial, sans-serif;
+                          }
+                    
+                          .invoice {
+                              background: #ffffff;
+                              width: 800px;
+                              padding: 20px;
+                              border-radius: 20px;
+                              box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                              color: black;
+                          }
+                          .header, .footer {
+                              text-align: start;
+                              margin-bottom: 20px;
+                          }
+                          .header img {
+                              max-width: 200px;
+                              /* margin-bottom: 10px; */
+                          }
+                          .details {
+                              margin-bottom: 20px;
+                          }
+                          .details p {
+                              font-size: 14px;
+                              margin-bottom: 5px;
+                          }
+                          .table-container {
+                              margin-bottom: 20px;
+                          }
+                          table {
+                              width: 100%;
+                              border-collapse: collapse;
+                          }
+                          table th, table td {
+                              text-align: left;
+                              border: 1px solid #f0f0f0;
+                              padding: 10px;
+                              font-size: 14px;
+                          }
+                          table th {
+                              background: #f0f0f0;
+                              font-weight: bold;
+                          }
+                          .observations {
+                              margin-bottom: 20px;
+                          }
+                          .observations textarea {
+                              width: 100%;
+                              padding: 10px;
+                              border: 1px solid #e7e7e7;
+                              background-color: #f0f0f0;
+                              border-radius: 1rem;
+                              font-size: 14px;
+                              resize: none;  
+                              s
+                          }
+                          .totals {
+                                      width: 100%; display: flex;
+                                      justify-content-end: end;
+                              }
+                          .totals {
+                              text-align: right;
+                          }
+                          .totals p {
+                              font-size: 14px;
+                              margin-bottom: 5px;
+                          }
+                          .totals p span {
+                              font-weight: bold;
+                          }
+                    
+                          .credito-fiscal 
+                          {
+                                      text-align: center;
+                                      margin-bottom: 1rem;
+                                      padding 0.5rem;
+                             
+                          }
+                    
+                            .credito-fiscal  hr 
+                            {
+                                               color: #f0f0f0;
+                            }
+                    
+                    
+                                    </style>
+                                </head>
+                                <body>
+                                    ${invoice}
+                                </body>
+                            </html>
+                        `);
+                        newWindow.document.close();
+                        newWindow.print(); // Iniciar el diálogo de impresión
+                        newWindow.close(); // Cerrar la ventana tras imprimir
+                    }
+                    
+            </script>
 
 {% endblock  %}

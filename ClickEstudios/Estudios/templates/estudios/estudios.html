@@ -53,35 +53,35 @@
                         Añade los complementos que prefieras
                   </p>
             </div>
-            <div class='adicional d-none '>
+            <div class='adicional d-none text-white'>
                   <form action="" method="post">
                         {% csrf_token %}
                         <div class='d-flex  w-100'> 
-                              <input class='form-control bg-white  bg-opacity-10 border-0 w-50 m-0 me-1 p-3 adicionales-input' type="text" name="name"  id="name"
-                               value='{{sale.name_plan}}'   placeholder="Nombre" style="border-top-left-radius: 1.5rem;">
-                              <input class='form-control bg-white  bg-opacity-10 border-0 w-50 m-0 p-3 adicionales-input' type="number" name="price" id="price" placeholder="Precio"
+                              <input class='form-control bg-white  bg-opacity-10 border-0 w-50 m-0 me-1 p-3 adicionales-input text-white' type="text" name="name"  id="name"
+                               value=''   placeholder="Nombre" style="border-top-left-radius: 1.5rem;">
+                              <input class='form-control bg-white  text-white bg-opacity-10 border-0 w-50 m-0 p-3 adicionales-input' type="number" name="price" id="price" placeholder="Precio"
                               style="border-top-right-radius: 1.5rem;">
                         </div>
                         <div class='d-flex  w-100 mb-2'>
-                              <textarea class='form-control bg-white  bg-opacity-10 border-0 w-100 m-0 adicionales-input' 
+                              <textarea class='form-control text-white bg-white  bg-opacity-10 border-0 w-100 m-0 adicionales-input' 
                               style='height: 280px; border-bottom-left-radius: 1.5rem; border-bottom-right-radius: 1.5rem;'
                               name="description" id="description" placeholder="Descripción ejemplo, 3 fotografias, dos cambios de ropas."></textarea>
                         </div>
                        <div class='d-flex  w-100 justify-content-end '>
                          <button class='btn-send d-none bg-primary rounded-5  mb-2 m p-2 pe-3 ps-3 text-white border-0' style='font-weight: bold; font-size: 14px;'>
-                                Agregar
+                                Aplicar adicional
                         </button>
                        </div>
                   </form>
             </div>
-
-            <span>
-                  <button id='open-adicional' class='bg-warning rounded-5  mb-2 p-2 ms-3 pe-3 ps-3 text-black border-0'
-                  style='font-weight: bold; font-size: 14px;'>
-                        Agregar
-                  </button>
-            </span>
-
+            {% if sale.finalize == False%}
+                  <span>
+                        <button id='open-adicional' class='bg-warning rounded-5  mb-2 p-2 ms-3 pe-3 ps-3 text-black border-0'
+                        style='font-weight: bold; font-size: 14px;'>
+                              Agregar
+                        </button>
+                  </span>
+            {% endif %}
             {% if adicionales %}
                   {% include "component/table-adicional.html" %}
             {% endif %}
@@ -101,16 +101,24 @@
                         <p class='p-0 m-0'>Total: ${{ total_sin|intcomma }}.00</p>
                         <p class='p-0 m-0'>Adicionales: ${{ total_adicionales|intcomma }}.00  </p>
                   </div>
-                    <div>
-                              <form action="" method="post">
-                                      {% csrf_token %}
-                                      {% comment %} <label for="invoice_type" class="form-label">Tipo de Factura:</label> {% endcomment %}
-                                    <select name="invoice_type" id="invoice_type" class="form-select bg-black text-white rounded-5 border-0" onchange="this.form.submit()">
-                                          <option value="credito" {% if sale.sale_type == 'credito' %}selected{% endif %}>(B01) </option>
-                                          <option value="consumidor" {% if sale.sale_type == 'consumidor' %}selected{% endif %}> (B02) </option>
-                                    </select>
-                              </form>
-                    </div>
+                  <div>
+                        <form action="" method="post" style='width: 15rem;'>
+                              {% csrf_token %}
+                              {% comment %} <label for="invoice_type" class="form-label">Tipo de Factura:</label> {% endcomment %}
+                              <input type="checkbox" name="aplicar_descuento" id="">
+                              <label for="aplicar_descuento">Aplicar descuento</label>
+                        </form>
+              </div>
+                  <div>
+                        <form action="" method="post" style='width: 15rem;'>
+                                    {% csrf_token %}
+                                    {% comment %} <label for="invoice_type" class="form-label">Tipo de Factura:</label> {% endcomment %}
+                              <select name="invoice_type" id="invoice_type" class="form-select bg-black text-white rounded-5 border-0" onchange="this.form.submit()">
+                                    <option value="credito" {% if sale.sale_type == 'credito' %}selected{% endif %}>(Credito fiscal) </option>
+                                    <option value="consumidor" {% if sale.sale_type == 'consumidor' %}selected{% endif %}> (Consumidor final) </option>
+                              </select>
+                        </form>
+                  </div>
                   <div>
                         <button class='show-button border-0 text-white pe-3 ps-3 bg-transparent'
                         style="font-weight: bold;"> 
@@ -124,14 +132,16 @@
                               Impirmir 
                         </button>
                   </div>
-                  <form action="" method="post" class=' d-flex flex-wrap justify-content-center align-content-center'>
-                        {% csrf_token %}
-                        <input type="hidden" name="end" value="true" class='mt-2'>
-                        <button class='show-button border-0 p-2 rounded-5 text-white pe-3 ps-3 bg-danger'
-                        style="font-weight: bold;"> 
+                  {% if sale.finalize == False%}
+                        <form action="" method="post" class=' d-flex flex-wrap justify-content-center align-content-center'>
+                              {% csrf_token %}
+                              <input type="hidden" name="end" value="true" class='mt-2'>
+                              <button class='show-button border-0 p-2 rounded-5 text-white pe-3 ps-3 bg-danger'
+                              style="font-weight: bold;"> 
                               Concuir cita
                         </button>
                   </form>
+                  {% endif %}
                   {% else %}
                   <div class='d-flex justify-content-end'>
                         <a href="{% url "estudios:sale-reserver" sale.id %}">

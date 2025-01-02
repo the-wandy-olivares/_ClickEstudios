@@ -20,11 +20,15 @@
                         <td class='border-0'>{{ adicional.description }}</td>
                         <td class='border-0'>{{ adicional.price|intcomma }}.00</td>
                         <td class='border-0'>
+                              {% if sale.finalize == False%}
                               <form action="" method="post" class="d-inline">
                                     {% csrf_token %}
                                     <input type="hidden" name="delete" value="{{ adicional.id }}">
                                     <button type="submit" class="btn bg-transparent text-danger rounded-5 btn-sm" style='font-weight: bold;'> - Eliminar</button>
                               </form>
+                              {% else %}
+                              ...
+                              {% endif %}
                         </td>
                   </tr>
                   {% endfor %}

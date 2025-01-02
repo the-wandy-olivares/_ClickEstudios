@@ -17,12 +17,12 @@
             </select>
             <select name="caja" class="form-select me-2" onchange="document.getElementById('selected-caja').innerText = this.options[this.selectedIndex].text;">
                   <option value="todas" {% if request.POST.caja == "todas" %}selected{% endif %}>Todas las Cajas</option>
-                  {% for caja in cajas %}
-                  <option value="{{ caja.id }}" {% if request.POST.caja == caja.id|stringformat:"s" %}selected{% endif %}>
-                         #{{ forloop.counter }} 
-                         {{caja.user.first_name}} {{caja.user.last_name}} 
-                  </option>
-                  {% endfor %}
+                    {% for caja in cajas %}
+                    <option value="{{ caja.id }}" {% if request.POST.caja == caja.id|stringformat:"s" or forloop.last %}selected{% endif %}>
+                               #{{ forloop.counter }} 
+                               {{caja.user.first_name}} {{caja.user.last_name}} 
+                    </option>
+                    {% endfor %}
             </select>
       
             <select name="year" class="form-select me-2">

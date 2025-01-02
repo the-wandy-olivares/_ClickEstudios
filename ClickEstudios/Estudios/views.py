@@ -529,6 +529,8 @@ class Estudios(TemplateView):
             )
             a.save()
 
+        
+
         if request.POST.get('invoice_type'):
             sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
             sale.sale_type = request.POST.get('invoice_type')
@@ -546,6 +548,19 @@ class Estudios(TemplateView):
             else:
                 sale.credito_fiscal = utils.GetNCF('consumidor')
             sale.finalize = True
+
+            if sale.sale_adicionales.all():
+                for adicional in sale.sale_adicionales.all():
+                    models.Movements(
+                        user=request.user,
+                        box=models.Box.objects.get(open=True),
+                        mount=adicional.price,
+                        type='ingreso',
+                        description=adicional.name + ' ' + adicional.description
+                    ).save()
+                    
+
+
             sale.save()
             return redirect('estudios:pos')
             
@@ -661,7 +676,7 @@ class Box(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        movimientos = models.Movements.objects.all()
+        movimientos = models.Movements.objects.filter(box=models.Box.objects.get(open=True))
         balance_apertura = 0
         ingresos = 0
         egresos = 0
@@ -681,7 +696,7 @@ class Box(TemplateView):
         context['egresos'] = egresos
         context['balance_caja'] = balance_caja
         context['cajas'] = models.Box.objects.all()
-        context['years'] = range(2024, 2028)  # Example range of years
+        context['years'] = range(2025, 2028)  # Example range of years
         context['meses'] = [
                     {'numero': 1, 'nombre': 'Enero'},
                     {'numero': 2, 'nombre': 'Febrero'},
@@ -992,10 +1007,10 @@ class FastSale(TemplateView):
             )
             i.save()
               
-        return redirect(self.get_success_url())
+            return redirect(self.get_success_url(i.id))
 
-    def get_success_url(self):
-        return reverse_lazy('estudios:fast-sale')    
+    def get_success_url(self, move):
+        return reverse_lazy('estudios:factura', kwargs={'pk': move})    
     
 
 class Factura(TemplateView):
@@ -1003,5 +1018,7 @@ class Factura(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['facturas'] = models.Movements.objects.filter(id=self.kwargs.get('pk'))
+        sale = models.Sale.objects.latest('id')
+        context['factura'] = models.Movements.objects.get(id=self.kwargs.get('pk'))
+        context['ncf'] =utils.GetNCF(sale.sale_type)
         return context
