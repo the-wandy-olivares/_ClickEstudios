@@ -1,0 +1,243 @@
+{% extends "base/base.html" %}
+{% block content %}
+
+      <section>
+            {% load humanize %} {% load static %}
+            <style>
+                .invoice   * {
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                    font-family: Arial, sans-serif;
+                }
+            
+                  .invoice {
+                    background: #ffffff;
+                    width: 800px;
+                    padding: 20px;
+                    border-radius: 20px;
+                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                    color: black;
+                }
+                .invoice   .header, .footer {
+                    text-align: center;
+                    margin-bottom: 20px;
+                }
+                .invoice  .header img {
+                    max-width: 200px;
+                    /* margin-bottom: 10px; */
+                }
+                .invoice  .details {
+                    margin-bottom: 20px;
+                }
+                .invoice  .details p {
+                    font-size: 14px;
+                    margin-bottom: 5px;
+                }
+                .invoice  .table-container {
+                    margin-bottom: 20px;
+                }
+                .invoice    table {
+                    width: 100%;
+                    border-collapse: collapse;
+                }
+                .invoice  table th, table td {
+                    text-align: left;
+                    border: 1px solid #f0f0f0;
+                    padding: 10px;
+                    font-size: 14px;
+                }
+                .invoice  table th {
+                    background: #f0f0f0;
+                    font-weight: bold;
+                }
+                .invoice  .observations {
+                    margin-bottom: 20px;
+                }
+                .invoice  .observations textarea {
+                    width: 100%;
+                    padding: 10px;
+                    border: 1px solid #e7e7e7;
+                    background-color: #f0f0f0;
+                    border-radius: 1rem;
+                    font-size: 14px;
+                    resize: none;
+                }
+                .invoice .totals {
+                    text-align: right;
+                }
+                .invoice .totals p {
+                    font-size: 14px;
+                    margin-bottom: 5px;
+                }
+                .invoice .totals p span {
+                    font-weight: bold;
+                }
+            </style>
+            <div class="invoice">
+                <div class="header  d-flex  m-0 p-0 position-relative" style="height: 9rem;">
+                        {% comment %} {% if company.logo.url %} {% endcomment %}
+                            <img src=""   class="img2-estudios object-fit-cover position-absolute   start-0"  width="150"  alt="Click Estudios">
+                        {% comment %} {% endif %} {% endcomment %}
+                </div>
+            
+                <!-- Encabezado -->
+                <div class="details d-flex flex-wrap m-0 mb-2 " style="margin-top: 0rem !important;">
+            
+                        <p class="w-100" style="font-size: 14px !important;">
+                            <strong>RNC:</strong> 133-22445-3
+                        </p>
+                        <p class="w-100" style="font-size: 14px !important;">
+                            <strong>Fecha:</strong>  <span class="date text-black"></span> 
+                        </p>
+                        <p class="w-100" style="font-size: 14px !important;">
+                                <strong class="text-capitalize">Cliente:</strong> 
+                                    <span class='text-capitalize'> {{ sale.name_client }} </span>
+                        </p>
+                        {% if sale.type_sale_ncf == True %}
+                            <p class="w-100" style="font-size: 14px !important;">
+                                    <strong>RNC cliente:</strong> 131-24041-2
+                            </p>
+                        {% endif %}
+                        <p class="w-100" style="font-size: 14px !important;">
+                            <strong>NCF: </strong> 
+                            {{ncf}} 
+                        </p>
+                        {% if sale.type_sale_ncf == True %}
+                            <p class="w-100" style="font-size: 14px !important;">
+                                    <strong>NCF válido hasta:</strong> 31/12/2026
+                            </p>
+                        {% endif %}
+                        <p class="w-100" style="font-size: 14px !important;">
+                            <strong>Factura ID:</strong> CL-{{sale.id}}
+                        </p>
+                </div>
+                
+                <div class="w-100 text-center credito-fiscal ">
+                        <hr class='m-0 p-0 mb-1 '>
+                        <p  style="font-size: 14px !important;" class='p-0 m-0'> 
+                              Válido para
+                              {% if sale.sale_type == 'consumidor'  %}
+                              consumidor final
+                              {% else %}
+                              crédito fiscal 
+                              {% endif %}
+                        </p>
+                        <hr class='m-0 p-0 mb-4 mt-1'>
+                    </div>
+            
+                <!-- Tabla de productos -->
+                  <div class="table-container"  style="font-size: 14px !important;">
+                      <table>
+                            <thead>
+                              <tr>
+                                  <th style="font-size: 14px !important;">CANTIDAD</th>
+                                  <th style="font-size: 14px !important;">DESCRIPCIÓN</th>
+                                  <th style="font-size: 14px !important;">PRECIO UNITARIO</th>
+                                  <th style="font-size: 14px !important;">ITBIS</th>
+                                  <th style="font-size: 14px !important;">TOTAL</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            <input type="number"  class="d-none" style="display: none;"  value="{{sale.plan.price}}" id="plan-price">
+                            <input type="number"  class="d-none" style="display: none;" value="{{sale.itbis}}"  id="itbis">
+                            <tr>
+                                  <td>1</td>
+                                  <td> {{sale.name_plan}} - {{sale.description_plan}} </td>
+                                  <td class='price-unitario'> ${{sale_price_unitario}}</td>
+                                  <td class="ITIBIS"> ${{sale_itebis}} </td>
+                                  <td class="TOTAL">${{sale.price_plan|intcomma}}.00 </td>
+                            </tr>
+                            {% if adicionales %}
+                                    {% for option in adicionales %}
+                                        <tr>
+                                            <td>1</td>
+                                            <td class='text-capitalize'>{{ option.name }} - {{ option.description }}</td>
+                                            <td class='option-price'></td>
+                                            <td class='option-itibis' data-price="{{ option.price }}">{{ option.sale.itbis }}%</td> 
+                                            <td class='option-total' data-price="{{ option.price }}">
+                                                    ${{ option.price|floatformat:2|intcomma }}
+                                            </td> 
+                                        </tr>
+                                    {% endfor %}
+                            {% endif %}
+                          </tbody>
+                      </table>
+                  </div>
+                  <div class="observations w-100">
+                      <p class="m-0"><strong style="font-size: 13px;">Observaciones</strong></p>
+                      <textarea rows="9"  placeholder="Escribe tus observaciones aquí… ¡Queremos escucharte!"></textarea>
+                  </div>
+                  <div class="totals d-flex justify-content-end" >
+                        <table style="border-collapse: collapse; width: 12rem; font-family: Arial, sans-serif;">
+                              <tbody>
+                                  <tr>
+                                      <td style="padding: 8px; font-weight: bold; color: black;">Neto</td>
+                                      <td style="padding: 8px; text-align: right;" class="NETsO" > ${{total|intcomma}} </td>
+                                  </tr>
+                                  <tr>
+                                      <td style="padding: 8px; font-weight: bold; color: black;">ITBIS</td>
+                                      <td style="padding: 8px; text-align: right; " class="ITIBIS_NETOz">${{total_itebis|intcomma}}</td>
+                                  </tr>
+                                  <tr>
+                                      <td style="padding: 8px; font-weight: bold; color: black;">Total</td>
+                                      <td style="padding: 8px; text-align: right;" class="TOTAL_NETOz">${{total_con_i|intcomma}}.00</td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                  </div>
+              </div>
+            
+              <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                      let itibis = 0
+            
+                    const optionTotals = document.querySelectorAll('.option-total');
+                    const planPrice = parseInt(document.querySelector('#plan-price').value) || 0;
+                    
+                    const itbis_2 = parseInt(document.querySelector('#itbis').value) || 0;
+                    const itbisAmount_32s = (planPrice * itbis_2) / 100;
+            
+                    
+                  // Calcular el porcentaje del ITBIS sobre el precio del plan
+                    optionTotals.forEach(function(optionTotal) {
+                        const price = parseFloat(optionTotal.getAttribute('data-price'));
+                        const discountedPrice = price - (price * 0.18);
+            
+                        const itbisAmount = price * 0.18;
+                        itibis += itbisAmount;
+                        optionTotal.previousElementSibling.innerHTML = '$' + itbisAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            
+                        optionTotal.previousElementSibling.previousElementSibling.innerHTML = '$' + discountedPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                  });
+                  let total = itbisAmount_32s + itibis;
+                  document.querySelector('.ITIBIS_NETO').innerHTML = '$' +  total.toLocaleString('en-US'); 
+                });
+            
+            
+                // Fecha actual
+                const dateElement = document.querySelector('.date');
+                const currentDate = new Date();
+                const formattedDate = `${currentDate.getDate()}/${String(currentDate.getMonth() + 1).padStart(2, '0')}/${currentDate.getFullYear()}`;
+                dateElement.textContent = formattedDate;
+            
+            
+                document.addEventListener('DOMContentLoaded', function() {
+                        Estudios_Factura();
+                });
+            
+                  let Estudios_Factura = () => {
+                        $.ajax({
+                            url: '/ajax/get-estudios/',
+                            method: 'GET',
+                            success: function(D) {
+                              document.querySelector('.img2-estudios').src = D.img2;
+                            },
+                        });
+                    };
+            
+            
+            </script>
+      </section>
+
+{% endblock  %}

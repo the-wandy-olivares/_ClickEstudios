@@ -41,10 +41,18 @@
                   <input type="text" class="form-control search text-white bg-transparent border-0 text-white" placeholder="Buscador ...">
                   {% include "service/filter-services.html" %}
                   
-
                   <a href="{% url "estudios:gastos-create" %}"  class="btn mt-2 border-0 bg-transparent text-warning" style="font-size: 14px; font-weight: bold;">
                          Administrar gastos
                   </a>
+
+                  <a href="{% url "estudios:fast-sale" %}"  class="btn mt-1 ms-2 text-white text-white-50 p-1 ps-4 pe-4 rounded-5 d-flex flex-wrap align-content-center" style="font-size: 14px; font-weight: bold;
+                  background-color: rgb(26, 26, 26);
+                  ">
+                        Venta rapida
+                 </a>
+
+
+
 
             </div>
             
@@ -92,7 +100,7 @@
                     </script>
             </div>
             {% if sales %}
-                  <div class="mt-5">
+                  <div class="mt-5 d-flex ">
                         {% include "sale/sale.html" %}
                   </div>
                   {% else %}

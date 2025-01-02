@@ -976,3 +976,32 @@ class GastosCreate(TemplateView):
     def get_success_url(self):
         # Retorna la URL a la que redirigirá después de un submit exitoso
         return reverse_lazy('estudios:gastos-create')    
+    
+
+class FastSale(TemplateView):
+    template_name = 'fast-sale/fast-sale.html'
+
+    def post(self, request, *args, **kwargs):
+        if request.POST.get('name'):
+            i =   models.Movements.objects.create(
+                user=request.user,
+                box=models.Box.objects.get(open=True),
+                mount= request.POST.get('preci'),
+                type='ingreso',
+                description= request.POST.get('name') + (request.POST.get('description') if request.POST.get('description') else ' - Venta rápida' ),
+            )
+            i.save()
+              
+        return redirect(self.get_success_url())
+
+    def get_success_url(self):
+        return reverse_lazy('estudios:fast-sale')    
+    
+
+class Factura(TemplateView):
+    template_name = 'factura/factura.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['facturas'] = models.Movements.objects.filter(id=self.kwargs.get('pk'))
+        return context

@@ -36,6 +36,7 @@ urlpatterns = [
                         path('sale-update/<int:pk>/', views.SaleUpdate.as_view(), name='sale-update'),
                   path('sale-create-date-choice/<int:pk>/', views.SaleCreateDateChoice.as_view(), name='sale-create-date-choice'),
             path('sale-client-date-choice/<int:pk>/', views.SaleClientDateChoice.as_view(), name='sale-client-date-choice'),
+      path('fast-sale', views.FastSale.as_view(), name='fast-sale'),
 
 # Gatos
       path('gastos-create', views.GastosCreate.as_view(), name='gastos-create'),
