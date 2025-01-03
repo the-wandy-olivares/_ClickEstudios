@@ -694,7 +694,12 @@ class Box(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        movimientos = models.Movements.objects.filter(box=models.Box.objects.get(open=True))
+
+        try:
+            box = models.Box.objects.get(open=True)
+            movimientos = models.Movements.objects.filter(box=box)
+        except models.Box.DoesNotExist:
+            movimientos = models.Movements.objects.none()
         balance_apertura = 0
         ingresos = 0
         egresos = 0
@@ -794,10 +799,21 @@ class BoxCreate(TemplateView):
                 user=request.user
             )
             box.save()
+
+            if request.POST.get('open_amount'):
+                models.Movements(
+                    user=request.user,
+                    box=box,
+                    mount=int(request.POST.get('open_amount').replace(',', '') or 0),
+                    type='ingreso',
+                    description='Apertura de caja'
+                ).save()
         if request.POST.get('close'):
             box = models.Box.objects.filter(open=True).latest('id')
             box.open = False
             box.save()
+
+        
         return redirect('estudios:box')
     
 
