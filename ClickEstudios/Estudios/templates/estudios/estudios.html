@@ -87,33 +87,50 @@
             {% endif %}
 
             <!-- Factura -->
-             <div class='factura  d-none position-absolute start-0  top-0 z-2'>
+             <div class='factura overflow-auto d-flex flex-wrap blur-5  align-content-center vh-100 position-absolute start-0  top-0 z-2 w-100'>
                   {% include "component/factura.html" %}
+                  <div class='align-content-start-0'>
+                        <button class='p-1 show-button  bg-white bg-opacity-10  border-0 rounded-circle' style='cursor: pointer; ' >
+                              <style>
+                                    .show-button {
+                                          transition: transform 0.5s;
+                                          color: white;
+                                    }
+                                    .show-button:hover {
+                                          transform: scale(1.2);
+                                          color: #ffc107 !important;
+                                    }
+                              </style>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x-circle-fill m-0 " viewBox="0 0 16 16">
+                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
+                                  </svg>
+                        </button>
+                  </div>
              </div>
       </main>
       
       <!-- Footer -->
-      <footer class='pb-5 d-flex justify-content-end w-100 bg-black' style="position: sticky; bottom: 0; width: 100%;  padding: 10px; text-align: center;" >
+      <footer class='pb-4 d-flex align-content-center justify-content-end w-100 bg-black' style="position: sticky; bottom: 0; width: 100%;  padding: 12px; text-align: center;" >
             {% if sale.payment %}
 
            
-                  <div>
-                        <p class='p-0 m-0'>Total: ${{ total_sin|intcomma }}.00</p>
-                        <p class='p-0 m-0'>Adicionales: ${{ total_adicionales|intcomma }}.00  </p>
+                  <div >
+                        <p class='btn text-white p-1 m-0'>Adicionales: ${{ total_adicionales|intcomma }}.00  </p>
                   </div>
                   <div>
-                        <form action="" method="post" style='width: 15rem;'>
-                              {% csrf_token %}
-                              {% comment %} <label for="invoice_type" class="form-label">Tipo de Factura:</label> {% endcomment %}
-                              <input type="checkbox" name="aplicar_descuento" id="">
-                              <label for="aplicar_descuento">Aplicar descuento</label>
-                        </form>
-              </div>
+                        <p class='btn text-white p-1 m-0'>Total: ${{ total_sin|intcomma }}.00</p>
+                  </div>
                   <div>
-                        <form action="" method="post" style='width: 15rem;'>
+                        <form action="" method="post" style='width: 10rem;' class='p-1'>
+                              {% csrf_token %}
+                              <input type="checkbox" name="aplicar_descuento" id="aplicar_descuento">
+                              <label for="aplicar_descuento"> Descuento</label>
+                        </form>
+                  </div>
+                  <div>
+                        <form action="" method="post" style='width: 10rem;'>
                                     {% csrf_token %}
-                                    {% comment %} <label for="invoice_type" class="form-label">Tipo de Factura:</label> {% endcomment %}
-                              <select name="invoice_type" id="invoice_type" class="form-select bg-black text-white rounded-5 border-0" onchange="this.form.submit()">
+                              <select name="invoice_type" id="invoice_type" class="form-select bg-black text-white rounded-5 border-0 p-1" onchange="this.form.submit()">
                                     <option value="credito" {% if sale.sale_type == 'credito' %}selected{% endif %}>(Credito fiscal) </option>
                                     <option value="consumidor" {% if sale.sale_type == 'consumidor' %}selected{% endif %}> (Consumidor final) </option>
                               </select>
@@ -127,7 +144,7 @@
                                     <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
                               </svg>  Visualizar 
                         </button>
-                        <button onclick="PrintInvoice()" class='show-button rounded-5 p-2 pe-3 ps-3 bg-white bg-opacity-10 text-white border-0'
+                        <button onclick="PrintInvoice()" class=' rounded-5 p-1 pe-3 ps-3 bg-white bg-opacity-10 text-white border-0'
                               style="font-weight: bold;">
                               Impirmir 
                         </button>
@@ -135,8 +152,8 @@
                   {% if sale.finalize == False%}
                         <form action="" method="post" class=' d-flex flex-wrap justify-content-center align-content-center'>
                               {% csrf_token %}
-                              <input type="hidden" name="end" value="true" class='mt-2'>
-                              <button class='show-button border-0 p-2 rounded-5 text-white pe-3 ps-3 bg-danger'
+                              <input type="hidden" name="end" value="true" class=''>
+                              <button class=' border-0 p-1 rounded-5 text-white pe-3 ps-3 bg-danger'
                               style="font-weight: bold;"> 
                               Concuir cita
                         </button>
@@ -191,9 +208,12 @@
 
 <!-- Visualizar factura-->
 <script>
-      document.querySelector('.show-button').addEventListener('click', function() {
-            document.querySelector('.factura').classList.toggle('d-none');
+      document.querySelectorAll('.show-button').forEach(button => {
+            button.addEventListener('click', ShoFactura);
       });
+      function ShoFactura(){
+            document.querySelector('.factura').classList.toggle('d-none');
+      }
 </script>
 
 <script>

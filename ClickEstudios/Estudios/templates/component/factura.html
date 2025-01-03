@@ -70,7 +70,7 @@
         font-weight: bold;
     }
 </style>
-<div class="invoice">
+<div class="invoice rounded-5">
     <div class="header  d-flex  m-0 p-0 position-relative" style="height: 9rem;">
             {% comment %} {% if company.logo.url %} {% endcomment %}
                 <img src=""   class="img2-estudios object-fit-cover position-absolute   start-0"  width="150"  alt="Click Estudios">
@@ -140,9 +140,14 @@
                 <tr>
                       <td>1</td>
                       <td> {{sale.name_plan}} - {{sale.description_plan}} </td>
-                      <td class='price-unitario'> ${{sale_price_unitario}}</td>
-                      <td class="ITIBIS"> ${{sale_itebis}} </td>
-                      <td class="TOTAL">${{sale.price_plan|intcomma}}.00 </td>
+                      <td class='price-unitario'>
+                          ${{sale_price_unitario}}
+                          
+                        </td>
+                        <td class="ITIBIS"> ${{sale_itebis}} </td>
+                        <td class="TOTAL">
+                            ${{sale.price_plan|intcomma}}.00 
+                    </td>
                 </tr>
                 {% if adicionales %}
                         {% for option in adicionales %}
