@@ -243,7 +243,7 @@ class Sale(models.Model):
       discount = models.BooleanField(default=False)
 
       def __str__(self):
-            return f"Venta del {self.date} "
+            return f"Venta del {self.date.strftime('%d/%m/%Y')} - {self.name_client}"
 
 
 

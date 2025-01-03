@@ -87,7 +87,7 @@
             {% endif %}
 
             <!-- Factura -->
-             <div class='factura overflow-auto d-flex flex-wrap blur-5  align-content-center vh-100 position-absolute start-0  top-0 z-2 w-100'>
+             <div class='factura overflow-auto  d-flex d-none flex-wrap blur-5  align-content-center vh-100 position-absolute start-0  top-0 z-2 w-100'>
                   {% include "component/factura.html" %}
                   <div class='align-content-start-0'>
                         <button class='p-1 show-button  bg-white bg-opacity-10  border-0 rounded-circle' style='cursor: pointer; ' >
@@ -118,13 +118,26 @@
                         <p class='btn text-white p-1 m-0'>Adicionales: ${{ total_adicionales|intcomma }}.00  </p>
                   </div>
                   <div>
-                        <p class='btn text-white p-1 m-0'>Total: ${{ total_sin|intcomma }}.00</p>
+                        <p class='btn text-white p-1 m-0'>Total:     ${{total_con_i|intcomma}}.00</p>
                   </div>
                   <div>
-                        <form action="" method="post" style='width: 10rem;' class='p-1'>
-                              {% csrf_token %}
-                              <input type="checkbox" name="aplicar_descuento" id="aplicar_descuento">
-                              <label for="aplicar_descuento"> Descuento</label>
+                        <form action="" method="post" style='width: 10rem;' class='p-1' 
+                        onchange="this.submit()">
+                                {% csrf_token %}
+
+                                    <input type="checkbox" class='d-none' name="discount" id="discount" >
+                                <label for="discount" style='cursor: pointer;'>
+                                    {% if sale.discount %}
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-toggle-on text-primary" viewBox="0 0 16 16">
+                                          <path d="M5 3a5 5 0 0 0 0 10h6a5 5 0 0 0 0-10zm6 9a4 4 0 1 1 0-8 4 4 0 0 1 0 8"/>
+                                        </svg>
+                                        {% else %}
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-toggle-off text-white-50" viewBox="0 0 16 16">
+                                          <path d="M11 4a4 4 0 0 1 0 8H8a5 5 0 0 0 2-4 5 5 0 0 0-2-4zm-6 8a4 4 0 1 1 0-8 4 4 0 0 1 0 8M0 8a5 5 0 0 0 5 5h6a5 5 0 0 0 0-10H5a5 5 0 0 0-5 5"/>
+                                        </svg>
+                                    {% endif %}
+
+                                     Descuento</label>
                         </form>
                   </div>
                   <div>
