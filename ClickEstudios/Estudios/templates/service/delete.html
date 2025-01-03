@@ -1,0 +1,22 @@
+{% extends "base/base.html" %}
+{% block content %}
+ 
+      <style>
+            .nav .services {
+                  color: #ffc107;
+                  font-weight: bolder;
+                  transform: scale(1.1);
+            }
+      </style>
+
+      <div class="d-flex justify-content-center align-items-center w-100 h-100">
+            <form method="post">
+                  {% csrf_token %}
+                  <p class='text-white'>¿Estás seguro de que deseas eliminar este servicio?</p>
+                  <a href="{% url "estudios:service" %}" class="btn btn-secondary">Cancelar</a>
+                  <button type="submit" class="btn btn-danger">Eliminar</button>
+            </form>      
+      </div>
+
+
+{% endblock %}

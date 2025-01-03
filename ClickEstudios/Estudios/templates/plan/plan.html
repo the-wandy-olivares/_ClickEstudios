@@ -23,8 +23,8 @@
                   <div style='transition-duration: 1s;' class="d-flex flex-wrap justify-content-center w-100 align-content-start  ">
                         {% if plans %}
                               {% for p in  plans %}
-                              <div style='width: 420px;' class="col-12 col-md-6 col-lg-3 mb-4">
-                                                 <a href="{% url "estudios:plan-update" p.id %}" class="" style=' '>
+                              <div style='width: 420px;' class=" position-relative col-12 col-md-6 col-lg-3 mb-4">
+                                           
                                                 <div class="" style="
                                                 {% if p.img %}
                                                 background-image: url('{{p.img.url}}');
@@ -34,11 +34,27 @@
                                                 width: 100%; filter: brightness(80%);
                                                  height: 220px; border-radius: 3rem;">
                                                 </div>
-                                          </a>
-                                          <a href="{% url "estudios:plan-detail" p.id %}" >
-                                                <h5 
-                                                style='font-size: 14px; '>{{p.name}}</h5>
 
+                                          <h5 
+                                          style='font-size: 14px; ' class='text-white'>{{p.name}}</h5>
+                                          <div class='d-flex w-100 justify-content-start-0 p-0'>
+                                                <a href="{% url "estudios:plan-detail" p.id %}" 
+                                                class='btn text-white border-1 bg-white bg-opacity-10 rounded-4 pe-3 ps-3'
+                                                style='border: solid 1pxrgb(44, 44, 44);'>
+                                                      <span>
+                                                            Gestionar caracteristicas
+                                                      </span>
+                                                </a> 
+                                                <a href="{% url "estudios:plan-update" p.id %}" class="btn text-white ms-3" style='font-weight: bold;'>
+                                                      Editar plan
+                                                </a>
+                                          </div>
+                                          <a href="{% url "estudios:plan-delete" p.id %}"  class='position-absolute top-0  end-0 text-white text-decoration-none'>
+                                                <span>
+                                                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x-circle-fill text-white"  viewBox="0 0 16 16">
+                                                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
+                                                          </svg>
+                                                </span>
                                           </a>
                                     </div>
                                     {% endfor %}

@@ -144,6 +144,7 @@ class ServiceUpdate(UpdateView):
 
 
 class ServiceDelete(DeleteView):
+    template_name = 'service/delete.html'
     model = models.Service
 
     def get_context_data(self, **kwargs):
@@ -281,6 +282,7 @@ class PlanUpdate(UpdateView):
 
 
 class PlanDelete(DeleteView):
+    template_name = 'plan/plan-delete.html'
     model = models.Plan
 
     def get_context_data(self, **kwargs):

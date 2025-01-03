@@ -41,7 +41,6 @@ urlpatterns = [
 # Gatos
       path('gastos-create', views.GastosCreate.as_view(), name='gastos-create'),
 
-
 # Factura 
       path('factura/<int:pk>', views.Factura.as_view(), name='factura'),
 

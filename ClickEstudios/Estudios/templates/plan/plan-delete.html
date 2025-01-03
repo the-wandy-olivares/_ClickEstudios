@@ -1,0 +1,36 @@
+{% extends "base/base.html" %}
+{% block content %}
+      <style>
+            .nav .plans {
+                  color: #ffc107;
+                  font-weight: bolder;
+                  transform: scale(1.1);
+            }
+      </style>
+
+      <div data-aos='fade-in' class="d-flex justify-content-center align-items-center w-100 h-100">
+            <form method="post">
+                  {% csrf_token %}
+                  <h6 class='text-white'>¿Estás seguro de que deseas eliminar {{object.name}}?</h6>
+                  <div>
+                        {% if object.caracteristicas.all %}
+                        <div style='height: 5.7rem;' class='overflow-auto  text-white'>   
+                                    <span>
+                                          Se eliminarán las siguientes caracteristicas asociadas al este plan
+                                    </span>
+                                     {% for p in  object.caracteristicas.all %}
+                                        <li class="text-white-50" style="font-size: 14px; list-style:circle;">
+                                                {{p.name|truncatechars:32}} 
+                                        </li>
+                                     {% endfor %}
+                                    </div>
+                        {% endif %}
+                  </div>
+              
+                  <a href="{% url "estudios:plan" %}" class="btn btn-secondary">Cancelar</a>
+                  <button type="submit" class="btn btn-danger">Eliminar</button>
+            </form>      
+      </div>
+
+      
+{% endblock %}
