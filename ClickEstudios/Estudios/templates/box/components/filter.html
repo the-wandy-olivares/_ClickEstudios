@@ -22,6 +22,7 @@
                         {% if request.method == "POST" and request.POST.caja == caja.id|stringformat:"s" or request.method == "GET" and forloop.last %}selected{% endif %}>
                         #{{ forloop.counter }} 
                         {{caja.user.first_name}} {{caja.user.last_name}} 
+                        {{caja.date|date:"d/m/Y"}}
                   </option>
                   {% endfor %}
             </select>

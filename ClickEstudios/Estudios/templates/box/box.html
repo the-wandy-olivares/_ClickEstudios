@@ -13,6 +13,15 @@
       <div class="   text-white overflow-auto d-flex flex-wrap align-content-start  w-100  rounded-5">
             {% if is_open %}
             <div class="w-100 vh-100 overflow-auto">
+                  <div class="d-flex justify-content-start-0 mb-3">
+                        <div class="p-2 bg-secondary bg-transparent text-white rounded-pill">
+                              Cierre anterior  <span> ${{total_last_session|intcomma}}.00 </span>
+                        </div>
+                        <div class="p-2 bg-primary  bg-transparent text-white rounded-pill">
+                              Balance total: <span> ${{total_movimientos|intcomma}}.00 </span>
+                        </div>
+                  </div>
+
                         <div class="">
                               {% include "box/components/filter.html" %}
                               {% include "box/components/table.html" %}

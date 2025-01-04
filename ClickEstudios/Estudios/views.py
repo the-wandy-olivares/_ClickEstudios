@@ -698,10 +698,17 @@ class Box(TemplateView):
         context = super().get_context_data(**kwargs)
 
         try:
+            last_box = models.Box.objects.filter(open=False).latest('id')
+            last_movimientos = models.Movements.objects.filter(box=last_box)
+        except models.Box.DoesNotExist:
+            last_movimientos = models.Movements.objects.none()
+
+        try:
             box = models.Box.objects.get(open=True)
             movimientos = models.Movements.objects.filter(box=box)
         except models.Box.DoesNotExist:
             movimientos = models.Movements.objects.none()
+
         balance_apertura = 0
         ingresos = 0
         egresos = 0
@@ -713,6 +720,28 @@ class Box(TemplateView):
                 egresos += movimiento.mount
 
         balance_caja = balance_apertura + ingresos - egresos
+        total_ingresos = 0
+        total_gastos = 0
+
+        for movimiento in  models.Movements.objects.all():
+            if movimiento.type == 'ingreso':
+                total_ingresos += movimiento.mount
+            elif movimiento.type == 'gasto':
+                total_gastos += movimiento.mount
+
+        last_ingreso = 0
+        last_gasto = 0
+
+        for movimiento in last_movimientos:
+            if movimiento.type == 'ingreso':
+                last_ingreso += movimiento.mount
+            elif movimiento.type == 'gasto':
+                last_gasto += movimiento.mount
+
+
+        context['total_movimientos'] = total_ingresos - total_gastos
+
+        context['total_last_session'] = last_ingreso - last_gasto
 
         context['is_open'] = models.Box.objects.filter(open=True).exists()
         context['movimientos'] = movimientos
