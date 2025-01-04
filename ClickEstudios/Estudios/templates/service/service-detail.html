@@ -1,9 +1,31 @@
 {% extends "base/base.html" %}
 {% block content %}
-<section>
-            <div class="d-flex w-100 flex-wrap">
+
+      <section class='d-flex flex-wrap overflow-hidden align-content-start vh-100 '>
+            <div class="d-flex  overflow-auto">
                   {% include "plan/plan-list.html" %}
             </div>
-</section>
+
+            <div class='text-warning w-100 overflow-auto align-content-start-0  '>
+                 <div class='w-100'>
+                        {% if object.img %}
+                        <strong style='font-style: italic;'>
+                              <img src="{{object.img.url}}"
+                              class="rounded-circle"
+                              style="border: solid 4px rgb(52, 52, 52);"
+                              width="40" height="40" alt="">  Galeria  {{object.name}}
+                        </strong>
+                        {% endif %}
+                 </div>
+                  {% for moment in moments %}
+                        {% for m in moment.img_moments.all  %}
+                              {% if m.img %}
+                                    <img src="{{m.img.url}}" style='max-width: 330px;'
+                              class='w-100 object-fit-contain rounded-5' alt="Ups!">
+                              {% endif %}
+                        {% endfor %}
+                  {% endfor %}
+            </div>
+      </section>
 
 {% endblock  %}

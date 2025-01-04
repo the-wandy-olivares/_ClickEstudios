@@ -11,7 +11,7 @@
 
 
       
-      <section class='d-flex flex-wrap overflow-auto'>
+      <section class='d-flex flex-wrap overflow-auto align-content-start '>
             <div data-aos="fade-left" style="transition-delay: 0.7s; max-height: 2rem;" class='w-100 d-flex justify-content-end' >
                   <a href="{% url "estudios:service-create" %}">
                         <button class="bg-white bg-opacity-10 rounded-5 p-2 pe-3 ps-3 text-white border-0 rounded-3 p-2" style='font-weight: bold;'>
@@ -22,16 +22,18 @@
                   </a>
             </div> 
       
-            <div data-aos='fade-in' class="d-flex flex-wrap w-100 justify-content-center"
+            <div data-aos='fade-in' class="d-flex flex-wrap w-100 justify-content-start"
             style='transition-duration: 1s;'>
                   {% if services %}
                         {% for s in services %}
                               <a href="{% url "estudios:service-update" s.id %}" class="col-12 col-md-6 col-lg-3 mb-4" style=' width: 420px;'>
                                     <div class=" " >
                                           <div class="card-img-top w" style="
+                                          background-position: center;
                                                 {% if s.img %}
                                                       background-image: url('{{s.img.url}}');
                                                 {% endif %}
+                                                
                                                 background-size: cover; background-repeat: no-repeat; 
                                                 filter: brightness(80%);
                                                 height: 220px; border-radius: 3rem;">

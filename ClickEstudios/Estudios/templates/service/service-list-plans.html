@@ -8,7 +8,7 @@
                   background-image: url("{{p.img_back.url}}"); 
             {% endif %}
 
-            background-size: cover; background-repeat: no-repeat; width: 320px; height: 430px; border-radius: 2.6rem;'>
+            background-size: cover; background-repeat: no-repeat; min-width: 320px; width: 320px; height: 430px; border-radius: 2.6rem;'>
                   <div style='
                         -webkit-backdrop-filter: blur(40px) !important;
                         backdrop-filter: blur(40px) !important;' class='h-100 w-100 bg-black bg-opacity-50 m-0 p-3 pt-2'>
@@ -16,7 +16,7 @@
                               {% if p.img %}
                                     <img src="{{p.img.url}}" alt="No se puede cargar la imagen" 
                                           style="width: 95px; height: 95px; border-radius: 2rem;
-                                          border: 8px solid #00000034;" class="rounded-circle me-3">
+                                          border: 8px solid #00000034;" class="rounded-circle object-fit-cover me-3">
                               {% endif %}
                               <span>
                                     <strong class="text-white  p-3 ps-3 pe-3 rounded-5" style="font-size: 13px;">

@@ -1,5 +1,6 @@
 {% extends "base/base.html" %}
 {% block content %}
+{% load humanize %}
       <style>
             .nav .plans {
                   color: #ffc107;
@@ -15,12 +16,12 @@
                               <button class="bg-white bg-opacity-10 rounded-5 p-2 pe-3 ps-3 text-white border-0 rounded-3 p-2 me-4" style='font-weight: bold;'>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
                                           <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
-                                        </svg> Plan
+                                        </svg> Plan 
                               </button>
                         </a>
                   </div> 
 
-                  <div style='transition-duration: 1s;' class="d-flex flex-wrap justify-content-center w-100 align-content-start  ">
+                  <div style='transition-duration: 1s;' class="d-flex flex-wrap justify-content-start w-100 align-content-start  ">
                         {% if plans %}
                               {% for p in  plans %}
                               <div style='width: 420px;' class=" position-relative col-12 col-md-6 col-lg-3 mb-4">
@@ -35,18 +36,20 @@
                                                  height: 220px; border-radius: 3rem;">
                                                 </div>
 
-                                          <h5 
-                                          style='font-size: 14px; ' class='text-white'>{{p.name}}</h5>
+                                          <h5 style='font-size: 16px; font-weight: bold; ' class='text-white'>{{p.name}}</h5>
+                                          <span class="text-white" style="font-size: 14px;">
+                                               ${{p.price|intcomma}}.00
+                                          </span>
                                           <div class='d-flex w-100 justify-content-start-0 p-0'>
                                                 <a href="{% url "estudios:plan-detail" p.id %}" 
-                                                class='btn text-white border-1 bg-white bg-opacity-10 rounded-4 pe-3 ps-3'
-                                                style='border: solid 1pxrgb(44, 44, 44);'>
+                                                class='btn text-white border-1 bg-white bg-opacity-10 rounded-4 pe-3 ps-3 m-0'
+                                                style='border: solid 1pxrgb(44, 44, 44); ' >
                                                       <span>
-                                                            Gestionar caracteristicas
+                                                            Caracteristicas
                                                       </span>
                                                 </a> 
                                                 <a href="{% url "estudios:plan-update" p.id %}" class="btn text-white ms-3" style='font-weight: bold;'>
-                                                      Editar plan
+                                                      Modificar
                                                 </a>
                                           </div>
                                           <a href="{% url "estudios:plan-delete" p.id %}"  class='position-absolute top-0  end-0 text-white text-decoration-none'>

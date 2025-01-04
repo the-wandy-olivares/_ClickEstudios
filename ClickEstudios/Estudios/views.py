@@ -55,6 +55,7 @@ class ServiceDetail(DetailView):
         def get_context_data(self, **kwargs):
                 context = super().get_context_data(**kwargs)
                 context['plans'] = models.Plan.objects.filter(service=self.object)
+                context['moments'] = models.Moment.objects.filter(service=self.object)
                 return context
 
 
@@ -67,6 +68,7 @@ class ServiceClientSelect(DetailView):
         def get_context_data(self, **kwargs):
                 context = super().get_context_data(**kwargs)
                 context['plans'] = models.Plan.objects.filter(service=self.object)
+                context['moments'] = models.Moment.objects.filter(service=self.object)
                 return context
 
 

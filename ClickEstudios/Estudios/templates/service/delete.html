@@ -12,9 +12,43 @@
       <div class="d-flex justify-content-center align-items-center w-100 h-100">
             <form method="post">
                   {% csrf_token %}
-                  <p class='text-white'>¿Estás seguro de que deseas eliminar este servicio?</p>
-                  <a href="{% url "estudios:service" %}" class="btn btn-secondary">Cancelar</a>
-                  <button type="submit" class="btn btn-danger">Eliminar</button>
+                  {% csrf_token %}
+                  <div>
+                        <div class="card-img-top " style="
+                              {% if object.img %}
+                                    background-image: url('{{object.img.url}}');
+                              {% endif %}
+                              background-size: cover; background-repeat: no-repeat; 
+                              filter: brightness(80%);
+                              max-width: 30rem;
+                              height: 220px; border-radius: 3rem;">
+                        </div>
+                  </div>
+                  <h5 class='text-white'>¿Estás seguro de que deseas eliminar {{object.name}}?</h5>
+                  <div class="mt-2">
+                        {% if object.planes.all %}
+                        <div style='height: 5.7rem;' class='overflow-auto  text-white'>   
+                                    <span>
+                                          Se eliminarán las siguientes planes asociados al este servicio
+                                    </span>
+                                     {% for p in  object.planes.all %}
+                                        <li class="text-white-50" style="font-size: 14px; list-style:circle;">
+                                                {{p.name|truncatechars:32}} 
+                                        </li>
+                                     {% endfor %}
+                                    </div>
+                        {% endif %}
+                  </div>
+              
+                  <div class="d-flex justify-content-end">
+                        <a href="{% url "estudios:service" %}" class="btn border-0 btn-secondary accordion bg-transparent" style="font-weight: bold;"> Cancelar</a>
+                        <button type="submit" class="btn btn-danger p-0 border-0 rounded-circle ms-1"
+                        style="height: 40px; width: 40px;">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
+                                    <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
+                                  </svg>
+                        </button>
+                  </div>
             </form>      
       </div>
 
