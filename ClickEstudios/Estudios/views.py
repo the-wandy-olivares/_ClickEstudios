@@ -984,13 +984,20 @@ class Home(TemplateView):
                     return models.ImgMoment.objects.get(id=list_img[element])
                 
                 # Asignar las imágenes a los contextos
-                context['img1'] = get_img_random(0)
-                context['img2'] = get_img_random(1)
-                context['img3'] = get_img_random(2) 
-                context['img4'] = get_img_random(3) 
-                context['img5'] = get_img_random(4)
-                context['img6'] = get_img_random(5)
-                context['img7'] = get_img_random(6)
+                if len(list_img) > 0:
+                    context['img1'] = get_img_random(0)
+                if len(list_img) > 1:
+                    context['img2'] = get_img_random(1)
+                if len(list_img) > 2:
+                    context['img3'] = get_img_random(2)
+                if len(list_img) > 3:
+                    context['img4'] = get_img_random(3)
+                if len(list_img) > 4:
+                    context['img5'] = get_img_random(4)
+                if len(list_img) > 5:
+                    context['img6'] = get_img_random(5)
+                if len(list_img) > 6:
+                    context['img7'] = get_img_random(6)
         
         return context
     
