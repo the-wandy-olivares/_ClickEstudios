@@ -2,8 +2,9 @@
 {% for p in  plans %}
 
 
-      <a href="{% url "estudios:plan-update" p.id %}">
-            <div class='p-0 d-flex overflow-hidden' style='
+
+            <div data-aos="fade-in"  class='p-0 d-flex overflow-hidden text-white' style='
+            transition-delay: 0.{{ forloop.counter }}s !important;
             {% if p.img_back %}
                   background-image: url("{{p.img_back.url}}"); 
             {% endif %}
@@ -30,7 +31,7 @@
                                 {{ p.name|truncatechars:31 }}
                         </h5>
                         {% if p.price %}
-                               ${{p.price|intcomma}}.00
+                               ${{p.price|intcomma}}.00 
                         {% endif %}
                         <span class="d-flex mt-3">
                               {% if p.likes %}
@@ -66,5 +67,5 @@
                          </div>
                   </div>
             </div>
-      </a>
+
 {% endfor %}

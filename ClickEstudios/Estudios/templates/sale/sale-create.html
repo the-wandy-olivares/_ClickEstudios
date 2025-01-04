@@ -1,27 +1,48 @@
 {% extends "base/base.html" %}
 {% block content %}
       <style>
-
+            #id_name_client
+            {
+                  background-color: rgb(50, 50, 50);
+                  border: 0;
+                  color: white;
+                  height: 3.3rem;
+                  border-radius: 2rem;
+            }
+            #id_name_client::placeholder {
+                  color: white;
+            }
       </style>
-      <section class='overflow-auto '>
+      <section class='overflow-auto d-flex justify-content-center align-content-center w-100 vh-100 flex-wrap '>
             <form action="" method="post">
+                  <section class="d-flex w-100
+                  ">
+                        
+                        <div class="w-50 justify-content-end d-flex"> 
+                              {% csrf_token %}
+                              {% include "plan/plan-select.html" %}
+      
+                        </div>
+                       <div class="d-flex w-75 flex-wrap align-content-start">
+                              <div class="w-100 text-white">
+                                    <h6>
+                                          Comprando en este momento
+                                    </h6>
+                                    <p style="width: 40rem;" class="text-white-50">
+                                          En este momento estas comprando el estudio de {{plan.name}}, por favor ingresa tu nombre para continuar, no hay reserva en esta seccion, luego de ingresar tu nombre podras continuar con el estudio.
+                                    </p>
+                              </div>
+                              <div style="min-width: 400px; max-width: 400px; border: 0px solid rgb(47, 47, 47); border-radius: 3rem; cursor: pointer;" class=' text-white m-2 input-user shadow-sm'>
+                                    {{form.name_client}}
+                                    <button id="submit_button" class="d-none mt-2 btn text-black btn-warning
+                                    rounded-5" style="font-weight: bold; width: 8rem;">
+                                          Ir al estudio
+                                    </button>
+                              </div>
+                       </div>
+                  </section>
+
                   
-                  {% csrf_token %}
-            <div style="min-width: 520px; max-width: 520px; border: 6px solid rgb(47, 47, 47); border-radius: 3rem; cursor: pointer;" class=' text-white m-2 input-user shadow-sm'>
-                        {{form.name_client}}
-                        {{form.phone_client}}
-                        {{form.email_client}}
-                  </div>
-                  <label for="contact_preference" class="text-white">Preferencia de contacto:</label>
-                  <select id="contact_preference" name="contact_preference" onchange="toggleContactFields()">
-                        <option value="none">Ninguno</option>
-                        <option value="email">Correo</option>
-                        <option value="phone">Numero</option>
-                        <option value="both">Ambos</option>
-                  </select>
-                    <div>
-                              <button id="submit_button" class="d-none">Enviar</button>
-                    </div>
             </form>
             <script>
                     function toggleContactFields() {

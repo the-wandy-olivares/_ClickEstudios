@@ -360,6 +360,7 @@ class SaleCreate(CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['plan'] =  models.Plan.objects.get(pk= self.kwargs.get('pk'))
         return context
 
     def form_valid(self, form):
@@ -371,18 +372,21 @@ class SaleCreate(CreateView):
             form.instance.img = plan.img
             form.instance.description_plan = plan.description
             form.instance.price_plan = plan.price
+            form.instance.finaliz = True
+            form.instance.payment = True
+            form.instance.is_reserve = False
 
         # Guarda el objeto y redirige al éxito
         self.object = form.save()
-        return redirect(self.get_success_url())
+        return redirect(self.get_success_url(self.object))
 
     def form_invalid(self, form):
         print(form.errors)
         return self.render_to_response(self.get_context_data(form=form))
 
-    def get_success_url(self):
+    def get_success_url(self, sale):
         # Retorna la URL a la que redirigirá después de un submit exitoso
-        return reverse_lazy('estudios:pos')
+        return reverse_lazy('estudios:estudios' , kwargs={'pk': sale.pk})
 
 
 class SaleUpdate(UpdateView):
