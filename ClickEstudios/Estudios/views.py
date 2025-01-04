@@ -1049,15 +1049,18 @@ class FastSale(TemplateView):
                 description= request.POST.get('name') + (request.POST.get('descripcion') if request.POST.get('description') else ' ' ),
             )
             i.save()
+
+
+
             sale = models.Sale(
                 name_plan=i.description,
                 price_plan=i.mount,
                 payment=True,
-                finalize=True
             )
+
             sale.save()
               
-            return redirect(self.get_success_url(sale.id))
+        return redirect(self.get_success_url(sale.id))
 
     def get_success_url(self, move):
         return reverse_lazy('estudios:factura', kwargs={'pk': move})    
@@ -1069,7 +1072,7 @@ class Factura(TemplateView):
         def get_context_data(self, **kwargs):
             context = super().get_context_data(**kwargs)
             sale = models.Sale.objects.get(id=self.kwargs.get('pk'))
-            context['sale'] = sale
+
             context['ncf'] =utils.GetNCF(sale.sale_type)
             sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
             sale_itebis = sale.price_plan * 0.18
@@ -1108,10 +1111,22 @@ class Factura(TemplateView):
                 else:
                     sale.discount = True
                     print(sale.discount)
-                sale.save()
+
             
             if request.POST.get('invoice_type'):
-                sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
                 sale.sale_type = request.POST.get('invoice_type')
-                sale.save()
+
+
+
+            # Finalizar venta
+            if request.POST.get('end'):
+                if sale.sale_type == 'credito':
+                    sale.credito_fiscal = utils.GetNCF('credito')
+                    print(sale.credito_fiscal, sale.sale_type, utils.GetNCF('credito'))
+                if sale.sale_type == 'consumidor':
+                    sale.credito_fiscal = utils.GetNCF('consumidor')
+                    print(sale.credito_fiscal, sale.sale_type, utils.GetNCF('credito'))
+                sale.finalize = True
+
+            sale.save()
             return self.render_to_response(self.get_context_data())

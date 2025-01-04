@@ -221,38 +221,41 @@
                         </form>
                   </div>
                   <div>
+                    {% if sale.finalize == False%}
                         <form action="" method="post" style='width: 10rem;'>
                                     {% csrf_token %}
-                              <select name="invoice_type" id="invoice_type" class="form-select bg-black text-white rounded-5 border-0 p-1" onchange="this.form.submit()">
-                                    <option value="credito" {% if sale.sale_type == 'credito' %}selected{% endif %}>(Credito fiscal) </option>
-                                    <option value="consumidor" {% if sale.sale_type == 'consumidor' %}selected{% endif %}> (Consumidor final) </option>
-                              </select>
+                                    <select name="invoice_type" id="invoice_type" class="form-select bg-black text-white rounded-5 border-0 p-1" onchange="this.form.submit()">
+                                        <option value="credito" {% if sale.sale_type == 'credito' %}selected{% endif %}>(Credito fiscal) </option>
+                                        <option value="consumidor" {% if sale.sale_type == 'consumidor' %}selected{% endif %}> (Consumidor final) </option>
+                                  </select>
                         </form>
                   </div>
                 
-                  <div>
-      
-                        <button onclick="PrintInvoice()" class=' rounded-5 p-1 pe-3 ps-3 bg-white bg-opacity-10 text-white border-0'
-                              style="font-weight: bold;">
-                              Impirmir 
-                        </button>
-                        <a href="{% url "estudios:pos" %}">
 
-                            <button class=' border-0 p-2 rounded-5 text-white pe-3 ps-3 bg-danger'
-                            style="font-weight: bold;"> 
-                            Volver a POS
-                      </button>
-                        </a>
-                  </div>
-                  {% if sale.finalize == False%}
+          
                         <form action="" method="post" class=' d-flex flex-wrap justify-content-center align-content-center'>
                               {% csrf_token %}
                               <input type="hidden" name="end" value="true" class=''>
                               <button class=' border-0 p-1 rounded-5 text-white pe-3 ps-3 bg-danger'
                               style="font-weight: bold;"> 
-                              Concuir cita
+                              Concuir venta
                         </button>
                   </form>
+                  {% else %}
+                  <div>
+      
+                    <button onclick="PrintInvoice()" class=' rounded-5 p-1 pe-3 ps-3 bg-white bg-opacity-10 text-white border-0'
+                          style="font-weight: bold;">
+                          Impirmir 
+                    </button>
+                    <a href="{% url "estudios:pos" %}">
+
+                        <button class=' border-0 p-2 rounded-5 text-white pe-3 ps-3 bg-primary'
+                        style="font-weight: bold;"> 
+                        Volver a POS
+                  </button>
+                    </a>
+              </div>
                   {% endif %}
                   {% else %}
                   <div class='d-flex justify-content-end'>
