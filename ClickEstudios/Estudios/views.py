@@ -1035,24 +1035,74 @@ class FastSale(TemplateView):
             i =   models.Movements.objects.create(
                 user=request.user,
                 box=models.Box.objects.get(open=True),
-                mount= request.POST.get('preci'),
+                mount= int(request.POST.get('preci').replace(',', '')),
                 type='ingreso',
-                description= request.POST.get('name') + (request.POST.get('description') if request.POST.get('description') else ' - Venta rápida' ),
+                description= request.POST.get('name') + (request.POST.get('descripcion') if request.POST.get('description') else ' ' ),
             )
             i.save()
+            sale = models.Sale(
+                name_plan=i.description,
+                price_plan=i.mount,
+                payment=True,
+                finalize=True
+            )
+            sale.save()
               
-            return redirect(self.get_success_url(i.id))
+            return redirect(self.get_success_url(sale.id))
 
     def get_success_url(self, move):
         return reverse_lazy('estudios:factura', kwargs={'pk': move})    
     
 
 class Factura(TemplateView):
-    template_name = 'factura/factura.html'
+        template_name = 'factura/factura.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        sale = models.Sale.objects.latest('id')
-        context['factura'] = models.Movements.objects.get(id=self.kwargs.get('pk'))
-        context['ncf'] =utils.GetNCF(sale.sale_type)
-        return context
+        def get_context_data(self, **kwargs):
+            context = super().get_context_data(**kwargs)
+            sale = models.Sale.objects.get(id=self.kwargs.get('pk'))
+            context['sale'] = sale
+            context['ncf'] =utils.GetNCF(sale.sale_type)
+            sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
+            sale_itebis = sale.price_plan * 0.18
+            total = sale.price_plan 
+            if sale.sale_adicionales.all():
+                for adicional in sale.sale_adicionales.all():
+                    total += adicional.price
+
+
+                
+
+            total_itebis = total * 0.18
+            context['total_itebis'] = total_itebis
+            context['sale'] = sale
+            if sale.discount:
+                context['total_con_i'] = total 
+            else:
+                context['total_con_i'] = total + total_itebis
+
+            context['total_sin'] = total
+            context['total'] = total + total_itebis
+            context['total_adicionales'] = total - sale.price_plan
+            context['adicionales'] = sale.sale_adicionales.all()
+            context['sale_itebis'] = sale_itebis
+            context['sale_price_unitario'] = sale.price_plan + sale_itebis
+            context['ncf'] =utils.GetNCF(sale.sale_type)
+            return context
+
+
+        def post(self, request, *args, **kwargs):
+            sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
+            if request.POST.get('discount'):
+                if sale.discount:
+                    sale.discount = False
+                    print(sale.discount)
+                else:
+                    sale.discount = True
+                    print(sale.discount)
+                sale.save()
+            
+            if request.POST.get('invoice_type'):
+                sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
+                sale.sale_type = request.POST.get('invoice_type')
+                sale.save()
+            return self.render_to_response(self.get_context_data())

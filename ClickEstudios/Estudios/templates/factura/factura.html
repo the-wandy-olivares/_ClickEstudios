@@ -1,362 +1,334 @@
 {% extends "base/base.html" %}
 {% block content %}
 
-      <section class=' d-flex align-content-center flex-wrap'>
-            {% load humanize %} {% load static %}
-            <style>
-                .invoice   * {
-                    margin: 0;
-                    padding: 0;
-                    box-sizing: border-box;
-                    font-family: Arial, sans-serif;
-                }
-            
-                  .invoice {
-                    background: #ffffff;
-                    width: 800px;
-                    padding: 20px;
-                    border-radius: 20px;
-                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-                    color: black;
-                }
-                .invoice   .header, .footer {
-                    text-align: center;
-                    margin-bottom: 20px;
-                }
-                .invoice  .header img {
-                    max-width: 200px;
-                    /* margin-bottom: 10px; */
-                }
-                .invoice  .details {
-                    margin-bottom: 20px;
-                }
-                .invoice  .details p {
-                    font-size: 14px;
-                    margin-bottom: 5px;
-                }
-                .invoice  .table-container {
-                    margin-bottom: 20px;
-                }
-                .invoice    table {
-                    width: 100%;
-                    border-collapse: collapse;
-                }
-                .invoice  table th, table td {
-                    text-align: left;
-                    border: 1px solid #f0f0f0;
-                    padding: 10px;
-                    font-size: 14px;
-                }
-                .invoice  table th {
-                    background: #f0f0f0;
-                    font-weight: bold;
-                }
-                .invoice  .observations {
-                    margin-bottom: 20px;
-                }
-                .invoice  .observations textarea {
-                    width: 100%;
-                    padding: 10px;
-                    border: 1px solid #e7e7e7;
-                    background-color: #f0f0f0;
-                    border-radius: 1rem;
-                    font-size: 14px;
-                    resize: none;
-                }
-                .invoice .totals {
-                    text-align: right;
-                }
-                .invoice .totals p {
-                    font-size: 14px;
-                    margin-bottom: 5px;
-                }
-                .invoice .totals p span {
-                    font-weight: bold;
-                }
-            </style>
-            <div class="invoice">
-                <div class="header  d-flex  m-0 p-0 position-relative" style="height: 9rem;">
-                        {% comment %} {% if company.logo.url %} {% endcomment %}
-                            <img src=""   class="img2-estudios object-fit-cover position-absolute   start-0"  width="150"  alt="Click Estudios">
-                        {% comment %} {% endif %} {% endcomment %}
-                </div>
-            
-                <!-- Encabezado -->
-                <div class="details d-flex flex-wrap m-0 mb-2 " style="margin-top: 0rem !important;">
-            
-                        <p class="w-100" style="font-size: 14px !important;">
-                            <strong>RNC:</strong> 133-22445-3
-                        </p>
-                        <p class="w-100" style="font-size: 14px !important;">
-                            <strong>Fecha:</strong>  <span class="date text-black"></span> 
-                        </p>
-                        {% comment %} <p class="w-100" style="font-size: 14px !important;">
-                                <strong class="text-capitalize">Cliente:</strong> 
-                                    <span class='text-capitalize'> {{ sale.name_client }} </span>
-                        </p> {% endcomment %}
-                        {% if sale.type_sale_ncf == True %}
-                            <p class="w-100" style="font-size: 14px !important;">
-                                    <strong>RNC cliente:</strong> 131-24041-2
-                            </p>
-                        {% endif %}
-                        <p class="w-100" style="font-size: 14px !important;">
-                            <strong>NCF: </strong> 
-                            {{ncf}} 
-                        </p>
-                        {% if sale.type_sale_ncf == True %}
-                            <p class="w-100" style="font-size: 14px !important;">
-                                    <strong>NCF válido hasta:</strong> 31/12/2026
-                            </p>
-                        {% endif %}
-                        <p class="w-100" style="font-size: 14px !important;">
-                            <strong>Factura ID:</strong> CL-{{sale.id}}
-                        </p>
-                </div>
-                
-                <div class="w-100 text-center credito-fiscal ">
-                        <hr class='m-0 p-0 mb-1 '>
-                        <p  style="font-size: 14px !important;" class='p-0 m-0'> 
-                              Válido para
-                              {% if sale.sale_type == 'consumidor'  %}
-                              consumidor final
-                              {% else %}
-                              crédito fiscal 
-                              {% endif %}
-                        </p>
-                        <hr class='m-0 p-0 mb-4 mt-1'>
-                    </div>
-            
-                <!-- Tabla de productos -->
-                  <div class="table-container"  style="font-size: 14px !important;">
-                      <table>
-                            <thead>
-                              <tr>
-                                  <th style="font-size: 14px !important;">CANTIDAD</th>
-                                  <th style="font-size: 14px !important;">DESCRIPCIÓN</th>
-                                  <th style="font-size: 14px !important;">PRECIO UNITARIO</th>
-                                  <th style="font-size: 14px !important;">ITBIS</th>
-                                  <th style="font-size: 14px !important;">TOTAL</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                            <input type="number"  class="d-none" style="display: none;"  value="{{sale.plan.price}}" id="plan-price">
-                            <input type="number"  class="d-none" style="display: none;" value="{{sale.itbis}}"  id="itbis">
-                            <tr>
-                                  <td>1</td>
-                                  <td> {{factura.description}} - {{sale.description_plan}} </td>
-                                  <td class='price-unitario'> ${{sale_price_unitario}}</td>
-                                  <td class="ITIBIS"> ${{sale_itebis}} </td>
-                                  <td class="TOTAL">${{factura.mount|intcomma}}.00 </td>
-                            </tr>
-                            {% if adicionales %}
-                                    {% for option in adicionales %}
-                                        <tr>
-                                            <td>1</td>
-                                            <td class='text-capitalize'>{{ option.name }} - {{ option.description }}</td>
-                                            <td class='option-price'></td>
-                                            <td class='option-itibis' data-price="{{ option.price }}">{{ option.sale.itbis }}%</td> 
-                                            <td class='option-total' data-price="{{ option.price }}">
-                                                    ${{ option.price|floatformat:2|intcomma }}
-                                            </td> 
-                                        </tr>
-                                    {% endfor %}
-                            {% endif %}
-                          </tbody>
-                      </table>
-                  </div>
-                  <div class="observations w-100">
-                      <p class="m-0"><strong style="font-size: 13px;">Observaciones</strong></p>
-                      <textarea rows="9"  placeholder="Escribe tus observaciones aquí… ¡Queremos escucharte!"></textarea>
-                  </div>
-                  <div class="totals d-flex justify-content-end" >
-                        <table style="border-collapse: collapse; width: 12rem; font-family: Arial, sans-serif;">
-                              <tbody>
-                                  <tr>
-                                      <td style="padding: 8px; font-weight: bold; color: black;">Neto</td>
-                                      <td style="padding: 8px; text-align: right;" class="NETsO" > ${{total|intcomma}} </td>
-                                  </tr>
-                                  <tr>
-                                      <td style="padding: 8px; font-weight: bold; color: black;">ITBIS</td>
-                                      <td style="padding: 8px; text-align: right; " class="ITIBIS_NETOz">${{total_itebis|intcomma}}</td>
-                                  </tr>
-                                  <tr>
-                                      <td style="padding: 8px; font-weight: bold; color: black;">Total</td>
-                                      <td style="padding: 8px; text-align: right;" class="TOTAL_NETOz">${{total_con_i|intcomma}}.00</td>
-                                  </tr>
-                              </tbody>
-                          </table>
-                  </div>
-              </div>
-              <div class='align-content-end'>
-                  <button onclick="PrintInvoice()" class='show-button rounded-5 p-2 pe-3 ps-3 bg-warning text-black border-0'
-                  style="font-weight: bold; height: 2.5rem;">
-                  Impirmir 
-            </button>
-              </div>
-            
-              <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                      let itibis = 0
-            
-                    const optionTotals = document.querySelectorAll('.option-total');
-                    const planPrice = parseInt(document.querySelector('#plan-price').value) || 0;
-                    
-                    const itbis_2 = parseInt(document.querySelector('#itbis').value) || 0;
-                    const itbisAmount_32s = (planPrice * itbis_2) / 100;
-            
-                    
-                  // Calcular el porcentaje del ITBIS sobre el precio del plan
-                    optionTotals.forEach(function(optionTotal) {
-                        const price = parseFloat(optionTotal.getAttribute('data-price'));
-                        const discountedPrice = price - (price * 0.18);
-            
-                        const itbisAmount = price * 0.18;
-                        itibis += itbisAmount;
-                        optionTotal.previousElementSibling.innerHTML = '$' + itbisAmount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-            
-                        optionTotal.previousElementSibling.previousElementSibling.innerHTML = '$' + discountedPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-                  });
-                  let total = itbisAmount_32s + itibis;
-                  document.querySelector('.ITIBIS_NETO').innerHTML = '$' +  total.toLocaleString('en-US'); 
-                });
-            
-            
-                // Fecha actual
-                const dateElement = document.querySelector('.date');
-                const currentDate = new Date();
-                const formattedDate = `${currentDate.getDate()}/${String(currentDate.getMonth() + 1).padStart(2, '0')}/${currentDate.getFullYear()}`;
-                dateElement.textContent = formattedDate;
-            
-            
-                document.addEventListener('DOMContentLoaded', function() {
-                        Estudios_Factura();
-                });
-            
-                  let Estudios_Factura = () => {
-                        $.ajax({
-                            url: '/ajax/get-estudios/',
-                            method: 'GET',
-                            success: function(D) {
-                              document.querySelector('.img2-estudios').src = D.img2;
-                            },
-                        });
-                    };
-            
-            
-            </script>
-      </section>
-      <script>
-            function PrintInvoice() {
-                        const invoice = document.querySelector('.invoice').innerHTML; // Obtener el contenido del div
-                        const newWindow = window.open('', '_blank'); // Abrir nueva ventana
-                        newWindow.document.open();
-                        newWindow.document.write(`
-                            <html>
-                                <head>
-                                    <title>Imprimir Factura</title>
-                                    <style>
-                                        /* Agrega aquí tus estilos para la impresión */
-                                        * {
-                              margin: 0;
-                              padding: 0;
-                              box-sizing: border-box;
-                              font-family: Arial, sans-serif;
-                          }
-                    
-                          .invoice {
-                              background: #ffffff;
-                              width: 800px;
-                              padding: 20px;
-                              border-radius: 20px;
-                              box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-                              color: black;
-                          }
-                          .header, .footer {
-                              text-align: start;
-                              margin-bottom: 20px;
-                          }
-                          .header img {
-                              max-width: 200px;
-                              /* margin-bottom: 10px; */
-                          }
-                          .details {
-                              margin-bottom: 20px;
-                          }
-                          .details p {
-                              font-size: 14px;
-                              margin-bottom: 5px;
-                          }
-                          .table-container {
-                              margin-bottom: 20px;
-                          }
-                          table {
-                              width: 100%;
-                              border-collapse: collapse;
-                          }
-                          table th, table td {
-                              text-align: left;
-                              border: 1px solid #f0f0f0;
-                              padding: 10px;
-                              font-size: 14px;
-                          }
-                          table th {
-                              background: #f0f0f0;
-                              font-weight: bold;
-                          }
-                          .observations {
-                              margin-bottom: 20px;
-                          }
-                          .observations textarea {
-                              width: 100%;
-                              padding: 10px;
-                              border: 1px solid #e7e7e7;
-                              background-color: #f0f0f0;
-                              border-radius: 1rem;
-                              font-size: 14px;
-                              resize: none;  
-                              s
-                          }
-                          .totals {
-                                      width: 100%; display: flex;
-                                      justify-content-end: end;
-                              }
-                          .totals {
-                              text-align: right;
-                          }
-                          .totals p {
-                              font-size: 14px;
-                              margin-bottom: 5px;
-                          }
-                          .totals p span {
-                              font-weight: bold;
-                          }
-                    
-                          .credito-fiscal 
-                          {
-                                      text-align: center;
-                                      margin-bottom: 1rem;
-                                      padding 0.5rem;
-                             
-                          }
-                    
-                            .credito-fiscal  hr 
-                            {
-                                               color: #f0f0f0;
-                            }
-                    
-                    
-                                    </style>
-                                </head>
-                                <body>
-                                    ${invoice}
-                                </body>
-                            </html>
-                        `);
-                        newWindow.document.close();
-                        newWindow.print(); // Iniciar el diálogo de impresión
-                        newWindow.close(); // Cerrar la ventana tras imprimir
-                    }
-                    
-            </script>
+{% load humanize %} {% load static %}
+<style>
+    .invoice   * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
 
+      .invoice {
+        background: #ffffff;
+        width: 800px;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        color: black;
+    }
+    .invoice   .header, .footer {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .invoice  .header img {
+        max-width: 200px;
+        /* margin-bottom: 10px; */
+    }
+    .invoice  .details {
+        margin-bottom: 20px;
+    }
+    .invoice  .details p {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+    .invoice  .table-container {
+        margin-bottom: 20px;
+    }
+    .invoice    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .invoice  table th, table td {
+        text-align: left;
+        border: 1px solid #f0f0f0;
+        padding: 10px;
+        font-size: 14px;
+    }
+    .invoice  table th {
+        background: #f0f0f0;
+        font-weight: bold;
+    }
+    .invoice  .observations {
+        margin-bottom: 20px;
+    }
+    .invoice  .observations textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #e7e7e7;
+        background-color: #f0f0f0;
+        border-radius: 1rem;
+        font-size: 14px;
+        resize: none;
+    }
+    .invoice .totals {
+        text-align: right;
+    }
+    .invoice .totals p {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+    .invoice .totals p span {
+        font-weight: bold;
+    }
+</style>
+
+<section class='d-flex  w-100 vh-100'>
+    <div class="invoice rounded-5 w-75">
+        <div class="header  d-flex  m-0 p-0 position-relative" style="height: 9rem;">
+                {% comment %} {% if company.logo.url %} {% endcomment %}
+                    <img src=""   class="img2-estudios object-fit-cover position-absolute   start-0"  width="150"  alt="Click Estudios">
+                {% comment %} {% endif %} {% endcomment %}
+        </div>
+    
+        <!-- Encabezado -->
+        <div class="details d-flex flex-wrap m-0 mb-2 " style="margin-top: 0rem !important;">
+    
+                <p class="w-100" style="font-size: 14px !important;">
+                    <strong>RNC:</strong> 133-22445-3
+                </p>
+                <p class="w-100" style="font-size: 14px !important;">
+                    <strong>Fecha:</strong>  <span class="date text-black"></span> 
+                </p>
+                {% comment %} <p class="w-100" style="font-size: 14px !important;">
+                        <strong class="text-capitalize">Cliente:</strong> 
+                            <span class='text-capitalize'> {{ sale.name_client }} </span>
+                </p> {% endcomment %}
+                {% if sale.type_sale_ncf == True %}
+                    <p class="w-100" style="font-size: 14px !important;">
+                            <strong>RNC cliente:</strong> 131-24041-2
+                    </p>
+                {% endif %}
+                <p class="w-100" style="font-size: 14px !important;">
+                    <strong>NCF: </strong> 
+                    {{ncf}} 
+                </p>
+                {% if sale.type_sale_ncf == True %}
+                    <p class="w-100" style="font-size: 14px !important;">
+                            <strong>NCF válido hasta:</strong> 31/12/2026
+                    </p>
+                {% endif %}
+                <p class="w-100" style="font-size: 14px !important;">
+                    <strong>Factura ID:</strong> CL-{{sale.id}}
+                </p>
+        </div>
+        
+        <div class="w-100 text-center credito-fiscal ">
+                <hr class='m-0 p-0 mb-1 '>
+                <p  style="font-size: 14px !important;" class='p-0 m-0'> 
+                      Válido para
+                      {% if sale.sale_type == 'consumidor'  %}
+                      consumidor final
+                      {% else %}
+                      crédito fiscal 
+                      {% endif %}
+                </p>
+                <hr class='m-0 p-0 mb-4 mt-1'>
+            </div>
+    
+        <!-- Tabla de productos -->
+          <div class="table-container"  style="font-size: 14px !important;">
+              <table>
+                    <thead>
+                      <tr>
+                          <th style="font-size: 14px !important;">CANTIDAD</th>
+                          <th style="font-size: 14px !important;">DESCRIPCIÓN</th>
+                          <th style="font-size: 14px !important;">PRECIO UNITARIO</th>
+                          <th style="font-size: 14px !important;">ITBIS</th>
+                          <th style="font-size: 14px !important;">TOTAL</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <input type="number"  class="d-none" style="display: none;"  value="{{sale.plan.price}}" id="plan-price">
+                    <input type="number"  class="d-none" style="display: none;" value="{{sale.itbis}}"  id="itbis">
+                    <tr>
+                          <td>1</td>
+                          <td> {{sale.name_plan|truncatechars:20}}</td>
+                          <td class='price-unitario'>
+                              ${{sale.price_plan|intcomma}}.00 
+                              
+                            </td>
+                            <td class="ITIBIS"> ${{sale_itebis|intcomma}} </td>
+                            <td class="TOTAL">
+                                ${{sale_price_unitario|intcomma}}
+                            </td>
+                    </tr>
+                  </tbody>
+              </table>
+          </div>
+          <div class="observations w-100">
+              <p class="m-0"><strong style="font-size: 13px;">...</strong></p>
+              <textarea rows="9"  placeholder="Escribe tus observaciones aquí… ¡Queremos escucharte!"></textarea>
+          </div>
+          <div class="totals d-flex justify-content-end" >
+                <table style="border-collapse: collapse; width: 12rem; font-family: Arial, sans-serif;">
+                      <tbody>
+                          <tr>
+                              <td style="padding: 8px; font-weight: bold; color: black;">Neto</td>
+                              <td style="padding: 8px; text-align: right;" class="NETsO" > ${{total|intcomma}} </td> 
+                          </tr>
+                          <tr>
+                              <td style="padding: 8px; font-weight: bold; color: black;">ITBIS</td>
+                              <td style="padding: 8px; text-align: right; " class="ITIBIS_NETOz">${{total_itebis|intcomma}}</td>
+                          </tr>
+                          {% if sale.discount %}
+                          <tr>
+                            <td style="padding: 8px; font-weight: bold; color: black;">Descuento</td>
+                            <td style="padding: 8px; text-align: right;" class="TOTAL_NETOz">
+                               ${{total_itebis|intcomma}}</td>
+                          </tr>
+                          {% endif %}
+                          <tr>
+                              <td style="padding: 8px; font-weight: bold; color: black;">Total</td>
+                              <td style="padding: 8px; text-align: right;" class="TOTAL_NETOz">
+                                        ${{total_con_i|intcomma}}
+                            </td>
+                          </tr>
+                      </tbody>
+                  </table>
+          </div>
+        </div>
+
+    <footer class='pb-4 d-flex flex-wrap align-content-end   vh-100  w-50  bg-black' style="position: sticky; bottom: 0; width: 100%;  padding: 12px; text-align: center;" >
+            {% if sale.payment %}
+      
+           
+          
+                  <div>
+                        <p class='btn text-white p-1 m-0'>Total:     ${{total_con_i|intcomma}}.00</p>
+                  </div>
+                  <div>
+                        <form action="" method="post" style='width: 10rem;' class='p-1' 
+                        onchange="this.submit()">
+                                {% csrf_token %}
+      
+                                    <input type="checkbox" class='d-none' name="discount" id="discount" >
+                                <label for="discount" style='cursor: pointer;'>
+                                    {% if sale.discount %}
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-toggle-on text-primary" viewBox="0 0 16 16">
+                                          <path d="M5 3a5 5 0 0 0 0 10h6a5 5 0 0 0 0-10zm6 9a4 4 0 1 1 0-8 4 4 0 0 1 0 8"/>
+                                        </svg>
+                                        {% else %}
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-toggle-off text-white-50" viewBox="0 0 16 16">
+                                          <path d="M11 4a4 4 0 0 1 0 8H8a5 5 0 0 0 2-4 5 5 0 0 0-2-4zm-6 8a4 4 0 1 1 0-8 4 4 0 0 1 0 8M0 8a5 5 0 0 0 5 5h6a5 5 0 0 0 0-10H5a5 5 0 0 0-5 5"/>
+                                        </svg>
+                                    {% endif %}
+                                        <span class='text-white'>
+                                            Descuento {{sale.discount}}
+                                        </span> 
+                                     </label>
+                        </form>
+                  </div>
+                  <div>
+                        <form action="" method="post" style='width: 10rem;'>
+                                    {% csrf_token %}
+                              <select name="invoice_type" id="invoice_type" class="form-select bg-black text-white rounded-5 border-0 p-1" onchange="this.form.submit()">
+                                    <option value="credito" {% if sale.sale_type == 'credito' %}selected{% endif %}>(Credito fiscal) </option>
+                                    <option value="consumidor" {% if sale.sale_type == 'consumidor' %}selected{% endif %}> (Consumidor final) </option>
+                              </select>
+                        </form>
+                  </div>
+                
+                  <div>
+      
+                        <button onclick="PrintInvoice()" class=' rounded-5 p-1 pe-3 ps-3 bg-white bg-opacity-10 text-white border-0'
+                              style="font-weight: bold;">
+                              Impirmir 
+                        </button>
+                        <a href="{% url "estudios:pos" %}">
+
+                            <button class=' border-0 p-2 rounded-5 text-white pe-3 ps-3 bg-danger'
+                            style="font-weight: bold;"> 
+                            Volver a POS
+                      </button>
+                        </a>
+                  </div>
+                  {% if sale.finalize == False%}
+                        <form action="" method="post" class=' d-flex flex-wrap justify-content-center align-content-center'>
+                              {% csrf_token %}
+                              <input type="hidden" name="end" value="true" class=''>
+                              <button class=' border-0 p-1 rounded-5 text-white pe-3 ps-3 bg-danger'
+                              style="font-weight: bold;"> 
+                              Concuir cita
+                        </button>
+                  </form>
+                  {% endif %}
+                  {% else %}
+                  <div class='d-flex justify-content-end'>
+                        <a href="{% url "estudios:sale-reserver" sale.id %}">
+                              <button id='reserve-{{ sale.id }}' class="bg-white bg-opacity-10 text-white border-0 rounded-5 p-2 pe-3 ps-3" style="font-weight: bold;">
+                                     {% if sale.is_reserve == True %} Completar pago {% else %} Reservar  {% endif %}
+                              </button>
+                        </a>
+                  </div>
+      
+            {% endif %}
+    </footer>
+            <!-- Footer -->
+    
+</section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+            let itibis = 0; // Variable para acumular el ITBIS total
+        
+            const optionTotals = document.querySelectorAll('.option-total'); // Seleccionar todas las opciones
+            const planPrice = parseInt(document.querySelector('#plan-price').value) || 0;
+            const itbis_2 = parseInt(document.querySelector('#itbis').value) || 0;
+            const itbisAmount_32s = (planPrice * itbis_2) / 100; // Calcular ITBIS del plan
+        
+            // Iterar sobre cada opción
+            optionTotals.forEach(function(optionTotal) {
+                const price = parseFloat(optionTotal.getAttribute('data-price')); // Obtener el precio base
+                const itbisAmount = price * 0.18; // Calcular el ITBIS individual (18%)
+                itibis += itbisAmount; // Acumular ITBIS total
+        
+                // Actualizar la celda de la columna anterior con el ITBIS individual
+                optionTotal.previousElementSibling.innerHTML = '$' + itbisAmount.toLocaleString('en-US', { 
+                    minimumFractionDigits: 2, 
+                    maximumFractionDigits: 2 
+                });
+        
+                // Mostrar el precio total (precio base + ITBIS) en la columna actual
+                const totalWithItbis = price + itbisAmount;
+                optionTotal.innerHTML = '$' + totalWithItbis.toLocaleString('en-US', { 
+                    minimumFractionDigits: 2, 
+                    maximumFractionDigits: 2 
+                });
+            });
+        
+            // Calcular el total general incluyendo el ITBIS del plan
+            let total = itbisAmount_32s + itibis;
+            document.querySelector('.ITIBIS_NETO').innerHTML = '$' + total.toLocaleString('en-US', { 
+                minimumFractionDigits: 2, 
+                maximumFractionDigits: 2 
+            });
+        });
+
+
+    // Fecha actual
+    const dateElement = document.querySelector('.date');
+    const currentDate = new Date();
+    const formattedDate = `${currentDate.getDate()}/${String(currentDate.getMonth() + 1).padStart(2, '0')}/${currentDate.getFullYear()}`;
+    dateElement.textContent = formattedDate;
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+            Estudios_Factura();
+    });
+
+      let Estudios_Factura = () => {
+            $.ajax({
+                url: '/ajax/get-estudios/',
+                method: 'GET',
+                success: function(D) {
+                  document.querySelector('.img2-estudios').src = D.img2;
+                },
+            });
+        };
+
+
+</script>
 {% endblock  %}

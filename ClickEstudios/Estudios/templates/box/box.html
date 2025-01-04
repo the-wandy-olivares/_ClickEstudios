@@ -12,7 +12,7 @@
 
       <div class="   text-white overflow-auto d-flex flex-wrap align-content-start  w-100  rounded-5">
             {% if is_open %}
-            <div class="w-100 vh-100">
+            <div class="w-100 vh-100 overflow-auto">
                         <div class="">
                               {% include "box/components/filter.html" %}
                               {% include "box/components/table.html" %}
@@ -27,7 +27,7 @@
                         </div>
                         <div class="justify-content-end w-25 d-flex flex-wrap align-content-center">
                               <a href="{% url "estudios:box-create" %}" class=''> 
-                                    <button style="width: 6rem; font-weight: bold;" class='btn bg-danger rounded-5 text-white '
+                                    <button style="width: 6rem; font-weight: bold;" class='btn bg-white bg-opacity-10 rounded-5 text-white '
                                     >Cerrar </button>
                               </a>
                         </div>
