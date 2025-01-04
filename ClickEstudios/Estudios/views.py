@@ -566,7 +566,7 @@ class Estudios(TemplateView):
             if sale.sale_type == 'credito':
                 sale.credito_fiscal = utils.GetNCF('credito')
             else:
-                sale.credito_fiscal = utils.GetNCF('consumidor')
+                sale.cosumidor_final = utils.GetNCF('consumidor')
             sale.finalize = True
 
             if sale.sale_adicionales.all():
@@ -1144,17 +1144,15 @@ class Factura(TemplateView):
             
             if request.POST.get('invoice_type'):
                 sale.sale_type = request.POST.get('invoice_type')
-
+                
 
 
             # Finalizar venta
             if request.POST.get('end'):
                 if sale.sale_type == 'credito':
                     sale.credito_fiscal = utils.GetNCF('credito')
-                    print(sale.credito_fiscal, sale.sale_type, utils.GetNCF('credito'))
-                if sale.sale_type == 'consumidor':
-                    sale.credito_fiscal = utils.GetNCF('consumidor')
-                    print(sale.credito_fiscal, sale.sale_type, utils.GetNCF('credito'))
+                else:
+                    sale.cosumidor_final = utils.GetNCF('consumidor')
                 sale.finalize = True
 
             sale.save()

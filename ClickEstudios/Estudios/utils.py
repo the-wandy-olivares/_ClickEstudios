@@ -16,29 +16,27 @@ def Send_Mail(email, name, plan, date, time):
 
 
 def GetNCF(sale_type):
-        """
-        Genera el próximo NCF dependiendo del tipo de venta (credito o consumidor).
-        """
-        # Determinar el prefijo según el tipo de venta
-        if sale_type == 'credito':
-            last_nfc = models.Sale.objects.filter(sale_type='credito')
-            prefix = 'B01'  # NCF para crédito
-        else:
-            last_nfc = models.Sale.objects.filter(sale_type='consumidor')
-            prefix = 'B02'  # NCF 
+            """
+            Genera el próximo NCF dependiendo del tipo de venta (credito o consumidor).
+            """
+            # Determinar el prefijo según el tipo de venta
+            if sale_type == 'credito':
+                last_nfc = models.Sale.objects.filter(sale_type='credito').aggregate(Max('credito_fiscal'))
+                prefix = 'B01'  # NCF para crédito
+            else:
+                last_nfc = models.Sale.objects.filter(sale_type='consumidor').aggregate(Max('cosumidor_final'))
+                prefix = 'B02'  # NCF para consumidor
 
-        # Generar el siguiente número secuencial
-        if last_nfc.exists():
-            last_nfc_value = last_nfc.aggregate(Max('credito_fiscal'))['credito_fiscal__max']
+            # Obtener el último valor del NCF
+            last_nfc_value = last_nfc.get(f"{'credito_fiscal' if sale_type == 'credito' else 'cosumidor_final'}__max")
+
+            # Generar el siguiente número secuencial
             if last_nfc_value:
-                # Extraer la parte numérica (asegurándonos de que la secuencia tenga el formato adecuado)
-                sequence = int(last_nfc_value[3:])  # Extraemos la parte numérica, después de "B01" o "B02"
+                sequence = int(last_nfc_value[3:])  # Extraer parte numérica después del prefijo
                 next_sequence = sequence + 1
             else:
                 next_sequence = 1  # Si no hay registros, empezar desde 1
-        else:
-            next_sequence = 1  # Si no hay registros, empezar desde 1
 
-        # Formatear el NCF con el prefijo y la secuencia de 7 dígitos
-        new_nfc = f"{prefix}{next_sequence:07d}"  # 7 dígitos en total, incluyendo el prefijo
-        return new_nfc
+            # Formatear el NCF con el prefijo y la secuencia de 7 dígitos
+            new_nfc = f"{prefix}{next_sequence:07d}"  # Prefijo + número de 7 dígitos
+            return new_nfc
