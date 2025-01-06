@@ -9,24 +9,18 @@
       </style>
 
       <div data-aos='fade-in' class="d-flex justify-content-center align-items-center w-100 h-100">
-            <form method="post">
-                  {% csrf_token %}
-                  <div class="card-img-top rounded-circle " style="
-                  background-position: center;
-                  {% if object.img %}
-                        background-image: url('{{object.img.url}}');
-                  {% endif %}
-                  background-size: cover; background-repeat: no-repeat; 
-                  filter: brightness(80%);
-                  
-                  height: 100px; width: 100px; border-radius: 3rem;">
+            <div>
+                  {% include "plan/plan-select.html" %}
             </div>
-                  <h5 class='text-white'>¿Estás seguro de que deseas eliminar {{object.name}}?</h5>
+            <form method="post" style="width:33rem ;">
+                  {% csrf_token %}
+      
+                  <h5 class='text-white m-0 p-0'>¿Estás seguro de que deseas eliminar este plan?</h5>
                   <div class="">
                         {% if object.caracteristicas.all %}
-                        <div style='height: 5.7rem;' class='overflow-auto  pt-2 mb-2 text-white'>   
+                        <div style='height: 10.7rem; ' class='overflow-auto   mb-2 text-white'>   
                                     <span>
-                                          Se eliminarán las siguientes caracteristicas asociadas al este plan
+                                          Se eliminarán las siguientes caracteristicas asociadas a este plan
                                     </span>
                                      {% for p in  object.caracteristicas.all %}
                                         <li class="text-white-50" style="font-size: 14px; list-style:circle;">
