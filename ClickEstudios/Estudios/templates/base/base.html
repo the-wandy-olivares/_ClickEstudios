@@ -95,11 +95,18 @@
 
   <body style="background-color:rgb(16, 16, 16); " class="p-0 body"> 
     {% if  request.user.is_authenticated %}
-          <main class=' p-1 d-flex  z-3  '  
-                style=" height: 100vh; background-color: #000000; 
-                ">
-                <div class='bg-grey  ms-4 me-5  ' style='min-width: 190px;'>
+    {% include "base/components/loads.html" %}
+      <main class=' p-1 d-flex  z-3 position-absolute top-0 w-100'  
+      style=" height: 100vh; background-color:rgba(0, 0, 0, 0);">
+                <div class='bg-grey  ms-5 me-5 z-3   mt-5' style='min-width: 190px;'>
                        {% include "component/nav.html" %} 
+                </div>
+                <div class='position-sticky bottom-0 start-0 btn-atras  ' style='margin-top: 20px;'>
+                  <button onclick="BackSpace()" class="bg-transparent  border-0 ms-0  text-white-50" style="font-size: 14px; font-weight: bold;"> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                          <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
+                        </svg>
+              </button>
                 </div>
                 {% block content %}
                 {% endblock %}
@@ -116,81 +123,7 @@
 
     <!--My JS-->
     <script>
-    function createSnowflake() {
-      const snowflake = Object.assign(
-      document.createElement('div'),
-      {
-      className: 'snowflake',
-      style: `
-      left: ${Math.random() * innerWidth}px;
-      top: -5px;
-      opacity: ${Math.random()};
-      transform: scale(${Math.random() * 1.5 + 0.5});
-      position: absolute;
-      color: white;
-      font-size: 1.5em;`
-      }
-      );
 
-      snowflake.innerHTML = '&#10052;'; // Unicode for six-pointed star
-      
-      document.querySelector('.body').appendChild(snowflake);
-      
-      let posY = -5;
-      let speed = Math.random() * 2 + 1;
-      let wobble = 0;
-      
-      function fall() {
-      posY += speed;
-      wobble += 0.02;
-      snowflake.style.top = posY + 'px';
-      snowflake.style.left =
-      parseFloat(snowflake.style.left) +
-      Math.sin(wobble) * 2 + 'px';
-      
-      posY < innerHeight
-      ? requestAnimationFrame(fall)
-      : snowflake.remove();
-      }
-      
-      fall();
-
-      // Desvanecer tras 3s
-      setTimeout(() => {
-      snowflake.style.transition = 'opacity 1s';
-      snowflake.style.opacity = '0';
-      setTimeout(() => snowflake.remove(), 1000);
-      }, 90);
-    }
-      function generateSnow() {
-      setInterval(createSnowflake, 100);
-      }
-      
-      generateSnow();
-
-      
-      document.addEventListener('DOMContentLoaded', function () {
-      const phoneInput = document.getElementById('id_phone_client');
-
-      if (phoneInput) {
-        phoneInput.addEventListener('input', function (event) {
-          let input = phoneInput.value.replace(/\D/g, ''); // Remover todo excepto dígitos
-          let formatted = '';
-
-          if (input.length > 0) {
-            formatted += '(' + input.substring(0, 3);
-          }
-          if (input.length >= 4) {
-            formatted += ') ' + input.substring(3, 6);
-          }
-          if (input.length >= 7) {
-            formatted += '-' + input.substring(6, 10);
-          }
-
-          phoneInput.value = formatted;
-        });
-      }
-      });
 
       let Estudios_log = () => {
             $.ajax({
