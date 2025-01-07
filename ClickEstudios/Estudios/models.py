@@ -312,3 +312,13 @@ class Movements(models.Model):
 
       def __str__(self):
             return f"{self.type.capitalize()} de {'Efectuando caja' if self.mount else 'Movimiento'} el {self.date}"
+      
+
+class Config(models.Model):
+      user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='config', null=True, blank=True)
+      mode = models.BooleanField(default=True) 
+      # Si modo es True, el estudio esta en modo oscuro y si es False, el estudio esta en modo claro
+      date = models.DateTimeField(auto_now_add=True)
+
+      def __str__(self):
+            return f"Configuración de {self.user.first_name} {self.user.last_name}"

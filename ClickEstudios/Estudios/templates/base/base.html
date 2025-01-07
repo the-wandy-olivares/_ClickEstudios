@@ -93,9 +93,12 @@
     }
   </style>
 
-  <body style="background-color:#101010; " class="p-0 body"> 
+  <body style=" {% if request.user.config.mode %} background-color:#101010; {% else %} background-color:black  {% endif %} " class="p-0 body"> 
     {% if  request.user.is_authenticated %}
-    {% include "base/components/loads.html" %}
+
+    {% if request.user.config.mode %} 
+          {% include "base/components/loads.html" %}
+    {% endif %}
     
       <main class=' p-1 d-flex  z-3 position-absolute top-0 w-100'  
       style=" height: 100vh; background-color:rgba(0, 0, 0, 0);">
