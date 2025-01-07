@@ -1176,3 +1176,12 @@ class Mhia(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+    
+
+
+class Configuration(TemplateView):
+    template_name = 'configuration/configuration.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
