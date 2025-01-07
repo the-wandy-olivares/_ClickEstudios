@@ -256,7 +256,6 @@ class PlanUpdate(UpdateView):
         def form_valid(self, form):
                 img = form.instance.img
                 img_temporary = Image.open(img)
-                
                 # Resize image to 720p
                 img_temporary = img_temporary.resize((1080, 720), Image.LANCZOS)
                 output_io_stream = BytesIO()
@@ -687,6 +686,18 @@ class MomentUpdate(UpdateView):
 
 
 
+class MomentDelete(DeleteView):
+    model = models.Moment
+    template_name = 'gallery/moment-delete.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+    
+
+    def get_success_url(self):
+        # Retorna la URL a la que redirigirá después de un submit exitoso
+        return reverse_lazy('estudios:gallery')
 
 
 

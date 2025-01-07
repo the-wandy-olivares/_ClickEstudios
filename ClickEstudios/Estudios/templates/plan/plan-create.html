@@ -16,10 +16,26 @@
                         background-size: cover;
                         background-position: center;
             }
+            .nav .plans {
+                  color: #ffc107 !important;
+                  font-weight: bolder;
+                  transform: scale(1.1);
+            }
+            .btn-atras
+            {
+                  display: none;
+            }
+            input, select
+            {
+                  background-color: #2d2d2d !important;
+                  border-radius: 2rem !important; border: none !important;
+                  color: white !important; 
+                  height: 2.9rem !important; width: 100% !important;
+            }
       </style>
-      <section>
+      <section class="d-flex justify-content-center w-100 vh-100 align-content-center flex-wrap">
             
-            <div class="container">
+            <div data-aos="fade-left" class=" d-flex">
                   <div id="circle" class="circle" style='background-image: url(object.img.url);' onclick="document.getElementById('id_img').click()">
                         Cargar img
                   </div>
@@ -28,20 +44,18 @@
                         <div>
                               {{form.service}}
                         </div>
-                        <div> 
-                              {{form.name}}
-                        </div>
-                        <div>
+                        <div class="d-flex">  
+                              {{form.name}} -
                               {{form.price}}
                         </div>
                         <div>
                               {{form.img}}
                         </div>
-                        <div>
-                              <a href="{% url "estudios:plan" %}"> Atras </a>
+                        <div class="d-flex w-100 justify-content-end pe-4">
+                              <a href="{% url "estudios:plan" %}" class="btn text-white"> Atras </a>
                               
-                              <button>
-                                    Crear
+                              <button style="font-weight: bold;" class="btn btn-primary rounded-5">
+                                    Crear plan
                               </button>
                         </div>
                   </form>

@@ -16,10 +16,21 @@
                         background-size: cover;
                         background-position: center;
             }
+            input, select
+            {
+                  background-color: #2d2d2d !important;
+                  border-radius: 2rem !important; border: none !important;
+                  color: white !important; 
+                  height: 2.9rem !important; width: 100% !important;
+            }
+            .btn-atras
+            {
+                  display: none;
+            }
       </style>
-      <section>
+      <section class='d-flex flex-wrap w-100 justify-content-center align-content-center '>
             
-            <div class="container">
+            <div class="  d-flex  ">
                   <div id="circle" class="circle" style='background-image: url(object.img.url);' onclick="document.getElementById('id_img').click()">
                         Cargar img
                   </div>
@@ -32,8 +43,11 @@
                                       {{ form.img }}
                               </div>
                               <div>
-                                      <button type="submit">
-                                                Submit
+                                    <a href="{% url "estudios:service" %}">
+                                          Atras
+                                    </a>
+                                      <button type="submit" class="btn btn-primary rounded-5" style="font-weight: bold;">
+                                                Crear
                                       </button>
                               </div>
                     </form>

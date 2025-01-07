@@ -48,6 +48,7 @@ urlpatterns = [
       path('gallery/', views.Gallery.as_view(), name='gallery'),
             path('moment-create/', views.MomentCreate.as_view(), name='moment-create'),
                   path('moment-update/<int:pk>/', views.MomentUpdate.as_view(), name='moment-update'),
+                        path('moment-delete/<int:pk>/', views.MomentDelete.as_view(), name='moment-delete'),
 
 #  Caja 
       path('box/', views.Box.as_view(), name='box'),

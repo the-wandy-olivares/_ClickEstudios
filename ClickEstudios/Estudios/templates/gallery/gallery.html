@@ -26,19 +26,38 @@
             font-weight: bolder;
             transform: scale(1.1);
       }
+            .btn-atras
+            {
+                  display: none;
+            }
       </style>
         
 
-            <div data-aos="fade-left" style="transition-delay: 0.7s; max-height: 2rem;" class='w-100 d-flex justify-content-end position-absolute end-0 top-0 mt-5 me-4' >
                       <a href="{% url "estudios:moment-create" %}"
-                        <button class="bg-white bg-opacity-10 rounded-5 p-2 pe-3 ps-3 text-white border-0 rounded-3 p-2" style='font-weight: bold;'>
+                        <button class="bg-white bg-opacity-10 rounded-5 me-2 mt-2 pe-3 ps-3 text-white border-0 rounded-3 p-2 position-absolute  end-0 top-0" style='font-weight: bold;'>
                               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
                                     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
                                   </svg> Momento
                         </button>
                   </a>
-            </div> 
+
       <!-- Gallery -->
+{% if not moments %}
+                  <section class="text-white d-flex pt-5  justify-content-center flex-wrap align-content-start vh-100  w-100">
+                        <div class="d-flex justify-content-center flex-wrap align-content-center w-100 "> 
+                              <h5 class="text-white text-start-0  w-100" style="font-weight: bold; font-style: italic;">
+                                    No hay nada para mostrar en tu galeria
+                              </h5>
+                      
+                              <p class="text-white-50 text-start-0 w-100" style="font-style: italic;"> 
+                                    Puedes crear hasta 10 momentos, agregarle hasta 6 imagenes realmente llamativas, GUAU! esto es fantatico, dele vida a tu estudio 🎉 <br> <br>
+                              </p>
+                              <div data-aos='zoom-in' style=' transition-delay: 0.9s; transition-duration:2s !important;' class='w-100 mt-5 pt-5 d-flex justify-content-center'> 
+                                    {% include "service/components/no-found.html" %}
+                              </div>
+                        </div>
+                  </section>
+{% endif %}
       <div class="gallery overflow-auto d-flex flex-wrap  align-content-start">
             {% for moment in moments %}
             <span class="w-100 d-flex mt-4">
@@ -77,6 +96,9 @@
                                     </button>   
                               </form>
                         </div>
+
+             
+
                   <script>
                         document.querySelectorAll('button[type="submit"]').forEach(button => {
                               button.addEventListener('click', function(event) {

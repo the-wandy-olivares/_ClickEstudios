@@ -7,6 +7,11 @@
                   font-weight: bolder;
                   transform: scale(1.1);
             }
+            .btn-atras
+            {
+                  display: none;
+            }
+
       </style>
 
 
@@ -46,6 +51,24 @@
                                     </div>
                               </a>
                         {% endfor %}
+                        {% else %}
+
+                        <section class="text-white d-flex justify-content-center flex-wrap align-content-start vh-100  w-100">
+                              <div class="d-flex justify-content-center flex-wrap align-content-center w-100 "> 
+                                    <h5 class="text-white text-start-0   w-100" style="font-weight: bold; font-style: italic;">
+                                          No hay servcios para ofrecer
+                                    </h5>
+                                 
+                                    <p class="text-white-50 text-start-0 w-100" 
+                                    style=" font-style: italic;"> 
+                                          Crear un servicio es muy facil, solo debes darle un nombre y una imagen, y listo, ya tienes un servicio, puedes crear tantos como gustes.
+                                    </p>
+                                    <div data-aos='zoom-in' style=' transition-delay: 0.9s; transition-duration:2s !important;' class='w-100 mt-5 pt-5 d-flex justify-content-center'> 
+                                          {% include "service/components/no-found.html" %}
+                                    </div>
+                              </div>
+                        </section>
+
                   {% endif %}
             </div>
       </section>

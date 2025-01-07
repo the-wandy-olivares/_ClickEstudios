@@ -64,7 +64,7 @@ class Estudios(models.Model):
 class Service(models.Model):
       name = models.CharField(max_length=100, blank=False, null=False)
       description = models.TextField(blank=True, null=True)
-      img = models.ImageField(upload_to='media/servicios', null=True, blank=True)
+      img = models.ImageField(upload_to='media/servicios', null=True)
       date = models.DateTimeField(auto_now_add=True)
 
       is_active = models.BooleanField(default=True)
@@ -126,7 +126,7 @@ class Caracteristica(models.Model):
 class Moment(models.Model):
       service = models.ForeignKey(Service, on_delete=models.CASCADE, blank=True, null=True, related_name='momentos')
       name = models.CharField(max_length=100, blank=False, null=False)
-      img = models.ImageField(upload_to='media/momentos', null=True, blank=True)
+      img = models.ImageField(upload_to='media/momentos', null=True)
       date = models.DateTimeField(auto_now_add=True)
       
       class Meta:
@@ -149,6 +149,9 @@ class ImgMoment(models.Model):
       
       def __str__(self):
             return self.img.url
+      
+
+      
 
 
 

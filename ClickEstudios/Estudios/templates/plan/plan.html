@@ -7,9 +7,20 @@
                   font-weight: bolder;
                   transform: scale(1.1);
             }
+
+            .btn-atras
+            {
+                  display: none;
+            }
+            .bi-x-circle-fill:hover
+            {
+                  color: #ff5f5fd3 !important;
+                    transition: color 0.3s ease-out, transform 0.3s ease-out;
+                    transform-origin: center;
+            }
       </style>
  
-      <section class=' overflow-auto'>
+      <section data-aos='fade-in'   class=' overflow-auto w-100'>
   
                   <div data-aos="fade-left" style="transition-delay: 0.7s; max-height: 2rem;" class='w-100 d-flex justify-content-end' >
                         <a href="{% url "estudios:plan-create" %}">
@@ -36,11 +47,18 @@
                                                  height: 240px; border-radius: 3rem;">
                                                 </div>
 
-                                          <h5 style='font-size: 16px; font-weight: bold; ' class='text-white'>{{p.name}}</h5>
-                                          <span class="text-white" style="font-size: 14px;">
+                                          <h5 style='font-size: 16px; font-weight: bold; ' class='text-white'>
+                                                <a href="{% url "estudios:plan-delete" p.id %}"  class=' start-0 mb-2 text-white text-decoration-none' style="">
+                                                      <span>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x-circle-fill  m-0 p-0 mb-1 me-2" style="color: #ffffffd3;"  viewBox="0 0 16 16">
+                                                                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
+                                                                </svg>
+                                                      </span>
+                                                </a> {{p.name}}</h5>
+                                          <span class="text-white ms-4" style="font-size: 14px;">
                                                ${{p.price|intcomma}}.00
                                           </span>
-                                          <div class='d-flex w-100 justify-content-start-0 p-0'>
+                                          <div class='d-flex w-100 justify-content-start-0 ms-3 p-0'>
                                                 <a href="{% url "estudios:plan-detail" p.id %}" 
                                                 class='btn text-white border-1 rounded-5 pe-3 ps-3 m-0'
                                                 style='border: solid 1pxrgb(44, 44, 44);  font-weight: bold; background-color: rgb(37, 37, 37);' >
@@ -52,15 +70,25 @@
                                                       Modificar
                                                 </a>
                                           </div>
-                                          <a href="{% url "estudios:plan-delete" p.id %}"  class='position-absolute bottom-0  start-0  text-white text-decoration-none' style="margin-bottom: 110px;">
-                                                <span>
-                                                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-circle-fill " style="color: #ffffffd3;"  viewBox="0 0 16 16">
-                                                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
-                                                          </svg>
-                                                </span>
-                                          </a>
+                       
                                     </div>
                                     {% endfor %}
+
+                        {% else %}
+                        <section class="text-white d-flex justify-content-center flex-wrap align-content-start vh-100  w-100">
+                              <div class="d-flex mb-0 justify-content-center flex-wrap align-content-center w-100 "> 
+                                    <h5 class="text-white text-start-0  w-100" style="font-weight: bold; font-style: italic;">
+                                          No hay planes disponibles
+                                    </h5>
+                               
+                                    <p class="text-white-50 text-start-0 p-0 m-0 w-100" style=" font-style: italic; font-size: 16px;"> 
+                                          Crea planes llamativos para tus clientes, y ofreceles un servicio de calidad y atractivo.
+                                    </p>
+                                    <div data-aos='zoom-in' style=' transition-delay: 0.9s; transition-duration:2s !important;' class='w-100 mt-5 pt-5 d-flex justify-content-center'> 
+                                          {% include "service/components/no-found.html" %}
+                                    </div>
+                              </div>
+                        </section>
                         {% endif %}
                   </div>
       </section>
