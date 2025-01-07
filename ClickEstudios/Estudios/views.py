@@ -332,9 +332,9 @@ class SaleReserver(TemplateView):
             if sale.mount >= sale.price_plan:
                 sale.mount = sale.price_plan
                 sale.payment = True
-                description = 'Pago completo'
+                description = 'Pago' + ' ' + sale.name_client + '-' + sale.name_plan
             else:
-                description = 'Abono'
+                description = 'Abono' + ' ' + sale.name_client + '-' + sale.name_plan
 
             # Restar monto 
             sale.debit_mount -= new_mount
@@ -373,9 +373,15 @@ class SaleCreate(CreateView):
             form.instance.price_plan = plan.price
             form.instance.finaliz = True
             form.instance.payment = True
-            form.instance.is_reserve = False
-
+            form.instance.is_reserve = True
         # Guarda el objeto y redirige al éxito
+            models.Movements.objects.create(
+                user=self.request.user,
+                box=models.Box.objects.get(open=True),
+                mount= plan.price,
+                type='ingreso',
+                description=  'Pago ' + ' ' + form.instance.name_client + '-' + plan.name
+            )
         self.object = form.save()
         return redirect(self.get_success_url(self.object))
 
@@ -510,10 +516,8 @@ class Estudios(TemplateView):
             for adicional in sale.sale_adicionales.all():
                 total += adicional.price
 
-
-            
-
         total_itebis = total * 0.18
+        print(total_itebis)
         context['total_itebis'] = total_itebis
         context['sale'] = sale
         if sale.discount:
@@ -565,12 +569,28 @@ class Estudios(TemplateView):
         
         # Finalizar venta
         if request.POST.get('end'):
+
             sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
+
+            total = sale.price_plan 
+            if sale.sale_adicionales.all():
+                for adicional in sale.sale_adicionales.all():
+                    total += adicional.price
+            total_itebis = total * 0.18
+
             if sale.sale_type == 'credito':
                 sale.credito_fiscal = utils.GetNCF('credito')
             else:
                 sale.cosumidor_final = utils.GetNCF('consumidor')
             sale.finalize = True
+            if sale.discount == False:
+                models.Movements.objects.create(
+                    user=self.request.user,
+                    box=models.Box.objects.get(open=True),
+                    mount= total_itebis,
+                    type='ingreso',
+                    description=  'Itbis: ' + ' ' + sale.name_client + '-' + sale.name_plan
+                )
 
             if sale.sale_adicionales.all():
                 for adicional in sale.sale_adicionales.all():
