@@ -1,21 +1,24 @@
 <style>
       .inputs-form input
       {
+            width: 100%;
             margin: 0.3rem;
       }
 </style>
 <div class="inputs-form">
-      <div class="d-flex w-100">
+      <div class="d-flex w-100 flex-wrap">
             {{form.name_client}}
-            {{form.phone_client}}
-            {{form.email_client}}
+           <div class="d-flex w-100">
+                  {{form.phone_client}}
+                  {{form.email_client}}
+           </div>
 
 </div>
-<select id="contact_preference" style="width: 12rem;" 
-      class=" form-selec text-center bg-transparent text-white border-0" name="contact_preference" onchange="toggleContactFields()">
-      <option value="both">Contacto ambos</option>
-      <option value="phone">Contacto numero</option>
-      <option value="email">Contacto correo</option>
+<select id="contact_preference" style="width: 12rem; font-size: 14px;" 
+      class=" form-selec text-center m-2 bg-transparent  text-white border-0" name="contact_preference" onchange="toggleContactFields()">
+      <option value="both">Contacto: telefono y correo</option>
+      <option value="phone">Contacto: numero</option>
+      <option value="email">Contacto: correo</option>
 </select>
 </div>
 

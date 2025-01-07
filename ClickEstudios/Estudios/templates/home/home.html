@@ -43,7 +43,7 @@
   </style>
 
 
-  <body  style="background-color:rgba(121, 98, 98, 0.651); " class="p-1 overflow-hidden  "> 
+  <body  style="background-color:rgba(121, 98, 98, 0.651); " class=" overflow-hidden  "> 
 
       <main   class="gallery overflow-hidden overflow-y-scroll bg-black  h-100" >
             <img  src="{{img1}}" alt="" />
@@ -54,7 +54,7 @@
             <img  src="{{img6}}" alt="" />
             <img  src="{{img7}}" alt="" />
 
-            <section class="position-fixed z-3 top-0 flex-wrap   start-0 w-100 vh-100 d-flex justify-content-center align-content-end pb-5 "
+            <section class="position-fixed z-3 top-0 flex-wrap   start-0 rounded-0 w-100 vh-100 d-flex justify-content-center align-content-end pb-5 "
             style="background: linear-gradient(to bottom, rgba(0, 0, 0, 0.493), rgba(0, 0, 0, 1));">
         
                 <h5 data-aos="fade-in"  class="text-white text-center  " 
@@ -73,7 +73,7 @@
                               <span class="circle" aria-hidden="true">
 
                               </span>
-                              <span class="button-text text-white"> Nuestros servicios </span>
+                              <span class="button-text text-white "> Nuestros servicios </span>
                         </button>
                         <script>
                               document.querySelector('.learn-more').addEventListener('click', function() {
@@ -85,7 +85,7 @@
             </section>
 
             <section class="h-100 vw-100 bg-black p-1 ">
-                  <div class="text-white text-center mt-5">
+                  <div class="text-white text-center mt-5 pt-5">
                         <strong style="font-size: 18px; font-weight: bold; font-style: italic;" >
                          Nuestros servicios
                         </strong>
@@ -139,53 +139,6 @@
 
       </main>
 
-    <!--My JS-->
-    <script>
-
-
-      function createSnowflake() {
-            const snowflake = Object.assign(
-              document.createElement('div'),
-              {
-                className: 'snowflake',
-                style: `
-                left: ${Math.random() * innerWidth}px;
-                top: -5px;
-                opacity: ${Math.random()};
-                transform: scale(${Math.random() * 1.5 + 0.5});`
-              }
-            )
-        
-            document.body.appendChild(snowflake);
-        
-            let posY = -5;
-            let speed = Math.random() * 5 + 1;
-            let wobble = 0;
-        
-            function fall() {
-              posY += speed;
-              wobble += 0.02;
-              snowflake.style.top = posY + 'px';
-              snowflake.style.left =
-                parseFloat(snowflake.style.left) +
-                Math.sin(wobble) * 2 + 'px';
-        
-              posY < innerHeight
-                ? requestAnimationFrame(fall)
-                : snowflake.remove();
-            }
-        
-            fall();
-          }
-        function generateSnow() {
-            const interval = setInterval(createSnowflake, 100);
-            setTimeout(() => clearInterval(interval), 7000);
-        }
-          generateSnow();
-          
-
-
-    </script>
   </body>
 
 <style>

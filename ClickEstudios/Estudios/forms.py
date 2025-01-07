@@ -71,9 +71,9 @@ class Sale(forms.ModelForm):
                     'time': forms.Select(attrs={'class': 'form-control'}),               
                          
                     'credit_fiscal': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
-                    'name_client': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre del cliente'}),
-                    'email_client': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Si tienes correo gmail puedes usarlo, si no, crea uno'}),
-                    'phone_client': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Teléfono del cliente'}),
+                    'name_client': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre completo'}),
+                    'email_client': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Correo'}),
+                    'phone_client': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Teléfono'}),
             }
 
 

@@ -74,5 +74,11 @@ urlpatterns = [
       path('ajax/verify-date-choice/', ajax_views.VerifyDateChoice, name='verify-date-choice'),
             path('ajax/search/', ajax_views.Search, name='search'),
                   path('ajax/get-estudios/', ajax_views.GetEstudios, name='get-estudios'),
+
+
+#  Mhia
+      path('mhia/', views.Mhia.as_view(), name='mhia'),
+
 ]
+
 

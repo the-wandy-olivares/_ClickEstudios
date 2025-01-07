@@ -945,7 +945,7 @@ class EmpleadoUpdate(UpdateView):
 
 class EmpleadoDelete(DeleteView):
     model = User
-    template_name = 'empleados/empleados_confirm_delete.html'
+    template_name = 'empleados/empleados-delete.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -1166,3 +1166,13 @@ class Factura(TemplateView):
 
             sale.save()
             return self.render_to_response(self.get_context_data())
+        
+
+# Mhia
+
+class Mhia(TemplateView):
+    template_name = 'mhia/mhia.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context

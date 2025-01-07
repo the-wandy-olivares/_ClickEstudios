@@ -26,7 +26,7 @@
                               <th data-aos="fade-left" style="transition-delay: 0s; width: 20%;">Nombre</th>
                               <th data-aos="fade-left" style="transition-delay: 0.2s; width: 20%;">Apellidos</th>
 
-                              <th data-aos="fade-left" style="transition-delay: 0.3s; width: 15%;">Role</th>
+                              <th data-aos="fade-left" style="transition-delay: 0.3s; width: 25%;">Role</th>
                               <th data-aos="fade-left" style="transition-delay: 0.4s; width: 20%;">Correo</th>
                               <th data-aos="fade-left" style="transition-delay: 0.5s; width: 7%;">Acciones</th>
                         </tr>
@@ -43,7 +43,7 @@
                                           <form method="post" action="">
                                                   {% csrf_token %}
                                                   <input type="hidden" name="id" value="{{ empleado.id }}">
-                                                  <select name="role" class="form-control bg-black text-white-50 border-0" onchange="this.form.submit()">
+                                                  <select name="role" class="form-control bg-black bg-opacity-25 text-white-50 border-0" onchange="this.form.submit()">
                                                       {% if request.user.id != empleado.id %}
                                                             <option value="estandard" {% if empleado.profile.role == "estandard" %}selected{% endif %}>Estandar</option>
                                                             <option value="administrativo" {% if empleado.profile.role == "administrativo" %}selected{% endif %}>Administrativo</option>

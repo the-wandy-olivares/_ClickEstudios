@@ -37,11 +37,11 @@
                               {% endif %}
                          </strong>
                   </div>
-                   {% for moment in moments %}
+                   {% for moment in moments %} 
                          {% for m in moment.img_moments.all  %}
                          {% if m.img %}
-                         <img src="{{m.img.url}}" style='max-width: 330px;'
-                         class='w-100 object-fit-contain rounded-5 m-1' alt="Ups!">
+                         <img src="{{m.img.url}}" style='max-width: 310px; '
+                         class='w-100 object-fit-cover rounded-5 m-1' alt="Ups!">
                          {% endif %}
                          {% endfor %}
                    {% endfor %}
