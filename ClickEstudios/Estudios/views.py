@@ -19,8 +19,27 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 
 
 class Dashboard(TemplateView):
-    def get(self, request):
-        return render(request, 'estudios/dashboard.html')
+    template_name = 'estudios/dashboard.html'
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['sales'] = models.Sale.objects.all()
+        context['en'] = models.Sale.objects.filter(date__month=1).count()
+        context['fe'] = models.Sale.objects.filter(date__month=2).count()
+        context['ma'] = models.Sale.objects.filter(date__month=3).count()
+        context['ab'] = models.Sale.objects.filter(date__month=4).count()
+        context['my'] = models.Sale.objects.filter(date__month=5).count()
+        context['ju'] = models.Sale.objects.filter(date__month=6).count()
+        context['jul'] = models.Sale.objects.filter(date__month=7).count()
+        context['ag'] = models.Sale.objects.filter(date__month=8).count()
+        context['set'] = models.Sale.objects.filter(date__month=9).count()
+        context['oc'] = models.Sale.objects.filter(date__month=10).count()
+        context['nov'] = models.Sale.objects.filter(date__month=11).count()
+        context['dic'] = models.Sale.objects.filter(date__month=12).count()
+        return context
+
+
 
 
 class Pos(TemplateView):
