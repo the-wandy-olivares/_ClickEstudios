@@ -1228,3 +1228,55 @@ class Configuration(TemplateView):
             config.save()
 
         return self.render_to_response(self.get_context_data())
+    
+
+
+class Facturacion(TemplateView):
+    template_name = 'facturacion/facturacion.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        estudios = self.request.user.profile.estudio
+        context['estudios'] =  estudios
+        context['facturacion'] = models.Facturacion.objects.filter(estudio=estudios, payment=False).last()
+        context['day_disponible'] = models.Facturacion.objects.filter(estudio=estudios, payment=False).last()
+        if context['facturacion']:
+            today = timezone.now().date()
+            next_payment_date = context['facturacion'].next_payment_date
+            context['days_remaining'] = (next_payment_date - today).days
+        else:
+            context['days_remaining'] = None
+        return context
+    
+
+    def post(self, request, *args, **kwargs):
+        if request.POST.get('name'):
+            sale = models.Sale(
+                name_plan=request.POST.get('name'),
+                price_plan=int(request.POST.get('price').replace(',', '')),
+                payment=True,
+            )
+            sale.save()
+        return self.render_to_response(self.get_context_data())
+    
+
+class ListFacturacion(TemplateView):
+    template_name = 'facturacion/list-facturacion.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        estudios = self.request.user.profile.estudio
+        context['estudios'] =  estudios
+        context['facturaciones'] = models.Facturacion.objects.filter(estudio=estudios)
+        return context
+    
+
+    def post(self, request, *args, **kwargs):
+        if request.POST.get('name'):
+            sale = models.Sale(
+                name_plan=request.POST.get('name'),
+                price_plan=int(request.POST.get('price').replace(',', '')),
+                payment=True,
+            )
+            sale.save()
+        return self.render_to_response(self.get_context_data())

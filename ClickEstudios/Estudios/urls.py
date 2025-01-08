@@ -81,8 +81,13 @@ urlpatterns = [
       path('mhia/', views.Mhia.as_view(), name='mhia'),
 
 # Configuracion
-      path('configuration/', views.Configuration.as_view(), name='configuration')
+      path('configuration/', views.Configuration.as_view(), name='configuration'),
 
+
+
+#  Facturacion
+      path('facturacion/', views.Facturacion.as_view(), name='facturacion'),
+            path('list-facturacion/', views.ListFacturacion.as_view(), name='list-facturacion'),
 
 ]
 

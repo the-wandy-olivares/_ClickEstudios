@@ -13,7 +13,12 @@
       </style>
       <div class="bg-transaparent  d-flex flex-wrap overflow-auto">
 
-            <div class="position-absolute top-0 end-0 me-3 mt-3">
+            <div class="position-absolute top-0 end-0 me-3 mt-3 d-flex">
+                  <select class="form-select bg-transparent border-0 text-white" aria-label="Default select example" style="width: 15rem;">
+                        <option value="1" selected> Graficos de periodo </option>
+                        <option value="2"> Graficos por filas  </option>
+                        <!-- <option value="3">Visistas</option> -->
+                  </select>
                   <select class="form-select bg-transparent border-0 text-white" aria-label="Default select example">
                         <option value="1" selected> Planes </option>
                         <option value="2"> Servicios </option>
@@ -22,13 +27,11 @@
             </div>
 
             <div class="d-flex flex-wrap ">
-                  <div class="bg-gray-800  w-25 p-4 rounded-lg shadow-md">
-                        <canvas id="pieChart" ></canvas>
+       
+                  <div class="bg-gray-800    w-75 rounded-lg shadow-md " style="height: 180px;">
+                        <canvas id="barChart" class="d-none"></canvas>
                   </div>
-                  <div class="bg-gray-800 p-4  w-25 rounded-lg shadow-md ">
-                        <canvas id="barChart"></canvas>
-                  </div>
-                  <div class="bg-gray-100 p-1 rounded-lg w-100 shadow-md" style="height: 600px;">
+                  <div class="bg-gray-100   w-100 shadow-md" >
                         <canvas id="lineChart"></canvas>
                   </div>
                  
@@ -38,7 +41,6 @@
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             <script>
                   const barCtx = document.getElementById('barChart').getContext('2d');
-                  const pieCtx = document.getElementById('pieChart').getContext('2d');
                   const lineCtx = document.getElementById('lineChart').getContext('2d');
 
                   new Chart(barCtx, {
@@ -68,45 +70,10 @@
                               }]
                         },
                         options: {
-                              scales: {
-                                    y: {
-                                          beginAtZero: true
-                                    }
-                              }
-                        }
-                  });
-
-                  new Chart(pieCtx, {
-                        type: 'pie',
-                        data: {
-
-                              datasets: [{
-                                    label: '# of Votes',
-                                    data: [12, 19, 3, 5, 2, 3],
-                                    backgroundColor: [
-                                          'rgba(255, 99, 132, 0.2)',
-                                          'rgba(54, 162, 235, 0.2)',
-                                          'rgba(255, 206, 86, 0.2)',
-                                          'rgba(75, 192, 192, 0.2)',
-                                          'rgba(153, 102, 255, 0.2)',
-                                          'rgba(255, 159, 64, 0.2)'
-                                    ],
-                                    borderColor: [
-                                          'rgba(255, 99, 132, 1)',
-                                          'rgba(54, 162, 235, 1)',
-                                          'rgba(255, 206, 86, 1)',
-                                          'rgba(75, 192, 192, 1)',
-                                          'rgba(153, 102, 255, 1)',
-                                          'rgba(255, 159, 64, 1)'
-                                    ],
-                                    borderWidth: 2
-                              }]
-                        },
-                        options: {
                               responsive: true,
                               plugins: {
                                     legend: {
-                                          position: 'top',
+                                          position: 'end',
                                     },
                                     tooltip: {
                                           callbacks: {
@@ -115,8 +82,8 @@
                                                       if (label) {
                                                             label += ': ';
                                                       }
-                                                      if (context.parsed !== null) {
-                                                            label += context.parsed;
+                                                      if (context.parsed.y !== null) {
+                                                            label += context.parsed.y;
                                                       }
                                                       return label;
                                                 }
@@ -125,25 +92,25 @@
                               }
                         }
                   });
+      
 
                   new Chart(lineCtx, {
                         type: "line",
                         data: {
-                              labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                                labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
                               datasets: [{
                                     label: 'Periodo',
                                     backgroundColor: 'rgba(255, 99, 132, 0.2)',
                                     borderColor: 'rgba(255, 99, 132, 1)',
-                                    data: [5, 15, 20, 21, 16, 6, 13, 12, 18, 18, 30, 20], 
+                                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
                                     fill: true,
-
                               }]
                         },
                         options: {
                               responsive: true,
                               plugins: {
                                     legend: {
-                                          position: 'top',
+                                          position: 'end',
                                     },
                                     tooltip: {
                                           callbacks: {

@@ -15,6 +15,7 @@ class Profile(models.Model):
       address = models.TextField(blank=True, null=True)
       img = models.ImageField(upload_to='media/profile', null=True, blank=True)
       role = models.CharField(max_length=30, choices=ROLE_CHOICES, default='estandard')
+      estudio = models.ForeignKey('Estudios', on_delete=models.CASCADE, related_name='profile_estudios', null=True, blank=True)
 
       def __str__(self):
             return f"{self.user.first_name} {self.user.last_name} - {self.get_role_display()}"
@@ -325,3 +326,19 @@ class Config(models.Model):
 
       def __str__(self):
             return f"Configuración de {self.user.first_name} {self.user.last_name}"
+      
+
+class Facturacion(models.Model):
+      estudio = models.ForeignKey(Estudios, on_delete=models.CASCADE, related_name='factura', null=True, blank=True)
+      date = models.DateTimeField(auto_now_add=True)
+      mount = models.IntegerField(default=0, blank=False, null=False)
+      description = models.TextField(default='Sin descripción', blank=True, null=True)
+      img = models.ImageField(upload_to='media/factura', null=True, blank=True)
+
+      payment = models.BooleanField(default=False)
+      last_payment_date = models.DateField(verbose_name="Fecha del último pago", blank=True, null=True)
+      next_payment_date = models.DateField(verbose_name="Fecha del próximo pago", blank=True, null=True)
+
+
+      def __str__(self):
+            return f"Factura de {self.estudio.name} "
