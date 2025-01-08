@@ -26,7 +26,7 @@
                             </svg>
                   </button> 
             </div>
-            <div class='text-warning w-100 overflow-auto align-content-start-0  '>
+            <div class='text-warning w-100 overflow-auto align-content-start-0 mb-5 justify-content-center f  '>
                   <div class='w-100'>
                          <strong style='font-style: italic;'>
                               {% if object.img %}
@@ -37,14 +37,24 @@
                               {% endif %}
                          </strong>
                   </div>
-                   {% for moment in moments %} 
-                         {% for m in moment.img_moments.all  %}
-                         {% if m.img %}
-                         <img src="{{m.img.url}}" style='max-width: 310px; '
-                         class='w-100 object-fit-cover rounded-5 m-1' alt="Ups!">
-                         {% endif %}
-                         {% endfor %}
-                   {% endfor %}
+                  <div class="d-flex justify-content-around flex-wrap w-100">
+                        {% if moments %}
+                              {% for moment in moments %} 
+                              {% for m in moment.img_moments.all  %}
+                              {% if m.img %}
+                              <img src="{{m.img.url}}" style='max-width: 180px; '
+                              class='w-100 object-fit-cover rounded-5 m-1' alt="Ups!">
+                              {% endif %}
+                              {% endfor %}
+                              {% endfor %}
+                              {% else %}
+                              <div>
+                                    <h6>
+                                          No hay imagenes para mostrar
+                                    </h6>
+                              </div>
+                        {% endif %}
+                  </div>
              </div>
 </section>
 <script>
