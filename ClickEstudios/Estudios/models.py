@@ -53,6 +53,8 @@ class Estudios(models.Model):
       img_2 = models.ImageField(upload_to='media/estudios', null=True, blank=True, verbose_name='Imagen negra')
       date = models.DateTimeField(auto_now_add=True)
 
+      is_active = models.BooleanField(default=False)
+
       
       class Meta:
             verbose_name = 'estudio'
