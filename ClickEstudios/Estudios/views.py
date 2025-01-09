@@ -18,6 +18,12 @@ from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
 
+# Cache
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
+from django.core.cache import cache
+
+
 class Dashboard(TemplateView):
     template_name = 'estudios/dashboard.html'
 
@@ -55,8 +61,18 @@ class Pos(TemplateView):
         context['today'] = timezone.now().date()
         context['time_now'] = timezone.now().strftime('%H:%M')
         return context
+    
+    def post(self, request, *args, **kwargs):
+        # Procesa los datos del formulario, por ejemplo, actualiza o crea nuevos objetos
+        # Aquí puedes manejar cualquier lógica que involucre el POST, como agregar ventas, actualizar datos, etc.
 
+        # Después de procesar el POST, invalidar la caché
+        cache.delete('delet-cache')  # Elimina la caché asociada a esta vista (puedes poner un nombre específico)
 
+        # Luego, redirigir a la misma página o hacer cualquier otra acción necesaria
+        return self.get(request, *args, **kwargs)
+
+@method_decorator(cache_page(60 * 10), name='dispatch')  
 class Service(TemplateView):
         template_name = 'service/service.html'
 
@@ -178,6 +194,7 @@ class ServiceDelete(DeleteView):
 
 
 # Plans
+@method_decorator(cache_page(60 * 30), name='dispatch')  
 class Plan(TemplateView):
     template_name = 'plan/plan.html'
 
@@ -628,13 +645,14 @@ class Estudios(TemplateView):
             
         return self.render_to_response(self.get_context_data())
     
-
+@method_decorator(cache_page(60 * 60), name='dispatch')  
 class Gallery(TemplateView):
     template_name = 'gallery/gallery.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['moments'] = models.Moment.objects.all()
+        print(models.Moment.objects.all())
         return context
     
 
@@ -744,7 +762,7 @@ class MomentDelete(DeleteView):
 
 
 
-
+@method_decorator(cache_page(60 * 10), name='dispatch')  
 class Box(TemplateView):
     template_name = 'box/box.html'
 

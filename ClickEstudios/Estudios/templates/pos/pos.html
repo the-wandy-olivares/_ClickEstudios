@@ -33,7 +33,8 @@
 
 
 {% if box_is_open  %}
-      <section class="overflow-auto w-100">
+      <section class="overflow-auto w-100">{% load cache %}
+            {% cache 600 "mi_fragmento" %}
             <span class="reloj font-delius position-absolute end-0 me-5 mt-3 d-flex justify-content-center align-content-center flex-wrap text-white"  style="font-size: 18px;" ></span>
             <div class='d-flex'>
                   <button class="bg-transparent border-0 me-3">
@@ -58,6 +59,7 @@
 
 
             </div>
+            {% endcache %}
             
             
             <!-- Resultados -->
@@ -202,6 +204,9 @@
                   document.querySelector('.results-searching').innerHTML = '';
             }
       });
+
+
+
       </script>
 {% endblock  %}
 
