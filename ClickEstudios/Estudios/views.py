@@ -762,7 +762,7 @@ class MomentDelete(DeleteView):
 
 
 
-@method_decorator(cache_page(60 * 10), name='dispatch')  
+
 class Box(TemplateView):
     template_name = 'box/box.html'
 
