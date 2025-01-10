@@ -72,6 +72,13 @@
     .invoice .totals p span {
         font-weight: bold;
     }
+    #search_name::placeholder {
+        color: rgba(255, 255, 255, 0.756);
+    }
+    #search_rnc::placeholder {
+        color: rgba(255, 255, 255, 0.756);
+    }
+
 </style>
 
 <section class='d-flex  w-100 vh-100'>
@@ -192,8 +199,53 @@
 
     <footer class='pb-4 d-flex flex-wrap align-content-end   vh-100  w-50  bg-black' style="position: sticky; bottom: 0; width: 100%;  padding: 12px; text-align: center;" >
             {% if sale.payment %}
-      
-           
+                {% if sale.sale_type == 'credito' %}
+                <div data-aos="fade-in" style="transition-delay: 1s; transform-origin: 1s;" class='text-white w-100 d-flex justify-content-center flex-wrap search-auto' >
+                        <div class="w-100 text-start">
+                            <h4 class="text-centers">
+                                Buscar empresa en la DGII
+                            </h4>
+                            <p style="font-size: 14px;" class="text-white-50 p-0">
+                                Busca un cliente por nombre o RNC/Cedula, luego copie los datos a los entradas correspondientes y aplique a la factura, los datos se guardaran en la factura.
+                            </p>
+                        </div>
+
+                        <iframe src="https://dgii.gov.do/app/WebApps/ConsultasWeb2/ConsultasWeb/consultas/rnc.aspx?RNC" class=" rounded-5" style="height: 600px; border: 24px solid white; width: 100%;"></iframe>
+
+                        <div class="d-flex mt-3">
+                            <input type="text" name="search_name" id="search_name" class='form-control text-white rounded-5 border-0 p-1 me-1 pe-3 ps-3 text-center m-0' 
+                            placeholder="Nombre"
+                            style="background-color: rgb(26, 26, 26) !important; height: 3.1rem;">
+
+                            <input type="text" name="search_rnc" id="search_rnc" class='form-control text-white rounded-5 border-0 p-1 ms-1 pe-3 ps-3 text-center m-0' 
+                            placeholder="RNC/Cedula"
+                            style="background-color: rgb(26, 26, 26) !important; height: 3.1rem;">
+                        </div>
+                        <button id="applyButton" class="btn btn-primary p-1 rounded-5 w-75 m-0 mt-2 ms-2 pe-4 ps-4" 
+                        style="font-weight: bold; height: 2.9rem; display: none;">
+                            Aplicar a factura
+                        </button>
+
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const searchName = document.getElementById('search_name');
+                                const searchRnc = document.getElementById('search_rnc');
+                                const applyButton = document.getElementById('applyButton');
+
+                                function toggleButton() {
+                                    if (searchName.value.trim() !== '' && searchRnc.value.trim() !== '') {
+                                        applyButton.style.display = 'block';
+                                    } else {
+                                        applyButton.style.display = 'none';
+                                    }
+                                }
+
+                                searchName.addEventListener('input', toggleButton);
+                                searchRnc.addEventListener('input', toggleButton);
+                            });
+                        </script>
+                </div>
+                {% endif %}
           
                   <div>
                         <p class='btn text-white p-1 m-0'>Total:     ${{total_con_i|intcomma}}.00</p>
@@ -215,7 +267,7 @@
                                         </svg>
                                     {% endif %}
                                         <span class='text-white'>
-                                            Descuento {{sale.discount}}
+                                            Descuento
                                         </span> 
                                      </label>
                         </form>
@@ -236,7 +288,7 @@
                         <form action="" method="post" class=' d-flex flex-wrap justify-content-center align-content-center'>
                               {% csrf_token %}
                               <input type="hidden" name="end" value="true" class=''>
-                              <button class=' border-0 p-1 rounded-5 text-white pe-3 ps-3 bg-danger'
+                              <button class=' border-0 p-2 rounded-5 text-white  pe-3 ps-3 bg-danger'
                               style="font-weight: bold;"> 
                               Concuir venta
                         </button>
@@ -331,6 +383,9 @@
                 },
             });
         };
+
+
+
 
 
 </script>
