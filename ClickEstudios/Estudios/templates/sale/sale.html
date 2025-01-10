@@ -21,6 +21,7 @@
 </style>
 
             {% for s in sales %}
+                  <a {% if s.pk_plan %} href="{% url "estudios:sale-update" s.id %}"     {% endif %}>
                         <div style="min-width: 530px; cursor: pointer; max-width: 530px; border: 4px solid rgb(47, 47, 47); border-radius: 3rem; color: #ffffffcf;
                         height: 18rem;" class='  m-2 shadow-sm'>
                                 <div class='d-flex flex-wrap w-100  ' >
@@ -115,6 +116,7 @@
                                     {% endif %}
                               </div>
                         </div>
+                  </a>
             {% endfor %}
 
 

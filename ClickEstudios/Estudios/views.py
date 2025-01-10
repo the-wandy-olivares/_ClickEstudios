@@ -22,6 +22,7 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
 from django.core.cache import cache
+from django.contrib import messages
 
 
 class Dashboard(TemplateView):
@@ -402,6 +403,7 @@ class SaleCreate(CreateView):
         plan_id = self.kwargs.get('pk')
         if plan_id:
             plan = models.Plan.objects.get(pk=plan_id)
+            form.instance.pk_plan = plan_id
             form.instance.name_plan = plan.name
             form.instance.debit_mount = plan.price
             form.instance.img = plan.img
@@ -437,10 +439,17 @@ class SaleUpdate(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['plan'] = models.Plan.objects.filter(pk=self.object.pk_plan).last()
         return context
 
     def form_valid(self, form):
         # Guarda el objeto y redirige al éxito
+        plan = models.Plan.objects.filter(pk=self.object.pk_plan).last()
+        form.instance.name_plan = plan.name
+        form.instance.debit_mount = plan.price
+        form.instance.img = plan.img
+        form.instance.description_plan = plan.description
+        form.instance.price_plan = plan.price
         self.object = form.save()
         return redirect(self.get_success_url())
 
@@ -449,7 +458,7 @@ class SaleUpdate(UpdateView):
 
     def get_success_url(self):
         # Retorna la URL a la que redirigirá después de un submit exitoso
-        return reverse_lazy('estudios:sale')
+        return reverse_lazy('estudios:pos')
     
 
 
@@ -467,6 +476,7 @@ class SaleCreateDateChoice(CreateView):
             plan_id = self.kwargs.get('pk')
             if plan_id:
                 plan = models.Plan.objects.get(pk=plan_id)
+                form.instance.pk_plan = plan_id
                 form.instance.name_plan = plan.name
                 form.instance.debit_mount = plan.price
                 form.instance.img = plan.img
@@ -1044,15 +1054,15 @@ class Login(TemplateView):
         context = super().get_context_data(**kwargs)
         return context
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(username=username, password=password)
         if user:
             login(request, user)
             return redirect('estudios:dashboard')
+        messages.error(request, 'Nombre de usuario o contraseña incorrectos')
         return self.render_to_response(self.get_context_data())
-    
 
 
 class Logout(TemplateView):

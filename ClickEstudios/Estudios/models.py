@@ -188,6 +188,7 @@ class Sale(models.Model):
 
 
 # Datas de plan escogido
+      pk_plan = models.IntegerField(default=0, blank=True, null=True)
       name_plan = models.CharField(max_length=100, blank=True, null=True)
       description_plan = models.TextField(blank=True, null=True)
       price_plan = models.IntegerField(blank=True, null=True)

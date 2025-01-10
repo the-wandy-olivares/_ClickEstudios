@@ -398,27 +398,37 @@
       <div class="card w-100">
       
         <div class="heading w-100 justify-content-center d-flex">
-            <form method="post" class="w-100 form" style="max-width: 38rem; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+            <form method="post" class="w-100 form" style="max-width: 30rem; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
                   {% csrf_token %}
                   <div>
+               
                         <h5  data-aos="zoom-in" class="text-white text-start  " 
                         style="transition-delay: 0.3s !important;
                             transition-duration: 3s !important;
                             font-family: Syncopate, serif;
                             font-weight: bold;
-                            font-size: 25px;">ClickEstudios <span style="font-size: 14px;">(admin)</span>
+                            font-size: 25px;"> CliclEstudios 
                           </h5>
+                     
         
                   </div>
-                  <div>
+                  {% if messages %}
+                  {% for message in messages %}
+                      <div class="alert alert-{{ message.tags }} alert-dismissible text-start fade text-danger show" role="alert"
+                        style='font-size: 10px;'>
+                          {{ message }}
+                      </div>
+                  {% endfor %}
+              {% endif %}
+                  <div class="d-flex justify-content-center ">
                         <input data-aos="fade-down" style="transition-delay: 1s; transition-duration: 1s;" type="text" id="username" name="username" placeholder="Correo (usuario)" required>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                    <input data-aos="fade-down" style="transition-delay: 1.4s; transition-duration: 1s;"  type="password" id="password" name="password" placeholder="Contraseña" required>
                   </div>
-                  <div>
-                  <input data-aos="fade-down" style="transition-delay: 1.4s; transition-duration: 1s;"  type="password" id="password" name="password" placeholder="Contraseña" required>
-                  </div>
-                  <div data-aos="fade-down" style="transition-delay: 2s; transition-duration: 1s;" class="d-flex justify-content-end mt-2" style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
-                        <a href="/" class="btn btn-secondary me-2 bg-transparent border-0 " style="font-weight: bold;"> Atras </a>
-                        <button type="submit" class="border-0 bg-warning rounded-5 pe-3 ps-3" style="font-weight: bold; "> Iniciar session </button>
+                  <div data-aos="fade-in" style="transition-delay: 2s; transition-duration: 1s;" class="w-100 d-flex flex-wrap justify-content-end mt-2" style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+                    <a href="/" class="btn btn-secondary text-center text-white-50 bg-transparent border-0 " style="font-weight: bold;"> Atras </a>
+                    <button type="submit" class="border-0 text-white  bg-white bg-opacity-10 m-0 me-3 rounded-5 p-2 pe-3 ps-3" style="font-weight: bold; "> Iniciar session </button>
                   </div>
             </form>
             <div class="no-found" style="display: none; max-width: 30rem; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
@@ -484,3 +494,9 @@
       </script>
       
 </section>
+<script>
+    document.getElementById('username').addEventListener('input', function (e) {
+      e.target.value = e.target.value.toLowerCase();
+    });
+
+</script>

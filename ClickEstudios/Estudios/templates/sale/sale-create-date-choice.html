@@ -52,28 +52,20 @@
                                
                         </div>
                         <div class="w-75  position-relative" style="height: 27rem;">
-                              <div class='text-white text-start'>
-                                    <strong>
-                                          Agenda cita
-                                    </strong>
-                                    <p class='text-white-50 p-0 m-0'>
-                                          Por favor, selecciona la fecha y hora en la que deseas agendar tu cita, no olvides escoger la hora de tu preferencia, si no escoges el sistema no podrá agendar tu cita.
-                                    </p>
-                              </div>
-                           
+                   
                               <!--Contact -->
                               <div class="contact w-100">
                                     {% include "sale/components/form-basic.html" %}
                               </div>
                         
                               <!--Date Choice-->
-                              <div class="date-choice select-date-choice d-none d-flex w-100 justify-content-between">
+                              <div class="date-choice select-date-choice p-2 d-none d-flex w-100 justify-content-between">
                                     {% include "sale/components/date_choice.html" %}
                                     {{form.time}}
                               </div>
 
                               <!--Time Choice-->
-                              <div class="time-choice d-none">
+                              <div class="time-choice d-none p-2 w-100 d-flex justify-content-center align-content-center flex-wrap h-100">
                                     <button class="btn btn-primary d-none rounded-5"
                                           style="width: 9rem;" id="submit_button">
                                           Agendar
@@ -81,7 +73,7 @@
                               </div>
 
                               <!-- Navigation Buttons -->
-                              <div class="navigation-buttons position-absolute bottom-0 d-flex justify-content-start w-100 mt-3">
+                              <div class="navigation-buttons position-absolute bottom-0 d-flex justify-content-start w-100 p-3 mt-3">
                                     <span type="button" class="btn me-2 btn-secondary bg-transparent border-0 d-none" id="prev_button" onclick="showPreviousSection()">Anterior</span>
                                     <span type="button" class="btn btn-secondary bg-warning rounded-5 text-black d-none" style="font-weight: bold;" id="next_button" onclick="showNextSection()">Siguiente</span>
                               </div>
