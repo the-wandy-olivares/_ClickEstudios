@@ -73,7 +73,7 @@ class Pos(TemplateView):
         # Luego, redirigir a la misma página o hacer cualquier otra acción necesaria
         return self.get(request, *args, **kwargs)
 
-@method_decorator(cache_page(60 * 10), name='dispatch')  
+
 class Service(TemplateView):
         template_name = 'service/service.html'
 
@@ -195,7 +195,7 @@ class ServiceDelete(DeleteView):
 
 
 # Plans
-@method_decorator(cache_page(60 * 30), name='dispatch')  
+
 class Plan(TemplateView):
     template_name = 'plan/plan.html'
 
@@ -1232,6 +1232,8 @@ class Factura(TemplateView):
             if request.POST.get('invoice_type'):
                 sale.sale_type = request.POST.get('invoice_type')
                 
+            if request.POST.get('search_name'):
+                sale.sale_type = request.POST.get('search_name')
 
 
             # Finalizar venta
