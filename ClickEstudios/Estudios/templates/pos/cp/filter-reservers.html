@@ -1,16 +1,16 @@
-<form action="" method="get" style='width: 8rem;'>
-      <select class="form-select border-0 bg-transparent text-white border-0" name='filter' style="width: 10rem; outline: none !important; " onchange="this.form.submit()" >
+<form action="" method="get" >
+      <select class="form-select border-0 bg-transparent text-white border-0" name='filter' style="width: 15rem; outline: none !important; " onchange="this.form.submit()" >
             <option value="all" {% if filter_option == 'all' %}selected{% endif %}>
                   Todas
             </option>
             <option value="today" {% if filter_option == 'today' %}selected{% endif %}>
-                  Hoy
+                  Para hoy
             </option>
             <option value="hour" {% if filter_option == 'hour' %}selected{% endif %}>
-                  Ahora cercana
+                  Ahora mas cercana
             </option>
             <option value="past_hour" {% if filter_option == 'past_hour' %}selected{% endif %}>
-                  Horas pasadas
+                  Hoy de horas pasadas
             </option>
             <option value="past" {% if filter_option == 'past' %}selected{% endif %}>
                 Dias  pasados 
