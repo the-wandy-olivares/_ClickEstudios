@@ -246,6 +246,9 @@ class Sale(models.Model):
             verbose_name="Tipo de Venta"
       )
 
+      # RNC del cliente
+      rnc_client = models.CharField(default='', max_length=255, blank=True, null=True)
+      name_company_client = models.CharField(default='', max_length=255, blank=True, null=True)
       # Aplica para descuento
       discount = models.BooleanField(default=True)
 

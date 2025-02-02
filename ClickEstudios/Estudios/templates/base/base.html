@@ -96,6 +96,22 @@
 
 
     }
+    @keyframes fade-down {
+      0% {
+            transform: rotateX(90deg);
+            opacity: 0;
+      }
+      100% {
+            transform: rotateX(0deg);
+            opacity: 1;
+      }
+}
+
+      .fade-down {
+            animation: fade-down 0.5s ease-in ;
+            transform-origin: down; 
+      }
+
   </style>
 
   <body style=" {% if request.user.config.mode %} background-color:#101010; {% else %} background-color:black  {% endif %} " class="p-0 body"> 

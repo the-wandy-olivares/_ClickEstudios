@@ -102,14 +102,20 @@
                         <strong class="text-capitalize">Cliente:</strong> 
                             <span class='text-capitalize'> {{ sale.name_client }} </span>
                 </p> {% endcomment %}
-                    {% if sale.sale_type != 'consumidor'  %}
-                    <p class="w-100" style="font-size: 14px !important;">
-                            <strong>RNC CLIENTE:</strong> <span class="rnc_cliente"></span>
-                    </p>
-                    <p class="w-100" style="font-size: 14px !important;">
-                        <strong class="text-capitalize">NOMBRE:</strong> <span  class="name_cliente"></span> 
+                {% if sale.sale_type != 'consumidor'  %}
+                <p class="w-100" style="font-size: 14px !important;">
+                        <strong>RNC CLIENTE:</strong> 
+                        {{sale.rnc_client}}    
+                        <span class="rnc_cliente">
+                        </span>
                 </p>
-                {% endif %}
+                <p class="w-100" style="font-size: 14px !important;">
+                    <strong class="text-capitalize">NOMBRE:</strong> 
+                    {{sale.name_company_client}}
+                    <span  class="name_cliente">
+                    </span> 
+                </p>
+            {% endif %}
                 <p class="w-100" style="font-size: 14px !important;">
                     <strong>NCF: </strong> 
                     {{ncf}} 
@@ -203,7 +209,7 @@
     <footer class='pb-4 d-flex flex-wrap align-content-end   vh-100  w-50  bg-black' style="position: sticky; bottom: 0; width: 100%;  padding: 12px; text-align: center;" >
             {% if sale.payment %}
                 {% if sale.sale_type == 'credito' %}
-                <div data-aos="fade-in" style="transition-delay: 1s; transform-origin: 1s;" class='text-white w-100 d-flex justify-content-center flex-wrap search-auto' >
+                <div style="transition-delay: 1s; transform-origin: 1s;" class='text-white w-100 d-flex justify-content-center flex-wrap search-auto' >
                         <div class="w-100 text-start">
                             <h4 class="text-centers">
                                 Buscar empresa en la DGII
@@ -261,6 +267,17 @@
                                     document.querySelector('.name_cliente').textContent = searchName.value;
                                 });
 
+                                searchRnc.addEventListener('input', function() {
+                                    toggleButton();
+                                    let rncValue = searchRnc.value.replace(/\D/g, ''); // Remove non-numeric characters
+                                    if (rncValue.length > 11) {
+                                        rncValue = rncValue.slice(0, 11); // Limit to 11 digits
+                                    }
+                                    searchRnc.value = rncValue.replace(/(\d{3})(\d{5})(\d{1})/, '$1-$2-$3'); // Format as RNC
+                                    document.querySelector('.rnc_cliente').textContent = searchRnc.value;
+                                });
+        
+
                             });
                         </script>
                 </div>
@@ -296,8 +313,8 @@
                         <form action="" method="post" style='width: 10rem;'>
                                     {% csrf_token %}
                                     <select name="invoice_type" id="invoice_type" class="form-select bg-black text-white rounded-5 border-0 p-1" onchange="this.form.submit()">
-                                        <option value="credito" {% if sale.sale_type == 'credito' %}selected{% endif %}>(Credito fiscal) </option>
-                                        <option value="consumidor" {% if sale.sale_type == 'consumidor' %}selected{% endif %}> (Consumidor final) </option>
+                                        <option value="credito" {% if sale.sale_type == 'credito' %}selected{% endif %}>Credito fiscal </option>
+                                        <option value="consumidor" {% if sale.sale_type == 'consumidor' %}selected{% endif %}> Consumidor final </option>
                                   </select>
                         </form>
                   </div>

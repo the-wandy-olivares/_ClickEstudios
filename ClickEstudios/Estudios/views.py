@@ -603,6 +603,13 @@ class Estudios(TemplateView):
 
 
     def post(self, request, *args, **kwargs):
+
+        if request.POST.get('search_rnc'):
+            sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
+            sale.rnc_client = request.POST.get('search_rnc')
+            sale.name_company_client = request.POST.get('search_name')
+            sale.save()
+
         # Agregar adicional
         if request.POST.get('name'):
             sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
@@ -1241,6 +1248,13 @@ class Factura(TemplateView):
 
         def post(self, request, *args, **kwargs):
             sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
+
+            if request.POST.get('search_rnc'):
+                sale.rnc_client = request.POST.get('search_rnc')
+                sale.name_company_client = request.POST.get('search_name')
+                sale.save()
+
+                
             if request.POST.get('discount'):
                 if sale.discount:
                     sale.discount = False
