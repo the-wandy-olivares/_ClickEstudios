@@ -19,15 +19,18 @@
 </style>
 <section class="d-flex w-100 overflow-auto mt-2" style='height: 100%;'>
             {% for s in sales_reservers %}
-        
-            <a {% if s.pk_plan %} href="{% url "estudios:sale-update" s.id %}"     {% endif %}>
+
+                  {% comment %} {% if s.time >= time_now %} {% endcomment %}
+                        <!-- Content to display if s.time is less than the current time -->
+         
+
                         <div style="min-width: 530px; max-width: 530px;
                         border: 4px solid rgb(47, 47, 47);color: #ffffffcf ;
                         height: 18.6rem;
                         {% if s.date_choice == today %}
                          border: 6px solid rgb(30, 31, 106);
                               {% if s.time == time_now %}
-                                    border: 6px solid rgb(112, 32, 32) !important;
+                                    border: 6px solid rgb(112, 48, 32) !important;
                               {% endif %}
                         {% endif %}
                           border-radius: 3rem; cursor: pointer; " class='  m-2 shadow-sm'>
@@ -39,7 +42,7 @@
                                                 {% endif %}
                                               <span>
                                                     <strong style='font-size: 18px; text-transform: uppercase; '>
-                                                            {{s.name_plan}}
+                                                            {{s.name_plan}} {{s.time}} {{time_now}}
                                                     </strong>
                                               </span>
                                           </div>
@@ -125,7 +128,7 @@
                                     {% endif %}
                               </div>
                         </div>
-                  </a>
+                        {% comment %} {% endif %} {% endcomment %}
             {% endfor %}
 
 

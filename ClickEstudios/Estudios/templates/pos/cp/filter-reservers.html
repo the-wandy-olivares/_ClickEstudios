@@ -1,0 +1,19 @@
+<form action="" method="get" style='width: 8rem;'>
+      <select class="form-select bg-transparent text-white border-0" name='filter' style="width: 10rem;" onchange="this.form.submit()">
+            <option value="all" {% if filter_option == 'all' %}selected{% endif %}>
+                  Todas
+            </option>
+            <option value="today" {% if filter_option == 'today' %}selected{% endif %}>
+                  Hoy
+            </option>
+            <option value="hour" {% if filter_option == 'hour' %}selected{% endif %}>
+                  Ahora
+            </option>
+            <option value="past" {% if filter_option == 'past' %}selected{% endif %}>
+                  Pasadas
+            </option>
+            <option value="future" {% if filter_option == 'future' %}selected{% endif %}>
+                  Futuras
+            </option>
+      </select>
+</form>

@@ -33,10 +33,11 @@
 
 
 {% if box_is_open  %}
-      <section class="overflow-auto w-100">{% load cache %}
-            {% cache 600 "mi_fragmento" %}
-            <span class="reloj font-delius position-absolute end-0 me-5 mt-3 d-flex justify-content-center align-content-center flex-wrap text-white"  style="font-size: 18px;" ></span>
-            <div class='d-flex'>
+      <section data-aos="fade-in" style="transition: 1s;" class="overflow-auto w-100">
+
+
+            <span class="reloj font-delius position-absolute end-0 me-5 z-1 mt-3 d-flex justify-content-center align-content-center flex-wrap text-white"  style="font-size: 18px;" ></span>
+            <div data-aos="fade-down" style="transition: 1s;" class='d-flex blur-5 position-sticky top-0'>
                   <button class="bg-transparent border-0 me-3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search text-white" viewBox="0 0 16 16">
                               <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
@@ -56,10 +57,8 @@
                  </a>
 
 
-
-
             </div>
-            {% endcache %}
+
             
             
             <!-- Resultados -->
@@ -104,27 +103,55 @@
                               });
                     </script>
             </div>
+            <div style="min-width: 520px; cursor: pointer;  border: 0px solid rgb(47, 47, 47); border-radius: 2rem; ;"
+                  class=' text-white m-2 shadow-sm  mt-5 d-flex justify-content-start align-content-center flex-wrap'>
+            <h6 class="w-100 text-start m-0 mt-3" style="font-weight: bold; font-size: 18px; font-style: italic;">
+                  Citas no confirmadas
+            </h6>
+            <p class="m-3  ms-0 mt-0 mb-0  p-2 ps-0 pb-0 pt-0 text-white-50" style="text-align: justify;">
+                  Puedes buscar un cliente para realizar una reservación o seleccionar un servicio para reservar un plan y realizar una reserva una cita
+            </p>
+            </div>
             {% if sales %}
-                  <div class="mt-5 d-flex  overflow-auto">
+                  <div class="mt-2 d-flex  overflow-auto">
                         {% include "sale/sale.html" %}
                   </div>
                   {% else %}
-                  <div style="min-width: 520px; cursor: pointer;  border: 0px solid rgb(47, 47, 47); border-radius: 3rem; height: 17rem;" class=' text-white m-2 shadow-sm d-flex justify-content-start align-content-center flex-wrap'>
-                        <h6 class="w-100 text-start" style="font-weight: bold; font-size: 18px; font-style: italic;">
-                              No hay reservaciones
-                        </h6>
-                        <p class="m-3  ms-0 mt-0 p-2 ps-0 pt-0 text-white-50" style="text-align: justify;">
-                              Puedes buscar un cliente para realizar una reservación o seleccionar un servicio para reservar un plan y realizar una reserva una cita
-                        </p>
+                  <div class="w-100 ">
+                        <div style="width: 30rem;" class="bg-white m-0 bg-opacity-10 blur-5 p-3 rounded-4 d-flex justify-content-center align-content-center flex-wrap">
+                              <h6 class=" text-white-50 m-0 " style="font-weight: bold; font-size: 18px; font-style: italic;">
+                                    Actualmente no hay nuevas citas
+                              </h6>
+                        </div>
                   </div>
             {% endif %}
 
-            {% if sales_reservers %}
-
-                  <div class=' d-flex overflow-auto  mt-4 ' >
+     
+                  <div style="min-width: 520px; cursor: pointer;  border: 0px solid rgb(47, 47, 47); border-radius: 2rem; ;"
+                         class=' text-white m-2 shadow-sm  d-flex justify-content-start mt-5 align-content-center flex-wrap position-relative '>
+                        <div class='position-absolute top-0 end-0 me-5 mt-3'>
+                              {% include "pos/cp/filter-reservers.html" %}
+                        </div>
+                         <h6 class=" text-start m-0 mt-3" style="font-weight: bold; font-size: 18px; font-style: italic;">
+                         ({{sales_reservers|length}})   Citas confirmadas
+                        </h6>
+                        <p class="m-3  ms-0 w-100 mt-0 mb-0  p-2 pb-0 ps-0 pt-0 text-white-50" style="text-align: justify;">
+                              Estas citas ya han sido confirmadas por el cliente, las cuales ya se han realizado un abono o completado el pago.
+                        </p>
+                  </div>
+                  {% if sales_reservers %}
+                  <div class=' d-flex overflow-auto  ' >
                         {% include "sale/sale-resevers.html" %}
                   </div>
-               {% endif %} 
+                  {% else %} 
+                  <div class="w-100 ">
+                        <div style="width: 30rem;" class="bg-white m-0 bg-opacity-10 p-3 rounded-4 d-flex justify-content-center align-content-center flex-wrap">
+                              <h6 class=" text-white-50 m-0 " style="font-weight: bold; font-size: 18px; font-style: italic;">
+                                    Oh oh!, aun no hay citas 
+                              </h6>
+                        </div>
+                  </div>
+            {% endif %} 
             </div>
       </section>
       {% else %}

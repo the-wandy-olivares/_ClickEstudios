@@ -175,7 +175,32 @@ document.addEventListener('DOMContentLoaded', function() {
       
 
     </script>
+    <script>
 
+      document.addEventListener('DOMContentLoaded', function () {
+      const phoneInput = document.getElementById('id_phone_client');
+
+            if (phoneInput) {
+                  phoneInput.addEventListener('input', function (event) {
+                  let input = phoneInput.value.replace(/\D/g, ''); // Remover todo excepto dígitos
+                  let formatted = '';
+
+                  if (input.length > 0) {
+                        formatted += '(' + input.substring(0, 3);
+                  }
+                  if (input.length >= 4) {
+                        formatted += ') ' + input.substring(3, 6);
+                  }
+                  if (input.length >= 7) {
+                        formatted += '-' + input.substring(6, 10);
+                  }
+
+                  phoneInput.value = formatted;
+                  });
+            }
+      });
+
+</script>
     <!--Jquery-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 

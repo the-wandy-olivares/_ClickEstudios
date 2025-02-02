@@ -24,6 +24,7 @@ from django.utils.decorators import method_decorator
 from django.core.cache import cache
 from django.contrib import messages
 
+TIME_NOW = timezone.localtime(timezone.now(), timezone.get_current_timezone()).replace(minute=0, second=0, microsecond=0).strftime('%H:%M')
 
 class Dashboard(TemplateView):
     template_name = 'estudios/dashboard.html'
@@ -57,21 +58,32 @@ class Pos(TemplateView):
         context['service_choices'] = models.Service.objects.all()
         context['plan_choices'] = models.Plan.objects.all()
         context['sales'] = models.Sale.objects.filter(is_reserve=False, finalize=False).order_by('-id')
-        context['sales_reservers'] = models.Sale.objects.filter(is_reserve=True, finalize=False).order_by('-id')
         context['box_is_open'] = models.Box.objects.filter(open=True).exists() 
         context['today'] = timezone.now().date()
-        context['time_now'] = timezone.now().strftime('%H:%M')
+        context['time_now'] = TIME_NOW
         return context
     
-    def post(self, request, *args, **kwargs):
-        # Procesa los datos del formulario, por ejemplo, actualiza o crea nuevos objetos
-        # Aquí puedes manejar cualquier lógica que involucre el POST, como agregar ventas, actualizar datos, etc.
+    def filter_sales(self, filter_option):
+        today = timezone.localtime().date()  # Fecha actual en la zona horaria local
 
-        # Después de procesar el POST, invalidar la caché
-        cache.delete('delet-cache')  # Elimina la caché asociada a esta vista (puedes poner un nombre específico)
+        filters = {
+            'today': models.Sale.objects.filter(date_choice=today),
+            'hour': models.Sale.objects.filter(date_choice=today, time__gte=TIME_NOW),
+            'past': models.Sale.objects.filter(date_choice__lt=today),
+            'future': models.Sale.objects.filter(date_choice__gt=today),
+            'all': models.Sale.objects.all(),
+        }
+        # Filtrar por reservas activas y no finalizadas
+        sales_query = filters.get(filter_option, filters['hour']).filter(is_reserve=True, finalize=False)
+        return sales_query.order_by('-date_choice', 'time')
 
-        # Luego, redirigir a la misma página o hacer cualquier otra acción necesaria
-        return self.get(request, *args, **kwargs)
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data()
+        filter_option = request.GET.get('filter', 'hour')  # Si no se especifica, usa 'hour'
+        context['sales_reservers'] = self.filter_sales(filter_option)
+        context['filter_option'] = filter_option
+        return self.render_to_response(context)
+
 
 
 class Service(TemplateView):
@@ -460,6 +472,14 @@ class SaleUpdate(UpdateView):
         # Retorna la URL a la que redirigirá después de un submit exitoso
         return reverse_lazy('estudios:pos')
     
+
+class SaleDelete(DeleteView):
+    model = models.Sale
+    template_name = 'sale/sale-delete.html'
+
+    def get_success_url(self):
+        # Retorna la URL a la que redirigirá después de un submit exitoso
+        return reverse_lazy('estudios:pos')
 
 
 class SaleCreateDateChoice(CreateView):

@@ -34,6 +34,7 @@ urlpatterns = [
             path('sale-create/<int:pk>', views.SaleCreate.as_view(), name='sale-create'),
                   path('sale-reserver/<int:pk>', views.SaleReserver.as_view(), name='sale-reserver'),
                         path('sale-update/<int:pk>/', views.SaleUpdate.as_view(), name='sale-update'),
+                        path('sale-delete/<int:pk>/', views.SaleDelete.as_view(), name='sale-delete'),
                   path('sale-create-date-choice/<int:pk>/', views.SaleCreateDateChoice.as_view(), name='sale-create-date-choice'),
             path('sale-client-date-choice/<int:pk>/', views.SaleClientDateChoice.as_view(), name='sale-client-date-choice'),
       path('fast-sale', views.FastSale.as_view(), name='fast-sale'),

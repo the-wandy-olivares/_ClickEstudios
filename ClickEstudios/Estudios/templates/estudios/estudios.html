@@ -19,7 +19,7 @@
       }
       input::placeholder
       {
-            color: white !important;
+            color: rgb(196, 196, 196) !important;
       }
 </style>
 <section style="position: relative; min-height: 100vh;"
@@ -60,7 +60,7 @@
                         {% csrf_token %}
                         <div class='d-flex  w-100'> 
                               <input class='form-control bg-white  bg-opacity-10 border-0 w-50 m-0 me-1 p-3 adicionales-input text-white' type="text" name="name"  id="name"
-                               value=''   placeholder="Nombre" style="border-top-left-radius: 1.5rem;">
+                               value=''   placeholder="Nombre del adicional" style="border-top-left-radius: 1.5rem;">
                               <input class='form-control bg-white  text-white bg-opacity-10 border-0 w-50 m-0 p-3 adicionales-input' type="number" name="price" id="price" placeholder="Precio"
                               style="border-top-right-radius: 1.5rem;">
                         </div>
@@ -89,7 +89,7 @@
             {% endif %}
 
             <!-- Factura -->
-             <div class='factura overflow-auto  d-flex d-none flex-wrap blur-5  align-content-center vh-100 position-absolute start-0  top-0 z-2 w-100'>
+             <div class='factura overflow-auto  d-flex d-none flex-wrap blur-5  align-content-center vh-100 position-absolute start-0  top-0 z-2 w-100 '>
                   {% include "component/factura.html" %}
                   <div class='align-content-start-0'>
                         <button class='p-1 show-button  bg-white bg-opacity-10  border-0 rounded-circle' style='cursor: pointer; ' >
@@ -123,10 +123,10 @@
                         <p class='btn text-white p-1 m-0'>Total:     ${{total_con_i|intcomma}}.00</p>
                   </div>
                   <div>
+                        {% if sale.sale_type != 'credito' %}
                         <form action="" method="post" style='width: 10rem;' class='p-1' 
                         onchange="this.submit()">
                                 {% csrf_token %}
-
                                     <input type="checkbox" class='d-none' name="discount" id="discount" >
                                 <label for="discount" style='cursor: pointer;'>
                                     {% if sale.discount %}
@@ -141,6 +141,7 @@
 
                                      Descuento</label>
                         </form>
+                        {% endif %}
                   </div>
                   <div>
                         <form action="" method="post" style='width: 10rem;'>
