@@ -24,7 +24,6 @@ from django.utils.decorators import method_decorator
 from django.core.cache import cache
 from django.contrib import messages
 
-TIME_NOW = timezone.localtime(timezone.now(), timezone.get_current_timezone()).astimezone(timezone.get_fixed_timezone(-240)).replace(minute=0, second=0, microsecond=0).strftime('%H:%M')
 
 class Dashboard(TemplateView):
     template_name = 'estudios/dashboard.html'
@@ -60,12 +59,12 @@ class Pos(TemplateView):
         context['sales'] = models.Sale.objects.filter(is_reserve=False, finalize=False).order_by('-id')
         context['box_is_open'] = models.Box.objects.filter(open=True).exists() 
         context['today'] = timezone.now().date()
-        context['time_now'] = TIME_NOW
+        context['time_now'] =  timezone.localtime(timezone.now(), timezone.get_current_timezone()).astimezone(timezone.get_fixed_timezone(-240)).replace(minute=0, second=0, microsecond=0).strftime('%H:%M')
         return context
     
     def filter_sales(self, filter_option):
-        today = timezone.localtime().date()  # Fecha actual en la zona horaria local
-
+        today = timezone.localtime().date()  # Fecha actual en la zona horaria local    
+        TIME_NOW = timezone.localtime(timezone.now(), timezone.get_current_timezone()).astimezone(timezone.get_fixed_timezone(-240)).replace(minute=0, second=0, microsecond=0).strftime('%H:%M')
         filters = {
             'today': models.Sale.objects.filter(date_choice=today),
             'hour': models.Sale.objects.filter(date_choice=today, time__gte=TIME_NOW),

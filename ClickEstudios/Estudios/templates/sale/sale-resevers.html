@@ -55,7 +55,7 @@
                                                 {% endif %}
                                               <span>
                                                     <strong style='font-size: 18px; text-transform: uppercase; '>
-                                                            {{s.name_plan}}
+                                                            {{s.name_plan}} {{s.time}} {{time_now}}
                                                     </strong>
                                               </span>
                                           </div>
@@ -63,7 +63,7 @@
                                                <p class="mb-0">
                                                      <strong class="text-capitalize" style="font-weight: bold;">
                                                       {% if s.is_cliente %}
-                                                            {{ s.name }}
+                                                            {{ s.name }} 
                                                       {% else %}
                                                             {% if s.name_client %}
                                                             {{ s.name_client|slice:":20" }}
