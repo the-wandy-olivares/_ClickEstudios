@@ -24,7 +24,7 @@ from django.utils.decorators import method_decorator
 from django.core.cache import cache
 from django.contrib import messages
 
-TIME_NOW = timezone.localtime(timezone.now(), timezone.get_current_timezone()).replace(minute=0, second=0, microsecond=0).strftime('%H:%M')
+TIME_NOW = timezone.localtime(timezone.now(), timezone.get_current_timezone()).astimezone(timezone.get_fixed_timezone(-240)).replace(minute=0, second=0, microsecond=0).strftime('%H:%M')
 
 class Dashboard(TemplateView):
     template_name = 'estudios/dashboard.html'
@@ -69,6 +69,7 @@ class Pos(TemplateView):
         filters = {
             'today': models.Sale.objects.filter(date_choice=today),
             'hour': models.Sale.objects.filter(date_choice=today, time__gte=TIME_NOW),
+            'past_hour': models.Sale.objects.filter(date_choice=today, time__lt=TIME_NOW),
             'past': models.Sale.objects.filter(date_choice__lt=today),
             'future': models.Sale.objects.filter(date_choice__gt=today),
             'all': models.Sale.objects.all(),
@@ -79,7 +80,7 @@ class Pos(TemplateView):
 
     def get(self, request, *args, **kwargs):
         context = self.get_context_data()
-        filter_option = request.GET.get('filter', 'hour')  # Si no se especifica, usa 'hour'
+        filter_option = request.GET.get('filter', 'today')  # Si no se especifica, usa 'hour'
         context['sales_reservers'] = self.filter_sales(filter_option)
         context['filter_option'] = filter_option
         return self.render_to_response(context)
