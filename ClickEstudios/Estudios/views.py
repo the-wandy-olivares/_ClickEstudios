@@ -424,6 +424,7 @@ class SaleCreate(CreateView):
             form.instance.finaliz = True
             form.instance.payment = True
             form.instance.is_reserve = True
+
         # Guarda el objeto y redirige al éxito
             models.Movements.objects.create(
                 user=self.request.user,
