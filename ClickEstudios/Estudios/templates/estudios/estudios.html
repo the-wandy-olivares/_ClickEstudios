@@ -47,13 +47,25 @@
             </div>
 
 
-            <div class="mt-4 ps-3">
-                  <strong>
-                        Adicionales personalizados
-                  </strong>
-                  <p class="text-white-50" style="font-size: 14px;">
-                        Añade los complementos que prefieras
-                  </p>
+            <div class="mt-4 ps-3 d-flex">
+                  <div>
+                        {% if sale.finalize == False%}
+                        <button id='open-adicional' class='bg-warning me-1 mt-2 rounded-5  d-flex justify-content-center align-content-center flex-wrap text-black border-0'
+                        style='font-weight: bold; font-size: 14px; width: 30px; height: 30px;'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+                            </svg>
+                        </button>
+                  {% endif %}
+                  </div>
+                  <div>
+                        <strong class=''>
+                              Adicionales personalizados
+                        </strong>
+                        <p class="text-white-50" style="font-size: 14px;">
+                              Añade los complementos que prefieras
+                        </p>
+                  </div>
             </div>
             <div class='adicional d-none text-white'>
                   <form action="" method="post">
@@ -76,14 +88,7 @@
                        </div>
                   </form>
             </div>
-            {% if sale.finalize == False%}
-                  <span>
-                        <button id='open-adicional' class='bg-warning rounded-5  mb-2 p-2 ms-3 pe-3 ps-3 text-black border-0'
-                        style='font-weight: bold; font-size: 14px;'>
-                              Agregar
-                        </button>
-                  </span>
-            {% endif %}
+
             {% if adicionales %}
                   {% include "component/table-adicional.html" %}
             {% endif %}
