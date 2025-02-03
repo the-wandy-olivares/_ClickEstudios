@@ -33,7 +33,10 @@
 
 {% if box_is_open  %}
       <section data-aos="fade-in" style="transition: 1s;" class="overflow-auto w-100">
-
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-clock-fill  position-absolute end-0  z-3 text-white " style='margin-right:8rem; 
+            margin-top:1.3rem;' viewBox="0 0 16 16">
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
+                </svg>
             <span class="reloj font-delius position-absolute end-0 me-5 z-1 mt-3 d-flex justify-content-center align-content-center flex-wrap text-white"  style="font-size: 18px;" ></span>
             <div data-aos="fade-down" style="transition: 1s;" class='d-flex blur-5 position-sticky top-0'>
                   <button class="bg-transparent border-0 me-3">
@@ -123,15 +126,15 @@
      
                   <div style="min-width: 520px; cursor: pointer;  border: 0px solid rgb(47, 47, 47); border-radius: 2rem; ;"
                          class=' text-white m-2 shadow-sm  d-flex justify-content-start mt-5 align-content-center flex-wrap position-relative '>
-                        <div class='position-absolute top-0 end-0 me-2 mt-3'>
-                              {% include "pos/cp/filter-reservers.html" %}
-                        </div>
-                         <h6 class=" text-start m-0 mt-3" style="font-weight: bold; font-size: 18px; font-style: italic;">
-                         ({{sales_reservers|length}})   Citas confirmadas
+                        {% comment %} <div class='position-absolutse top-0 end-0 me-2 mt-3'>
+                        </div> {% endcomment %}
+                        <h6 class=" text-start m-0 mt-3" style="font-weight: bold; font-size: 18px; font-style: italic;">
+                              ({{sales_reservers|length}})   Citas confirmadas
                         </h6>
                         <p class="m-3  ms-0 w-100 mt-0 mb-0  p-2 pb-0 ps-0 pt-0 text-white-50" style="text-align: justify;">
                               Estas citas ya han sido confirmadas por el cliente, las cuales ya se han realizado un abono o completado el pago.
                         </p>
+                        {% include "pos/cp/filter-reservers.html" %}
                   </div>
                   {% if sales_reservers %}
                   <div class=' d-flex overflow-auto  ' >
