@@ -2,10 +2,12 @@
 {% extends "base/base.html" %}
 {% block content %}
 <style>
+      
       .nav .configuration {
             color: #ffc107;
             font-weight: bolder;
             transform: scale(1.1);
+
       }
       .btn-atras  {
             display: none;
@@ -86,8 +88,14 @@
             </div>
            
       </div>
-
-
+      <style>
+            
+      </style>
+      <a href="{%  url 'estudios:logout' %}">
+            <button class='position-absolute bottom-0 end-0 me-4 mb-4 bg-white bg-opacity-10 border-0 rounded-5 ps-3 pe-3 p-2 text-white ' style="font-weight: bold;">
+                  Cerrar session
+            </button>
+      </a>
       
 </section>
 
