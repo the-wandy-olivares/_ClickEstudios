@@ -3,9 +3,10 @@ from django.urls import path
 from . import views, ajax_views
 
 
-app_name = 'estudios'
-urlpatterns = [
 
+app_name = 'estudios'
+
+urlpatterns = [
 #  Home
       path('', views.Home.as_view(), name='home'),
             path('dashboard/', views.Dashboard.as_view(), name='dashboard'),
@@ -89,6 +90,9 @@ urlpatterns = [
 #  Facturacion
       path('facturacion/', views.Facturacion.as_view(), name='facturacion'),
             path('list-facturacion/', views.ListFacturacion.as_view(), name='list-facturacion'),
+
+# Contactos
+      path('contactos/', views.Contactos.as_view(), name='contactos'),
 
 ]
 

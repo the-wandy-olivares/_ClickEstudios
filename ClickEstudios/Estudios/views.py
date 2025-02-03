@@ -25,6 +25,13 @@ from django.core.cache import cache
 from django.contrib import messages
 
 
+from django.shortcuts import render
+
+
+def Status404(request, exception):
+    return render(request, 'component/404.html', status=404)
+
+
 class Dashboard(TemplateView):
     template_name = 'estudios/dashboard.html'
 
@@ -629,12 +636,13 @@ class Estudios(TemplateView):
             else:
                 sale.discount = True
             sale.save()
-            print(sale.discount)
+
         
 
         if request.POST.get('invoice_type'):
             sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
             sale.sale_type = request.POST.get('invoice_type')
+            sale.discount = False
             sale.save()
         # Eliminar adicional
         if request.POST.get('delete'):
@@ -683,7 +691,7 @@ class Estudios(TemplateView):
             
         return self.render_to_response(self.get_context_data())
     
-@method_decorator(cache_page(60 * 60), name='dispatch')  
+@method_decorator(cache_page(3 * 3), name='dispatch')  
 class Gallery(TemplateView):
     template_name = 'gallery/gallery.html'
 
@@ -1364,3 +1372,7 @@ class ListFacturacion(TemplateView):
             )
             sale.save()
         return self.render_to_response(self.get_context_data())
+    
+
+class Contactos(TemplateView):
+    template_name = 'contactos/contactos.html'

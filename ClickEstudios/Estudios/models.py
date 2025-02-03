@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-
+from django.utils import timezone
 
 
 class Profile(models.Model):
@@ -193,7 +193,8 @@ class Sale(models.Model):
       description_plan = models.TextField(blank=True, null=True)
       price_plan = models.IntegerField(blank=True, null=True)
       img = models.ImageField(upload_to='media/ventas', null=True, blank=True)
-      date = models.DateTimeField(auto_now_add=True)
+      date = models.DateTimeField(default=timezone.now, verbose_name="Fecha de creación")
+
       is_active = models.BooleanField(default=True)
 
 # Estado de la venta

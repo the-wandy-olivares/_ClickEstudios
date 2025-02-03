@@ -103,6 +103,8 @@
                                                       </strong> 
                                                       {% if s.date_choice %}
                                                             {{ s.date_choice|date:"d/m/Y" }} - {{ s.time }}
+                                                            {% else %}
+                                                            Hoy/Ahora/Mismo - 00:00
                                                       {% endif %}
                                                 </p>
                                              </span>
