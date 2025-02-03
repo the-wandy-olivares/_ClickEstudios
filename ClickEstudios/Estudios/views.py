@@ -1008,14 +1008,11 @@ class EmpleadoCreate(CreateView):
         form.instance.first_name = form.instance.first_name
         form.instance.last_name = form.instance.last_name
         form.instance.set_password(form.instance.password)
-        
-
-        # Create a profile for the new user
-
-        
         # Guarda el objeto y redirige al éxito
         self.object = form.save()
-        models.Profile.objects.create(user=self.object)
+        models.Profile.objects.create(user=self.object, 
+                estudio=self.request.user.profile.estudio)
+        models.Config.objects.create(user=self.object)
         return redirect(self.get_success_url())
 
     def form_invalid(self, form):
