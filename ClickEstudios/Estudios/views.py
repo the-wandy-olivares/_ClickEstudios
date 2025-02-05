@@ -1198,6 +1198,7 @@ class FastSale(TemplateView):
                 description= request.POST.get('name') + (request.POST.get('descripcion') if request.POST.get('description') else ' ' ),
             )
             i.save()
+        
 
 
 
@@ -1271,6 +1272,10 @@ class Factura(TemplateView):
             
             if request.POST.get('invoice_type'):
                 sale.sale_type = request.POST.get('invoice_type')
+                if request.POST.get('invoice_type') == 'credito':
+                    sale.discount = False
+                    sale.save()
+
                 
             if request.POST.get('search_name'):
                 sale.sale_type = request.POST.get('search_name')
@@ -1283,6 +1288,10 @@ class Factura(TemplateView):
                 else:
                     sale.cosumidor_final = utils.GetNCF('consumidor')
                 sale.finalize = True
+
+
+       
+            sale.save()
 
             sale.save()
             return self.render_to_response(self.get_context_data())
