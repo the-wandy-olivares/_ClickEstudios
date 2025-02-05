@@ -18,6 +18,40 @@
                     transition: color 0.3s ease-out, transform 0.3s ease-out;
                     transform-origin: center;
             }
+
+            .moptions ul {
+                  list-style-type: none;
+                  padding: 0;
+                  margin: 0;
+            }
+
+            .moptions ul li {
+                  color: white;
+                  font-size: 14px;
+                  padding: 5px 0;
+                  background-color: rgba(70, 70, 70, 0.397);
+                  margin-top: 0.2rem;
+                  padding: 0.7rem;
+                  border-radius: 0.8rem;
+                  font-weight: bold;
+                  cursor: pointer;
+            }
+            .moptions ul li:hover {
+                  color: #ffc107;
+                  font-weight: bold;
+                  background-color: rgba(36, 36, 36, 0.528);
+            }
+            .moptions ul li svg {
+                  margin-right: 0.7rem;
+            }
+
+            .rotate-90 {
+                    transform: rotate(90deg);
+                    transition: transform 0.3s ease-out;
+            }
+            
+
+
       </style>
  
       <section data-aos='fade-in'   class=' overflow-auto w-100'>
@@ -35,42 +69,36 @@
                   <div style='transition-duration: 1s;' class="d-flex flex-wrap justify-content-start w-100 align-content-start  ">
                         {% if plans %}
                               {% for p in  plans %}
-                              <div style='width: 420px;' class=" position-relative col-12 col-md-6 col-lg-3 mb-4">
-                                           
-                                                <div class="" style="
+                              <div style='width: 420px;' class=" position-relative mb-0">
+                                    
+                                    {% include "plan/cp/options.html" %}
+                                    <div style="
                                                 {% if p.img %}
                                                 background-image: url('{{p.img.url}}');
                                                 background-size: cover; 
                                                 background-repeat: no-repeat;
                                                 {% endif %}
                                                 width: 100%; filter: brightness(80%);
-                                                 height: 240px; border-radius: 3rem;">
-                                                </div>
-
-                                          <h5 style='font-size: 16px; font-weight: bold; ' class='text-white'>
-                                                <a href="{% url "estudios:plan-delete" p.id %}"  class=' start-0 mb-2 text-white text-decoration-none' style="">
-                                                      <span>
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x-circle-fill  m-0 p-0 mb-1 me-2" style="color: #ffffffd3;"  viewBox="0 0 16 16">
-                                                                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
-                                                                </svg>
-                                                      </span>
-                                                </a> {{p.name}}</h5>
-                                          <span class="text-white ms-4" style="font-size: 14px;">
-                                               ${{p.price|intcomma}}.00
-                                          </span>
-                                          <div class='d-flex w-100 justify-content-start-0 ms-3 p-0'>
-                                                <a href="{% url "estudios:plan-detail" p.id %}" 
-                                                class='btn text-white border-1 rounded-5 pe-3 ps-3 m-0'
-                                                style='border: solid 1pxrgb(44, 44, 44);  font-weight: bold; background-color: rgb(37, 37, 37);' >
-                                                      <span>
-                                                            Caracteristicas
-                                                      </span>
-                                                </a> 
-                                                <a href="{% url "estudios:plan-update" p.id %}" class="btn text-white ms-3" style='font-weight: bold;'>
-                                                      Modificar
-                                                </a>
+                                                 height: 240px; border-radius: 1.5rem;">
+                                    </div>
+                                    <div class='d-flex'>
+                                          <button onclick="toggleOptions(this.id)" id="{{p.id}}" class='start-0 mt-3 text-white btn-optione{{p.id}} text-decoration-none bg-white bg-opacity-10 p-2  border-1 rounded-5' style="font-size: 12px ; font-weight: bold; width: 36px; height: 36px; border: 1px solid rgb(63, 63, 63) !important;">
+                                                <span>
+                                                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-three-dots text-white-50" viewBox="0 0 16 16">
+                                                            <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"/>
+                                                          </svg>
+                                                </span>
+                                          </button> 
+                                          <div>
+                                                <h5 style='font-size: 18px; font-weight: bold; ' class='text-white-50 p-0 m-0  ms-2 mt-1'>
+                                                      {{p.name}}
+                                                </h5>
+                                                <span class="text-white-50 ms-2 " style="font-size: 14px;">
+                                                      ${{p.price|intcomma}}.00
+                                                </span> 
                                           </div>
-                       
+                                    </div>
+                                          
                                     </div>
                                     {% endfor %}
 
@@ -93,4 +121,23 @@
                   </div>
       </section>
 
+      <script>
+            function toggleOptions(id) {
+                  let options = document.getElementById('options' + id);
+                  if (options.classList.contains('d-none')) {
+                        options.classList.remove('d-none');
+                  } else {
+                        options.classList.add('d-none');
+                  }
+                  document.querySelectorAll('.btn-optione' + id ).forEach(function(element) {
+                        element.classList.toggle('rotate-90');
+                  });
+            }
+
+            document.addEventListener('contextmenu', function(event) {
+                  event.preventDefault();
+
+            });
+
+      </script>
 {% endblock  %}
