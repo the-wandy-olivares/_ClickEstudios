@@ -55,7 +55,7 @@ def Search(request):
 
 
 def GetEstudios(request):
-    data = None
+    data = {'data': False}
     if models.Estudios.objects.filter(name='ClickEstudios').exists():
         estudio = models.Estudios.objects.get(name='ClickEstudios')
         data = {
