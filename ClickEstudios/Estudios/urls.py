@@ -94,6 +94,9 @@ urlpatterns = [
 # Contactos
       path('contactos/', views.Contactos.as_view(), name='contactos'),
 
+# Correos
+      path('correos/', views.Correos.as_view(), name='correos'),
+
 ]
 
 

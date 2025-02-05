@@ -1382,3 +1382,8 @@ class ListFacturacion(TemplateView):
 
 class Contactos(TemplateView):
     template_name = 'contactos/contactos.html'
+
+
+
+class Correos(TemplateView):
+    template_name = 'correos/correos.html'
