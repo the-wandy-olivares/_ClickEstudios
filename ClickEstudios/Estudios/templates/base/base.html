@@ -122,8 +122,7 @@
   <body style=" {% if request.user.config.mode %} background-color:#101010; {% else %} background-color:black  {% endif %} " class="p-0 body"> 
 
    
-    {% if  request.user.is_authenticated %}
-
+{% if  request.user.is_authenticated %}
     {% if request.user.config.mode %} 
           {% include "base/components/loads.html" %}
     {% endif %}

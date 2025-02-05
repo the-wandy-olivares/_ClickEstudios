@@ -10,7 +10,7 @@
             transition: 0.5s;
       }
       a svg {
-            margin-right: 0.5rem;
+            margin-right: 0.7rem;
       }
       .nav a:hover {
             color:rgb(114, 114, 114);
@@ -25,28 +25,27 @@
       }
 </style>
 
-<a href="{% url "estudios:dashboard" %}" >
+<!-- <a href="{% url "estudios:dashboard" %}" >
       <img data-aos='fade-in' style='transition-delay: 1s; transition-duration: 1s;' src="" class='img-estudios' width='150' alt="Logo">
-</a>
+</a> -->
 
-<div class='nav   ' style="display: flex; flex-direction: column; gap: 1rem; ">
-
+<div class='nav   ' style="display: flex; flex-direction: column; gap: 1rem;  margin-top: 9rem;">
       <div data-aos="fade-in" style="transition-delay: 0.8s;  height: 0.3rem;" class="mt-3">
             <strong class="text-white-50" style="font-size: 12px;">
-                  Gestión de ventas
+                  <!-- Gestión de ventas -->
             </strong>
       </div>
       <a  data-aos="zoom-in" style="transition-delay: 0.5s;"  class="dashboard" href="{% url "estudios:dashboard" %}" class=''>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
                   <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1z"/>
                 </svg> 
-            Dashboard
-      </a>
+            Dashboard 
+       </a>
       <a  data-aos="zoom-in" style="transition-delay: 0.4s;"  class="pos" href="{% url "estudios:pos" %}">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-postcard-heart-fill" viewBox="0 0 16 16">
                   <path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm6 2.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0m3.5.878c1.482-1.42 4.795 1.392 0 4.622-4.795-3.23-1.482-6.043 0-4.622M2 5.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5"/>
                 </svg>
-           Punto de venta 
+           Punto de venta <strong style="font-size: 10px;" class="text-white-50 mb-2">(POS)</strong>
       </a>
 </a>
 <a  data-aos="zoom-in" style="transition-delay: 0.3s;"  class='caja' href="{% url "estudios:box" %}"> 
@@ -55,25 +54,26 @@
       </svg>
       Caja contable
 </a>
-      <a  data-aos="zoom-in" style="transition-delay: 0.3s;"  class='contactos' href="{% url "estudios:contactos" %}"> 
+<a  data-aos="zoom-in" style="transition-delay: 0.3s;"  class='contactos' 
+      href="{% url "estudios:contactos" %}"> 
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                   <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
                   <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
             </svg>
-            Contactos (clientes) <br>
+            Contactos y clientes <br>
             <span style="background-color: #353434; 
             font-size: 10px;
             font-weight: bold;
             " class="text-white-50 p-1 pe-2 ms-4 ps-2 rounded-5"> ¡
             PROXIMO! 
       </span>
-      </a>
+</a>
 
-      {% if request.user.profile%}
+{% if request.user.profile%}
       {% if request.user.profile.role == 'administrador' or request.user.profile.role == 'administrativo' %}
-            <div  data-aos="fade-in" class=' mt-5' style="transition-delay: 0.6s;  height: 0.3rem; " >
+            <div  data-aos="fade-in" class=' mt-3' style="transition-delay: 0.6s;  height: 0.3rem; " >
                   <strong class="text-white-50" style="font-size: 12px;">
-                        Gestionar estudio
+                        <!-- Gestionar estudio -->
                   </strong>
             </div>
             <a  data-aos="zoom-in" style="transition-delay: 0.3s;"  class="services" href="{% url "estudios:service" %}">
@@ -114,9 +114,9 @@
 
       {% if request.user.profile%}
       {% if request.user.profile.role == 'administrador'  %}
-            <div  data-aos="fade-in"  class=' mt-5' style="transition-delay: 0.2s; height: 0.3rem;" >
+            <div  data-aos="fade-in"  class=' mt-3' style="transition-delay: 0.2s; height: 0.3rem;" >
                   <strong class="text-white-50" style="font-size: 12px;">
-                        Gestion administrativa
+                        <!-- Gestion administrativa -->
                   </strong>
             </div>
 

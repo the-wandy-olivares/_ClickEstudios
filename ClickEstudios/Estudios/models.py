@@ -51,6 +51,7 @@ class Estudios(models.Model):
       description = models.TextField()
       img = models.ImageField(upload_to='media/estudios', null=True, blank=True, verbose_name='Imagen blanca')
       img_2 = models.ImageField(upload_to='media/estudios', null=True, blank=True, verbose_name='Imagen negra')
+      background_img = models.ImageField(upload_to='media/estudios', null=True, blank=True, verbose_name='Imagen de fondo')
       date = models.DateTimeField(auto_now_add=True)
 
       is_active = models.BooleanField(default=False)
