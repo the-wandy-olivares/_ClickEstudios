@@ -86,7 +86,7 @@ class Pos(TemplateView):
 
     def get(self, request, *args, **kwargs):
         context = self.get_context_data()
-        filter_option = request.GET.get('filter', 'today')  # Si no se especifica, usa 'hour'
+        filter_option = request.GET.get('filter', 'all')  # Si no se especifica, usa 'hour'
         context['sales_reservers'] = self.filter_sales(filter_option)
         context['filter_option'] = filter_option
         return self.render_to_response(context)
