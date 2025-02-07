@@ -183,6 +183,7 @@ class Sale(models.Model):
       name_client = models.CharField(max_length=100, blank=True, null=True)
       email_client = models.EmailField(max_length=100, blank=True, null=True)
       phone_client = models.CharField(max_length=20, blank=True, null=True)
+      phone_no_formate = models.CharField(max_length=20, blank=True, null=True) # Teléfono sin formato para whatsapp
 
       is_cliente = models.BooleanField(default=False) # Si el cliente es nuevo
       client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='client_sale', null=True, blank=True)

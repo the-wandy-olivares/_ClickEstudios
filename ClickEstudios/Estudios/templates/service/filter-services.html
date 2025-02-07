@@ -1,12 +1,28 @@
 <div class="dropdown">
-      <button class="btn btn-secondary  bg-white bg-opacity-10 bg-transparent border-0 rounded-3 dropdown-toggle" style="font-size: 14px; font-weight: bold; color: rgba(255, 255, 255, 0.808);" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Seleccionar servicio
+      <button class="btn btn-secondary bg-dark text-white border-0 bg-transparent rounded-3 dropdown-toggle" style="font-size: 14px; font-weight: bold;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Servicios
       </button>
-      <ul class="dropdown-menu">
-            {% for s in service_choices %}
-                     <li><a class="dropdown-item" 
-                        href="{% url "estudios:service-detail" s.id %}"> {{s.name}} </a></li>
-            {% endfor %}
-
+      <ul class="dropdown-menu bg-transparent  rounded-4 ">
+            <div class="d-flex flex-wrap bg-black text-white  rounded-5 p-2 shadow" style="width: 45rem;">
+                  <strong class="mt-2 ms-2 w-100">
+                        Seleciona un servicio
+                  </strong>
+                  <p class="ms-2 text-white-50 w-100" style="font-size: 12px;">
+                        Al selecionar un servicio podras ver los todos los planes que este ofrece 
+                  </p>
+                  {% for s in service_choices %}
+                  <li><a class="dropdown-item text-white" 
+                     href="{% url "estudios:service-detail" s.id %}">
+                     <img src="{{s.img.url}}" width="90" height="90" class="object-fit-cover rounded-5" alt="">
+                     {{ s.name }} </a></li>
+         {% endfor %}
+            </div>
       </ul>
-    </div>
+</div>
+<style>
+      .dropdown-item:hover {
+            color:  #ffffff8b !important; 
+            background-color: inherit;
+      }
+      </style>
+      

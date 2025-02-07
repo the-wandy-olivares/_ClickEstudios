@@ -431,6 +431,7 @@ class SaleCreate(CreateView):
             form.instance.finaliz = True
             form.instance.payment = True
             form.instance.is_reserve = True
+            form.instance.phone_no_formate = form.instance.phone_client.replace('(', '').replace(')', '').replace(' ', '').replace('-', '') if form.instance.phone_client else None
 
         # Guarda el objeto y redirige al éxito
             models.Movements.objects.create(
@@ -470,6 +471,7 @@ class SaleUpdate(UpdateView):
         form.instance.img = plan.img
         form.instance.description_plan = plan.description
         form.instance.price_plan = plan.price
+        form.instance.phone_no_formate = form.instance.phone_client.replace('(', '').replace(')', '').replace(' ', '').replace('-', '') if form.instance.phone_client else None
         self.object = form.save()
         return redirect(self.get_success_url())
 
@@ -510,6 +512,7 @@ class SaleCreateDateChoice(CreateView):
                 form.instance.img = plan.img
                 form.instance.description_plan = plan.description
                 form.instance.price_plan = plan.price
+                form.instance.phone_no_formate = form.instance.phone_client.replace('(', '').replace(')', '').replace(' ', '').replace('-', '') if form.instance.phone_client else None
 
                 if form.instance.email_client:
                     utils.Send_Mail(form.instance.email_client, form.instance.name_client, plan.name, form.instance.date_choice, form.instance.time)
@@ -553,6 +556,7 @@ class SaleClientDateChoice(CreateView):
                 form.instance.img = plan.img
                 form.instance.description_plan = plan.description
                 form.instance.price_plan = plan.price
+                form.instance.phone_no_formate = form.instance.phone_client.replace('(', '').replace(')', '').replace(' ', '').replace('-', '') if form.instance.phone_client else None
 
                 if form.instance.email_client:
                     utils.Send_Mail(form.instance.email_client, form.instance.name_client, plan.name, form.instance.date_choice, form.instance.time)

@@ -52,7 +52,7 @@ class Sale(forms.ModelForm):
             fields = [
                   'client', 'name_plan', 'description_plan', 'price_plan', 'is_active',
                   'mount', 'is_reserve', 'payment', 'start_proces_date', 'end_proces_date',
-                  'finalize', 'date_choice', 'time', 'credit_fiscal', 'name_client', 'email_client', 'phone_client', 'is_cliente', 
+                  'finalize', 'date_choice', 'time', 'credit_fiscal', 'name_client', 'email_client', 'phone_client', 'is_cliente',  'phone_no_formate'
             ]
             widgets = {
                     'client': forms.Select(attrs={'class': 'form-control'}),
@@ -74,6 +74,7 @@ class Sale(forms.ModelForm):
                     'name_client': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre completo'}),
                     'email_client': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Correo'}),
                     'phone_client': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Teléfono'}),
+                  'phone_no_formate': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Teléfono'}),
             }
 
 
