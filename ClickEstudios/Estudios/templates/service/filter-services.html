@@ -1,10 +1,11 @@
-<div class="dropdown ">
-      <button class="btn btn-secondary bg-dark text-white border-0 bg-transparent rounded-3 dropdown-toggle" style="font-size: 14px; font-weight: bold;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+<div class="dropdown ps-0 ms-0">
+      <button class="btn btn-secondary bg-dark  border-0  ps-0 ms-0 bg-transparent dropdown-toggle" style="font-size: 14px; font-weight: bold; color: #ffffffdb;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             Servicios
       </button>
-      <ul class="dropdown-menu bg-transparent  rounded-4 ">
-            <div class="d-flex flex-wrap text-white  rounded-5 p-2 shadow" style="width: 45rem;
-            background-color: #2b2b2b;">
+      <ul class="dropdown-menu bg-transparent  rounded-4  ">
+            <div class="d-flex flex-wrap overflow-auto  align-content-start text-white  rounded-5 p-3 shadow" style="width: 70rem;
+            height: 25rem;
+            background-color: #2a2a2a;">
                   <strong class="mt-2 ms-2 w-100">
                       ({{service_choices|length}})  Seleciona un servicio
                   </strong>
@@ -12,9 +13,9 @@
                         Al selecionar un servicio podras ver los todos los planes que este ofrece 
                   </p>
                   {% for s in service_choices %}
-                  <li style="width: 50%;"><a class="dropdown-item text-white" 
+                  <li style="width: 20rem;"><a class="dropdown-item text-white" 
                      href="{% url "estudios:service-detail" s.id %}">
-                     <img src="{{s.img.url}}" width="110" height="105" class="object-fit-cover rounded-5" alt="">
+                     <img src="{{s.img.url}}" width="90" height="90" class="object-fit-cover rounded-5" alt="">
                      {{ s.name }} </a></li>
          {% endfor %}
             </div>
