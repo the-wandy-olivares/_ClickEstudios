@@ -24,7 +24,6 @@
             <div style="min-width: 530px; cursor: pointer; max-width: 530px; border: 4px solid rgb(47, 47, 47); border-radius: 3rem; color: #ffffffcf;
                         height: 18rem; background-color: #101010;" class='  me-1  shadow-sm   position-relative'>
                         <a href="{% url "estudios:sale-delete" s.id %}">
-
                               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-circle-fill position-absolute top-0 end-0 " viewBox="0 0 16 16">
                                     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
                               </svg>
@@ -96,7 +95,7 @@
                                                       .../.../ .../
                                                 {% endif %}
                                                 </p>
-                                                <div class='calendary{{s.id}} d-none position-absolute top-0 start-0  bg-black  rounded-5   d-flex justify-content-center align-content-center flex-wrap '
+                                                <div class='calendary{{s.id}} d-none position-absolute top-0 start-0  bg-black bg-opacity-25 blur-20  rounded-5   d-flex justify-content-center align-content-center flex-wrap '
                                                 style="width: 10rem; height: 10rem;">
                                                      {% if s.date_choice %}
                                                            <strong class="mb-3 text-white-50">

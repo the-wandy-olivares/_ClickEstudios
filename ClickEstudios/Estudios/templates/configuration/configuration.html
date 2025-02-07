@@ -65,8 +65,8 @@
       <div   data-aos="fade-down" style="transition: 0.5s;" class="w-100"
             style="background-color: #35343400; border-radius: 1rem;">
             {% include 'configuration/cp/profile.html' %}
-            <div id="options2" class=" bg-black d-none  p-2 moptions rounded-4 z-2  position-absolute top-0 start-0 "
-            style="height: 10rem; width: 14rem; margin-top: 6.4rem;"> 
+            <div id="options2" class=" bg-black bg-opacity-10 blur-20 d-none  p-2 moptions rounded-4 z-2  position-absolute top-0 start-0 "
+            style="height: 10rem; width: 14rem; margin-top: 7.9rem;"> 
 
             <ul class="mt-1">
                   <a >
@@ -86,7 +86,7 @@
                         <li class="carateristicas">
                               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-asterisk" viewBox="0 0 16 16">
                                     <path d="M8 0a1 1 0 0 1 1 1v5.268l4.562-2.634a1 1 0 1 1 1 1.732L10 8l4.562 2.634a1 1 0 1 1-1 1.732L9 9.732V15a1 1 0 1 1-2 0V9.732l-4.562 2.634a1 1 0 1 1-1-1.732L6 8 1.438 5.366a1 1 0 0 1 1-1.732L7 6.268V1a1 1 0 0 1 1-1"/>
-                                  </svg>  Mil sabes
+                                  </svg>  ...?
                         </li>
                   </a>
             </ul>
@@ -94,23 +94,34 @@
             </div>
       </div>
       <div  data-aos="fade-in" style="transition: 1s; transition-delay: 0.5s;" class="w-100 d-flex" >
-            <button onclick="toggleOptions()"  class='start-0  text-white btn-optione{{p.id}} text-decoration-none bg-white bg-opacity-10 p-2 ms-2  border-1 rounded-5' style="font-size: 12px ; font-weight: bold; width: 36px; height: 36px; border: 1px solid rgb(63, 63, 63) !important; margin-top: 0.1rem;">
+            <button onclick="toggleOptions()"  class='start-0  text-white btn-optione{{p.id}} text-decoration-none bg-white bg-opacity-10 p-2 ms-2  border-1 rounded-5' style="font-size: 12px ; font-weight: bold; width: 36px; height: 36px; border: 1px solid rgb(63, 63, 63) !important; margin-top: 0.5rem;">
                   <span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-three-dots text-white-50" viewBox="0 0 16 16">
                               <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"/>
                             </svg>
                   </span>
             </button> 
-            <h2 style="font-weight: bold; "
+            <h1 style="font-weight: bold;  font-style: italic;"
                   class="ms-3"> 
                   {{estudios.name}}
-            </h2>
+            </h1>
       </div>
 
+
+<div class="ms-4 mt-4">
+      <strong class="">
+            Sistema
+      </strong>
+      <p style="font-size: 12px;" class="text-white-50 w-100 p-0 m-0">
+            Ajustas las funciones del sistema segun tus necesidades
+      </p>
+</div>
+<section class="d-flex overflow-auto w-100">
+
       <div data-aos="fade-left" style="transition: 0.5s;" class="div">
-            <h4 class="mb-4">
+            <!-- <h4 class="mb-4">
                   Apariencia del sistema
-            </h4>
+            </h4> -->
             <div class="form-check">
                   <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"    {% if request.user.config.mode %} checked      {% endif %}>
                         <label class="form-check-label" for="flexRadioDefault1">
@@ -146,50 +157,52 @@
                   </div>
       </div>
 
-      <div  data-aos="fade-left" style="transition: 0.5s;" class="div position-relative">
-            <h4 class="mb-4">
-                  Copia de seguridad         
-                  <span style="background-color: #353434; 
-                  font-size: 10px;
-                  font-weight: bold;
-                  " class=" position-absolute top-0 end-0 mt-4 me-4 text-white-50 p-1 pe-2 ms-4 pb5 ps-2 rounded-5">
-                   ¡PROXIMO! 
-                 </span>
-            </h4>
 
-         
-            <div class="form-check">
-                  <input class="form-check-input" type="radio" name="backup" id="google-drive" >
-                  <label class="form-check-label" for="google-drive">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16">
-                              <path d="M15.545 6.558a9.4 9.4 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.7 7.7 0 0 1 5.352 2.082l-2.284 2.284A4.35 4.35 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.8 4.8 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.7 3.7 0 0 0 1.599-2.431H8v-3.08z"/>
-                            </svg> Copia de seguridad en (Google Drive)
-                  </label>
+            <div  data-aos="fade-left" style="transition: 0.5s;" class="div position-relative">
+                  <!-- <h4 class="mb-4"> -->
+                        <!-- Copia de seguridad          -->
+                        <span style="background-color: #353434; 
+                        font-size: 10px;
+                        font-weight: bold;
+                        " class=" position-absolute top-0 end-0 mt-4 me-4 text-white-50 p-1 pe-2 ms-4 pb5 ps-2 rounded-5">
+                         ¡PROXIMO! 
+                       </span>
+                  <!-- </h4> -->
+      
+               
+                  <div class="form-check">
+                        <input class="form-check-input" type="radio" name="backup" id="google-drive" >
+                        <label class="form-check-label" for="google-drive">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16">
+                                    <path d="M15.545 6.558a9.4 9.4 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.7 7.7 0 0 1 5.352 2.082l-2.284 2.284A4.35 4.35 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.8 4.8 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.7 3.7 0 0 0 1.599-2.431H8v-3.08z"/>
+                                  </svg> Copia de seguridad en (Google Drive)
+                        </label>
+                  </div>
+                      
+                  <div class="form-check">
+                        <input class="form-check-input" type="radio"  name="backup" id="manual" >
+                        <label class="form-check-label" for="manual">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cloud-arrow-down-fill" viewBox="0 0 16 16">
+                                    <path d="M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2m2.354 6.854-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 9.293V5.5a.5.5 0 0 1 1 0v3.793l1.146-1.147a.5.5 0 0 1 .708.708"/>
+                                  </svg> Realizar manualmente
+                        </label> 
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" checked  name="backup" id="manual" >
+                        <label class="form-check-label" for="manual">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-dash-circle me-1" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                    <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
+                                  </svg>No hacer copia de seguridad
+                        </label> 
+                      </div> 
+                      <span style="font-size: 10px;" class="text-white-50 ms-3">
+                            <!-- <strong style="font-size: 10px;" class="text-white-50">()</strong> -->
+                            Puede perder su informacion tales como su configuracion, ventas, clientes y mas
+                      </span>
+                 
             </div>
-                
-            <div class="form-check">
-                  <input class="form-check-input" type="radio"  name="backup" id="manual" >
-                  <label class="form-check-label" for="manual">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cloud-arrow-down-fill" viewBox="0 0 16 16">
-                              <path d="M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2m2.354 6.854-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 9.293V5.5a.5.5 0 0 1 1 0v3.793l1.146-1.147a.5.5 0 0 1 .708.708"/>
-                            </svg> Realizar manualmente
-                  </label> 
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" checked  name="backup" id="manual" >
-                  <label class="form-check-label" for="manual">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-dash-circle me-1" viewBox="0 0 16 16">
-                              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-                              <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
-                            </svg>No hacer copia de seguridad
-                  </label> 
-                </div> 
-                <span style="font-size: 10px;" class="text-white-50 ms-3">
-                      <!-- <strong style="font-size: 10px;" class="text-white-50">()</strong> -->
-                      Puede perder su informacion tales como su configuracion, ventas, clientes y mas
-                </span>
-           
-      </div>
+      </section>
       <style>
             
       </style>

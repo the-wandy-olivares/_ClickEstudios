@@ -1,6 +1,7 @@
 from datetime import datetime
 from django.http import JsonResponse
 from . import models
+from django.db.models import Q
 
 
 def VerifyDateChoice(request):
@@ -40,15 +41,15 @@ def Search(request):
     
       if d:
             search_term = d.lower()
-            if search_term in ['citas', 'cliente']:
-                  search_term = ''  # Eliminar la palabra 'cita' o 'cliente' del término de búsqueda
-            if 'citas' in d.lower():
-                  data = models.Sale.objects.filter(is_reserve=True, finalize=False,  name_client__icontains=search_term).values('id', 'name_client')
-            elif 'cliente' in d.lower():
-                  data = models.Sale.objects.filter(is_reserve=False, finalize=False, name_client__icontains=search_term).values('id', 'name_client')
-            else:
-                  # Búsqueda general si no se especifica 'cita' o 'cliente'
-                  data = models.Sale.objects.filter(name_client__icontains=search_term).values('id', 'name_client')
+            # Búsqueda general si no se especifica 'cita', 'cliente' o número de teléfono
+            data = models.Sale.objects.filter(
+                        Q(name_client__icontains=search_term) | 
+                        Q(email_client__icontains=search_term) | 
+                        Q(phone_no_formate__icontains=search_term),
+                        is_reserve=True,
+                        finalize=False
+            ).values('id', 'name_client', 'email_client', 'phone_no_formate')
+
 
       return JsonResponse(list(data), safe=False)
 
