@@ -31,17 +31,17 @@
             style='transition-duration: 1s;'>
                   {% if services %}
                         {% for s in services %}
-                                    <div class="col-12 col-md-6 col-lg-3 mb-4 position-relative" style=' width: 420px;' >
+                                    <div class="col-12 col-md-6 col-lg-3 mb-4 position-relative" style=' width: 270px;' >
                                           {% include "service/cp/options.html" %}
                                           <div class="card-img-top w" style="
                                           background-position: center;
+                                          background-size: cover; background-repeat: no-repeat; 
                                                 {% if s.img %}
                                                       background-image: url('{{s.img.url}}');
                                                 {% endif %}
                                                 
-                                                background-size: cover; background-repeat: no-repeat; 
                                                 filter: brightness(80%);
-                                                height: 247px; border-radius: 2rem;">
+                                                height: 460px; border-radius: 2rem;">
                                           </div>
                                           <div class='d-flex position-relative'>
                                                 <button onclick="toggleOptions(this.id)" id="{{s.id}}" class='start-0  text-white btn-optione{{p.id}} text-decoration-none bg-white bg-opacity-10 p-2  border-1 rounded-5' style="font-size: 12px ; font-weight: bold; width: 36px; height: 36px; border: 1px solid rgb(63, 63, 63) !important; margin-top: 0.2rem;">
