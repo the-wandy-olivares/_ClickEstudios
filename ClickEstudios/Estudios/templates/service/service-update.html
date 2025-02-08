@@ -5,9 +5,8 @@
                   display: none; 
             }
             .circle {
-                        width: 100px;
-                        height: 100px;
-                        border-radius: 50%;
+
+                        border-radius: 2rem;
                         background-color:rgb(89, 89, 89);
                         display: flex;
                         align-items: center;
@@ -31,35 +30,40 @@
       <section class='d-flex flex-wrap w-100 justify-content-center align-content-center '>
             
             <div class="  d-flex  ">
-                  <div id="circle" class="circle" style='background-image: url({{object.img.url}}); 
-                        
+                  <div id="circle" class="circle" style='background-image: url({{object.img.url}});
+                  width: 420px; height: 247px ;
                   ' onclick="document.getElementById('id_img').click()">
-                        Cargar img
+                        <span class="blur-50 text-white p-3 rounded-4" style="font-weight: bold;">
+                              Cargar img
+                        </span>
                   </div>
                     <form action="" method="post" enctype="multipart/form-data">
+                        <div class="text-white">
+                              <h6 class="m-0">
+                                    Actualizando el servicio: {{object.name}}
+                              </h6>
+                              <p style="font-size: 12px;" class="m-0 text-white-50">
+                                    Actualizando servicio para el estudio, con el que ofreces actualmente {{object.planes.all|length}} planes
+                              </p>
+
+                        </div>
                               {% csrf_token %}
-                              
                               <div> 
                                       {{ form.name }}
                               </div>
                               <div>
                                       {{ form.img }}
                               </div>
-                          
-                              <div>
-                                 
+                              <div class="d-flex justify-content-end">
                                     <a href="{% url "estudios:service" %}">
-                                          Atras
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-left-circle-fill mt-2"  viewBox="0 0 16 16">
+                                                <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
+                                              </svg>
                                     </a>
-                                      <button type="submit" class="btn btn-primary rounded-5" style="font-weight: bold;">
-                                                Actualizar
+                                      <button type="submit" class="btn btn-primary rounded-5 border-0 bg-white bg-opacity-10" style="font-weight: bold; width: 10rem;">
+                                                Actualizar 
                                       </button>
-                                      <a href="{% url "estudios:service-delete" object.id %}" 
-                                      class="btn  text-danger  ms-3 border-1">
-                                            Eliminar
-                                      </a>
                               </div>
-                              
                     </form>
             </div>
 

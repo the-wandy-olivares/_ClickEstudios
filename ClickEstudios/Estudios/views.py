@@ -143,7 +143,7 @@ class ServiceCreate(CreateView):
             img_temporary = Image.open(img)
 
             # Resize image to 720p
-            img_temporary = img_temporary.resize((1280, 720), Image.LANCZOS)
+
             if img_temporary.mode == 'RGBA':
                 img_temporary = img_temporary.convert('RGB')
             output_io_stream = BytesIO()
@@ -179,7 +179,7 @@ class ServiceUpdate(UpdateView):
 
             # Resize image to 720p
             # Resize image to 720p
-            img_temporary = img_temporary.resize((1280, 720), Image.LANCZOS)
+
             if img_temporary.mode == 'RGBA':
                 img_temporary = img_temporary.convert('RGB')
             output_io_stream = BytesIO()
@@ -267,7 +267,7 @@ class PlanCreate(CreateView):
         img_temporary = Image.open(img)
         
         # Resize image to 720p
-        img_temporary = img_temporary.resize((1280, 720), Image.LANCZOS)
+
         if img_temporary.mode == 'RGBA':
             img_temporary = img_temporary.convert('RGB')
         output_io_stream = BytesIO()
@@ -713,7 +713,7 @@ class Gallery(TemplateView):
             img_temporary = Image.open(img)
             
             # Resize image to 720p
-            img_temporary = img_temporary.resize((1280, 720), Image.LANCZOS)
+
             if img_temporary.mode == 'RGBA':
                 img_temporary = img_temporary.convert('RGB')
             output_io_stream = BytesIO()
@@ -748,7 +748,7 @@ class MomentCreate(CreateView):
         img_temporary = Image.open(img)
         
         # Resize image to 720p
-        img_temporary = img_temporary.resize((1280, 720), Image.LANCZOS)
+
         if img_temporary.mode == 'RGBA':
             img_temporary = img_temporary.convert('RGB')
         output_io_stream = BytesIO()
