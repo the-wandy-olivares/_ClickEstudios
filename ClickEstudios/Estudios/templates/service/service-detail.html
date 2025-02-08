@@ -1,7 +1,7 @@
 {% extends "base/base.html" %}
 {% block content %}
 
-      <section class='d-flex flex-wrap overflow-hidden align-content-start vh-100 '>
+      <section class='d-flex flex-wrap  align-content-start vh-100  overflow-auto'>
             <div class="d-flex  overflow-auto">
                   {% include "plan/plan-list.html" %}
             </div>
@@ -17,14 +17,16 @@
                         </strong>
                         {% endif %}
                  </div>
+                 <div class="d-flex flex-wrap justify-content-start   ">
                   {% for moment in moments %}
-                        {% for m in moment.img_moments.all  %}
-                              {% if m.img %}
-                                    <img src="{{m.img.url}}" style='max-width: 330px;'
-                              class='w-100 object-fit-contain rounded-5' alt="Ups!">
-                              {% endif %}
-                        {% endfor %}
+                  {% for m in moment.img_moments.all  %}
+                        {% if m.img %}
+                              <img src="{{m.img.url}}" style='max-width: 330px;'
+                        class='w-100 object-fit-contain rounded-5' alt="Ups!">
+                        {% endif %}
                   {% endfor %}
+            {% endfor %}
+                 </div>
             </div>
       </section>
 
