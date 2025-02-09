@@ -8,7 +8,7 @@
             }
       </style>
       <section class='d-flex flex-wrap align-content-center justify-content-center  vh-100 w-100 '>
-                <div style="min-width: 690px; max-width: 520px; border: 2px solid rgb(47, 47, 47); border-radius: 3rem; cursor: pointer; min-height: 12rem;" class=' text-white p-3 m-2 shadow-sm'>
+                <div style="min-width: 700px; max-width: 520px; border: 2px solid rgb(47, 47, 47); border-radius: 3rem; cursor: pointer; height: 24rem;" class=' text-white p-4 m-2 shadow-sm'>
                        <div class='d-flex flex-wrap w-100 '>
                               <div class="w-100">
                                     {% if sale.img %}
@@ -99,9 +99,9 @@
 
                   <form action="" method="post">
                         {% csrf_token %}
-                        <div class='d-flex'>
-                              <input type="text"  max={{sale.debit_mount}} class='form-control bg-white text-white border-0 w-100 mount2 p-2 bg-opacity-10 ps-3 rounded-5 rounded-end-3' placeholder='Monto a aplicar' id='mount2'> 
-                              <button type="submit" class="btn btn-primary bg-white bg-opacity-10 ms-2 rounded-5 rounded-start-3 border-0" style="width: 15rem; font-weight: bold;">Aplicar pago</button>
+                        <div class='d-flex mt-2 w-100 justify-content-end'>
+                              <input type="text"  max={{sale.debit_mount}} class='form-control bg-white text-white border-0 mount2 p-2 bg-opacity-10 ps-3 rounded-5 rounded-end-3' placeholder='Monto a aplicar' id='mount2' style="width: 14rem;"> 
+                              <button type="submit" class="btn btn-primary bg-white bg-opacity-10 ms-2 rounded-5 rounded-start-3 border-0" style="width: 10rem; font-weight: bold;">Aplicar pago</button>
                               
                               <input type="number" name="mount" max={{sale.debit_mount}} value="{{sale.debit_mount}}" class='form-contro d-none bg-white text-white border-0 w-100 p-2 bg-opacity-10 rounded-5 ' placeholder='Monto a aplicar' id='mount'> 
                         </div>
