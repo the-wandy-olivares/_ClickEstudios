@@ -13,10 +13,11 @@
                         Al selecionar un servicio podras ver los todos los planes que este ofrece 
                   </p>
                   {% for s in service_choices %}
-                  <li style="width: 15rem;"><a class="dropdown-item text-white" 
+                  <li style="width: 19.5rem;"><a class="dropdown-item text-white" 
                      href="{% url "estudios:service-detail" s.id %}">
-                     <img src="{{s.img.url}}" width="40" height="40" class="object-fit-cover rounded-3" alt="">
-                     {{ s.name }} </a></li>
+                     <img src="{{s.img.url}}" width="60" height="75" class="object-fit-cover rounded-4">
+                     {{ s.name }} </a>
+                  </li>
          {% endfor %}
             </div>
       </ul>
