@@ -603,6 +603,9 @@ class Estudios(TemplateView):
         else:
             context['total_con_i'] = total + total_itebis
 
+        context['estudios'] =  models.Estudios.objects.filter(name='ClickEstudios').exists() if models.Estudios.objects.get(name='ClickEstudios') else ''
+    
+
         context['total_sin'] = total
         context['total'] = total + total_itebis
         context['total_adicionales'] = total - sale.price_plan
@@ -1199,13 +1202,14 @@ class FastSale(TemplateView):
                 box=models.Box.objects.get(open=True),
                 mount= int(request.POST.get('preci').replace(',', '')),
                 type='ingreso',
-                description= 'Pago completado $' + request.POST.get('preci'))
+                description= 'Pago completado ' + request.POST.get('name')  
             i.save()
         
 
 
 
             sale = models.Sale(
+                name_client= request.POST.get('name'),
                 name_plan='Venta rapida',
                 price_plan=int(request.POST.get('preci').replace(',', '')),
                 payment=True,

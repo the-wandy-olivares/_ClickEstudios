@@ -35,13 +35,28 @@
                         {% if sale.img %}
                         <img src="{{sale.img.url}}" width='100' height='100' 
                         class='rounded-circle' style="border: 8px solid rgb(70, 70, 70);"  alt="">
+                        {% else %}
+                        <img src="{{estudios.img.url}}" width='100' height='100' 
+                        class='rounded-circle' style="border: 8px solid rgb(70, 70, 70);"  alt="">
                         {% endif %}
                   </span>
 
                   <span>
                         <h5 class='text-capitalize mt-3' style="font-weight: bold;"> {{ sale.name_client }}</h5>
-                        <p class='p-0 m-0'>{{ sale.name_plan }}</p>
-                        <p class='p-0 m-0'>{{ sale.description_plan }}</p>
+                        <p class='p-0 m-0'>
+                              {% if sale.name_client %}
+                                    {{ sale.name_plan }}
+                              {% else %}
+                                    Venta rapida
+                              {% endif %}
+                        </p>
+                        <p class='p-0 m-0'>
+                              {% if sale.description_plan %}
+                                    {{ sale.description_plan }}
+                              {% else %}
+                                    ...
+                              {% endif %}
+                        </p>
                         <p class='p-0 m-0'>${{ sale.price_plan|intcomma }}.00</p>
                   </span>
             </div>
