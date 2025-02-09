@@ -1197,13 +1197,13 @@ class FastSale(TemplateView):
 
     def post(self, request, *args, **kwargs):
         if request.POST.get('name'):
-            i =   models.Movements.objects.create(
+            models.Movements.objects.create(
                 user=request.user,
                 box=models.Box.objects.get(open=True),
                 mount= int(request.POST.get('preci').replace(',', '')),
                 type='ingreso',
                 description= 'Pago completado ' + request.POST.get('name')  
-            i.save()
+            ).save()
         
 
 
