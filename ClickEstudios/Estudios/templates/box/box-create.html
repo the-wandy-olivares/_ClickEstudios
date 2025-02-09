@@ -25,14 +25,14 @@
                         {% if is_open %}
                               <input type="hidden" name="close" value="false">
                               <h6>
-                                    Confirmar cierre
+                                    Cierre de caja
                               </h6>
-                              <p>
+                              <p class="text-white-50">
                                     Al cerrar la caja no se podrá registrar sus movimientos, ver contabilidad, métricas y más
                               </p>
                               <button type="submit" 
-                              class="btn rounded-5 text-white ps-4 pe-4 bg-danger " style='font-weight: bolder;'>
-                                    Cerrar
+                              class="btn rounded-5 text-white ps-4 pe-4 btn-danger " style='font-weight: bolder;'>
+                                    Confirmar
                               </button>
                         {% else %}
                               <input type="hidden" name="open" value="true">
@@ -56,7 +56,7 @@
                                     </div>
 
                               <button type="submit" 
-                              class="btn rounded-5 text-white ps-4 mt-2 pe-4 bg-primary" style='font-weight: bolder;'>
+                              class="btn rounded-5 text-white ps-4 mt-2 pe-4 btn-primary" style='font-weight: bolder;'>
                                     Si, abrir caja
                               </button>
 

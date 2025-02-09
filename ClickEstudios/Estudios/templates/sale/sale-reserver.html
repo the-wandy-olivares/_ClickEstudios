@@ -1,72 +1,151 @@
 {% extends "base/base.html" %}
 {% block content %}
 {% load humanize %}
-
-      <section class='d-flex flex-wrap align-content-start h-100 w-100 '>
-            <div style="min-width: 520px; max-width: 520px; border: 6px solid rgb(47, 47, 47); border-radius: 3rem; cursor: pointer; min-height: 12rem;" class=' text-white m-2 shadow-sm'>
-                        
-                        <div class='d-flex flex-wrap w-100 p-3'>
-                              {% if sale.is_cliente %}
-                                          <h5 class="text-primary">{{ sale.name }}</h5>
-                              {% else %}
-                                    <span class='w-100'>
-                                          <p class="mb-1">
-                                                {% if sale.name_client %}
-                                                      <strong>Nombre:</strong> {{ sale.name_client }}
-                                                {% endif %}
-                                          </p>
-                                          <p class="mb-1">
-                                                {% if sale.phone_client %}
-                                                      <strong>Teléfono:</strong> {{ sale.phone_client }}
-                                                {% endif %}
-                                          </p>
-                                          <p class="mb-1">
-                                                {% if sale.email_client %}
-                                                      <strong>Email:</strong> {{ sale.email_client }}
-                                                {% endif %}
-                                          </p>
-                                    </span>
-                                    <span>
-                                    <strong class="text-white bg-dark bg-opacity-75 p-2 rounded">
-                                                {% if sale.price_plan %}
-                                                      ${{sale.price_plan|intcomma}}.00
-                                                {% endif %}
+      <style>
+            .mount2::placeholder{
+                  color: rgba(270, 248, 255, 0.488);
+                  font-weight: bold;
+            }
+      </style>
+      <section class='d-flex flex-wrap align-content-center justify-content-center  vh-100 w-100 '>
+                <div style="min-width: 690px; max-width: 520px; border: 2px solid rgb(47, 47, 47); border-radius: 3rem; cursor: pointer; min-height: 12rem;" class=' text-white p-3 m-2 shadow-sm'>
+                       <div class='d-flex flex-wrap w-100 '>
+                              <div class="w-100">
+                                    {% if sale.img %}
+                                    <img src="{{sale.img.url}}" class='rounded-circle mb-4' 
+                                          width='70' height='70' 
+                                          style='border: solid 4px rgb(52, 52, 52);'>
+                                   {% endif %}
+                                    <strong class="text-white-50 " style="font-size: 20px;">
+                                                {{ sale.name_plan }}
                                     </strong>
-                                    </span>
-                              {% endif %} 
+                                    <div class="w-100 m-0">
+                                          <p class="mb-0">
+                                          {% if sale.is_cliente %}
+                                                      <h5 class="text-primary">{{ s.name }}</h5>
+                                                {% else %}
+                                                {% if sale.name_client %}
+                                                            <strong>
+                                                                  {{ sale.name_client|slice:":35" }}
+                                                            </strong>
+                                                {% endif %}
+                                          {% endif %}
+                                          </p>
+                                          <p class="mb-0">
+                                                <strong>
+                                                      <a href="https://wa.me/+1{{ s.phone_no_formate }}">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill me-1" viewBox="0 0 16 16">
+                                                                  <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
+                                                            </svg>
+                                                      </a>
+                                                  </strong> 
+                                                      {% if s.phone_client %}
+                                                              {{ s.phone_client }}
+                                                      {% else %}
+                                                            (000) 000-0000
+                                                      {% endif %}
+                                            </p>
+                                            <p class="mb-0">
+                                                <strong>
+                                                      <a href="mailto:{{ s.email_client }}?subject=Notificación&body=Hola, estamos encantados de contactarte.&cc={{ s.email_client }}&bcc={{ s.email_client }}" >
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-at-fill me-1" viewBox="0 0 16 16">
+                                                                  <path d="M2 2A2 2 0 0 0 .05 3.555L8 8.414l7.95-4.859A2 2 0 0 0 14 2zm-2 9.8V4.698l5.803 3.546zm6.761-2.97-6.57 4.026A2 2 0 0 0 2 14h6.256A4.5 4.5 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586zM16 9.671V4.697l-5.803 3.546.338.208A4.5 4.5 0 0 1 12.5 8c1.414 0 2.675.652 3.5 1.671"/>
+                                                                  <path d="M15.834 12.244c0 1.168-.577 2.025-1.587 2.025-.503 0-1.002-.228-1.12-.648h-.043c-.118.416-.543.643-1.015.643-.77 0-1.259-.542-1.259-1.434v-.529c0-.844.481-1.4 1.26-1.4.585 0 .87.333.953.63h.03v-.568h.905v2.19c0 .272.18.42.411.42.315 0 .639-.415.639-1.39v-.118c0-1.277-.95-2.326-2.484-2.326h-.04c-1.582 0-2.64 1.067-2.64 2.724v.157c0 1.867 1.237 2.654 2.57 2.654h.045c.507 0 .935-.07 1.18-.18v.731c-.219.1-.643.175-1.237.175h-.044C10.438 16 9 14.82 9 12.646v-.214C9 10.36 10.421 9 12.485 9h.035c2.12 0 3.314 1.43 3.314 3.034zm-4.04.21v.227c0 .586.227.8.581.8.31 0 .564-.17.564-.743v-.367c0-.516-.275-.708-.572-.708-.346 0-.573.245-.573.791"/>
+                                                                </svg>
+                                                            </a>
+                                                  </strong> 
+                                                      {% if s.email_client %}
+                                                            {{ s.email_client|slice:":49" }}
+                                                      {% else %}
+                                                            @gmail.com
+                                                      {% endif %}
+                                            </p>
+                                            <p class="mb-1">
+                                                <strong>
+                                                      <svg onclick="Calendar(this.id)" id="{{s.id}}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event-fill me-1" viewBox="0 0 16 16">
+                                                            <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2m-3.5-7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5"/>
+                                                      </svg>
+                                                </strong> 
+                                                {% if s.date_choice %}
+                                                {{ s.date_choice|date:"d/m/Y" }} -
+                                                       {{ s.time }}
+                                                {% else %}
+                                                .../.../ .../
+                                          {% endif %}
+                                          </p>
+                                    </div>
+                                    <!-- <p class="text-white-50 m-0" style="font-size: 14px;">
+                                          Completar monto pendiente, para continuar con la session de estudio
+                                    </p> -->
+                                    <table class="w-100 mt-4">
+                                          <thead>
+                                                <tr>
+                                                        <th scope="col" style="width: 33.33%;">Precio del plan</th>
+                                                        <th scope="col" style="width: 33.33%;">Pagado</th>
+                                                        <th scope="col" style="width: 33.33%;">Faltante</th>
+                                                </tr>
+                                          </thead>
+                                          <tbody>
+                                                <tr class="text-white-50">
+                                                      <td>RD${{ sale.price_plan|intcomma }}.00</td>
+                                                      <td>RD${{ restante|intcomma }}.00</td>
+                                                      <td>RD${{ sale.debit_mount|intcomma }}.00</td>
+                                                </tr>
+                                          </tbody>
+                                    </table>
+                              </div>
                         </div>
                   <div>
 
                   <form action="" method="post">
                         {% csrf_token %}
                         <div class='d-flex'>
-                              <input type="number" name="mount" max={{sale.debit_mount}} value="{{sale.debit_mount}}" class='form-control bg-white text-white border-0 p-2 bg-opacity-10 rounded-5' placeholder='Monto a aplicar' id='mount'>
-                              <button id='reserve-{{ sale.id }}' class='ms-2 rounded-5 btn btn-primary' style='width: 10rem;'>
-                                    Aplicar pago
-                              </button>
+                              <input type="text"  max={{sale.debit_mount}} class='form-control bg-white text-white border-0 w-100 mount2 p-2 bg-opacity-10 ps-3 rounded-5 rounded-end-3' placeholder='Monto a aplicar' id='mount2'> 
+                              <button type="submit" class="btn btn-primary bg-white bg-opacity-10 ms-2 rounded-5 rounded-start-3 border-0" style="width: 15rem; font-weight: bold;">Aplicar pago</button>
+                              
+                              <input type="number" name="mount" max={{sale.debit_mount}} value="{{sale.debit_mount}}" class='form-contro d-none bg-white text-white border-0 w-100 p-2 bg-opacity-10 rounded-5 ' placeholder='Monto a aplicar' id='mount'> 
                         </div>
                   </form>
-            
-                  </div>
-            </div>
       </section>
       <script>
+            function formatNumber(num) {
+                    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+
+            document.addEventListener("DOMContentLoaded", function() {
+                    const input = document.querySelector('#mount2');
+                    input.addEventListener('input', function() {
+                              let value = parseInt(this.value.replace(/,/g, ''));
+                              
+                              const max = parseInt(this.getAttribute('max'), 10);
+                              if (!isNaN(value)) {
+                                    if (value > max) {
+                                          value = max;
+                                    }
+                                    this.value = formatNumber(value);
+                                    document.querySelector('#mount').value = value;
+                              } else {
+                                      this.value = '';
+                              }
+                    });
+            });
+
             document.addEventListener("DOMContentLoaded", function() {
                         const input = document.querySelector('#mount');
                         input.addEventListener('input', function() {
-                                      const max = parseFloat(this.getAttribute('max'));
-                                      if (parseFloat(this.value) > max) {
+                                      const max = parseInt(this.getAttribute('max'));
+                                      if (parseInt(this.value) > max) {
                                                   this.value = max;
                                       }
                                       if (isNaN(this.value) || this.value < 0) {
                                                   this.value = '';
                                       }
                         });
-                        input.addEventListener('keypress', function(e) {
-                                      if (e.key < '0' || e.key > '9') {
-                                                  e.preventDefault();
-                                      }
-                        });
+                        // input.addEventListener('keypress', function(e) {
+                        //               if (e.key < '0' || e.key > '9') {
+                        //                           e.preventDefault();
+                        //               }
+                        // });
             });
       </script>
 {% endblock  %}

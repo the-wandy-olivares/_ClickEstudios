@@ -369,7 +369,9 @@ class SaleReserver(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['sale'] = models.Sale.objects.get(pk=self.kwargs.get('pk'))
+        sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
+        context['sale'] = sale
+        context['restante'] = sale.price_plan - sale.debit_mount
         return context
     
 
@@ -377,23 +379,20 @@ class SaleReserver(TemplateView):
         new_mount = request.POST.get('mount')
         if new_mount:
             sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
+
             # Reservar la venta
             sale.is_reserve = True
             new_mount = int(new_mount)
-
-
-
             sale.mount = (sale.mount or 0) + int(new_mount)
 
+            sale.debit_mount -= new_mount
             if sale.mount >= sale.price_plan:
                 sale.mount = sale.price_plan
                 sale.payment = True
-                description = 'Pago' + ' ' + sale.name_client + '-' + sale.name_plan
+                description = 'Pago completado' + ' ' + sale.name_client + '-' + sale.name_plan +  ' ( Restante: ' + f"${sale.debit_mount:,}" + ')'
             else:
-                description = 'Abono' + ' ' + sale.name_client + '-' + sale.name_plan
-
-            # Restar monto 
-            sale.debit_mount -= new_mount
+                description = 'Abono, ' + sale.name_client + ', ' + sale.name_plan + ' ( Restante: ' + f"${sale.debit_mount:,}" + ')'
+                    # Restar monto 
 
             models.Movements.objects.create(
                 user=request.user,
@@ -403,6 +402,7 @@ class SaleReserver(TemplateView):
                 description=description
             )
             sale.save()
+
 
             return redirect('estudios:pos')
         return self.render_to_response(self.get_context_data())
@@ -675,7 +675,7 @@ class Estudios(TemplateView):
                     box=models.Box.objects.get(open=True),
                     mount= total_itebis,
                     type='ingreso',
-                    description=  'Itbis: ' + ' ' + sale.name_client + '-' + sale.name_plan
+                    description=  'Itbis: ' + ' ' + sale.name_client if sale.name_client else "Itbis en " + sale.name_plan
                 )
 
             if sale.sale_adicionales.all():
@@ -1199,16 +1199,15 @@ class FastSale(TemplateView):
                 box=models.Box.objects.get(open=True),
                 mount= int(request.POST.get('preci').replace(',', '')),
                 type='ingreso',
-                description= request.POST.get('name') + (request.POST.get('descripcion') if request.POST.get('description') else ' ' ),
-            )
+                description= 'Pago completado $' + request.POST.get('preci'))
             i.save()
         
 
 
 
             sale = models.Sale(
-                name_plan=i.description,
-                price_plan=i.mount,
+                name_plan='Venta rapida',
+                price_plan=int(request.POST.get('preci').replace(',', '')),
                 payment=True,
             )
 
@@ -1217,7 +1216,8 @@ class FastSale(TemplateView):
         return redirect(self.get_success_url(sale.id))
 
     def get_success_url(self, move):
-        return reverse_lazy('estudios:factura', kwargs={'pk': move})    
+        return reverse_lazy('estudios:estudios' , kwargs={'pk': move})
+
     
 
 class Factura(TemplateView):

@@ -10,12 +10,12 @@
 <table class="w-100 text-white">
       <thead>
             <tr>
-                  <th style='width: 5%;'>#</th>
-                  <th style='width: 10%;'>Fecha</th>
-                  <th style='width: 30%;'>Descripción</th>
-                  <th style='width: 15%;'>Ingresos</th>
-                  <th style='width: 15%;'>Gastos </th>
-                  <th style='width: 20%;'>  Tipo de movimiento</th>
+                  <th style='width: 2%;'>#</th>
+                  <th style='width: 15%;'>Fecha y hora</th>
+                  <th style='width:50%;'>Descripción de movimiento</th>
+                  <th style='width: 10%;'>Ingreso</th>
+                  <th style='width: 10%;'>Gasto </th>
+                  <th style='width: 10%;'>  Tipo </th>
             </tr>
       </thead>
       <tbody id="movimientos-table">
@@ -28,7 +28,7 @@
                         <td>
                               {% if movimiento.type == "ingreso" %}
                               <span class="text-success">
-                                    ${{ movimiento.mount|intcomma }}.00
+                                    RD${{ movimiento.mount|intcomma }}.00
                               </span>
 
                               {% endif %}
@@ -36,7 +36,7 @@
                         <td>
                               {% if movimiento.type == "gasto" %}
                               <span class="text-danger">
-                                    ${{ movimiento.mount|intcomma }}.00
+                                    RD${{ movimiento.mount|intcomma }}.00
                               </span>
                               {% endif %}
                         </td>
