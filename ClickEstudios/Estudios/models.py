@@ -255,6 +255,10 @@ class Sale(models.Model):
       # Aplica para descuento
       discount = models.BooleanField(default=True)
 
+      # Asociar venta  aun contacto (cliente)
+      contact = models.ForeignKey('Contact', on_delete=models.CASCADE, blank=True, null=True, 
+                              related_name='sale_contact')
+
       def __str__(self):
             return f"Venta del {self.date.strftime('%d/%m/%Y')} - {self.name_client}"
 
@@ -351,3 +355,16 @@ class Facturacion(models.Model):
 
       def __str__(self):
             return f"Factura de {self.estudio.name} "
+      
+
+class Contact(models.Model):
+      full_name = models.CharField(default='', max_length=25, blank=True)
+      phone = models.CharField(default='', max_length=15, blank=True)
+      email = models.EmailField(max_length=100, blank=True, null=True)
+
+      # Imagen de perfil
+      img = models.ImageField(upload_to='media/contact', null=True, blank=True)
+      date = models.DateField(default=timezone.now, verbose_name='Fecha de creacion')
+
+      def __str__(self):
+            return f'{self.full_name} - {self.phone} - {self.email}'
