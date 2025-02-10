@@ -1,0 +1,108 @@
+{% extends "base/base.html" %}
+{% block content %}
+<style>
+      .nav .contactos {
+            color: #ffc107;
+            font-weight: bolder;
+            transform: scale(1.1);
+      }
+      input {
+            background-color: rgb(65, 65, 65) !important;
+            border: 0px !important;
+            margin-top: 0.4rem;
+            width: 28rem !important;
+            padding: 0.8rem !important;
+            color: rgb(194, 194, 194) !important;  
+            font-weight: bold !important;
+      } 
+      label {
+            display: none !important;
+      }
+      input::placeholder {
+            
+            color: rgb(110, 110, 110) !important;
+      }
+</style>
+<section class="text-white d-flex justify-content-center align-content-center flex-wrap vh-100 w-100">
+      <div class="me-4">
+            <div class="d-flex justify-content-center mb-3" >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="130" height="130" fill="currentColor" class="bi bi-person-circle me-3" viewBox="0 0 16 16">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                      </svg>
+            </div>
+            <h6 class="text-center">
+                  <strong>
+                        {{object.full_name}}
+                  </strong>
+            </h6>
+            <span>
+                  {% if object.email %}
+                        {{object.email}}
+                  {% endif %}
+            </span>
+      </div>
+      <div>
+            <form action="" method="post">
+                  <h6>
+                        Estas seguro de Elminar {{object.full_name}}
+                  </h6>
+                  <p class='text-white-50'>
+                        Esta accion no es reversible, lo que perderan todos los datos de este contacto
+                  </p>
+                  {% csrf_token %}
+                  <div class="mt-2"> 
+                        <button class="bg-warning rounded-3  border-0 btn-save  p-2"
+                        style="width: 100%; font-weight: bold;">
+                        Confirmar
+                  </button>
+            </div>
+      </form>
+      </div>
+</section>
+
+<script>
+
+// document.addEventListener('DOMContentLoaded', function () {
+      document.getElementById('id_full_name').addEventListener('input', Visibility);
+
+    function Visibility() {
+      const full_name = document.getElementById('id_full_name').value;
+      const button = document.querySelector('.btn-save');
+      console.log('Hi')
+
+      if (full_name) {
+
+        button.classList.remove('d-none')
+      } else {
+
+        button.classList.add('d-none')
+      }
+        }
+
+      // })
+
+const phoneInput = document.getElementById('id_phone');
+
+if (phoneInput) {
+      phoneInput.addEventListener('input', function (event) {
+      let input = phoneInput.value.replace(/\D/g, ''); // Remover todo excepto dígitos
+      let formatted = '';
+
+      if (input.length > 0) {
+            formatted += '(' + input.substring(0, 3);
+      }
+      if (input.length >= 4) {
+            formatted += ') ' + input.substring(3, 6);
+      }
+      if (input.length >= 7) {
+            formatted += '-' + input.substring(6, 10);
+      }
+
+      phoneInput.value = formatted;
+      });
+}
+
+</script>
+
+{% endblock %}

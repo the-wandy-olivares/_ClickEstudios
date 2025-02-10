@@ -145,3 +145,16 @@ class Moment(forms.ModelForm):
                   'img': forms.FileInput(attrs={'class': 'form-control'}),
             }
 
+
+
+class Contact(forms.ModelForm):
+      class Meta:
+            model = models.Contact
+            fields = ['full_name', 'phone', 'email', 'phone', ]
+            widgets = {
+                  'full_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre completo' }),
+                  'img': forms.FileInput(attrs={'class': 'form-control' }),
+                  'email': forms.EmailInput(attrs={'class': 'form-control' , 'placeholder': '@gmail.com'}),
+                  'phone': forms.TextInput(attrs={'class': 'form-control' , 'placeholder': '(809) 577-7196'}),
+            }
+
