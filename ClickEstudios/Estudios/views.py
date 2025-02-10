@@ -221,6 +221,7 @@ class Plan(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['plans'] = models.Plan.objects.all()
+        context['services'] = models.Service.objects.all()
         return context
 
 

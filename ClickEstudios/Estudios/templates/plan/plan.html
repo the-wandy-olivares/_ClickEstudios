@@ -29,7 +29,7 @@
                   color: white;
                   font-size: 14px;
                   padding: 5px 0;
-                  background-color: rgba(70, 70, 70, 0.397);
+                  background-color: rgb(37, 37, 37);
                   margin-top: 0.2rem;
                   padding: 0.7rem;
                   border-radius: 1rem;
@@ -39,7 +39,7 @@
             .moptions ul li:hover {
                   color: #ffc107;
                   font-weight: bold;
-                  background-color: rgba(36, 36, 36, 0.528);
+                  background-color: rgb(20, 20, 20);
             }
             .moptions ul li svg {
                   margin-right: 0.7rem;
@@ -51,18 +51,107 @@
             }
             
       </style>
+
+      <section class='w-100 pt-3 '>
+
+            {% for service in services %}
+
+            <div style='width: 19rem;' class='text-white-50 mt-3'>
+                  <a href="{% url "estudios:service" %}" class='text-white-50'>
+                        <h6>
+                              {% if service.img %} <img src="{{service.img.url}}" width='40' height='40' class='rounded-circle object-fit-cover'  alt="">{% endif %}  {{service.name}}
+                        </h6>
+                  </a>
+                  {% if service.planes.all %}
+                  {% else %}
+                  <p class='m-0 ms-5 text-white-50 bg-white bg-opacity-10 p-3 rounded-4' style='font-size:12px;'>
+                        No tienes planes asociados a este servicio
+                  </p>
+                  {% endif %}
+            </div>
+
+            <section class=" d-flex overflow-auto ms-5">
+                  {% for p in  service.planes.all %}
+                        <div  class='p-0 d-flex position-relative overflow-hidden m-2 text-white' style='
+                        background-size: cover; background-repeat: no-repeat; 
+                  min-width: 320px; height: 430px; border-radius: 2.6rem;
+                        {% if p.img_back %}
+                              background-image: url("{{p.img_back.url}}"); 
+                        {% endif %}'>
+                        {% include "plan/cp/options.html" %}
+                              <div style='
+                                    -webkit-backdrop-filter: blur(80px) !important;
+                                    backdrop-filter: blur(80px) !important;' class='h-100 w-100 bg-black bg-opacity-50 m-0 p-3 pt-2'>
+                                    <div class=" m-0 " style="">
+                                          {% if p.img %}
+                                                <img src="{{p.img.url}}" alt="No se puede cargar la imagen" 
+                                                      style="width: 95px; height: 95px; border-radius: 2rem;
+                                                      border: 4px solid #00000069;" class="rounded-circle object-fit-cover  me-3">
+                                          {% endif %}
+                                          <span>
+                                                <strong class="text-white  p-3 ps-3 pe-3 rounded-5" style="font-size: 13px;">
+                                                      <!-- {% if p.price %}
+                                                            ${{p.price|intcomma}}.00
+                                                      {% endif %} -->
+                                                </strong>
+                                          </span>
+                                    </div>
+                                    <h5 class='m-0 p-0 mt-4' style="font-weight: bold; font-style: italic;">
+                                          {{ p.name|truncatechars:31 }}
+                                    </h5>
+                                    {% if p.price %}
+                                          ${{p.price|intcomma}}.00 
+                                    {% endif %}
+                                    <span class="d-flex mt-3">
+                                          {% if p.likes %}
+                                                {% for i in p.likes.all %}
+                                                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-star-fill ms-1 me-1 text-warning" viewBox="0 0 16 16">
+                                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                                      </svg>
+                                                {% endfor %}
+                                          {% endif %}
+                                    </span>
+                                    <div style='height: 10.2rem;' class='overflow-auto '>   
+                                          {% if p.caracteristicas.all %}
+                                                {% for p in  p.caracteristicas.all %}
+                                                      <li class="" style="font-size: 14px; list-style:circle;">
+                                                            {{p.name|truncatechars:32}} 
+                                                      </li>
+                                                {% endfor %}
+                                          {% endif %}
+                                    </div>
+                  
+                                    <!-- Butones de elcciones-->
+                                    <div class="d-flex justify-content-start flex-wrap">
+                                          
+                                          <button onclick="toggleOptions(this.id)" id="{{p.id}}" class='start-0  text-white btn-optione{{p.id}} text-decoration-none bg-white bg-opacity-10 p-2  border-1 rounded-5' style="font-size: 12px ; font-weight: bold; width: 36px; height: 36px; border: 1px solid rgb(63, 63, 63) !important; margin-top: 0.8rem;">
+                                                <span>
+                                                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-three-dots text-white-50" viewBox="0 0 16 16">
+                                                            <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"/>
+                                                      </svg>
+                                                </span>
+                                          </button> 
+                                    </div>
+                              </div>
+                        </div>
+      
+                  {% endfor %}
+            </section>
+
+      {% endfor %}
+      </section>
  
-      <section data-aos='fade-in'   class=' overflow-auto w-100'>
+            <div data-aos="zoom-in" style="transition-delay: 0.3s; max-height: 2rem;" class='  ' >
+            <a href="{% url "estudios:plan-create" %}">
+                  <button class="bg-white bg-opacity-10 d-flex justify-content-center flex-wrap align-content-center rounded-5  text-white border-0 rounded-3 p-2 me-4" style='font-weight: bold;'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="m-0 bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+                            </svg> 
+                  </button>
+            </a>
+      </div>  
+      <!-- <section data-aos='fade-in'   class=' overflow-auto d-none w-100'>
   
-                  <div data-aos="zoom-in" style="transition-delay: 0.3s; max-height: 2rem;" class='w-100 d-flex justify-content-end' >
-                        <a href="{% url "estudios:plan-create" %}">
-                              <button class="bg-white bg-opacity-10 d-flex justify-content-center flex-wrap align-content-center rounded-5  text-white border-0 rounded-3 p-2 me-4" style='font-weight: bold;'>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="m-0 bi bi-plus-circle-fill" viewBox="0 0 16 16">
-                                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
-                                        </svg> 
-                              </button>
-                        </a>
-                  </div> 
 
                   <div style='transition-duration: 1s;' class="d-flex flex-wrap justify-content-start w-100 align-content-start  ">
                         {% if plans %}
@@ -116,7 +205,7 @@
                         </section>
                         {% endif %}
                   </div>
-      </section>
+      </section> -->
 
       <script>
             function toggleOptions(id) {

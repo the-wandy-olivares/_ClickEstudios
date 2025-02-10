@@ -16,7 +16,7 @@
                   <option value="gasto" {% if request.POST.tipo == "gasto" %}selected{% endif %}>Gastos</option>
             </select>
             <select name="caja" class="form-select me-2" onchange="document.getElementById('selected-caja').innerText = this.options[this.selectedIndex].text;">
-                  <option value="todas" {% if request.method == "POST" and request.POST.caja == "todas" %}selected{% endif %}>Todas las Cajas</option>
+                  <option value="todas" {% if request.method == "POST" and request.POST.caja == "todas" %}selected{% endif %}>Todas las aperturas</option>
                   {% for caja in cajas %}
                   <option value="{{ caja.id }}" 
                         {% if request.method == "POST" and request.POST.caja == caja.id|stringformat:"s" or request.method == "GET" and forloop.last %}selected{% endif %}>
