@@ -1405,6 +1405,10 @@ class ListFacturacion(TemplateView):
 class Contactos(TemplateView):
     template_name = 'contactos/contactos.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['contacts'] =  models.Contact.objects.all()
+        return context    
 
 
 class Correos(TemplateView):
