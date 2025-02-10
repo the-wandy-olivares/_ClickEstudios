@@ -310,25 +310,31 @@ class PlanUpdate(UpdateView):
 
 
         def form_valid(self, form):
-                img = form.instance.img
-                img_temporary = Image.open(img)
-                # Resize image to 720p
-                img_temporary = img_temporary.resize((1080, 720), Image.LANCZOS)
-                output_io_stream = BytesIO()
-                img_temporary.save(output_io_stream, format='JPEG', quality=85)
-                output_io_stream.seek(0)
-                form.instance.img = InMemoryUploadedFile(output_io_stream, 'ImageField', "%s.jpg" % img.name.split('.')[0], 'image/jpeg', output_io_stream.getbuffer().nbytes, None)
+            img = form.instance.img
+            img_temporary = Image.open(img)
+            
+            # Resize image to 720p
 
-                # Resize image to 140p for img_back
-                img_temporary = img_temporary.resize((256, 140), Image.LANCZOS)
-                output_io_stream = BytesIO()
-                img_temporary.save(output_io_stream, format='JPEG', quality=85)
-                output_io_stream.seek(0)
-                form.instance.img_back = InMemoryUploadedFile(output_io_stream, 'ImageField', "%s_back.jpg" % img.name.split('.')[0], 'image/jpeg', output_io_stream.getbuffer().nbytes, None)
+            if img_temporary.mode == 'RGBA':
+                img_temporary = img_temporary.convert('RGB')
+            output_io_stream = BytesIO()
+            img_temporary.save(output_io_stream, format='JPEG', quality=50)
+            output_io_stream.seek(0)
+            form.instance.img = InMemoryUploadedFile(output_io_stream, 'ImageField', "%s.jpg" % img.name.split('.')[0], 'image/jpeg', output_io_stream.getbuffer().nbytes, None)
 
-                self.object = form.save()
-                return redirect(self.get_success_url())
+            # Resize image to 140p for img_back
+            img_temporary = img_temporary.resize((256, 140), Image.LANCZOS)
+            if img_temporary.mode == 'RGBA':
+                img_temporary = img_temporary.convert('RGB')
+            output_io_stream = BytesIO()
+            img_temporary.save(output_io_stream, format='JPEG', quality=35)
+            output_io_stream.seek(0)
+            form.instance.img_back = InMemoryUploadedFile(output_io_stream, 'ImageField', "%s_back.jpg" % img.name.split('.')[0], 'image/jpeg', output_io_stream.getbuffer().nbytes, None)
 
+
+            # Guarda el objeto y redirige al éxito
+            self.object = form.save()
+            return redirect(self.get_success_url())
         def form_invalid(self, form):
             print(form.errors)
             return self.render_to_response(self.get_context_data(form=form))
