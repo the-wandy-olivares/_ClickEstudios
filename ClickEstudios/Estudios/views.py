@@ -1092,7 +1092,11 @@ class Login(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        if models.Estudios.objects.filter(name='ClickEstudios').exists():
+            estudio = models.Estudios.objects.get(name='ClickEstudios')
+            context['estudios'] = estudio
         return context
+    
 
     def post(self, request):
         username = request.POST.get('username')

@@ -31,7 +31,7 @@
             box-shadow: 1px 2px 3px 4px #ffc10765;
       }
 </style>
-<section class='bg-black text-white d-flex justify-content-center  align-content-center flex-wrap w-100' style="height: 100vh;">
+<section class=' text-white d-flex justify-content-center  align-content-center flex-wrap w-100' style="height: 100vh; background-color: #101010;">
 
       <style>
             /* From Uiverse.io by Praashoo7 */ 
@@ -401,8 +401,8 @@
             <form method="post" class="w-100 form" style="max-width: 30rem; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
                   {% csrf_token %}
                   <div>
-               
-                        <h5  data-aos="zoom-in" class="text-white text-start  " 
+                      <img src="{{estudios.img.url}}" alt="" class="position-absolute top-0 end-0">
+                        <h5  data-aos="zoom-in" class="text-white text-center   " 
                         style="transition-delay: 0.3s !important;
                             transition-duration: 3s !important;
                             font-family: Syncopate, serif;
@@ -414,7 +414,7 @@
                   </div>
                   {% if messages %}
                   {% for message in messages %}
-                      <div class="alert alert-{{ message.tags }} alert-dismissible text-start fade text-danger show" role="alert"
+                      <div class="alert alert-{{ message.tags }} alert-dismissible text-center fade text-danger show" role="alert"
                         style='font-size: 10px;'>
                           {{ message }}
                       </div>
@@ -427,8 +427,7 @@
                     <input data-aos="fade-down" style="transition-delay: 1.4s; transition-duration: 1s;"  type="password" id="password" name="password" placeholder="Contraseña" required>
                   </div>
                   <div data-aos="fade-in" style="transition-delay: 2s; transition-duration: 1s;" class="w-100 d-flex flex-wrap justify-content-end mt-2" style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
-                    <a href="/" class="btn btn-secondary text-center text-white-50 bg-transparent border-0 " style="font-weight: bold;"> Atras </a>
-                    <button type="submit" class="border-0 text-white  bg-white bg-opacity-10 m-0 me-3 rounded-5 p-2 pe-3 ps-3" style="font-weight: bold; "> Iniciar session </button>
+                    <button type="submit" class="border-0 text-white btn-session   bg-white bg-opacity-10 m-0 p-2 me-3 rounded-5 p-2 pe-3 ps-3" style="font-weight: bold; "> Iniciar session </button>
                   </div>
             </form>
             <div class="no-found" style="display: none; max-width: 30rem; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
@@ -495,8 +494,30 @@
       
 </section>
 <script>
-    document.getElementById('username').addEventListener('input', function (e) {
-      e.target.value = e.target.value.toLowerCase();
-    });
+    window.onload = function() {
+      document.getElementById('username').blur();
+    };
+//    document.getElementById('username').addEventListener('input', function (e) {
+//      e.target.value = e.target.value.toLowerCase();
+//    });
 
+
+
+    document.getElementById('password').addEventListener('input', toggleButtonVisibility);
+    document.getElementById('username').addEventListener('input', toggleButtonVisibility);
+
+    function toggleButtonVisibility() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const button = document.querySelector('.btn-session');
+
+      if (username && password) {
+        button.classList.remove('d-none');
+      } else {
+        button.classList.add('d-none');
+      }
+        }
+
+    // Initial check to set the button visibility on page load
+    toggleButtonVisibility();
 </script>
