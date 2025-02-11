@@ -21,10 +21,10 @@ class Plan(forms.ModelForm):
             model = models.Plan
             fields = ['service', 'name', 'description', 'price', 'img', 'img_back', 'is_active']
             widgets = {
-                  'service': forms.Select(attrs={'class': 'form-control'}),
-                  'name': forms.TextInput(attrs={'class': 'form-control'}),
+                  'service': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Asociar a un servicio'}),
+                  'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre del plan' }, ),
                   'description': forms.Textarea(attrs={'class': 'form-control'}),
-                  'price': forms.NumberInput(attrs={'class': 'form-control'}),
+                  'price': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Precio del plan'}),
                   'img': forms.FileInput(attrs={'class': 'form-control'}),
                   'img_back': forms.FileInput(attrs={'class': 'form-control'}),
                   'is_active': forms.CheckboxInput(attrs={'class': 'form-check-input'})
@@ -52,7 +52,8 @@ class Sale(forms.ModelForm):
             fields = [
                   'client', 'name_plan', 'description_plan', 'price_plan', 'is_active',
                   'mount', 'is_reserve', 'payment', 'start_proces_date', 'end_proces_date',
-                  'finalize', 'date_choice', 'time', 'credit_fiscal', 'name_client', 'email_client', 'phone_client', 'is_cliente',  'phone_no_formate'
+                  'finalize', 'date_choice', 'time', 'credit_fiscal', 'name_client', 'email_client', 'phone_client', 'is_cliente',  'phone_no_formate', 
+                  'contact',
             ]
             widgets = {
                     'client': forms.Select(attrs={'class': 'form-control'}),
@@ -75,6 +76,8 @@ class Sale(forms.ModelForm):
                     'email_client': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Correo'}),
                     'phone_client': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Teléfono'}),
                   'phone_no_formate': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Teléfono'}),
+                        'contact': forms.Select(attrs={'class': 'form-select'}),
+
             }
 
 

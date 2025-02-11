@@ -1,3 +1,4 @@
+{% load humanize %}
 <div class=" p-3 m-2 blur-5 overflow-auto position-relative" style="width: 39rem; height: 20rem; background-color:#1f1f1f4a; border: 8px solid #1f1f1f4a; border-radius: 2.5rem;">
       <div class=" w-100 ">
             <span class='w-100 text-white-50'>
@@ -56,13 +57,13 @@
                         <strong class='text-white'>
                               Historial de ventas ({{contact.sale_contact.all|length}})
                         </strong>
-                        <div style="height: 4rem;" class="overflow-auto"> 
+                        <div style="height: 7rem;" class="overflow-auto"> 
                               {% if  contact.sale_contact.all %}
 
                                     <table class="w-100">
                                           <thead>
                                                 <tr>
-                                                      <th scope="col">Imagen</th>
+                                                      <th scope="col"></th>
                                                       <th scope="col">Nombre</th>
                                                       <th scope="col">Precio</th>
                                                 </tr>
@@ -72,7 +73,7 @@
                                                       <tr>
                                                             <td><img src="{{ sale.img.url }}" alt="{{ sale.name }}" class='object-fit-cover rounded-circle' style="width: 20px; height: 20px;"></td>
                                                             <td>{{ sale.name_plan }}</td>
-                                                            <td>RD${{ sale.price_plan }}</td>
+                                                            <td>RD${{ sale.price_plan|intcomma }}.00</td>
                                                       </tr>
                                                 {% endfor %}
                                           </tbody>
