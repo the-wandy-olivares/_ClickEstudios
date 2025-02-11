@@ -1409,6 +1409,68 @@ class Contactos(TemplateView):
         context = super().get_context_data(**kwargs)
         context['contacts'] =  models.Contact.objects.all()
         return context    
+    
+class ContactoCreate(CreateView):
+        model = models.Contact
+        form_class = forms.Contact
+        template_name = 'contactos/contacto-create.html'
+
+        def get_context_data(self, **kwargs):
+            context = super().get_context_data(**kwargs)
+            return context
+
+        def form_valid(self, form):
+            self.object = form.save()
+            return redirect(self.get_success_url())
+
+        def form_invalid(self, form):
+            print(form.errors)
+            return self.render_to_response(self.get_context_data(form=form))
+
+        def get_success_url(self):
+            # Retorna la URL a la que redirigirá después de un submit exitoso
+            return reverse_lazy('estudios:contactos')
+        
+
+class ContactoUpdate(UpdateView):
+        model = models.Contact
+        form_class = forms.Contact
+        template_name = 'contactos/contacto-create.html'
+
+        def get_context_data(self, **kwargs):
+            context = super().get_context_data(**kwargs)
+            return context
+
+        def form_valid(self, form):
+            self.object = form.save()
+            return redirect(self.get_success_url())
+
+        def form_invalid(self, form):
+            print(form.errors)
+            return self.render_to_response(self.get_context_data(form=form))
+
+        def get_success_url(self):
+            # Retorna la URL a la que redirigirá después de un submit exitoso
+            return reverse_lazy('estudios:contactos')
+
+
+
+
+class ContactoDelete(DeleteView):
+    template_name = 'contactos/contacto-delete.html'
+    model = models.Contact
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def get_success_url(self):
+        # Retorna la URL a la que redirigirá después de un submit exitoso
+        return reverse_lazy('estudios:contactos')
+
+
+
+
 
 
 class Correos(TemplateView):

@@ -93,7 +93,9 @@ urlpatterns = [
 
 # Contactos
       path('contactos/', views.Contactos.as_view(), name='contactos'),
-
+            path('contacto-create', views.ContactoCreate.as_view(), name='contacto-create'),
+                  path('contacto-update<int:pk>', views.ContactoUpdate.as_view(), name='contacto-update'),
+            path('contacto-delete<int:pk>', views.ContactoDelete.as_view(), name='contacto-delete'),
 # Correos
       path('correos/', views.Correos.as_view(), name='correos'),
 

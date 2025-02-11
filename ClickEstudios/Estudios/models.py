@@ -358,7 +358,7 @@ class Facturacion(models.Model):
       
 
 class Contact(models.Model):
-      full_name = models.CharField(default='', max_length=25, blank=True)
+      full_name = models.CharField(default='', max_length=25)
       phone = models.CharField(default='', max_length=15, blank=True)
       email = models.EmailField(max_length=100, blank=True, null=True)
 
