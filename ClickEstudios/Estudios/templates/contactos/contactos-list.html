@@ -1,11 +1,13 @@
-<div class=" p-3 m-2  rounded-5 blur-5" style="width: 33rem; height: max-content; background-color:rgba(31, 31, 31, 0.29);">
-      <div class=" w-100 p-2 ">
+<div class=" p-3 m-2 blur-5 overflow-auto position-relative" style="width: 39rem; height: 20rem; background-color:#1f1f1f4a; border: 8px solid #1f1f1f4a; border-radius: 2.5rem;">
+      <div class=" w-100 ">
             <span class='w-100 text-white-50'>
-                  <h5 class="text-white mb-4" style='font-size: 25px; font-style: italic;'> 
+                  <a href="{% url "estudios:contacto-update"  contact.id %}">      
+                        <h5 class="text-white mb-4" style='font-size: 25px; font-style: italic;'> 
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle me-3" viewBox="0 0 16 16">
                         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
                         <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
-                      </svg>{{ contact.full_name }}</h5>
+                      </svg> {{ contact.full_name }}</h5>
+                  </a>
                   <p class="mb-0">
                         <strong>
                               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill me-1" viewBox="0 0 16 16">
@@ -54,7 +56,7 @@
                         <strong class='text-white'>
                               Historial de ventas ({{contact.sale_contact.all|length}})
                         </strong>
-                        <span>
+                        <div style="height: 4rem;" class="overflow-auto"> 
                               {% if  contact.sale_contact.all %}
 
                                     <table class="w-100">
@@ -70,7 +72,7 @@
                                                       <tr>
                                                             <td><img src="{{ sale.img.url }}" alt="{{ sale.name }}" class='object-fit-cover rounded-circle' style="width: 20px; height: 20px;"></td>
                                                             <td>{{ sale.name_plan }}</td>
-                                                            <td>{{ sale.price_plan }}</td>
+                                                            <td>RD${{ sale.price_plan }}</td>
                                                       </tr>
                                                 {% endfor %}
                                           </tbody>
@@ -81,7 +83,16 @@
                                           Actualmente no hay ventas asociadas a este cliente
                                     </p>
                               {% endif %}
-                        </span>
+                        </div>
+
+
+                        <div class="d-flex justify-content-end">
+                              <a href="{% url "estudios:contacto-delete" contact.id %}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-circle-fill position-absolute mt-2 top-0 end-0 " viewBox="0 0 16 16">
+                                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
+                                    </svg>
+                              </a>
+                        </div>
                   </div>
 
             </span>
