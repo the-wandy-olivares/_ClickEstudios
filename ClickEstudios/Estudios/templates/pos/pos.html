@@ -52,16 +52,6 @@
            
             <span class="reloj font-delius position-absolute end-0 me-5 z-3 mt-3 d-flex justify-content-center align-content-center flex-wrap text-white"  style="font-size: 18px;" ></span> 
             <div data-aos="fade-down" style="transition: 1s;" class='d-flex blur-5 position-sticky z-2 top-0'>
-                  <!-- 
-                        <button class="bg-transparent border-0 me-3">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search text-white" viewBox="0 0 16 16">
-                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-                              </svg>
-                        </button> 
-                  -->
-                  <!--
-                        <input type="text" class="form-control search text-white bg-transparent border-0 text-white" placeholder="Buscador ...">
-                  -->
                   {% include "service/filter-services.html" %}
                   <a href="{% url "estudios:gastos-create" %}"  class="btn  border-0 bg-transparent " style="font-size: 14px; font-weight: bold; color: rgba(255, 255, 255, 0.786); 
                   margin-top: 2px;">
@@ -121,7 +111,9 @@
             </div>
             {% if sales %}
                   <div class="mt-2 d-flex  overflow-auto">
-                        {% include "sale/sale.html" %}
+                        {% for s in sales %}
+                              {% include "sale/sale.html" %}
+                        {% endfor %}
                   </div>
                   {% else %}
                   <div class="w-100 " style="height: 18rem;">
@@ -142,13 +134,12 @@
                               Estas citas ya han sido confirmadas por el cliente, las cuales ya se han realizado un abono o completado el pago
                         </p>
                         {% include "pos/cp/filter-reservers.html" %} 
-                        <!-- <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-gear-fill ms-2 text-white-50" style="margin-top: 6px;"  viewBox="0 0 16 16">
-                              <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
-                            </svg> -->
                   </div>
                   {% if sales_reservers %}
                   <div class=' d-flex overflow-auto  position-relative ' >
-                        {% include "sale/sale-resevers.html" %}
+                        {% for s in sales_reservers %}
+                              {% include "sale/sale.html" %}
+                        {% endfor %}
                         <!-- Resultados -->
                         <div style='margin-top: 0px; width: 30rem;  border-radius: 1.5rem;'  class=" results-searching text-white-50  position-absolute top-0 z-3 bg-black bg-opacity-25 blur-20 d-flex flex-wrap">
                         </div>     

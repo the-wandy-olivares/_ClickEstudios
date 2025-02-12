@@ -16,7 +16,7 @@
                   margin: 0.3rem;
                   border-radius: 2rem !important;
             }
-             input
+             input, #id_descrition
             {
                   background-color: rgb(44, 44, 44) !important; 
                   border: none !important;
@@ -27,6 +27,13 @@
                   padding: 0.9rem !important;
             }
             input::placeholder
+            {
+                  color: rgba(218, 218, 218, 0.865) !important;
+            }
+            #id_descrition {
+                  max-height: 10rem;
+            }
+            #id_descrition::placeholder
             {
                   color: rgba(218, 218, 218, 0.865) !important;
             }
@@ -73,7 +80,7 @@
                                                 </strong>
                                           </h6>
                                           <div class="d-flex justify-content-center">
-                                                <textarea name="" id="" class="w-100 bg-white blur-5 p-3 bg-opacity-10 border-0 rounded-5" placeholder="Comentario (opcional)" style="height: 15vh;"></textarea>
+                                                {{form.descrition}}
                                           </div>
                                           <div>
                                                 <label for="id_contact">- Asociar contacto a esta venta</label>

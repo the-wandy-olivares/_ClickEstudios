@@ -612,6 +612,8 @@ class Estudios(TemplateView):
 
         context['estudios'] =  models.Estudios.objects.filter(name='ClickEstudios').exists() if models.Estudios.objects.get(name='ClickEstudios') else ''
     
+        if models.Plan.objects.filter(id=sale.pk_plan).exists() == True:
+            context['plan'] = models.Plan.objects.get(id=sale.pk_plan)
 
         context['total_sin'] = total
         context['total'] = total + total_itebis

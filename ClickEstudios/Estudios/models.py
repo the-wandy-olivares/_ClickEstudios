@@ -183,12 +183,12 @@ class Sale(models.Model):
       name_client = models.CharField(max_length=100, blank=True, null=True)
       email_client = models.EmailField(max_length=100, blank=True, null=True)
       phone_client = models.CharField(max_length=20, blank=True, null=True)
-      phone_no_formate = models.CharField(max_length=20, blank=True, null=True) # Teléfono sin formato para whatsapp
-
+      phone_no_formate = models.CharField(max_length=20, blank=True, null=True)  # Teléfono sin formato para whatsapp
+      descrition = models.TextField(blank=True, null=True) # Descripción para la venta
       is_cliente = models.BooleanField(default=False) # Si el cliente es nuevo
       client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='client_sale', null=True, blank=True)
 
-
+      
 # Datas de plan escogido
       pk_plan = models.IntegerField(default=0, blank=True, null=True)
       name_plan = models.CharField(max_length=100, blank=True, null=True)
@@ -196,7 +196,6 @@ class Sale(models.Model):
       price_plan = models.IntegerField(blank=True, null=True)
       img = models.ImageField(upload_to='media/ventas', null=True, blank=True)
       date = models.DateTimeField(default=timezone.now, verbose_name="Fecha de creación")
-
       is_active = models.BooleanField(default=True)
 
 # Estado de la venta
@@ -217,8 +216,6 @@ class Sale(models.Model):
 
 # Datos para la factura
       credit_fiscal = models.BooleanField(default=False) # Factura con crédito fiscal
-
-
       credito_fiscal = models.CharField(
             default='B01000000',
             max_length=255,
@@ -234,13 +231,11 @@ class Sale(models.Model):
             verbose_name="Consumidor Final"
       )
 
-
       # Opciones para el tipo de venta
       SALE_TYPE_CHOICES = [
             ('credito', 'Crédito Fiscal'),
             ('consumidor', 'Consumidor Final'),
       ]
-
 
       sale_type = models.CharField(
             max_length=13,
@@ -252,8 +247,7 @@ class Sale(models.Model):
       # RNC del cliente
       rnc_client = models.CharField(default='', max_length=255, blank=True, null=True)
       name_company_client = models.CharField(default='', max_length=255, blank=True, null=True)
-      # Aplica para descuento
-      discount = models.BooleanField(default=True)
+      discount = models.BooleanField(default=True)  # Aplica para descuento
 
       # Asociar venta  aun contacto (cliente)
       contact = models.ForeignKey('Contact', on_delete=models.CASCADE, blank=True, null=True, 
