@@ -53,7 +53,7 @@ class Sale(forms.ModelForm):
                   'client', 'name_plan', 'description_plan', 'price_plan', 'is_active',
                   'mount', 'is_reserve', 'payment', 'start_proces_date', 'end_proces_date',
                   'finalize', 'date_choice', 'time', 'credit_fiscal', 'name_client', 'email_client', 'phone_client', 'is_cliente',  'phone_no_formate', 
-                  'contact',
+                  'contact', 'descrition'
             ]
             widgets = {
                     'client': forms.Select(attrs={'class': 'form-control'}),
@@ -78,6 +78,7 @@ class Sale(forms.ModelForm):
                   'phone_no_formate': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Teléfono'}),
                         'contact': forms.Select(attrs={'class': 'form-select'}),
 
+                  'descrition': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Nota (opcional)'}),
             }
 
 
