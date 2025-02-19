@@ -397,6 +397,7 @@ class SaleReserver(TemplateView):
                 sale.mount = sale.price_plan
                 sale.payment = True
                 description = 'Pago completado' + ' ' + sale.name_client + '-' + sale.name_plan +  ' ( Restante: ' + f"${sale.debit_mount:,}" + ')'
+                sale.saled_date = timezone.now() # Fecha en la que se completo la venta
             else:
                 description = 'Abono, ' + sale.name_client + ', ' + sale.name_plan + ' ( Restante: ' + f"${sale.debit_mount:,}" + ')'
                     # Restar monto 
@@ -439,6 +440,7 @@ class SaleCreate(CreateView):
             form.instance.payment = True
             form.instance.is_reserve = True
             form.instance.phone_no_formate = form.instance.phone_client.replace('(', '').replace(')', '').replace(' ', '').replace('-', '') if form.instance.phone_client else None
+            form.instance.saled_date = timezone.now()
 
         # Guarda el objeto y redirige al éxito
             models.Movements.objects.create(
@@ -446,7 +448,7 @@ class SaleCreate(CreateView):
                 box=models.Box.objects.get(open=True),
                 mount= plan.price,
                 type='ingreso',
-                description=  'Pago ' + ' ' + form.instance.name_client + '-' + plan.name
+                description=  'Pago completado' + ' ' + form.instance.name_client + '-' + plan.name
             )
         self.object = form.save()
         return redirect(self.get_success_url(self.object))
@@ -1218,14 +1220,12 @@ class FastSale(TemplateView):
                 description= 'Pago completado ' + request.POST.get('name')  
             ).save()
         
-
-
-
             sale = models.Sale(
                 name_client= request.POST.get('name'),
                 name_plan='Venta rapida',
                 price_plan=int(request.POST.get('preci').replace(',', '')),
                 payment=True,
+                saled_date = timezone.now(),
             )
 
             sale.save()
@@ -1312,8 +1312,6 @@ class Factura(TemplateView):
 
 
        
-            sale.save()
-
             sale.save()
             return self.render_to_response(self.get_context_data())
         
@@ -1477,7 +1475,12 @@ class Facturas(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # context['facturas'] = models.Factura.objects.all()
+        today = timezone.now().date()
+        context['sales_day'] = models.Sale.objects.filter( saled_date=today)
+        context['sales_last_7_days'] = models.Sale.objects.filter(saled_date__gte=today - timezone.timedelta(days=7))
+        context['sales_last_month'] = models.Sale.objects.filter( saled_date__gte=today - timezone.timedelta(days=30))
+
+
         return context
 
 
