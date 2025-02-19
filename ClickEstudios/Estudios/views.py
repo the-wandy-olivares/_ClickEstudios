@@ -1483,6 +1483,8 @@ class Facturas(TemplateView):
             sales = sales.filter(sale_type='credito')
         elif filter_option == 'consumidor':
             sales = sales.filter(sale_type='consumidor')
+        elif filter_option == 'anterior':
+            sales = sales.all()
 
         context['sales_day'] = sales.filter(saled_date=today)
         context['sales_last_7_days'] = sales.filter(saled_date__gte=today - timezone.timedelta(days=7))
