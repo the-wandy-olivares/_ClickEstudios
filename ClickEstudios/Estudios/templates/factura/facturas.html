@@ -11,9 +11,9 @@
                   display: none;
             }
       </style>
-      <section class='w-100 overflow-auto'>
+      <section class='w-100  overflow-auto '>
             {% include "factura/cp/filter.html" %}
-
+            {% if filter_option != 'anterior' %}
             <div class='d-flex w-100 flex-wrap'>
                   <h6 class='mt-5'>
 
@@ -48,6 +48,19 @@
                               {% include "factura/cp/card-factura.html" %}
                         {% endfor %}
                   </div>
+                  {% else %}
+                  <h6 class='mt-4'>
+                        
+                        <strong class="text-white-50">
+                              ({{sales|length}})   Todas las anteriores
+                        </strong>
+                  </h6>
+                  <div class='d-flex flex-wrap w-100'>
+                        {% for sale in sales %}
+                              {% include "factura/cp/card-factura.html" %}
+                        {% endfor %}
+                  </div>
+                  {% endif %}
       
       
             </div>
