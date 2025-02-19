@@ -26,18 +26,20 @@
                        <div class="d-flex w-75 flex-wrap align-content-start">
                               <div class="w-100 text-white">
                                     <h6>
-                                          Comprando en este momento
+                                          Estas comprando en este momento
                                     </h6>
-                                    <p style="width: 40rem;" class="text-white-50">
-                                          En este momento estas comprando el estudio de {{plan.name}}, por favor ingresa tu nombre para continuar, no hay reserva en esta seccion, luego de ingresar tu nombre podras continuar con el estudio.
+                                    <p style="width: 40rem; font-size: 12px;" class="text-white-50">
+                                          En este momento estas comprando el estudio de {{plan.name}}, por favor ingresa tu nombre para continuar, no hay reserva en esta seccion, luego de hacer click en <strong>Facturar</strong> se aplicara la venta y sera reflejada en la caja con el monto total del plan.
                                     </p>
                               </div>
                               <div style="min-width: 400px; max-width: 400px; border: 0px solid rgb(47, 47, 47); border-radius: 3rem; cursor: pointer;" class=' text-white m-2 input-user shadow-sm'>
                                     {{form.name_client}}
-                                    <button id="submit_button" class="d-none mt-2 btn text-black btn-warning
-                                    rounded-5" style="font-weight: bold; width: 8rem;">
-                                          Ir al estudio
-                                    </button>
+                                    <div class='w-100 d-flex justify-content-end'>
+                                          <button id="submit_button" class="d-none mt-2 btn text-white bg-primary
+                                          rounded-5" style="font-weight: bold; width: 8rem;">
+                                                Facturar
+                                          </button>
+                                    </div>
                               </div>
                        </div>
                   </section>

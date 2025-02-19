@@ -208,6 +208,7 @@ class Sale(models.Model):
       start_proces_date = models.DateField(verbose_name="Fecha de inicio", blank=True, null=True)
       end_proces_date = models.DateField(verbose_name="Fecha final", blank=True, null=True)
       finalize = models.BooleanField(default=False) # Procesos de fotografias finalizado
+      saled_date = models.DateField(verbose_name="Fecha de facturación", blank=True, null=True)  # Fecha de facturación
 
 # Cuando se acordo la venta (cita)
       date_choice = models.DateField(verbose_name="Fecha seleccionada", blank=True, null=True) # Fecha de la cita

@@ -1,0 +1,57 @@
+{% extends "base/base.html" %}
+{% block content %}
+      <style>
+            .nav .facturas {
+                  color: #ffc107;
+                  font-weight: bolder;
+                  transform: scale(1.1);
+            }
+            .btn-atras 
+            {
+                  display: none;
+            }
+      </style>
+      <section class='w-100 overflow-auto'>
+            {% include "factura/cp/filter.html" %}
+
+            <div class='d-flex w-100 flex-wrap'>
+                  <h6 class='mt-5'>
+
+                        <strong class="text-white-50">
+                               ({{sales_day|length}})    Facturas de hoy
+                        </strong>
+                  </h6>
+                  <div class='d-flex overflow-auto w-100' >
+                        {% for sale in sales_day %}
+                                     {% include "factura/cp/card-factura.html" %}
+                        {% endfor %}
+                  </div>
+                  <h6 class='mt-4'>
+
+                        <strong class="text-white-50">
+                            ({{sales_last_7_days|length}})  Ultimos 7 dias
+                        </strong>
+                  </h6>
+                  <div class='d-flex overflow-auto w-100'>
+                        {% for sale in sales_last_7_days %}
+                              {% include "factura/cp/card-factura.html" %}
+                        {% endfor %}
+                  </div>
+                  <h6 class='mt-4'>
+
+                        <strong class="text-white-50">
+                              ({{sales_last_month|length}})   Ultimo mes
+                        </strong>
+                  </h6>
+                  <div class='d-flex overflow-auto w-100'>
+                        {% for sale in sales_last_month %}
+                              {% include "factura/cp/card-factura.html" %}
+                        {% endfor %}
+                  </div>
+      
+      
+            </div>
+
+      </section>
+
+{% endblock  %}

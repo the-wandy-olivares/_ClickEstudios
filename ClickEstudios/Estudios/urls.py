@@ -90,6 +90,10 @@ urlpatterns = [
 #  Facturacion
       path('facturacion/', views.Facturacion.as_view(), name='facturacion'),
             path('list-facturacion/', views.ListFacturacion.as_view(), name='list-facturacion'),
+                  path('facturas/', views.Facturas.as_view(), name='facturas'),
+                  
+
+# Reportes 
 
 # Contactos
       path('contactos/', views.Contactos.as_view(), name='contactos'),

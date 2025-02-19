@@ -30,7 +30,7 @@
                   </a>
                   {% endif %}
                   <div class="d-flex justify-content-end position-absolute flex-wrap align-content-center    bottom-0 end-0 "
-                        style='margin-right: 8rem; margin-bottom: 1.5rem;'>
+                        style='margin-right: 8rem; margin-bottom: 1.2rem;'>
                         {% if s.date_choice == today %}
                                     {% if s.time == time_now %}z
                                           <span class="rounded-circle" style="width: 10px; height: 10px; background-color: #ffc107;"></span>  
@@ -147,8 +147,11 @@
                         <div class='d-flex justify-content-end pe-2 mt-4'>
                               {% if s.payment %}
                                     <a href="{% url "estudios:estudios" s.id %}">
-                                          <button id='reserve-{{ s.id }}'  class="bg-warning rounded-start-5 border-0 rounded-end-5 p-2  " style="font-weight: bold; font-size: 14px;">
-                                                Ir al estudio
+                                          <button id='reserve-{{ s.id }}'  class="bg-warning rounded-start-5 border-0 rounded-end-5 p-2 ps-3 pe-3  " style="font-weight: bold; font-size: 14px;">
+                                                Estudio
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-right-circle-fill p-0 m-0" viewBox="0 0 16 16">
+                                                <path d="M0 8a8 8 0 1 0 16 0A8 8 0 0 0 0 8m5.904 2.803a.5.5 0 1 1-.707-.707L9.293 6H6.525a.5.5 0 1 1 0-1H10.5a.5.5 0 0 1 .5.5v3.975a.5.5 0 0 1-1 0V6.707z"/>
+                                                </svg> 
                                           </button>
                                     </a>
                               {% else %}

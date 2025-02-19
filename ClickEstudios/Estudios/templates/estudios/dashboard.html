@@ -61,14 +61,14 @@
                         <p>El gráfico de filas comunmente muestra datos categóricos, como diferentes tipos de ventos, sirve para visualizar que plan, servicios, ente otros se ha vendido mas</p>
               </div>
        
-                  <div class="bg-gray-800    w-75 rounded-lg shadow-md " style="height: 180px;">
-                        <canvas id="barChart" class="d-none"></canvas>
-                  </div>
-                  <div data-aos='fade-in' style='transition-delay: 0.5s; transition-duration: 1s;' class="bg-gray-100   w-100 shadow-md" >
-                        <canvas id="lineChart"></canvas>
-                  </div>
-                 
-
+              
+              
+            </div>
+            <div class="bg-gray-800    w-75 rounded-lg shadow-md " style="height: 180px;">
+                  <canvas id="barChart" class="d-none"></canvas>
+            </div>
+            <div  data-aos="fade-in" style="transition: 4s; transition-delay: 1.5s;"  class="bg-gray-100  lineChart  w-100 shadow-md" >
+                  <canvas id="lineChart"></canvas>
             </div>
 
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -173,6 +173,8 @@
         }
     }
 });
+
+
             </script>
       </div>
 {% endblock  %}
