@@ -1472,7 +1472,13 @@ class ContactoDelete(DeleteView):
 
 
 
+class Facturas(TemplateView):
+    template_name = 'factura/facturas.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # context['facturas'] = models.Factura.objects.all()
+        return context
 
 
 class Correos(TemplateView):
