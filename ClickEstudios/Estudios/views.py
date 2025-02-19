@@ -1476,11 +1476,18 @@ class Facturas(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         today = timezone.now().date()
-        context['sales_day'] = models.Sale.objects.filter( saled_date=today)
-        context['sales_last_7_days'] = models.Sale.objects.filter(saled_date__gte=today - timezone.timedelta(days=7))
-        context['sales_last_month'] = models.Sale.objects.filter( saled_date__gte=today - timezone.timedelta(days=30))
+        filter_option = self.request.GET.get('filter', 'all')
+        sales = models.Sale.objects.all()
 
+        if filter_option == 'credito':
+            sales = sales.filter(sale_type='credito')
+        elif filter_option == 'consumidor':
+            sales = sales.filter(sale_type='consumidor')
 
+        context['sales_day'] = sales.filter(saled_date=today)
+        context['sales_last_7_days'] = sales.filter(saled_date__gte=today - timezone.timedelta(days=7))
+        context['sales_last_month'] = sales.filter(saled_date__gte=today - timezone.timedelta(days=30))
+        context['filter_option'] = filter_option
         return context
 
 
