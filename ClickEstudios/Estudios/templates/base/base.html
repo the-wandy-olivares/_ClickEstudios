@@ -117,6 +117,39 @@
             text-align: center; font-weight: bold;
       }
 
+      .btn-closed-nav {
+        display: none;
+      }
+
+        @media (max-width: 600px) {
+          .btn-closed-nav {
+            display: block  !important;
+          }
+              .super-nav {
+                  position: absolute; 
+                  width: 100%;
+                -webkit-backdrop-filter: blur(100px) !important;
+                  backdrop-filter: blur(100px) !important;
+                  margin: 0px !important; 
+                  padding: 40px !important;
+                  padding-top: 12rem !important;
+                  margin-bottom: 10rem;
+                  
+              }
+              .super-nav .img-estudios {
+                  width: 160px !important;
+                  position: absolute ; 
+
+
+                  top: 0px; 
+                  left: 0%;
+                  transform: translateX(+90%);
+
+
+
+              }
+        }
+
   </style>
 
   <body style=" {% if request.user.config.mode %} background-color:#101010; {% else %} background-color:black  {% endif %} " class="p-0 body"> 
@@ -128,11 +161,11 @@
     {% endif %}
 
     
-      <main class=' p-1 d-flex  z-3 position-absolute top-0 w-100'  
+      <main class='  d-flex  z-3 position-absolute top-0 w-100'  
       style=" height: 100vh; background-color:rgba(0, 0, 0, 0);">
      
-  
-                <div class='bg-grey  ms-5 me-3 z-3   mt-4' style='min-width: 220px;'>
+                <div class='bg-grey super-nav ms-5 me-3 z-3  overflow-scroll   mt-4' style='min-width: 220px;'>
+                      
                        {% include "component/nav.html" %} 
                 </div>
                 {% if not request.user.profile.estudio.is_active %}
@@ -219,6 +252,10 @@ document.addEventListener('DOMContentLoaded', function() {
                   });
             }
       });
+
+function OpenNav(){
+    document.querySelector('.super-nav').classList.toggle('d-none');
+}
 
 </script>
     <!--Jquery-->

@@ -28,7 +28,14 @@
       }
 </style>
 
-<a href="{% url "estudios:dashboard" %}" >
+<button onclick="OpenNav()" class="position-fixed btn-closed-nav top-0 end-0 me-3 mb-3 bg-transparent border-0 text-white" 
+      style="margin-top: 1rem;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
+            </svg>
+</button>
+
+<a href="{% url "estudios:dashboard" %}"  class="w-100  ">
       <img data-aos='fade-in' style='transition-delay: 1s; transition-duration: 1s;' src="" class='img-estudios' width='190' alt="Logo">
 </a>
 
@@ -49,7 +56,6 @@
                   <path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm6 2.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0m3.5.878c1.482-1.42 4.795 1.392 0 4.622-4.795-3.23-1.482-6.043 0-4.622M2 5.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5"/>
                 </svg>
            Punto de venta 
-           {% comment %} <strong style="font-size: 10px;" class="text-white-50 mb-2">(POS)</strong> {% endcomment %}
       </a>
 </a>
 <a  data-aos="zoom-in" style="transition-delay: 0.3s;"  class='caja' href="{% url "estudios:box" %}"> 
@@ -107,7 +113,7 @@
                         <path fill-rule="evenodd" d="M14.5 1a.5.5 0 0 0-.5.5v13a.5.5 0 0 0 1 0v-13a.5.5 0 0 0-.5-.5"/>
                         <path d="M13 7a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1z"/>
                   </svg>
-             Todos los servicios
+                  Todos los servicios
             </a>
             <a  data-aos="zoom-in" style="transition-delay: 0.2s;"  class="plans" href="{% url "estudios:plan" %}">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-balloon-fill" viewBox="0 0 16 16">
@@ -174,6 +180,7 @@
             </a>
       {% endif %}
       {% endif %}
+
 </div>
 
 <script>
