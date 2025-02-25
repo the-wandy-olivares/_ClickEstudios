@@ -33,13 +33,14 @@
             <div class="w-100 vh-100 overflow-auto">
                   <div class="d-flex justify-content-start mb-3">
                         <div class="p-2 cierre-anterior bg-secondary text-center ps-4 pe-4 bg-white bg-opacity-10 text-white rounded-5">
-                              <strong style="font-size: 14px;">Cierre anterior</strong> <span> ${{total_last_session|intcomma}}.00 </span>
+                              <strong style="font-size: 14px;">Cierre anterior</strong>
+                               <span> RD${{total_last_session|intcomma}}.00 </span>
                         </div>
                         <div class="p-2 balance-total bg-primary text-white  text-center rounded-5 ps-4 pe-4 bg-white bg-opacity-10">
                               <strong style="font-size: 14px;">
                                     Balance total
                               </strong>
-                              <span> ${{total_movimientos|intcomma}}.00 </span>
+                              <span> RD${{total_movimientos|intcomma}}.00 </span>
                         </div>
                   </div>
 
@@ -51,9 +52,9 @@
                   <div class="position-sticky bottom-0  d-flex  w-100 " style="background-color: #101010;">
                  
                         <div class="w-75 d-flex justify-content-start text-center">
-                              <h6 class="p-0 m-0 mt-2 ms-3 "> <strong class="text-white-50" style="font-size: 14px;">Igresos</strong> ${{ ingresos|intcomma }}.00</h6>
-                              <h6 class="p-0 m-0 mt-2 ms-3 "> <strong  class="text-white-50" style="font-size: 14px;">Gastos</strong> ${{ egresos|intcomma }}.00</h6>
-                              <h6 class="p-0 m-0 mt-2 ms-3 "> <strong class="text-white-50" style="font-size: 14px;">Balance</strong> ${{ balance_caja|intcomma }}.00</h6>
+                              <h6 class="p-0 m-0 mt-2 ms-3 "> <strong class="text-white" style="font-size: 14px;">Igresos</strong> ${{ ingresos|intcomma }}.00</h6>
+                              <h6 class="p-0 m-0 mt-2 ms-3 "> <strong  class="text-white" style="font-size: 14px;">Gastos</strong> ${{ egresos|intcomma }}.00</h6>
+                              <h6 class="p-0 m-0 mt-2 ms-3 "> <strong class="text-white" style="font-size: 14px;">Balance</strong> ${{ balance_caja|intcomma }}.00</h6>
                         </div>
                         <div class="justify-content-end w-25 d-flex flex-wrap align-content-center">
                               <a href="{% url "estudios:box-create" %}" class='btn-cerrar'> 
