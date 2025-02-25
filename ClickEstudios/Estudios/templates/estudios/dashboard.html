@@ -15,7 +15,8 @@
             .filter-grafico {
                   width: 20rem;
                   display: flex; flex-wrap: wrap;
-                  justify-content: end;
+                  justify-content: center;
+
             }
             
             }
@@ -79,8 +80,8 @@
             <div class="bg-gray-800    w-75 rounded-lg shadow-md " style="height: 180px;">
                   <canvas id="barChart" class="d-none"></canvas>
             </div>
-            <div  data-aos="fade-in" style="transition: 4s; transition-delay: 1.5s;" 
-                  class="bg-gray-100  lineChart  w-100 shadow-md" >
+            <div  data-aos="fade-in" style="transition: 1s; transition-delay: 0s; " 
+                  class="bg-gray-100  d-flex mb-2 justify-content-center align-content-end flex-wrap  lineChart  w-100 shadow-md" >
                   <canvas id="lineChart"></canvas>
             </div>
 
@@ -139,7 +140,7 @@
                   });
       
 
-                  new Chart(lineCtx, {
+new Chart(lineCtx, {
     type: "line",
     data: {
         labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
