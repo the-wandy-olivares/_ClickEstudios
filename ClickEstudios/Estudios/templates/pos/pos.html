@@ -59,7 +59,7 @@
                   .show-reloj {
                         display: none !important;
                   }
-                  .sales-reservers {
+                  .sales-reservers, .sale-no-confirm {
                         flex-wrap: wrap !important; 
                         padding-bottom: 5rem;
                   }
@@ -98,14 +98,13 @@
                  </a>
             </div>
 
-            <!-- Service select -->
-            {% if service_select %}
-                  <div class='mt-5'>
-                        {% include "service/service-select.html" %}
-                  </div>
-            {% endif %}
+                  <!-- Service select -->
+                  {% if service_select %}
+                        <div class='mt-5'>
+                              {% include "service/service-select.html" %}
+                        </div>
+                  {% endif %}
 
-            
                   <!--Seccion de citas no confirmadas-->
                   <section class="section-citas-no-confirm d-none ">
                         <div style="min-width: 520px; cursor: pointer;  border: 0px solid rgb(47, 47, 47); border-radius: 2rem;"class=' text-white m-2 shadow-sm  mt-0 d-flex justify-content-start align-content-center flex-wrap'>
@@ -117,7 +116,7 @@
                               </p>
                         </div>
                         {% if sales %}
-                              <div class="mt-2 d-flex  overflow-auto">
+                              <div class="mt-2 d-flex  overflow-auto sale-no-confirm">
                                     {% for s in sales %}
                                           {% include "sale/sale.html" %}
                                     {% endfor %}
@@ -164,8 +163,6 @@
                         </div>
                         {% endif %} 
                   </section>
-
-
             </div>
       </section>
       {% else %}
