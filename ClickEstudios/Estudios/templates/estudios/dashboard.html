@@ -32,25 +32,28 @@
                     </button>
                -->
              
-                    <script>
-                              function toggleInfo() {
-                                      var infoDiv = document.getElementById('infoDiv');
-                                      if (infoDiv.style.display === 'none') {
-                                                infoDiv.style.display = 'block';
-                                      } else {
-                                                infoDiv.style.display = 'none';
-                                      }
+                  <script>
+                        function toggleInfo() {
+                              var infoDiv = document.getElementById('infoDiv');
+                              if (infoDiv.style.display === 'none') {
+                                    infoDiv.style.display = 'block';
+                              } else {
+                                    infoDiv.style.display = 'none';
                               }
-                    </script>
+                        }
+                  </script>
 
 
-
-                  <select data-aos="fade-left" class="form-select bg-transparent border-0 text-white" aria-label="Default select example" style="width: 14rem;">
+                  <select data-aos="fade-left" 
+                        class="form-select bg-transparent border-0 text-white" 
+                        aria-label="Default select example" style="width: 14rem;">
                         <option value="1" selected> Graficos de periodo </option>
                         <option value="2" disabled>  Graficos por filas  </option>
                         <!-- <option value="3">Visistas</option> -->
                   </select>
-                  <select data-aos="fade-left" class="form-select bg-transparent border-0 text-white" aria-label="Default select example" style="width: 6rem;">
+                  <select data-aos="fade-left" 
+                        class="form-select bg-transparent border-0 text-white" 
+                        aria-label="Default select example" style="width: 6rem;">
                         <option value="1" selected> Planes </option>
                         <option value="2" disabled> Servicios </option>
                         <option value="3" disabled>Visistas</option>
@@ -72,12 +75,12 @@
               </div>
        
               
-              
             </div>
             <div class="bg-gray-800    w-75 rounded-lg shadow-md " style="height: 180px;">
                   <canvas id="barChart" class="d-none"></canvas>
             </div>
-            <div  data-aos="fade-in" style="transition: 4s; transition-delay: 1.5s;"  class="bg-gray-100  lineChart  w-100 shadow-md" >
+            <div  data-aos="fade-in" style="transition: 4s; transition-delay: 1.5s;" 
+                  class="bg-gray-100  lineChart  w-100 shadow-md" >
                   <canvas id="lineChart"></canvas>
             </div>
 
@@ -85,7 +88,6 @@
             <script>
                   const barCtx = document.getElementById('barChart').getContext('2d');
                   const lineCtx = document.getElementById('lineChart').getContext('2d');
-
                   new Chart(barCtx, {
                         type: 'bar',
                         data: {
