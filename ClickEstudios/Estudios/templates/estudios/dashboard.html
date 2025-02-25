@@ -10,17 +10,27 @@
             {
                   display: none;
             }
+
+            @media (max-width: 600px) { 
+            .filter-grafico {
+                  width: 20rem;
+                  display: flex; flex-wrap: wrap;
+                  justify-content: end;
+            }
+            
+            }
+
+
       </style>
 
       <div class="bg-transaparent  d-flex flex-wrap overflow-auto ">
-
-            <div class="position-absolute top-0 end-0 me-3 mt-3 d-flex">
-                    <button data-aos="fade-left" class='bg-transparent border-0 text-white' onclick="toggleInfo()">
+            <div class=" filter-grafico position-absolute  top-0 end-0 me-3 mt-3 d-flex flex-wrap">
+                    <!-- <button data-aos="fade-left" class='bg-transparent border-0 text-white' onclick="toggleInfo()">
                               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
                                       <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
                               </svg>
                     </button>
-              
+               -->
              
                     <script>
                               function toggleInfo() {
@@ -35,12 +45,12 @@
 
 
 
-                  <select data-aos="fade-left" class="form-select bg-transparent border-0 text-white" aria-label="Default select example" style="width: 15rem;">
+                  <select data-aos="fade-left" class="form-select bg-transparent border-0 text-white" aria-label="Default select example" style="width: 14rem;">
                         <option value="1" selected> Graficos de periodo </option>
                         <option value="2" disabled>  Graficos por filas  </option>
                         <!-- <option value="3">Visistas</option> -->
                   </select>
-                  <select data-aos="fade-left" class="form-select bg-transparent border-0 text-white" aria-label="Default select example">
+                  <select data-aos="fade-left" class="form-select bg-transparent border-0 text-white" aria-label="Default select example" style="width: 6rem;">
                         <option value="1" selected> Planes </option>
                         <option value="2" disabled> Servicios </option>
                         <option value="3" disabled>Visistas</option>
