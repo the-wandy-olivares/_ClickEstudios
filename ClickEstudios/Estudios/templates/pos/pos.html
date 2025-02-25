@@ -59,6 +59,10 @@
                   .show-reloj {
                         display: none !important;
                   }
+                  .sales-reservers {
+                        flex-wrap: wrap !important; 
+                        padding-bottom: 5rem;
+                  }
       }
 
       </style>
@@ -69,11 +73,11 @@
             style="width: 7rem; font-weight: bold;
             left: 50%;
             display: none;
-            z-index: 100;
+            z-index: 1;
             translate: -50%; " >
             Cambiar
       </button>
-      <section data-aos="fade-in" style="transition: 1s;" class="overflow-auto container-pos w-100 bg-transparent">
+      <section data-aos="fade-in" style="transition: 1s;" class="overflow-auto overflow-x-hidden container-pos w-100 bg-transparent">
 
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-clock-fill  position-absolute end-0  z-3 show-reloj  text-white " style='margin-right:8rem; 
                   margin-top:1.3rem;' viewBox="0 0 16 16">
@@ -142,7 +146,7 @@
                               {% include "pos/cp/filter-reservers.html" %} 
                         </div>
                         {% if sales_reservers %}
-                        <div class=' d-flex overflow-auto  position-relative  ' >
+                        <div class=' d-flex overflow-auto  position-relative  sales-reservers ' >
                               {% for s in sales_reservers %}
                                     {% include "sale/sale.html" %}
                               {% endfor %}
