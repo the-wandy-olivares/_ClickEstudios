@@ -131,8 +131,8 @@
               .super-nav {
                   position: absolute; 
                   width: 100%;
-                -webkit-backdrop-filter: blur(100px) !important;
-                  backdrop-filter: blur(100px) !important;
+                -webkit-backdrop-filter: blur(50px) !important;
+                  backdrop-filter: blur(50px) !important;
                   margin: 0px !important; 
                   padding: 40px !important;
                   padding-top: 12rem !important;
@@ -165,7 +165,7 @@
     {% endif %}
 
     
-      <main class='  d-flex  z-3 position-absolute  top-0 w-100'  
+      <main class='  d-flex  z-3 position-absolute  top-0 p-0 w-100'  
       style=" height: 100vh; background-color:rgba(0, 0, 0, 0);">
      
                 <div class='bg-grey super-nav ms-5 me-3 z-3  overflow-scroll   mt-4' 
@@ -188,12 +188,13 @@
 
                 </section>
                 {% endif %}
-                <div class='position-absolute bottom-0 start-0  mb-3 ms-3 btn-atras  ' style='margin-top: 20px;'>
-                  <button onclick="BackSpace()" class="bg-transparent  border-0 ms-0  text-white-50" style="font-size: 14px; font-weight: bold;"> 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
-                          <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
-                        </svg> Atras
-              </button>
+                <div class='position-absolute bottom-0 start-0  mb-3 ms-3 btn-atras  ' 
+                    style='margin-top: 20px;'>
+                    <button onclick="BackSpace()" class="bg-transparent  border-0 ms-0  text-white-50" style="font-size: 14px; font-weight: bold;"> 
+                      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                            <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
+                          </svg> Atras
+                    </button>
                 </div>
                 {% block content %}
                 {% endblock %}
