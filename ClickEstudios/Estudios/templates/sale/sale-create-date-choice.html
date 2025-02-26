@@ -38,27 +38,39 @@
                   color: rgba(218, 218, 218, 0.865) !important;
             }
 
-
+            .sale-date-choice {
+                  display: flex;
+                  flex-wrap: wrap;
+                  justify-content: center;
+            }
+            @media (max-width: 600px) {
+                  #next_button {
+                        position: fixed;
+                        bottom: 1rem;
+                        left: 50%;
+                        transform: translateX(-50%);
+                  }
+            }
       </style>
       <head>
             <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css' rel='stylesheet' />
             <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
       </head>
 
-      <section class='overflow-auto d-flex w-100 justify-content-center'>
+      <section class='overflow-auto d-flex w-100 justify-content-center  '>
             <form action="" method="post" class="w-100">
                   {% csrf_token %}
     
                   <div>
                         {{sale}}
                   </div>
-                  <section class="d-flex  flex- w-100 mt-4">
+                  <section class="d-flex  flex- w-100 mt-4 sale-date-choice" >
                         
-                        <div class="w-25">
+                        <div class="" style="width:max-content ;">
                               {% include "plan/plan-select.html" %}
                                
                         </div>
-                        <div class="  w-75 position-relative" style="height: 27rem; ">
+                        <div class="  w-100 position-relative" style="height: 27rem; max-width: 600px; ">
                    
                               <!--Contact -->
                               <div class="contact w-100">
