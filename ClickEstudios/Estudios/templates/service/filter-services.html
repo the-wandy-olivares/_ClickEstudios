@@ -1,32 +1,38 @@
-<div class="dropdown ps-0 ms-0  ">
-      <button class="btn btn-secondary bg-dark  border-0  ps-0 ms-0 bg-transparent dropdown-toggle" style="font-size: 14px; font-weight: bold; color: #ffffffdb;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Servicios
-      </button>
-      <ul class="dropdown-menu bg-transparent  rounded-4 p-0 ">
-            <div class="d-flex flex-wrap overflow-auto  align-content-start text-white  rounded-5 p-3 shadow" style="width: 70rem;
-            height: 25rem;
-            background-color: #2a2a2a;">
-                  <strong class="mt-2 ms-2 w-100">
-                      ({{service_choices|length}})  Seleciona un servicio
-                  </strong>
-                  <p class="ms-2 text-white-50 w-100" style="font-size: 12px;">
-                        Al selecionar un servicio podras ver los todos los planes que este ofrece 
-                  </p>
-                  {% for s in service_choices %}
-                        <li style="width: 19.5rem;"><a class="dropdown-item text-white" 
-                        href="{% url "estudios:service-detail" s.id %}">
-                           <img src="{{s.img.url}}" width="60" height="75" class="object-fit-cover rounded-4">
-                        {{ s.name }}
-                         </a>
-                        </li>
-                  {% endfor %}
-            </div>
-      </ul>
-</div>
-<style>
-      .dropdown-item:hover {
-            color:  #ffffff8b !important; 
-            background-color: inherit;
+<button onclick="OpenServicesChoices()" class="btn btn-open-services bg-white bg-opacity-10 ps-3 pe-3 rounded-5 border-0"
+      style="font-weight: bold; color: #ffffffc8;  transition: 0.5s;" >
+      Servicos
+</button>
+<a href="{% url "estudios:fast-sale" %}"  class="btn mt-0 ms-1 me-1 bg-white bg bg-opacity-10 ps-3 pe-3 ms-0   p-0 ps-2 pe-0 rounded-5 d-flex flex-wrap align-content-center" style="font-size: 14px; font-weight: bold;
+background-color: rgba(26, 26, 26, 0);  color: rgba(255, 255, 255, 0.786) ;">
+      Venta rapida
+</a>
+<a href="{% url "estudios:gastos-create" %}"  class="btn  border-0 bg-white bg-opacity-10 ps-3 pe-3 rounded-5 " style="font-size: 14px; font-weight: bold; color: #ffffffc8; 
+margin-top: 2px;">
+       Administrar gastos
+</a>
+
+
+
+
+<script>
+      function OpenServicesChoices() {
+            document.querySelector('.div-dropdown').classList.toggle('d-none');
+
+            if(document.querySelector('.div-dropdown').classList.contains('d-none')) {
+                  document.querySelector('.btn-open-services').classList.remove('text-black', 'bg-warning')
+                  document.querySelector('.btn-open-services').classList.add('bg-opacity-10', 'bg-white')
+            } else {
+                  document.querySelector('.btn-open-services').classList.add('text-black', 'bg-warning')
+                  document.querySelector('.btn-open-services').classList.remove('bg-opacity-10', 'bg-white')
+
+            }
+
       }
-      </style>
-      
+</script>
+
+
+
+
+
+
+
