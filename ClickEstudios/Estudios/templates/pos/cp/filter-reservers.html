@@ -1,3 +1,4 @@
+
 <style>
       input::placeholder {
             font-weight: bold !important;
@@ -20,25 +21,25 @@
 </style>
 
 </style>
-<input type="text" class="ps-3 search bg-white bg-opacity-10 text-center rounded-5 rounded-end-2 border-0 p-2 me-2" 
-      placeholder="    ({{sales_reservers|length}})  Nombre, Numero, Correo " style="width: 19.9rem;" id="input-s" >        
+<input type="text" class="ps-3 search bg-white bg-opacity-10 text-center rounded-5 rounded-end-2 border-0 p-2 me-2" placeholder="    ({{sales_reservers|length}})  Buscardor " 
+      style="width: 12.9rem;" id="input-s">        
 
 <form action="" method="get" >
-      <select class="form-select border-0 rounded-2 rounded-end-5 border-0 p-2  ps-3" name='filter' style="width: 11.9rem; outline: none !important; font-weight: bold;" onchange="this.form.submit()" >
+      <select class="form-select border-0  rounded-2 rounded-end-5 border-0 p-2  ps-3" name='filter' style="width: 10rem; outline: none !important; font-weight: bold;" onchange="this.form.submit()" >
             <option value="all" {% if filter_option == 'all' %}selected{% endif %}>
                   Todas
             </option>
             <option value="today" {% if filter_option == 'today' %}selected{% endif %}>
-                  Reservadas para hoy
+                   Para hoy
             </option>
             <option value="hour" {% if filter_option == 'hour' %}selected{% endif %}>
-                  Horas proximas >
+                  Proximas >
             </option>
             <option value="past_hour" {% if filter_option == 'past_hour' %}selected{% endif %}>
-                  Horas en atraso <
+                  En atraso <
             </option>
             <option value="past" {% if filter_option == 'past' %}selected{% endif %}>
-                Dias anteriores
+                Dias atras
             </option>
             <option value="future" {% if filter_option == 'future' %}selected{% endif %}>
                   Dias futuros

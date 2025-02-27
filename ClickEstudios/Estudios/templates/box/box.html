@@ -11,18 +11,36 @@
             {
                   display: none;
             }
+            .balance-total .cierre-anterior  {
+                  display: flex; justify-content: center;
+                  text-align: center;
+            }
+            @media (max-width: 600px) {
+                  .balance-total .cierre-anterior span {
+                  width: 100%;
+            }
+            .btn-cerrar {
+                  position: fixed; bottom: 0;
+                  margin-bottom: 4rem;
+            }
+       }
 
+     
       </style>
 
       <div class="   text-white overflow-auto d-flex flex-wrap align-content-start  w-100  rounded-5">
             {% if is_open %}
             <div class="w-100 vh-100 overflow-auto">
-                  <div class="d-flex justify-content-start-0 mb-3">
-                        <div class="p-2 bg-secondary bg-transparent text-white rounded-pill">
-                              Cierre anterior  <span> ${{total_last_session|intcomma}}.00 </span>
+                  <div class="d-flex justify-content-start mb-3">
+                        <div class="p-2 cierre-anterior bg-secondary text-center ps-4 pe-4 bg-white bg-opacity-10 text-white rounded-5">
+                              <strong style="font-size: 14px;">Cierre anterior</strong>
+                               <span> RD${{total_last_session|intcomma}}.00 </span>
                         </div>
-                        <div class="p-2 bg-primary  bg-transparent text-white rounded-pill">
-                              Balance total: <span> ${{total_movimientos|intcomma}}.00 </span>
+                        <div class="p-2 balance-total bg-primary text-white  text-center rounded-5 ps-4 pe-4 bg-white bg-opacity-10">
+                              <strong style="font-size: 14px;">
+                                    Balance total
+                              </strong>
+                              <span> RD${{total_movimientos|intcomma}}.00 </span>
                         </div>
                   </div>
 
@@ -33,13 +51,13 @@
                   </div>
                   <div class="position-sticky bottom-0  d-flex  w-100 " style="background-color: #101010;">
                  
-                        <div class="w-75 d-flex justify-content-start">
-                              <h6 class="p-0 m-0 mt-2 ms-3 "> <span>Igresos</span> ${{ ingresos|intcomma }}.00</h6>
-                              <h6 class="p-0 m-0 mt-2 ms-3 "> <span>Gastos</span> ${{ egresos|intcomma }}.00</h6>
-                              <h6 class="p-0 m-0 mt-2 ms-3 "> <span>Balance</span> ${{ balance_caja|intcomma }}.00</h6>
+                        <div class="w-75 d-flex justify-content-start text-center">
+                              <h6 class="p-0 m-0 mt-2 ms-3 "> <strong class="text-white" style="font-size: 14px;">Igresos</strong> ${{ ingresos|intcomma }}.00</h6>
+                              <h6 class="p-0 m-0 mt-2 ms-3 "> <strong  class="text-white" style="font-size: 14px;">Gastos</strong> ${{ egresos|intcomma }}.00</h6>
+                              <h6 class="p-0 m-0 mt-2 ms-3 "> <strong class="text-white" style="font-size: 14px;">Balance</strong> ${{ balance_caja|intcomma }}.00</h6>
                         </div>
                         <div class="justify-content-end w-25 d-flex flex-wrap align-content-center">
-                              <a href="{% url "estudios:box-create" %}" class=''> 
+                              <a href="{% url "estudios:box-create" %}" class='btn-cerrar'> 
                                     <button style="width: 6rem; font-weight: bold;" class='btn bg-white bg-opacity-10 rounded-5 text-white '
                                     >Cerrar </button>
                               </a>

@@ -7,6 +7,8 @@
     <title> ClickEstudios </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
+    <meta name="theme-color" content="#000000">
+    
     <link rel="icon" href="#" class='log-estudios'  media="(prefers-color-scheme: light)">
     <link rel="icon" href="#" class='log-estudios-black' media="(prefers-color-scheme: dark)">
 
@@ -117,6 +119,44 @@
             text-align: center; font-weight: bold;
       }
 
+      .btn-closed-nav {
+        display: none;
+      }
+
+        @media (max-width: 600px) {
+          .btn-closed-nav {
+            display: block  !important;
+          }
+          .btn-open-nav {
+            display: block  !important;
+          }
+              .super-nav {
+                  position: absolute; 
+                  width: 100%;
+                -webkit-backdrop-filter: blur(60px) !important;
+                  backdrop-filter: blur(60px) !important;
+                  background-color: rgba(0, 0, 0, 0.422);
+                  margin: 0px !important; 
+                  padding: 40px !important;
+                  padding-top: 12rem !important;
+                  margin-bottom: 10rem;
+                  display: none;
+                  
+              }
+              .super-nav .img-estudios {
+                  width: 160px !important;
+                  position: absolute ; 
+
+
+                  top: 0px; 
+                  left: 0%;
+                  transform: translateX(+90%);
+
+
+
+              }
+        }
+
   </style>
 
   <body style=" {% if request.user.config.mode %} background-color:#101010; {% else %} background-color:black  {% endif %} " class="p-0 body"> 
@@ -128,16 +168,15 @@
     {% endif %}
 
     
-      <main class=' p-1 d-flex  z-3 position-absolute top-0 w-100'  
+      <main class='  d-flex  z-3 position-absolute  top-0 p-0 w-100'  
       style=" height: 100vh; background-color:rgba(0, 0, 0, 0);">
      
-  
-                <div class='bg-grey  ms-5 me-3 z-3   mt-4' style='min-width: 220px;'>
+                <div class='bg-grey super-nav ms-5 me-3 z-3  overflow-scroll   mt-4' 
+                    style='min-width: 220px;'>  
                        {% include "component/nav.html" %} 
                 </div>
                 {% if not request.user.profile.estudio.is_active %}
                 <section class="no-payment text-white text-center d-flex flex-wrap align-content-center  justify-content-center  vh-100 vw-100 bg-black bg-opacity-10 blur-50 position-fixed z-3">  
-
                     <h3 class="w-100">
                       Ups!, tu cuenta esta suspendida
                     </h3>
@@ -152,15 +191,22 @@
 
                 </section>
                 {% endif %}
-                <div class='position-absolute bottom-0 start-0  mb-3 ms-3 btn-atras  ' style='margin-top: 20px;'>
-                  <button onclick="BackSpace()" class="bg-transparent  border-0 ms-0  text-white-50" style="font-size: 14px; font-weight: bold;"> 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
-                          <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
-                        </svg> Atras
-              </button>
+                <div class='position-absolute bottom-0 start-0  mb-3 z-3 ms-3 btn-atras  ' 
+                    style='margin-top: 20px;'>
+                    <button onclick="BackSpace()" class="bg-transparent  border-0 ms-0  text-white-50" style="font-size: 14px; font-weight: bold;"> 
+                      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                            <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
+                          </svg> Atras
+                    </button>
                 </div>
                 {% block content %}
                 {% endblock %}
+                <button onclick="OpenNav()" class="position-fixed btn-open-nav bottom-0 bg-white bg-opacity-75 blur-20 mb-2 me-2 end-0 text-black"
+                 style="width: 40px; height: 40px; border-radius: 50%; display: none; z-index: 1000;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                    <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"/>
+                  </svg>
+                </button>
           </main>
     {% else %}
     <script>
@@ -219,6 +265,16 @@ document.addEventListener('DOMContentLoaded', function() {
                   });
             }
       });
+
+function OpenNav(){
+    const superNav = document.querySelector('.super-nav');
+    if (superNav.style.display === 'none' || superNav.style.display === '') {
+      superNav.style.display = 'block';
+    } else {
+      superNav.style.display = 'none';
+    }
+
+}
 
 </script>
     <!--Jquery-->

@@ -6,6 +6,13 @@
             color: white; 
             text-align: center; font-weight: bold;
       }
+      @media (max-width: 600px) {
+            .year, .mes_fin {
+                  display: none;
+            }
+       }
+
+ 
 </style>
 <div class="d-flex w-100 justify-content-between">
       <form method="post" class="d-flex w-100 justify-content-between mb-3">
@@ -27,7 +34,7 @@
                   {% endfor %}
             </select>
       
-            <select name="year" class="form-select me-2">
+            <select name="year" class="form-select me-2 year">
                   <option value="todos" {% if request.POST.year == "todos" %}selected{% endif %}>Todos los Años</option>
                   {% for year in years %}
                   <option value="{{ year }}" {% if request.POST.year == year|stringformat:"s" %}selected{% endif %}>{{ year }}</option>
@@ -39,7 +46,7 @@
                   <option value="{{ mes.numero }}" {% if request.POST.mes_inicio == mes.numero|stringformat:"s" %}selected{% endif %}>{{ mes.nombre }}</option>
                   {% endfor %}
             </select>
-            <select name="mes_fin" class="form-select me-2">
+            <select name="mes_fin" class="form-select me-2 mes_fin">
                   <option value="todos" {% if request.POST.mes_fin == "todos" %}selected{% endif %}>Mes Fin</option>
                   {% for mes in meses %}
                   <option value="{{ mes.numero }}" {% if request.POST.mes_fin == mes.numero|stringformat:"s" %}selected{% endif %}>{{ mes.nombre }}</option>

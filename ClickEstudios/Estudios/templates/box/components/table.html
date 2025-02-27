@@ -6,16 +6,23 @@
             font-size: 14px;
 
       }
+      @media (max-width: 600px) {
+            .description, .tipo {
+                  display: none;
+            }
+       }
+
+    
 </style>
 <table class="w-100 text-white">
       <thead>
             <tr>
                   <th style='width: 2%;'>#</th>
                   <th style='width: 15%;'>Fecha y hora</th>
-                  <th style='width:50%;'>Descripción de movimiento</th>
+                  <th class="description" style='width:50%;'>Descripción de movimiento</th>
                   <th style='width: 10%;'>Ingreso</th>
                   <th style='width: 10%;'>Gasto </th>
-                  <th style='width: 10%;'>  Tipo </th>
+                  <th class="tipo" style='width: 10%;'>  Tipo </th>
             </tr>
       </thead>
       <tbody id="movimientos-table">
@@ -24,7 +31,7 @@
                   <tr class="movimiento-row" data-tipo="{{ movimiento.tipo }}">
                         <td>  {{ forloop.counter }} </td>
                         <td>{{ movimiento.date|date:"d/m/Y - H:m" }}   </td>
-                        <td>{{ movimiento.description }}</td>
+                        <td class="description">{{ movimiento.description }}</td>
                         <td>
                               {% if movimiento.type == "ingreso" %}
                               <span class="text-success">
@@ -40,7 +47,7 @@
                               </span>
                               {% endif %}
                         </td>
-                        <td class='text-capitalize'>{{ movimiento.type }}</td
+                        <td class='text-capitalize tipo'>{{ movimiento.type }}</td>
 
                   </tr>
                   {% endfor %}

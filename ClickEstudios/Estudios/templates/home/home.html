@@ -3,16 +3,15 @@
   <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="theme-color" content="#000000">
       <title> ClickEstudios </title>
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
-      <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
+      <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
 
   </head>
@@ -41,129 +40,27 @@
   </style>
 
 
-  <body  style="background-color:#796262a6; " class="  overflow-hidden  "> 
-        <section class="vh-100 vw-100 position-absolute bg-black p-1 ">
+  <body  style="background-color:#101010; " class="    "> 
 
-        <div class="gallerys w-100  vh-100">
-          <img src="{{img1}}" class="visible" alt="Image 1" />
-          <img src="{{img2}}" alt="Image 2" />
-          <img src="{{img3}}" alt="Image 3" />
-          <img src="{{img4}}" alt="Image 4" />
-          <img src="{{img5}}" alt="Image 5" />
-        </div>
-
-        <script>
-          const images = document.querySelectorAll('.gallerys img');
-          let currentIndex = 0;
-
-          function showNextImage() {
-            images[currentIndex].classList.remove('visible');
-            currentIndex = (currentIndex + 1) % images.length;
-            images[currentIndex].classList.add('visible');
-          }
-
-          setInterval(showNextImage, 4000);
-        </script>
-
-        <style>
-          .gallery {
-            position: relative;
-            width: 100%;
-            height: 100%;
-          }
-
-          .gallerys img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            transition: opacity 1s, transform 1s;
-          }
-
-          .gallerys img.visible {
-            opacity: 1;
-          }
-
-          .gallerys img:nth-child(1) {
-            transition: opacity 1s, transform 1s;
-          }
-
-          .gallerys img:nth-child(2) {
-            transition: opacity 1s, transform 1s;
-          }
-
-          .gallerys img:nth-child(3) {
-            transition: opacity 1s, transform 1s;
-          }
-
-          .gallerys img:nth-child(4) {
-            transition: opacity 1s, transform 1s;
-          }
-
-          .gallerys img:nth-child(5) {
-            transition: opacity 1s, transform 1s;
-          }
-
-          .gallerys img.visible:nth-child(1) {
-            transform: scale(1.1);
-          }
-
-          .gallerys img.visible:nth-child(2) {
-            transform: translateX(0px);
-          }
-
-          .gallerys img.visible:nth-child(3) {
-            transform: translateY(0px);
-          }
-
-          .gallerys img.visible:nth-child(4) {
-            transform: rotate(0deg);
-          }
-
-          .gallerys img.visible:nth-child(5) {
-            transform: scale(1.1);
-          }
-
-          .my-element {
-            display: inline-block;
-            margin: 0 0.5rem;
-            animation: bounceInUp ; /* referring directly to the animation's @keyframe declaration */
-            animation-duration: 1s; /* don't forget to set a duration! */
-          }
-          .btn-down {
-            display: inline-block;
-            /* margin: 1rem; */
-            animation: shakeY  ; /* referring directly to the animation's @keyframe declaration */
-            animation-duration: 3s; /* don't forget to set a duration! */
-          }
-        </style>
-
-        </style>
-        </section>
-
-
-      <main   class=" overflow-hidden position-fixed top-0 start-0 overflow-y-scroll   h-100" >
-            <section class=" z-3  flex-wrap   start-0 rounded-0 w-100 vh-100 d-flex justify-content-center align-content-end pb-5 "
-                style="
-
-                background: linear-gradient(to bottom, rgba(0, 0, 0, 0.493), #000000df);">
+            <section class=" z-3  flex-wrap  start-0 rounded-0 w-100 vh-100 d-flex justify-content-center align-content-end pb-2">
         
-                <h5   class="text-white   my-element   text-center  " 
+              <div class="w-100 d-flex align-content-center flex-wrap   mb-5 pb-5">
+                    {% include "home/components/slide-3.html" %}
+              </div>
+
+                <h5   class="text-white my-element text-center  " 
                 style="transition-delay: 0.3s !important;
-                    transition-duration: 3s !important;
                     font-family: Syncopate, serif;
                     font-weight: bold;
-                    font-size: 25px;">ClickEstudios
+                    font-size: 25px;"> 
+                       ClickEstudios
                   </h5> 
                   
                   <div class="w-100 d-flex justify-content-center">
-                    <button class=" btn-down text-white-50">
+                    <!-- <button class=" btn-down text-white-50">
                       <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi learn-more bi-arrow-down-short" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4"/>
-                      </svg>
+                      </svg> -->
                   </button>
                         <script>
                               document.querySelector('.learn-more').addEventListener('click', function() {
@@ -174,7 +71,7 @@
             </section>
 
             <section class="h-100 vw-100 section1    p-1 "
-            style="background-color: #000000df;" 
+            style="" 
               >
                   <div class="text-white mb-4 text-center  mt-1 pt-5 mb-5 ps-2">
                         <strong style="font-size: 25px; font-weight: bold; font-style: italic;" >
@@ -186,7 +83,7 @@
                      
                   </div>
 
-                           {% include "home/components/servicios.html" %} 
+                  {% include "home/components/servicios.html" %} 
 
 
                 </section>    
@@ -223,11 +120,6 @@
                     </p>
                     </div>
                   </div>
-                </section>
-   
-                                
-
-
       </main>
 
   </body>

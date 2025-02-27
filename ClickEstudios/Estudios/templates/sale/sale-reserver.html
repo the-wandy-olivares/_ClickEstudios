@@ -7,8 +7,8 @@
                   font-weight: bold;
             }
       </style>
-      <section class='d-flex flex-wrap align-content-center justify-content-center  vh-100 w-100 '>
-                <div style="min-width: 700px; max-width: 520px; border: 2px solid rgb(47, 47, 47); border-radius: 3rem; cursor: pointer; height: 24rem;" class=' text-white p-4 m-2 shadow-sm'>
+      <section class='d-flex  flex-wrap align-content-center justify-content-center  vh-100 w-100 '>
+                <div style=" max-width: 620px; border: 2px solid rgb(47, 47, 47); border-radius: 3rem; cursor: pointer; height: 24rem;" class=' w-100 text-white p-4 m-2 shadow-sm'>
                        <div class='d-flex flex-wrap w-100 '>
                               <div class="w-100">
                                     {% if sale.img %}
@@ -80,7 +80,7 @@
                                     <table class="w-100 mt-4">
                                           <thead>
                                                 <tr>
-                                                        <th scope="col" style="width: 33.33%;">Precio del plan</th>
+                                                        <th scope="col" style="width: 33.33%;">Precio</th>
                                                         <th scope="col" style="width: 33.33%;">Pagado</th>
                                                         <th scope="col" style="width: 33.33%;">Faltante</th>
                                                 </tr>
@@ -100,8 +100,8 @@
                   <form action="" method="post">
                         {% csrf_token %}
                         <div class='d-flex mt-2 w-100 justify-content-end'>
-                              <input type="text"  max={{sale.debit_mount}} class='form-control bg-white text-white border-0 mount2 p-2 bg-opacity-10 ps-3 rounded-5 rounded-end-3' placeholder='Monto a aplicar' id='mount2' style="width: 14rem;"> 
-                              <button type="submit" class="btn btn-primary bg-white bg-opacity-10 ms-2 rounded-5 rounded-start-3 border-0" style="width: 10rem; font-weight: bold;">Aplicar pago</button>
+                              <input type="text"  max={{sale.debit_mount}} class='form-control bg-white text-white border-0 mount2 p-2 bg-opacity-10 ps-3 w-100 rounded-5 rounded-end-3' placeholder='Monto a aplicar' id='mount2' style="max-width: 14rem;"> 
+                              <button type="submit" class="btn btn-primary bg-white bg-opacity-10 ms-2 rounded-5 rounded-start-3 border-0" style="min-width: 10rem; font-weight: bold;">Aplicar pago</button>
                               
                               <input type="number" name="mount" max={{sale.debit_mount}} value="{{sale.debit_mount}}" class='form-contro d-none bg-white text-white border-0 w-100 p-2 bg-opacity-10 rounded-5 ' placeholder='Monto a aplicar' id='mount'> 
                         </div>

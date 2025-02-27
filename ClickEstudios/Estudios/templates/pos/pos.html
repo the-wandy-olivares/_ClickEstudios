@@ -40,119 +40,156 @@
                   color: #ffc107 !important;
                   font-weight: bold;
             }
+
+            .div-filter  .btn {
+                  font-size: 14px !important;
+            }
+
+            @media (max-width: 600px) {
+                  .change-section-citas {
+                        display: block !important;
+                  }
+                  .container-pos .parrafo-p {
+                        font-size: 14px; 
+                        line-height: 16px;
+                  }
+                  .container-pos h6 {
+                        font-size: 16px !important;
+                  }
+                  .div-filter {
+                        text-align: center;
+                        justify-content: center;
+                  }
+                  .show-reloj {
+                        display: none !important;
+                  }
+                  .sales-reservers, .sale-no-confirm {
+                        flex-wrap: wrap !important; 
+                        padding-bottom: 5rem;
+                  }
+                  .div-filter-reservers {
+                        display: flex;
+                        justify-content: center;
+                  }
+                  .div-dropdown {
+
+                  }
+      }
+
       </style>
 
 
 {% if box_is_open  %}
-      <section data-aos="fade-in" style="transition: 1s;" class="overflow-auto w-100 bg-transparent">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-clock-fill  position-absolute end-0  z-3 text-white " style='margin-right:8rem; 
-            margin-top:1.3rem;' viewBox="0 0 16 16">
+      <button onclick="AternaSection_Citas()" class="position-fixed blur-10 bottom-0 mb-2 change-section-citas  bg-white bg-opacity-10 border-0 text-white p-2 rounded-5 "
+            style="width: 7rem; font-weight: bold;
+            left: 50%;
+            display: none;
+            z-index: 1;
+            translate: -50%; " >
+            Cambiar
+      </button>
+      <section data-aos="fade-in" style="transition: 1s;" class="overflow-auto overflow-x-hidden container-pos w-100 bg-transparent p-0 ">
+                  <!-- Seleccionar servicios -->
+                  <div class="div-dropdown text-white bg-black bg-opacity-25 p-3 rounded-5 d-none position-absolute top-0 start-0 mt-5 z blur-20 m-2 shadow"
+                        style="z-index: 100; max-height:30rem;">
+                        <div class="dropdown-content w-100 d-flex flex-wrap">
+                              <strong class="dropdown-title">
+                                    ({{service_choices|length}}) Seleciona un servicio
+                              </strong>
+                              <p class="dropdown-description w-100 text-white-50" 
+                                    style="line-height: 16px;">
+                                    Al selecionar un servicio podras ver los todos los planes que este ofrece 
+                              </p>
+                              {% for s in service_choices %}
+                                    <li class="dropdown-item " style="width: max-content;">
+                                          <a href="{% url 'estudios:service-detail' s.id %}">
+                                                <img src="{{s.img.url}}" width="60" height="75" class="dropdown-image object-fit-cover rounded-3">
+                                                {{ s.name }}
+                                          </a>
+                                    </li>
+                              {% endfor %}
+                        </div>
+                  </div>
+
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-clock-fill  position-absolute end-0  z-3 show-reloj  text-white " style='margin-right:8rem; 
+                  margin-top:1.3rem;' viewBox="0 0 16 16">
                   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
-            </svg>
-           
-            <span class="reloj font-delius position-absolute end-0 me-5 z-3 mt-3 d-flex justify-content-center align-content-center flex-wrap text-white"  style="font-size: 18px;" ></span> 
-            <div data-aos="fade-down" style="transition: 1s;" class='d-flex blur-5 position-sticky z-2 top-0'>
+                  </svg>
+                  <span class="reloj show-reloj font-delius position-absolute end-0 me-5 z-3 mt-3 d-flex justify-content-center align-content-center flex-wrap text-white"  
+                  style="font-size: 18px;" ></span>
+
+            <div data-aos="fade-down" style="transition: 1s;" class=' div-filter d-flex   blur-5  position-sticky z-2 top-0'>
                   {% include "service/filter-services.html" %}
-                  <a href="{% url "estudios:gastos-create" %}"  class="btn  border-0 bg-transparent " style="font-size: 14px; font-weight: bold; color: rgba(255, 255, 255, 0.786); 
-                  margin-top: 2px;">
-                         Administrar gastos
-                  </a>
-                  <a href="{% url "estudios:fast-sale" %}"  class="btn mt-0 ms-0   p-1 ps-4 pe-4 rounded-5 d-flex flex-wrap align-content-center" style="font-size: 14px; font-weight: bold;
-                  background-color: rgba(26, 26, 26, 0);  color: rgba(255, 255, 255, 0.786) ;">
-                        Venta rapida
-                 </a>
+      
             </div>
 
-            <!-- Service select -->
-            {% if service_select %}
-                  <div class='mt-5'>
-                        {% include "service/service-select.html" %}
-                  </div>
-            {% endif %}
+                  <!-- Service select -->
+                  {% if service_select %}
+                        <div class='mt-5'>
+                              {% include "service/service-select.html" %}
+                        </div>
+                  {% endif %}
 
-            
-            <div class="d-flex  justify-content-end ">
-                    <h6 class="text-white-50 mt-4 d-none" style=" position: relative; cursor: pointer;">
-                             <span style="font-weight: bold; font-style: italic;"></span>
-                              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-question-circle-fill" viewBox="0 0 16 16">
-                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247m2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
-                                  </svg>
-                              <div class="info-tooltip p-5 rounded-5" style="display: none; position: absolute; top: 100%; width: 40rem; right: 3rem; background-color: rgb(24, 24, 24); color: white; padding: 0.5rem; border-radius: 0.5rem;">
-                                    <strong style="font-size: 18px; font-style: italic;">
-                                          Citas sin confirmar
-                                    </strong> 
-                                    <hr>
-                                    <br>
-                                      <span class="text-white-50">
-                                          Son aquellas las cuales el cliente ha solicitado un servicio pero no ha realizado el pago
-                                          <br> <br>
-                                          <strong>Nota</strong> <br> 
-                                          Las reservaciones que el cliente a realizado un abono o completado el pago, se encontraran en la seccion de mas abajo
-                                      </span>
+                  <!--Seccion de citas no confirmadas-->
+                  <section class="section-citas-no-confirm d-none ">
+                        <div style="min-width: 520px; cursor: pointer;  border: 0px solid rgb(47, 47, 47); border-radius: 2rem;"class=' text-white m-2 shadow-sm  mt-0 d-flex justify-content-start align-content-center flex-wrap'>
+                              <h6 class="w-100 text-start m-0 mt-5" style="font-weight: bold; font-size: 18px; font-style: italic;">
+                                    Reservas no confirmadas
+                              </h6>
+                              <p class="parrafo-p m-3  ms-0 mt-0 mb-0  p-2 ps-0 pb-0 pt-0 text-white-50" style="text-align: justify;">
+                                    Citas no confirmadas son aquellas citas que aún no han sido verificadas y no se ha realizado ningún tipo de abono
+                              </p>
+                        </div>
+                        {% if sales %}
+                              <div class="mt-2 d-flex  overflow-auto sale-no-confirm">
+                                    {% for s in sales %}
+                                          {% include "sale/sale.html" %}
+                                    {% endfor %}
                               </div>
-                    </h6>
-                    <script>
-                              document.querySelector('h6').addEventListener('mouseover', function() {
-                                      this.querySelector('.info-tooltip').style.display = 'block';
-                              });
-                              document.querySelector('h6').addEventListener('mouseout', function() {
-                                      this.querySelector('.info-tooltip').style.display = 'none';
-                              });
-                    </script>
-            </div>
-            <div style="min-width: 520px; cursor: pointer;  border: 0px solid rgb(47, 47, 47); border-radius: 2rem; ;"
-                  class=' text-white m-2 shadow-sm  mt-0 d-flex justify-content-start align-content-center flex-wrap'>
-            <h6 class="w-100 text-start m-0 mt-3" style="font-weight: bold; font-size: 18px; font-style: italic;">
-                  Citas no confirmadas
-            </h6>
-            <p class="m-3  ms-0 mt-0 mb-0  p-2 ps-0 pb-0 pt-0 text-white-50" style="text-align: justify;">
-                    Citas no confirmadas son aquellas citas que aún no han sido verificadas y no se ha realizado ningún tipo de abono
-            </p>
-            </div>
-            {% if sales %}
-                  <div class="mt-2 d-flex  overflow-auto">
-                        {% for s in sales %}
-                              {% include "sale/sale.html" %}
-                        {% endfor %}
-                  </div>
-                  {% else %}
-                  <div class="w-100 " style="height: 18rem;">
-                        <div style="width: 40rem; height: 18rem;" class="bg-white m-0 bg-opacity-10 blur-5 p-3 rounded-5 d-flex justify-content-center align-content-center flex-wrap">
-                              <h6 class=" text-white-50 m-0 " style="font-weight: bold; font-size: 18px; font-style: italic;">
-                                    Actualmente no hay nuevas citas
-                              </h6>
-                        </div>
-                  </div>
-            {% endif %}
+                              {% else %}
+                              <div class="w-100 " style="height: 18rem;">
+                                    <div style="max-width: 40rem; height: 18rem;" class="w-100 bg-white m-0 bg-opacity-10  p-3 rounded-5 d-flex justify-content-center align-content-center flex-wrap">
+                                          <h6 class=" text-white-50 m-0 " style="font-weight: bold; font-size: 18px; font-style: italic;">
+                                                Actualmente no existen citas para reservar
+                                          </h6>
+                                    </div>
+                              </div>
+                        {% endif %}
+                  </section>
      
-            <div style="min-width: 520px; cursor: pointer;  border: 0px solid rgb(47, 47, 47); border-radius: 2rem; ;"
-                         class=' text-white m-2 shadow-sm  d-flex justify-content-start mt-5 align-content-center flex-wrap position-relative '>
-                        <h6 class=" text-start m-0 mt-3" style="font-weight: bold; font-size: 18px; font-style: italic;">
-                          Citas confirmadas
-                        </h6>
-                        <p class="m-3  ms-0 w-100 mt-0 mb-0  p-2 pb-0 ps-0 pt-0 text-white-50" style="text-align: justify;">
-                              Estas citas ya han sido confirmadas por el cliente, las cuales ya se han realizado un abono o completado el pago
-                        </p>
-                        {% include "pos/cp/filter-reservers.html" %} 
-                  </div>
-                  {% if sales_reservers %}
-                  <div class=' d-flex overflow-auto  position-relative ' >
-                        {% for s in sales_reservers %}
-                              {% include "sale/sale.html" %}
-                        {% endfor %}
-                        <!-- Resultados -->
-                        <div style='margin-top: 0px; width: 30rem;  border-radius: 1.5rem;'  class=" results-searching text-white-50  position-absolute top-0 z-3 bg-black bg-opacity-25 blur-20 d-flex flex-wrap">
-                        </div>     
-                  </div>
-                  {% else %} 
-                  <div class="w-100 ">
-                        <div style="width: 40rem; height: 18rem;" class="bg-white m-0 bg-opacity-10 p-3 rounded-5 d-flex justify-content-center align-content-center flex-wrap">
-                              <h6 class=" text-white-50 m-0 " style="font-weight: bold; font-size: 18px; font-style: italic;">
-                                    Oh oh!, aun no hay citas 
+                  <!--Seccion de citas confimadas-->
+                  <section class="section-citas-confirm  ">
+                        <div style="max-width: 920px; cursor: pointer;  border: 0px solid rgb(47, 47, 47); border-radius: 2rem; ;"
+                                    class='w-100 text-white m-2 shadow-sm  d-flex justify-content-start mt-1 align-content-center flex-wrap position-relative '>
+                              <h6 class=" text-start m-0 mt-5" style="font-weight: bold; font-size: 18px; font-style: italic;">
+                                    Confirmadas
                               </h6>
+                              <p class="parrafo-p m-3  ms-0 w-100 mt-0 mb-0  p-2 pb-0 ps-0 pt-0 text-white-50" style="text-align: justify; line-height: 14px;">
+                                    Estas citas ya han sido confirmadas por el cliente, las cuales ya se han realizado un abono o completado el pago
+                              </p>
                         </div>
-                  </div>
-            {% endif %} 
+                        {% if sales_reservers %}
+                        <div class="w-100 div-filter-reservers d-flex ">
+                              {% include "pos/cp/filter-reservers.html" %} 
+                        </div>
+                        <div class=' d-flex overflow-auto  position-relative  sales-reservers ' >
+                              {% for s in sales_reservers %}
+                                    {% include "sale/sale.html" %}
+                              {% endfor %}
+                              <!-- Resultados -->
+                              <div style='margin-top: 0px; width: 30rem;  border-radius: 1.5rem;'  class=" results-searching text-white-50  position-absolute top-0 z-3 bg-black bg-opacity-25 blur-20 d-flex flex-wrap">
+                              </div>     
+                        </div>
+                        {% else %} 
+                        <div class="w-100 ">
+                              <div style="max-width: 40rem; height: 18rem;" class="bg-white m-0 bg-opacity-10 w-100 p-3 rounded-5 d-flex justify-content-center align-content-center flex-wrap">
+                                    <h6 class=" text-white-50 m-0 text-center " style="font-weight: bold; font-size: 18px; font-style: italic;">
+                                          Oh oh!, aun no hay citas confirmadas en esta seccion
+                                    </h6>
+                              </div>
+                        </div>
+                        {% endif %} 
+                  </section>
             </div>
       </section>
       {% else %}
@@ -174,8 +211,13 @@
               </a>
             </div>
 </div>
+
+
+
 {% endif %}
       <script>
+
+
             function updateClock() {
                   const reloj = document.querySelector('.reloj');
                   const now = new Date();
@@ -193,11 +235,14 @@
 
 
       // Buscar usuarios o ventas por: nombre, fecha, numero. 
-      document.querySelector('.search').addEventListener('input', function() {
+      if(document.querySelector('.search')){
+            document.querySelector('.search').addEventListener('input', function() {
             if (this.value.length > 1) {
                   Search();
             }
       });
+    
+  
 
       let Search = () => {
             let query = document.querySelector('.search').value.trim(); // Elimina espacios en blanco
@@ -233,9 +278,36 @@
             }
       });
 
+}
+
+      // Alternar entre citas confimadas y citas no confimadas
+      let section_citas_no_confirm = document.querySelector('.section-citas-no-confirm')
+      let section_citas_confirm = document.querySelector('.section-citas-confirm')
+
+      function AternaSection_Citas(){
+            console.log('Alternando..')
+            if(section_citas_no_confirm.classList.contains('d-none')) {
+                  section_citas_confirm.classList.add('d-none')
+                  section_citas_no_confirm.classList.remove('d-none')
+            } else {
+                  section_citas_confirm.classList.remove('d-none')
+                  section_citas_no_confirm.classList.add('d-none')
+            }
+      }
+
+      // Cuando la pagina carga llama  a la funcion y esta remueve el estylos de las secciones
+      window.onload = ChangeVisual()
+      function ChangeVisual(){
+            console.log( window.visualViewport.width)
+            if(window.visualViewport.width > 600){
+                  section_citas_confirm.classList.remove('d-none')
+                  section_citas_no_confirm.classList.remove('d-none')
+            }
+      }
 
 
       </script>
 {% endblock  %}
+
 
 
