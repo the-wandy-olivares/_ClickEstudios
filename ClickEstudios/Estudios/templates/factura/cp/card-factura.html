@@ -1,18 +1,18 @@
 
-<div style="max-width: 23rem; min-width: 23rem; height: max-content;"
-      class="bg-white bg-opacity-10  blur-5 rounded-5 text-white p-4">
+<div style="max-width: 25rem; min-width: 23rem; height: max-content; border-radius: 2.5rem;"
+      class="bg-white bg-opacity-10 w-100  text-white p-4 m-2">
       <h5 class='m-0 p-0'>
             FACTURA ID : CL-{{sale.id}}
       </h5>
       <div class='w-100 mt-0 ps-1 mt-2  text-white-50'>
-            <p class="mb-0">
+            <p class="mb-0 text-white-50">
                   <strong class="text-capitalize" style="font-weight: bold;">
                   {% comment %} {% if sale.name_client %}/\ {% endcomment %}
                         {{ sale.name_client|slice:":20" }}
                   {% comment %} {% endif %} {% endcomment %}
                   </strong>
             </p>
-            <p class="mb-0">
+            <p class="mb-0 text-white-50">
                   <strong>
                         <a href="https://wa.me/+1{{ s.phone_no_formate }}">
                               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill me-1 text-white-50" viewBox="0 0 16 16">

@@ -10,59 +10,29 @@
             {
                   display: none;
             }
+            @media (max-width: 600px) {
+                  .facturas-sales{
+                        display: flex;
+                        justify-content: center !important;
+
+                  }
+                  
+            }
       </style>
       <section class='w-100  overflow-auto  '>
             {% include "factura/cp/filter.html" %}
-            {% if filter_option != 'anterior' %}
             <div class='d-flex w-100 flex-wrap'>
                   <h6 class='mt-5'>
-
                         <strong class="text-white-50">
-                               ({{sales_day|length}})    Facturas de hoy
+                               ({{sales|length}})    Facturas recientes
                         </strong>
                   </h6>
-                  <div class='d-flex overflow-auto w-100' >
-                        {% for sale in sales_day %}
+                  <div class='facturas-sales d-flex flex-wrap w-100  justify-content-start '  >
+                        {% for sale in sales %}
                                      {% include "factura/cp/card-factura.html" %}
                         {% endfor %}
                   </div>
-                  <h6 class='mt-4'>
 
-                        <strong class="text-white-50">
-                            ({{sales_last_7_days|length}})  Ultimos 7 dias
-                        </strong>
-                  </h6>
-                  <div class='d-flex overflow-auto w-100'>
-                        {% for sale in sales_last_7_days %}
-                              {% include "factura/cp/card-factura.html" %}
-                        {% endfor %}
-                  </div>
-                  <h6 class='mt-4'>
-
-                        <strong class="text-white-50">
-                              ({{sales_last_month|length}})   Ultimo mes
-                        </strong>
-                  </h6>
-                  <div class='d-flex overflow-auto w-100'>
-                        {% for sale in sales_last_month %}
-                              {% include "factura/cp/card-factura.html" %}
-                        {% endfor %}
-                  </div>
-                  {% else %}
-                  <h6 class='mt-4'>
-                        
-                        <strong class="text-white-50">
-                              ({{sales|length}})   Todas las anteriores
-                        </strong>
-                  </h6>
-                  <div class='d-flex flex-wrap w-100'>
-                        {% for sale in sales %}
-                              {% include "factura/cp/card-factura.html" %}
-                        {% endfor %}
-                  </div>
-                  {% endif %}
-      
-      
             </div>
 
       </section>

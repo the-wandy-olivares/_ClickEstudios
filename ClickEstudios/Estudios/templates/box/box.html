@@ -28,7 +28,7 @@
      
       </style>
 
-      <div class="   text-white overflow-auto d-flex flex-wrap align-content-start  w-100  rounded-5">
+      <div data-aos="fade-in" class="   text-white overflow-auto d-flex flex-wrap align-content-start  w-100  rounded-5" style="transition: 1s;">
             {% if is_open %}
             <div class="w-100 vh-100 overflow-auto">
                   <div class="d-flex justify-content-start mb-3">
@@ -49,14 +49,14 @@
                               {% include "box/components/table.html" %}
                         </div>
                   </div>
-                  <div class="position-sticky bottom-0  d-flex  w-100 " style="background-color: #101010;">
+                  <div class="position-fixed bottom-0  d-flex  w-100 " style="background-color: #101010;">
                  
-                        <div class="w-75 d-flex justify-content-start text-center">
+                        <div class="d-flex   justify-content-start text-start">
                               <h6 class="p-0 m-0 mt-2 ms-3 "> <strong class="text-white" style="font-size: 14px;">Igresos</strong> ${{ ingresos|intcomma }}.00</h6>
                               <h6 class="p-0 m-0 mt-2 ms-3 "> <strong  class="text-white" style="font-size: 14px;">Gastos</strong> ${{ egresos|intcomma }}.00</h6>
                               <h6 class="p-0 m-0 mt-2 ms-3 "> <strong class="text-white" style="font-size: 14px;">Balance</strong> ${{ balance_caja|intcomma }}.00</h6>
                         </div>
-                        <div class="justify-content-end w-25 d-flex flex-wrap align-content-center">
+                        <div class="justify-content-end   d-flex flex-wrap align-content-center">
                               <a href="{% url "estudios:box-create" %}" class='btn-cerrar'> 
                                     <button style="width: 6rem; font-weight: bold;" class='btn bg-white bg-opacity-10 rounded-5 text-white '
                                     >Cerrar </button>
