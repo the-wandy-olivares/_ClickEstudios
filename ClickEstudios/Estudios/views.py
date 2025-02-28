@@ -1142,36 +1142,25 @@ class Home(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['services'] = models.Service.objects.all()
-                    # Verificar si existen registros en MomentRelatedImage
         if models.ImgMoment.objects.exists():
                 context['coro'] = True
-                
                 list_img = []
-                # Mezclar los elementos aleatoriamente
-                random.shuffle(list_img)
-                img_all = models.ImgMoment.objects.all()
-                for img in img_all:
+                for img in models.ImgMoment.objects.all():
                     list_img.append(img.id)
+                random.shuffle(list_img)
 
-                def get_img_random(element):    
-                    return models.ImgMoment.objects.get(id=list_img[element])
+                # Obtener una imagen aleatoria
+                def Get_Img_Random(id):    
+                    return models.ImgMoment.objects.get(id=list_img[id])
                 
-                # Asignar las imágenes a los contextos
-                if len(list_img) > 0:
-                    context['img1'] = get_img_random(0)
-                if len(list_img) > 1:
-                    context['img2'] = get_img_random(1)
-                if len(list_img) > 2:
-                    context['img3'] = get_img_random(2)
-                if len(list_img) > 3:
-                    context['img4'] = get_img_random(3)
-                if len(list_img) > 4:
-                    context['img5'] = get_img_random(4)
-                if len(list_img) > 5:
-                    context['img6'] = get_img_random(5)
-                if len(list_img) > 6:
-                    context['img7'] = get_img_random(6)
-        
+                context['img1'] = Get_Img_Random(0)
+                context['img2'] = Get_Img_Random(1)
+                context['img3'] = Get_Img_Random(2)
+                context['img4'] = Get_Img_Random(3)
+                context['img5'] = Get_Img_Random(4)
+                context['img6'] = Get_Img_Random(5)
+                context['img7'] = Get_Img_Random(6)
+
         return context
     
 
