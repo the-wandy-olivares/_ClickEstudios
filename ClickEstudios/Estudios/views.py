@@ -1464,7 +1464,7 @@ class Facturas(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        sales = models.Sale.objects.all().order_by('-id')[:6]
+        sales = models.Sale.objects.filter(payment=True).order_by('-id')[:6]
         context['sales'] =   sales 
         return context
 

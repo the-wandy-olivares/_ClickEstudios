@@ -16,6 +16,11 @@
             ul li {
                   list-style: circle;
             }
+            @media (max-width: 600px) {
+                  .list-contact {
+                        justify-content: center !important;
+                  }
+            }
       </style>
 
       <section class="d-flex flex-wrap align-content-start w-100 pt-5 justify-content-center text-white">
@@ -28,7 +33,7 @@
                         </button>
                   </a>
             </div>  
-            <div class='d-flex flex-wrap justify-content-center w-100 '>
+            <div class=' list-contact d-flex flex-wrap justify-content-start w-100 '>
                   {% if contacts %}
                         {% for contact in contacts  %}
                               {% include "contactos/contactos-list.html" %}
