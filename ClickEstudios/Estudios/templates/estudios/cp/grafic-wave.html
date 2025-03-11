@@ -1,0 +1,64 @@
+<style>
+          @media (max-width: 600px) {  
+              .lineChart {
+                  background-color: rgba(255, 255, 255, 0.039); 
+                }
+            }
+</style>
+<div  style="transition: 1s; transition-delay: 0s;" 
+    class="bg-gray-100 w-100  lineChart   rounded-5  p-4 m-1  overflow-hidden ">
+      <canvas id="lineChart"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+      const lineCtx = document.getElementById('lineChart').getContext('2d');
+            new Chart(lineCtx, {
+            type: "line",
+            data: {
+                  labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                  datasets: [{
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        data: [{{en}}, {{fe}}, {{ma}}, {{ab}}, {{my}}, {{ju}}, {{jul}}, {{ag}}, {{set}}, {{oc}}, {{nov}}, {{dic}} ],
+                        fill: true,
+                  }]
+            },
+          options: {
+              responsive: true,
+              scales: {
+                  x: {
+                      grid: {
+                          display: false // Elimina las líneas verticales
+                      }
+                  },
+                  y: {
+                      beginAtZero: true,  // Asegura que el eje Y empiece en 0
+                      ticks: {
+                          stepSize: 1,  // Muestra solo números enteros
+                          callback: function(value) {
+                              return Number.isInteger(value) ? value : null;
+                          }
+                      },
+                      grid: {
+                          display: false // Elimina las líneas horizontales
+                      }
+                  }
+              },
+              plugins: {
+                  legend: {
+                      display: false // Elimina el label de la leyenda
+                  },
+                  tooltip: {
+                      callbacks: {
+                          label: function(context) {
+                              if (context.parsed.y !== null) {
+                                  return Math.round(context.parsed.y); // Asegura valores enteros
+                              }
+                              return '';
+                          }
+                      }
+                  }
+              }
+          }
+      });
+</script>
