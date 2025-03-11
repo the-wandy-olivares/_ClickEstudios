@@ -1,0 +1,88 @@
+
+<style>
+      #chartLabels {
+            align-content: center  ;
+      }
+            @media (max-width: 600px) {  
+                  #chartLabels {
+                        align-content: start !important;
+                  }
+                  .myPieChart {
+                        background-color: rgb(25, 25, 25);
+                        
+                  }
+            }
+      .chartLabels {
+            color: wheat;
+      }
+</style>
+<div style="width: 100%; margin: auto; height: 21rem;"
+class="myPieChart rounded-5  p-4 m-1 mb-0 overflow-auto" >
+      <div class="d-flex  w-100">
+            <div id="chartLabels" class="d-flex flex-wrap   overflow-auto " style=" max-height: 20rem;">
+            </div>
+            <canvas id="myPieChart" class="me-3 "
+            style="max-height: 18rem; max-width: 10rem ; "></canvas>
+      </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+var ctx = document.getElementById('myPieChart').getContext('2d');
+var labels = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiem', 'Octubre', 'Noviembre', 'Diciembre'];
+var data = [{{en}}, {{fe}}, {{ma}}, {{ab}}, {{my}}, {{ju}}, {{jul}}, {{ag}}, {{set}}, {{oc}}, {{nov}}, {{dic}}];
+
+var backgroundColors = [
+  'rgba(255, 99, 132, 0.2)',
+  'rgba(54, 162, 235, 0.2)',
+  'rgba(255, 206, 86, 0.2)',
+  'rgba(75, 192, 192, 0.2)',
+  'rgba(153, 102, 255, 0.2)',
+  'rgba(255, 159, 64, 0.2)',
+  'rgba(255, 99, 132, 0.2)',
+  'rgba(54, 162, 235, 0.2)',
+  'rgba(255, 206, 86, 0.2)',
+  'rgba(75, 192, 192, 0.2)',
+  'rgba(153, 102, 255, 0.2)',
+  'rgba(255, 159, 64, 0.2)'
+];
+
+// Crear el gráfico
+var myPieChart = new Chart(ctx, {
+  type: 'pie',
+  data: {
+    labels: labels,
+    datasets: [{
+      label: '',
+      data: data,
+      backgroundColor: backgroundColors,
+      borderColor: backgroundColors.map(color => color.replace('0.2', '1')), // Bordes sólidos
+      borderWidth: 1
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false // Ocultar la leyenda para personalizarla manualmente
+      },
+      tooltip: {
+        enabled: true
+      }
+    }
+  }
+});
+
+// Mostrar etiquetas en un div separado
+var chartLabels = document.getElementById('chartLabels');
+chartLabels.innerHTML = labels.map((label, index) => {
+      return `<div style="display: flex; align-items: center; margin-bottom: 4px;">
+      <div style="
+            width: 16px; height: 16px;
+            background-color: ${backgroundColors[index].replace('0.2', '1')};
+            margin-right: 8px;
+            border-radius: 4px;"></div>
+      <span class='text-white-50 bg-white bg-opacity-10 p-1 ps-3 pe-3 rounded-4'>${label}  <strong> (${data[index]}) </strong> </span>
+</div>`;
+}).join('');
+      </script>

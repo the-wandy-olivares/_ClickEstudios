@@ -1,10 +1,12 @@
 {% extends "base/base.html" %}
 {% block content %}
+  
+
       <style>
             .nav .dashboard {
                   color: #ffc107;
                   font-weight: bolder;
-                  transform: scale(1.1);
+
             }
 
             .btn-atras 
@@ -16,141 +18,30 @@
                   .filter-grafico {
                         width: 20rem;
                         display: flex; flex-wrap: wrap;
-                        justify-content: center;
-
+                        position: absolute;
+                        top: 0;
+                        margin-top: 1rem;
                   }
             }
-
-
       </style>
-
-      <div class="  d-flex flex-wrap overflow-auto  align-content-end w-100">
-            <div class=" filter-grafico position-absolute  top-0 end-0 me-3 mt-3 d-flex flex-wrap">
-                  <select data-aos="fade-left" 
-                        class="form-select bg-transparent border-0 text-white" 
-                        aria-label="Default select example" style="width: 14rem;">
+      <div class="  d-flex flex-wrap  align-content-end  align-content-center w-100 vh-100">
+            <div class=" filter-grafico position-absolute  top-0 end-0 me-3  d-flex flex-wrap justify-content-end">
+                  <select 
+                        class="form-select  bg-white bg-opacity-10 border-0 text-white me-2 rounded-4"  
+                        aria-label="Default select example" style="width: 12rem;">
                         <option value="1" selected> Graficos de periodo </option>
                         <option value="2" disabled>  Graficos por filas  </option>
                   </select>
-                  <select data-aos="fade-left" 
-                        class="form-select bg-transparent border-0 text-white" 
-                        aria-label="Default select example" style="width: 6rem;">
+                  <select 
+                        class="form-select bg-white bg-opacity-10 border-0 text-white rounded-4" 
+                        aria-label="Default select example" style="width: 7rem;">
                         <option value="1" selected> Planes </option>
                         <option value="2" disabled> Servicios </option>
                         <option value="3" disabled>Visistas</option>
                   </select>
             </div>
-            <div class="bg-gray-800    w-75 rounded-lg shadow-md " style="height: 180px;">
-                  <canvas id="barChart" class="d-none"></canvas>
-            </div>
-            <div  data-aos="fade-in" style="transition: 1s; transition-delay: 0s; " 
-                  class="bg-gray-100  d-flex mb-2 justify-content-center position-fixed bottom-0    align-content-end flex-wrap  lineChart  w-100 shadow-md" >
-                  <canvas id="lineChart" class="h-100"></canvas>
-            </div>
-
-            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-            <script>
-                  const barCtx = document.getElementById('barChart').getContext('2d');
-                  const lineCtx = document.getElementById('lineChart').getContext('2d');
-                  new Chart(barCtx, {
-                        type: 'bar',
-                        data: {
-                              labels: ['Compleaños', 'Graduaciones', 'Happy baby', 'Bodas', 'Fiestas', 'Eventos'],
-                              datasets: [{
-                                    label: '# Mejor ',
-                                    data: [122, 129, 5, 32, 4, 34],
-                                    backgroundColor: [
-                                          'rgba(255, 99, 132, 0.2)',
-                                          'rgba(54, 162, 235, 0.2)',
-                                          'rgba(255, 206, 86, 0.2)',
-                                          'rgba(75, 192, 192, 0.2)',
-                                          'rgba(153, 102, 255, 0.2)',
-                                          'rgba(255, 159, 64, 0.2)'
-                                    ],
-                                    borderColor: [
-                                          'rgba(255, 99, 132, 1)',
-                                          'rgba(54, 162, 235, 1)',
-                                          'rgba(255, 206, 86, 1)',
-                                          'rgba(75, 192, 192, 1)',
-                                          'rgba(153, 102, 255, 1)',
-                                          'rgba(255, 159, 64, 1)'
-                                    ],
-                                    borderWidth: 2
-                              }]
-                        },
-                        options: {
-                              responsive: true,
-                              plugins: {
-                                    legend: {
-                                          position: 'end',
-                                    },
-                                    tooltip: {
-                                          callbacks: {
-                                                label: function(context) {
-                                                      let label = context.label || '';
-                                                      if (label) {
-                                                            label += ': ';
-                                                      }
-                                                      if (context.parsed.y !== null) {
-                                                            label += context.parsed.y;
-                                                      }
-                                                      return label;
-                                                }
-                                          }
-                                    }
-                              }
-                        }
-                  });
-      
-
-new Chart(lineCtx, {
-    type: "line",
-    data: {
-        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-        datasets: [{
-            label: 'Periodo',
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            borderColor: 'rgba(255, 99, 132, 1)',
-            data: [{{en}}, {{fe}}, {{ma}}, {{ab}}, {{my}}, {{ju}}, {{jul}}, {{ag}}, {{set}}, {{oc}}, {{nov}}, {{dic}} ],
-            fill: true,
-        }]
-    },
-    options: {
-        responsive: true,
-        scales: {
-            y: {
-                beginAtZero: true,  // Asegura que el eje Y empiece en 0
-                ticks: {
-                    stepSize: 1,  // Muestra solo números enteros
-                    callback: function(value) {
-                        return Number.isInteger(value) ? value : null;
-                    }
-                }
-            }
-        },
-        plugins: {
-            legend: {
-                position: 'end',
-            },
-            tooltip: {
-                callbacks: {
-                    label: function(context) {
-                        let label = context.dataset.label || '';
-                        if (label) {
-                            label += ': ';
-                        }
-                        if (context.parsed.y !== null) {
-                            label += Math.round(context.parsed.y); // Asegura valores enteros
-                        }
-                        return label;
-                    }
-                }
-            }
-        }
-    }
-});
-
-
-            </script>
+            {% include "estudios/cp/grafic-circle.html" %}
+            {% include "estudios/cp/grafic-wave.html" %}
       </div>
+
 {% endblock  %}
