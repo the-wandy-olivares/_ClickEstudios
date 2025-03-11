@@ -1,10 +1,8 @@
 {% load humanize %}
 <style>
-      td
-      {
+      td {
             color: rgba(255, 255, 255, 0.75);
             font-size: 14px;
-
       }
       @media (max-width: 600px) {
             .description, .tipo {
@@ -17,46 +15,45 @@
 <table class="w-100 text-white">
       <thead>
             <tr>
-                  <th style='width: 2%;'>#</th>
-                  <th style='width: 15%;'>Fecha y hora</th>
+                  <th style='width: 2%; font-size: 10px;'>#</th>
+                  <th style='width: 15%;'>Fecha </th>
                   <th class="description" style='width:50%;'>Descripción de movimiento</th>
                   <th style='width: 10%;'>Ingreso</th>
                   <th style='width: 10%;'>Gasto </th>
-                  <th class="tipo" style='width: 10%;'>  Tipo </th>
+                  <th class="tipo" style='width: 10%;'>Tipo </th>
             </tr>
       </thead>
       <tbody id="movimientos-table">
             {% if movimientos  %}
                   {% for movimiento in movimientos %}
                   <tr class="movimiento-row" data-tipo="{{ movimiento.tipo }}">
-                        <td>  {{ forloop.counter }} </td>
-                        <td>{{ movimiento.date|date:"d/m/Y - H:m" }}   </td>
+                        <td style="font-size: 10px;">  {{ forloop.counter }}</td>
+                        <td>{{ movimiento.date|date:"d/m/Y" }}</td>
                         <td class="description">{{ movimiento.description }}</td>
                         <td>
                               {% if movimiento.type == "ingreso" %}
-                              <span class="text-success">
-                                    RD${{ movimiento.mount|intcomma }}.00
-                              </span>
-
+                                    <span class="text-success">
+                                          ${{ movimiento.mount|intcomma }}.00
+                                    </span>
                               {% endif %}
                         </td>
                         <td>
                               {% if movimiento.type == "gasto" %}
                               <span class="text-danger">
-                                    RD${{ movimiento.mount|intcomma }}.00
+                                    ${{ movimiento.mount|intcomma }}.00
                               </span>
                               {% endif %}
                         </td>
                         <td class='text-capitalize tipo'>{{ movimiento.type }}</td>
-
                   </tr>
                   {% endfor %}
             {% else %}
                   <tr>
                         <td colspan="7" class=' pt-5 text-center'>
                               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-diamond-fill me-1" viewBox="0 0 16 16">
-                                    <path d="M9.05.435c-.58-.58-1.52-.58-2.1 0L.436 6.95c-.58.58-.58 1.519 0 2.098l6.516 6.516c.58.58 1.519.58 2.098 0l6.516-6.516c.58-.58.58-1.519 0-2.098zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
-                                  </svg> No hay resultados</td>
+                              <path d="M9.05.435c-.58-.58-1.52-.58-2.1 0L.436 6.95c-.58.58-.58 1.519 0 2.098l6.516 6.516c.58.58 1.519.58 2.098 0l6.516-6.516c.58-.58.58-1.519 0-2.098zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                              </svg> No hay resultados
+                        </td>
                   </tr>
             {% endif %}
       </tbody>
