@@ -25,9 +25,10 @@
             }
             #search-move {
                   color: #ffffff !important;
+                  outline: none !important;
             }
             #search-move::placeholder {
-                  color: rgb(247, 247, 247) !important; font-weight: bold;
+                  color: rgba(247, 247, 247, 0.741) !important; font-weight: bold;
             }
 
             /* Adaptando estylos  a movile */
@@ -45,33 +46,31 @@
                   }
             }
             .table-result{
-                  background-color: #212121;
+                  background-color: #212121ce;
                   color: #ffffff;
             }
       </style>
-      <div class="container-search-move position-fixed d-none top-0 start-0 blur-50 text-white d-flex justify-content-center align-content-center flex-wrap z-3 vh-100 w-100">
-            <!--Delete-->
-            <button class="bg-transparent border-0 position-absolute top-0 start-0 ms-4 mt-3" onclick="OpenSearchMove()">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-x-circle-fill text-white" viewBox="0 0 16 16">
-                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
-                  </svg>
-            </button>
-            <div class=" bg-white bg-opacity-10 w-100 rounded-5 p-2 overflow-auto" 
-                  style="max-width: 60rem; ">
+      <div class="container-search-move position-fixed d-none top-0 start-0 blur-50 bg-black bg-opacity-10 text-white d-flex justify-content-center align-content-center flex-wrap z-3 vh-100 w-100">
+            
+            <div class=" bg-white bg-opacity-10 shadow w-100 rounded-5 p-2 position-relative overflow-auto" 
+                  style="max-width: 70rem; ">
+                     <!--Delete-->
+                  <button class="bg-transparent border-0 position-absolute top-0 start-0 ms-2 mt-2" onclick="OpenSearchMove()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x-circle-fill text-white" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
+                        </svg>
+                  </button>
                   <input type="text" id="search-move"
                   style=" width: 100%;"
-                  class="w-100 m-0 p-2 rounded-5  border-0 mb-3 text-center bg-white bg-opacity-10  me-2 "
-                  placeholder="Buscar movimiento"       >
-                  <strong class="ms-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-activity" viewBox="0 0 16 16">
-                              <path fill-rule="evenodd" d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2"/>
-                            </svg> Moviemientos de caja
-                  </strong>
-                  <p class="text-white-50 ms-4">
-                        Puedes buscar alguna movimiento de caja por su descripción ejemplo: Abono, Pago completado o Juan Pérez
-                  </p>
-                  <div class="search-results overflow-auto m-3" style="height: 40vh;">
-
+                  class="w-100 m-0 p-3 rounded-5  border-0 mb-3 text-center bg-white bg-opacity-10  me-2 "
+                  placeholder="Buscar moviemiento "       >
+                        <strong class="  text-white-50 ms-2" style="font-size: 16px;">
+                               Moviemientos de caja
+                        </strong>
+                        <p class="text-white-50 p-0 m-0 ms-2 w-100" style="font-size: 14px;">
+                              Verde ingresos y rojo los gastos
+                        </p>
+                  <div class="search-results overflow-auto overflow-x-hidden " style="height: 55vh;">
                   </div>
             </div>
       </div>
@@ -89,7 +88,8 @@
                             </svg>
                                   
                               </div>
-                              <div class="p-1 cierre-anterior  text-center  ps-4 pe-4  text-white-50 rounded-5" style=" background-color: #212121;">
+                              <div  class="cierre-anterior p-2 balance-total  text-white-50  text-center rounded-5 ps-4 pe-4 "
+                              style=" background-color: #212121;">
                                     <strong style="font-size: 14px;">CIERRE.A</strong>
                                     <span> ${{total_last_session|intcomma}}.00 </span>
                               </div>
@@ -102,7 +102,7 @@
                         </div>
                         <div class="overflow-visible container-table " style="height: 80vh;">
                               {% include "box/components/filter.html" %}
-                             <div style="height: 55vh;" class="overflow-auto ">
+                             <div style="height: 59vh;" class="overflow-auto ">
                                     {% include "box/components/table.html" %}
                              </div>
                              
@@ -111,7 +111,7 @@
                                           <thead>
                                                 <tr>
                                                       <th scope="col" class="text-center"> Ingresos</th>
-                                                      <th scope="col" class="text-center"> Gastos</th>
+                                                      <th scope="col" class="text-center">Gastos</th>
                                                       <th scope="col" class="text-center">Balance</th>
 
                                                 </tr>
@@ -172,13 +172,14 @@
                         if (response.length > 0) {
                               response.forEach(result => {
                               const table = document.createElement('table');
-                              table.classList.add('w-100', 'mt-2', 'table-result', 'rounded-3', );
+                              let div_table = document.createElement('div');
+                              div_table.classList.add('w-100', 'mt-1', 'table-result', 'rounded-5', 'p-1', 'ps-3', 'pe-3', 'overflow-auto' );
                               table.innerHTML = `
                                     <thead>
                                           <tr>
                                           <th style='width: 10rem;' >Fecha</th>
                                           <th style='width: 30rem;' >Descripción</th>
-                                          <th style='width: 16rem;' >Tipo de movimiento</th>
+                                          <th style='width: 16rem;' >Tipo </th>
                                           </tr>
                                     </thead>
                                     <tbody>
@@ -187,24 +188,14 @@
                                     <td>${result.description}</td>
                                     <td>
                                           <span class="text-capitalize  text-${result.type === 'ingreso' ? 'success' : 'danger'}">
-                                               ${result.type}: ${result.mount > 0 ? result.mount.toLocaleString() : '' }  
+                                               $${result.mount > 0 ? result.mount.toLocaleString() : '' }  
                                     </td>
                                     </tr>
                                     </tbody> `;
-                                    resultsContainer.appendChild(table);
+                                    div_table.appendChild(table);
+                                    resultsContainer.appendChild(div_table);
                                  });
-                              }     else {
-                                    const table = document.createElement('table');
-                                    table.classList.add('w-100');
-                                    table.innerHTML = `
-                                    <thead>
-                                    <tr>
-                                          <th col='7'> No encontrado: ${content}</th>
-                                    </tr>
-                                    </thead>
-                                    `;
-                                    resultsContainer.appendChild(table);
-                        }
+                              }     
                   }
             });
       }
