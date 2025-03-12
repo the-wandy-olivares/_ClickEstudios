@@ -13,28 +13,36 @@
             {
                   display: none;
             }
+            .filter-grafico {
+                  margin-right: 0.9rem;
+            }
 
             @media (max-width: 600px) { 
                   .filter-grafico {
-                        width: 20rem;
+                        width: 100%;
                         display: flex; flex-wrap: wrap;
+                        justify-content: center !important;
                         position: absolute;
+
                         top: 0;
-                        margin-top: 1rem;
+                        margin: 0 !important;
+                        margin-top: 3rem !important;
                   }
             }
       </style>
       <div class="  d-flex flex-wrap  align-content-end  align-content-center w-100 vh-100">
-            <div class=" filter-grafico position-absolute  top-0 end-0 me-3  d-flex flex-wrap justify-content-end">
+            <div class=" filter-grafico position-absolute  top-0 end-0   d-flex flex-wrap justify-content-end ">
                   <select 
-                        class="form-select  bg-white bg-opacity-10 border-0 text-white me-2 rounded-4"  
-                        aria-label="Default select example" style="width: 12rem;">
+                        class="form-select   border-0 text-white   rounded-4"  
+                        aria-label="Default select example" 
+                        style=" background-color: #212121; width: 12rem;">
                         <option value="1" selected> Graficos de periodo </option>
                         <option value="2" disabled>  Graficos por filas  </option>
                   </select>
                   <select 
-                        class="form-select bg-white bg-opacity-10 border-0 text-white rounded-4" 
-                        aria-label="Default select example" style="width: 7rem;">
+                        class="form-select  border-0  text-white rounded-4 ms-1" 
+                        aria-label="Default select example" 
+                        style="background-color: #212121; width: 7rem;">
                         <option value="1" selected> Planes </option>
                         <option value="2" disabled> Servicios </option>
                         <option value="3" disabled>Visistas</option>

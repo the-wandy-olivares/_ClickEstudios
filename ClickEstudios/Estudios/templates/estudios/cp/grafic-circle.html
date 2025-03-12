@@ -1,28 +1,27 @@
-
 <style>
       #chartLabels {
-            align-content: center  ;
+            align-content: center;
       }
-            @media (max-width: 600px) {  
-                  #chartLabels {
-                        align-content: start !important;
-                  }
-                  .myPieChart {
-                        background-color: rgb(25, 25, 25);
-                        
-                  }
+      @media (max-width: 600px) {
+            #chartLabels {
+                  align-content: start !important;
             }
+            .myPieChart {
+                  background-color: #191919;
+            }
+      }
       .chartLabels {
             color: wheat;
       }
+      .span-mount {
+            background-color: #212121;
+      }
 </style>
-<div style="width: 100%; margin: auto; height: 21rem;"
-class="myPieChart rounded-5  p-4 m-1 mb-0 overflow-auto" >
-      <div class="d-flex  w-100">
-            <div id="chartLabels" class="d-flex flex-wrap   overflow-auto " style=" max-height: 20rem;">
+<div style="width: 100%; margin: auto; height: 21rem;" class="myPieChart rounded-5 p-3  mb-1 overflow-auto">
+      <div class="d-flex w-100">
+            <div id="chartLabels" class="d-flex flex-wrap overflow-auto" style="max-height: 20rem;">
             </div>
-            <canvas id="myPieChart" class="me-3 "
-            style="max-height: 18rem; max-width: 10rem ; "></canvas>
+            <canvas id="myPieChart" class="me-3" style="max-height: 18rem; max-width: 10rem;"></canvas>
       </div>
 </div>
 
@@ -39,12 +38,12 @@ var backgroundColors = [
   'rgba(75, 192, 192, 0.2)',
   'rgba(153, 102, 255, 0.2)',
   'rgba(255, 159, 64, 0.2)',
-  'rgba(255, 99, 132, 0.2)',
-  'rgba(54, 162, 235, 0.2)',
-  'rgba(255, 206, 86, 0.2)',
-  'rgba(75, 192, 192, 0.2)',
-  'rgba(153, 102, 255, 0.2)',
-  'rgba(255, 159, 64, 0.2)'
+  'rgba(199, 199, 199, 0.2)',
+  'rgba(83, 102, 255, 0.2)',
+  'rgba(255, 206, 186, 0.2)',
+  'rgba(75, 192, 92, 0.2)',
+  'rgba(153, 202, 255, 0.2)',
+  'rgba(255, 159, 164, 0.2)'
 ];
 
 // Crear el gráfico
@@ -76,13 +75,23 @@ var myPieChart = new Chart(ctx, {
 // Mostrar etiquetas en un div separado
 var chartLabels = document.getElementById('chartLabels');
 chartLabels.innerHTML = labels.map((label, index) => {
-      return `<div style="display: flex; align-items: center; margin-bottom: 4px;">
-      <div style="
-            width: 16px; height: 16px;
-            background-color: ${backgroundColors[index].replace('0.2', '1')};
-            margin-right: 8px;
-            border-radius: 4px;"></div>
-      <span class='text-white-50 bg-white bg-opacity-10 p-1 ps-3 pe-3 rounded-4'>${label}  <strong> (${data[index]}) </strong> </span>
+      return `
+      <div style="display: flex; align-items: center; margin-bottom: 4px;" >
+            <span class='span-mount d-flex text-white-50 p-1 ps-3  rounded-5'>
+                  <strong > 
+                        ${label}  
+                   </strong>
+                   <div style="
+                         width: 22px; height: 22px;
+                         background-color: ${backgroundColors[index].replace('0.2', '0.8')};
+                         margin-right: 8px;
+                         border-radius: 4px;"
+                         class='d-flex justify-content-center ms-2 flex-wrap align-content-center rounded-circle p-0'>
+                         <strong style='font-size:12px;' class='text-black'>
+                               ${data[index]}
+                         </strong>
+                   </div>
+            </span>
 </div>`;
 }).join('');
-      </script>
+</script>
