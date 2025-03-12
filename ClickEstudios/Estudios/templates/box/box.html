@@ -32,7 +32,7 @@
 
             /* Adaptando estylos  a movile */
             @media (max-width: 600px) {
-                        .balance-total .cierre-anterior span {
+                  .balance-total .cierre-anterior span {
                         width: 100%;
                   }
                   .detail-resulst {
@@ -113,6 +113,7 @@
                                                       <th scope="col" class="text-center"> Ingresos</th>
                                                       <th scope="col" class="text-center"> Gastos</th>
                                                       <th scope="col" class="text-center">Balance</th>
+
                                                 </tr>
                                           </thead>
                                           <tbody>
@@ -120,13 +121,16 @@
                                                       <td class="text-center">${{ ingresos|intcomma }}.00</td>
                                                       <td class="text-center">${{ egresos|intcomma }}.00</td>
                                                       <td class="text-center">${{ balance_caja|intcomma }}.00</td>
+                                                      <td>
+                                                            <a href="{% url "estudios:box-create" %}" class='btn-cerrar'> 
+                                                                  <button style=" font-weight: bold;"  
+                                                                  class=' btn bg-white bg-opacity-10  rounded-5 text-white m'> Cerrar  </button>
+                                                            </a>
+                                                      </td>
                                                 </tr>
+                                                
                                           </tbody>
                                     </table>
-                                    <a href="{% url "estudios:box-create" %}" class='btn-cerrar'> 
-                                          <button style=" font-weight: bold;"  
-                                          class='w-100 btn bg-white bg-opacity-10  rounded-5 text-white m'> Cerrar  </button>
-                                    </a>
                              </div>
                         </div>
                   </div>
