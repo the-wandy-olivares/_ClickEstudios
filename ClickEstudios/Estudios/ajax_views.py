@@ -68,3 +68,12 @@ def GetEstudios(request):
         }
 
     return JsonResponse(data)
+
+
+def SearchMove(request):
+      d = request.GET.get('search', '').strip()
+      data = []
+      if d:
+            data = models.Movements.objects.filter(description__icontains=d).values('id', 'description', 'description', 'date', 'mount')
+            print(data)
+      return JsonResponse(list(data), safe=False)
