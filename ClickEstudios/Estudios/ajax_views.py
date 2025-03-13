@@ -6,15 +6,13 @@ from django.db.models import Q
 
 def VerifyDateChoice(request):
       date = request.GET.get('date_choice')
-      print("Hello", date)  # Para depuración
       if date:
             try:
                   date = datetime.strptime(date, '%Y-%m-%d').date()
                   sales = models.Sale.objects.filter(date_choice=date)
                   if sales.exists():
-                        # Convertimos la hora de cadena a un entero
-                        selected_hours = [int(sale.time.split(':')[0]) for sale in sales]  # Si `time` es un string tipo "HH:MM:SS"
-                        print(selected_hours)
+                        selected_hours = [int(sale.time.split(':')[0]) for sale in sales] 
+                         # Si `time` es un string tipo "HH:MM:SS"
                         available_hours = [f"{hour:02d}:00" for hour in range(8, 18) if hour not in selected_hours]
                         context = {
                               'true': False,
@@ -24,7 +22,6 @@ def VerifyDateChoice(request):
             except ValueError:
                   return JsonResponse({'error': 'Invalid date format. Use YYYY-MM-DD.'}, status=400)
 
-      # Si no se pasa una fecha o no hay ventas en la fecha seleccionada
       available_hours = [f"{hour:02d}:00" for hour in range(8, 18)]
       context = {
             'true': True,
@@ -34,11 +31,9 @@ def VerifyDateChoice(request):
 
 
 
-
 def Search(request):
       d = request.GET.get('search', '').strip()
       data = []
-    
       if d:
             search_term = d.lower()
             # Búsqueda general si no se especifica 'cita', 'cliente' o número de teléfono
@@ -49,8 +44,6 @@ def Search(request):
                         is_reserve=True,
                         finalize=False
             ).values('id', 'name_client', 'email_client', 'phone_no_formate')
-
-
       return JsonResponse(list(data), safe=False)
 
 
@@ -66,8 +59,8 @@ def GetEstudios(request):
             'img': estudio.img.url if estudio.img else None,
             'img2': estudio.img_2.url if estudio.img_2 else None
         }
-
     return JsonResponse(data)
+
 
 
 def SearchMove(request):
@@ -75,5 +68,4 @@ def SearchMove(request):
       data = []
       if d:
             data = models.Movements.objects.filter(description__icontains=d).values('id', 'description', 'description', 'date', 'mount', 'type')
-            print(data)
       return JsonResponse(list(data), safe=False)

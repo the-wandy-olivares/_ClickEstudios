@@ -7,21 +7,24 @@
                   align-content: start !important;
             }
             .myPieChart {
-                  background-color: #191919;
+                  
             }
-      }
-      .chartLabels {
-            color: wheat;
+            #chartLabels {
+                  /* color: wheat; */
+                  background-color: #191919; 
+            }
       }
       .span-mount {
             background-color: #212121;
       }
 </style>
-<div style="width: 100%; margin: auto; height: 21rem;" class="myPieChart rounded-5 p-3  mb-1 overflow-auto">
+<div style="width: 100%; margin: auto; height: 18.5rem;" class="myPieChart m-0 overflow-auto">
       <div class="d-flex w-100">
-            <div id="chartLabels" class="d-flex flex-wrap overflow-auto" style="max-height: 20rem;">
+            <div id="chartLabels" class="d-flex flex-wrap overflow-auto p-2 rounded-5" 
+                  style="max-height: 19rem;">
             </div>
-            <canvas id="myPieChart" class="me-3" style="max-height: 18rem; max-width: 10rem;"></canvas>
+            <canvas id="myPieChart" class="ms-1 me-2 mt-5"  
+            style="max-height: 7rem; max-width: 7rem; "></canvas>
       </div>
 </div>
 
