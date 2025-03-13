@@ -79,6 +79,7 @@
       
     }
 
+
     .blur-5 {
       -webkit-backdrop-filter: blur(5px) !important;
       backdrop-filter: blur(5px) !important;
@@ -120,8 +121,8 @@
 }
 
       .fade-down {
-            animation: fade-down 0.3s ease-out ;
-            transform-origin: bottom; 
+            animation: fade-down 0.1s ease-out ;
+            transform-origin: left; 
       }
       .form-select
       {
@@ -135,6 +136,7 @@
         display: none;
       }
 
+
         @media (max-width: 600px) {
           .btn-closed-nav {
             display: block  !important;
@@ -142,30 +144,22 @@
           .btn-open-nav {
             display: flex  !important;
           }
+            .active-blur {
+              -webkit-backdrop-filter: blur(30px) !important;
+              backdrop-filter: blur(30px) !important;
+              transition: 0.5s ease-out !important ;
+            }
               .super-nav {
                   position: absolute; 
                   width: 100%;
-                -webkit-backdrop-filter: blur(60px) !important;
-                  backdrop-filter: blur(60px) !important;
-                  background-color: rgba(0, 0, 0, 0.218);
+
                   margin: 0px !important; 
-                  padding: 40px !important;
-                  padding-top: 12rem !important;
                   margin-bottom: 10rem;
                   display: none;
                   
               }
-              .super-nav .img-estudios {
-                  width: 160px !important;
-                  position: absolute ; 
-
-
-                  top: 0px; 
-                  left: 0%;
-                  transform: translateX(+90%);
-
-
-
+              .super-nav .img-estudioss {
+                  display: none;
               }
         }
 
@@ -282,11 +276,15 @@ document.addEventListener('DOMContentLoaded', function() {
 function OpenNav(){
   const superNav = document.querySelector('.super-nav');
   if (superNav.style.display === 'none' || superNav.style.display === '') {
-    superNav.style.display = 'flex';
+    superNav.style.display = 'block';
     superNav.classList.add('fade-down');
+    setTimeout(() => {
+      superNav.classList.add('active-blur');
+    }, 0.1);
   } else {
     superNav.style.display = 'none';
-    superNav.classList.remove('fade-down');
+    superNav.classList.remove('fade-down', 'active-blur');
+    superNav.classList.add('blur-0');
   }
   document.querySelector('.bi-three-dots').classList.toggle('rotate-90');
 }
