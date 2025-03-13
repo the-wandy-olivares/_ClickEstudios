@@ -276,20 +276,22 @@ document.addEventListener('DOMContentLoaded', function() {
             }
       });
 
-function OpenNav(){
-  const superNav = document.querySelector('.super-nav');
-  if (superNav.style.display === 'none' || superNav.style.display === '') {
-    superNav.style.display = 'block';
-    superNav.classList.add('fade-down');
-    setTimeout(() => {
-      superNav.classList.add('active-blur');
-    }, 0.1);
-  } else {
-    superNav.style.display = 'none';
-    superNav.classList.remove('fade-down', 'active-blur');
-    superNav.classList.add('blur-0');
+if (window.innerWidth < 700) {
+  function OpenNav(){
+    const superNav = document.querySelector('.super-nav');
+    if (superNav.style.display === 'none' || superNav.style.display === '') {
+        superNav.style.display = 'block';
+      superNav.classList.add('fade-down');
+      setTimeout(() => {
+        superNav.classList.add('active-blur');
+      }, 0.1);
+    } else {
+      superNav.style.display = 'none';
+      superNav.classList.remove('fade-down', 'active-blur');
+      superNav.classList.add('blur-0');
+    }
+    document.querySelector('.bi-three-dots').classList.toggle('rotate-90');
   }
-  document.querySelector('.bi-three-dots').classList.toggle('rotate-90');
 }
 
 
