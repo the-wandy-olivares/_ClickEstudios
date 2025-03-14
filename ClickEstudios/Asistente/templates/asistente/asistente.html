@@ -25,14 +25,33 @@
                   /* background-color: #ffc107 !important; */
                   /* color: black !important; */
             }
+            .asistent-response {
+                  color: #fefefed3;
+            }
+            .asistent-response h4{
+                  color: #ffc107 !important;
+                  font-weight: bolder;
+                  width: 100%;
+                  margin-top: 2rem;
+            }
+            .asistent-response strong {
+                  color: #ffffff !important;
+                  width: 100%;
+            }
+            /* .asistent-response ul {
+                  color: rgb(255, 69, 69) !important;
+            }
+            .asistent-response li {
+                  color: #42ef4e !important;
+            } */
       </style>
       <section class="w-100 d-flex flex-wrap justify-content-center align-content-end vh-100 ">
             <div style="max-width: 90%; height: 50vh;" class="w-100 text-white">
                   <h5 class="your-response">
                   </h5>
-                  <p class="asistent-response">
+                  <div class="asistent-response d-flex flex-wrap justify-content-start">
 
-                  </p>
+                  </div>
             </div>
             <div class="w-100 d-flex flex-wrap justify-content-center align-content-center">
                   <input type="text" name="" id="asistente-input-0" class="w-100 p-3  rounded-5  mt-5 mb-3 bg-white bg-opacity-10 border-0  text-white text-center"  value="Hi 👋, ¡Buenos dias!" 
@@ -60,7 +79,54 @@
                   }
             });
 
+            function FormaTextIA(texto) {
+                              const lineas = texto.split('\n');
+                              let resultado = '';
+                              let listaAbierta = false;
+
+                              lineas.forEach(linea => {
+                                    // Si es un encabezado (por ejemplo, "**Título:**")
+                                    if (linea.startsWith('**') && linea.endsWith(':**')) {
+                                          resultado += `<h4>${linea.replace(/\*\*(.*?)\*\*/g, '$1')}</h4>`;
+                                    } 
+                                    // Si es una lista (empieza con "* ")
+                                    else if (linea.startsWith('* ')) {
+                                          if (!listaAbierta) {
+                                          resultado += '<ul>';
+                                          listaAbierta = true;
+                                          }
+                                          resultado += `<li>${linea.substring(2).replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</li>`;
+                                    } 
+                                    // Si es texto normal
+                                    else if (linea.trim() !== '') {
+                                          if (listaAbierta) {
+                                          resultado += '</ul>';
+                                          listaAbierta = false;
+                                          }
+                                          resultado += `<p>${linea.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</p>`;
+                                    }
+                              });
+
+                              // Cierra la lista si quedó abierta
+                              if (listaAbierta) {
+                                    resultado += '</ul>';
+                              }
+
+                              return resultado;
+
+            }
+
+        
+
             
+            window.onload = function() {
+               document.querySelector('.asistent-response').innerHTML=    FormaTextIA('**Generación de texto:**  *  **Responder preguntas de manera informativa y completa,** incluso si son abiertas, desafiantes o extrañas.  * **Generar diferentes formatos de texto creativo** de textos como poemas, código, guiones, piezas musicales, correo electrónico, cartas, etc. Intentaré cumplir con todos tus requisitos.*  **Traducir idiomas.**   * **Resumir textos.**  *  **Escribir diferentes tipos de contenido,** como artículos, publicaciones de blog, historias, descripciones de productos, etc. **Otras habilidades:**   * **Generar ideas.**   * **Proporcionar información sobre una amplia gama de temas.**    * **Ayudar con tareas de investigación.**   *  **Resolver problemas.***   **Simular conversaciones.***   **Seguir tus instrucciones y completar tus peticiones cuidadosamente.**`;')
+            }
+
+
+
+
+
             function QuestionGemini(question) {
                   $.ajax({
                         url: '{% url "asistente:question_gemini" %}',
@@ -68,7 +134,7 @@
                         question: question,},
                         success: function (data) {
                               document.querySelector('.your-response').innerHTML = data.your_question;
-                              document.querySelector('.asistent-response').innerHTML = data.asistent_response;
+                              document.querySelector('.asistent-response').innerHTML = FormaTextIA(data.asistent_response) ;
                         },
                         error: function (data) {
 

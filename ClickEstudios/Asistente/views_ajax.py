@@ -13,8 +13,7 @@ def QuestionGemini(request):
       asisten_response = client.models.generate_content(
       model="gemini-2.0-flash",
       contents=your_question,)
-
-
+      print(asisten_response.text)
 
       if your_question:
             data = {
