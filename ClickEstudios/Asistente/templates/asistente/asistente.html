@@ -19,7 +19,9 @@
             .asistente-input {
                   display: none;
             }
-            #asistente-input-0 {
+            #asistente-input-0::placeholder {
+                  color: #ffffffb7 !important;
+                  font-weight: bolder;
             }
             #asistente-input-0:focus {
                   /* background-color: #ffc107 !important; */
@@ -30,8 +32,6 @@
             }
             .asistent-response span{
                   width: 100% !important;
-
-                  padding: 10px;
             }
             .asistent-response h4{
                   color: #ffc107 !important;
@@ -41,7 +41,6 @@
                   background-color: #191919;
                   border-radius: 2rem;
                   padding: 0.2rem 1rem;
-
             }
             .asistent-response strong {
                   color: #ffffff !important;
@@ -50,37 +49,42 @@
             .asistent-response ul {
                   background-color: #252525;
                   width: 100%;
-                  max-height: 10rem;
                   overflow: auto;
-                  border-radius: 1.5rem;
+                  border-radius: 2rem;
                   margin-bottom: 0.4rem;
-                  padding: 10px;
-
+                  padding: 30px;
             }
             .asistent-response li {
                   padding: 0px;
                   margin: 0.4rem;
-
             }
-      </style>
-      <section class="w-100 d-flex flex-wrap justify-content-center align-content-end vh-100 ">
-            <div style="max-width: 90%; height: 50vh;" class="w-100 text-white overflow-auto">
-                  <h5 class="your-response">
-                        Hi 👋, ¡Buenos dias!
-                  </h5>
-                  <div class="asistent-response d-flex flex-wrap justify-content-start"> 
-                        <span><h4>Holaa</h4></span> <p>¿En qué puedo ayudarte?</p>
-                        <strong>Sabe que puedes hacer</strong> 
-                        <li>Un monoto de cosas</li>
-                        <ul>
-                              Si, muchas cosas
-                        </ul>
+            /* Adaptando estylos  a movile */
+            @media (max-width: 600px) { 
+                  .asistent-response span{
+                  width: 100% !important;
+                  display: flex; justify-content: center;
+                  flex-wrap: wrap;
+            }
+            
+            }
 
+      </style>
+      <section class="w-100 d-flex flex-wrap justify-content-center align-content-center vh-100 ">
+            <div style="max-width: 90%; height: 60vh;" class="w-100 text-white overflow-auto">
+                  <!--Pregunta del usuario-->
+                  <h5 class="your-response text-capitalize">
+                  </h5>
+                  <!--Respuestas del asistente-->
+                  <div class="asistent-response d-flex flex-wrap justify-content-start"> 
                   </div>
             </div>
             <div class="w-100 d-flex flex-wrap justify-content-center align-content-center">
-                  <input type="text" name="" id="asistente-input-0" class="w-100 p-3 blur-10 rounded-5  mt-5 mb-3 bg-white bg-opacity-10 border-0  text-white text-center"  value="Hi 👋, ¡Buenos dias!" 
+                  <input type="text" name="" id="asistente-input-0"  placeholder="Hi 👋, ¡Buenos dias!"
+                  class="w-100 p-3 blur-10 rounded-5  mt-5 mb-3 bg-white bg-opacity-10 border-0  text-white text-center"   
                   style="max-width: 19rem; outline: none;">
+                 <div class="load-response d-none">
+                        {% include "asistente/cp/load-response.html" %}
+                 </div>
             </div>
       </section>
       <script>
@@ -89,50 +93,44 @@
                   if (e.key === 'Enter') {
                         let content = asistente.value;
                         QuestionGemini(content);
+                        document.querySelector('.load-response').classList.toggle('d-none');
+                        asistente.classList.toggle('d-none');
                   }
             });
 
-            function FormaTextIA(texto) {
-                              const lineas = texto.split('\n');
-                              let resultado = '';
-                              let listaAbierta = false;
-
-                              lineas.forEach(linea => {
-                                    // Si es un encabezado (por ejemplo, "**Título:**")
-                              if (linea.startsWith('**') && linea.endsWith(':**')) {
-                                          resultado += ` <span> <h4>
-                                                ${linea.replace(/\*\*(.*?)\*\*/g, '$1').replace(/:/g, '')}  
-                                                </h4> </span> `;
-                                    } 
-                                    // Si es una lista (empieza con "* ")
-                                    else if (linea.startsWith('* ')) {
-                                          if (!listaAbierta) {
-                                          resultado += '<ul>';
-                                          listaAbierta = true;
-                                          }
-                                          resultado += `<li>${linea.substring(2).replace(/\*\*(.*?)\*\*/g, '<strong></strong>')}</li>`;
-                                    } 
-                                    // Si es texto normal
-                                    else if (linea.trim() !== '') {
-                                          if (listaAbierta) {
-                                          resultado += '</ul>';
-                                          listaAbierta = false;
-                                          }
-                                          resultado += `<p>${linea.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</p>`;
-                                    }
-                              });
-
-                              // Cierra la lista si quedó abierta
-                              if (listaAbierta) {
-                                    resultado += '</ul>';
-                              }
-
-                              return resultado;
-
+            window.onload = function() {
+                  asistente.focus();
             }
-
-
-
+            function FormaTextIA(texto) {
+                  const lineas = texto.split('\n'); let resultado = ''; let listaAbierta = false;
+                  lineas.forEach(linea => {
+                  // Si es un encabezado (por ejemplo, "**Título:**")
+                  if (linea.startsWith('**') && linea.endsWith(':**')) {
+                              resultado += ` <span> <h4>
+                                    ${linea.replace(/\*\*(.*?)\*\*/g, '$1').replace(/:/g, '')}  
+                                    </h4> </span> `;
+                        } 
+                        // Si es una lista (empieza con "* ")
+                        else if (linea.startsWith('* ')) {
+                              if (!listaAbierta) {
+                              resultado += '<ul>';  listaAbierta = true;
+                              }
+                              resultado += `<li>${linea.substring(2).replace(/\*\*(.*?)\*\*/g, '<strong></strong>')}</li>`;
+                        } 
+                        // Si es texto normal
+                        else if (linea.trim() !== '') {
+                              if (listaAbierta) {
+                              resultado += '</ul>'; listaAbierta = false;
+                              }
+                              resultado += `<p>${linea.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</p>`;
+                        }
+                  });
+                  // Cierra la lista si quedó abierta
+                  if (listaAbierta) {
+                        resultado += '</ul>';
+                  }
+                  return resultado;
+            }
 
             function QuestionGemini(question) {
                   $.ajax({
@@ -142,10 +140,10 @@
                         success: function (data) {
                               document.querySelector('.your-response').innerHTML = data.your_question;
                               document.querySelector('.asistent-response').innerHTML = FormaTextIA(data.asistent_response) ;
+                              document.querySelector('.load-response').classList.toggle('d-none');
+                              asistente.classList.toggle('d-none');
+                              asistente.value = '';
                         },
-                        error: function (data) {
-
-                        }
                   }); 
             }
       </script>
