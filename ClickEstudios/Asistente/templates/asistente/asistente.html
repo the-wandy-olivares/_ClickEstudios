@@ -1,0 +1,79 @@
+{% extends "base/base.html" %}
+{% block content %}
+{% load humanize %}
+      <style>
+            .nav .asistente {
+                  color: #ffc107;
+                  font-weight: bolder;
+                  transform: scale(1.1);
+            }
+            .nav .asistente svg {
+                  color: #ffc107 !important;
+            }
+            .nav .asistente span {
+                  color: #ffc107;
+            }
+            .btn-atras {
+                  display: none;
+            }
+            .asistente-input {
+                  display: none;
+            }
+            #asistente-input-0 {
+            }
+            #asistente-input-0:focus {
+                  /* background-color: #ffc107 !important; */
+                  /* color: black !important; */
+            }
+      </style>
+      <section class="w-100 d-flex flex-wrap justify-content-center align-content-end vh-100 ">
+            <div style="max-width: 90%; height: 50vh;" class="w-100 text-white">
+                  <h5 class="your-response">
+                  </h5>
+                  <p class="asistent-response">
+
+                  </p>
+            </div>
+            <div class="w-100 d-flex flex-wrap justify-content-center align-content-center">
+                  <input type="text" name="" id="asistente-input-0" class="w-100 p-3  rounded-5  mt-5 mb-3 bg-white bg-opacity-10 border-0  text-white text-center"  value="Hi 👋, ¡Buenos dias!" 
+                  style="max-width: 19rem; outline: none;">
+            </div>
+      </section>
+      <script>
+            let asistente = document.getElementById('asistente-input-0');
+            // window.onload = function() {
+            //       setTimeout(() => {
+            //             asistente.value = "¿En qué puedo ayudarte?";
+            //       }, 2000);
+            //       setTimeout(() => {
+            //             asistente.value = "Puedes preguntarme lo que quieras";
+            //       }, 4000);
+            //       setTimeout(() => {
+            //             asistente.value = "";
+            //             asistente.focus();
+            //       }, 6000);
+            // }
+            asistente.addEventListener('keyup', function(e) {
+                  if (e.key === 'Enter') {
+                        let content = asistente.value;
+                        QuestionGemini(content);
+                  }
+            });
+
+            
+            function QuestionGemini(question) {
+                  $.ajax({
+                        url: '{% url "asistente:question_gemini" %}',
+                        data: {
+                        question: question,},
+                        success: function (data) {
+                              document.querySelector('.your-response').innerHTML = data.your_question;
+                              document.querySelector('.asistent-response').innerHTML = data.asistent_response;
+                        },
+                        error: function (data) {
+
+                        }
+                  }); 
+            }
+      </script>
+{% endblock  %}

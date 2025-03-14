@@ -39,7 +39,8 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
-    'Estudios.apps.EstudiosConfig',
+      
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,6 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'Estudios.apps.EstudiosConfig',
+    'Asistente.apps.AsistenteConfig',
 
 ]
 
