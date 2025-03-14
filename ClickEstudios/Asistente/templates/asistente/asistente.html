@@ -27,6 +27,9 @@
                   /* background-color: #ffc107 !important; */
                   /* color: black !important; */
             }
+            .your-response:first-letter {
+                  text-transform: uppercase; /* Capitaliza solo la primera letra */
+            }
             .asistent-response {
                   color: #fefefed3;
             }
@@ -65,6 +68,7 @@
                   display: flex; justify-content: center;
                   flex-wrap: wrap;
             }
+
             
             }
 
@@ -72,7 +76,7 @@
       <section class="w-100 d-flex flex-wrap justify-content-center align-content-center vh-100 ">
             <div style="max-width: 90%; height: 60vh;" class="w-100 text-white overflow-auto">
                   <!--Pregunta del usuario-->
-                  <h5 class="your-response text-capitalize">
+                  <h5 class="your-response">
                   </h5>
                   <!--Respuestas del asistente-->
                   <div class="asistent-response d-flex flex-wrap justify-content-start"> 
