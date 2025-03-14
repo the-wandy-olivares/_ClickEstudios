@@ -28,50 +28,63 @@
             .asistent-response {
                   color: #fefefed3;
             }
+            .asistent-response span{
+                  width: 100% !important;
+
+                  padding: 10px;
+            }
             .asistent-response h4{
                   color: #ffc107 !important;
                   font-weight: bolder;
-                  width: 100%;
-                  margin-top: 2rem;
+                  width: max-content;
+                  margin-top: 1rem;
+                  background-color: #191919;
+                  border-radius: 2rem;
+                  padding: 0.2rem 1rem;
+
             }
             .asistent-response strong {
                   color: #ffffff !important;
                   width: 100%;
             }
-            /* .asistent-response ul {
-                  color: rgb(255, 69, 69) !important;
+            .asistent-response ul {
+                  background-color: #252525;
+                  width: 100%;
+                  max-height: 10rem;
+                  overflow: auto;
+                  border-radius: 1.5rem;
+                  margin-bottom: 0.4rem;
+                  padding: 10px;
+
             }
             .asistent-response li {
-                  color: #42ef4e !important;
-            } */
+                  padding: 0px;
+                  margin: 0.4rem;
+
+            }
       </style>
       <section class="w-100 d-flex flex-wrap justify-content-center align-content-end vh-100 ">
-            <div style="max-width: 90%; height: 50vh;" class="w-100 text-white">
+            <div style="max-width: 90%; height: 50vh;" class="w-100 text-white overflow-auto">
                   <h5 class="your-response">
+                        Hi 👋, ¡Buenos dias!
                   </h5>
-                  <div class="asistent-response d-flex flex-wrap justify-content-start">
+                  <div class="asistent-response d-flex flex-wrap justify-content-start"> 
+                        <span><h4>Holaa</h4></span> <p>¿En qué puedo ayudarte?</p>
+                        <strong>Sabe que puedes hacer</strong> 
+                        <li>Un monoto de cosas</li>
+                        <ul>
+                              Si, muchas cosas
+                        </ul>
 
                   </div>
             </div>
             <div class="w-100 d-flex flex-wrap justify-content-center align-content-center">
-                  <input type="text" name="" id="asistente-input-0" class="w-100 p-3  rounded-5  mt-5 mb-3 bg-white bg-opacity-10 border-0  text-white text-center"  value="Hi 👋, ¡Buenos dias!" 
+                  <input type="text" name="" id="asistente-input-0" class="w-100 p-3 blur-10 rounded-5  mt-5 mb-3 bg-white bg-opacity-10 border-0  text-white text-center"  value="Hi 👋, ¡Buenos dias!" 
                   style="max-width: 19rem; outline: none;">
             </div>
       </section>
       <script>
             let asistente = document.getElementById('asistente-input-0');
-            // window.onload = function() {
-            //       setTimeout(() => {
-            //             asistente.value = "¿En qué puedo ayudarte?";
-            //       }, 2000);
-            //       setTimeout(() => {
-            //             asistente.value = "Puedes preguntarme lo que quieras";
-            //       }, 4000);
-            //       setTimeout(() => {
-            //             asistente.value = "";
-            //             asistente.focus();
-            //       }, 6000);
-            // }
             asistente.addEventListener('keyup', function(e) {
                   if (e.key === 'Enter') {
                         let content = asistente.value;
@@ -86,8 +99,10 @@
 
                               lineas.forEach(linea => {
                                     // Si es un encabezado (por ejemplo, "**Título:**")
-                                    if (linea.startsWith('**') && linea.endsWith(':**')) {
-                                          resultado += `<h4>${linea.replace(/\*\*(.*?)\*\*/g, '$1')}</h4>`;
+                              if (linea.startsWith('**') && linea.endsWith(':**')) {
+                                          resultado += ` <span> <h4>
+                                                ${linea.replace(/\*\*(.*?)\*\*/g, '$1').replace(/:/g, '')}  
+                                                </h4> </span> `;
                                     } 
                                     // Si es una lista (empieza con "* ")
                                     else if (linea.startsWith('* ')) {
@@ -95,7 +110,7 @@
                                           resultado += '<ul>';
                                           listaAbierta = true;
                                           }
-                                          resultado += `<li>${linea.substring(2).replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</li>`;
+                                          resultado += `<li>${linea.substring(2).replace(/\*\*(.*?)\*\*/g, '<strong></strong>')}</li>`;
                                     } 
                                     // Si es texto normal
                                     else if (linea.trim() !== '') {
@@ -115,14 +130,6 @@
                               return resultado;
 
             }
-
-        
-
-            
-            window.onload = function() {
-               document.querySelector('.asistent-response').innerHTML=    FormaTextIA('**Generación de texto:**  *  **Responder preguntas de manera informativa y completa,** incluso si son abiertas, desafiantes o extrañas.  * **Generar diferentes formatos de texto creativo** de textos como poemas, código, guiones, piezas musicales, correo electrónico, cartas, etc. Intentaré cumplir con todos tus requisitos.*  **Traducir idiomas.**   * **Resumir textos.**  *  **Escribir diferentes tipos de contenido,** como artículos, publicaciones de blog, historias, descripciones de productos, etc. **Otras habilidades:**   * **Generar ideas.**   * **Proporcionar información sobre una amplia gama de temas.**    * **Ayudar con tareas de investigación.**   *  **Resolver problemas.***   **Simular conversaciones.***   **Seguir tus instrucciones y completar tus peticiones cuidadosamente.**`;')
-            }
-
 
 
 
