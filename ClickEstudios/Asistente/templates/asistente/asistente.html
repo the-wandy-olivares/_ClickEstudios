@@ -46,7 +46,7 @@
                   width: 100%;
             }
             .asistent-response ul {
-                  background-color: #191919;
+                  background-color: #19191993;
                   width: 100%;
                   overflow: auto;
                   border-radius: 2rem;
@@ -76,19 +76,28 @@
       </style>
       <section data-aos="fade-up"  
            style="transition: 2s;"
-            class="w-100 d-flex flex-wrap justify-content-center align-content-center vh-100 ">
-            <div style="max-width: 90%; height: 60vh; " class="w-100 text-white overflow-auto">
+            class="w-100 d-flex flex-wrap justify-content-center pt-5 align-content-start vh-100 ">
+            <div style="max-width: 90%; height: 70vh;" class="w-100 text-white overflow-auto">
                   <!--Pregunta del usuario-->
-                  <h5 class="your-response">
-                  </h5>
+                  <div class="w-100 d-flex flex-wrap justify-content-start align-content-center">
+                        <span class="bg-white bg-opacity-10 rounded-circle  me-1">
+                              <img src="" id="img-profiles" width="50" height="50" alt="">
+                        </span>
+                        <h5 class="your-response mt-2 d-flex flex-wrap justify-content-start align-content-center">
+                              Asistente Click IA 
+                        </h5>
+                  </div>
                   <!--Respuestas del asistente-->
                   <div class="asistent-response d-flex flex-wrap justify-content-start"> 
+                         ¿En que puedo ayudarte?
                   </div>
             </div>
-            <div class="w-100 d-flex flex-wrap justify-content-center align-content-center">
-                    {% include "asistente/cp/input.html" %}         
-            </div>
       </section>
+      <div
+            style="margin-bottom: 5rem;"
+            class="w-100 d-flex flex-wrap justify-content-center  align-content-center position-fixed bottom-0">
+              {% include "asistente/cp/input.html" %}         
+      </div>
       <script>
             let asistente = document.getElementById('asistente-input-0');
             asistente.addEventListener('keyup', function(e) {
@@ -107,7 +116,7 @@
                         document.querySelectorAll('.darkBorderBg').forEach(element => {
                               element.classList.remove('d-none');
                         });
-                    }, 2500);
+                    }, 2000);
             }
             function FormaTextIA(texto) {
                   const lineas = texto.split('\n'); let resultado = ''; let listaAbierta = false;
@@ -154,5 +163,19 @@
                         },
                   }); 
             }
+      document.addEventListener('DOMContentLoaded', function() {
+            GetLogoAsistente();
+      });
+
+      let GetLogoAsistente = () => {
+            $.ajax({
+                url: '/ajax/get-estudios/',
+                method: 'GET',
+                success: function(D) {
+                  document.querySelector('#img-profiles').src = D.img;
+                },
+            });
+        };
       </script>
+
 {% endblock  %}
