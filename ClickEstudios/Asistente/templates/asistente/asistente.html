@@ -75,7 +75,7 @@
 
       </style>
       <section data-aos="fade-up"  
-           style="transition: 2s !important;"
+           style="transition: 2s;"
             class="w-100 d-flex flex-wrap justify-content-center align-content-center vh-100 ">
             <div style="max-width: 90%; height: 60vh; " class="w-100 text-white overflow-auto">
                   <!--Pregunta del usuario-->
@@ -104,7 +104,10 @@
             window.onload = function() {
                     setTimeout(function() {
                               asistente.focus();
-                    }, 1500);
+                        document.querySelectorAll('.darkBorderBg').forEach(element => {
+                              element.classList.remove('d-none');
+                        });
+                    }, 2500);
             }
             function FormaTextIA(texto) {
                   const lineas = texto.split('\n'); let resultado = ''; let listaAbierta = false;
