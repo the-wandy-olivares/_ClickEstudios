@@ -48,7 +48,7 @@
                   margin-left: 1rem;
                   text-transform: capitalize;
             }
-            .result-client a:hover {
+            .result-client .result-client:hover {
                   color: #ffc107 !important;
                   font-weight: bold;
             }
@@ -69,6 +69,7 @@
                         font-size: 16px !important;
                   }
                   .div-filter {
+                        height: 3rem;
                         text-align: center;
                         justify-content: center;
                   }
@@ -83,23 +84,21 @@
                         display: flex;
                         justify-content: center;
                   }
-                  .div-dropdown {
-
-                  }
       }
-
+      .btn-open-nav {
+            border-radius: 0px !important;
+      }
       </style>
 
 
 {% if box_is_open  %}
-      <button onclick="AternaSection_Citas()" class="position-fixed blur-10 bottom-0 change-section-citas   bg-white bg-opacity-10 border-0 text-white p-2 rounded-5 "
-            style="width: 7rem; font-weight: bold;
-            left: 50%;
-            display: none;
-            z-index: 1; margin-bottom: 5rem;
-            translate: -50%; " >
-            Cambiar
-      </button>
+      <div class="w-100 div-filter-reservers d-flex flex-wrap  justify-content-start p-2  position-fixed bottom-0 z-3  blur-20 rounded-top-5 " style="margin-bottom: 4.5rem; max-width: 420px;">
+            <!-- Resultados -->
+            <div style='margin-top: 0px; width: 30rem;  border-radius: 1.5rem;'  class=" results-searching text-white-50 w-100  bg-black bg-opacity-25  d-flex flex-wrap">
+            </div>     
+            {% include "pos/cp/filter-reservers.html" %} 
+      </div>
+      
       <section data-aos="fade-in" style="transition: 1s;" class="overflow-auto overflow-x-hidden container-pos w-100 bg-transparent p-2 ">
                   <!-- Seleccionar servicios -->
                   <div class="div-dropdown text-white p-3 rounded-5 d-none position-absolute top-0 start-0 mt-5 z blur-100 m-2  overflow-scroll overflow-x-hidden"
@@ -130,10 +129,9 @@
                   <span class="reloj show-reloj font-delius position-absolute end-0 me-5 z-3 mt-3 d-flex justify-content-center align-content-center flex-wrap text-white"  
                   style="font-size: 18px;" ></span>
 
-            <div data-aos="fade-down" style="transition: 1s;" class=' div-filter d-flex   blur-5  position-sticky z-2 top-0'>
-                  {% include "service/filter-services.html" %}
-      
-            </div>
+                  <div data-aos="fade-down" style="transition: 1s;" class=' div-filter d-flex   blur-5  position-sticky z-2 top-0'>
+                        {% include "service/filter-services.html" %}
+                  </div>
 
                   <!-- Service select -->
                   {% if service_select %}
@@ -170,27 +168,13 @@
                   </section>
      
                   <!--Seccion de citas confimadas-->
-                  <section class="section-citas-confirm  ">
-                        <div style="max-width: 920px; cursor: pointer;  border: 0px solid rgb(47, 47, 47); border-radius: 2rem; ;"
-                                    class='w-100 text-white m-2 shadow-sm  d-flex justify-content-start mt-1 align-content-center flex-wrap position-relative '>
-                              <h6 class=" text-start m-0 mt-5" style="font-weight: bold; font-size: 18px; font-style: italic;">
-                                    Confirmadas
-                              </h6>
-                              <p class="parrafo-p m-3  ms-0 w-100 mt-0 mb-0  p-2 pb-0 ps-0 pt-0 text-white-50" style="text-align: justify; line-height: 14px;">
-                                    Estas citas ya han sido confirmadas por el cliente, las cuales ya se han realizado un abono o completado el pago
-                              </p>
-                        </div>
+                  <section class="section-citas-confirm  mt-3">
                         {% if sales_reservers %}
-                        <div class="w-100 div-filter-reservers d-flex ">
-                              {% include "pos/cp/filter-reservers.html" %} 
-                        </div>
-                        <div class=' d-flex overflow-auto  position-relative  sales-reservers ' >
+                        <hr class="text-white-50 me-5 ms-5">
+                        <div class=' d-flex  overflow-auto  position-relative  sales-reservers ' >
                               {% for s in sales_reservers %}
                                     {% include "sale/sale.html" %}
                               {% endfor %}
-                              <!-- Resultados -->
-                              <div style='margin-top: 0px; width: 30rem;  border-radius: 1.5rem;'  class=" results-searching text-white-50  position-absolute top-0 z-3 bg-black bg-opacity-25 blur-20 d-flex flex-wrap">
-                              </div>     
                         </div>
                         {% else %} 
                         <div class="w-100 ">
@@ -269,7 +253,8 @@
                         resultsContainer.innerHTML = ''; // Limpia resultados anteriores
                         if (response.length > 0) { // response es directamente un array en el backend
                         response.forEach(item => {
-                              resultsContainer.innerHTML += `<div class='mt-0 ms-2 result-client' ><a href="/estudios/${item.id}">--> ${item.name_client}</a></div>`;
+                              resultsContainer.innerHTML += `<a href="/estudios/${item.id}" class='m-1 result-client' 
+                              style='width: max-content;'><div class='mt-0 bg-white bg-opacity-10  p-2 rounded-5  result-client' >--> ${item.name_client}</div></a>`;
                             });
                         } else {
                             resultsContainer.innerHTML = '<p class="p-1 w-100 text-white-50 text-center mt-2" >No se encontraron resultados</p>';
@@ -297,7 +282,6 @@
       let section_citas_confirm = document.querySelector('.section-citas-confirm')
 
       function AternaSection_Citas(){
-            console.log('Alternando..')
             if(section_citas_no_confirm.classList.contains('d-none')) {
                   section_citas_confirm.classList.add('d-none')
                   section_citas_no_confirm.classList.remove('d-none')
