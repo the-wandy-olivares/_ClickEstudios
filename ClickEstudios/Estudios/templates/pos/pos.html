@@ -101,20 +101,20 @@
       
       <section data-aos="fade-in" style="transition: 1s;" class="overflow-auto overflow-x-hidden container-pos w-100 bg-transparent p-2 ">
                   <!-- Seleccionar servicios -->
-                  <div class="div-dropdown text-white p-3 rounded-5 d-none position-absolute top-0 start-0 mt-5 z blur-100 m-2  overflow-scroll overflow-x-hidden"
-                        style="z-index: 100; max-height: 70vh; box-shadow: 0px 0px 20px 4px  #101010  ; ">
+                  <div class="div-dropdown text-white p-3 rounded-5 d-none position-absolute top-0 start-0  z blur-100 m-2  overflow-scroll overflow-x-hidden"
+                        style="z-index: 100; max-height: 70vh; box-shadow: 0px 0px 20px 4px  #101010  ; margin-top: 5rem !important;  max-width: 30rem;">
                         <div class="dropdown-content w-100 d-flex flex-wrap">
-                              <strong class="dropdown-title">
-                                     Seleciona un servicio
+                              <strong class="dropdown-title w-100 text-center ">
+                                     Seleciona un servicio 
                               </strong>
                               <p class="dropdown-description w-100 text-white-50" 
                                     style="line-height: 16px;">
                                     Al selecionar un servicio podras ver los todos los planes que este ofrece 
                               </p>
                               {% for s in service_choices %}
-                                    <li class="dropdown-item  " style="width: max-content; min-width: 320px;">
+                                    <li class="dropdown-item  m-1  " style="width: max-content; min-width: 320px;">
                                           <a href="{% url 'estudios:service-detail' s.id %}">
-                                                <img src="{{s.img.url}}" width="60" height="75" class="dropdown-image object-fit-cover rounded-3">
+                                                <img src="{{s.img.url}}" width="60" height="75" class="dropdown-image object-fit-cover rounded-3 me-2">
                                                 {{ s.name }}
                                           </a>
                                     </li>

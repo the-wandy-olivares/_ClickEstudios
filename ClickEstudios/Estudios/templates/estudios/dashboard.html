@@ -31,8 +31,10 @@
 
             }
       </style>
-      <img src=""  class="img-dasboard mb-5 ms-3 position-absolute top-0 start-0 " width="120" height="120" alt="" style="display: none; ">
-      <div class="  d-flex flex-wrap m-2 mt-3 align-content-start w-100 vh-100">
+
+      <div data-aos="fade-in"
+            style="transition: 1s;"
+            class="  d-flex flex-wrap m-2 mt-3 align-content-start w-100 vh-100">
             <div class=" w-100 d-flex flex-wrap justify-content-end mb-2 ">
                   <div class="w-100 d-flex flex-wrap justify-content-end">
                         <select 
@@ -58,21 +60,4 @@
             {% include "estudios/cp/grafic-circle.html" %}
             {% include "estudios/cp/grafic-wave.html" %}
       </div>
-      <script>
-      document.addEventListener('DOMContentLoaded', function() {
-            GetLogoDashboar();
-            });
-
-      let GetLogoDashboar = () => {
-            $.ajax({
-                url: '/ajax/get-estudios/',
-                method: 'GET',
-                success: function(D) {
-                  document.querySelector('.img-dasboard').src = D.img;
-                },
-            });
-        };
-
-      </script>
-
 {% endblock  %}
