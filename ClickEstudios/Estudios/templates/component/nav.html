@@ -59,6 +59,9 @@
             .nav .services, .admin {
                   margin-top: 2.5rem !important;
             }
+            #asistente-input-float {
+                  display: none;
+            }
       }
 
       @media (max-width: 600px) { 
@@ -95,6 +98,9 @@
                   background-color: #1919197d;
                   display: flex; justify-content: center;
                   align-items: center; flex-wrap: wrap;
+            }
+            #asistente-input-float {
+                  display: block;
             }
       }
 </style>
@@ -230,8 +236,9 @@
             </a>
       {% endif %}
       {% endif %}
-      <input type="text" name="" id="" class="w-100 asistente-input-1 p-3  rounded-5   mt-5 mb-0 bg-black bg-opacity-25 border-0  text-white text-center" readonly placeholder="Hi 👋, ¡Buenos dias!" 
-      style="max-width: 19rem; outline: none;">
+
+      <input type="text" name="" id="asistente-input-float" class="w-100  p-3  rounded-5   mt-5 mb-0 bg-black bg-opacity-25 border-0  text-white text-center" readonly placeholder="Hi 👋, ¡Buenos dias!" 
+      style="max-width: 19rem; outline: none; display: nonse;">
 
 </div>
 
