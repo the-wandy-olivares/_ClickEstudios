@@ -9,6 +9,7 @@ from django.conf.urls import handler404
 
 urlpatterns = [
     path('' , include('Estudios.urls')),
+    path('asistente/', include('Asistente.urls')),
     path('admin/', admin.site.urls),
 ]
 

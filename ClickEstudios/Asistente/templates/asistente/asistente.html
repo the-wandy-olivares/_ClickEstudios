@@ -1,0 +1,158 @@
+{% extends "base/base.html" %}
+{% block content %}
+{% load humanize %}
+      <style>
+            .nav .asistente {
+                  color: #ffc107;
+                  font-weight: bolder;
+                  transform: scale(1.1);
+            }
+            .nav .asistente svg {
+                  color: #ffc107 !important;
+            }
+            .nav .asistente span {
+                  color: #ffc107;
+            }
+            .btn-atras {
+                  display: none;
+            }
+            .asistente-input {
+                  display: none;
+            }
+            #asistente-input-0::placeholder {
+                  color: #ffffffb7 !important;
+                  font-weight: bolder;
+            }
+            #asistente-input-0:focus {
+                  /* background-color: #ffc107 !important; */
+                  /* color: black !important; */
+            }
+            .your-response:first-letter {
+                  text-transform: uppercase; /* Capitaliza solo la primera letra */
+            }
+            .asistent-response {
+                  color: #fefefed3;
+            }
+            .asistent-response span{
+                  width: 100% !important;
+            }
+            .asistent-response h4{
+                  color: #ffc107 !important;
+                  font-weight: bolder;
+                  width: max-content;
+                  margin-top: 1rem;
+                  background-color: #191919;
+                  border-radius: 2rem;
+                  padding: 0.2rem 1rem;
+            }
+            .asistent-response strong {
+                  color: #ffffff !important;
+                  width: 100%;
+            }
+            .asistent-response ul {
+                  background-color: #191919;
+                  width: 100%;
+                  overflow: auto;
+                  border-radius: 2rem;
+                  margin-bottom: 0.4rem;
+                  padding: 30px;
+            }
+            .asistent-response li {
+                  padding: 0px;
+                  margin: 0.4rem;
+            }
+            /* Adaptando estylos  a movile */
+            @media (max-width: 600px) { 
+                  .asistent-response span{
+                  width: 100% !important;
+                  display: flex; justify-content: center;
+                  flex-wrap: wrap;
+            }
+
+            
+            }
+
+      </style>
+      <section class="w-100 d-flex flex-wrap justify-content-center align-content-center vh-100 ">
+            <div style="max-width: 90%; height: 60vh;" class="w-100 text-white overflow-auto">
+                  <!--Pregunta del usuario-->
+                  <h5 class="your-response">
+                  </h5>
+                  <!--Respuestas del asistente-->
+                  <div class="asistent-response d-flex flex-wrap justify-content-start"> 
+                  </div>
+            </div>
+            <div class="w-100 d-flex flex-wrap justify-content-center align-content-center">
+                    <textarea id="asistente-input-0" maxlength="120" placeholder="Hi 👋, ¿en que puedo ayudarte?" 
+                    class="w-100 p-3 blur-10 rounded-5 m-3 mt-5 mb-3 border-0 text-white text-center" 
+                    style="max-width: 25rem; max-height: 9rem;
+                    background-color: #191919;
+                    min-height: 3rem; outline: none;" rows="2"></textarea>
+                 <div class="load-response d-none">
+                        {% include "asistente/cp/load-response.html" %}
+                 </div>
+            </div>
+      </section>
+      <script>
+            let asistente = document.getElementById('asistente-input-0');
+            asistente.addEventListener('keyup', function(e) {
+                  if (e.key === 'Enter') {
+                              let content = asistente.value;
+                              if(content.length > 4){
+                                    QuestionGemini(content);
+                                    document.querySelector('.load-response').classList.toggle('d-none');
+                                    asistente.classList.toggle('d-none');
+                              }
+                  }
+            });
+
+            window.onload = function() {
+                  asistente.focus();
+            }
+            function FormaTextIA(texto) {
+                  const lineas = texto.split('\n'); let resultado = ''; let listaAbierta = false;
+                  lineas.forEach(linea => {
+                  // Si es un encabezado (por ejemplo, "**Título:**")
+                  if (linea.startsWith('**') && linea.endsWith(':**')) {
+                              resultado += ` <span> <h4>
+                                    ${linea.replace(/\*\*(.*?)\*\*/g, '$1').replace(/:/g, '')}  
+                                    </h4> </span> `;
+                        } 
+                        // Si es una lista (empieza con "* ")
+                        else if (linea.startsWith('* ')) {
+                              if (!listaAbierta) {
+                              resultado += '<ul>';  listaAbierta = true;
+                              }
+                              resultado += `<li>${linea.substring(2).replace(/\*\*(.*?)\*\*/g, '<strong></strong>')}</li>`;
+                        } 
+                        // Si es texto normal
+                        else if (linea.trim() !== '') {
+                              if (listaAbierta) {
+                              resultado += '</ul>'; listaAbierta = false;
+                              }
+                              resultado += `<p>${linea.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</p>`;
+                        }
+                  });
+                  // Cierra la lista si quedó abierta
+                  if (listaAbierta) {
+                        resultado += '</ul>';
+                  }
+                  return resultado;
+            }
+
+            function QuestionGemini(question) {
+                  $.ajax({
+                        url: '{% url "asistente:question_gemini" %}',
+                        data: {
+                        question: question,},
+                        success: function (data) {
+                              document.querySelector('.your-response').innerHTML = data.your_question;
+                              document.querySelector('.asistent-response').innerHTML = FormaTextIA(data.asistent_response) ;
+                              document.querySelector('.load-response').classList.toggle('d-none');
+                              asistente.classList.toggle('d-none');
+                              asistente.value = '';
+                        },
+                  }); 
+            }
+      </script>
+{% endblock  %}
