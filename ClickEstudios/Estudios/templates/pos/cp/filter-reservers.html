@@ -17,7 +17,12 @@
       #input-s::placeholder {
             color: rgba(255, 255, 255, 0.528) !important;
       }
-
+      @media (min-width: 600px) {
+            .div-filter-reservers {
+                  max-width: 15rem;
+                  margin-bottom: 0.5rem !important; 
+            }
+      }
 </style>
 
 </style>
@@ -50,11 +55,10 @@
                   </option>
             </select>
       </form>
-      <input type="text" class="ps-3 ms-1 search bg-white bg-opacity-10 text-center rounded-5 border-0 p-2 me-2 w-100" placeholder="    ({{sales_reservers|length}})  Buscardor " 
+      <input type="text" class="ps-3 ms-1 search bg-white bg-opacity-10 text-center rounded-5 border-0 p-2 me-2 w-100" placeholder=" ({{sales_reservers|length}})  Buscardor " 
             style="max-width: 17rem; " id="input-s">        
             <button onclick="AternaSection_Citas()" class=" change-section-citas   border-0 text-white bg-white bg-opacity-10 p-2 pe-4 ps-4 rounded-5 "
             style="width: 7rem; font-weight: bold;
-      
             display: none;
             z-index: 1; 
              " >
