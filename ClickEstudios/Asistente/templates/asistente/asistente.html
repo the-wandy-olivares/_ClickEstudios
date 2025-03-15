@@ -22,14 +22,7 @@
             .asistente-input {
                   display: none;
             }
-            #asistente-input-0::placeholder {
-                  color: #ffffffb7 !important;
-                  font-weight: bolder;
-            }
-            #asistente-input-0:focus {
-                  /* background-color: #ffc107 !important; */
-                  /* color: black !important; */
-            }
+
             .your-response:first-letter {
                   text-transform: uppercase; /* Capitaliza solo la primera letra */
             }
@@ -81,8 +74,10 @@
             }
 
       </style>
-      <section class="w-100 d-flex flex-wrap justify-content-center align-content-center vh-100 ">
-            <div style="max-width: 90%; height: 60vh;" class="w-100 text-white overflow-auto">
+      <section data-aos="fade-up"  
+           style="transition: 2s !important;"
+            class="w-100 d-flex flex-wrap justify-content-center align-content-center vh-100 ">
+            <div style="max-width: 90%; height: 60vh; " class="w-100 text-white overflow-auto">
                   <!--Pregunta del usuario-->
                   <h5 class="your-response">
                   </h5>
@@ -91,15 +86,7 @@
                   </div>
             </div>
             <div class="w-100 d-flex flex-wrap justify-content-center align-content-center">
-                    <input id="asistente-input-0" maxlength="120" 
-                    placeholder="¿? " 
-                    class="w-100 p-3 blur-10 rounded-5 m-3 mt-2 mb-5 border-0 text-white text-center" 
-                    style="max-width: 25rem; 
-                    background-color: #191919;
-                    height: 6rem; outline: none;" >
-                 <div class="load-response d-none">
-                        {% include "asistente/cp/load-response.html" %}
-                 </div>
+                    {% include "asistente/cp/input.html" %}         
             </div>
       </section>
       <script>
@@ -109,14 +96,15 @@
                               let content = asistente.value;
                               if(content.length > 4){
                                     QuestionGemini(content);
-                                    document.querySelector('.load-response').classList.toggle('d-none');
-                                    asistente.classList.toggle('d-none');
+                                    asistente.value = '';
                               }
                   }
             });
 
             window.onload = function() {
-                  asistente.focus();
+                    setTimeout(function() {
+                              asistente.focus();
+                    }, 1500);
             }
             function FormaTextIA(texto) {
                   const lineas = texto.split('\n'); let resultado = ''; let listaAbierta = false;
@@ -157,9 +145,9 @@
                         success: function (data) {
                               document.querySelector('.your-response').innerHTML = data.your_question;
                               document.querySelector('.asistent-response').innerHTML = FormaTextIA(data.asistent_response) ;
-                              document.querySelector('.load-response').classList.toggle('d-none');
-                              asistente.classList.toggle('d-none');
+
                               asistente.value = '';
+                              asistente.blur();
                         },
                   }); 
             }
