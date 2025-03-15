@@ -86,7 +86,7 @@ def QuestionGemini(request):
             contents = f"""
                   Sistema: ClickEstudios
                   Contexto: Click, Asistente de un estudio y das respuestas puntuales.
-                  Objetivo: Proporcionar información sobre planes, servicios, ventas.
+                  Objetivo: Proporcionar información detallada sobre planes, servicios, ventas, comparaciones y de mas.
                   Pregunta:  {question}
                   """,)
             
