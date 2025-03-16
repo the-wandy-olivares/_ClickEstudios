@@ -22,8 +22,8 @@
       }
       .btn-open-nav button svg {
             margin-top: 0.4rem;
-            width: 25px !important;
-            height: 25px;
+            width: 30px !important;
+            height: 30px;
       }
 
       @media (min-width: 600px) {
@@ -37,14 +37,16 @@
     
 
 </style>
-<div class="position-fixed btn-open-nav bottom-0 d-flex flex-wrap   justify-content-center w-100  p-5 end-0   text-black pb-2 ">
-      <section class="blur-50 rounded-5">
+<div  class="position-fixed btn-open-nav bottom-0 d-flex flex-wrap   justify-content-center w-100  end-0  text-black  ">
+      <section class="blur-100 rounded-5 m-1 pt-2  mb-1  pb-2">
+            {% if box_is_open  %}     
             <div style='margin-top: 0px; max-width: 40rem; margin-bottom: 8rem;   border-radius: 0.5rem; '  class="results-searching text-white-50  position-fixed bottom-0 w-100  bg-black  d-flex flex-wrap justify-content-center" >
                   <!-- Resultados -->
             </div>     
             <div class="w-100 div-filter-reservers  flex-wrap  justify-content-start mb-2 " style="display: none ;">
                   {% include "pos/cp/filter-reservers.html" %} 
             </div>
+            {% endif %}
       
             <section class="d-flex list-btn-mobile">
                   <button class="button btn-dashboard" 
