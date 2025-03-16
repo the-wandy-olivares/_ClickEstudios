@@ -1,4 +1,4 @@
-<!-- From Uiverse.io by Lakshay-art --> 
+
 <div class="grid"></div>
 <div id="poda" class="rounded-5 ">
   <div class="glow "></div>
@@ -334,5 +334,18 @@
   position: relative;
 }
 
-
 </style>
+
+<script>
+
+      function FocusAsistentInput() {
+            asistente = document.getElementById('asistente-input-0');
+            asistente.value = '';
+            if (window.innerWidth > 700) {
+                  asistente.focus();
+            } else {
+                  asistente.blur();
+            }
+      }
+
+</script>

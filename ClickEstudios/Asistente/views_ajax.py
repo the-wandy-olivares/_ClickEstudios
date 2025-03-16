@@ -40,12 +40,13 @@ def CleanQuestion(question):
                         'email_client': s.email_client if s.email_client else 'N/A',
                         'phone_client': s.phone_client if s.phone_client else 'N/A',
                         'dia_de_la_cita': s.date_choice,
+                        'venta_registrada': s.date,
                         'monto_faltante': f"{s.debit_mount:,}",
                         'monto_pagado': f"{s.mount:,}",
                   })
             return f'{sales_data}'
       
-      elif 'citas' in question.lower():
+      elif 'cita'  in question.lower():
             citas = Sale.objects.filter(is_reserve=True, finalize=False).order_by('-id')[:50]
             citas_data = []
             for s in citas:
@@ -55,11 +56,12 @@ def CleanQuestion(question):
                         'name_client': s.name_client if s.name_client else 'N/A',
                         'email_client': s.email_client if s.email_client else 'N/A',
                         'phone_client': s.phone_client if s.phone_client else 'N/A',
-                        'dia_de_la_cita': s.date_choice,
+                        'fecha_de_la_cita': s.date_choice,
+                        'hora_de_la_cita': s.time,
                         'monto_faltante': f"{s.debit_mount:,}",
                         'monto_pagado': f"{s.mount:,}",
                   })
-            return citas_data 
+            return citas_data if citas_data else 'No hay citas pendientes'
       
       elif 'plan' in question.lower() :
             plan_data = []
@@ -71,7 +73,7 @@ def CleanQuestion(question):
                         'price_plan': f"{p.price:,}",
                         'caracteristicas': [c.name for c in p.caracteristicas.all()],
                   })
-            return f'{plan_data}'
+            return plan_data if plan_data else 'No encuentro ese plan en mi lista'
       
       elif 'serv' in question.lower() :
             service_data = []
@@ -80,10 +82,10 @@ def CleanQuestion(question):
                   service_data.append({
                         'name': s.name if s.name else 'N/A',
                   })
-            return f'{service_data}'
+            return service_data if service_data else 'No encuentro ese servicio en mi lista'
 
       else:
-            return False
+            return 'Solo puedo responder preguntas sobre ventas, citas, planes y servicios'
       
       
 
@@ -92,23 +94,16 @@ def QuestionGemini(request):
       data = {'data': False}
       if your_question:
             client = genai.Client(api_key="AIzaSyAlRiEbU6bhninS9aZvaO5MfB8jWyzfjw0")
-            if CleanQuestion(your_question)  != False:
-                  question =   CleanQuestion(your_question) 
-            else:
-                  question = your_question
-            
-            # asisten_response = CleanQuestion(your_question)
-            # print(CleanQuestion(your_question))
-
             asisten_response = client.models.generate_content(
             model="gemini-2.0-flash",
             contents = f"""
-                  Sistema: ClickEstudios
-                  Contexto: Click, Asistente de un estudio y das respuestas puntuales.
-                  Objetivo: Proporcionar información detallada sobre planes, servicios, ventas, citas comparaciones y de mas.
-                  Fecha de hoy: {datetime.now().strftime('%d/%m/%Y')}
-                  Pregunta:  {question}
-                  """,)
+                    Sistema: ClickEstudios
+                    Contexto: ClickEstudios es un asistente virtual para la gestión de un estudio fotográfico, proporcionando respuestas precisas y detalladas.
+                    Objetivo: Proporcionar información específica y actualizada sobre planes, servicios, ventas, citas y otros aspectos relacionados con la gestión del estudio.
+                    Fecha actual: {datetime.now().strftime('%d/%m/%Y')}
+                    Pregunta del usuario: {your_question}
+                    Información adicional: {CleanQuestion(your_question)}
+                    """,)
             
             if your_question:
                   data = {

@@ -61,16 +61,13 @@
             /* Adaptando estylos  a movile */
             @media (max-width: 600px) { 
                   .asistent-response span{
-                  width: 100% !important;
-                  display: flex; justify-content: center;
-                  flex-wrap: wrap;
-
+                        width: 100% !important;
+                        display: flex; justify-content: center;
+                        flex-wrap: wrap;
+                  }
                   .asistente-input-1 {
                         display: block !important;
                   }
-            }
-
-            
             }
 
       </style>
@@ -83,12 +80,12 @@
                         <span class="bg-white bg-opacity-10 rounded-circle  me-1">
                               <img src="" id="img-profiles" width="50" height="50" alt="">
                         </span>
-                        <h5 class="your-response mt-2 d-flex flex-wrap justify-content-start align-content-center">
+                        <h3 class="your-response mt-2 d-flex flex-wrap justify-content-start align-content-center">
                               Asistente Click IA 
-                        </h5>
+                        </h3>
                   </div>
                   <!--Respuestas del asistente-->
-                  <div class="asistent-response d-flex flex-wrap justify-content-start"> 
+                  <div class="asistent-response mt-3 d-flex flex-wrap justify-content-start"> 
                          ¿En que puedo ayudarte?
                   </div>
             </div>
@@ -112,12 +109,13 @@
 
             window.onload = function() {
                     setTimeout(function() {
-                              asistente.focus();
-                        document.querySelectorAll('.darkBorderBg').forEach(element => {
+                              FocusAsistentInput();
+                              document.querySelectorAll('.darkBorderBg').forEach(element => {
                               element.classList.remove('d-none');
                         });
                     }, 2000);
             }
+
             function FormaTextIA(texto) {
                   const lineas = texto.split('\n'); let resultado = ''; let listaAbierta = false;
                   lineas.forEach(linea => {
@@ -157,9 +155,7 @@
                         success: function (data) {
                               document.querySelector('.your-response').innerHTML = data.your_question;
                               document.querySelector('.asistent-response').innerHTML = FormaTextIA(data.asistent_response) ;
-
-                              asistente.value = '';
-                              asistente.blur();
+                              FocusAsistentInput();
                         },
                   }); 
             }
