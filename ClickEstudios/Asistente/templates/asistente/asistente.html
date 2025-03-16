@@ -61,16 +61,13 @@
             /* Adaptando estylos  a movile */
             @media (max-width: 600px) { 
                   .asistent-response span{
-                  width: 100% !important;
-                  display: flex; justify-content: center;
-                  flex-wrap: wrap;
-
+                        width: 100% !important;
+                        display: flex; justify-content: center;
+                        flex-wrap: wrap;
+                  }
                   .asistente-input-1 {
                         display: block !important;
                   }
-            }
-
-            
             }
 
       </style>
@@ -112,12 +109,13 @@
 
             window.onload = function() {
                     setTimeout(function() {
-                              asistente.focus();
-                        document.querySelectorAll('.darkBorderBg').forEach(element => {
+                              FocusAsistentInput();
+                              document.querySelectorAll('.darkBorderBg').forEach(element => {
                               element.classList.remove('d-none');
                         });
                     }, 2000);
             }
+            
             function FormaTextIA(texto) {
                   const lineas = texto.split('\n'); let resultado = ''; let listaAbierta = false;
                   lineas.forEach(linea => {
@@ -157,9 +155,7 @@
                         success: function (data) {
                               document.querySelector('.your-response').innerHTML = data.your_question;
                               document.querySelector('.asistent-response').innerHTML = FormaTextIA(data.asistent_response) ;
-
-                              asistente.value = '';
-                              asistente.blur();
+                              FocusAsistentInput();
                         },
                   }); 
             }
