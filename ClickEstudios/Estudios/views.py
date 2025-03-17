@@ -1490,6 +1490,7 @@ class OfertasService(TemplateView):
         context['service'] = models.Service.objects.get(id=self.kwargs.get('pk'))
         context['plans'] = models.Plan.objects.filter(service__id=self.kwargs.get('pk'))
         context['admin'] = True
+        context['0'] = 0
         return context
     
 

@@ -49,14 +49,14 @@
             </div>
       </form>
       <div class="w-100 d-flex justify-content-start position-fixed mb-4 bottom-0">
-            <button onclick="Togle()" class="me-3 mt-3 text-black bg-white bg-opacity-25 rounded-circle d-flex justify-content-center flex-wrap align-content-center border-0 change-view "
+            <button onclick="Togle()" class="me-0 mt-3 text-black bg-white bg-opacity-25 rounded-circle d-flex justify-content-center flex-wrap align-content-center border-0 change-view "
                   style="width: 2rem; height: 2rem; ">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                        style="color: #101010;"
-                        class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
-                        <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
-                      </svg> 
+                  <i class="bi bi-arrow-right-circle-fill"
+                         style="font-size: 25px; color: #101010;"></i>
             </button>
+            <span onclick="Togle()" class="btn btn-span border-0 bg-transparent mt-3 text-white" style="font-weight: bold;">
+                  Administrar ofertas
+            </span>
       </div>
 </div>
 <script>
@@ -67,6 +67,11 @@
             Select_Plans.classList.toggle('d-none')
             Aplicar_Offer.classList.toggle('d-none')
             document.querySelector('.change-view').classList.toggle('rotate-90')
+            if (Select_Plans.classList.contains('d-none')) {
+                  document.querySelector('.btn-span').textContent = 'Administrar ofertas'
+            } else {
+                  document.querySelector('.btn-span').textContent = 'Aplicar ofertas'
+            }
       }
 
       function OpenOffer(){
