@@ -1,13 +1,15 @@
 {% load humanize %}
 
 
-            <div class='p-0 d-flex overflow-hidden' style='
-            {% if plan.img_back %}
-                  background-image: url("{{plan.img_back.url}}"); 
-            {% endif %}
-
-            background-size: cover; background-repeat: no-repeat; width: 320px; height: 430px; border-radius: 2.6rem;'>
-                  <div style='
+            <div class='p-0 m-1 d-flex overflow-hidden' 
+            
+            style='
+            background-size: cover; background-repeat: no-repeat; 
+            width: 320px; height: 435px; border-radius: 2.6rem;
+            {% if plan.img_back %} 
+                  background-image: url({{plan.img_back.url}}); 
+            {% endif %}'>
+            <div style='
                         -webkit-backdrop-filter: blur(80px) !important;
                         backdrop-filter: blur(80px) !important;' class='h-100 w-100 bg-black bg-opacity-50 m-0 p-3 pt-2 text-white'>
                         <div class=" m-0 " >
@@ -39,7 +41,7 @@
                                     {% endfor %}
                               {% endif %}
                         </span>
-                        <div style='height: 12.7rem;' class='overflow-auto '>   
+                        <div style='height: 12.2rem;' class='overflow-auto '>   
                                 {% if plan.caracteristicas.all %}
                                        {% for p in  plan.caracteristicas.all %}
                                           <li class="" style="font-size: 14px; list-style:circle;">
@@ -50,9 +52,16 @@
                         </div>
       
                         <!-- Butones de elcciones-->
-                         <div class="d-flex justify-content-center flex-wrap">
-
-                         </div>
+                         {% if admin %}
+                              <div class="d-flex justify-content-center flex-wrap">
+                                    <div class="bg-white bg-opacity-10 p-2 ps-3 pe-3 rounded-5 ">
+                                          <input type="checkbox" id="check{{plan.id}}" 
+                                                class=" p-0 me-2 " 
+                                          style="margin-top: 0rem;">
+                                          <label for="check{{plan.id}}" class="">Selecionar</label>
+                                    </div>
+                              </div>
+                        {% endif %}
                   </div>
             </div>
       

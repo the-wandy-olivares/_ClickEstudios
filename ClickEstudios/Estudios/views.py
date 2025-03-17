@@ -32,6 +32,15 @@ def Status404(request, exception):
     return render(request, 'component/404.html', status=404)
 
 
+
+class OfertaService(TemplateView):
+    template_name = 'oferta/oferta-service.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['services'] = models.Service.objects.all()
+        return context
+
 class Dashboard(TemplateView):
     template_name = 'estudios/dashboard.html'
 
@@ -1471,3 +1480,22 @@ class Facturas(TemplateView):
 
 class Correos(TemplateView):
     template_name = 'correos/correos.html'
+
+
+class OfertasService(TemplateView):
+    template_name = 'service/oferta-service.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['service'] = models.Service.objects.get(id=self.kwargs.get('pk'))
+        context['plans'] = models.Plan.objects.filter(service__id=self.kwargs.get('pk'))
+        context['admin'] = True
+        return context
+    
+
+    def post(self, request, *args, **kwargs):
+        service = models.Service.objects.get(id=self.kwargs.get('pk'))
+        if request.POST.get('discount'):
+            service.discount = request.POST.get('discount')
+
+        return redirect('estudios:service')
