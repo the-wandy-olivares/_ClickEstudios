@@ -1496,24 +1496,35 @@ class OfertasService(TemplateView):
 
     def post(self, request, *args, **kwargs):
         service = models.Service.objects.get(id=self.kwargs.get('pk'))
+        plans =  models.Plan.objects.filter(service__id=self.kwargs.get('pk'), is_offer=True)
         if request.POST.get('discount'):
             service.is_offer = True
             service.discount = int(request.POST.get('discount'))
             service.mount = 0
             service.save()
+            for plan in plans:
+                plan.mount = plan.price - (plan.price * service.discount / 100)
+                plan.save()
 
         if request.POST.get('discount-custom'):
-             mount = request.POST.get('discount-custom').replace(',', '')
-             service.is_offer = True
-             service.mount = int(mount)
-             service.discount = 0
-             service.save()
+            mount = request.POST.get('discount-custom').replace(',', '')
+            service.is_offer = True
+            service.mount = int(mount)
+            service.discount = 0
+            service.save()
+            for plan in plans:
+                    
+                    plan.mount = plan.price - int(mount)
+                    plan.save()
 
         if request.POST.getlist('checking'):
             for id_plan in request.POST.getlist('checking'):
-                print(id_plan)
                 plan = models.Plan.objects.get(id=int(id_plan))
                 plan.is_offer = True
+                if  service.discount > 0:
+                    plan.mount = plan.price - (plan.price * service.discount / 100)
+                if service.mount > 0:
+                    plan.mount = plan.price - service.mount
                 plan.save()
 
         if request.POST.getlist('checking-disabled'):

@@ -72,6 +72,8 @@ class Service(models.Model):
       date = models.DateTimeField(auto_now_add=True)
 
       # Oferta de servicios, seran aplicados a todos los planes de este servicio
+      # Si hay una oferta debe de haber un valor mayor a 0 en discount o mount
+      
       is_offer = models.BooleanField(default=False)
       discount = models.IntegerField(default=0, blank=True, null=True)
       porcent_discount = models.IntegerField(default=0, blank=True, null=True)

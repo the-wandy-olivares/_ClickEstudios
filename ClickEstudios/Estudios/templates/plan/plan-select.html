@@ -29,9 +29,16 @@
                         <h5 class='m-0 p-0 mt-4' style="font-weight: bold; font-style: italic;">
                                 {{ plan.name|truncatechars:31 }}
                         </h5>
-                        {% if plan.price %}
-                               ${{plan.price|intcomma}}.00
+                        <span class="w-100    {% if plan.is_offer %}text-decoration-line-through  text-white-50   {% endif %}">
+                              {% if plan.price %}
+                                    ${{plan.price|intcomma}}.00
+                              {% endif %}
+                        </span>
+                      <span class="w-100 text-white"    {% if plan.is_offer %} style="font-size: 18px; font-weight: bold;" {% endif %}>
+                        {% if plan.is_offer %}
+                              ${{plan.mount|intcomma}}
                         {% endif %}
+                      </span>
                         <span class="d-flex mt-3 text-white-50">
                               {% if plan.likes %}
                                     {% for i in plan.likes.all %}
