@@ -36,37 +36,18 @@
 </style>
 
 <div class="d-flex flex-wrap w-100 vh-100 position-relative">
-      <div onclick="OpenOffer()" class="d-flex position-absolute top-0  start-0 blur-5 rounded-4 vh-100 z-2 div-oferr-active   justify-content-center align-content-center flex-wrap w-100">
-                  <div style="max-width: 35rem; height: max-content;
-                  background-color: #1a1a1add;"
-                        class="w-100  p-4 rounded-5 text-white  d-flex flex-wrap ">
-                        <strong class="bg-white bg-opacity-10 rounded-5 pe-3 ps-3 p-2">
-                              Ya hay una oferta del 20%
-                        </strong>
-                        <p class="text-white-50 ms-2 w-100">
-                              Que fue aplicada el 10/20/2025 a las 12:00am en los siguientes planes 
-                        </p>
-                        <li class="w-100">PLAN PREMIUM </li>
-                        <li class="w-100">PLAN PLATINUM</li>
-                        <span class="w-100 mt-2">
-                              ¿Deseas eliminar esta oferta?
-                        </span>
-                              <div class="w-100 mb-1">
-                                    <button class="bg-white bg-opacity-10 text-white p-2 ps-3 pe-3 border-0 rounded-5 ">
-                                          Si, ya no la quiero
-                                    </button>
-                                    <button class="ps-3 pe-3 p-1 bg-transparent text-white border-0 rounded-5">
-                                    No, solo voy a modificarla
-                              </button>
-                              </div>
-                  </div>
-      </div>
+      <!-- {% if service.is_offer %} -->
+            <!-- {% include "service/cp/verific-offer.html" %} -->
+      <!-- {% endif %} -->
+      <form action="" method="post"  >
+            {% csrf_token %}
       <div class="w-100 aplicar-offer d-none">
             {% include "service/cp/aplicar-oferta.html" %}
       </div>
       <div class=" select-plans ">
-            {% include "service/cp/plans.html" %}
-      </div>
+                  {% include "service/cp/plans.html" %}
+            </div>
+      </form>
       <div class="w-100 d-flex justify-content-start position-fixed mb-4 bottom-0">
             <button onclick="Togle()" class="me-3 mt-3 text-black bg-white bg-opacity-25 rounded-circle d-flex justify-content-center flex-wrap align-content-center border-0 change-view "
                   style="width: 2rem; height: 2rem; ">

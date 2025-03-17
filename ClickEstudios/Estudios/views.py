@@ -1496,6 +1496,28 @@ class OfertasService(TemplateView):
     def post(self, request, *args, **kwargs):
         service = models.Service.objects.get(id=self.kwargs.get('pk'))
         if request.POST.get('discount'):
-            service.discount = request.POST.get('discount')
+            service.is_offer = True
+            service.discount = int(request.POST.get('discount'))
+            service.mount = 0
+            service.save()
 
-        return redirect('estudios:service')
+        if request.POST.get('discount-custom'):
+             mount = request.POST.get('discount-custom').replace(',', '')
+             service.is_offer = True
+             service.mount = int(mount)
+             service.discount = 0
+             service.save()
+
+        if request.POST.getlist('checking'):
+            for id_plan in request.POST.getlist('checking'):
+                print(id_plan)
+                plan = models.Plan.objects.get(id=int(id_plan))
+                plan.is_offer = True
+                plan.save()
+
+        if request.POST.getlist('checking-disabled'):
+            for id_plan in request.POST.getlist('checking-disabled'):
+                plan = models.Plan.objects.get(id=int(id_plan))
+                plan.is_offer = False
+                plan.save()
+        return redirect('estudios:ofertas-service' , pk=service.id)

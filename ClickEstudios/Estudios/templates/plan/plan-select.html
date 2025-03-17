@@ -55,13 +55,37 @@
                          {% if admin %}
                               <div class="d-flex justify-content-center flex-wrap">
                                     <div class="bg-white bg-opacity-10 p-2 ps-3 pe-3 rounded-5 ">
-                                          <input type="checkbox" id="check{{plan.id}}" 
-                                                class=" p-0 me-2 " 
+<!--            name="checking-disabled" -->
+                                          {% if plan.is_offer %}
+                                          <input onchange="TogleBtnCheck(this.value)" type="checkbox" id="check{{plan.id}}" 
+                                          class=" p-0 me-2 " 
+                                          name="checking-disabled"
+                                          value="{{plan.id}}"
                                           style="margin-top: 0rem;">
-                                          <label for="check{{plan.id}}" class="">Selecionar</label>
+                                          <button id="btn{{plan.id}}" disabled class=" bg-transparent border-0 text-danger" 
+                                          style="font-weight: bold;">Eliminar oferta</button>
+                                          {% else %}
+                                                <input onchange="TogleBtnCheck(this.value)" type="checkbox" id="check{{plan.id}}" 
+                                                class=" p-0 me-2 " 
+                                                name="checking"
+                                                value="{{plan.id}}"
+                                                style="margin-top: 0rem;"
+                                                {% if plan.is_offer %} checked {% endif %}>
+                                                <button id="btn{{plan.id}}" disabled class=" bg-transparent border-0 text-white" 
+                                                style="font-weight: bold;">Aplicar oferta</button>
+                                          {% endif %}
                                     </div>
                               </div>
                         {% endif %}
                   </div>
             </div>
-      
+      <script>
+            function TogleBtnCheck(e){
+                    var button = document.getElementById('btn' + e);
+                    if (button.disabled) {
+                              button.disabled = false;
+                    } else {
+                              button.disabled = true;
+                    }
+            }
+      </script>

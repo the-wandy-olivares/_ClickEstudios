@@ -77,6 +77,7 @@ class Service(models.Model):
       porcent_discount = models.IntegerField(default=0, blank=True, null=True)
       mount = models.IntegerField(default=0, blank=True, null=True)
       is_active = models.BooleanField(default=True)
+      
       class Meta:
             verbose_name = 'servicio'
             verbose_name_plural = 'servicios'
