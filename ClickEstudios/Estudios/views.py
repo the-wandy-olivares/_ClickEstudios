@@ -441,10 +441,20 @@ class SaleCreate(CreateView):
             plan = models.Plan.objects.get(pk=plan_id)
             form.instance.pk_plan = plan_id
             form.instance.name_plan = plan.name
-            form.instance.debit_mount = plan.price
+
+            if plan.is_offer:
+                    form.instance.debit_mount = plan.mount
+            else:
+                form.instance.debit_mount = plan.price
+
             form.instance.img = plan.img
             form.instance.description_plan = plan.description
-            form.instance.price_plan = plan.price
+
+            if plan.is_offer:
+                    form.instance.price_plan = plan.mount
+            else:
+                    form.instance.price_plan = plan.price
+
             form.instance.finaliz = True
             form.instance.payment = True
             form.instance.is_reserve = True
@@ -455,7 +465,7 @@ class SaleCreate(CreateView):
             models.Movements.objects.create(
                 user=self.request.user,
                 box=models.Box.objects.get(open=True),
-                mount= plan.price,
+                mount= form.instance.price_plan,
                 type='ingreso',
                 description=  'Pago completado' + ' ' + form.instance.name_client + '-' + plan.name
             )
@@ -526,10 +536,18 @@ class SaleCreateDateChoice(CreateView):
                 plan = models.Plan.objects.get(pk=plan_id)
                 form.instance.pk_plan = plan_id
                 form.instance.name_plan = plan.name
-                form.instance.debit_mount = plan.price
+
+                if plan.is_offer:
+                    form.instance.debit_mount = plan.mount
+                else:
+                    form.instance.debit_mount = plan.price
+
                 form.instance.img = plan.img
                 form.instance.description_plan = plan.description
-                form.instance.price_plan = plan.price
+                if plan.is_offer:
+                    form.instance.price_plan = plan.mount
+                else:
+                    form.instance.price_plan = plan.price
                 form.instance.phone_no_formate = form.instance.phone_client.replace('(', '').replace(')', '').replace(' ', '').replace('-', '') if form.instance.phone_client else None
 
                 if form.instance.email_client:
@@ -570,7 +588,10 @@ class SaleClientDateChoice(CreateView):
             if plan_id:
                 plan = models.Plan.objects.get(pk=plan_id)
                 form.instance.name_plan = plan.name
-                form.instance.debit_mount = plan.price
+                if plan.is_offer:
+                    form.instance.debit_mount = plan.mount
+                else:
+                    form.instance.debit_mount = plan.price
                 form.instance.img = plan.img
                 form.instance.description_plan = plan.description
                 form.instance.price_plan = plan.price
