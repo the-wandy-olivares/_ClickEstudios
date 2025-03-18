@@ -1,3 +1,4 @@
+{% load  humanize %}
 <style>
             .moptions ul {
                   list-style-type: none;
@@ -41,15 +42,20 @@
                   <li class="delete"> 
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
                               <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
-                        </svg> Eliminar
+                        </svg> 
+                        Eliminar
                   </li>
             </a>
-            <a href="{% url "estudios:service-detail" s.id %}">
+            <a href="{% url "estudios:ofertas-service" s.id %}">
                   <li class="carateristicas">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-app-indicator" viewBox="0 0 16 16">
-                              <path d="M5.5 2A3.5 3.5 0 0 0 2 5.5v5A3.5 3.5 0 0 0 5.5 14h5a3.5 3.5 0 0 0 3.5-3.5V8a.5.5 0 0 1 1 0v2.5a4.5 4.5 0 0 1-4.5 4.5h-5A4.5 4.5 0 0 1 1 10.5v-5A4.5 4.5 0 0 1 5.5 1H8a.5.5 0 0 1 0 1z"/>
-                              <path d="M16 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-                        </svg> ...?
+                        <i class="bi bi-tags-fill me-2" style="font-size: 16px;"></i>
+                         Ofertas {% if s.is_offer %}
+                         {% if s.mount > 0 %}
+                               ${{s.mount|floatformat:0|intcomma}} 
+                              {% else %}
+                               {{s.discount}}%
+                         {% endif %}
+                         {% endif %}
                   </li>
             </a>
       </ul>

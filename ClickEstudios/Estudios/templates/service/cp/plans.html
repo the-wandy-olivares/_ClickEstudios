@@ -1,0 +1,27 @@
+<section class="text-white w-100 mt-3 pb-5 mb-5">
+      <h6 class="bg-white bg-opacity-10 mb-2 text-white rounded-5 p-2 ps-3 pe-3"
+            style="width: max-content;">
+            Selecion de planes
+      </h6>
+      <p class="text-white-50 m-0 mb-3 ms-2" style="font-size: 14px;">
+            Los planes se leccionados se le aplicaran el descuento que usted proporcione
+      </p>
+
+      {% if plans %}
+            <div class="d-flex flex-wrap">
+                  {% for plan in plans %}
+                        {% include "plan/plan-select.html" %}
+                  {% endfor %}
+            </div>
+            {% else %}
+            <div class="w-100 text-center">
+                  No hay planes disponibles en este servicio
+            </div>
+      {% endif %}
+           
+</section>
+<script>
+
+
+
+</script>

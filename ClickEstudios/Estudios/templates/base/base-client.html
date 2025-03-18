@@ -28,6 +28,10 @@
             -ms-user-select: none; 
 
     }
+    ::-webkit-scrollbar {
+      width: 0px;
+    }
+
     .blur-10 {
             -webkit-backdrop-filter: blur(10px) !important;
             backdrop-filter: blur(10px) !important;
@@ -46,8 +50,8 @@
 
   <body style="background-color:#101010; " class=" body"> 
       <main class=' d-flex main'  
-            style=" height: 96vh; background-color: #000000; 
-            border-radius: 2.5rem;">
+            style=" height: 96vh; background-color: #101010; 
+           ">
             {% block content %}
             {% endblock %}
       </main>

@@ -1,0 +1,114 @@
+{% load  humanize %}
+<div class="d-flex">
+      <h6 class="bg-white bg-opacity-10 mb-2 text-white rounded-5 p-2 ps-3 pe-3"
+      style="width: max-content;">
+            {{service.name}}
+      </h6>
+<img src="{{service.img.url}}" alt=""
+style="width: 30px; height: 30px;" class="me-2 object-fit-cover rounded-circle">
+</div>
+<p class="text-white-50 m-0 mb-3 ms-2" style="font-size: 14px;">
+      Se le aplicara el porcentaje o el monto que prefieras a cada plan selecionado, si haz introducido una cantidad y quieres cambiarlo <br> a porcentaje debes borrar la cantidad  y seleccionar el porcentaje que desees.
+</p>
+<section class="text-white w-100">
+      <div class="w-100 m-3 bg-white bg-opacity-10 rounded-4 p-4" 
+            style="max-width: 28rem; height: max-content;">
+            <div id="contentOferta" class="content-oferta" >
+                  <!-- Aquí va el contenido de la oferta -->
+                    <div class="d-flex justify-content-around w-100">
+                              <input type="radio" id="optionSelect" name="option" 
+                                    onclick="toggleOption('select')" 
+                                    style="margin-top: 0.4rem;"  {% if service.discount != 0 %}
+                                    checked
+                                    {% endif %}
+                                    >
+                              <label for="optionSelect">Seleccionar un porcentaje</label>
+                              <input type="radio" id="optionInput" name="option" 
+                                    onclick="toggleOption('input')" class="ms-3"
+                                    style="margin-top: 0.4rem;" {% if service.mount > 0 %}
+                                    checked
+                                    {% endif %}>
+                              <label for="optionInput">  Introducir cantidad</label>
+                    </div>
+                    <div id="selectOption"  {% if service.discount <= 0 %} style="display: none;" {% endif %} >
+                          <div class="d-flex">
+                                    <select name="discount" class="form-select bg-white bg-opacity-10 rounded-4 mt-2  mb-2 p-2 ps-3">
+                                          <option value="0" {% if service.discount == 0 %}selected{% endif %}>Sin descuento de porcentaje</option>
+                                          <option value="10" {% if service.discount == 10 %}selected{% endif %}>Descuento 10%</option>
+                                          <option value="20" {% if service.discount == 20 %}selected{% endif %}>Descuento 20%</option>
+                                          <option value="30" {% if service.discount == 30 %}selected{% endif %}>Descuento 30%</option>
+                                          <option value="40" {% if service.discount == 40 %}selected{% endif %}>Descuento 40%</option>
+                                          <option value="50" {% if service.discount == 50 %}selected{% endif %}>Descuento 50%</option>
+                              </select>
+                              <div class="d-flex flex-wrap align-content-center"> 
+                                    <button type="submit"
+                                    class="bg-black bg-opacity-25  text-white border-0 p-2 ms-2 pe-3 ps-3 rounded-4 ">Aplicar</button>
+                              </div>
+                            </div>
+
+                    </div>
+                    <div id="inputOption" 
+                    {% if service.mount <= 0 %} style="display: none;" {% endif %}> 
+
+                              <div class="d-flex">
+                                    {% if service.mount  >= 1  %}
+                                    <input type="text" id="mount"  name="discount-custom"  placeholder="Ejemplo: $3,500" 
+                                    class="rounded-4 bg-white w-100 bg-opacity-10 border-0 p-2 ps-4 pe-4 mb-2 mt-2"
+                                          value="{{service.mount}}">
+                                    {% else %}
+                                    <input type="text" id="mount"  name="discount-custom"  placeholder="Ejemplo: $3,500" 
+                                    class="rounded-4 w-100 bg-white bg-opacity-10 border-0 p-2 ps-4 pe-4 mb-2 mt-2">
+                                    {% endif %}
+                                          <div class="d-flex flex-wrap align-content-center">
+                                                <button type="submit"
+                                                 class="bg-black bg-opacity-25 btn-mount   {% if service.mount <= 0 %} d-none {% endif %} text-white border-0 p-2 ms-2 pe-3 ps-3 rounded-4 ">Aplicar</button>
+                                          </div>
+                              </div>
+
+                    </div>
+
+                    <script>
+                              function toggleOption(option) {
+                                      var selectOption = document.getElementById('selectOption');
+                                      var inputOption = document.getElementById('inputOption');
+                                      if (option === 'select') {
+                                                selectOption.style.display = 'block';
+                                                inputOption.style.display = 'none';
+                                      } else if (option === 'input') {
+                                                selectOption.style.display = 'none';
+                                                inputOption.style.display = 'block';
+                                      }
+                              }
+                    </script>
+
+      </div>
+
+            <script>
+                  // function toggleContentOferta() {
+                  //       var content = document.getElementById('contentOferta');
+                  //       if (document.getElementById('toggleOferta').checked) {
+                  //             content.style.display = 'block';
+                  //       } else {
+                  //             content.style.display = 'none';
+                  //       }
+                  // }
+
+            document.getElementById('mount').addEventListener('input', function (e) {
+                  var value = e.target.value;
+                  value = value.replace(/\D/g, '');
+                  value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                  e.target.value = value;
+
+                  if( parseInt(e.target.value)  > 0 ){
+                        document.querySelector('.btn-mount').classList.remove('d-none')
+
+                  }else {
+                        document.querySelector('.btn-mount').classList.add('d-none')
+
+                  }
+            });
+            </script>
+
+
+      </div>
+</section>

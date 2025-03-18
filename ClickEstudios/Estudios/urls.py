@@ -22,7 +22,8 @@ urlpatterns = [
                         path('service-update/<int:pk>/', views.ServiceUpdate.as_view(), name='service-update'),
                   path('service-delete/<int:pk>/', views.ServiceDelete.as_view(), name='service-delete'),
             path('service-client-service/<int:pk>', views.ServiceClientSelect.as_view(), name='service-client-service'),
-
+      path('ofertas-service/<int:pk>', views.OfertasService.as_view(), name='ofertas-service'),
+      
 # Planes
       path('plan/', views.Plan.as_view(), name='plan'),
             path('plan-create/', views.PlanCreate.as_view(), name='plan-create'),

@@ -71,7 +71,15 @@ class Service(models.Model):
       img = models.ImageField(upload_to='media/servicios', null=True)
       date = models.DateTimeField(auto_now_add=True)
 
+      # Oferta de servicios, seran aplicados a todos los planes de este servicio
+      # Si hay una oferta debe de haber un valor mayor a 0 en discount o mount
+      
+      is_offer = models.BooleanField(default=False)
+      discount = models.IntegerField(default=0, blank=True, null=True)
+      porcent_discount = models.IntegerField(default=0, blank=True, null=True)
+      mount = models.IntegerField(default=0, blank=True, null=True)
       is_active = models.BooleanField(default=True)
+      
       class Meta:
             verbose_name = 'servicio'
             verbose_name_plural = 'servicios'
@@ -102,6 +110,12 @@ class Plan(models.Model):
       is_active = models.BooleanField(default=True)
       
       time = models.TimeField(verbose_name="Hora de inicio", blank=True, null=True, default="08:00")
+
+      # Oferta de planes
+      is_offer = models.BooleanField(default=False)
+      discount = models.IntegerField(default=0, blank=True, null=True)
+      porcent_discount = models.IntegerField(default=0, blank=True, null=True)
+      mount = models.IntegerField(default=0, blank=True, null=True)
 
       class Meta:
             verbose_name = 'plan'

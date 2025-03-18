@@ -32,6 +32,15 @@ def Status404(request, exception):
     return render(request, 'component/404.html', status=404)
 
 
+
+class OfertaService(TemplateView):
+    template_name = 'oferta/oferta-service.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['services'] = models.Service.objects.all()
+        return context
+
 class Dashboard(TemplateView):
     template_name = 'estudios/dashboard.html'
 
@@ -432,10 +441,20 @@ class SaleCreate(CreateView):
             plan = models.Plan.objects.get(pk=plan_id)
             form.instance.pk_plan = plan_id
             form.instance.name_plan = plan.name
-            form.instance.debit_mount = plan.price
+
+            if plan.is_offer:
+                    form.instance.debit_mount = plan.mount
+            else:
+                form.instance.debit_mount = plan.price
+
             form.instance.img = plan.img
             form.instance.description_plan = plan.description
-            form.instance.price_plan = plan.price
+
+            if plan.is_offer:
+                    form.instance.price_plan = plan.mount
+            else:
+                    form.instance.price_plan = plan.price
+
             form.instance.finaliz = True
             form.instance.payment = True
             form.instance.is_reserve = True
@@ -446,7 +465,7 @@ class SaleCreate(CreateView):
             models.Movements.objects.create(
                 user=self.request.user,
                 box=models.Box.objects.get(open=True),
-                mount= plan.price,
+                mount= form.instance.price_plan,
                 type='ingreso',
                 description=  'Pago completado' + ' ' + form.instance.name_client + '-' + plan.name
             )
@@ -517,10 +536,18 @@ class SaleCreateDateChoice(CreateView):
                 plan = models.Plan.objects.get(pk=plan_id)
                 form.instance.pk_plan = plan_id
                 form.instance.name_plan = plan.name
-                form.instance.debit_mount = plan.price
+
+                if plan.is_offer:
+                    form.instance.debit_mount = plan.mount
+                else:
+                    form.instance.debit_mount = plan.price
+
                 form.instance.img = plan.img
                 form.instance.description_plan = plan.description
-                form.instance.price_plan = plan.price
+                if plan.is_offer:
+                    form.instance.price_plan = plan.mount
+                else:
+                    form.instance.price_plan = plan.price
                 form.instance.phone_no_formate = form.instance.phone_client.replace('(', '').replace(')', '').replace(' ', '').replace('-', '') if form.instance.phone_client else None
 
                 if form.instance.email_client:
@@ -561,10 +588,16 @@ class SaleClientDateChoice(CreateView):
             if plan_id:
                 plan = models.Plan.objects.get(pk=plan_id)
                 form.instance.name_plan = plan.name
-                form.instance.debit_mount = plan.price
+                if plan.is_offer:
+                    form.instance.debit_mount = plan.mount
+                else:
+                    form.instance.debit_mount = plan.price
                 form.instance.img = plan.img
                 form.instance.description_plan = plan.description
-                form.instance.price_plan = plan.price
+                if plan.is_offer:
+                        form.instance.price_plan = plan.mount
+                else:
+                        form.instance.price_plan = plan.price
                 form.instance.phone_no_formate = form.instance.phone_client.replace('(', '').replace(')', '').replace(' ', '').replace('-', '') if form.instance.phone_client else None
 
                 if form.instance.email_client:
@@ -1471,3 +1504,56 @@ class Facturas(TemplateView):
 
 class Correos(TemplateView):
     template_name = 'correos/correos.html'
+
+
+class OfertasService(TemplateView):
+    template_name = 'service/oferta-service.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['service'] = models.Service.objects.get(id=self.kwargs.get('pk'))
+        context['plans'] = models.Plan.objects.filter(service__id=self.kwargs.get('pk'))
+        context['admin'] = True
+        context['0'] = 0
+        return context
+    
+
+    def post(self, request, *args, **kwargs):
+        service = models.Service.objects.get(id=self.kwargs.get('pk'))
+        plans =  models.Plan.objects.filter(service__id=self.kwargs.get('pk'), is_offer=True)
+        if request.POST.get('discount'):
+            service.is_offer = True
+            service.discount = int(request.POST.get('discount'))
+            service.mount = 0
+            service.save()
+            for plan in plans:
+                plan.mount = plan.price - (plan.price * service.discount / 100)
+                plan.save()
+
+        if request.POST.get('discount-custom'):
+            mount = request.POST.get('discount-custom').replace(',', '')
+            service.is_offer = True
+            service.mount = int(mount)
+            service.discount = 0
+            service.save()
+            for plan in plans:
+                    
+                    plan.mount = plan.price - int(mount)
+                    plan.save()
+
+        if request.POST.getlist('checking'):
+            for id_plan in request.POST.getlist('checking'):
+                plan = models.Plan.objects.get(id=int(id_plan))
+                plan.is_offer = True
+                if  service.discount > 0:
+                    plan.mount = plan.price - (plan.price * service.discount / 100)
+                if service.mount > 0:
+                    plan.mount = plan.price - service.mount
+                plan.save()
+
+        if request.POST.getlist('checking-disabled'):
+            for id_plan in request.POST.getlist('checking-disabled'):
+                plan = models.Plan.objects.get(id=int(id_plan))
+                plan.is_offer = False
+                plan.save()
+        return redirect('estudios:ofertas-service' , pk=service.id)
