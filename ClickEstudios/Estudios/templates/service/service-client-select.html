@@ -1,8 +1,32 @@
 {% extends "base/base-client.html" %}
 {% block content %}
-<section class='w-100 overflow-auto '>
+<style>
+      .img-gallery {
+
+            position: absolute;
+            z-index: 1000;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(1.1);
+            max-width: 70% !important;
+            max-height: 70% !important;
+            box-shadow: 1px 1px 40px 20px #000000;
+            object-fit: contain !important;
+            -webkit-backdrop-filter: blur(100px) !important;
+            backdrop-filter: blur(100px) !important;
+      }
+</style>
+<section class='w-100 overflow-auto ' >
+      <div class="d-flex pt-4 pb-3 ms-3">
+            <img src="{{service.img.url}}" alt=""
+            style="width: 30px; height: 30px;" class="me-2 object-fit-cover rounded-circle">
+            <h6 class="bg-white bg-opacity-10 mb-2 text-white rounded-5 p-2 ps-3 pe-3"
+            style="width: max-content;">
+                  {{service.name}}
+            </h6>
+      </div>
             {% if plans %}
-                  <div class="d-flex w-100 overflow-auto">
+                  <div class="d-flex w-100 overflow-auto pb-4">
                         {% include "service/service-list-plans.html" %}
                   </div>
             {% else %}
@@ -19,31 +43,21 @@
                         </div>
                   </div>
             {% endif %}
-            <div class='pb-4'>
-                  <button onclick="BackSpace()" class="bg-transparent border-0 ms-4 me-4 text-white-50" style="font-size: 16px; font-weight: bold;"> 
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+            <div class='pb-4 pt-4 '>
+                  <button onclick="BackSpace()" class="bg-transparent border-0 ms-3 me-4 text-white-50" style="font-size: 18px; font-weight: bold;"> 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
                               <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
-                            </svg>
+                            </svg> Seleccionar otro servicio
                   </button> 
             </div>
             <div class='text-warning w-100 overflow-auto align-content-start-0 mb-5 justify-content-center f  '>
-                  <div class='w-100'>
-                         <strong style='font-style: italic;'>
-                              {% if object.img %}
-                              <img src="{{object.img.url}}"
-                              class="rounded-circle"
-                              style="border: solid 4px rgb(52, 52, 52);"
-                              width="40" height="40" alt="">  Galeria  {{object.name}}
-                              {% endif %}
-                         </strong>
-                  </div>
-                  <div class="d-flex justify-content-start flex-wrap w-100">
+                  <div class="d-flex justify-content-center flex-wrap w-100">
                         {% if moments %}
                               {% for moment in moments %} 
                               {% for m in moment.img_moments.all  %}
                               {% if m.img %}
-                              <img src="{{m.img.url}}" style='max-width: 180px; '
-                              class='w-100 object-fit-cover rounded-5 m-1' alt="Ups!">
+                              <img src="{{m.img.url}}" onclick="UpperCaseImg()" style='max-width: 180px; '
+                              class='w-100 img  object-fit-cover rounded-5 m-1' alt="Ups!">
                               {% endif %}
                               {% endfor %}
                               {% endfor %}
@@ -58,10 +72,29 @@
              </div>
 </section>
 <script>
+      document.addEventListener('DOMContentLoaded', function() {
+            UpperCaseImg();
+      });
+
       function BackSpace() {
             if (window.history.length > 1) {
               history.back();
             } 
+      }
+
+
+      function UpperCaseImg(){
+            const images = document.querySelectorAll('.img');
+            images.forEach(img => {
+                  img.addEventListener('click', function() {
+                        if (this.classList.contains('img-gallery')) {
+                              this.classList.remove('img-gallery');
+                        } else {
+                              images.forEach(i => i.classList.remove('img-gallery'));
+                              this.classList.add('img-gallery');
+                        }
+                  });
+            });
       }
 
 </script>

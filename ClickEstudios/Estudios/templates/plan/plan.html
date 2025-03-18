@@ -104,9 +104,16 @@
                                     <h5 class='m-0 p-0 mt-4' style="font-weight: bold; font-style: italic;">
                                           {{ p.name|truncatechars:31 }}
                                     </h5>
-                                    {% if p.price %}
-                                          ${{p.price|intcomma}}.00 
+                                    <span class="w-100    {% if p.is_offer %}text-decoration-line-through  text-white-50   {% endif %}">
+                                          {% if p.price %}
+                                                ${{p.price|intcomma}}.00
+                                          {% endif %}
+                                    </span>
+                                  <span class="w-100 text-white"    {% if p.is_offer %} style="font-size: 18px; font-weight: bold;" {% endif %}>
+                                    {% if p.is_offer %}
+                                          ${{p.mount|intcomma}}
                                     {% endif %}
+                                  </span>
                                     <span class="d-flex mt-3">
                                           {% if p.likes %}
                                                 {% for i in p.likes.all %}
