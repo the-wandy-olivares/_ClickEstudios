@@ -594,7 +594,10 @@ class SaleClientDateChoice(CreateView):
                     form.instance.debit_mount = plan.price
                 form.instance.img = plan.img
                 form.instance.description_plan = plan.description
-                form.instance.price_plan = plan.price
+                if plan.is_offer:
+                        form.instance.price_plan = plan.mount
+                else:
+                        form.instance.price_plan = plan.price
                 form.instance.phone_no_formate = form.instance.phone_client.replace('(', '').replace(')', '').replace(' ', '').replace('-', '') if form.instance.phone_client else None
 
                 if form.instance.email_client:

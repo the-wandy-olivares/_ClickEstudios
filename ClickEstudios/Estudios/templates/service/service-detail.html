@@ -1,5 +1,6 @@
 {% extends "base/base.html" %}
 {% block content %}
+{% load humanize %}
 <style>
       .img-gallery {
 
@@ -17,12 +18,21 @@
       }
 </style>
 <section class='d-flex flex-wrap  align-content-start position-relative h-100  overflow-auto'>
-            <div class="d-flex pt-4 pb-3 ms-3 w-100">
+            <div class="d-flex pt-4 pb-3 ms-3 w-100 ">
                   <img src="{{service.img.url}}" alt=""
                   style="width: 30px; height: 30px;" class="me-2 object-fit-cover rounded-circle">
                   <h6 class="bg-white bg-opacity-10 mb-2 text-white rounded-5 p-2 ps-3 pe-3"
                   style="width: max-content;">
                         {{service.name}}
+                        {% if service.is_offer %} 
+                        <span class="badge bg-warning rounded-pill    ps-3 pe-3 text-dark">Oferta
+                              {% if service.mount > 0 %}
+                                          ${{service.mount|floatformat:0|intcomma}} 
+                             {% else %}
+                                          {{service.discount}}%
+                              {% endif %}
+                        </span>
+                        {% endif %}
                   </h6>
             </div>
             <div class="d-flex  overflow-auto mb-4">

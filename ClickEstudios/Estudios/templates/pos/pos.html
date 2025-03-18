@@ -1,5 +1,6 @@
 {% extends "base/base.html" %}
 {% block content %}
+      {% load humanize %}
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Delius&display=swap" rel="stylesheet">
@@ -108,10 +109,19 @@
                                     Al selecionar un servicio podras ver los todos los planes que este ofrece 
                               </p>
                               {% for s in service_choices %}
-                                    <li class="dropdown-item  m-1  " style="width: max-content; min-width: 320px;">
+                                    <li class="dropdown-item  mb-2  " style="width: max-content; min-width: 320px;">
                                           <a href="{% url 'estudios:service-detail' s.id %}">
                                                 <img src="{{s.img.url}}" width="60" height="75" class="dropdown-image object-fit-cover rounded-3 me-2">
-                                                {{ s.name }}
+                                                {{ s.name }}  
+                                                 {% if s.is_offer %} 
+                                                <span class="badge bg-warning rounded-pill ps-3 pe-3 text-dark">Oferta
+                                                      {% if s.mount > 0 %}
+                                                                  ${{s.mount|floatformat:0|intcomma}} 
+                                                     {% else %}
+                                                                  {{s.discount}}%
+                                                      {% endif %}
+                                                </span>
+                                                {% endif %}
                                           </a>
                                     </li>
                               {% endfor %}
