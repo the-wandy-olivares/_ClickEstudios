@@ -2,8 +2,6 @@
       .btn-open-nav {
             display: none;
             width: 100%;  padding-top: 0.4rem;
-            border-top-right-radius: 1rem !important;
-             border-top-left-radius: 1rem !important;
             align-content: center; 
             /* flex-wrap: wrap; justify-content: center; */
       }
@@ -16,7 +14,7 @@
       }
       .btn-open-nav button span {
             width: 100%;
-            font-size: 10px;
+            font-size: 9px;
             font-weight: bold;
             color: rgba(255, 255, 255, 0.685);
       }
@@ -38,14 +36,15 @@
 
 </style>
 <div  class="position-fixed btn-open-nav bottom-0 d-flex flex-wrap   justify-content-center w-100  end-0  text-black  ">
-      <section class="blur-100 rounded-5 m-1 pt-2  mb-1  pb-2">
+      <section class="blur-200  pt-2 m-1 pb-2"
+            style="border-radius: 2rem;">
             {% if box_is_open  %}     
-            <div style='margin-top: 0px; max-width: 40rem; margin-bottom: 8rem;   border-radius: 0.5rem; '  class="results-searching text-white-50  position-fixed bottom-0 w-100  bg-black  d-flex flex-wrap justify-content-center" >
-                  <!-- Resultados -->
-            </div>     
-            <div class="w-100 div-filter-reservers  flex-wrap  justify-content-start mb-2 " style="display: none ;">
-                  {% include "pos/cp/filter-reservers.html" %} 
-            </div>
+                  <div style='margin-top: 0px; max-width: 40rem; margin-bottom: 8rem;   border-radius: 1rem; '  class="results-searching text-white-50  position-fixed bottom-0 w-100  bg-black  d-flex flex-wrap justify-content-center" >
+                        <!-- Resultados -->
+                  </div>     
+                  <div class="w-100 div-filter-reservers  flex-wrap  justify-content-start mb-2 " style="display: none ;">
+                        {% include "pos/cp/filter-reservers.html" %} 
+                  </div>
             {% endif %}
       
             <section class="d-flex list-btn-mobile">

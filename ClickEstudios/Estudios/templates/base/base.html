@@ -93,8 +93,12 @@
       backdrop-filter: blur(50px) !important;
   }
   .blur-100 {
-    -webkit-backdrop-filter: blur(100px) !important;
-    backdrop-filter: blur(100px) !important;
+      -webkit-backdrop-filter: blur(100px) !important;
+      backdrop-filter: blur(100px) !important;
+  }
+  .blur-200 {
+      -webkit-backdrop-filter: blur(900px) !important;
+      backdrop-filter: blur(900px) !important;
   }
     .snowflake {
       position: absolute;
@@ -165,6 +169,18 @@
                     transform: rotate(90deg);
                     transition: transform 0.3s ease-out;
             }
+
+
+            .zoom-in-effect {
+                    opacity: 1;
+                    transform: scale(1.0) !important;
+                    transition-property: opacity, transform;
+                    transition-duration: 0.4s ;
+                    /* transition: 0.32s  ; */
+                  }
+                  
+           
+
 
   </style>
 
@@ -276,12 +292,27 @@ if (window.innerWidth < 700) {
         superNav.style.display = 'block';
       superNav.classList.add('fade-down');
       setTimeout(() => {
+        const superNavDivs = document.querySelectorAll('.nav div');
+        let delay = 0;
+        superNavDivs.forEach(div => {
+          div.classList.add('zoom-in-effect');
+        });
+      }, 10);
+      setTimeout(() => {
         superNav.classList.add('active-blur');
       }, 0.1);
     } else {
       superNav.style.display = 'none';
-      superNav.classList.remove('fade-down', 'active-blur');
+      superNav.classList.remove('fade-down', 'active-blur', 'zoom-in-effect');
       superNav.classList.add('blur-0');
+
+      setTimeout(() => {
+        const superNavDivs = document.querySelectorAll('.nav div');
+        let delay = 0;
+        superNavDivs.forEach(div => {
+          div.classList.remove('zoom-in-effect');
+        });
+      }, 10);
     }
     document.querySelector('.bi-three-dots').classList.toggle('rotate-90');
   }
