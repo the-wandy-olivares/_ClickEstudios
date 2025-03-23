@@ -4,17 +4,16 @@
             .gallery-item {
                   margin: 5px;
                   border-radius: 10px;
-                  overflow: hidd
                   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
                   opacity: 0.8;
-                  filter: brightness(0.8);
-                  transition-duration: 0.5s !important;
+                  /* filter: brightness(0.8); */
+                  transition-duration: 0.1s !important;
             }
             .gallery-item img {
                   display: block;
                   width: 100%;
                   height: auto;
-                  border-radius: 3rem;
+                  border-radius: 2rem;
             }
             .gallery-item:hover {
                     opacity: 0.6;
@@ -47,17 +46,18 @@
       </style>
         
 
-                  <a href="{% url "estudios:moment-create" %}">
-                        <button class="bg-white bg-opacity-10 rounded-5 me-2 mt-2 text-white border-0 rounded-3 p-2 position-absolute d-flex justify-content-center align-content-center flex-wrap end-0 top-0" style='font-weight: bold;'>
-                              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus-circle-fill m-0" viewBox="0 0 16 16">
-                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
-                                  </svg> 
-                        </button>
-                  </a>
+            <a href="{% url "estudios:moment-create" %}" class="z-2">
+                  <button class="bg-white bg-opacity-10 rounded-5 me-2 mt-2 text-white border-0 rounded-3 p-2 position-absolute d-flex justify-content-center align-content-center flex-wrap end-0 top-0" style='font-weight: bold;'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus-circle-fill m-0" viewBox="0 0 16 16">
+                              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+                              </svg> 
+                  </button>
+            </a>
 
       <!-- Gallery -->
 {% if not moments %}
-                  <section class="text-white d-flex pt-5  justify-content-center flex-wrap align-content-start vh-100  w-100">
+                  <section 
+                        class="text-white d-flex pt-5   justify-content-center flex-wrap align-content-start vh-100  ">
                         <div class="d-flex justify-content-center flex-wrap align-content-center w-100 "> 
                               <h5 class="text-white text-start-0  w-100" style="font-weight: bold; font-style: italic;">
                                     No hay nada para mostrar en tu galeria
@@ -72,34 +72,40 @@
                         </div>
                   </section>
 {% endif %}
-      <div class="gallery overflow-auto d-flex flex-wrap  align-content-start  ">
+      <div data-aos="fade-in" 
+      style="transition: 1s !important;" class="gallery overflow-auto d-flex flex-wrap  align-content-start  mb-5 pb-5 ">
             {% for moment in moments %}
-            <span class="w-100 d-flex mt-4">
+            <span class="w-100 d-flex mt-4 ">
                   <!-- Agregar imagen solo si hay maximo de 6 -->
-                  {% if moment.img_moments.all|length < 6 %}
-                  <span id="{{moment.id}}"  onclick="OpenFile(this.id)" class=" mb-2 end-0  open-img"style="cursor: pointer;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-node-plus-fill text-white" viewBox="0 0 16 16">
-                              <path d="M11 13a5 5 0 1 0-4.975-5.5H4A1.5 1.5 0 0 0 2.5 6h-1A1.5 1.5 0 0 0 0 7.5v1A1.5 1.5 0 0 0 1.5 10h1A1.5 1.5 0 0 0 4 8.5h2.025A5 5 0 0 0 11 13m.5-7.5v2h2a.5.5 0 0 1 0 1h-2v2a.5.5 0 0 1-1 0v-2h-2a.5.5 0 0 1 0-1h2v-2a.5.5 0 0 1 1 0"/>
-                            </svg>
-                  </span> 
-                  {% endif %}
                   {% if moment.img %}
                   <img src="{{moment.img.url}}" loading="lazy" class="rounded-circle object-fit-cover" 
                   style='width: 40px; height: 40px; border: solid #3a3a39 4px;'>
                   {% endif %}
-                  <a href="{% url "estudios:moment-update" moment.id %}">
-                        <h6 style="margin-top: 20px !important;" class=" text-white">
+                  <a href="{% url "estudios:moment-update" moment.id %}" 
+                        class="ms-3">
+                        <h6 style="margin-top: 10px !important;" class="  text-white ">
                               {{moment.name}} 
                         </h6>
                   </a>
                   </span>
+                  {% if moment.img_moments.all|length < 6 %}
+                  <div class=" d-flex justify-content-center flex-wrap align-content-center rounded-5   mt-3"
+                        style="width: 200px;">
+                        <span id="{{moment.id}}"  onclick="OpenFile(this.id)"
+                        class="  end-0  open-img bg-white bg-opacity-10 d-flex flex-wrap justify-content-center align-content-center rounded-circle"
+                        style="cursor: pointer; width: 40px; height: 40px;">
+                        <i class="bi bi-plus-circle-fill" 
+                        style="font-size: 30px !important; color: rgb(174, 174, 174);"></i>
+                  </span> 
+                  </div>
+                  {% endif %}
 
                   {% for m in moment.img_moments.all %}
-                        <div id='div{{m.id}}'  class="col-12 w-100   col-md-6 col-lg-3 mb-1 gallery-item position-relative p-0" style=' max-width: 360px;'>
+                        <div id='div{{m.id}}'  class=" w-100    mb-1 gallery-item position-relative p-0" style=' max-width: 190px;'>
                               <!-- Eliminar imagen -->
                               <form action="" method="post" class='m-0 p-0'>
                                     {% csrf_token %}
-                                    <img  src="{{m.img.url}}" class='w-100 object-fit-cover'
+                                    <img  src="{{m.img.url}}" class='w-100 mt-3 object-fit-cover'
                                     style=" transition-delay: 0.{{ forloop.counter }}s;">
                                     <input type="number" name='delete' value="{{m.id}}" class="d-none w-100">   
                                     <button id='{m.id}' type="submit" class="btn  bg-black p-0 d-flex justify-content-center align-content-center flex-wrap position-absolute top-0 end-0  rounded-circle text-white-50" 

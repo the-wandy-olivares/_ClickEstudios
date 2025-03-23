@@ -671,11 +671,12 @@ class Estudios(TemplateView):
         # Agregar adicional
         if request.POST.get('name'):
             sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
+            price = request.POST.get('price').replace(',', '')
             a = models.Adicional(
                     sale=sale,
                     name= request.POST.get('name'),
                     description= request.POST.get('description'),
-                    price= int(request.POST.get('price'))
+                    price= int(price)
             )
             a.save()
 
@@ -1184,7 +1185,9 @@ class Home(TemplateView):
 
                 # Obtener una imagen aleatoria
                 def Get_Img_Random(id):    
-                    return models.ImgMoment.objects.get(id=list_img[id])
+                    if id < len(list_img):
+                        return models.ImgMoment.objects.filter(id=list_img[id]).first()
+                    return None
                 
                 context['img1'] = Get_Img_Random(0)
                 context['img2'] = Get_Img_Random(1)

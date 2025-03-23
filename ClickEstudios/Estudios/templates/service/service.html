@@ -20,6 +20,13 @@
             @media (max-width: 600px) {
                  .section-service {
                   justify-content: center !important;
+                  margin-bottom: 10rem;
+                 }
+                 .card-img-top 
+                 {
+                  width: 190px !important;
+                  max-height: 320px;
+                  margin-top: 0.6rem;
                  }
             }
 
@@ -42,10 +49,11 @@
             style='transition-duration: 1s;'>
                   {% if services %}
                         {% for s in services %}
-                                    <div class=" position-relative m-1" style=' width: 270px;' >
+                                    <div class=" position-relative m-1 " style=' width: max-content;' >
                                           {% include "service/cp/options.html" %}
                                           <div class="card-img-top w" style="
                                           background-position: center;
+                                          width: 270px;
                                           background-size: cover; background-repeat: no-repeat; 
                                                 {% if s.img %}
                                                       background-image: url('{{s.img.url}}');
@@ -63,7 +71,7 @@
                                                 </button> 
                                                 <div>
                                                       <h5 style='font-size: 18px; font-weight: bold; ' class='text-white-50 p-0 m-0 mt-2  ms-2 '>
-                                                            {{s.name}}
+                                                            {{ s.name|truncatechars:10 }}
                                                       </h5>
                                                 </div>
                                           </div>
