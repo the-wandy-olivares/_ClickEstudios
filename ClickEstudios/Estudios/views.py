@@ -1205,8 +1205,10 @@ class GastosCreate(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
-        context['gastos'] = models.Movements.objects.filter(type='gasto', box=models.Box.objects.get(open=True), date__date=timezone.now().date())
+        gastos = models.Movements.objects.filter(type='gasto', 
+            box=models.Box.objects.get(open=True))
+        context['gastos'] = gastos
+        context['total_gastos'] = sum(gasto.mount for gasto in gastos)
 
         return context
 

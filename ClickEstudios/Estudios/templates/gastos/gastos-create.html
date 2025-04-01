@@ -3,6 +3,10 @@
 {% load humanize %}
 
       <style>
+            .nav .pos {
+                  color: #ffc107 !important;
+                  font-weight: bolder;
+            }
             input {
                   background-color: rgb(24, 24, 24) !important;
                   border: none !important; 
@@ -13,47 +17,36 @@
             input::placeholder {
                   color: rgba(255, 255, 255, 0.67) !important;
             }
+            .btn-danger {
+                  background-color: #320000 !important;
+                  color: rgb(255, 101, 101) !important;
+                  border: 0px;
+            }
+            .container td {
+                  font-size: 14px;
+                  color: rgba(255, 255, 255, 0.683);
+                  font-weight: bold;
+            }
       </style>
       
-      <div class="container text-white  d-flex ">
-            
-            <div class="w-50">
-                  <h6 style="font-weight: bold;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
-                              <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
-                            </svg> Agregar gasto</h6>
+      <div class="container text-white  d-flex flex-wrap  align-content-start">
+            <div class="w-100">
+                  <h6 style="font-weight: bold; background-color: #191919; 
+                  max-width: max-content;" class="mt-2 p-2 pe-4 ps-4 rounded-5 text-white-50" >
+                  Agregar gasto</h6>
                   <p class="text-white-50">
                         Agrega un gasto para llevar un control de tus finanzas.
                   </p>
-                  <form id="gastoForm" method="POST" action="">
-                        {% csrf_token %}
-                        <div class="form-group d-flex  justify-content-start">
-                              <select id="category"  class="form-control border-0  m-1" 
-                                    style="           background-color: rgb(24, 24, 24) !important;
-                                    border-radius: 1rem;
-                                    font-weight: bold;
-                                    outline: none !important;
-                                    min-width: 8.5rem; color: rgba(255, 255, 255, 0.67) !important;" >
-                                    <option value="Servicios">Servicios</option>
-                                    <option value="Alquiler">Alquiler</option>
-                                    <option value="Compras">Compras</option>
-                              </select>
-                              <input  type="text" id="name" placeholder="Nombre o desc.. "         class="m-1 form-control" >
-                              <input  type="number" placeholder="Costo: $231" id="amount" class="m-1 form-control" >
-                        </div>
-                        <input type="hidden" id="gastosData" name="gastosData">
-                        <button type="button" class="btn btn-primary bg-white bg-opacity-10 p-2 pe-4 ps-4 border-0 mt-2 text-white-50 w-100 " style="font-weight: bold;" onclick="agregarGasto()"> Agregar a la tabla </button>
-      
             </div>
-   
-
-            <div class="d-block w-75 overflow-auto">
-                  
-                  <table class="table mt-3 ">
+            <form id="gastoForm" method="POST" class="w-100">
+            <h6 style="font-weight: bold;">
+                  Listado de gasto
+            </h6>
+            <div class="d-block  overflow-auto" style="width: 100%;">
+                  <table class=" table table-dark table-borderless  ">
                         <thead>
                               <tr>
                                     <th>Nombre</th>
-
                                     <th>Monto</th>
                                     <th>Acciones</th>
                               </tr>
@@ -61,14 +54,16 @@
                         <tbody id="gastosTableBody">
                         </tbody>
                   </table>
-                  <h6>Total: <span id="totalAmount">0</span></h6>
-                  <button type="submit" class="btn btn-success rounded-5" id="submitButton" style="display: none; font-weight: bold;">
-                        Guardar
+                  <h6 style="font-size: 14px; font-weight: bold;" class="text-white-50">Total: $<span id="totalAmount">0</span></h6>
+                  <button type="submit" class="btn btn-success border-0 rounded-4 p-2 pe-5 ps-5 " id="submitButton" style="display: none; font-weight: bold; 
+                  background-color: #003200;
+                  color: rgb(101, 255, 101);">
+                        Guardar listado
                   </button>
 
-                  <div class="w-100 mt-4">
-                        <h6 class="text-white">Gastos de hoy</h6>
-                        <table class="table mt-3 ">
+                  <div class="w-100 mt-5">
+                        <h6 class="text-white" style="font-weight: bold;">Gastos recientes</h6>
+                        <table class=" table table-dark table-borderless  mt-3 ">
                               <thead>
                                     <tr>
                                           <th>Nombre</th>
@@ -91,12 +86,35 @@
                               </tbody>
                         </table>
                   </div>
+                  <h6 style="font-size: 14px; font-weight: bold;" class="text-white-50">Total: $<span >{{total_gastos|intcomma}}.00</span></h6>
 
             </div>
-      <script>
-
-      </script>
-      </form>
+            
+            <div class="" style="max-width: 30rem;">
+                  
+                        {% csrf_token %}
+                        <div class="form-group d-flex  justify-content-start" >
+                              <select id="category"  class="form-control border-0  m-1" 
+                                    style="           background-color: rgb(24, 24, 24) !important;
+                                    border-radius: 1rem;
+                                    outline: none !important;
+                                    min-width: 9rem; color: rgba(255, 255, 255, 0.67) !important;" >
+                                    <option value="Compras">Compras</option>
+                                    <option value="Servicios">Servicios</option>
+                                    <option value="Alquiler">Alquiler</option>
+                                    <option value="Egresos">Egresos</option>
+                              </select>
+                              <input  type="text" id="name" placeholder="Nombre o descripcion"         class="m-1 form-control" style="width: 12rem;">
+                              <input  type="number" placeholder="Precio: $329" id="amount" class="m-1 form-control" >
+                        </div>
+                        <input type="hidden" id="gastosData" name="gastosData">
+                        <div class="d-flex justify-content-end">
+                              <button type="button" class="btn btn-primary p-2 pe-4 ps-4 border-0 mt-2 rounded-5 " style="font-weight: bold; background-color: #001232;
+                              color: rgb(101, 139, 255); width: max-content;" onclick="agregarGasto()"> Agregar a la lista </button>
+                        </div>
+                  </div>
+            </form>
+   
       </div>
 
       <script>
