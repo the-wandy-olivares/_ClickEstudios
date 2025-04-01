@@ -132,22 +132,21 @@
                   margin-top:1.3rem;' viewBox="0 0 16 16">
                   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
                   </svg>
+                  
                   <span class="reloj show-reloj font-delius position-absolute end-0 me-5 z-3 mt-3 d-flex justify-content-center align-content-center flex-wrap text-white"  
                   style="font-size: 18px;" ></span>
 
                   <div data-aos="fade-down" style="transition: 1s;" class=' div-filter d-flex   blur-5  position-sticky z-2 top-0'>
                         {% include "service/filter-services.html" %}
                   </div>
-
                   <!-- Service select -->
                   {% if service_select %}
                         <div class='mt-5'>
                               {% include "service/service-select.html" %}
                         </div>
                   {% endif %}
-
                   <!--Seccion de citas no confirmadas-->
-                  <section class="section-citas-no-confirm d-none ">
+                  <section class="section-citas-no-confirm d-none  h-50 ">
                         <div style="min-width: 520px; cursor: pointer;  border: 0px solid rgb(47, 47, 47); border-radius: 2rem;"class=' text-white m-2 shadow-sm  mt-0 d-flex justify-content-start align-content-center flex-wrap'>
                               <h6 class="w-100 text-start m-0 mt-5" style="font-weight: bold; font-size: 18px; font-style: italic;">
                                     Reservas no confirmadas
@@ -163,18 +162,11 @@
                                     {% endfor %}
                               </div>
                               {% else %}
-                              <div class="w-100 " style="height: 18rem;">
-                                    <div style="max-width: 40rem; height: 18rem;" class="w-100 bg-white m-0 bg-opacity-10  p-3 rounded-5 d-flex justify-content-center align-content-center flex-wrap">
-                                          <h6 class=" text-white-50 m-0 " style="font-weight: bold; font-size: 18px; font-style: italic;">
-                                                Actualmente no existen citas para reservar
-                                          </h6>
-                                    </div>
-                              </div>
+                                    {%  include "pos/cp/card-aviso.html" %}
                         {% endif %}
                   </section>
-     
                   <!--Seccion de citas confimadas-->
-                  <section class="section-citas-confirm  mt-3">
+                  <section class="section-citas-confirm  mt-3  h-50">
                         {% if sales_reservers %}
                         <hr class="text-white-50 me-5 ms-5">
                         <div class=' d-flex  overflow-auto  position-relative  sales-reservers ' >
@@ -183,13 +175,7 @@
                               {% endfor %}
                         </div>
                         {% else %} 
-                        <div class="w-100 ">
-                              <div style="max-width: 40rem; height: 18rem;" class="bg-white m-0 bg-opacity-10 w-100 p-3 rounded-5 d-flex justify-content-center align-content-center flex-wrap">
-                                    <h6 class=" text-white-50 m-0 text-center " style="font-weight: bold; font-size: 18px; font-style: italic;">
-                                          Oh oh!, aun no hay citas confirmadas en esta seccion
-                                    </h6>
-                              </div>
-                        </div>
+                              {%  include "pos/cp/card-aviso.html" %}
                         {% endif %} 
                   </section>
             </div>

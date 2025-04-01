@@ -57,6 +57,9 @@
                   padding: 0px;
                   margin: 0.4rem;
             }
+            .asistent-response p  {
+                  width: 100%;
+            }
            
             /* Adaptando estylos  a movile */
             @media (max-width: 600px) { 
@@ -71,30 +74,39 @@
             }
 
       </style>
-      <section data-aos="fade-up"  
-           style="transition: 2s;"
-            class="w-100 d-flex flex-wrap justify-content-center pt-5 align-content-start vh-100 ">
-            <div style="max-width: 90%; height: 70vh;" class="w-100 text-white overflow-auto">
+      <section data-aos="fade-up"  style="transition: 2s;"
+            class="w-100 d-flex flex-wrap   justify-content-center align-content-center  h-100 ">
+            <div style="max-width: 99%; max-height: 95vh; background-color: transparent; " 
+                  class="w-100 position-relative p-2 rounded-5 text-white overflow-auto blur-10">
                   <!--Pregunta del usuario-->
-                  <div class="w-100 d-flex flex-wrap justify-content-start align-content-center">
-                        <span class="bg-white bg-opacity-10 rounded-circle  me-1">
-                              <img src="" id="img-profiles" width="50" height="50" alt="">
+                  <div class="w-100 d-flex flex-wrap p-4 justify-content-start position-sticky top-0 blur-10 align-content-center  bg-opacity-10">
+                        <span class=" rounded-circle  me-1">
+                              <img src="{{request.user.more.company.logo.url}}" id="img-profiles" class="rounded-circle object-fit-cover" width="50" height="50" alt="">
                         </span>
-                        <h3 class="your-response mt-2 d-flex flex-wrap justify-content-start align-content-center">
-                              Asistente Click IA 
+                        <h3 style="background-color: #202020;"
+                              class="your-response mt-0 ms-2 p-2 ps-3 pe-3 rounded-5 d-flex flex-wrap justify-content-start align-content-center">
+                              Click IA
                         </h3>
                   </div>
                   <!--Respuestas del asistente-->
-                  <div class="asistent-response mt-3 d-flex flex-wrap justify-content-start"> 
+                  <div class="asistent-response  align-content-start p-4  d-flex flex-wrap justify-content-start"
+                        style="height: 80rem;"> 
                          ¿En que puedo ayudarte?
                   </div>
+                  <div style="width: 100%; "
+                  class="d-flex  position-sticky bottom-0  bottom-0 flex-wrap justify-content-center  align-content-center  bottom-0 start-0">
+                   <div class="div1 w-100">
+                        {% include "asistente/cp/input.html" %}         
+                   </div>
+                   <div class="div2 d-none">
+                        {% include "asistente/cp/load-response.html" %}         
+                   </div>
+
+            </div>
             </div>
       </section>
-      <div
-            style="margin-bottom: 5rem;"
-            class="w-100 d-flex flex-wrap justify-content-center  align-content-center position-fixed bottom-0">
-              {% include "asistente/cp/input.html" %}         
-      </div>
+    
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script>
             let asistente = document.getElementById('asistente-input-0');
             asistente.addEventListener('keyup', function(e) {
@@ -113,7 +125,7 @@
                               document.querySelectorAll('.darkBorderBg').forEach(element => {
                               element.classList.remove('d-none');
                         });
-                    }, 2000);
+                    }, 100);
             }
 
             function FormaTextIA(texto) {
@@ -121,9 +133,10 @@
                   lineas.forEach(linea => {
                   // Si es un encabezado (por ejemplo, "**Título:**")
                   if (linea.startsWith('**') && linea.endsWith(':**')) {
-                              resultado += ` <span> <h4>
-                                    ${linea.replace(/\*\*(.*?)\*\*/g, '$1').replace(/:/g, '')}  
-                                    </h4> </span> `;
+                              resultado += ` 
+                                    <span> 
+                                          <h4>  ${linea.replace(/\*\*(.*?)\*\*/g, '$1').replace(/:/g, '')} </h4>
+                                    </span> `;
                         } 
                         // Si es una lista (empieza con "* ")
                         else if (linea.startsWith('* ')) {
@@ -148,30 +161,25 @@
             }
 
             function QuestionGemini(question) {
+                  document.querySelector('.div1').classList.toggle('d-none')
+                  document.querySelector('.div2').classList.toggle('d-none')
                   $.ajax({
                         url: '{% url "asistente:question_gemini" %}',
                         data: {
                         question: question,},
                         success: function (data) {
-                              document.querySelector('.your-response').innerHTML = data.your_question;
-                              document.querySelector('.asistent-response').innerHTML = FormaTextIA(data.asistent_response) ;
+                              let div = document.createElement('div')
+                              // document.querySelector('.your-response').innerHTML = data.your_question;
+                              document.querySelector('.asistent-response').innerHTML = FormaTextIA(data.asistent_response)
                               FocusAsistentInput();
+                              asistente.placeholder =  data.your_question
+                              document.querySelector('.div2').classList.toggle('d-none')
+                              document.querySelector('.div1').classList.toggle('d-none')
+                              asistente.focus()
                         },
                   }); 
             }
-      document.addEventListener('DOMContentLoaded', function() {
-            GetLogoAsistente();
-      });
 
-      let GetLogoAsistente = () => {
-            $.ajax({
-                url: '/ajax/get-estudios/',
-                method: 'GET',
-                success: function(D) {
-                  document.querySelector('#img-profiles').src = D.img;
-                },
-            });
-        };
       </script>
 
 {% endblock  %}

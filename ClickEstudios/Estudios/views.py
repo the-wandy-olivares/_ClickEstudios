@@ -48,7 +48,7 @@ class Dashboard(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['sales'] = models.Sale.objects.all()
-        context['en'] = models.Sale.objects.filter(date__month=1).count()
+        context['en'] = models.Sale.objects.filter(date__month=1).count() 
         context['fe'] = models.Sale.objects.filter(date__month=2).count()
         context['ma'] = models.Sale.objects.filter(date__month=3).count()
         context['ab'] = models.Sale.objects.filter(date__month=4).count()

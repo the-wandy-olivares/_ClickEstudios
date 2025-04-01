@@ -185,17 +185,14 @@
   </style>
 
   <body style=" {% if request.user.config.mode %} background-color:#101010; {% else %} background-color:black  {% endif %} " class="p-0 body"> 
-
-   
 {% if  request.user.is_authenticated %}
     {% if request.user.config.mode %} 
           {% include "base/components/loads.html" %}
     {% endif %}
 
-    
       <main class='  d-flex  z-3 position-absolute  top-0 p-0 w-100'  
-      style=" height: 100vh; background-color:rgba(0, 0, 0, 0);">
-                <div class='bg-grey super-nav ms-5 me-3 z-3     mt-4' 
+      style=" height: 100vh; background-color:rgba(0, 0, 0, 0); transition: 0s !important;">
+                <div class='bg-grey super-nav ms-4 me-3 z-3  mt-4' 
                     style='min-width: 220px;'>  
                        {% include "component/nav.html" %} 
                 </div>
@@ -232,8 +229,6 @@
         window.location.href = "{% url 'estudios:login' %}";
     </script>
 {% endif %}
-
-    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 

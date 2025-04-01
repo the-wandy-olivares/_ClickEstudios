@@ -1,15 +1,16 @@
 <style>
         @media (max-width: 600px) {  
-                  .lineChart {
-                        background-color: #191919 !important;  
-                        max-height: 13.5rem;
-                        display: flex; justify-content: center; align-content: end;
-                        flex-wrap: wrap;
-                    }
+            .lineChart {
+                  background-color: #191919 !important;  
+                  max-height: 13.5rem;
+                  display: flex; justify-content: center; align-content: end;
+                  flex-wrap: wrap;
+            }
         }
 </style>
-<div  style="transition: 1s; transition-delay: 0s;" 
-    class="bg-gray-100 w-100  lineChart  h-50   rounded-5  p-2  overflow-hidden ">
+<div  
+        style="transition: 1s; transition-delay: 0s;" 
+        class="bg-gray-100 w-100 lineChart h-50 rounded-5  p-2 overflow-hidden ">
       <canvas id="lineChart"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -22,13 +23,15 @@
             datasets: [{
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 borderColor: 'rgba(255, 99, 132, 1)',
-                data: [{{en}}, {{fe}}, {{ma}}, {{ab}}, {{my}}, {{ju}}, {{jul}}, {{ag}}, {{set}}, {{oc}}, {{nov}}, {{dic}}],
+                data: [
+                 ' {{en}}', '{{fe}}', '{{ma}}', '{{ab}}', '{{my}}', '{{ju}}', '{{jul}}', '{{ag}}', '{{set}}', '{{oc}}', '{{nov}}', '{{dic}}'
+                ],
                 fill: true,
             }]
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false, // Permite que el gráfico tome el espacio libre del contenedor
+            maintainAspectRatio: false, 
             scales: {
                 x: {
                     grid: {
