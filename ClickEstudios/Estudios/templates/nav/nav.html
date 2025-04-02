@@ -109,17 +109,17 @@
 
 
 <div class='nav  overflow-auto   ' onclick="OpenNav()" style="display: flex;">
-      <img src=""  class="img-estudioss mb-5 " width="190" height="180" alt="" >
-      <a   style="transition-delay: 0.5s;"  class="dashboard " 
+     {% include "nav/cp/header-profile.html" %}
+      <a  rel="preload"  style="transition-delay: 0.5s;"  class="dashboard " 
             href="{% url "estudios:dashboard" %}" class=''>
             <div>
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart-fill " viewBox="0 0 16 16">
                         <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1z"/>
                       </svg> 
             </div>
-            <span>Dashboard</span> 
+            <span>Dashboard  </span> 
        </a>
-      <a   
+      <a   rel="preload"
             class="pos" href="{% url "estudios:pos" %}">
             <div>
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-postcard-heart-fill" viewBox="0 0 16 16">
@@ -129,7 +129,8 @@
            <span>Punto de venta </span>
       </a>
 </a>
-<a     class='caja' href="{% url "estudios:box" %}"> 
+<a    rel="prefetch"
+       class='caja' href="{% url "estudios:box" %}"> 
       <div>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-inboxes-fill" viewBox="0 0 16 16">
                   <path d="M4.98 1a.5.5 0 0 0-.39.188L1.54 5H6a.5.5 0 0 1 .5.5 1.5 1.5 0 0 0 3 0A.5.5 0 0 1 10 5h4.46l-3.05-3.812A.5.5 0 0 0 11.02 1zM3.81.563A1.5 1.5 0 0 1 4.98 0h6.04a1.5 1.5 0 0 1 1.17.563l3.7 4.625a.5.5 0 0 1 .106.374l-.39 3.124A1.5 1.5 0 0 1 14.117 10H1.883A1.5 1.5 0 0 1 .394 8.686l-.39-3.124a.5.5 0 0 1 .106-.374zM.125 11.17A.5.5 0 0 1 .5 11H6a.5.5 0 0 1 .5.5 1.5 1.5 0 0 0 3 0 .5.5 0 0 1 .5-.5h5.5a.5.5 0 0 1 .496.562l-.39 3.124A1.5 1.5 0 0 1 14.117 16H1.883a1.5 1.5 0 0 1-1.489-1.314l-.39-3.124a.5.5 0 0 1 .121-.393z"/>
@@ -137,7 +138,8 @@
       </div>
       <span>Caja</span>
 </a>
-<a     class='contactos' 
+<a     rel="prefetch"
+      class='contactos' 
       href="{% url "estudios:contactos" %}"> 
       <div>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
@@ -147,7 +149,8 @@
       <span>Contactos</span> 
 </a>
 
-<a     class='facturas' 
+<a     rel="prefetch"
+class='facturas' 
       href="{% url "estudios:facturas" %}"> 
             <div>
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-text-fill" viewBox="0 0 16 16">
@@ -162,7 +165,8 @@
       {% if request.user.profile.role == 'administrador' or request.user.profile.role == 'administrativo' %}
 
 
-      <a     class="services " href="{% url "estudios:service" %}">
+      <a  rel="preload"
+       class="services " href="{% url "estudios:service" %}">
                   <div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-align-end" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M14.5 1a.5.5 0 0 0-.5.5v13a.5.5 0 0 0 1 0v-13a.5.5 0 0 0-.5-.5"/>

@@ -71,22 +71,25 @@
                   .asistente-input-1 {
                         display: block !important;
                   }
+                  .div-input-asistente {
+                        bottom: 4rem !important;
+                  }
             }
 
       </style>
       <section data-aos="fade-up"  style="transition: 2s;"
-            class="w-100 d-flex flex-wrap   justify-content-center align-content-center  h-100 ">
+            class="w-100 section-asistente d-flex flex-wrap   justify-content-center align-content-center  h-100 ">
             <div style="max-width: 99%; max-height: 95vh; background-color: transparent; " 
                   class="w-100 position-relative p-2 rounded-5 text-white overflow-auto blur-10">
                   <!--Pregunta del usuario-->
                   <div class="w-100 d-flex flex-wrap p-4 justify-content-start position-sticky top-0 blur-10 align-content-center  bg-opacity-10">
                         <span class=" rounded-circle  me-1">
-                              <img src="{{request.user.more.company.logo.url}}" id="img-profiles" class="rounded-circle object-fit-cover" width="50" height="50" alt="">
+                              <img  src="{{request.user.profile.estudio.img.url}}"id="img-profiles" class="rounded-circle object-fit-cover" width="50" height="50" alt="">
                         </span>
-                        <h3 style="background-color: #202020;"
-                              class="your-response mt-0 ms-2 p-2 ps-3 pe-3 rounded-5 d-flex flex-wrap justify-content-start align-content-center">
-                              Click IA
-                        </h3>
+                        <h6 style="background-color: #191919;"
+                              class="your-response mt-2 ms-2 p-2 ps-3 pe-3 rounded-5 d-flex flex-wrap justify-content-start align-content-center">
+                              Asitentent CliclEstudios
+                        </h6>
                   </div>
                   <!--Respuestas del asistente-->
                   <div class="asistent-response  align-content-start p-4  d-flex flex-wrap justify-content-start"
@@ -94,7 +97,7 @@
                          ¿En que puedo ayudarte?
                   </div>
                   <div style="width: 100%; "
-                  class="d-flex  position-sticky bottom-0  bottom-0 flex-wrap justify-content-center  align-content-center  bottom-0 start-0">
+                  class="d-flex  position-sticky div-input-asistente  flex-wrap justify-content-center z-3  align-content-center  bottom-0 start-0">
                    <div class="div1 w-100">
                         {% include "asistente/cp/input.html" %}         
                    </div>
