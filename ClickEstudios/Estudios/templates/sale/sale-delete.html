@@ -5,7 +5,7 @@
             .nav .services {
                   color: #ffc107;
                   font-weight: bolder;
-                  transform: scale(1.1);
+
             }
       </style>
 
@@ -22,19 +22,18 @@
                               background-size: cover; background-repeat: no-repeat; 
                               filter: brightness(80%);
                         
-                              max-width: 30rem;
-                              height: 220px; border-radius: 3rem;">
+                              width: 310px;
+                              height: 420px; border-radius: 3rem;">
                         </div>
                   </div>
-                  <h5 class='text-white'>¿Estás seguro de que deseas eliminar {{object.name_plan}} de {{object.name_client}}?</h5>
+                  <h6 class='text-white'>¿Estás seguro de que deseas eliminar {{object.name_plan}} de {{object.name_client}}?</h6>
                   <div class="mt-2">
-     
                   </div>
               
                   <div class="d-flex justify-content-end">
-                        <a href="{% url "estudios:pos" %}" class="btn border-0 btn-secondary accordion bg-transparent" style="font-weight: bold;"> Cancelar</a>
-                        <button type="submit" class="btn btn-danger p-0 pe-3 ps-3 border-0 rounded-5 ms-1"
-                        style="font-size: 14px; font-weight: bold;">
+                        <a href="{% url "estudios:pos" %}" class="btn border-0 btn-secondary accordion bg-transparent  text-white-50" style="font-weight: bold;"> Cancelar</a>
+                        <button type="submit" class="btn  p-0 pe-3 ps-3 border-0 rounded-5 ms-1"
+                        style="font-size: 14px; font-weight: bold; background-color: rgb(28, 1, 1); color: red;">
                           Si, estoy seguro
                         </button>
                   </div>

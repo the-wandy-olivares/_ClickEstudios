@@ -10,7 +10,6 @@
             .nav .caja {
                   color: #ffc107;
                   font-weight: bolder;
-                  transform: scale(1.1);
             }
             .nav .caja svg {
                   color: #ffc107 !important;
@@ -61,22 +60,24 @@
                   color: #ffffff;
             }
       </style>
-      <div class="container-search-move position-fixed d-none top-0 start-0 blur-50 bg-black bg-opacity-10 text-white d-flex justify-content-center align-content-center flex-wrap z-3 vh-100 w-100 ">
+      <div class="container-search-move position-fixed  d-none top-0 start-0 blur-50 bg-black bg-opacity-10 text-white d-flex justify-content-center align-content-center flex-wrap z-3 vh-100 w-100 ">
             
-            <div class=" bg-white bg-opacity-10 shadow w-100 rounded-5 p-2 position-relative overflow-auto" 
+            <div class=" bg-black bg-opacity-25 shadow w-100 rounded-5 p-2 position-relative overflow-auto" 
                   style="max-width: 70rem; ">
                      <!--Delete-->
                   <button class="bg-transparent border-0 position-absolute top-0 start-0 ms-2 mt-2" onclick="OpenSearchMove()">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x-circle-fill text-white" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x-circle-fill text-white-50" viewBox="0 0 16 16">
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
                         </svg>
                   </button>
-                  <input type="text" id="search-move"
-                  style=" width: 100%;"
-                  class="w-100 m-0 p-3 rounded-5  border-0 mb-3 text-center bg-white bg-opacity-10  me-2 "
-                  placeholder="Buscar moviemiento "       >
-                        <strong class="  text-white-50 ms-2" style="font-size: 16px;">
-                               Moviemientos de caja
+                        <div class="d-flex w-100 justify-content-center mb-4">
+                              <input type="text" id="search-move"
+                              style=" max-width: 50%; background-color: #2e2e2e94;"
+                              class="w-100 m-0 p-3 rounded-5  border-0 mb-3 text-center me-2  "
+                              placeholder="Buscar moviemiento ">
+                        </div>
+                        <strong class="  text-white-50 ms-2 " style="font-size: 16px;">
+                               Moviemientos 
                         </strong>
                         <p class="text-white-50 p-0 m-0 ms-2 w-100" style="font-size: 14px;">
                               Verde ingresos y rojo los gastos
@@ -133,7 +134,7 @@
                                                       <td>
                                                             <a href="{% url "estudios:box-create" %}" class='btn-cerrar'> 
                                                                   <button style=" font-weight: bold; background-color: #191919;"  
-                                                                  class=' btn rounded-3 text-white m'> Cerrar session  </button>
+                                                                  class=' btn rounded-3 text-white m'> Cerrar   </button>
                                                             </a>
                                                       </td>
                                                 </tr>
