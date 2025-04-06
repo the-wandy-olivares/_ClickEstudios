@@ -27,15 +27,15 @@
 
 </style>
 
-<div class="d-flex w-100 mt-2">
-      <form action="" method="get" >
+<div class="d-flex w-100 mt-2 ">
+      <!-- <form action="" method="get" >
             <label id="label-select-citas" for="select-citas" 
-                  class="text-white p-3 ms-2  d-flex justify-content-center align-content-center flex-wrap rounded-circle"
+                  class="text-white p-3 ms-2 d-none  d-flex justify-content-center align-content-center flex-wrap rounded-circle"
                   style="width: 40px; height: 40px;  margin-top: 0.3rem; font-size: 30px;">
                   <i class="bi bi-filter-circle-fill text-white-50" 
                   style=""></i>
-            </label>
-            <select  id="select-citas" class="form-select border-0 d-none rounded-2  rounded-end-5 border-0 p-2  ps-3" name='filter' style="width: 10rem; outline: none !important; font-weight: bold;" onchange="this.form.submit()" >
+            </label> -->
+            <!-- <select  id="select-citas" class="form-select border-0 d-none rounded-2  rounded-end-5 border-0 p-2  ps-3" name='filter' style="width: 10rem; outline: none !important; font-weight: bold;" onchange="this.form.submit()" >
                   <option value="all" {% if filter_option == 'all' %}selected{% endif %}>
                         Todos
                   </option>
@@ -54,18 +54,9 @@
                   <option value="future" {% if filter_option == 'future' %}selected{% endif %}>
                         Dias futuros
                   </option>
-            </select>
-      </form>
-      <input type="text"  
-            class="ps-3 ms-1 search  text-center rounded-5 border-0 p-1 me-2 w-100" placeholder=" ({{sales_reservers|length}})  Buscardor " 
-            style="max-width: 17rem; height: 2.9rem; background-color: #ffffff25; " id="input-s">        
-            <button onclick="AternaSection_Citas()" class=" change-section-citas   border-0 text-white  me-2 text-white-50 p-2 pe-4 ps-4 rounded-5 "
-            style="min-width: 8rem; font-weight: bold;
-            display: none; background-color: #ffffff25;
-            z-index: 1; 
-             " >
-            Reservas
-      </button>
+            </select> -->
+      <!-- </form> --> 
+            
 </div>
 <script>
       // Buscar usuarios o ventas por: nombre, fecha, numero wsn. 

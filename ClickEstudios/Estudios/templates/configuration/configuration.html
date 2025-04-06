@@ -25,6 +25,7 @@
             border-radius: 3.5rem;
             background-color: rgb(11, 11, 11);
             padding: 2rem;
+            margin: 0.2rem;
       }
       label {
             font-size: 14px;
@@ -70,11 +71,11 @@
       <div   data-aos="fade-down" style="transition: 0.5s;" class="w-100"
             style="background-color: #35343400; border-radius: 1rem;">
             {% include 'configuration/cp/profile.html' %}
-            <div id="options2" class=" bg-black bg-opacity-10 blur-20 d-none  p-2 moptions rounded-4 z-2  position-absolute top-0 start-0 "
+            <div id="options2" class=" bg-black  bg-opacity-10 blur-20 d-none  p-2 moptions rounded-4 z-2  position-absolute top-0 start-0 "
             style="height: 10rem; width: 14rem; margin-top: 8.9rem; margin-left: 0.3rem;
             border-bottom-left-radius: 2rem !important  ;"> 
 
-            <ul class="mt-1">
+            <ul class="mt-1 d-none">
                   <a >
                         <li class="editar">  
                               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
@@ -99,26 +100,29 @@
       
             </div>
       </div>
-      <div  data-aos="fade-in" style="transition: 1s; transition-delay: 0.5s;" class="w-100 d-flex" >
-            <button onclick="toggleOptions()"  class='start-0  text-white btn-optione{{p.id}} text-decoration-none bg-white bg-opacity-10 p-2 ms-2  border-1 rounded-5' style="font-size: 12px ; font-weight: bold; width: 36px; height: 36px; border: 1px solid rgb(63, 63, 63) !important; margin-top: 0.5rem;">
+      <div  data-aos="fade-left" style="transition: 1s; transition-delay: 0.1s;" class="w-100 d-flex " >
+            <button onclick="toggleOptions()"  class='start-0  d-none text-white btn-optione{{p.id}} text-decoration-none bg-white bg-opacity-10 p-2 ms-2  border-1 rounded-5' style="font-size: 12px ; font-weight: bold; width: 36px; height: 36px; border: 1px solid rgb(63, 63, 63) !important; margin-top: 0.5rem;">
                   <span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-three-dots text-white-50" viewBox="0 0 16 16">
                               <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"/>
                             </svg>
                   </span>
             </button> 
-            <h1 style="font-weight: bold;  font-style: italic;"
+            <h1 style="font-weight: bold;"
                   class="ms-3"> 
-                  {{estudios.name}}
+                  Configuración del sistema
             </h1>
       </div>
+      <p style="font-size: 12px;" class="text-white-50 ms-4 w-100 p-0 m-0">
+            Ajustas las funciones del sistema segun tus necesidades
+      </p>
 
 
-<div class="ms-4 mt-4">
-      <strong class="">
-            Sistema
+<div class="ms-4 mt-5">
+      <strong class="d-none">
+            Ajustes 
       </strong>
-      <p style="font-size: 12px;" class="text-white-50 w-100 p-0 m-0">
+      <p style="font-size: 12px;" class="text-white-50 d-none w-100 p-0 m-0">
             Ajustas las funciones del sistema segun tus necesidades
       </p>
 </div>
@@ -213,8 +217,8 @@
             
       </style>
       <a href="{%  url 'estudios:logout' %}">
-            <button class='position-absolute bottom-0 end-0 me-4 mb-4 bg-white bg-opacity-10 border-0 rounded-5 ps-3 pe-3 p-2 text-white ' style="font-weight: bold;">
-                  Cerrar session
+            <button class='position-absolute top-0 mt-3 end-0 me-4 blur-20 mb-4 border-0 rounded-5 ps-3 pe-3 p-2  ' style="font-weight: bold; color: rgb(255, 95, 95); background-color: rgba(21, 0, 0, 0.471);">
+                  Cerrar 
             </button>
       </a>
       

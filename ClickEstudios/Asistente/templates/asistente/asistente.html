@@ -5,7 +5,7 @@
             .nav .asistente {
                   color: #ffc107;
                   font-weight: bolder;
-
+                  transform: scale(1.1);
             }
             .nav .asistente svg {
                   color: #ffc107 !important;
@@ -71,41 +71,67 @@
                   .asistente-input-1 {
                         display: block !important;
                   }
-                  .div-input-asistente {
-                        bottom: 4rem !important;
-                  }
             }
 
+            .form-check-input {
+                  width: 20px; /* Ajusta el tamaño */
+                  height: 20px;
+                  border-radius: 50% !important; /* Lo hace redondo */
+                  border: 2px solid #45a5ff !important; /* Borde azul siempre */
+                  background-color: rgba(255, 255, 255, 0); /* Asegura un fondo blanco */
+            }
+
+            .form-check-input:checked {
+                  background-color: #000000; /* Fondo azul cuando está marcado */
+                  border-color: #45a5ff;
+            }
+            .model-ia {
+                  background-color: #20202034;
+                  color: #ffffff6e; font-weight: bold;
+                  border-radius: 0.9rem;
+            }
       </style>
-      <section data-aos="fade-up"  style="transition: 2s;"
-            class="w-100 section-asistente d-flex flex-wrap   justify-content-center align-content-center  h-100 ">
-            <div style="max-width: 99%; max-height: 95vh; background-color: transparent; " 
-                  class="w-100 position-relative p-2 rounded-5 text-white overflow-auto blur-10">
+      <section data-aos="zoom-in"  
+           style="transition: 1s ease-out; "
+            class="w-100 d-flex flex-wrap   justify-content-center align-content-center  h-100 ">
+            <div style="max-width: 99%; max-height: 95vh; background-color: #19191900;" 
+                  class="w-100 position-relative p-2 rounded-5 text-white overflow-auto">
                   <!--Pregunta del usuario-->
-                  <div class="w-100 d-flex flex-wrap p-4 justify-content-start position-sticky top-0 blur-10 align-content-center  bg-opacity-10">
+                  <!-- <div class="w-100 d-flex flex-wrap p-4 justify-content-start position-sticky top-0 blur-10 align-content-center  bg-opacity-10">
                         <span class=" rounded-circle  me-1">
-                              <img  src="{{request.user.profile.estudio.img.url}}"id="img-profiles" class="rounded-circle object-fit-cover" width="50" height="50" alt="">
+                              <img src="{{ request.user.profile.estudio.img.url }}" id="img-profiles" class="rounded-circle object-fit-cover" width="50" height="50" alt="">
                         </span>
                         <h6 style="background-color: #191919;"
                               class="your-response mt-2 ms-2 p-2 ps-3 pe-3 rounded-5 d-flex flex-wrap justify-content-start align-content-center">
-                              Asitentent CliclEstudios
+                              Asistente IA
                         </h6>
-                  </div>
+                  </div> -->
                   <!--Respuestas del asistente-->
                   <div class="asistent-response  align-content-start p-4  d-flex flex-wrap justify-content-start"
                         style="height: 80rem;"> 
-                         ¿En que puedo ayudarte?
+                         <!-- ¿En que puedo ayudarte? -->
                   </div>
                   <div style="width: 100%; "
-                  class="d-flex  position-sticky div-input-asistente  flex-wrap justify-content-center z-3  align-content-center  bottom-0 start-0">
-                   <div class="div1 w-100">
-                        {% include "asistente/cp/input.html" %}         
-                   </div>
-                   <div class="div2 d-none">
-                        {% include "asistente/cp/load-response.html" %}         
-                   </div>
-
-            </div>
+                        class="d-flex  position-sticky bottom-0  bottom-0 flex-wrap justify-content-end  align-content-center  bottom-0 start-0">
+                        <form method="post" class="w-100" style="max-width: max-content;">  
+                              {% csrf_token %}
+                              {% if models_ia %}
+                                    <select name="model-ia" class="form-select model-ia w-100 ">
+                                          {% for model in models_ia  %}
+                                                <option value="{{model.name}}" >
+                                                      {{model.name}}
+                                                </option>
+                                          {% endfor %}
+                                    </select>
+                              {% endif %}
+                        </form>
+                        <div class="div1 w-100">
+                              {% include "asistente/cp/input.html" %}         
+                        </div>
+                        <div class="div2 d-none">
+                              {% include "asistente/cp/load-response.html" %}         
+                        </div>
+                  </div>
             </div>
       </section>
     
@@ -167,7 +193,7 @@
                   document.querySelector('.div1').classList.toggle('d-none')
                   document.querySelector('.div2').classList.toggle('d-none')
                   $.ajax({
-                        url: '{% url "asistente:question_gemini" %}',
+                        url: '{% url "asistente:asistente-ia" %}',
                         data: {
                         question: question,},
                         success: function (data) {
