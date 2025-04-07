@@ -180,12 +180,15 @@
                   }
                   
            
-
+            .body main{
+              /* background: #3d3d3d !important; */
+              max-width: 1400px !important;
+            }
 
   </style>
 
 
-<body class="p-0 body"
+<body class="p-0 body d-flex justify-content-center"
 	{% if request.user.config.mode %}  
 		style="background-color:#101010; "
 	{% else %} 
