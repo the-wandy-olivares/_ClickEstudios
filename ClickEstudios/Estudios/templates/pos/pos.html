@@ -71,7 +71,6 @@
                   .div-filter {
                         height: 3rem;
                         text-align: center;
-                        justify-content: center;
                   }
                   .show-reloj {
                         display: none !important;
@@ -98,7 +97,7 @@
       <section data-aos="fade-in" style="transition: 1s;" class="overflow-auto overflow-x-hidden container-pos w-100 bg-transparent p-2  pb-5">
                   <!-- Seleccionar servicios -->
                   <div class="div-dropdown text-white p-3 rounded-5 d-none position-absolute top-0 start-0  z blur-100 m-2  overflow-scroll overflow-x-hidden"
-                        style="z-index: 100; max-height: 70vh; box-shadow: 0px 0px 20px 4px  #101010  ; margin-top: 5rem !important;  max-width: 30rem;">
+                        style="z-index: 100; max-height: 70vh; box-shadow: 0px 0px 20px 4px  #101010; margin-top: 5rem !important;  max-width: 30rem;">
                         <div class="dropdown-content w-100 d-flex flex-wrap">
                               <strong class="dropdown-title w-100 text-center ">
                                      Seleciona un servicio 
@@ -131,12 +130,12 @@
                   margin-top:1.3rem;' viewBox="0 0 16 16">
                   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
                   </svg>
-                  
+
                   <span class="reloj show-reloj font-delius position-absolute end-0 me-5 z-3 mt-3 d-flex justify-content-center align-content-center flex-wrap text-white"  
                   style="font-size: 18px;" ></span>
 
-                  <div data-aos="fade-down" style="transition: 1s;" class=' div-filter d-flex   blur-5  position-sticky z-2 top-0'>
-                        {% include "service/filter-services.html" %}
+                  <div data-aos="fade-down" style="transition: 1s;" class=' div-filter d-flex overflow-auto   blur-5  position-sticky z-2 top-0'>
+                        {% include "pos/cp/filter-services.html" %}
                   </div>
                   <!-- Service select -->
                   {% if service_select %}
@@ -146,11 +145,14 @@
                   {% endif %}
                   <!--Seccion de citas no confirmadas-->
                   <section class="section-citas-no-confirm d-none  h-50 ">
-                        <div style="min-width: 520px; cursor: pointer;  border: 0px solid rgb(47, 47, 47); border-radius: 2rem;"class=' text-white m-2 shadow-sm  mt-0 d-flex justify-content-start align-content-center flex-wrap'>
-                              <h6 class="w-100 text-start m-0 mt-5" style="font-weight: bold; font-size: 18px; font-style: italic;">
+                        <div style="min-width: 520px; cursor: pointer; border: 0px solid rgb(47, 47, 47); border-radius: 2rem;" 
+                              class=' text-white m-2 shadow-sm  mt-0 d-flex justify-content-start align-content-center flex-wrap'>
+                              <h6 class="w-100 text-start m-0 mt-5"
+                                    style="font-weight: bold; font-size: 18px; font-style: italic;">
                                     Reservas no confirmadas
                               </h6>
-                              <p class="parrafo-p m-3  ms-0 mt-0 mb-0  p-2 ps-0 pb-0 pt-0 text-white-50" style="text-align: justify;">
+                              <p class="parrafo-p m-3  ms-0 mt-0 mb-0  p-2 ps-0 pb-0 pt-0 text-white-50" 
+                                    style="text-align: justify;">
                                     Citas no confirmadas son aquellas citas que aún no han sido verificadas y no se ha realizado ningún tipo de abono
                               </p>
                         </div>
@@ -177,20 +179,13 @@
                               {%  include "pos/cp/card-aviso.html" %}
                         {% endif %} 
                   </section>
-            </div>
       </section>
       {% else %}
      <div class="text-white">
-      {% include "component/abrir-caja.html" %}
+            {% include "component/abrir-caja.html" %}
      </div>
-</div>
-
-
-
-{% endif %}
+      {% endif %}
       <script>
-
-
             function updateClock() {
                   const reloj = document.querySelector('.reloj');
                   const now = new Date();
@@ -205,13 +200,6 @@
 
             setInterval(updateClock, 1000);
             updateClock();
-
-
-
-
-
-
-
       </script>
 {% endblock  %}
 

@@ -8,7 +8,7 @@ urlpatterns = [
 
 
 # Views Ajax
-      path('ajax/question-gemini/', views_ajax.QuestionGemini,
-            name='question_gemini'),
+      path('ajax/question-gemini/', views_ajax.Asistente,
+            name='asistente-ia'),
 
 ]
