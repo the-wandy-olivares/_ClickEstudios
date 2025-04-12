@@ -9,27 +9,39 @@
             }
             .myPieChart {
                   background-color: #191919;
+                  align-content: center !important;
+                  justify-content: center !important;
+                  flex-wrap: wrap !important;
             }
             #myPieChart {
                   max-height: 10rem !important ; max-width: 10rem !important;
+        
+
+                  /* color: wheat; */
             }
             #chartLabels {
-                  /* color: wheat; */
-                  background-color: #191919; 
+                  justify-content:space-around !important;
+                  height: 100% !important;
+                
             }
+      .span-mount {
+            padding: 0.7rem !important;
+            background-color: #202020;
+            transition: 0.3s;
+      }
       }
       .span-mount {
-            background-color: #191919;
+            background-color: #202020;
             transition: 0.3s;
       }
 </style>
-<div style="width: 100%;  margin: auto; max-height: 22.5rem;  " class="myPieChart m-0 mb-1 overflow-auto rounded-5 d-flex justify-content-center align-content-start flex-wrap h-50">
+<div style="width: 100%;  margin: auto; max-height: 20.5rem;  " class="myPieChart m-0 mb-1 overflow-auto rounded-5 d-flex justify-content-center align-content-start flex-wrap h-50">
       <div class="d-flex w-100">
-            <div class="d-flex flex-wrap justify-content-center align-content-center ">
+            <div class="d-flex flex-wrap d-none justify-content-center align-content-center ">
                   <canvas id="myPieChart" class="m-4 d-none"  
             style="max-height: 6rem; max-width: 6rem; "></canvas>
             </div>
-            <div id="chartLabels" class="d-flex flex-wrap overflow-auto p-2 rounded-5" 
+            <div id="chartLabels" class="d-flex flex-wrap  overflow-auto p-2 rounded-5" 
                   style="max-height: 22rem;">
             </div>
       </div>
@@ -38,21 +50,13 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 var ctx = document.getElementById('myPieChart').getContext('2d');
-var labels = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiem', 'Octubre', 'Noviembre', 'Diciembre'];
+var labels = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 var data = [{{en}}, {{fe}}, {{ma}}, {{ab}}, {{my}}, {{ju}}, {{jul}}, {{ag}}, {{set}}, {{oc}}, {{nov}}, {{dic}}];
 
 var backgroundColors = [
-  'rgba(255, 99, 132, 0.2)',
-  'rgba(54, 162, 235, 0.2)',
-  'rgba(255, 206, 86, 0.2)',
-  'rgba(75, 192, 192, 0.2)',
-  'rgba(153, 102, 255, 0.2)',
-  'rgba(255, 159, 64, 0.2)',
-  'rgba(199, 199, 199, 0.2)',
-  'rgba(83, 102, 255, 0.2)',
-  'rgba(255, 206, 186, 0.2)',
-  'rgba(75, 192, 92, 0.2)',
-  'rgba(153, 202, 255, 0.2)',
+  'rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)',
+  'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)',  'rgba(255, 159, 64, 0.2)', 'rgba(199, 199, 199, 0.2)',
+  'rgba(83, 102, 255, 0.2)', 'rgba(255, 206, 186, 0.2)', 'rgba(75, 192, 92, 0.2)', 'rgba(153, 202, 255, 0.2)',
   'rgba(255, 159, 164, 0.2)'
 ];
 
@@ -89,7 +93,7 @@ chartLabels.innerHTML = labels.map((label, index) => {
       <div style="
             display: flex; align-items: center; margin-bottom: 4px; margin-right:4px;" >
 
-            <span style=' width: 8rem;' class='span-mount d-flex text-white-50 p-1 ps-3  rounded-5'
+            <span style=' width: 10rem;' class='span-mount d-flex text-white-50 p-1 ps-3  rounded-5'
              onmouseover="this.style.backgroundColor='${backgroundColors[index].replace('0.2', '0.8')}'"
              onmouseout="this.style.backgroundColor='#191919'"
              >
