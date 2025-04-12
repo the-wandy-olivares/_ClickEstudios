@@ -19,6 +19,7 @@
       .nav a:hover {
             color:rgb(114, 114, 114);
             font-weight: bolder;
+            transform: scale(1.1);
             cursor: pointer ;
       }
     .nav  img {
@@ -108,7 +109,7 @@
 </style>
 
 
-<div class='nav  overflow-auto   ' onclick="OpenNav()" style="display: flex;">
+<div class='nav  overflow-auto  ' onclick="OpenNav()" style="display: flex;">
      {% include "nav/cp/header-profile.html" %}
       <a  rel="preload"  style="transition-delay: 0.5s;"  class="dashboard " 
             href="{% url "estudios:dashboard" %}" class=''>
