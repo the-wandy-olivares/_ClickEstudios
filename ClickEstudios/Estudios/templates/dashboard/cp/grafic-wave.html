@@ -9,7 +9,7 @@
         }
 </style>
 <div  
-        style="transition: 1s; transition-delay: 0s;" 
+        style="" 
         class="bg-gray-100 w-100 lineChart h-50 rounded-5  p-2 overflow-hidden ">
       <canvas id="lineChart"></canvas>
 </div>
@@ -23,6 +23,7 @@
             datasets: [{
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 borderColor: 'rgba(255, 99, 132, 1)',
+                tension: 0.7,
                 data: [
                  ' {{en}}', '{{fe}}', '{{ma}}', '{{ab}}', '{{my}}', '{{ju}}', '{{jul}}', '{{ag}}', '{{set}}', '{{oc}}', '{{nov}}', '{{dic}}'
                 ],

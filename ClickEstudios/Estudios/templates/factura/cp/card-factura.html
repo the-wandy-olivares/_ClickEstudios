@@ -1,14 +1,22 @@
-
-<div style="max-width: 25rem; min-width: 23rem; height: max-content; border-radius: 2.5rem;"
-      class="bg-white bg-opacity-10 w-100  text-white p-4 m-2">
-      <h5 class='m-0 p-0'>
-            FACTURA ID : CL-{{sale.id}}
-      </h5>
+<style>
+      .btn-options-factura .bi {
+            font-size: 20px !important;
+            margin: 0.4rem;
+      }
+      .btn-options-factura .bi:hover {
+            color: #ffc107 !important;
+            transition: all 0.3s ease-in-out;
+            transform: scale(1.2);
+            cursor: pointer;
+      }
+</style>
+<div style="max-width: 23rem; min-width: 20rem; height: max-content; border-radius: 2.5rem;"
+      class="bg-white bg-opacity-10 w-100  text-white p-4 pb-3 pt-2 m-2">
       <div class='w-100 mt-0 ps-1 mt-2  text-white-50'>
             <p class="mb-0 text-white-50">
-                  <strong class="text-capitalize" style="font-weight: bold;">
+                  <strong class="text-capitalize" style="font-weight: bold; font-size: 22px;" >
                   {% comment %} {% if sale.name_client %}/\ {% endcomment %}
-                        {{ sale.name_client|slice:":20" }}
+                        {{ sale.name_client|slice:":18" }}
                   {% comment %} {% endif %} {% endcomment %}
                   </strong>
             </p>
@@ -63,6 +71,16 @@
                               {{ sale.date_choice|date:"d" }} 
                         </span>
                   {% endif %}
+            </div>
+      </div>
+      <div class="d-flex mt-3 w-100 justify-content-end btn-options-factura">
+            <h6 class='m-0 d-flex flex-wrap justify-content-center align-content-center p-0 bg-white bg-opacity-10 pe-4 ps-4 rounded-4  text-white-50' style="width: 13rem;">
+                   CLICK-{{sale.id}}
+            </h6>
+            <div class="w-100 text-white-50 justify-content-center d-flex">
+                  <i class="bi bi-send-fill"></i>
+                  <i class="bi bi-printer-fill"></i>
+                  <i class="bi bi-cloud-arrow-down-fill"></i>
             </div>
       </div>
 </div>

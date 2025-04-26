@@ -4,6 +4,14 @@
             color: rgba(255, 255, 255, 0.75);
             font-size: 14px;
       }
+      .movimiento-row {
+            transition: 0.6s ;
+            cursor: pointer;
+      }
+      .movimiento-row:hover {
+            background-color: #191919 !important;
+            transform: scale(1.05);
+      }
       @media (max-width: 600px) {
             .description, .tipo {
                   display: none;
@@ -18,7 +26,7 @@
                   <th class="description" style='width:50%;'>Descripción de movimiento</th>
                   <th style='width: 10%;'>Ingreso</th>
                   <th style='width: 10%;'>Gasto </th>
-                  <th class="tipo" style='width: 10%;'>Tipo </th>
+                  <!-- <th class="tipo" style='width: 10%;'>Tipo </th> -->
             </tr>
       </thead>
       <tbody id="movimientos-table">
@@ -31,18 +39,18 @@
                         <td>
                               {% if movimiento.type == "ingreso" %}
                                     <span class="text-success">
-                                          ${{ movimiento.mount|intcomma }}.00
+                                          + ${{ movimiento.mount|intcomma }}.00
                                     </span>
                               {% endif %}
                         </td>
                         <td>
                               {% if movimiento.type == "gasto" %}
                               <span class="text-danger">
-                                    ${{ movimiento.mount|intcomma }}.00
+                                   - ${{ movimiento.mount|intcomma }}.00
                               </span>
                               {% endif %}
                         </td>
-                        <td class='text-capitalize tipo'>{{ movimiento.type }}</td>
+                        <!-- <td class='text-capitalize tipo'>{{ movimiento.type }}</td> -->
                   </tr>
                   {% endfor %}
             {% else %}

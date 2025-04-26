@@ -182,13 +182,15 @@
                               response.forEach(result => {
                               const table = document.createElement('table');
                               let div_table = document.createElement('div');
-                              div_table.classList.add('w-100', 'mt-1', 'table-result', 'rounded-5', 'p-1', 'ps-3', 'pe-3', 'overflow-auto' );
+                              div_table.classList.add('w-100', 'mt-1', 'table-result', 'rounded-4', 'p-1', 'ps-3', 'pe-3', 'overflow-auto' );
                               table.innerHTML = `
                                     <thead>
                                           <tr>
                                           <th style='width: 10rem;' >Fecha</th>
                                           <th style='width: 30rem;' >Descripción</th>
-                                          <th style='width: 16rem;' >Tipo </th>
+                                          <th style='width: 16rem;'>
+                                                ${result.type === 'ingreso' ? 'Tipo ingreso' : 'Tipo gasto'}
+                                          </th>
                                           </tr>
                                     </thead>
                                     <tbody>
@@ -197,7 +199,9 @@
                                     <td>${result.description}</td>
                                     <td>
                                           <span class="text-capitalize  text-${result.type === 'ingreso' ? 'success' : 'danger'}">
+                                                ${result.type === 'ingreso' ? '+ ' : '- '}
                                                $${result.mount > 0 ? result.mount.toLocaleString() : '' }  
+                                          </span
                                     </td>
                                     </tr>
                                     </tbody> `;

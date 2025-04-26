@@ -20,26 +20,25 @@
                   .facturas-sales{
                         display: flex;
                         justify-content: center !important;
-
                   }
-                  
             }
       </style>
       <section class='w-100  overflow-auto  '>
-            {% include "factura/cp/filter.html" %}
+         
+            <h6 class='mt-5'>
+                  <strong class="text-white-50">
+                      Facturado recientemente
+                  </strong>
+            </h6>
             <div class='d-flex w-100 flex-wrap'>
-                  <h6 class='mt-5'>
-                        <strong class="text-white-50">
-                               ({{sales|length}})    Facturas recientes
-                        </strong>
-                  </h6>
                   <div class='facturas-sales d-flex flex-wrap w-100  justify-content-start '  >
                         {% for sale in sales %}
                                      {% include "factura/cp/card-factura.html" %}
                         {% endfor %}
                   </div>
-
             </div>
+            {% include "factura/cp/grafic-wave.html" %}
+            {% include "factura/cp/filter.html" %}
 
       </section>
 

@@ -42,7 +42,7 @@ class OfertaService(TemplateView):
         return context
 
 class Dashboard(TemplateView):
-    template_name = 'estudios/dashboard.html'
+    template_name = 'dashboard/dashboard.html'
 
 
     def get_context_data(self, **kwargs):
@@ -637,7 +637,6 @@ class Estudios(TemplateView):
                 total += adicional.price
 
         total_itebis = total * 0.18
-        print(total_itebis)
         context['total_itebis'] = total_itebis
         context['sale'] = sale
         if sale.discount:
