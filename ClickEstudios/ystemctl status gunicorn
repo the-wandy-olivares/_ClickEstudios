@@ -1,0 +1,3 @@
+Feb 05 01:27:05 clickestudios systemd[1]: Listening on gunicorn.socket - gunicorn socket.
+Feb 05 01:28:00 clickestudios systemd[1]: [0;1;38:5:185m[0;1;39m[0;1;38:5:185mgunicorn.socket: Failed with result 'service-start-limit-hit'.[0m
+Feb 05 01:30:07 clickestudios systemd[1]: Listening on gunicorn.socket - gunicorn socket.
