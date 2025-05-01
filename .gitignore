@@ -7,11 +7,11 @@ __pycache__/
 venv/
 env/
 .virtualenv/
+vn/
 
 # Archivos de entorno o configuración sensible (ajústalo si lo necesitas)
 .env
 *.env
-.vn/
 
 
 # Archivos de configuración del sistema
