@@ -32,7 +32,8 @@ ALLOWED_HOSTS = [
     'clickestudios.com',
      '64.23.182.234',
      'www.clickestudios.com',
-     '143.244.186.163'
+     '143.244.186.163',
+     '34.47.17.82',
      
 ]
 
