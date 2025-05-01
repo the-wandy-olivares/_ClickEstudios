@@ -1,0 +1,42 @@
+# Bytecode de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Entornos virtuales
+venv/
+env/
+.virtualenv/
+
+# Archivos de entorno o configuración sensible (ajústalo si lo necesitas)
+.env
+*.env
+.vn/
+
+
+# Archivos de configuración del sistema
+.DS_Store
+*.swp
+*.swo
+
+# Archivos de logs
+*.log
+
+# Archivos temporales
+*.bak
+*.tmp
+
+# Archivos compilados de frontend (si usas webpack, vite, etc.)
+dist/
+node_modules/
+build/
+
+# Carpeta de archivos estáticos recolectados
+/staticfiles/
+/static_root/
+
+# Archivos de bases de datos (⚠️ NO ignoramos db.sqlite3)
+# !db.sqlite3
+
+# Ignorar media procesada automáticamente (opcional, pero tú quieres incluirla)
+# !media/
