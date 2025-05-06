@@ -1,0 +1,22 @@
+{% extends "base/base.html" %}
+{% block content %}
+<style>
+      .nav .admin {
+            color: #ffc107;
+            font-weight: bolder;
+      }
+      .nav .admin svg {
+            color: #ffc107 !important;
+      }
+      .nav .admin span {
+            color: #ffc107;
+      }
+      .btn-atras  {
+            display: none;
+      }
+</style>
+
+<section class=" admin-a w-100 p-4 d-flex flex-wrap justify-content-center align-content-start">
+      {% include "admin/cp/carta-p.html" %}
+</section>
+{% endblock  %}

@@ -1,0 +1,26 @@
+
+<style>
+  #asistente-input-0 {
+        font-size: 30px;
+        font-weight: bold;
+        color: rgba(255, 255, 255, 0.715);
+        outline: none !important;
+  }
+</style>
+
+<input placeholder="Escribe aqui" id="asistente-input-0" 
+      type="text" name="text" class="input text-center rounded-5 mt-2  border-0 w-100"
+      style="height: 10rem; background-color: #20202034 !important;" />
+<script>
+
+      function FocusAsistentInput() {
+            asistente = document.getElementById('asistente-input-0');
+            asistente.value = '';
+            if (window.innerWidth > 700) {
+                  asistente.focus();
+            } else {
+                  asistente.blur();
+            }
+      }
+
+</script>

@@ -1,0 +1,63 @@
+<style>
+      .form-select
+      {
+            background-color: #191919;
+            border: none;
+            color: rgba(255, 255, 255, 0.945); 
+            text-align: center; font-weight: bold;
+      }
+      @media (max-width: 600px) {
+            .year, .mes_fin {
+                  display: none;
+            }
+       }
+
+ 
+</style>
+<div class="d-flex w-100 justify-content-between">
+      <form method="post" class="d-flex w-100 justify-content-between mb-3"   onsubmit="this.submit()">
+            {% csrf_token %}
+            <select name="tipo" class="form-select me-2 rounded-3" onchange="this.closest('form').submit()" style="width: 13rem;">
+                  <option value="todos" {% if request.POST.tipo == "todos" %}selected{% endif %}>Ingresos y Gastos</option>
+                  <option value="ingreso" {% if request.POST.tipo == "ingreso" %}selected{% endif %}>Ingresos</option>
+                  <option value="gasto" {% if request.POST.tipo == "gasto" %}selected{% endif %}>Gastos</option>
+            </select>
+            <select name="caja" class="form-select me-2 rounded-3" 
+                  onchange="this.closest('form').submit(), document.getElementById('selected-caja').innerText = this.options[this.selectedIndex].text;">
+                  <option value="todas" {% if request.method == "POST" and request.POST.caja == "todas" %}selected{% endif %}>Todas las aperturas</option>
+                  {% for caja in cajas %}
+                  <option value="{{ caja.id }}" 
+                        {% if request.method == "POST" and request.POST.caja == caja.id|stringformat:"s" or request.method == "GET" and forloop.last %}selected{% endif %}>
+                        #{{ forloop.counter }} 
+                        {{caja.user.first_name}} {{caja.user.last_name}} 
+                        {{ caja.date_opening|date:"d/m/Y" }}
+                  </option>
+                  {% endfor %}
+            </select>
+      
+            <select name="year" class="form-select me-2 year rounded-3" onchange="this.closest('form').submit()">
+                  <option value="todos" {% if request.POST.year == "todos" %}selected{% endif %}>Todos los Años</option>
+                  {% for year in years %}
+                  <option value="{{ year }}" {% if request.POST.year == year|stringformat:"s" %}selected{% endif %}>{{ year }}</option>
+                  {% endfor %}
+            </select>
+            <select name="mes_inicio" class="form-select me-2 rounded-3" onchange="this.closest('form').submit()">
+                  <option value="todos" {% if request.POST.mes_inicio == "todos" %}selected{% endif %}>Mes Inicio</option>
+                  {% for mes in meses %}
+                  <option value="{{ mes.numero }}" {% if request.POST.mes_inicio == mes.numero|stringformat:"s" %}selected{% endif %}>{{ mes.nombre }}</option>
+                  {% endfor %}
+            </select>
+            <select name="mes_fin" class="form-select me-2 mes_fin rounded-3" onchange="this.closest('form').submit()">
+                  <option value="todos" {% if request.POST.mes_fin == "todos" %}selected{% endif %}>Mes Fin</option>
+                  {% for mes in meses %}
+                  <option value="{{ mes.numero }}" {% if request.POST.mes_fin == mes.numero|stringformat:"s" %}selected{% endif %}>{{ mes.nombre }}</option>
+                  {% endfor %}
+            </select>
+            <button type="submit" class="btn btn-warning d-none rounded-end-5"
+            style="font-weight: bold;">Filtrar</button>
+      </form>
+      
+</div>
+<script>
+      // let select_form = document.querySelector('.form-select')
+</script>

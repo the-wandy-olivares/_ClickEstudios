@@ -1,0 +1,246 @@
+{% extends "base/base.html" %}
+{% block content %}
+      <style>
+            #id_date_choice
+            {
+                  display: none;
+            }
+            .select-date-choice select,  .form-select, #id_time 
+            {
+
+                  background-color: rgb(44, 44, 44) !important; 
+                  border: 0;
+                  color: white !important;
+                  padding: 0.9rem;
+                  width: 100%;
+                  margin: 0.3rem;
+                  border-radius: 2rem !important;
+            }
+             input, #id_descrition
+            {
+                  background-color: rgb(44, 44, 44) !important; 
+                  border: none !important;
+                  color: white !important;
+                  width: 100%;
+                  border-radius: 2rem !important;
+                  margin: 0.3rem;
+                  padding: 0.9rem !important;
+            }
+            input::placeholder
+            {
+                  color: rgba(218, 218, 218, 0.865) !important;
+            }
+            #id_descrition {
+                  max-height: 10rem;
+            }
+            #id_descrition::placeholder
+            {
+                  color: rgba(218, 218, 218, 0.865) !important;
+            }
+
+            .sale-date-choice {
+                  display: flex;
+                  flex-wrap: wrap;
+                  justify-content: center;
+            }
+            @media (max-width: 600px) {
+                  #next_button {
+                        position: fixed;
+                        bottom: 1rem;
+                        left: 50%;
+                        transform: translateX(-50%);
+                  }
+            }
+      </style>
+      <head>
+            <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css' rel='stylesheet' />
+            <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
+      </head>
+
+      <section class='overflow-auto d-flex w-100 justify-content-center  '>
+            <form action="" method="post" class="w-100">
+                  {% csrf_token %}
+    
+                  <div>
+                        {{sale}}
+                  </div>
+                  <section class="d-flex  flex- w-100 mt-4 sale-date-choice" >
+                        
+                        <div class="" style="width:max-content ;">
+                              {% include "plan/plan-select.html" %}
+                               
+                        </div>
+                        <div class="  w-100 position-relative" style="height: 27rem; max-width: 600px; ">
+                   
+                              <!--Contact -->
+                              <div class="contact w-100">
+                                    {% include "sale/components/form-basic.html" %}
+                              </div>
+                        
+                              <!--Date Choice-->
+                              <div class="date-choice select-date-choice p-2 d-none d-flex w-100 justify-content-between">
+                                    {% include "sale/components/date_choice.html" %}
+                                    {{form.time}}
+                              </div>
+
+                              <!--Time Choice-->
+                              <div class="time-choice  p-2 w-100 d-none d-flex justify-content-center align-content-center flex-wrap h-100">
+                                    <div class="w-100 text-white">
+                                          <h6>
+                                                ~ Puedes agregar un comentario, ejemplo: <strong>
+                                                      "Quiero que la sesión sea en la mañana"
+                                                </strong>
+                                          </h6>
+                                          <div class="d-flex justify-content-center">
+                                                {{form.descrition}}
+                                          </div>
+                                          <div>
+                                                <label for="id_contact">- Asociar contacto a esta venta</label>
+                                                {{form.contact}}
+                                          </div>
+                                    </div>
+                                    <div class="d-flex justify-content-end w-100">
+                                          <button class="btn btn-primary  rounded-5"
+                                          style="width: 9rem; z-index: 100;" id="submit_button">
+                                                Agendar
+                                          </button>
+                                    </div>
+                              </div>
+
+                              <!-- Navigation Buttons -->
+                              <div class="navigation-buttons position-absolute bottom-0 d-flex justify-content-start w-100 p-3 mt-3">
+                                    <span type="button" class="btn me-2 btn-secondary bg-transparent border-0 d-none" id="prev_button" onclick="showPreviousSection()"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-left-circle-fill text-white-50" viewBox="0 0 16 16">
+                                          <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0m3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
+                                        </svg></span>
+                                    <span type="button" class="btn btn-secondary bg-warning rounded-5 text-black d-none" style="font-weight: bold;" id="next_button" onclick="showNextSection()">Siguiente</span>
+                              </div>
+                              <script>
+                                          document.getElementById('id_name_client').addEventListener('input', function() {
+                                          var nextButton = document.getElementById('next_button');
+                                          if (this.value.length > 4) {
+                                                nextButton.classList.remove('d-none');
+                                          } else {
+                                                nextButton.classList.add('d-none');
+                                          }
+                                    });
+                              </script>
+                        </div>
+                  </section>
+
+                  <script>
+                                function showPreviousSection() {
+                                            var contactSection = document.querySelector('.contact');
+                                            var dateChoiceSection = document.querySelector('.date-choice');
+                                            var timeChoiceSection = document.querySelector('.time-choice');
+                                            var prevButton = document.getElementById('prev_button');
+                                            var nextButton = document.getElementById('next_button');
+
+                                            if (!timeChoiceSection.classList.contains('d-none')) {
+                                                            timeChoiceSection.classList.add('d-none');
+                                                            dateChoiceSection.classList.remove('d-none');
+                                                            nextButton.classList.remove('d-none');
+                                            } else if (!dateChoiceSection.classList.contains('d-none')) {
+                                                            dateChoiceSection.classList.add('d-none');
+                                                            contactSection.classList.remove('d-none');
+                                                            prevButton.classList.add('d-none');
+                                            }
+                                }
+
+                                function showNextSection() {
+                                            var contactSection = document.querySelector('.contact');
+                                            var dateChoiceSection = document.querySelector('.date-choice');
+                                            var timeChoiceSection = document.querySelector('.time-choice');
+                                            var prevButton = document.getElementById('prev_button');
+                                            var nextButton = document.getElementById('next_button');
+
+                                            if (!contactSection.classList.contains('d-none')) {
+                                                            contactSection.classList.add('d-none');
+                                                            dateChoiceSection.classList.remove('d-none');
+                                                            prevButton.classList.remove('d-none');
+                                            } else if (!dateChoiceSection.classList.contains('d-none')) {
+                                                            dateChoiceSection.classList.add('d-none');
+                                                            timeChoiceSection.classList.remove('d-none');
+                                                            nextButton.classList.add('d-none');
+                                            }
+                                }
+                  </script>
+                    </script>
+                  <div class="d-none">
+                
+                  </div>
+            </form>
+
+      </section>
+
+      <script>
+            function updateDateChoice() {
+                var year = document.getElementById('year_choice').value;
+                var month = document.getElementById('month_choice').value;
+                var day = document.getElementById('day_choice').value;
+        
+                // Convertir a cadenas y rellenar con ceros
+                var formattedMonth = month.toString().padStart(2, '0');
+                var formattedDay = day.toString().padStart(2, '0');
+        
+                var dateChoice = year + '-' + formattedMonth + '-' + formattedDay;
+        
+
+                document.getElementById('id_date_choice').value = dateChoice;
+            }
+        </script>
+
+        <script>
+            function toggleContactFields() {
+                      var preference = document.getElementById('contact_preference').value;
+                      var phoneField = document.querySelector('#id_phone_client');
+                      var emailField = document.querySelector('#id_email_client');
+                      if (preference === 'none') {
+                              phoneField.style.display = 'none';
+                              emailField.style.display = 'none';
+                      } else if (preference === 'email') {
+                              phoneField.style.display = 'none';
+                              emailField.style.display = 'block';
+                      } else if (preference === 'phone') {
+                              phoneField.style.display = 'block';
+                              emailField.style.display = 'none';
+                      } else if (preference === 'both') {
+                              phoneField.style.display = 'block';
+                              emailField.style.display = 'block';
+                      }
+            }
+
+            // Initialize the fields based on the current selection
+            document.addEventListener('DOMContentLoaded', function() {
+                      toggleContactFields();
+            });
+
+          document.getElementById('id_name_client').addEventListener('input', function() {
+                var submitButton = document.getElementById('submit_button');
+                if (this.value.length > 4) {
+                      submitButton.classList.remove('d-none');
+                } else {
+                      submitButton.classList.add('d-none');
+                }
+          });
+            
+      document.addEventListener('DOMContentLoaded', function() {
+            var dateChoice = document.getElementById('id_date_choice');
+            var timeChoice = document.getElementById('id_time');
+            var submitButton = document.getElementById('submit_button');
+
+            function toggleSubmitButton() {
+                  if (dateChoice.value && timeChoice.value) {
+                        submitButton.classList.remove('d-none');
+                  } else {
+                        submitButton.classList.add('d-none');
+                  }
+            }
+
+            dateChoice.addEventListener('change', toggleSubmitButton);
+            timeChoice.addEventListener('change', toggleSubmitButton);
+
+            toggleSubmitButton(); // Initial check
+      });
+    </script>
+    
+{% endblock  %}

@@ -1,0 +1,35 @@
+<style>
+      .btn {
+            width: 10rem;
+      }
+      @media (max-width: 600px) {
+            .div-svg {
+                  justify-content: center !important;
+            }
+            .btn {
+                  width: 100%;
+            }
+      }
+</style>
+<div data-aos='fade-in' style='transition-duration: 2s;'  
+      class='d-flex  rounded-5 justify-content-center p-2 align-content-center  mb-2 h-100 w-100 flex-wrap'>
+      <div class=' div-svg w-100 d-flex  align-content-center flex-wrap justify-content-start mb-4'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" fill="currentColor" class="bi bi-x-diamond-fill" viewBox="0 0 16 16">
+            <path d="M9.05.435c-.58-.58-1.52-.58-2.1 0L4.047 3.339 8 7.293l3.954-3.954L9.049.435zm3.61 3.611L8.708 8l3.954 3.954 2.904-2.905c.58-.58.58-1.519 0-2.098l-2.904-2.905zm-.706 8.614L8 8.708l-3.954 3.954 2.905 2.904c.58.58 1.519.58 2.098 0l2.905-2.904zm-8.614-.706L7.292 8 3.339 4.046.435 6.951c-.58.58-.58 1.519 0 2.098z"/>
+            </svg>  
+      </div>
+      <div  class='w-100 align-content-center justify-content-start-0'>
+            <strong class='m-0 p-0'>
+                   Caja cerrada 
+            </strong>
+            <p>
+                  Abre una seccion de caja para comenzar a registrar movimientos
+            </p>
+            <a href="{% url "estudios:box-create" %}" class="w-100 text-center mt-4">
+                  <button class="btn bg-white bg-opacity-10 text-white  rounded-5 p-2 ps-4 pe-4"
+                        style="max-width: 12rem;">
+                        Abrir caja 
+                  </button>
+            </a>
+      </div>
+</div>

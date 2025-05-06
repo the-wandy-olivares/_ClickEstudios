@@ -1,0 +1,45 @@
+{% extends "base/base.html" %}
+{% block content %}
+      <style>
+            .nav .facturas {
+                  color: #ffc107;
+                  font-weight: bolder;
+
+            }
+            .nav .facturas svg {
+                  color: #ffc107 !important;
+            }
+            .nav .facturas span {
+                  color: #ffc107;
+            }
+            .btn-atras 
+            {
+                  display: none;
+            }
+            @media (max-width: 600px) {
+                  .facturas-sales{
+                        display: flex;
+                        justify-content: center !important;
+                  }
+            }
+      </style>
+      <section class='w-100  overflow-auto  '>
+         
+            <h6 class='mt-5'>
+                  <strong class="text-white-50">
+                      Facturado recientemente
+                  </strong>
+            </h6>
+            <div class='d-flex w-100 flex-wrap'>
+                  <div class='facturas-sales d-flex flex-wrap w-100  justify-content-start '  >
+                        {% for sale in sales %}
+                                     {% include "factura/cp/card-factura.html" %}
+                        {% endfor %}
+                  </div>
+            </div>
+            {% include "factura/cp/grafic-wave.html" %}
+            {% include "factura/cp/filter.html" %}
+
+      </section>
+
+{% endblock  %}

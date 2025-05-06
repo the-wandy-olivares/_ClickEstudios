@@ -1,0 +1,102 @@
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+      <style>
+            .swiper-container {
+                  width: 100%;
+                  height: 100%;
+            }
+            .round3 {
+                  border-radius: 3rem;
+                  transition: 1s !important;
+            }
+            .round0 {
+                  border-radius: 0.8rem;
+                  border-top-left-radius: 2rem;
+                  transition: 1s !important;
+            }
+            .swiper-slide {
+                  border-radius: 2rem;
+                  background-position: center;
+                  background-size: cover;
+                  width: 95%;
+                  max-width: 400px;
+                  height: auto;
+                  background-position: center;
+                  background-repeat: no-repeat;
+                  background-size: cover;
+                  aspect-ratio: 2 / 3;
+                  box-shadow: 1px 2px 20px 20px rgba(0, 0, 0, 0.433) ;
+            }
+      </style>
+
+
+      <div class="swiper-container p-3 pt-5 ">
+            <div class="swiper-wrapper">
+                    {% if img1 %}
+                              <div class="swiper-slide" style="background-image:url('{{ img1 }}')"></div>
+                    {% endif %}
+                    {% if img2 %}
+                              <div class="swiper-slide" style="background-image:url('{{ img2 }}')"></div>
+                    {% endif %}
+                    {% if img3 %}
+                              <div class="swiper-slide" style="background-image:url('{{ img3 }}')"></div>
+                    {% endif %}
+                    {% if img4 %}
+                              <div class="swiper-slide" style="background-image:url('{{ img4 }}')"></div>
+                    {% endif %}
+                    {% if img5 %}
+                              <div class="swiper-slide" style="background-image:url('{{ img5 }}')"></div>
+                    {% endif %}
+                    {% if img6 %}
+                              <div class="swiper-slide" style="background-image:url('{{ img6 }}')"></div>
+                    {% endif %}
+                    {% if img7 %}
+                              <div class="swiper-slide" style="background-image:url('{{ img7 }}')"></div>
+                    {% endif %}
+            </div>
+      </div>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+      // window.addEventListener('load', function () {
+            var swiper = new Swiper('.swiper-container', {
+                              effect: 'coverflow',
+                              grabCursor: true,
+                              centeredSlides: true,
+                              slidesPerView: 'auto',
+                              coverflowEffect: {
+                                                        rotate: 40,
+                                                        stretch: 0,
+                                                        depth: 100,
+                                                        modifier: 1,
+                                                        slideShadows: true,
+                              },
+                              pagination: {
+                                                  el: '.swiper-pagination',
+                              },
+                              autoplay: {
+                                                  delay: 2000,
+                                                  disableOnInteraction: false,
+                              },
+                              speed: 1000, // Adjust the speed for smoother transitions
+            });
+
+            swiper.on('slideChange', function () {
+                    swiper.slides.forEach((slide, index) => {
+                              if (index === swiper.activeIndex) {
+                                      slide.classList.add('round3');
+                                      slide.classList.remove('round0');
+                              } else {
+                                      slide.classList.add('round0');
+                                      slide.classList.remove('round3');
+                              }
+                    });
+            });
+
+            // Execute the slideChange event when the page loads
+            window.addEventListener('load', function () {
+                    swiper.emit('slideChange');
+            });
+
+      // });
+
+</script>

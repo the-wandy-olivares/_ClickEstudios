@@ -1,0 +1,82 @@
+{% extends "base/base.html" %}
+{% block content %}
+ 
+<style>
+      .nav .services {
+            color: #ffc107;
+            font-weight: bolder;
+            transform: scale(1.1);
+      }
+      .nav .services svg {
+            color: #ffc107 !important;
+      }
+      .nav .services span {
+            color: #ffc107;
+      }
+      .btn-atras
+      {
+            display: none;
+      }
+      input {
+
+            color: #ffffff !important;
+      }
+      input::placeholder {
+            color: #ffffffb8 !important;
+      }
+      @media (max-width: 600px) {
+            .section-service {
+            justify-content: center !important;
+            }
+      }
+      .rotate-90
+      {
+            transform: rotate(180deg);
+      }
+</style>
+
+<div class="d-flex flex-wrap w-100 vh-100 position-relative">
+      <!-- {% if service.is_offer %} -->
+            <!-- {% include "service/cp/verific-offer.html" %} -->
+      <!-- {% endif %} -->
+      <form action="" method="post"  >
+            {% csrf_token %}
+      <div class="w-100 aplicar-offer d-none">
+            {% include "service/cp/aplicar-oferta.html" %}
+      </div>
+      <div class=" select-plans ">
+                  {% include "service/cp/plans.html" %}
+            </div>
+      </form>
+      <div class="w-100 d-flex justify-content-start position-fixed  bottom-0"
+            style="margin-bottom: 5rem;">
+            <button onclick="Togle()" class="me-0 mt-3 text-black bg-white bg-opacity-25 rounded-circle d-flex justify-content-center flex-wrap align-content-center border-0 change-view "
+                  style="width: 2rem; height: 2rem; ">
+                  <i class="bi bi-arrow-right-circle-fill"
+                         style="font-size: 25px; color: #101010;"></i>
+            </button>
+            <span onclick="Togle()" class="btn btn-span border-0 bg-transparent mt-3 text-white" style="font-weight: bold;">
+                  Administrar ofertas
+            </span>
+      </div>
+</div>
+<script>
+      let Select_Plans = document.querySelector('.aplicar-offer')
+      let Aplicar_Offer = document.querySelector('.select-plans')
+
+      function Togle(){
+            Select_Plans.classList.toggle('d-none')
+            Aplicar_Offer.classList.toggle('d-none')
+            document.querySelector('.change-view').classList.toggle('rotate-90')
+            if (Select_Plans.classList.contains('d-none')) {
+                  document.querySelector('.btn-span').textContent = 'Administrar ofertas'
+            } else {
+                  document.querySelector('.btn-span').textContent = 'Aplicar ofertas'
+            }
+      }
+
+      function OpenOffer(){
+            document.querySelector('.div-oferr-active').classList.toggle('d-none')
+      }
+</script>
+{% endblock  %}

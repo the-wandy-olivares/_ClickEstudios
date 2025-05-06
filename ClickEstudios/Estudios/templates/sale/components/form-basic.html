@@ -1,0 +1,33 @@
+
+<div class="inputs-form">
+      <div class="d-flex w-100 flex-wrap">
+            <div class="text-white ms-2">
+                  <strong style="font-size: 24px;">
+                        Agendando cita
+                 </strong>
+                 <p class='text-white-50 p-0 m-0' style="font-size: 12px;">
+                       Por favor, completa todos los campos para agendar tu cita, te contactaremos para confirmar la fecha y hora.
+                 </p>
+            </div>
+            <div class="d-flex w-100 ">
+                  {{form.name_client}}
+            </div>
+           <div class="d-flex w-100">
+                  {{form.phone_client}}
+                  {{form.email_client}}
+           </div>
+           <select id="contact_preference" style="width: 12rem; font-size: 14px;" 
+                 class=" form-select text-center m-2 ms-2 bg-transparent text-white border-0" name="contact_preference" onchange="toggleContactFields()">
+                 <option value="both"> Telefono y correo</option>
+                 <option value="phone">Contacto: numero</option>
+                 <option value="email">Contacto: correo</option>
+           </select>
+</div>
+
+</div>
+
+<script>
+      document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('id_name_client').focus();
+      });
+</script>

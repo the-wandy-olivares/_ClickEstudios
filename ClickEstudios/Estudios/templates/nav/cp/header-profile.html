@@ -1,0 +1,19 @@
+
+<div class=" w-100 position-relative mb-3 header-profile " 
+      style="height: 12rem; padding-bottom: 5rem; min-width: 220px;">
+      <div class="h-100" 
+            style=" background-image: url('{{request.user.profile.estudio.background_img.url}}');
+            background-position: center; background-size: cover;
+            background-repeat: no-repeat; border-radius: 1.7rem;">
+            <img src="{{ request.user.profile.estudio.img.url }}" class="img-estusdioss blur-50 position-absolute bottom-0 rounded-circle " style="transform: translate(-50%, -50%);
+             left: 46%; top: 50%; border: 4px #101010 solid; "
+                  width="90" height="90" alt="" >
+      </div>
+</div>
+<style>
+           @media (max-width: 600px) {  
+                  .header-profile {
+                        display: none !important;
+                  }
+           }
+</style>

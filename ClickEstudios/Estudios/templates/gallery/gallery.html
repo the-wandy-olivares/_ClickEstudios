@@ -1,0 +1,168 @@
+{% extends "base/base.html" %}
+{% block content %}
+      <style>
+            .gallery-item {
+                  margin: 5px;
+                  border-radius: 10px;
+                  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                  opacity: 0.8;
+                  /* filter: brightness(0.8); */
+                  transition-duration: 0.1s !important;
+            }
+            .gallery-item img {
+                  display: block;
+                  width: 100%;
+                  height: auto;
+                  border-radius: 2rem;
+                  transition: 0.5s;
+                  
+            }
+            .gallery-item:hover {
+                  opacity: 0.6;
+                  filter: brightness(0.9);
+                  cursor: pointer;
+
+            }
+            .galley-a {
+            color: #ffc107;
+            font-weight: bolder;
+
+      }
+      .nav .galley-a svg {
+                  color: #ffc107 !important;
+            }
+            .nav .galley-a span {
+                  color: #ffc107;
+            }
+            .btn-atras
+            {
+                  display: none;
+            }
+
+            @media (max-width: 600px) {
+            
+            .gallery {
+                  justify-content: center;
+            } 
+      }
+
+      </style>
+        
+
+            <a href="{% url "estudios:moment-create" %}" class="z-2">
+                  <button class="bg-white bg-opacity-10 rounded-5 me-2 mt-2 text-white border-0 rounded-3 p-2 position-absolute d-flex justify-content-center align-content-center flex-wrap end-0 top-0" style='font-weight: bold;'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus-circle-fill m-0" viewBox="0 0 16 16">
+                              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+                              </svg> 
+                  </button>
+            </a>
+
+      <!-- Gallery -->
+{% if not moments %}
+                  <section 
+                        class="text-white d-flex pt-5   justify-content-center flex-wrap align-content-start vh-100  ">
+                        <div class="d-flex justify-content-center flex-wrap align-content-center w-100 "> 
+                              <h5 class="text-white text-start-0  w-100" style="font-weight: bold; font-style: italic;">
+                                    No hay nada para mostrar en tu galeria
+                              </h5>
+                      
+                              <p class="text-white-50 text-start-0 w-100" style="font-style: italic;"> 
+                                    Puedes crear hasta 10 momentos, agregarle hasta 6 imagenes realmente llamativas, GUAU! esto es fantatico, dele vida a tu estudio 🎉 <br> <br>
+                              </p>
+                              <div data-aos='zoom-in' style=' transition-delay: 0.9s; transition-duration:2s !important;' class='w-100 mt-5 pt-5 d-flex justify-content-center'> 
+                                    {% include "service/components/no-found.html" %}
+                              </div>
+                        </div>
+                  </section>
+{% endif %}
+      <div data-aos="fade-in" 
+      style="transition: 1s !important;" class="gallery overflow-auto d-flex flex-wrap  align-content-start  mb-5 pb-5 ">
+            {% for moment in moments %}
+            <span class="w-100 d-flex mt-4 ">
+                  <!-- Agregar imagen solo si hay maximo de 6 -->
+                  {% if moment.img %}
+                  <img src="{{moment.img.url}}" loading="lazy" class="rounded-circle object-fit-cover" 
+                  style='width: 40px; height: 40px; border: solid #3a3a39 4px;'>
+                  {% endif %}
+                  <a href="{% url "estudios:moment-update" moment.id %}" 
+                        class="ms-3">
+                        <h6 style="margin-top: 10px !important;" class="  text-white ">
+                              {{moment.name}} 
+                        </h6>
+                  </a>
+                  </span>
+        
+
+                  {% for m in moment.img_moments.all %}
+                        <div id='div{{m.id}}'  class=" w-100    mb-1 gallery-item position-relative p-0" style=' max-width: 300px;'>
+                              <form action="" method="post" class='m-0 p-0'>
+                                    {% csrf_token %}
+                                    <img  src="{{m.img.url}}" class='w-100 mt-3 object-fit-cover'
+                                    style=" transition-delay: 0.{{ forloop.counter }}s;">
+                                    <input type="number" name='delete' value="{{m.id}}" class="d-none w-100">   
+                                    <button id='{m.id}' type="submit" class="btn  bg-black bg-opacity-75 p-0 d-flex justify-content-center align-content-center flex-wrap position-absolute top-0 end-0  rounded-circle text-white-50" 
+                                    style='width: 40px; height: 40px;'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                          <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                                        </svg>
+                                    </button>   
+                              </form>
+                        </div>
+
+             
+
+                  <script>
+                        document.querySelectorAll('button[type="submit"]').forEach(button => {
+                              button.addEventListener('click', function(event) {
+                                    event.preventDefault();
+                                    let id = this.id;
+                                    let div = document.getElementById('div' + id);
+                                    if (div) {
+                                          div.classList.add('d-none');
+                                    }
+                                    this.closest('form').submit();
+                              });
+                        });
+                  </script>
+                  {% endfor %}
+                  {% if moment.img_moments.all|length < 6 %}
+                  <div  class=" d-flex justify-content-start flex-wrap align-content-center rounded-5  mt-3"
+                        style="width: 100%; " >
+                              <div class=" p-2 ps-3 pe-3 rounded-5 d-flex "
+                                    style="background-color: #191919;">
+                                    <span id="{{moment.id}}"  onclick="OpenFile(this.id)"
+                                    class="  end-0  open-img bg-white bg-opacity-10 d-flex flex-wrap justify-content-center align-content-center rounded-circle"
+                                    style="cursor: pointer; width: 30px; height: 30px;">
+                                          <i class="bi bi-plus-circle-fill" 
+                                          style="font-size: 20px !important; color: rgb(174, 174, 174);"></i>
+                                    </span> 
+                                    <span onclick="OpenFile(this.id)" class="text-white-50 ms-2 d-flex align-content-center flex-wrap" style="cursor: pointer; font-weight: bold;">            Nueva imagen</span>
+                              </div>
+                        </div>
+                  {% endif %}
+            {% endfor %}
+      </div>
+
+      <!-- Crear  nueva imagen a categoria selecionada -->
+      <form action="" method="post" class="d-none" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="img" id="img" accept="image/*">
+            <input type="text"  name="id" id="id">
+            <button type="submit" class="btn-submit">Enviar</button>
+      </form>
+
+      <script>
+            // Script para abrir el input file 
+            document.getElementById('img').addEventListener('change', function() {
+                  document.querySelector('.btn-submit').click();
+            });
+            
+            // Funcion para abrir el input file 
+            let  OpenFile = (id) => {     
+                  document.querySelector('#id').value = id;
+                  document.querySelector('#img').click();
+            };
+            
+      </script>
+
+{% endblock  %}

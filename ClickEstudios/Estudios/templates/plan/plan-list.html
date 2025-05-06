@@ -1,0 +1,78 @@
+{% load humanize %}
+{% for p in  plans %}
+
+
+
+            <div data-aos="fade-in"  class='p-0 m-1 d-flex overflow-hidden text-white' style='
+            transition-delay: 0.{{ forloop.counter }}s !important;
+            {% if p.img_back %}
+                  background-image: url("{{p.img_back.url}}"); 
+            {% endif %}
+
+            background-size: cover; background-repeat: no-repeat; min-width: 320px; width: 320px; height: 430px; border-radius: 2.6rem;'>
+                  <div style='
+                        -webkit-backdrop-filter: blur(80px) !important;
+                        backdrop-filter: blur(80px) !important;' class='h-100 w-100 bg-black bg-opacity-50 m-0 p-3 pt-2'>
+                        <div class=" m-0 " style="">
+                              {% if p.img %}
+                                    <img src="{{p.img.url}}" alt="No se puede cargar la imagen" 
+                                          style="width: 95px; height: 95px; border-radius: 2rem;
+                                          border: 4px solid #00000062;" class="rounded-circle object-fit-cover  me-3">
+                              {% endif %}
+                              <span>
+                                    <strong class="text-white  p-3 ps-3 pe-3 rounded-5" style="font-size: 13px;">
+                                          <!-- {% if p.price %}
+                                                ${{p.price|intcomma}}.00
+                                          {% endif %} -->
+                                    </strong>
+                              </span>
+                        </div>
+                        <h5 class='m-0 p-0 mt-4' style="font-weight: bold; font-style: italic;">
+                                {{ p.name|truncatechars:31 }}
+                        </h5>
+                        <span class="w-100    {% if p.is_offer %}text-decoration-line-through  text-white-50   {% endif %}">
+                              {% if p.price %}
+                                    ${{p.price|intcomma}}.00
+                              {% endif %}
+                        </span>
+                      <span class="w-100 text-white"    {% if p.is_offer %} style="font-size: 18px; font-weight: bold;" {% endif %}>
+                        {% if p.is_offer %}
+                              ${{p.mount|intcomma}}
+                        {% endif %}
+                      </span>
+                        <span class="d-flex mt-3">
+                              {% if p.likes %}
+                                    {% for i in p.likes.all %}
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-star-fill ms-1 me-1 text-warning" viewBox="0 0 16 16">
+                                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                          </svg>
+                                    {% endfor %}
+                              {% endif %}
+                        </span>
+                        <div style='height: 7.7rem;' class='overflow-auto '>   
+                                {% if p.caracteristicas.all %}
+                                       {% for p in  p.caracteristicas.all %}
+                                          <li class="" style="font-size: 14px; list-style:circle;">
+                                                  {{p.name|truncatechars:32}} 
+                                          </li>
+                                       {% endfor %}
+                              {% endif %}
+                        </div>
+      
+                        <!-- Butones de elcciones-->
+                         <div class="d-flex justify-content-center flex-wrap">
+                              <a href="{% url "estudios:sale-create" p.id %}" 
+                                    class="btn btn-primary bg-transparent text-white-50  border-0 me-4" 
+                                    style="font-size: 16px; font-weight: bold ; ">
+                                    Adquerir ahora
+                              </a>
+                              
+                              <a  href="{% url "estudios:sale-create-date-choice" p.id %}" 
+                                    class="btn btn-danger mt-2 p-2 w-100 ps-3 pe-3 bg-warning text-black rounded-5 border-0" style='font-weight: bold;'>
+                                    Agendar
+                              </a>
+                         </div>
+                  </div>
+            </div>
+
+{% endfor %}
