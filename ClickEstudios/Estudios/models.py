@@ -300,6 +300,8 @@ class Box(models.Model):
       date_opening = models.DateTimeField(auto_now_add=True)
       date_close = models.DateTimeField(null=True, blank=True)
 
+      created_box = models.DateTimeField(null=True, blank=True)
+
       def __str__(self):
             return f" Caja {'abierta' if self.open else ' cerrada'} por {self.user.first_name} {self.user.last_name}"
 
