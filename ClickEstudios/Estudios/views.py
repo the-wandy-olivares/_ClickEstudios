@@ -71,8 +71,7 @@ class Pos(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         last_open_box = models.Box.objects.filter(open=True).last()
-        if last_open_box:
-            if last_open_box.created_box:
+        if last_open_box and last_open_box.created_box:
                 if last_open_box.created_box.date() != timezone.now().date():
                     context['ask_due_box'] = True
                     context['created_box'] = last_open_box.created_box.date()
@@ -943,6 +942,13 @@ class Box(TemplateView):
                     {'numero': 11, 'nombre': 'Noviembre'},
                     {'numero': 12, 'nombre': 'Diciembre'},
         ]
+        last_open_box = models.Box.objects.filter(open=True).last()
+        if last_open_box:
+            if last_open_box.created_box:
+                if last_open_box.created_box.date() != timezone.now().date():
+                    context['ask_due_box'] = True
+                    context['created_box'] = last_open_box.created_box.date()
+                    context['timemezone'] = timezone.now().date()
         return context
 
     def post(self, request, *args, **kwargs):
