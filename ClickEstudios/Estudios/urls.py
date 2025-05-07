@@ -58,7 +58,7 @@ urlpatterns = [
             path('box-create/', views.BoxCreate.as_view(), name='box-create'),
 
 # Aministracion
-      path('admin', views.Admin.as_view(), name='admin'),
+      path('adminisitracion', views.Admin.as_view(), name='admin'),
             path('empleados/', views.Empleados.as_view(), name='empleados'),
                   path('empleados-create/', views.EmpleadoCreate.as_view(), name='empleados-create'),
                         path('empleados-update/<int:pk>/', views.EmpleadoUpdate.as_view(), name='empleados-update'),

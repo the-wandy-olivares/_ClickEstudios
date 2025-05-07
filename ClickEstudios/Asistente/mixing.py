@@ -1,5 +1,5 @@
 # Models Ia
-from  google import genai
+# from  google import genai
 # Utils
 from Estudios.models import Sale, Movements, Service, Plan, Caracteristica
 from django.http import JsonResponse

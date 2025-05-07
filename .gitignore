@@ -39,4 +39,8 @@ build/
 # !db.sqlite3
 
 # Ignorar media procesada automáticamente (opcional, pero tú quieres incluirla)
-# !media/
+media/
+
+# Archivos de bases de datos
+*.sqlite3
+*.db

@@ -60,6 +60,9 @@
                   color: #ffffff;
             }
       </style>
+      <section class=" {% if ask_due_box != True %} d-none {% else %} d-flex {% endif %}  position-absolute  justify-content-center align-content-center flex-wrap  z-3  vh-100 w-100 blur-5 ask_last_box-section">  
+            {% include "component/ask_last_box.html" %}
+      </section>
       <div class="container-search-move position-fixed  d-none top-0 start-0 blur-50 bg-black bg-opacity-10 text-white d-flex justify-content-center align-content-center flex-wrap z-3 vh-100 w-100 ">
             
             <div class=" bg-black bg-opacity-25 shadow w-100 rounded-5 p-2 position-relative overflow-auto" 

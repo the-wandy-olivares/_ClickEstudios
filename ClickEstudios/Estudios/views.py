@@ -70,9 +70,17 @@ class Pos(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        last_open_box = models.Box.objects.filter(open=True).last()
+        if last_open_box and last_open_box.created_box:
+                if last_open_box.created_box.date() != timezone.now().date():
+                    context['ask_due_box'] = True
+                    context['created_box'] = last_open_box.created_box.date()
+                    context['timemezone'] = timezone.now().date()
+
         context['service_choices'] = models.Service.objects.all()
         context['plan_choices'] = models.Plan.objects.all()
-        context['sales'] = models.Sale.objects.filter(is_reserve=False, finalize=False).order_by('-id')
+        context['sales'] = models.Sale.objects.filter(is_reserve=False,
+                            finalize=False).order_by('-id')
         context['box_is_open'] = models.Box.objects.filter(open=True).exists() 
         context['today'] = timezone.now().date()
         context['time_now'] =  timezone.localtime(timezone.now(), timezone.get_current_timezone()).astimezone(timezone.get_fixed_timezone(-240)).replace(minute=0, second=0, microsecond=0).strftime('%H:%M')
@@ -934,6 +942,13 @@ class Box(TemplateView):
                     {'numero': 11, 'nombre': 'Noviembre'},
                     {'numero': 12, 'nombre': 'Diciembre'},
         ]
+        last_open_box = models.Box.objects.filter(open=True).last()
+        if last_open_box:
+            if last_open_box.created_box:
+                if last_open_box.created_box.date() != timezone.now().date():
+                    context['ask_due_box'] = True
+                    context['created_box'] = last_open_box.created_box.date()
+                    context['timemezone'] = timezone.now().date()
         return context
 
     def post(self, request, *args, **kwargs):
@@ -996,7 +1011,7 @@ class BoxCreate(TemplateView):
     def post(self, request, *args, **kwargs):
         if request.POST.get('open'):
             box = models.Box(
-                user=request.user
+                user=request.user, created_box=timezone.now()
             )
             box.save()
 
