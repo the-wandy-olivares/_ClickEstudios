@@ -7,6 +7,21 @@
       #buscador::placeholder {
             color: #000000;
       }
+      @keyframes fade-down-list-services {
+            0% {
+                  transform: rotateX(90deg);
+                  opacity: 0;
+            }
+            100% {
+                  transform: rotateX(0deg);
+                  opacity: 1;
+            }
+      }
+
+      .fade-down-list-services {
+            animation: fade-down-list-services 0.8s ease-out ;
+            transform-origin: top; 
+      }
 </style>
 <div class="btn-pos d-flex ">
       <button 
@@ -51,11 +66,16 @@
 
             if(document.querySelector('.div-dropdown').classList.contains('d-none')) {
                   document.querySelector('.btn-open-services').classList.remove('text-black', 'bg-warning')
-                  document.querySelector('.btn-open-services').classList.add('bg-opacity-10', 'bg-white')
+                  document.querySelector('.btn-open-services').classList.add('bg-opacity-10', 'bg-white' )
             } else {
-                  document.querySelector('.btn-open-services').classList.add('text-black', 'bg-warning')
+                  document.querySelector('.btn-open-services').classList.add('text-black', 'bg-warning', )
                   document.querySelector('.btn-open-services').classList.remove('bg-opacity-10', 'bg-white')
+                  
+                  
+            }
 
+            if (!document.querySelector('.div-dropdown').classList.contains('d-none')) {
+                    document.querySelector('.div-dropdown').classList.add('fade-down-list-services', );
             }
 
       }
