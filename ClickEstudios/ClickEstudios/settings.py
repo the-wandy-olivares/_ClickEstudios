@@ -35,6 +35,7 @@ ALLOWED_HOSTS = [
      '143.244.186.163',
      '34.47.17.82',
 	'34.118.184.218',
+
      
 ]
 
@@ -52,6 +53,9 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'Estudios.apps.EstudiosConfig',
     'Asistente.apps.AsistenteConfig',
+
+    # Eliminar al deployar o solo usar en desarrollo
+    'livereload',
 
 ]
 
