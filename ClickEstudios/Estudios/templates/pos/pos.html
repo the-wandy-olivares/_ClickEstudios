@@ -70,7 +70,11 @@
                   }
                   .div-filter {
                         height: 3rem;
-                        text-align: center;
+                        position: fixed !important;
+                        bottom: 5.5rem !important;
+                        overflow: scroll !important;
+                        
+
                   }
                   .show-reloj {
                         display: none !important;
@@ -83,7 +87,14 @@
                         display: flex;
                         justify-content: center;
                   }
+
+                  .div-dropdown {
+                        margin-top: 0rem !important; 
+                  }
+                
             }
+
+
             .btn-open-nav {
                   border-radius: 0px !important;
             }
@@ -98,6 +109,7 @@
                   transform: scale(1.06);
                   border-radius: 1.5rem;
             }
+
 </style>
 
 <section class=" {% if ask_due_box != True %} d-none {% else %} d-flex {% endif %}  position-absolute  justify-content-center align-content-center flex-wrap  z-3  vh-100 w-100 blur-5 ask_last_box-section">  
@@ -148,7 +160,7 @@
                         </svg>
                   <span class="reloj show-reloj font-delius position-absolute end-0 me-5 z-3 mt-3 d-flex justify-content-center align-content-center flex-wrap text-white"  
                   style="font-size: 18px;" ></span>
-                  <div data-aos="fade-down" style="transition: 1s;" class=' div-filter d-flex overflow-auto   blur-5  position-sticky z-2 top-0'>
+                  <div  style="transition: 1s;" class=' div-filter d-flex  w-100    z-2 bottom-0'>
                         {% include "pos/cp/filter-services.html" %}
                   </div>
                   <!-- Service select -->
@@ -158,7 +170,7 @@
                         </div>
                   {% endif %}
                   <!--Seccion de citas no confirmadas-->
-                  <section class="section-citas-no-confirm d-none  h-50 ">
+                  <section class="section-citas-no-confirm   h-50 ">
                         <div style="min-width: 520px; cursor: pointer; border: 0px solid rgb(47, 47, 47); border-radius: 2rem;" 
                               class=' text-white m-2 shadow-sm  mt-0 d-flex justify-content-start align-content-center flex-wrap'>
                               <h6 class="w-100 text-start m-0 mt-5"
