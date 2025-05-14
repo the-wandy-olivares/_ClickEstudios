@@ -80,11 +80,11 @@ function AternaSection_Citas(){
             if(section_citas_no_confirm.classList.contains('d-none')) {
                   section_citas_confirm.classList.add('d-none')
                   section_citas_no_confirm.classList.remove('d-none')
-                  document.querySelector('.change-section-citas').textContent = 'Confirmadas'
+                  document.querySelector('.change-section-citas').classList.remove('text-white-50')
             } else {
                   section_citas_confirm.classList.remove('d-none')
                   section_citas_no_confirm.classList.add('d-none')
-                  document.querySelector('.change-section-citas').textContent = 'Reservas'
+                  document.querySelector('.change-section-citas').classList.add('text-white-50')
             }
       }
 
