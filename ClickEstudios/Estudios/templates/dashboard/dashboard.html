@@ -36,30 +36,84 @@
             style="transition: 1s; "
             class="  d-flex flex-wrap m-2 mt-3 align-content-start w-100 vh-100">
             <div class=" w-100 d-flex flex-wrap justify-content-end mb-2 ">
-                  <div class="w-100 d-flex flex-wrap justify-content-end">
-                        <select 
-                        class="form-select  border-0  text-white p-2 ps-4 rounded-5" 
-                        aria-label="Default select example" 
-                        style="background-color: #191919; width: 8rem;
-                        color: #ffffffb9 !important; ">
-                        <option value="1" selected> Planes </option>
-                        <option value="2" disabled> Servicios </option>
-                        <option value="3" disabled>Visistas</option>
-                  </select>
-                  </div>
                   <div class="w-100 d-flex flex-wrap justify-content-end mt-2">
-                        <select 
-                        class="form-select   border-0 text-white p-2 ps-4 pe-4   rounded-5"  
-                        aria-label="Default select example" 
-                        style=" background-color: #191919; width: 14rem;
+                        <div class="d-flex flex-wrap w-100 justify-content-end">
+                              <button 
+                        class="btn btn-primary text-white border-0 p-2 ps-4 pe-4 rounded-5"  
+                        style="background-color: #191919; width: 14rem;
+                        color: #ffffffb9 !important; width: max-content;">
+                         Planes
+                        </button>
+                        </div>
+                        <button onclick="AlternarGrafic()"
+                        class=" w-100 btn-alternar btn btn-primary border-0 mt-2 text-white p-2 ps-4 pe-4 rounded-5 ms-2"  
+                        style="background-color: #191919; max-width: 14rem;
                         color: #ffffffb9 !important;">
-                        <option value="1" selected> Graficos de periodo </option>
-                        <option value="2" disabled>  Graficos por filas  </option>
-                  </select>
+                        Graficos por ondas
+                        </button>
                   </div>
                  
             </div>
             {% include "dashboard/cp/grafic-circle.html" %}
-            {% include "dashboard/cp/grafic-bar.html" %}
+
+            <div class="grafico-bar-container w-100 h-100 d-none" >
+                  {% include "dashboard/cp/grafic-bar.html" %}
+            </div>
+            <div class="grafico-wave-container w-100 h-100">
+                  {% include "dashboard/cp/grafic-wave.html" %}
+            </div>
+
+            <script>
+                  function AlternarGrafic() {
+                                const graficoBarContainer = document.querySelector('.grafico-bar-container');
+                                const graficoWaveContainer = document.querySelector('.grafico-wave-container');
+                                const btnAlternar = document.querySelector('.btn-alternar');
+
+                                if (graficoBarContainer.classList.contains('d-none')) {
+                                            graficoBarContainer.classList.remove('d-none');
+                                            graficoWaveContainer.classList.add('d-none');
+                                            btnAlternar.textContent = 'Gráficos por barras';
+                                            localStorage.setItem('graficoEstado', 'bar');
+                                } else {
+                                            graficoBarContainer.classList.add('d-none');
+                                            graficoWaveContainer.classList.remove('d-none');
+                                            btnAlternar.textContent = 'Gráficos por ondas';
+                                            localStorage.setItem('graficoEstado', 'wave');
+                                }
+                                actualizarTextoBoton();
+                  }
+
+                  document.addEventListener('DOMContentLoaded', () => {
+                                const graficoBarContainer = document.querySelector('.grafico-bar-container');
+                                const graficoWaveContainer = document.querySelector('.grafico-wave-container');
+                                const btnAlternar = document.querySelector('.btn-alternar');
+                                const estadoGuardado = localStorage.getItem('graficoEstado');
+
+                                if (estadoGuardado === 'bar') {
+                                            graficoBarContainer.classList.remove('d-none');
+                                            graficoWaveContainer.classList.add('d-none');
+                                            btnAlternar.textContent = 'Gráficos por ondas';
+                                } else {
+                                            graficoBarContainer.classList.add('d-none');
+                                            graficoWaveContainer.classList.remove('d-none');
+                                            btnAlternar.textContent = 'Gráficos por barras';
+                                }
+
+                  });
+
+                    function actualizarTextoBoton() {
+                              const graficoBarContainer = document.querySelector('.grafico-bar-container');
+                              const btnAlternar = document.querySelector('.btn-alternar');
+
+                              if (graficoBarContainer.classList.contains('d-none')) {
+                                      btnAlternar.textContent = 'Gráficos de ondas';
+                              } else {
+                                      btnAlternar.textContent = 'Gráficos en barra';
+                              }
+                    }
+
+                    // Llama a la función al cargar la página para asegurarte de que el texto esté actualizado
+                    document.addEventListener('DOMContentLoaded', actualizarTextoBoton);
+            </script>
       </div>
 {% endblock  %}

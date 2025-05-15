@@ -8,10 +8,9 @@
             }
         }
 </style>
-<div  
-        style="" 
+<div  style="" 
         class="bg-gray-100 w-100 lineChart h-50 rounded-5  p-2 overflow-hidden ">
-      <canvas id="lineChart"></canvas>
+      <canvas id="lineChart" class="w-100"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
@@ -19,7 +18,8 @@
     new Chart(lineCtx, {
         type: "line",
         data: {
-            labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            labels: [    
+            'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
             datasets: [{
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 borderColor: 'rgba(255, 99, 132, 1)',
