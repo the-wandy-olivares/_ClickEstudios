@@ -30,18 +30,18 @@
 </style>
 
 <!-- Nav mobile -->
-<section onclick="OpenNav()" class="new-nav-mobile position-absolute top-0  start-0 dvh-100 w-100 z-2 blur-10" style="display: none;
+<section onclick="OpenNav()" class="new-nav-mobile  position-absolute top-0  start-0 dvh-100 w-100  blur-10 z-3" style="display: none;
  background: linear-gradient(to bottom, transparent, #101010), linear-gradient(to top,#1010107d , #10101081);">
     <a href="{% url 'estudios:dashboard' %}" class="dashboard">
       <i class="fi fi-sr-house-blank"></i>
         <span>Dashboard</span>
     </a>
     <a href="{% url 'estudios:pos' %}" class="pos">
-        <i class="fi fi-sr-point-of-sale-bill"></i>
+        <i class="fi fi-sr-payment-pos"></i>
         <span>POS</span>
     </a>
     <a href="{% url 'estudios:box' %}" class="caja">
-        <i class="fi fi-sr-coins"></i>
+        <i class="fi fi-sr-safe-box"></i>
         <span>Caja</span>
     </a>
     <a href="{% url 'estudios:contactos' %}" class="contactos">

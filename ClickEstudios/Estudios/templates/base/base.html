@@ -133,7 +133,9 @@
             color: rgba(255, 255, 255, 0.499); 
             text-align: center; font-weight: bold;
       }
-
+      .bold {
+        font-weight: bold !important;
+      }
       .btn-closed-nav {
         display: none;
       }
@@ -214,14 +216,13 @@
 			{% include "base/components/loads.html" %} 
 		{% endcache %}
 	{% endif %}
-		<main class='d-flex  z-3 position-absolute  top-0 p-0 w-100'  
-			style=" height: 100vh; background-color:rgba(0, 0, 0, 0); 
-			transition: 0s !important;">
+		<main class='d-flex  z-3 position-absolute  position-relative top-0 p-0 w-100'  
+			style=" height: 100dvh; background-color:rgba(0, 0, 0, 0); 
+			transition: 0s !important;
+      ">
 			<div class='bg-grey nav-escritorio ms-0 me-0 z-3 mt-3' >  
-
 				    {% include "nav/nav.html" %} 
 				    {% include "nav/new-nav/nav.html" %} 
-
 			</div>
 			<button onclick="BackSpace()" class="bg-transparent  border-0 ms-0  text-white-50 position-absolute bottom-0 start-0  mb-3 z-3 ms-3 btn-atras " style="font-size: 14px; font-weight: bold; margin-top: 20px;"> 
 				<i class="bi bi-arrow-left-circle-fill " style="font-size: 16px;"></i>   
@@ -230,6 +231,11 @@
 			{% block content %}
 			{% endblock %}
 			{% include "nav/nav-movile.html" %}
+      <div 
+        class="position-absolute  w-100 bottom-0"
+        style=" min-height: 50px;
+        background: linear-gradient(to bottom, transparent, #101010), linear-gradient(to top,transparent , transparent);">
+      </div>
 		</main>
 	{% else %}
 		<script>
