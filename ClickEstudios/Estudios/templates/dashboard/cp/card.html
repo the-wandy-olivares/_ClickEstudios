@@ -41,12 +41,15 @@
             .card-section {
                   grid-template-columns: repeat(1, 1fr) !important;
             }
+            .card-section .card-info {
+                  border-radius: 2.5rem;
+            }
 
       }
 </style>
-<section class="card-section w-100" 
+<section class="card-section w-100 overflow-auto rounded-5 p-2" 
       style="display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 10px;">
+      gap: 10px; max-height: 50rem;">
       <div class="card-info ">
             <div>
                   <i class="fi fi-ss-selling"></i>
@@ -99,5 +102,31 @@
                   </p>
             </div>
       </div>
-      <!-- <div class="card-info"></div> -->
+      <div class="card-info  ">
+            <div>
+                  <i class="fi fi-sr-users-alt"></i>
+            </div>
+            <div>
+                  <h6>
+                        Clientes
+                  </h6>
+                  <p>
+                        Conoce mejor a tus clientes, mejora tu comunicación y potencia relaciones duraderas
+                  </p>
+            </div>
+      </div>
+      <div class="card-info  ">
+            <div>
+                  <i class="fi fi-sr-receipt"></i>
+            </div>
+            <div>
+                  <h6>
+                        Facturas
+                  </h6>
+                  <p>
+                        Supervisa tu facturación, detecta pagos pendientes y mantén tus finanzas en orden
+                  </p>
+            </div>
+      </div>
+
 </section>

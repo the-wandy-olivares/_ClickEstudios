@@ -16,70 +16,84 @@
             font-size: 14px;
       }
       .new-nav-mobile a i {
-            background-color: #4d4d4d5e;
-            font-size: 30px;
-            width: 5rem;
-            height: 5rem;
-            border-radius: 50%;
-            display: flex; justify-content: center;
-            align-content: center;
-            flex-wrap: wrap;
+          font-size: 30px;
+          width: 5rem;
+          height: 5rem;
+          border-radius: 50%;
+          display: flex; justify-content: center;
+          align-content: center;
+          flex-wrap: wrap;
+          background-color: #4d4d4d5e;
             border: 2px solid #ffffff17;
             margin-bottom: 0.2rem;
       }
 </style>
 
 <!-- Nav mobile -->
-<section onclick="OpenNav()" class="new-nav-mobile  position-absolute top-0  start-0 dvh-100 w-100  blur-10 z-3" style="display: none;
+<section onclick="OpenNav()" id="new-nav-mobile-section" class="new-nav-mobile-section position-absolute top-0  start-0 dvh-100 w-100  blur-10 z-3  d-flex d-none flex-wrap align-content-center"
+    style="
  background: linear-gradient(to bottom, transparent, #101010), linear-gradient(to top,#1010107d , #10101081);">
-    <a href="{% url 'estudios:dashboard' %}" class="dashboard">
-      <i class="fi fi-sr-house-blank"></i>
-        <span>Dashboard</span>
-    </a>
-    <a href="{% url 'estudios:pos' %}" class="pos">
-        <i class="fi fi-sr-payment-pos"></i>
-        <span>POS</span>
-    </a>
-    <a href="{% url 'estudios:box' %}" class="caja">
-        <i class="fi fi-sr-safe-box"></i>
-        <span>Caja</span>
-    </a>
-    <a href="{% url 'estudios:contactos' %}" class="contactos">
-        <i class="fi fi-sr-users-alt"></i>
-        <span>Clientes</span>
-    </a>
-    <a href="{% url 'estudios:facturas' %}" class="facturas ">
-        <i class="fi fi-sr-receipt"></i>
-        <span>Facturas</span>
-    </a>
-    <a href="{% url 'estudios:service' %}" class="services">
-        <i class="fi fi-sr-box-open-full"></i>
-        <span>Servicios</span>
-    </a>
-    <a href="{% url 'estudios:plan' %}" class="plans">
-        <i class="fi fi-sr-balloons"></i>
-        <span>Planes</span>
-    </a>
-    <a href="{% url 'estudios:gallery' %}" class="galley-a">
-        <i class="fi fi-sr-gallery"></i>
-        <span>Galeria</span>
-    </a>
-    <a href="{% url 'estudios:correos' %}" class="correos">
-        <i class="fi fi-sr-envelope-dot"></i>
-        <span>Correos</span>
-    </a>
-    <a href="{% url 'estudios:admin' %}" class="admin">
-        <i class="fi fi-sr-user"></i>
-        <span>Cuentas</span>
-    </a>
-    <a href="{% url  'estudios:empleados' %}" class="seguridad">
-        <i class="fi fi-sr-lock"></i>
-        <span>Seguridad</span>
-    </a>
-    <a href="{% url 'estudios:configuration' %}" class="configuration">
-        <i class="fi fi-sr-settings"></i>
-        <span>Configura..</span>
-    </a>
+
+    <div class="new-nav-mobile w-100  ">
+        <a href="{% url 'estudios:dashboard' %}" class="dashboard">
+            <i class="fi fi-sr-house-blank"></i>
+              <span>Dashboard</span>
+          </a>
+          <a href="{% url 'estudios:pos' %}" class="pos">
+              <i class="fi fi-sr-payment-pos"></i>
+              <span>POS</span>
+          </a>
+          <a href="{% url 'estudios:box' %}" class="caja">
+              <i class="fi fi-sr-safe-box"></i>
+              <span>Caja</span>
+          </a>
+          <a href="{% url 'estudios:contactos' %}" class="contactos">
+              <i class="fi fi-sr-users-alt"></i>
+              <span>Clientes</span>
+          </a>
+          <a href="{% url 'estudios:facturas' %}" class="facturas ">
+              <i class="fi fi-sr-receipt"></i>
+              <span>Facturas</span>
+          </a>
+          <a href="{% url 'estudios:service' %}" class="services">
+              <i class="fi fi-sr-box-open-full"></i>
+              <span>Servicios</span>
+          </a>
+          <a href="{% url 'estudios:plan' %}" class="plans">
+              <i class="fi fi-sr-balloons"></i>
+              <span>Planes</span>
+          </a>
+          <a href="{% url 'estudios:gallery' %}" class="galley-a">
+              <i class="fi fi-sr-gallery"></i>
+              <span>Galeria</span>
+          </a>
+          <a href="{% url 'estudios:correos' %}" class="correos">
+              <i class="fi fi-sr-envelope-dot"></i>
+              <span>Correos</span>
+          </a>
+          <a href="{% url 'estudios:admin' %}" class="admin">
+              <i class="fi fi-sr-user"></i>
+              <span>Cuentas</span>
+          </a>
+          <a href="{% url  'estudios:empleados' %}" class="seguridad">
+              <i class="fi fi-sr-lock"></i>
+              <span>Seguridad</span>
+          </a>
+          <a href="{% url 'estudios:configuration' %}" class="configuration">
+              <i class="fi fi-sr-settings"></i>
+              <span>Configura..</span>
+          </a>
+      
+    </div>
+    
+    <div class="w-100 d-flex justify-content-center mt-2 mb-5">
+        <input type="text" class="p-3 w-100 text-center  ps-5"
+        placeholder="Preguntame lo que quieras"
+        style=" background-color: #4d4d4d5e;
+            border-radius: 2.3rem;
+            border: 2px solid #ffffff17; max-width: 75vw;">
+    </div>
+
 </section>
 
 <script>

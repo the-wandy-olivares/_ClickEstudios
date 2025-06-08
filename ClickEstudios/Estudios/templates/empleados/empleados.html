@@ -4,18 +4,37 @@
       td {
             color: rgba(255, 255, 255, 0.647);
       }
+      .seguridad  {
+            color: #ffc107 !important;
+      }
+      .section-escritorio-nav .seguridad span {
+            color: #ffc107;
+      }
 </style>
+
 <section class='w-100 d-flex flex-wrap align-content-start'>
-      <div data-aos="fade-left" style="transition-delay: 0.7s; max-height: 2rem;" class='w-100 d-flex justify-content-end' >
-            <a href="{% url "estudios:empleados-create" %}">
-                  <button class="bg-white bg-opacity-10 rounded-5 p-2 pe-3 ps-3 text-white border-0 rounded-3 p-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-                              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
-                            </svg> Usuario
-                  </button>
-            </a>
-      </div> 
-      <div class='w-100 d-flex mt-5'>
+      <div class="div-top d-flex text-white position-sticky top-0 z-2 blur-20 p-1 p-2 w-100 ">
+            <div class="me-3 ms-2 d-flex flex-wrap align-content-center">
+                  
+                  <i class="fi fi-sr-lock  d-flex flex-wrap p-3 rounded-circle" 
+                  style="font-size: 30px; background-color: #19191983;"></i>
+            </div>
+            <div class="d-flex flex-wrap align-content-center">
+                  <h5 class="m-0 mt-3">
+                        Seguridad y control
+                  </h5>
+                  <p class="w-100" style="font-size: 14px;">
+                        Gestiona accesos, protege tu información y garantiza el control total de tu sistema 
+                  </p>
+            </div>
+            <!-- <a href="{% url "estudios:moment-create" %}" class="z-2 position-absolute top-0 end-0 mt-2 me-2">
+                  <i class="fi fi-sr-multiple" 
+                  style="font-size: 20px; background-color: #3a3a39;"></i> 
+            </a> -->
+      </div>
+   
+      <div class='w-100 d-flex mt-1  p-3 rounded-4'
+            style="background-color: #191919;">
             {% if empleados %}
             <table class="w-100  text-white">
                   <thead >
@@ -28,7 +47,7 @@
 
                               <th data-aos="fade-left" style="transition-delay: 0.3s; width: 25%;">Role</th>
                               <th data-aos="fade-left" style="transition-delay: 0.4s; width: 20%;">Correo</th>
-                              <th data-aos="fade-left" style="transition-delay: 0.5s; width: 7%;">Acciones</th>
+
                         </tr>
                   </thead>
                   <tbody>
@@ -43,7 +62,7 @@
                                           <form method="post" action="">
                                                   {% csrf_token %}
                                                   <input type="hidden" name="id" value="{{ empleado.id }}">
-                                                  <select name="role" class="form-control bg-black bg-opacity-25 text-white-50 border-0" onchange="this.form.submit()">
+                                                  <select name="role" class="form-control bg-transparent bg-opacity-10 text-white-50 border-0" onchange="this.form.submit()">
                                                       {% if request.user.id != empleado.id %}
                                                             <option value="estandard" {% if empleado.profile.role == "estandard" %}selected{% endif %}>Estandar</option>
                                                             <option value="administrativo" {% if empleado.profile.role == "administrativo" %}selected{% endif %}>Administrativo</option>
@@ -69,6 +88,12 @@
                   </tbody>
             </table>
             {% endif %}
+      </div>
+      <div>
+            <button class="bg-white bg-opacity-10 border-0 p-2 text-white mt-2 rounded-5 ps-3 pe-3">
+                  <i class="fi fi-brands-google"></i>
+                  Agregar usuario
+            </button>
       </div>
 
 </section>
