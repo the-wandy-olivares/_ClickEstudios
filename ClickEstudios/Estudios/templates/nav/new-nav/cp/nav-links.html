@@ -1,0 +1,229 @@
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css">
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-brands/css/uicons-brands.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-chubby/css/uicons-solid-chubby.css'>
+<style>
+      
+      .nav-links {
+            display: flex;
+            flex-direction: column;
+            /* gap: 0.1rem; */
+            /* padding: 0.3rem; */
+            
+      }
+      .nav-links a {
+            /* background-color: var(--bg-secundario); */
+            display: flex;
+            align-items: center;
+            padding: 0px 0;
+            text-decoration: none;
+            color: #a5a5a5;
+            font-size: 16px;
+            border-radius: 1rem;
+            width: 100%;
+            padding: 0.2rem;
+            transition: 0.2s;
+      }
+      .nav-links a:hover {
+            /* background-color: #101010; */
+            color: #ffffffdf;
+            font-weight: bold;
+            transform: scale(1.05);
+            text-shadow: 2px 0px 10px rgba(255, 255, 255, 0.249);
+      }
+      .nav-links a i {
+            margin-right: 20px;
+            margin-left: 10px;
+            font-size: 20px;
+      }
+      .nav-links a span {
+            width: 100%;
+            font-size: 10px;
+            color: #a5a5a5bb;
+
+      }
+      .div-icon {
+            /* background-color: var(--bg-secundario); */
+            display: flex; flex-wrap: wrap; align-content: center;
+      }
+      .div-txt {
+            display: flex;
+            flex-wrap: wrap;
+            /* border: 1px solid #7e7e7e9f; */
+            border-top: 0; border-left: 0; border-right: 0;
+            width: 70%;
+            /* background-color: #2525259f; */
+      }
+      .nav-links h6 {
+            margin: 0;
+            margin-top: 1.2rem;
+            color: #a5a5a5;
+            font-size: 10px;
+            font-weight: bold;
+            width: max-content      ;
+            background-color: #2525259f;
+            padding: 0.5rem 0.9rem;
+            border-radius: 1rem;
+            /* display: none; */
+      }
+      .nav-links  hr {
+            /* margin-top: 0.5rem; */
+            /* margin-bottom: 0.5rem; */
+            color: #a5a5a5a8;
+            display: none;;
+      }
+      .nav-links .sec-links {
+            /* background-color: var(--bg-secundario); */
+            /* padding: 0.5rem; */
+            border-radius: 2rem;
+            /* margin-top: 0.9rem; */
+      }
+</style>
+{% include "nav/new-nav/cp/head-company.html" %}
+<div class="nav-links ms-1 ">
+      <h6>
+            Ventas y operaciones
+      </h6>
+      <!-- <hr> -->
+      <div class="sec-links">
+            <a href="" class="dashboard">
+                  <div class="div-icon">
+                        <i class="fi fi-sr-signal-alt-2"></i>
+                  </div>
+                  <div class="div-txt">
+                        Dashboard
+                        <span>
+                              Información general de la empresa
+                        </span>
+                  </div>
+            </a>
+            <a href="" class="pos">
+                  <div class="div-icon">
+                        <i class="fi fi-sr-point-of-sale-bill"></i>
+                  </div>
+                  <div class="div-txt">
+                        POS
+                        <span>Punto de venta</span>
+                  </div>
+            </a>
+            <a href="" class="marketplace">
+                  <div class="div-icon">
+                        <i class="fi fi-sr-coins"></i>
+                  </div>
+                  <div class="div-txt">
+                        Caja
+                        <span>
+                              Costos, ingresos, pagos
+                        </span>
+                  </div>
+            </a>
+            <a href="" class="pedidos position-relative">
+                  <div class="div-icon">
+                        <i class="fi fi-sr-users-alt"></i>
+                  </div>
+                  <div class="div-txt">
+                        Clientes
+                        <span>
+                              Historial y datos de contacto
+                        </span>
+                  </div>
+            </a>
+            <a href="" class="agent-ia position-relative">
+                  <div class="div-icon">
+                        <i class="fi fi-sr-receipt"></i>
+                  </div>
+                  <div class="div-txt">
+                        Facturas
+                        <span>
+                              Cobros y pagos de clientes</span>
+                  </div>
+            </a>
+      </div>
+
+      <h6>Servicios y paquetes</h6>
+      <hr>
+
+      <div class="sec-links">
+            <a href="" class="inventario">
+                  <div class="div-icon">
+                        <i class="fi fi-sr-box-open-full"></i>
+                  </div>
+                  <div class="div-txt">
+                        Servicios 
+                        <span> 
+                              Administra tus ofertas, ajusta precios y mejora la experiencia de sesiones ofrecidas
+                        </span>
+                  </div>
+            </a>
+            <a href="" class="logistica">
+                  <div class="div-icon">
+                        <i class="fi fi-sr-balloons"></i>
+                  </div>
+                  <div class="div-txt">
+                        Planes
+                        <span>
+                              Opciones de paquetes fotográficos
+                        </span>
+                  </div>
+            </a>
+      </div>
+
+      <h6>Contenido y comunicación</h6>
+      <hr>
+      <div class="sec-links">
+            <a  href="" class="caja">
+                  <div class="div-icon">
+                        <i class="fi fi-sr-gallery"></i>
+                  </div>
+                  <div class="div-txt">
+                        Galeria
+                        <span>
+                              Muestra tus mejores momentos
+                        </span>
+                  </div>
+            </a>
+            <a href="" class="grafic">
+                  <div class="div-icon">
+                        <i class="fi fi-sr-envelope-dot"></i>
+                  </div>
+                  <div class="div-txt">
+                        Correos
+                        <span>
+                              Envía recordatorios, entregas y promociones
+                        </span>
+                  </div>
+            </a>
+      </div>
+
+      <h6>Usuarios y ajustes</h6>
+      <hr>
+      <div class="sec-links">
+            <a href=""  class="cuentas">
+                  <div class="div-icon">
+                        <i class="fi fi-sr-user"></i>
+                  </div>
+                  <div class="div-txt">
+                        Cuentas
+                        <span>Usuarios, permisos, perfiles</span>
+                  </div>
+            </a>
+            <a href="" class="seguridad">
+                  <div class="div-icon">
+                        <i class="fi fi-sr-lock"></i>
+                  </div>
+                  <div class="div-txt">
+                        Seguridad y control
+                        <span>Roles, accesos, logs</span>
+                  </div>
+            </a>
+            <a href="" class="configuracion">
+                  <div class="div-icon">
+                        <i class="fi fi-sr-settings"></i>
+                  </div>
+                  <div class="div-txt">
+                        Configuración
+                        <span>Preferencias generales del sistema</span>
+                  </div>
+            </a>
+      </div>
+</div>

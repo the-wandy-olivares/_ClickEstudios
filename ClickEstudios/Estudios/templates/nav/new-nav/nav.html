@@ -1,0 +1,36 @@
+<style>
+      .nav {
+            min-width: 22.5rem;
+            width: 22.5rem;
+            height: 100dvh;
+            overflow-x: hidden;
+            overflow-y: scroll;
+      }
+      .nav .nav-escritorio {
+            /* background-color: aliceblue; */
+            width: 95%;
+            height:100%;
+            /* margin: 0.1rem; */
+            /* margin-right: 0rem; */
+            margin-bottom: 0;
+            border-radius: var(--border-radius-2);
+            /* border-bottom-left-radius: 5px !important;˝
+            border-bottom-right-radius: 5px !important; */
+      }
+      .nav .perfil {
+            background-color: var(--bg-secundario);
+            width: 95%;
+            height: 5%;
+            margin: 1rem;
+            margin-top: 0px;
+            border-radius: var(--border-radius-2);
+            /* border-top-left-radius: 5px !important;
+            border-top-right-radius: 5px !important; */
+      }
+</style>
+<section class="nav ">
+      <div class="nav-escritorio">
+            {% include "nav/new-nav/cp/nav-links.html" %}
+            {% include "nav/new-nav/cp/perfil.html" %}
+      </div>
+</section>

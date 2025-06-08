@@ -1,0 +1,35 @@
+<style>
+      .head-company {
+            width: 100%;
+            height: max-content;
+           
+      }
+</style>
+<div class="head-company position-relative position-sticky top-0 p-1 mb-5">
+      <div class="head-company__logo">
+            <img src="{{request.user.profile.estudio.background_img.url}}"
+            height="200" class="w-100" style="border-radius: 2.5rem;"
+            alt="Logo" />
+      </div>
+      <div class="head-company__user   blur-20 position-absolute  w-100 d-flex justify-content-start flex-wrap" style="top: 0%; height: 210px;border-radius: 2.5rem;  
+      border: 1px solid #232323;
+      /* border-bottom: 0px; */
+      background: linear-gradient(to bottom, transparent, #101010), linear-gradient(to top, transparent, #101010);
+      ">
+            <div class="d-flex flex-wrap align-content-end justify-content-center w-100 p-1">
+                  <img src="{{ request.user.profile.estudio.img.url }}"  
+            width="120" height="120" class="rounded-circle  object-fit-cover"
+            style="border: 4px solid #19191964; background-color: #101010d5;" alt="">
+            </div>
+            <div class="head-company__name  d-flex flex-wrap justify-content-center align-content-start p-1 w-100 text-start bottom-0 ">
+                  <h6 class="m-0 text-white text-center w-100">
+                        <strong>
+                              {{ request.user.admin_estudio }}
+                        </strong>
+                  </h6>
+                  <span style="font-size: 12px;" class="text-white-50">
+                        {{ request.user.first_name }} {{ request.user.last_name }}
+                  </span>
+            </div>
+      </div>
+</div>

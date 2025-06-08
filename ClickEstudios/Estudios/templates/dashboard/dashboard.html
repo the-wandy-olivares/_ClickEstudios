@@ -33,36 +33,30 @@
       </style>
 
       <div data-aos="fade-in"
-            style="transition: 1s; "
-            class="  d-flex flex-wrap m-2 mt-3 align-content-start w-100 vh-100">
-            <div class=" w-100 d-flex flex-wrap justify-content-end mb-2 ">
-                  <div class="w-100 d-flex flex-wrap justify-content-end mt-2">
-                        <div class="d-flex flex-wrap w-100 justify-content-end">
-                              <button 
-                        class="btn btn-primary text-white border-0 p-2 ps-4 pe-4 rounded-5"  
-                        style="background-color: #191919; width: 14rem;
-                        color: #ffffffb9 !important; width: max-content;">
-                         Planes
-                        </button>
-                        </div>
+            style="transition: 1s;  height: 100dvh;"
+            class="  d-flex flex-wrap m-2 mt-3 align-content-start w-100  ">
+            <div class=" w-100 d-flex flex-wrap justify-content-end mb-2 position-sticky top-0 z-2">
+                  {% include "dashboard/cp/card.html" %}
+                  <div class="w-100 d-flex flex-wrap justify-content-start ">
                         <button onclick="AlternarGrafic()"
-                        class=" w-100 btn-alternar btn btn-primary border-0 mt-2 text-white p-2 ps-4 pe-4 rounded-5 ms-2"  
-                        style="background-color: #191919; max-width: 14rem;
+                        class=" w-100 btn-alternar btn btn-primary border-0 mt-2 text-white p-2 ps-1 pe-1 rounded-5 "  
+                        style="background-color: #191919; max-width: 11rem;
                         color: #ffffffb9 !important;">
                         Graficos por ondas
                         </button>
                   </div>
-                 
             </div>
-            {% include "dashboard/cp/grafic-circle.html" %}
+            <!-- {% include "dashboard/cp/grafic-circle.html" %} -->
 
-            <div class="grafico-bar-container w-100 h-100 d-none" >
-                  {% include "dashboard/cp/grafic-bar.html" %}
+            <div class="w-100 h-100 position-fixed bottom-0 mb-4  d-flex flex-wrap align-content-end "
+             style="max-height: 35rem;">
+                  <div class="grafico-bar-containers w-100 h-100 " >
+                        {% include "dashboard/cp/grafic-bar.html" %}
+                  </div>
+                  <!-- <div class="grafico-wave-container w-100 h-100 d">
+                        {% include "dashboard/cp/grafic-wave.html" %}
+                  </div>       -->
             </div>
-            <div class="grafico-wave-container w-100 h-100">
-                  {% include "dashboard/cp/grafic-wave.html" %}
-            </div>
-
             <script>
                   function AlternarGrafic() {
                                 const graficoBarContainer = document.querySelector('.grafico-bar-container');
