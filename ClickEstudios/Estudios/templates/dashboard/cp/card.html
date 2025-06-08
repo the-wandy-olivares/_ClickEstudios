@@ -9,6 +9,8 @@
             display: flex; 
             color: white;
             padding: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.064);
+            
       }
       .card-section .card-info div {
             display: flex; flex-wrap:  wrap;
@@ -35,11 +37,17 @@
             width: 3rem;
             height: 3rem;
       }
+      @media (max-width: 600px) {
+            .card-section {
+                  grid-template-columns: repeat(1, 1fr) !important;
+            }
+
+      }
 </style>
 <section class="card-section w-100" 
-      style="display: grid; grid-template-columns: repeat(2, 1fr);
+      style="display: grid; grid-template-columns: repeat(3, 1fr);
       gap: 10px;">
-      <div class="card-info">
+      <div class="card-info ">
             <div>
                   <i class="fi fi-ss-selling"></i>
             </div>
@@ -52,7 +60,7 @@
                   </p>
             </div>
       </div>
-      <div class="card-info">
+      <div class="card-info ">
             <div>
                   <i class="fi fi-ss-comment-quote"></i>
             </div>
@@ -65,7 +73,7 @@
                   </p>
             </div>
       </div>
-      <div class="card-info ">
+      <div class="card-info  ">
             <div>
                   <i class="fi fi-sr-arrow-progress"></i>
             </div>
@@ -78,7 +86,7 @@
                   </p>
             </div>
       </div>
-      <div class="card-info ">
+      <div class="card-info  ">
             <div>
                   <i class="fi fi-sr-coins"></i>
             </div>
