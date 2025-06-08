@@ -8,7 +8,7 @@
             display: flex;
             flex-direction: column;
             /* gap: 0.1rem; */
-            /* padding: 0.3rem; */
+            padding: 0.4rem;
             
       }
       .nav-links a {
@@ -86,7 +86,7 @@
       </h6>
       <!-- <hr> -->
       <div class="sec-links">
-            <a href="" class="dashboard">
+            <a href="{% url 'estudios:dashboard' %}" class="dashboard">
                   <div class="div-icon">
                         <i class="fi fi-sr-signal-alt-2"></i>
                   </div>
@@ -97,7 +97,7 @@
                         </span>
                   </div>
             </a>
-            <a href="" class="pos">
+            <a href="{% url 'estudios:pos' %}" class="pos">
                   <div class="div-icon">
                         <i class="fi fi-sr-point-of-sale-bill"></i>
                   </div>
@@ -106,7 +106,7 @@
                         <span>Punto de venta</span>
                   </div>
             </a>
-            <a href="" class="marketplace">
+            <a href="{% url 'estudios:box' %}" class="caja">
                   <div class="div-icon">
                         <i class="fi fi-sr-coins"></i>
                   </div>
@@ -117,7 +117,7 @@
                         </span>
                   </div>
             </a>
-            <a href="" class="pedidos position-relative">
+            <a href="{% url 'estudios:contactos' %}" class="contactos   position-relative">
                   <div class="div-icon">
                         <i class="fi fi-sr-users-alt"></i>
                   </div>
@@ -128,7 +128,7 @@
                         </span>
                   </div>
             </a>
-            <a href="" class="agent-ia position-relative">
+            <a href="{% url 'estudios:facturas' %}" class="facturas position-relative">
                   <div class="div-icon">
                         <i class="fi fi-sr-receipt"></i>
                   </div>
@@ -144,7 +144,7 @@
       <hr>
 
       <div class="sec-links">
-            <a href="" class="inventario">
+            <a href="{% url 'estudios:service' %}" class="services">
                   <div class="div-icon">
                         <i class="fi fi-sr-box-open-full"></i>
                   </div>
@@ -155,7 +155,7 @@
                         </span>
                   </div>
             </a>
-            <a href="" class="logistica">
+            <a href="{% url 'estudios:plan' %}" class="plans">
                   <div class="div-icon">
                         <i class="fi fi-sr-balloons"></i>
                   </div>
@@ -171,7 +171,7 @@
       <h6>Contenido y comunicación</h6>
       <hr>
       <div class="sec-links">
-            <a  href="" class="caja">
+            <a  href="{% url 'estudios:gallery' %}" class="galley-a">
                   <div class="div-icon">
                         <i class="fi fi-sr-gallery"></i>
                   </div>
@@ -182,7 +182,7 @@
                         </span>
                   </div>
             </a>
-            <a href="" class="grafic">
+            <a href="{% url 'estudios:correos' %}" class="correos">
                   <div class="div-icon">
                         <i class="fi fi-sr-envelope-dot"></i>
                   </div>
@@ -198,7 +198,7 @@
       <h6>Usuarios y ajustes</h6>
       <hr>
       <div class="sec-links">
-            <a href=""  class="cuentas">
+            <a href="{% url 'estudios:admin' %}"  class="admin">
                   <div class="div-icon">
                         <i class="fi fi-sr-user"></i>
                   </div>
@@ -207,7 +207,7 @@
                         <span>Usuarios, permisos, perfiles</span>
                   </div>
             </a>
-            <a href="" class="seguridad">
+            <a href="{% url  'estudios:empleados' %}" class="seguridad">
                   <div class="div-icon">
                         <i class="fi fi-sr-lock"></i>
                   </div>
@@ -216,7 +216,7 @@
                         <span>Roles, accesos, logs</span>
                   </div>
             </a>
-            <a href="" class="configuracion">
+            <a href="{% url 'estudios:configuration' %}" class="configuration">
                   <div class="div-icon">
                         <i class="fi fi-sr-settings"></i>
                   </div>
