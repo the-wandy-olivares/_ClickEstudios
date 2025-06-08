@@ -2,6 +2,9 @@
 {% block content %}
       {% load humanize %}
       <style>
+            .sombra-down{
+                  display: none;
+            }
             .btn-caja svg {
                   color: #ffc107 !important;
                   border-radius: 0 !important;
@@ -146,7 +149,7 @@
                                                       <td>
                                                             <a href="{% url "estudios:box-create" %}" class='btn-cerrar'> 
                                                                   <button style=" font-weight: bold; background-color: #191919;"  
-                                                                  class=' btn rounded-3 text-white m'> Cerrar   </button>
+                                                                  class=' btn rounded-3  text-white  m'> Cerrar   </button>
                                                             </a>
                                                       </td>
                                                 </tr>
