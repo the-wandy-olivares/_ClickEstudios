@@ -156,8 +156,8 @@
               display: flex  !important;
             }
             .active-blur {
-                -webkit-backdrop-filter: blur(300px) !important;
-                backdrop-filter: blur(300px) !important;
+                -webkit-backdrop-filter: blur(10px) !important;
+                backdrop-filter: blur(10px) !important;
                 transition: 0.3s ease-out !important ;
             }
               .super-nav {
@@ -191,10 +191,10 @@
            
             .body main{
               /* background: #3d3d3d !important; */
-              max-width: 1500px !important;
+                max-width: 1500px !important;
             }
             .dvh-100 {
-              min-height: 100vh !important;
+              height: 100vh !important;
             }
 
   </style>
@@ -218,7 +218,7 @@
 			style=" height: 100vh; background-color:rgba(0, 0, 0, 0); 
 			transition: 0s !important;">
 			<div class='bg-grey nav-escritorio ms-4 me-3 z-3 mt-3' >  
-				{% include "nav/new-nav/nav.html" %} 
+
 				{% include "nav/nav.html" %} 
 
 			</div>
@@ -282,9 +282,9 @@
 
 		if (window.innerWidth < 700) {
 		function OpenNav(){
-		const superNav = document.querySelector('.super-nav');
+		const superNav = document.querySelector('.new-nav-mobile');
 		if (superNav.style.display === 'none' || superNav.style.display === '') {
-			superNav.style.display = 'block';
+			superNav.style.display = 'grid';
 			superNav.classList.add('fade-down');
 			setTimeout(() => {
 			const superNavDivs = document.querySelectorAll('.nav div');

@@ -1,28 +1,37 @@
 <style>
       .btn-open-nav {
             display: none;
-            width: 100%;  padding-top: 0.4rem;
+            width: 100%;  
             align-content: center; 
             /* flex-wrap: wrap; justify-content: center; */
       }
       .btn-open-nav button {
             display: flex; flex-wrap: wrap; justify-content: center;
-            max-width: 5rem; min-width: 5rem;
+
             background-color: transparent;
             color: rgba(255, 255, 255, 0.921);
             border: 0px;
+            margin: 0;
+            padding: 0;
       }
       .btn-open-nav button span {
             width: 100%;
-            font-size: 9px;
-            font-weight: bold;
-            color: rgba(255, 255, 255, 0.685);
+            font-size: 10px;
+            text-align: center;
+            color: #dddddd;
+            /* display: none; */
       }
-      .btn-open-nav button svg {
-            margin-top: 0.4rem;
-            width: 32px !important;
-            height: 32px;
-            color: #969696 ;
+      .btn-open-nav button i {
+            /* margin-top: 0.4rem; */
+            font-size:30px;
+            /* width: 32px !important;
+            height: 32px; */
+            color: #dddddd ;
+            /* background-color: aliceblue; */
+            display: flex; flex-wrap: wrap; align-content: center;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
       }
 
       @media (min-width: 600px) {
@@ -36,59 +45,35 @@
     
 
 </style>
-<div  class="position-fixed btn-open-nav bottom-0 d-none d-flex flex-wrap    w-100  end-0  text-black  ">
-      <section class="blur-100  w-100  pt-2   m-0 pb-3 m-1"
-            style="border-radius: 2rem; background-color: #10101087;">
-            {% if box_is_open  %}     
-                  <div style='margin-top: 0px; max-width: 40rem; margin-bottom: 8rem;   border-radius: 1rem; '  class="results-searching text-white-50  position-fixed bottom-0 w-100  bg-black  d-flex flex-wrap justify-content-center" >
-                        <!-- Resultados -->
-                  </div>     
-                  <div class="w-100 div-filter-reservers  flex-wrap  justify-content-start mb-2 " style="display: none ;">
-                        {% include "pos/cp/filter-reservers.html" %} 
-                  </div>
-            {% endif %}
-      
-            <section class="d-flex justify-content-around list-btn-mobile w-100 ">
+<div  class="position-fixed btn-open-nav bottom-0 d-none d-flex flex-wrap    w-100  end-0  text-black  justify-content-center">
+      <section class="blur-100  w-100 ms-4 me-4    m-0 m-1"
+            style="border-radius: 3rem; background-color: #10101087;
+            border: 1px solid rgba(255, 255, 255, 0.251); max-width: 85vw;">      
+
+            <section class="w-100 p-2"
+                  style="display: grid; grid-template-columns: repeat(4, 1fr); 
+                  ">
                   <button class="button btn-dashboard" 
-                  onclick="window.location.href = '{% url "estudios:dashboard" %}'">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart-fill" viewBox="0 0 16 16">
-                        <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1z"/>
-                      </svg>
-                  <span>
-                        Dashboard
-                  </span>
-            </button>
-            <button class="button btn-pos" onclick="window.location.href = '{% url "estudios:pos" %}'">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-postcard-heart-fill" viewBox="0 0 16 16">
-                        <path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm6 2.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0m3.5.878c1.482-1.42 4.795 1.392 0 4.622-4.795-3.23-1.482-6.043 0-4.622M2 5.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5"/>
-                      </svg>
-                  <span>POS </span>
-            </button>
-            <button class="button btn-asistente " onclick="window.location.href = '{% url "asistente:asistente" %}'">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-moon-stars-fill" viewBox="0 0 16 16">
-                        <path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278"/>
-                        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.73 1.73 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.73 1.73 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.73 1.73 0 0 0 1.097-1.097zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.16 1.16 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.16 1.16 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732z"/>
-                      </svg>
-                      <span>
-                        Asistente
-                      </span>
-            </button>
-                  
-            <button class="button btn-caja " onclick="window.location.href = '{% url "estudios:box" %}'">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-inboxes-fill" viewBox="0 0 16 16">
-                        <path d="M4.98 1a.5.5 0 0 0-.39.188L1.54 5H6a.5.5 0 0 1 .5.5 1.5 1.5 0 0 0 3 0A.5.5 0 0 1 10 5h4.46l-3.05-3.812A.5.5 0 0 0 11.02 1zM3.81.563A1.5 1.5 0 0 1 4.98 0h6.04a1.5 1.5 0 0 1 1.17.563l3.7 4.625a.5.5 0 0 1 .106.374l-.39 3.124A1.5 1.5 0 0 1 14.117 10H1.883A1.5 1.5 0 0 1 .394 8.686l-.39-3.124a.5.5 0 0 1 .106-.374zM.125 11.17A.5.5 0 0 1 .5 11H6a.5.5 0 0 1 .5.5 1.5 1.5 0 0 0 3 0 .5.5 0 0 1 .5-.5h5.5a.5.5 0 0 1 .496.562l-.39 3.124A1.5 1.5 0 0 1 14.117 16H1.883a1.5 1.5 0 0 1-1.489-1.314l-.39-3.124a.5.5 0 0 1 .121-.393z"/>
-                      </svg>
-                  <span>Caja</span>
-            </button>
-      <!-- </a> -->
-            <button onclick="OpenNav()">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-grid-fill" viewBox="0 0 16 16">
-                        <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5z"/>
-                      </svg>
-                  <span>Opciones</span>
-            </button>
-      
+                        onclick="window.location.href = '{% url "estudios:dashboard" %}'">
+                        <i class="fi fi-sr-house-blank"></i>
+                        <span>
+                              Dashboard
+                        </span>
+                  </button>
+                  <button class="button btn-pos" onclick="window.location.href = '{% url "estudios:pos" %}'">
+                        <i class="fi fi-sr-point-of-sale-bill"></i>
+                        <span>POS </span>
+                  </button>
+                  <button class="button btn-caja " onclick="window.location.href = '{% url "estudios:box" %}'">
+                        <i class="fi fi-sr-coins"></i>
+                        <span>Caja</span>
+                  </button>
+                  <button onclick="OpenNav()" class="button">
+                        <i class="fi fi-sr-bars-staggered"></i>
+                        <span>Opciones</span>
+                  </button>
             </section>
+
       </section>
 </div>
 

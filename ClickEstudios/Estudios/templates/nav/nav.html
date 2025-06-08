@@ -1,271 +1,87 @@
-{% load static %}
-{% load cache %}
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css">
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-brands/css/uicons-brands.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-chubby/css/uicons-solid-chubby.css'>
 <style>
-    .nav {
-      /* height: 100vh; */
-
-    }  
-    .nav  a {
-            color: rgba(255, 255, 255, 0.902);
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 500;
-            border-radius: 0.5rem;
-            transition: 0.3s;
-            width: 100%;
+      .new-nav-mobile {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            padding: 2.5rem;
+            align-items: center;
+            align-content: center;
+            justify-items: center;
       }
-
-     .nav a svg {
-            margin: 0px;
-            margin-right: 0.9rem;
+      .new-nav-mobile a {
+            text-align: center;
+            font-size: 14px;
       }
-      .nav a:hover {
-            color:rgb(114, 114, 114) !important;
-            font-weight: bolder;
-            /* transform: scale(1.1); */
-            cursor: pointer ;
-      }
-    .nav  img {
-            margin: 0.5rem;
-      }
-   .nav   div {
-            margin: 0.1rem;
-      }
-
-      /* Nav para escritorio */
-      @media (min-width: 600px) { 
-            .nav {
-                  width: 16rem;
-                   display: flex; flex-wrap: wrap;
-                  align-content: center;
-            }
-            .nav a {
-                  display: flex;
-            }
-            .nav a svg {
-                  margin: 0px;
-                  width: 20px;  height: 20px;
-            }
-            .nav a div {
-                  width: 40px; height: 40px;
-                  border-radius: 50%;
-                  background-color: #1919195c;
-                  display: flex; justify-content: center;
-                  align-items: center; flex-wrap: wrap;
-            }
-            .nav a span {
-                  width: max-content;
-                  display: flex; flex-wrap: wrap ;
-                  align-content: center
-
-            }
-            .nav .services, .admin {
-                  margin-top: 2rem !important;
-            }
-            #asistente-input-float {
-                  display: none;
-            }
-      }
-
-      @media (max-width: 600px) { 
-            .nav {
-                  width: 100%;
-                  display: flex !important; flex-wrap: wrap;
-                  justify-content: center;
-                  height: 100vh; 
-                  align-content: center;
-                  /* padding-bottom: 4rem !important; */
-                  background-color: rgba(255, 255, 255, 0.183);
-            }
-            .nav  a {
-                  width: 7rem;
-                  margin-bottom: 1.9rem;
-                  display: flex; flex-wrap: wrap;
-                  justify-content: center;
-                  text-align: center;     
-                  font-size: 12px; 
-            }
-            .nav a svg {
-                  margin: 0px;
-                  width: 35px;  height: 35px;
-                  color: #969696;
-            }
-            .nav  a  span{
-                  width: 100%;
-                  color: rgba(240, 248, 255, 0.498);
-                  font-size: 12px; font-weight: bold;
-            }
-            .nav a div {
-                  width: 80px; height: 80px;
-                  border-radius: 50%;
-                  background-color: #00000034;
-                  display: flex; justify-content: center;
-                  align-items: center; flex-wrap: wrap;
-                  transform: scale(0);
-            }
-            #asistente-input-float {
-                  display: block;
-            }
-
-
+      .new-nav-mobile a i {
+            background-color: #4d4d4d5e;
+            font-size: 30px;
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            display: flex; justify-content: center;
+            align-content: center;
+            flex-wrap: wrap;
+            border: 2px solid #ffffff17;
+            margin-bottom: 0.2rem;
       }
 </style>
 
-<div class='nav nav-mobile  overflow-auto  ' onclick="OpenNav()" style="display: flex;">
-     {% include "nav/cp/header-profile.html" %}
-      <a  rel="preload"  style="transition-delay: 0.5s;"  class="dashboard " 
-            href="{% url "estudios:dashboard" %}" class=''>
-            <div>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart-fill " viewBox="0 0 16 16">
-                        <path d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1z"/>
-                      </svg> 
-            </div>
-            <span>Dashboard  </span> 
-       </a>
-      <a   rel="preload"
-            class="pos" href="{% url "estudios:pos" %}">
-            <div>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-postcard-heart-fill" viewBox="0 0 16 16">
-                        <path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm6 2.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0m3.5.878c1.482-1.42 4.795 1.392 0 4.622-4.795-3.23-1.482-6.043 0-4.622M2 5.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5"/>
-                      </svg>
-            </div>
-           <span>Punto de venta </span>
-      </a>
-</a>
-<a    rel="prefetch"
-       class='caja' href="{% url "estudios:box" %}"> 
-      <div>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-inboxes-fill" viewBox="0 0 16 16">
-                  <path d="M4.98 1a.5.5 0 0 0-.39.188L1.54 5H6a.5.5 0 0 1 .5.5 1.5 1.5 0 0 0 3 0A.5.5 0 0 1 10 5h4.46l-3.05-3.812A.5.5 0 0 0 11.02 1zM3.81.563A1.5 1.5 0 0 1 4.98 0h6.04a1.5 1.5 0 0 1 1.17.563l3.7 4.625a.5.5 0 0 1 .106.374l-.39 3.124A1.5 1.5 0 0 1 14.117 10H1.883A1.5 1.5 0 0 1 .394 8.686l-.39-3.124a.5.5 0 0 1 .106-.374zM.125 11.17A.5.5 0 0 1 .5 11H6a.5.5 0 0 1 .5.5 1.5 1.5 0 0 0 3 0 .5.5 0 0 1 .5-.5h5.5a.5.5 0 0 1 .496.562l-.39 3.124A1.5 1.5 0 0 1 14.117 16H1.883a1.5 1.5 0 0 1-1.489-1.314l-.39-3.124a.5.5 0 0 1 .121-.393z"/>
-                </svg>
-      </div>
-      <span>Caja</span>
-</a>
-<a     rel="prefetch"
-      class='contactos' 
-      href="{% url "estudios:contactos" %}"> 
-      <div>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
-                  <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
-                </svg>
-      </div>
-      <span>Clientes</span> 
-</a>
-
-<a     rel="prefetch"
-class='facturas' 
-      href="{% url "estudios:facturas" %}"> 
-            <div>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-text-fill" viewBox="0 0 16 16">
-                        <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1M4.5 9a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1zM4 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 1 0-1h4a.5.5 0 0 1 0 1z"/>
-                      </svg>
-            </div>
-            <span>Facturas</span> 
-</a>
-
-
-{% if request.user.profile%}
-      {% if request.user.profile.role == 'administrador' or request.user.profile.role == 'administrativo' %}
-
-
-      <a rel="preload" class="services " href="{% url "estudios:service" %}">
-                  <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-fill" viewBox="0 0 16 16">
-                              <path fill-rule="evenodd" d="M15.528 2.973a.75.75 0 0 1 .472.696v8.662a.75.75 0 0 1-.472.696l-7.25 2.9a.75.75 0 0 1-.557 0l-7.25-2.9A.75.75 0 0 1 0 12.331V3.669a.75.75 0 0 1 .471-.696L7.443.184l.004-.001.274-.11a.75.75 0 0 1 .558 0l.274.11.004.001zm-1.374.527L8 5.962 1.846 3.5 1 3.839v.4l6.5 2.6v7.922l.5.2.5-.2V6.84l6.5-2.6v-.4l-.846-.339Z"/>
-                            </svg>
-                  </div>
-                  <span>Servicios</span>
-            </a>
-            <a class="plans" href="{% url "estudios:plan" %}">
-                  <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-balloon-fill" viewBox="0 0 16 16">
-                              <path fill-rule="evenodd" d="M8.48 10.901C11.211 10.227 13 7.837 13 5A5 5 0 0 0 3 5c0 2.837 1.789 5.227 4.52 5.901l-.244.487a.25.25 0 1 0 .448.224l.04-.08c.009.17.024.315.051.45.068.344.208.622.448 1.102l.013.028c.212.422.182.85.05 1.246-.135.402-.366.751-.534 1.003a.25.25 0 0 0 .416.278l.004-.007c.166-.248.431-.646.588-1.115.16-.479.212-1.051-.076-1.629-.258-.515-.365-.732-.419-1.004a2 2 0 0 1-.037-.289l.008.017a.25.25 0 1 0 .448-.224zM4.352 3.356a4 4 0 0 1 3.15-2.325C7.774.997 8 1.224 8 1.5s-.226.496-.498.542c-.95.162-1.749.78-2.173 1.617a.6.6 0 0 1-.52.341c-.346 0-.599-.329-.457-.644"/>
-                        </svg>
-                  </div>
-                  <span>Planes</span>
-            </a>
-            <a class="galley-a" href="{% url "estudios:gallery" %}">
-                  <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-image-alt" viewBox="0 0 16 16">
-                              <path d="M7 2.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0m4.225 4.053a.5.5 0 0 0-.577.093l-3.71 4.71-2.66-2.772a.5.5 0 0 0-.63.062L.002 13v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4.5z"/>
-                            </svg>
-                  </div>
-                  <span> Galería </span>
-            </a>
-            <a style="transition-delay: 0s;"  class="correos"
-             href="{% url "estudios:correos" %}">
-                  <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-at" viewBox="0 0 16 16">
-                              <path d="M13.106 7.222c0-2.967-2.249-5.032-5.482-5.032-3.35 0-5.646 2.318-5.646 5.702 0 3.493 2.235 5.708 5.762 5.708.862 0 1.689-.123 2.304-.335v-.862c-.43.199-1.354.328-2.29.328-2.926 0-4.813-1.88-4.813-4.798 0-2.844 1.921-4.881 4.594-4.881 2.735 0 4.608 1.688 4.608 4.156 0 1.682-.554 2.769-1.416 2.769-.492 0-.772-.28-.772-.76V5.206H8.923v.834h-.11c-.266-.595-.881-.964-1.6-.964-1.4 0-2.378 1.162-2.378 2.823 0 1.737.957 2.906 2.379 2.906.8 0 1.415-.39 1.709-1.087h.11c.081.67.703 1.148 1.503 1.148 1.572 0 2.57-1.415 2.57-3.643zm-7.177.704c0-1.197.54-1.907 1.456-1.907.93 0 1.524.738 1.524 1.907S8.308 9.84 7.371 9.84c-.895 0-1.442-.725-1.442-1.914"/>
-                            </svg>
-                  </div>
-                  <span> Correos </span>
-            </a>
-      {% endif %}
-      {% endif %}
-
-      {% if request.user.profile%}
-      {% if request.user.profile.role == 'administrador'  %}
-            <a  class="admin" href="{% url "estudios:admin" %}">
-                  <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shield-lock-fill" viewBox="0 0 16 16">
-                              <path fill-rule="evenodd" d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.8 11.8 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7 7 0 0 0 1.048-.625 11.8 11.8 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.54 1.54 0 0 0-1.044-1.263 63 63 0 0 0-2.887-.87C9.843.266 8.69 0 8 0m0 5a1.5 1.5 0 0 1 .5 2.915l.385 1.99a.5.5 0 0 1-.491.595h-.788a.5.5 0 0 1-.49-.595l.384-1.99A1.5 1.5 0 0 1 8 5"/>
-                            </svg>
-                  </div>
-                  <span>
-                        Privacidad y seguridad
-                  </span>
-            </a>
-            <a class=" configuration" href="{% url "estudios:configuration" %}">
-                  <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16">
-                              <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
-                        </svg>
-                  </div>
-                  <span> Configuración </span>
-            </a>
-            <a class=" asistente" href="{% url "asistente:asistente" %}">
-                  <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                            </svg>
-                  </div>
-                  <span> Asistentente IA </span>
-            </a>
-      {% endif %}
-            <input type="text"
-            onclick="window.location.href = '{% url "asistente:asistente" %}'"
-            name="" id="asistente-input-float-" class="w-100 d-none p-5  rounded-5   mt-5 mb-0 border-0  text-white text-center" readonly placeholder="¿Que quieres saber hoy?" 
-            style="max-width: 20rem;  outline: none; background-color: #1919195d;">
-      {% endif %}
-
-</div>
+<!-- Nav mobile -->
+<section onclick="OpenNav()" class="new-nav-mobile position-absolute top-0  start-0 dvh-100 w-100 z-2 blur-10" style="display: none;
+ background: linear-gradient(to bottom, transparent, #101010), linear-gradient(to top,#1010107d , #10101081);">
+    <a href="{% url 'estudios:dashboard' %}" class="dashboard">
+        <i class="fi fi-sr-signal-alt-2"></i>
+        <span>Dashboard</span>
+    </a>
+    <a href="{% url 'estudios:pos' %}" class="pos">
+        <i class="fi fi-sr-point-of-sale-bill"></i>
+        <span>POS</span>
+    </a>
+    <a href="{% url 'estudios:box' %}" class="caja">
+        <i class="fi fi-sr-coins"></i>
+        <span>Caja</span>
+    </a>
+    <a href="{% url 'estudios:contactos' %}" class="contactos">
+        <i class="fi fi-sr-users-alt"></i>
+        <span>Clientes</span>
+    </a>
+    <a href="{% url 'estudios:facturas' %}" class="facturas ">
+        <i class="fi fi-sr-receipt"></i>
+        <span>Facturas</span>
+    </a>
+    <a href="{% url 'estudios:service' %}" class="services">
+        <i class="fi fi-sr-box-open-full"></i>
+        <span>Servicios</span>
+    </a>
+    <a href="{% url 'estudios:plan' %}" class="plans">
+        <i class="fi fi-sr-balloons"></i>
+        <span>Planes</span>
+    </a>
+    <a href="{% url 'estudios:gallery' %}" class="galley-a">
+        <i class="fi fi-sr-gallery"></i>
+        <span>Galeria</span>
+    </a>
+    <a href="{% url 'estudios:correos' %}" class="correos">
+        <i class="fi fi-sr-envelope-dot"></i>
+        <span>Correos</span>
+    </a>
+    <a href="{% url 'estudios:admin' %}" class="admin">
+        <i class="fi fi-sr-user"></i>
+        <span>Cuentas</span>
+    </a>
+    <a href="{% url  'estudios:empleados' %}" class="seguridad">
+        <i class="fi fi-sr-lock"></i>
+        <span>Seguridad</span>
+    </a>
+    <a href="{% url 'estudios:configuration' %}" class="configuration">
+        <i class="fi fi-sr-settings"></i>
+        <span>Configura..</span>
+    </a>
+</section>
 
 <script>
-      function BackSpace() {
-            if (window.history.length > 1) {
-              history.back();
-            } 
-      }
-
-      function NexSpce() {
-            if (window.history.length > 1) {
-              history.forward();
-            } 
-      }
-
-      document.addEventListener('DOMContentLoaded', function() {
-            Estudios();
-      });
-
-      let Estudios = () => {
-            $.ajax({
-                url: '/ajax/get-estudios/',
-                method: 'GET',
-                success: function(D) {
-                  document.querySelector('.img-estudioss').src = D.img;
-                },
-            });
-        };
 
 </script>
