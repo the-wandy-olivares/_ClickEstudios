@@ -57,13 +57,15 @@
                     transform: rotate(90deg);
                     transition: transform 0.3s ease-out;
             }
+
+      
             
       </style>
 
       <section data-aos="fade-in"
             style="transition: 0s;"
-            class='w-100 rounded-5 overflow-auto  w-100'>
-            <div class="div-top d-flex text-white position-sticky top-0 z-2 blur-20 p-1 p-2 w-100 ">
+            class='w-100 rounded-0 overflow-auto  w-100'>
+            <div class="div-top d-flex text-white position-sticky top-0 z-2 blur-20  w-100 ">
                   <div class="me-3 ms-2 d-flex flex-wrap align-content-center">
                         <i class="fi fi-sr-balloons  d-flex flex-wrap p-3 rounded-circle" 
                         style="font-size: 30px; background-color: #19191983;"></i>
@@ -147,14 +149,12 @@
                                     </div>
                   
                                     <!-- Butones de elcciones-->
-                                    <div class="d-flex justify-content-start flex-wrap">
-                                          
-                                          <button onclick="toggleOptions(this.id)" id="{{p.id}}" class='start-0  text-white btn-optione{{p.id}} text-decoration-none blur-5 bg-transparent p-2  border-1 rounded-5' style="font-size: 12px ; font-weight: bold; width: 36px; height: 36px; border: 1px solid rgba(63, 63, 63, 0.525) !important; margin-top: 0.8rem;">
-                                                <span>
-                                                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-three-dots text-white-50" viewBox="0 0 16 16">
-                                                            <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"/>
-                                                      </svg>
-                                                </span>
+                                    <div class="d-flex justify-content-center flex-wrap">
+                                          <button onclick="toggleOptions(this.id)" id="{{p.id}}" class='start-0 bold text-white btn-optione{{p.id}} text-decoration-none blur-20   p-2  border-1 rounded-5' style="font-size: 14px ; font-weight: bold;
+                                           width: 7rem; height: 39px; border: 1px solid rgba(63, 63, 63, 0) !important; margin-top: 0.8rem;
+                                           background-color: #19191900;">
+                                          <i style="font-size: 20px;"
+                                           class="fi fi-sr-menu-dots d-flex justify-content-center align-content-center flex-wrap"></i>
                                           </button> 
                                     </div>
                               </div>
@@ -162,7 +162,7 @@
       
                   {% endfor %}
             </section>
-            <div class="mb-5">
+            <div class="mb-5 mt-3">
                   <a href="{% url "estudios:service" %}" class='text-white-50 d-flex '>
                         <div class="d-flex flex-wrap align-content-center me-2">
                               <img src="{{service.img.url}}" width='40' height='40' class='rounded-circle object-fit-cover'  alt="">
@@ -179,38 +179,49 @@
                   </a>
             </div>
       {% endfor %}
+      <div style="transition-delay: 0.3s; height:7.5rem;" class=' d-flex justify-content-start botton-plan p-2 align-content-start z-2  position-sticky bottom-0 flex-wrap ' >
+            <a href="{% url "estudios:plan-create" %}" 
+            class="btn btn-primary bg-white d-flex justify-content-center align-content-center flex-wrap bg-black bg-opacity-10 ms-3 blur-100 border-0 rounded-5 " style="
+                  height: 2.5rem; width: 2.5rem;
+                  border: 1px solid rgb(64, 64, 64);">
+                  <i class="fi fi-sr-add d-flex justify-content-center align-content-center flex-wrap bold text-primary text-white-50" style="font-size: 28px;"></i> 
+            </a>
+       </div>  
+       <style>
+            @media (min-width: 600px) { 
+
+                  .botton-plan {
+                        max-height: 4.9rem;
+                  }
+                  .botton-plan  a {
+                        margin-left: 4px !important;
+                  }
+            }
+       </style>
+
       </section>
  
-            <div data-aos="zoom-in" style="transition-delay: 0.3s; max-height: 2rem;" class='position-absolute top-0  end-0  ' >
-            <a href="{% url "estudios:plan-create" %}">
-                  <button class="bg-white bg-opacity-10 d-flex justify-content-center flex-wrap align-content-center rounded-5  text-white border-0 rounded-3 p-2 me-1 mt-1" style='font-weight: bold;'>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="m-0 bi bi-plus-circle-fill" viewBox="0 0 16 16">
-                              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
-                            </svg> 
-                  </button>
-            </a>
-      </div>  
 
-      <script>
-            function toggleOptions(id) {
-                  let options = document.getElementById('options' + id);
-                  if (options.classList.contains('d-none')) {
-                        options.classList.remove('d-none');
-                        options.classList.add('fade-down')
-                  } else {
-                        options.classList.add('d-none');
-                  }
-                  document.querySelectorAll('.btn-optione' + id ).forEach(function(element) {
-                        element.classList.toggle('rotate-90');
-                  });
+<script>
+      function toggleOptions(id) {
+            let options = document.getElementById('options' + id);
+            if (options.classList.contains('d-none')) {
+                  options.classList.remove('d-none');
+                  // options.classList.add('fade-down')
+            } else {
+                  options.classList.add('d-none');
             }
+            // document.querySelectorAll('.btn-optione' + id ).forEach(function(element) {
+            //       element.classList.toggle('rotate-90');
+            // });
+      }
 
-            document.addEventListener('contextmenu', function(event) {
-                  event.preventDefault();
+      document.addEventListener('contextmenu', function(event) {
+            event.preventDefault();
 
-            });
+      });
 
-      </script>
+</script>
 
 <script>
       document.addEventListener('DOMContentLoaded', function () {
@@ -231,5 +242,5 @@
           div.style.background = `linear-gradient(135deg, ${c1}, ${c2}, ${c3})`;
         });
       });
-      </script>
+</script>
 {% endblock  %}

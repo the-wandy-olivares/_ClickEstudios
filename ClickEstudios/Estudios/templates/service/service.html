@@ -34,8 +34,8 @@
 
 
       
-      <section class='d-flex flex-wrap overflow-auto align-content-start w-100 rounded-5  pb-5'>  
-                  <div class="div-top mt-2 d-flex text-white position-sticky top-0 z-2 blur-20 p-2 w-100 ">
+      <section class='d-flex flex-wrap overflow-auto align-content-start w-100  pb-5'>  
+                  <div class="div-top  d-flex text-white position-sticky top-0 z-2 blur-20  w-100 ">
                         <div class="me-3 ms-2 d-flex flex-wrap align-content-center">
                               <i class="fi fi-sr-box-open-full  d-flex flex-wrap p-3 rounded-circle" 
                               style="font-size: 30px; background-color: #19191983;"></i>
@@ -53,14 +53,7 @@
                               style="font-size: 20px; background-color: #3a3a39;"></i> 
                         </a> -->
                   </div>
-            <div data-aos="zoom-in" style="transition-delay: 0.2s; max-height: 2rem;" class='w-100 d-flex justify-content-end' >
-                  <a href="{% url "estudios:service-create" %}">
-                        <button class="bg-white bg-opacity-10 rounded-5 d-flex justify-content-center flex-wrap align-content-center text-white border-0 rounded-3 p-2" style='font-weight: bold;'>
-                              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="m-0 bi bi-plus-circle-fill" viewBox="0 0 16 16">
-                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
-                                  </svg> 
-                        </button>
-                  </a>
+
             </div> 
       
             <div data-aos='fade-in' class="d-flex section-service flex-wrap w-100 justify-content-start"
@@ -116,6 +109,25 @@
 
                   {% endif %}
             </div>
+            <div style="transition-delay: 0.3s; height:4.5rem;" class=' d-flex justify-content-start botton-plan p-2 align-content-start z-2  position-sticky bottom-0 flex-wrap ' >
+                  <a href="{% url "estudios:service-create" %}" 
+                  class="btn btn-primary bg-white d-flex justify-content-center align-content-center flex-wrap bg-black bg-opacity-10 ms-3 blur-100 border-0 rounded-5 " style="
+                        height: 2.5rem; width: 2.5rem;
+                        border: 1px solid rgb(64, 64, 64);">
+                        <i class="fi fi-sr-add d-flex justify-content-center align-content-center flex-wrap bold text-primary text-white-50" style="font-size: 28px;"></i> 
+                  </a>
+             </div>  
+             <style>
+                  @media (min-width: 600px) { 
+      
+                        .botton-plan {
+                              max-height: 2rem;
+                        }
+                        .botton-plan  a {
+                              margin-left: 4px !important;
+                        }
+                  }
+             </style>
       </section>
       <script>
             function toggleOptions(id) {
