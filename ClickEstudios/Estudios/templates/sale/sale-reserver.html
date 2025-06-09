@@ -100,8 +100,8 @@
                   <form action="" method="post">
                         {% csrf_token %}
                         <div class='d-flex mt-2 w-100 justify-content-end'>
-                              <input type="text"  max={{sale.debit_mount}} class='form-control bg-white text-white border-0 mount2 p-2 bg-opacity-10 ps-3 w-100 rounded-5 rounded-end-3' placeholder='Monto a aplicar' id='mount2' style="max-width: 14rem;"> 
-                              <button type="submit" class="btn btn-primary bg-white bg-opacity-10 ms-2 rounded-5 rounded-start-3 border-0" style="min-width: 10rem; font-weight: bold;">Aplicar pago</button>
+                              <input type="text"  max={{sale.debit_mount}} class='form-control bg-white text-white border-0 mount2 p-2 bg-opacity-10 ps-3 w-100 rounded-5 rounded-end-3' placeholder='Monto a aplicar' id='mount2' style="max-width: 14rem; outline: none !important;"> 
+                              <button type="submit" class="btn btn-primary bg-primary  ms-2 rounded-5 d-none btn-aplicar rounded-start-3 border-0" style="min-width: 10rem; font-weight: bold;">Aplicar pago</button>
                               
                               <input type="number" name="mount" max={{sale.debit_mount}} value="{{sale.debit_mount}}" class='form-contro d-none bg-white text-white border-0 w-100 p-2 bg-opacity-10 rounded-5 ' placeholder='Monto a aplicar' id='mount'> 
                         </div>
@@ -148,4 +148,41 @@
                         // });
             });
       </script>
+      <script>
+            document.addEventListener('DOMContentLoaded', function () {
+              document.addEventListener('keydown', function (e) {
+                const isInput = e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA';
+                const isEnter = e.key === 'Enter';
+            
+                if (isEnter && isInput) {
+                  e.preventDefault();
+                }
+              });
+            });
+            </script>
+            <script>
+                  document.addEventListener('DOMContentLoaded', function () {
+                    const input = document.querySelector('.mount2');
+                    const btn = document.querySelector('.btn-aplicar');
+                  
+                    if (!input || !btn) return;
+                  
+                    function evaluarMonto() {
+                      // Remueve símbolos, letras, espacios y convierte a número
+                      const valor = parseInt(input.value.replace(/[^\d]/g, ''), 10) || 0;
+                  
+                      if (valor > 0) {
+                        btn.classList.remove('d-none');
+                      } else {
+                        btn.classList.add('d-none');
+                      }
+                    }
+                  
+                    // Escuchar cambios en tiempo real
+                    input.addEventListener('input', evaluarMonto);
+                  
+                    // Evaluar valor inicial (por si ya hay monto cargado)
+                    evaluarMonto();
+                  });
+                  </script>
 {% endblock  %}
