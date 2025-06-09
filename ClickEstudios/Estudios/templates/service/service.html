@@ -34,7 +34,25 @@
 
 
       
-      <section class='d-flex flex-wrap overflow-auto align-content-start w-100  '>
+      <section class='d-flex flex-wrap overflow-auto align-content-start w-100 rounded-5  pb-5'>  
+                  <div class="div-top mt-2 d-flex text-white position-sticky top-0 z-2 blur-20 p-2 w-100 ">
+                        <div class="me-3 ms-2 d-flex flex-wrap align-content-center">
+                              <i class="fi fi-sr-box-open-full  d-flex flex-wrap p-3 rounded-circle" 
+                              style="font-size: 30px; background-color: #19191983;"></i>
+                        </div>
+                        <div class="d-flex flex-wrap align-content-center">
+                              <h5 class="m-0 mt-3">
+                                    Servicios
+                              </h5>
+                              <p class="w-100" style="font-size: 14px;">
+                                    Organiza tus servicios y optimiza las ofertas 
+                              </p>
+                        </div>
+                        <!-- <a href="{% url "estudios:moment-create" %}" class="z-2 position-absolute top-0 end-0 mt-2 me-2">
+                              <i class="fi fi-sr-multiple" 
+                              style="font-size: 20px; background-color: #3a3a39;"></i> 
+                        </a> -->
+                  </div>
             <div data-aos="zoom-in" style="transition-delay: 0.2s; max-height: 2rem;" class='w-100 d-flex justify-content-end' >
                   <a href="{% url "estudios:service-create" %}">
                         <button class="bg-white bg-opacity-10 rounded-5 d-flex justify-content-center flex-wrap align-content-center text-white border-0 rounded-3 p-2" style='font-weight: bold;'>
