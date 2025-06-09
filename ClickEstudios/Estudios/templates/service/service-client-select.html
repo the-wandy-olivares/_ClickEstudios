@@ -2,18 +2,23 @@
 {% block content %}
 <style>
       .img-gallery {
-
             position: absolute;
             z-index: 1000;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%) scale(1.1);
-            max-width: 70% !important;
+            max-width: 80% !important;
             max-height: 70% !important;
             box-shadow: 1px 1px 40px 20px #000000;
             object-fit: contain !important;
             -webkit-backdrop-filter: blur(100px) !important;
             backdrop-filter: blur(100px) !important;
+      }
+      @media (max-width: 600px) {
+      .img-show {
+            grid-template-columns: repeat(2, 1fr) !important;
+      }
+
       }
 </style>
 <section class='w-100 overflow-auto ' >
@@ -50,16 +55,19 @@
                             </svg> Seleccionar otro servicio
                   </button> 
             </div>
-            <div class='text-warning w-100 overflow-auto align-content-start-0 mb-5 justify-content-center f  '>
+            <div class='text-warning w-100 overflow-auto align-content-start-0 mb-5 justify-content-center   '>
                   <div class="d-flex justify-content-center flex-wrap w-100">
                         {% if moments %}
                               {% for moment in moments %} 
-                              {% for m in moment.img_moments.all  %}
-                              {% if m.img %}
-                              <img src="{{m.img.url}}" onclick="UpperCaseImg()" style='max-width: 180px; '
-                              class='w-100 img  object-fit-cover rounded-5 m-1' alt="Ups!">
-                              {% endif %}
-                              {% endfor %}
+                              <div class="img-show" style="display: grid; 
+                              grid-template-columns: repeat(5, 1fr); gap: 5px;">
+                                    {% for m in moment.img_moments.all  %}
+                                          {% if m.img %}
+                                                <img src="{{m.img.url}}" onclick="UpperCaseImg()"  
+                                                class='w-100 img  object-fit-cover rounded-5 m-1' alt="Ups!">
+                                                {% endif %}
+                                                {% endfor %}
+                                    </div>
                               {% endfor %}
                               {% else %}
                               <div>
