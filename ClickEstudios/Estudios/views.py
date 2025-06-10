@@ -504,6 +504,8 @@ class SaleUpdate(UpdateView):
         plan = models.Plan.objects.filter(pk=self.object.pk_plan).last()
         form.instance.name_client = form.instance.name_client if form.instance.name_client else ''
         form.instance.name_plan = plan.name
+        form.instance.phone_client = form.instance.phone_client if form.instance.phone_client else '(000) 000-0000'
+        form.instance.email_client = form.instance.email_client if form.instance.email_client else ''
         form.instance.is_reserve = models.Sale.objects.get(id=form.instance.id).is_reserve
         form.instance.payment = models.Sale.objects.get(id=form.instance.id).payment
         # print(form.instance.is_reserve)
