@@ -508,6 +508,7 @@ class SaleUpdate(UpdateView):
         form.instance.email_client = form.instance.email_client if form.instance.email_client else ''
         form.instance.is_reserve = models.Sale.objects.get(id=form.instance.id).is_reserve
         form.instance.payment = models.Sale.objects.get(id=form.instance.id).payment
+        form.instance.descrition = models.Sale.objects.get(id=form.instance.id).descrition if models.Sale.objects.get(id=form.instance.id).descrition else ''
         # print(form.instance.is_reserve)
         # form.instance.debit_mount = plan.price  
         # form.instance
