@@ -1,43 +1,52 @@
 {% extends "base/base.html" %}
-{% block content %}
- 
-      <style>
-            .nav .services {
-                  color: #ffc107;
-                  font-weight: bolder;
-
-            }
-      </style>
+{% block content %}     
+      {% load humanize %}
 
       <div class="d-flex justify-content-center align-items-center w-100 h-100">
-            <form method="post">
+            <div    style="background-color: #202020 !important;  border-radius: 2.5rem;
+            border: 2px solid rgb(63, 63, 63);"
+            class="p-3">
+                  
+        
+            <form method="post" style="max-width: 450px;" class="text-white" >
                   {% csrf_token %}
                   {% csrf_token %}
-                  <div>
-                        <div class="card-img-top " style="
-                        background-position: center;
+                  <div class="d-flex mb-3">
+                        <div class="d-flex flex-wrap align-content-center ">
                               {% if object.img %}
-                                    background-image: url('{{object.img.url}}');
+                              <img src="{{object.img.url}}" 
+                                    style='width: 70px; height: 70px;' class='rounded-circle object-fit-cover mt-1 ms-2 me-3'>
+                              {% else %}
+                                    <i class="bi bi-file-earmark-image-fill mt-3 ms-3" 
+                                    style="font-size: 30px;"></i>
                               {% endif %}
-                              background-size: cover; background-repeat: no-repeat; 
-                              filter: brightness(80%);
-                        
-                              width: 310px;
-                              height: 420px; border-radius: 3rem;">
+                        </div>
+                        <div class="d-flex flex-wrap align-content-center">
+                              <strong style='font-size: 16px; text-transform: uppercase; '>
+                                    {{object.name_plan}}
+                              </strong>
+                              <span class="w-100" style="font-size: 14px;">
+                                    RD${{ object.price_plan|intcomma }}.00
+                              </span>
                         </div>
                   </div>
-                  <h6 class='text-white'>¿Estás seguro de que deseas eliminar {{object.name_plan}} de {{object.name_client}}?</h6>
+                  <h6 class='text-white m-0'>¿Deseas eliminar esta reserva  de {{object.name_client}}?</h6>
+                  <p style="font-size: 14px;">
+                        Esta acción es irreversible, una vez eliminada no podrás recuperarla 
+                  </p>
                   <div class="mt-2">
                   </div>
               
                   <div class="d-flex justify-content-end">
                         <a href="{% url "estudios:pos" %}" class="btn border-0 btn-secondary accordion bg-transparent  text-white-50" style="font-weight: bold;"> Cancelar</a>
-                        <button type="submit" class="btn  p-0 pe-3 ps-3 border-0 rounded-5 ms-1"
-                        style="font-size: 14px; font-weight: bold; background-color: rgb(28, 1, 1); color: red;">
+                        <button type="submit" class="btn  p-0 pe-3 ps-3 border-0 rounded-5 text-white ms-1"
+                        style="font-size: 14px; font-weight: bold;
+                         background-color: rgba(67, 67, 67, 0.732);">
                           Si, estoy seguro
                         </button>
                   </div>
             </form>      
+      </div>
       </div>
 
 

@@ -178,6 +178,7 @@ class ServiceCreate(CreateView):
 
         def get_success_url(self):
             # Retorna la URL a la que redirigirá después de un submit exitoso
+            messages.success(self.request, 'Servicio creado correctamente')
             return reverse_lazy('estudios:service')
 
 
@@ -213,6 +214,7 @@ class ServiceUpdate(UpdateView):
 
     def get_success_url(self):
             # Retorna la URL a la que redirigirá después de un submit exitoso
+            messages.success(self.request, 'Actualizado correctamente')
             return reverse_lazy('estudios:service')
 
 
@@ -227,6 +229,7 @@ class ServiceDelete(DeleteView):
 
     def get_success_url(self):
         # Retorna la URL a la que redirigirá después de un submit exitoso
+        messages.success(self.request, 'Eliminado correctamente')
         return reverse_lazy('estudios:service')
 
 
@@ -267,6 +270,7 @@ class PlanDetail(DetailView):
     
     def get_success_url(self):
         # Retorna la URL a la que redirigirá después de un submit exitoso
+        messages.success(self.request, 'Característica agregada correctamente')
         return reverse_lazy('estudios:plan-detail', kwargs={'pk': self.kwargs.get('pk')})
 
 
@@ -313,6 +317,7 @@ class PlanCreate(CreateView):
 
     def get_success_url(self):
         # Retorna la URL a la que redirigirá después de un submit exitoso
+        messages.success(self.request, 'Plan creado correctamente')
         return reverse_lazy('estudios:plan')
 
 
@@ -359,6 +364,7 @@ class PlanUpdate(UpdateView):
 
         def get_success_url(self):
             # Retorna la URL a la que redirigirá después de un submit exitoso
+            messages.success(self.request, 'Actualizado correctamente')
             return reverse_lazy('estudios:plan')
 
 
@@ -372,6 +378,7 @@ class PlanDelete(DeleteView):
 
     def get_success_url(self):
         # Retorna la URL a la que redirigirá después de un submit exitoso
+        messages.success(self.request, 'Eliminado correctamente')
         return reverse_lazy('estudios:plan')
 
 
@@ -428,7 +435,7 @@ class SaleReserver(TemplateView):
             )
             sale.save()
 
-
+            messages.success(request, 'Venta reservada correctamente.')
             return redirect('estudios:pos')
         return self.render_to_response(self.get_context_data())
 
@@ -524,6 +531,7 @@ class SaleUpdate(UpdateView):
 
     def get_success_url(self):
         # Retorna la URL a la que redirigirá después de un submit exitoso
+        messages.success(self.request, 'Actualizado correctamente')
         return reverse_lazy('estudios:pos')
     
 
@@ -533,6 +541,7 @@ class SaleDelete(DeleteView):
 
     def get_success_url(self):
         # Retorna la URL a la que redirigirá después de un submit exitoso
+        messages.success(self.request, 'Eliminado correctamente')
         return reverse_lazy('estudios:pos')
 
 
@@ -582,6 +591,7 @@ class SaleCreateDateChoice(CreateView):
 
         def get_success_url(self):
             # Retorna la URL a la que redirigirá después de un submit exitoso
+            messages.success(self.request, 'Cita agendada correctamente.')
             return reverse_lazy('estudios:pos')
 
     
@@ -1022,6 +1032,7 @@ class BoxCreate(TemplateView):
                 user=request.user, created_box=timezone.now()
             )
             box.save()
+            messages.success(self.request, f"Caja #{box.id} abierta correctamente por {request.user.first_name} {request.user.last_name}")
 
             if request.POST.get('open_amount'):
                 models.Movements(
@@ -1035,8 +1046,8 @@ class BoxCreate(TemplateView):
             box = models.Box.objects.filter(open=True).latest('id')
             box.open = False
             box.save()
+            messages.success(self.request, f"Caja #{box.id} cerrada correctamente por {request.user.first_name} {request.user.last_name}")
 
-        
         return redirect('estudios:box')
     
 
