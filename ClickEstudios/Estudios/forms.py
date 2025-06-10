@@ -50,11 +50,15 @@ class Sale(forms.ModelForm):
       class Meta:
             model = models.Sale
             fields = [
-                  'client', 'name_plan', 'description_plan', 'price_plan', 'is_active',
-                  'mount', 'is_reserve', 'payment', 'start_proces_date', 'end_proces_date',
-                  'finalize', 'date_choice', 'time', 'credit_fiscal', 'name_client', 'email_client', 'phone_client', 'is_cliente',  'phone_no_formate', 
-                  'contact', 'descrition'
-            ]
+                  'client', 'name_client', 'email_client', 'phone_client', 'phone_no_formate', 'descrition', 'is_cliente',
+                  'pk_plan', 'name_plan', 'description_plan', 'price_plan', 'img', 'date', 'is_active',
+                  'mount', 'debit_mount', 'is_reserve', 'payment',
+                  'start_proces_date', 'end_proces_date', 'finalize', 'saled_date',
+                  'date_choice', 'time',
+                  'credit_fiscal', 'credito_fiscal', 'cosumidor_final', 'sale_type',
+                  'rnc_client', 'name_company_client', 'discount',
+                  'contact'
+                  ]
             widgets = {
                     'client': forms.Select(attrs={'class': 'form-control'}),
                     'name_plan': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre del plan'}),

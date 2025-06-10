@@ -209,7 +209,7 @@ class Sale(models.Model):
       description_plan = models.TextField(blank=True, null=True)
       price_plan = models.IntegerField(blank=True, null=True)
       img = models.ImageField(upload_to='media/ventas', null=True, blank=True)
-      date = models.DateTimeField(default=timezone.now, verbose_name="Fecha de creación")
+      date = models.DateTimeField(default=timezone.now, verbose_name="Fecha de creación", blank=True)
       is_active = models.BooleanField(default=True)
 
 # Estado de la venta
@@ -256,7 +256,8 @@ class Sale(models.Model):
             max_length=13,
             choices=SALE_TYPE_CHOICES,
             default='consumidor',  # Por defecto: Consumidor Final
-            verbose_name="Tipo de Venta"
+            verbose_name="Tipo de Venta",
+            blank=True,
       )
 
       # RNC del cliente

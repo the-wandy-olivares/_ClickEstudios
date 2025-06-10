@@ -409,7 +409,7 @@ class SaleReserver(TemplateView):
             new_mount = int(new_mount)
             sale.mount = (sale.mount or 0) + int(new_mount)
 
-            sale.debit_mount -= new_mount
+            sale.debit_mount -= new_mount # Reastando monto al monto debitado
             if sale.mount >= sale.price_plan:
                 sale.mount = sale.price_plan
                 sale.payment = True
@@ -502,8 +502,13 @@ class SaleUpdate(UpdateView):
     def form_valid(self, form):
         # Guarda el objeto y redirige al éxito
         plan = models.Plan.objects.filter(pk=self.object.pk_plan).last()
+        form.instance.name_client = form.instance.name_client if form.instance.name_client else ''
         form.instance.name_plan = plan.name
-        form.instance.debit_mount = plan.price
+        form.instance.is_reserve = models.Sale.objects.get(id=form.instance.id).is_reserve
+        form.instance.payment = models.Sale.objects.get(id=form.instance.id).payment
+        # print(form.instance.is_reserve)
+        # form.instance.debit_mount = plan.price  
+        # form.instance
         form.instance.img = plan.img
         form.instance.description_plan = plan.description
         form.instance.price_plan = plan.price
