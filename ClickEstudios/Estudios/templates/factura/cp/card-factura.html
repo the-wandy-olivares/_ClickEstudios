@@ -1,7 +1,6 @@
 <style>
       .btn-options-factura .bi {
             font-size: 20px !important;
-            margin: 0.4rem;
       }
       .btn-options-factura .bi:hover {
             color: #ffc107 !important;
@@ -9,10 +8,19 @@
             transform: scale(1.2);
             cursor: pointer;
       }
+      .btns-factura i {
+            background-color: #141414;
+            border-radius: 2rem;
+            height: 2rem;
+            align-items: center;
+            display: flex; justify-content: center;
+
+      }
 </style>
-<div style="max-width: 23rem; min-width: 20rem; height: max-content; border-radius: 2.5rem;"
-      class="bg-white bg-opacity-10 w-100  text-white p-4 pb-3 pt-2 m-2">
-      <div class='w-100 mt-0 ps-1 mt-2  text-white-50'>
+<div style=" height: max-content; border-radius: 2.5rem;
+background-color: #191919;"
+      class=" w-100  text-white p-2" >
+      <div class='w-100 m-3  text-white-50'>
             <p class="mb-0 text-white-50">
                   <strong class="text-capitalize" style="font-weight: bold; font-size: 22px;" >
                   {% comment %} {% if sale.name_client %}/\ {% endcomment %}
@@ -20,7 +28,7 @@
                   {% comment %} {% endif %} {% endcomment %}
                   </strong>
             </p>
-            <p class="mb-0 text-white-50">
+            <p class="mb-0 ms-2 text-white-50">
                   <strong>
                         <a href="https://wa.me/+1{{ s.phone_no_formate }}">
                               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill me-1 text-white-50" viewBox="0 0 16 16">
@@ -34,7 +42,7 @@
                               (000) 000-0000
                   {% endif %}
             </p>
-            <p class="mb-1">
+            <p class="mb-1 ms-2">
                   <strong>
                         <a href="mailto:{{ s.email_client }}?subject=Notificación&body=Hola, estamos encantados de contactarte.&cc={{ s.email_client }}&bcc={{ s.email_client }}" >
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-at-fill me-1 text-white-50" viewBox="0 0 16 16">
@@ -49,7 +57,7 @@
                         @gmail.com
                   {% endif %}
             </p>
-            <p class="mb-1">
+            <p class="mb-1 ms-2">
                   <strong>
                         <svg onclick="Calendar(this.id)" id="{{s.id}}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event-fill me-1 text-white-50" viewBox="0 0 16 16">
                               <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2m-3.5-7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5"/>
@@ -61,23 +69,12 @@
                         .../.../.../
                   {% endif %}
             </p>
-            <div class='calendary{{s.id}} d-none position-absolute top-0 start-0 blur-20 bg-black bg-opacity-25 rounded-5 d-flex justify-content-center align-content-center flex-wrap '
-                  style="width: 10rem; height: 10rem;">
-                  {% if sale.date_choice %}
-                        <strong class="mb-3 text-white-50">
-                              {{ sale.date_choice|date:"F" }} 
-                        </strong>
-                        <span class="text-white text-center p-2 ps-0 w-100" style="font-size: 90px; line-height:40px;">
-                              {{ sale.date_choice|date:"d" }} 
-                        </span>
-                  {% endif %}
-            </div>
       </div>
+      <h6 class='m-0 d-flex flex-wrap justify-content-start align-content-center p-2 bg-black bg-opacity-10 pe-4 ps-4 rounded-4  text-white-50' style="width: max-content;">
+             CLICK-{{sale.id}}
+      </h6>
       <div class="d-flex mt-3 w-100 justify-content-end btn-options-factura">
-            <h6 class='m-0 d-flex flex-wrap justify-content-center align-content-center p-0 bg-white bg-opacity-10 pe-4 ps-4 rounded-4  text-white-50' style="width: 13rem;">
-                   CLICK-{{sale.id}}
-            </h6>
-            <div class="w-100 text-white-50 justify-content-center d-flex">
+            <div class="w-100 btns-factura text-white-50 p-2" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;" >
                   <i class="bi bi-send-fill"></i>
                   <i class="bi bi-printer-fill"></i>
                   <i class="bi bi-cloud-arrow-down-fill"></i>
