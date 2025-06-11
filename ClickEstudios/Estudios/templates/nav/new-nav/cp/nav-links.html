@@ -227,3 +227,26 @@
             </a>
       </div>
 </div>
+<script>
+      const enlaces = document.querySelectorAll('.nav-links a');
+      enlaces.forEach(link => {
+        link.addEventListener('mouseenter', () => {
+          const url = link.href;
+          // Solo precargar si no se ha hecho ya
+          if (!sessionStorage.getItem(url)) {
+            fetch(url, {
+              headers: {
+                'X-Requested-With': 'XMLHttpRequest' // Opcional, puedes manejarlo en el backend si quieres
+              }
+            }).then(response => {
+              if (response.ok) {
+                sessionStorage.setItem(url, 'precargado');
+
+              }
+            }).catch(err => {
+              console.warn('Error al precargar', url, err);
+            });
+          }
+        });
+      });
+    </script>
