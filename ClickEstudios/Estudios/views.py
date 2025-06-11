@@ -515,7 +515,9 @@ class SaleUpdate(UpdateView):
         form.instance.email_client = form.instance.email_client if form.instance.email_client else ''
         form.instance.is_reserve = models.Sale.objects.get(id=form.instance.id).is_reserve
         form.instance.payment = models.Sale.objects.get(id=form.instance.id).payment
-        form.instance.descrition = models.Sale.objects.get(id=form.instance.id).descrition if models.Sale.objects.get(id=form.instance.id).descrition else ''
+        if form.instance.descrition is None:
+            form.instance.descrition =  models.Sale.objects.get(id=form.instance.id).descrition 
+
         # print(form.instance.is_reserve)
         # form.instance.debit_mount = plan.price  
         # form.instance
@@ -613,6 +615,7 @@ class SaleClientDateChoice(CreateView):
             plan_id = self.kwargs.get('pk')
             if plan_id:
                 plan = models.Plan.objects.get(pk=plan_id)
+                form.instance.pk_plan = plan_id
                 form.instance.name_plan = plan.name
                 if plan.is_offer:
                     form.instance.debit_mount = plan.mount
