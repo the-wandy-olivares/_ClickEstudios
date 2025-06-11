@@ -8,7 +8,8 @@
             }
       </style>
       <section class='d-flex  flex-wrap align-content-center justify-content-center  vh-100 w-100 '>
-                <div style=" max-width: 620px; border: 2px solid rgb(47, 47, 47); border-radius: 3rem; cursor: pointer; height: max-content; 
+                <div data-aos="fade-right" style=" max-width: 620px; border: 2px solid rgb(47, 47, 47); border-radius: 3rem; cursor: pointer; height: max-content; 
+                transition: 0.5s ease-out;
                   {% if not sale.is_reserve %}
                 background-color: #101010 !important;
           {% endif %}" class=' w-100 text-white p-4 m-2 shadow-sm bg-white bg-opacity-10 position-relative'>
@@ -117,8 +118,8 @@
                               <a href="{% url "estudios:pos" %}" class="btn border-0 btn-secondary accordion bg-transparent pt-3  text-white-50" style="font-weight: bold;"> 
                                     <i class="fi fi-sr-left"></i> Atras
                               </a>
-                              <input type="text"  max={{sale.debit_mount}} class='form-control bg-white text-white border-0 mount2 p-2 bg-opacity-10 ps-3 w-100 rounded-4' placeholder='Monto a aplicar' id='mount2' style="max-width: 14rem; outline: none !important;"> 
-                              <button type="submit" class="btn btn-primary bg-primary  ms-2 rounded-5 d-none btn-aplicar border-0" style="min-width: 10rem; font-weight: bold;">Aplicar pago</button>
+                              <input type="text"  max={{sale.debit_mount}} class='form-control bg-white text-white border-0 mount2 p-2 bg-opacity-10 ps-3 w-100 rounded-4' placeholder='Monto a aplicar' id='mount2' style="max-width: 14rem; outline: none !important;" > 
+                              <button type="submit" class="btn btn-primary bg-white bg-opacity-10  ms-2 rounded-5 d-none btn-aplicar border-0" style="min-width: 10rem; font-weight: bold;">Aplicar pago</button>
                               
                               <input type="number" name="mount" max={{sale.debit_mount}} value="{{sale.debit_mount}}" class='form-contro d-none bg-white text-white border-0 w-100 p-2 bg-opacity-10 rounded-5 ' placeholder='Monto a aplicar' id='mount'> 
                         </div>
@@ -128,6 +129,11 @@
             function formatNumber(num) {
                     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             }
+
+  window.onload = function() {
+    document.getElementById('mount2').focus();
+  };
+
 
             document.addEventListener("DOMContentLoaded", function() {
                     const input = document.querySelector('#mount2');
