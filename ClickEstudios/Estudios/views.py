@@ -435,7 +435,7 @@ class SaleReserver(TemplateView):
             )
             sale.save()
 
-            messages.success(request, 'Venta reservada correctamente.')
+            messages.success(request, f"{new_mount} Monto aplicado correctamente. Restante: ${sale.debit_mount:,}")
             return redirect('estudios:pos')
         return self.render_to_response(self.get_context_data())
 

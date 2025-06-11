@@ -1,13 +1,40 @@
 {% if s.descrition %}
 <div class=" position-absolute  p-3  overflow-y-scroll d-flex flex-wrap top-0 end-0 me-3 " 
-      style="height: 7rem; width: 15rem; margin-top: 4.7rem; background-color: #202020;
+      style="height: 7rem; width: 15rem; margin-top: 6.7rem; background-color: #202020;
       border-radius: 1.5rem;">
             <h6 class="m-0 p-0 text-white-50" style="font-size: 14px;" >
                   <i class="fi fi-sr-edit"></i>
                   <!-- Nota -->
                   <!-- <p style="font-size: 12px;" class="text-white-50 w-100 p-0 m-0"> -->
                         {{ s.descrition|slice:":50" }}
+                        {% if object %}
+                              {{object.descrition|slice:":50" }}
+                        {% endif %}
                   <!-- </p> -->
+            </h6>
+</div>
+{% endif %}
+{% if object.descrition %}
+<div class=" position-absolute  p-3  overflow-y-scroll d-flex flex-wrap top-0 end-0 me-3 " 
+      style="height: 7rem; width: 15rem; margin-top: 4.7rem; 
+      background-color: #191919;
+      border-radius: 1.5rem;">
+            <h6 class="m-0 p-0 text-white-50" style="font-size: 14px;" >
+                  <i class="fi fi-sr-edit"></i>
+                              {{object.descrition|slice:":50" }}
+
+            </h6>
+</div>
+{% endif %}
+
+{% if sale.descrition %}
+<div class=" position-absolute  p-3  overflow-y-scroll d-flex flex-wrap top-0 end-0 me-3 " 
+      style="height: 7rem; width: 15rem; margin-top: 4.7rem; 
+      background-color: #191919;
+      border-radius: 1.5rem;">
+            <h6 class="m-0 p-0 text-white-50" style="font-size: 14px;" >
+                  <i class="fi fi-sr-edit"></i>
+                              {{sale.descrition|slice:":50" }}
             </h6>
 </div>
 {% endif %}
