@@ -4,7 +4,7 @@
             height: 60px;
             margin: 0.4rem;
             border: 0px solid;
-            border-radius: 2rem !important;
+            border-radius: 1rem !important;
             background-color: #191919 !important;
             display: flex; 
             flex-wrap: wrap;
@@ -29,7 +29,7 @@
       
 </style>
 
-<!-- <a href="{% url "estudios:empleados" %}" 
+<!-- <a
 style='font-size:16px !important; font-weight: bold;'
 class="bg-white bg-opacity-10 cart-p ">
       <i class="bi bi-person-lines-fill"></i>
@@ -37,19 +37,21 @@ class="bg-white bg-opacity-10 cart-p ">
             Usuarios y permisos                       
       </span>
 </a> -->
-<a href="{% url "estudios:empleados" %}" 
-style='font-size:16px !important; font-weight: bold;'
-class="bg-white bg-opacity-10 cart-p ">   
-      <i class="bi bi-cloud-arrow-up-fill"></i>
-      <span>
-            Respaldo y restauracion     
-      </span>
-</a>
-<a href="{% url "estudios:empleados" %}" 
-style='font-size:16px !important; font-weight: bold;'
-class="bg-white bg-opacity-10 cart-p ">
-      <i class="bi bi-lock-fill"></i>
-      <span>
-            Control de acceso         
-      </span>
-</a>
+<div class="w-100 d-flex">
+      <a
+      style='font-size:16px !important; font-weight: bold;'
+      class="bg-white bg-opacity-10 cart-p ">   
+            <i class="bi bi-cloud-arrow-up-fill"></i>
+            <span>
+                  Información personal
+            </span>
+      </a>
+      <a
+      style='font-size:16px !important; font-weight: bold;'
+      class="bg-white bg-opacity-10 cart-p ">
+            <i class="bi bi-lock-fill"></i>
+            <span>
+                  Inicio de sessiones  
+            </span>
+      </a>
+</div>

@@ -17,15 +17,15 @@
             display: none;
       }
       .div {
-            width: 490px;
+            width: 420px;
             min-width: 490px;
-            height: 250px;
+            max-height: 250px;
             border: 0px solid;
-            background-color: rgba(22, 9, 25, 0.055);
-            border-radius: 3.5rem;
-            background-color: rgb(11, 11, 11);
+            background-color: #191919;
+            border-radius: 2.5rem;
             padding: 2rem;
             margin: 0.2rem;
+            border: 1px solid rgba(128, 128, 128, 0.21);
       }
       label {
             font-size: 14px;
@@ -69,7 +69,21 @@
 <section class="text-white p-3  w-100 pe-0 pt-0 d-flex flex-wrap align-content-start">
       <div   data-aos="fade-left" style="transition: 0.5s;" class="w-100"
             style="background-color: #35343400; border-radius: 0rem;">
-            {% include 'configuration/cp/profile.html' %}
+            <div class="div-top d-flex text-white position-sticky top-0 z-2 blur-20 p-1  w-100 ">
+                  <div class="me-3 ms-2 d-flex flex-wrap align-content-center">
+      
+                        <i class="fi fi-sr-settings  d-flex flex-wrap p-3 rounded-circle" 
+                        style="font-size: 30px; background-color: #19191983;"></i>
+                  </div>
+                  <div class="d-flex flex-wrap align-content-center">
+                        <h5 class="m-0 mt-3">
+                              Configuración 
+                        </h5>
+                        <p class="w-100" style="font-size: 14px;">
+                              Ajustas las funciones del sistema segun tus necesidades
+                        </p>
+                  </div>
+            </div>
       </div>
 <div  data-aos="fade-left" style="transition: 1s; transition-delay: 0.1s;" class="w-100 d-flex " >
       <button onclick="toggleOptions()"  class='start-0  d-none text-white btn-optione{{p.id}} text-decoration-none bg-white bg-opacity-10 p-2 ms-2  border-1 rounded-5' style="font-size: 12px ; font-weight: bold; width: 36px; height: 36px; border: 1px solid rgb(63, 63, 63) !important; margin-top: 0.5rem;">
@@ -79,20 +93,15 @@
                         </svg>
             </span>
       </button> 
-      <h4 style="font-weight: bold;"
-            class="ms-3"> 
-            Configuración del sistema
-      </h4>
+
 </div>
-<p style="font-size: 12px;" class="text-white-50 ms-4 w-100 p-0 m-0">
-      Ajustas las funciones del sistema segun tus necesidades
-</p>
+
 
 <section class="d-flex overflow-auto w-100 divs ">
       <div data-aos="fade-left" style="transition: 0.5s;" class="div">
             <h5 style="font-weight: bold;"
                   class="ms-3"> 
-                  Aspecto del sistema
+                  Aspecto 
             </h5>
             <div class="form-check">
                   <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"    {% if request.user.config.mode %} checked      {% endif %}>

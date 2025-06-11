@@ -16,7 +16,22 @@
       }
 </style>
 
-<section class=" admin-a w-100 p-4 d-flex flex-wrap justify-content-center align-content-start">
+<section class=" admin-a w-100  d-flex flex-wrap justify-content-center align-content-start">
+      <div class="div-top d-flex text-white position-sticky top-0 z-2 blur-20 p-1  w-100 ">
+            <div class="me-3 ms-2 d-flex flex-wrap align-content-center">
+
+                  <i class="fi fi-sr-user  d-flex flex-wrap p-3 rounded-circle" 
+                  style="font-size: 30px; background-color: #19191983;"></i>
+            </div>
+            <div class="d-flex flex-wrap align-content-center">
+                  <h5 class="m-0 mt-3">
+                        Cuentas
+                  </h5>
+                  <p class="w-100" style="font-size: 14px;">
+                        Usuarios, permisos, perfiles 
+                  </p>
+            </div>
+      </div>
       {% include "admin/cp/carta-p.html" %}
 </section>
 {% endblock  %}
