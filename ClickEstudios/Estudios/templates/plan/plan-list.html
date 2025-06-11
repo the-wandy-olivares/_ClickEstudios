@@ -1,10 +1,16 @@
 {% load humanize %}
+<style>
+      .button-agendar {
+            transition: 0.3s;
+      }
+      .button-agendar:hover {
+            transform: scale(1.08);
+      }
+</style>
 {% for p in  plans %}
-
-
-
-            <div data-aos="fade-in"  class='p-0 m-1 d-flex overflow-hidden text-white' style='
-            transition: 0s !important;
+            <div class='p-0 m-1 d-flex overflow-hidden text-white ' style='
+            transition-delay: 2s !important;
+            transition: 0.3s ease-in-out;
             
             {% if p.img_back %}
                   background-image: url("{{p.img_back.url}}"); 
@@ -14,6 +20,7 @@
                   <div style='
                         -webkit-backdrop-filter: blur(80px) !important;
                         backdrop-filter: blur(80px) !important;
+                       
                         background: linear-gradient(to bottom, transparent, #101010), linear-gradient(to top,#1010107d , #10101081);
                         ' class='h-100 w-100 bg-black bg-opacity-50 m-0 p-3 pt-2'>
                         <div class=" m-0 " style="">
@@ -70,7 +77,7 @@
                                     Adquerir ahora
                               </a>
                               <a  href="{% url "estudios:sale-create-date-choice" p.id %}" 
-                                    class="btn btn-danger mt-1 p-2 w-75 text-white-50 ps-3 pe-3 rounded-4 border-0" style='font-weight: bold; background-color: #191919;'>
+                                    class="btn button-agendar btn-danger mt-1 p-2 w-75 text-white-50 ps-3 pe-3 rounded-4 border-0" style='font-weight: bold; background-color: #191919;'>
                                     Agendar
                               </a>
                          </div>
