@@ -713,7 +713,9 @@ class Estudios(TemplateView):
         if request.POST.get('discount') == 'on':
             if sale.discount:
                 sale.discount = False
+                messages.success(self.request, f"Factura sin descuento")
             else:
+                messages.success(self.request, f"Factura con descuento")
                 sale.discount = True
             sale.save()
 
@@ -723,10 +725,12 @@ class Estudios(TemplateView):
             sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
             sale.sale_type = request.POST.get('invoice_type')
             sale.discount = False
+            messages.success(self.request, f"Factura para: {sale.sale_type.upper()}")
             sale.save()
         # Eliminar adicional
         if request.POST.get('delete'):
                 adicional = models.Adicional.objects.get(pk=request.POST.get('delete'))
+                messages.success(self.request, f"{adicional.name} Eliminado correctamente")
                 adicional.delete()
         
         # Finalizar venta
@@ -767,6 +771,8 @@ class Estudios(TemplateView):
 
 
             sale.save()
+            
+            messages.success(self.request, f"Session finalizada correctamente")
             return redirect('estudios:pos')
             
         return self.render_to_response(self.get_context_data())
@@ -1538,7 +1544,7 @@ class Facturas(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        sales = models.Sale.objects.filter(payment=True).order_by('-id')[:6]
+        sales = models.Sale.objects.filter(payment=True).order_by('-id')[:12]
         context['sales'] =   sales 
         return context
 

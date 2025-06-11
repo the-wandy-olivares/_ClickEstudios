@@ -9,7 +9,7 @@
             cursor: pointer;
       }
       .btns-factura i {
-            background-color: #141414;
+            background-color: #151515;
             border-radius: 2rem;
             height: 2rem;
             align-items: center;
@@ -17,10 +17,10 @@
 
       }
 </style>
-<div style=" height: max-content; border-radius: 2.5rem;
-background-color: #191919;"
-      class=" w-100  text-white p-2" >
-      <div class='w-100 m-3  text-white-50'>
+<div style=" height: max-content; border-radius: 2.2rem;
+background-color: #191919; border: 1px solid rgba(128, 128, 128, 0.162);"
+      class=" w-100  text-white p-3 position-relative" >
+      <div class='w-100 m-1 text-white-50'>
             <p class="mb-0 text-white-50">
                   <strong class="text-capitalize" style="font-weight: bold; font-size: 22px;" >
                   {% comment %} {% if sale.name_client %}/\ {% endcomment %}
@@ -28,7 +28,7 @@ background-color: #191919;"
                   {% comment %} {% endif %} {% endcomment %}
                   </strong>
             </p>
-            <p class="mb-0 ms-2 text-white-50">
+            <p class="mb-0  text-white-50">
                   <strong>
                         <a href="https://wa.me/+1{{ s.phone_no_formate }}">
                               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill me-1 text-white-50" viewBox="0 0 16 16">
@@ -42,7 +42,7 @@ background-color: #191919;"
                               (000) 000-0000
                   {% endif %}
             </p>
-            <p class="mb-1 ms-2">
+            <p class="mb-1 ">
                   <strong>
                         <a href="mailto:{{ s.email_client }}?subject=Notificación&body=Hola, estamos encantados de contactarte.&cc={{ s.email_client }}&bcc={{ s.email_client }}" >
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-at-fill me-1 text-white-50" viewBox="0 0 16 16">
@@ -57,7 +57,7 @@ background-color: #191919;"
                         @gmail.com
                   {% endif %}
             </p>
-            <p class="mb-1 ms-2">
+            <p class="mb-1 ">
                   <strong>
                         <svg onclick="Calendar(this.id)" id="{{s.id}}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event-fill me-1 text-white-50" viewBox="0 0 16 16">
                               <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2m-3.5-7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5"/>
@@ -73,8 +73,8 @@ background-color: #191919;"
       <h6 class='m-0 d-flex flex-wrap justify-content-start align-content-center p-2 bg-black bg-opacity-10 pe-4 ps-4 rounded-4  text-white-50' style="width: max-content;">
              CLICK-{{sale.id}}
       </h6>
-      <div class="d-flex mt-3 w-100 justify-content-end btn-options-factura">
-            <div class="w-100 btns-factura text-white-50 p-2" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;" >
+      <div class="d-flex mt-1 w-100 position-absolute top-0 end-0 justify-content-end btn-options-factura " style="max-width: 100px;">
+            <div class="w-100 btns-factura text-white-50 p-2" style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 5px;" >
                   <i class="bi bi-send-fill"></i>
                   <i class="bi bi-printer-fill"></i>
                   <i class="bi bi-cloud-arrow-down-fill"></i>
