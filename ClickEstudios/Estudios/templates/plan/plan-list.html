@@ -4,15 +4,18 @@
 
 
             <div data-aos="fade-in"  class='p-0 m-1 d-flex overflow-hidden text-white' style='
-            transition-delay: 0.{{ forloop.counter }}s !important;
+            transition: 0s !important;
+            
             {% if p.img_back %}
                   background-image: url("{{p.img_back.url}}"); 
             {% endif %}
 
-            background-size: cover; background-repeat: no-repeat; min-width: 320px; width: 320px; height: 430px; border-radius: 2.6rem;'>
+            background-size: contain; background-repeat: no-repeat; min-width: 320px; width: 320px; height: 430px; border-radius: 2.6rem;'>
                   <div style='
                         -webkit-backdrop-filter: blur(80px) !important;
-                        backdrop-filter: blur(80px) !important;' class='h-100 w-100 bg-black bg-opacity-50 m-0 p-3 pt-2'>
+                        backdrop-filter: blur(80px) !important;
+                        background: linear-gradient(to bottom, transparent, #101010), linear-gradient(to top,#1010107d , #10101081);
+                        ' class='h-100 w-100 bg-black bg-opacity-50 m-0 p-3 pt-2'>
                         <div class=" m-0 " style="">
                               {% if p.img %}
                                     <img src="{{p.img.url}}" alt="No se puede cargar la imagen" 
@@ -52,23 +55,22 @@
                         <div style='height: 7.7rem;' class='overflow-auto '>   
                                 {% if p.caracteristicas.all %}
                                        {% for p in  p.caracteristicas.all %}
-                                          <li class="" style="font-size: 14px; list-style:circle;">
-                                                  {{p.name|truncatechars:32}} 
+                                          <li class="" style="font-size: 14px; list-style:circle; color: #ffffffbb;">
+                                                <i class="fi fi-sr-check-double me-1"></i>     {{p.name|truncatechars:32}} 
                                           </li>
                                        {% endfor %}
                               {% endif %}
                         </div>
       
                         <!-- Butones de elcciones-->
-                         <div class="d-flex justify-content-center flex-wrap">
+                         <div class="d-flex mt-2 justify-content-center flex-wrap">
                               <a href="{% url "estudios:sale-create" p.id %}" 
                                     class="btn btn-primary bg-transparent text-white-50  border-0 me-4" 
-                                    style="font-size: 16px; font-weight: bold ; ">
+                                    style="font-size: 14px; font-weight: bold ; ">
                                     Adquerir ahora
                               </a>
-                              
                               <a  href="{% url "estudios:sale-create-date-choice" p.id %}" 
-                                    class="btn btn-danger mt-2 p-2 w-100 ps-3 pe-3 bg-warning text-black rounded-5 border-0" style='font-weight: bold;'>
+                                    class="btn btn-danger mt-1 p-2 w-75 text-white-50 ps-3 pe-3 rounded-4 border-0" style='font-weight: bold; background-color: #191919;'>
                                     Agendar
                               </a>
                          </div>

@@ -1,16 +1,22 @@
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css">
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-brands/css/uicons-brands.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-chubby/css/uicons-solid-chubby.css'>
 {% load humanize %}
 {% for p in  plans %}
 
 
       <a class='text-white text-decoration-none'>
             <div class='p-0 d-flex overflow-hidden m-1' style='
+            background-position: top;
             {% if p.img_back %}
                   background-image: url("{{p.img_back.url}}"); 
             {% endif %}
-            background-size: cover; background-repeat: no-repeat; min-width: 320px; width: 320px; height: 430px; border-radius: 2.6rem;'>
+            background-size: contain; background-repeat: no-repeat; min-width: 320px; width: 320px; height: 430px; border-radius: 2.6rem;'>
                   <div style='
                         -webkit-backdrop-filter: blur(80px) !important;
-                        backdrop-filter: blur(80px) !important;' class='h-100 w-100 bg-black bg-opacity-50 m-0 p-3 pt-2'>
+                        backdrop-filter: blur(80px) !important;
+                        background: linear-gradient(to bottom, transparent, #101010), linear-gradient(to top,#1010107d , #10101081);' class='h-100 w-100 bg-black bg-opacity-50 m-0 p-3 pt-2'>
                         <div class=" m-0 " style="">
                               {% if p.img %}
                                     <img src="{{p.img.url}}" alt="No se puede cargar la imagen" 
@@ -49,13 +55,22 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-star-fill ms-1 me-1 text-warning" viewBox="0 0 16 16">
                                           <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                                     </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-star-fill ms-1 me-1 text-warning" viewBox="0 0 16 16">
+                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-star-fill ms-1 me-1 text-warning" viewBox="0 0 16 16">
+                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-star-fill ms-1 me-1 text-warning" viewBox="0 0 16 16">
+                                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                    </svg>
                               {% endif %}
                         </span>
                         <div style='height: 100%; max-height: 7.5rem;' class='overflow-auto  '>   
                                 {% if p.caracteristicas.all %}
                                        {% for p in  p.caracteristicas.all %}
-                                          <li class="" style="font-size: 14px; list-style:circle;">
-                                                  {{p.name|truncatechars:32}} 
+                                          <li class="" style="font-size: 14px; list-style:circle; color:ffffffbb;">
+                                                <i class="fi fi-sr-check-double me-1"></i> {{p.name|truncatechars:32}} 
                                           </li>
                                        {% endfor %}
                               {% endif %}

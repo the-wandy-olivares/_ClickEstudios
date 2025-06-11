@@ -1,6 +1,12 @@
 {% extends "base/base.html" %}
 {% block content %}
       <style>
+                     .section-escritorio-nav .pos  {
+                  color: #ffc107 !important;
+            }
+            .section-escritorio-nav .pos span {
+                  color: #ffc107;
+            }
             .select-date-choice select,  .form-select,  #id_time 
             {
                   background-color: #191919 !important; 
@@ -12,7 +18,7 @@
                   border-radius: 2rem !important;
             }
       
-            input
+            input, #id_descrition
             {
                   outline: none !important;
                   background-color: #191919 !important; 
@@ -27,6 +33,16 @@
             {
                   color: rgba(218, 218, 218, 0.865) !important;
             }
+            #id_descrition::placeholder
+            {
+                  color: rgba(218, 218, 218, 0.865) !important;
+            }
+            select
+            {
+                  color: rgba(218, 218, 218, 0.865) !important;
+            }
+
+
 
 
       </style>
@@ -47,7 +63,10 @@
                               <!--Date Choice-->
                               <div class="date-choice select-date-choice p-2 d-flex w-100 justify-content-between">
                                     {% include "sale/components/calendar.html" %}
+                                   <div class="d-flex flex-wrap align-content-center">
+                                    {{ form.descrition }}
                                     {{form.time}}
+                                   </div>
                               </div>
                               <!--Time Choice-->
                               <div class="d-flex">

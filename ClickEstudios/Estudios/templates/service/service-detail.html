@@ -2,27 +2,44 @@
 {% block content %}
 {% load humanize %}
 <style>
-      .img-gallery {
-
-            position: fixed !important;
-            z-index: 1000 !important;
-            left: 50% ;
-            top: 50%;
-            transform: translate(-50%, -50%) scale(1.1);
-            max-width: 70% !important;
-            max-height: 70% !important;
+               .section-escritorio-nav .pos  {
+                  color: #ffc107 !important;
+            }
+            .section-escritorio-nav .pos span {
+                  color: #ffc107;
+            }
+            .img-gallery {
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0%;
+            /* transform: translate(-50%, -50%) scale(1.1); */
+            max-width: 100vw !important;
+            max-height: 100vh !important;
             box-shadow: 1px 1px 40px 20px #000000;
             object-fit: contain !important;
-            -webkit-backdrop-filter: blur(100px) !important;
-            backdrop-filter: blur(100px) !important;
+            -webkit-backdrop-filter: blur(10px) !important;
+            backdrop-filter: blur(10px) !important;
+            background: linear-gradient(to bottom, transparent, #101010), linear-gradient(to top,#1010107d , #10101081);
+
+      }
+      .img-show img {
+            /* opacity: 0.8; */
+      }
+      @media (max-width: 600px) {
+      .img-show {
+            grid-template-columns: repeat(2, 1fr) !important;
+      }
+
       }
 </style>
-<section class='d-flex flex-wrap  align-content-start position-relative h-100  overflow-auto'>
+<section class='d-flex flex-wrap  align-content-start position-relative h-100  overflow-auto'
+      style="transition: 0s !important;">
             <div class="d-flex pt-4 pb-3 ms-3 w-100 ">
                   <img src="{{service.img.url}}" alt=""
                   style="width: 30px; height: 30px;" class="me-2 object-fit-cover rounded-circle">
-                  <h6 class="bg-white bg-opacity-10 mb-2 text-white rounded-5 p-2 ps-3 pe-3"
-                  style="width: max-content;">
+                  <h6 class=" mb-2 text-white rounded-5 p-2 ps-3 pe-3"
+                  style="width: max-content; background-color: #191919;">
                         {{service.name}}
                         {% if service.is_offer %} 
                         <span class="badge bg-warning rounded-pill    ps-3 pe-3 text-dark">Oferta
@@ -38,33 +55,54 @@
             <div class="d-flex  overflow-auto mb-4">
                   {% include "plan/plan-list.html" %}
             </div>
-
-            <div data-aos='fade-in' style='transition-duration: 1s;' class='text-warning w-100 overflow-auto align-content-start-0  '>
-                 <div class="d-flex flex-wrap justify-content-center   ">
-                  {% for moment in moments %}
-                  {% for m in moment.img_moments.all  %}
-                        {% if m.img %}
-                              <img src="{{m.img.url}}" onclick="UpperCaseImg()" style='max-width: 180px;'
-                        class='w-100 object-fit-cover rounded-5 m-1 img' alt="Ups!">
-                        {% endif %}
-                  {% endfor %}
-            {% endfor %}
-                 </div>
+            <div class="mt-3 w-100 mb-1">
+                  <a onclick="window.history.back()" class="btn border-0 btn-secondary accordion bg-transparent rounded-4  align-content-center d-flex flex-wrap  text-white-50" style="font-weight: bold;"> 
+                        <i class="fi fi-sr-left align-content-center d-flex flex-wrap me-2 "></i> Atras
+                  </a>
             </div>
+
+            <div class='text-warning w-100 overflow-auto align-content-start-0 mb-5 justify-content-center   '>
+                  <div class="d-flex justify-content-center flex-wrap w-100 p-2">
+                        {% if moments %}
+                              {% for moment in moments %} 
+                              <div class="img-show" style="display: grid; 
+                              grid-template-columns: repeat(3, 1fr); gap: 5px;">
+                                    {% for m in moment.img_moments.all  %}
+                                          {% if m.img %}
+                                                <img src="{{m.img.url}}" onclick="UpperCaseImg()"  
+                                                class='w-100 img  object-fit-cover rounded-5 m-1' alt="Ups!">
+                                                {% endif %}
+                                                {% endfor %}
+                                    </div>
+                              {% endfor %}
+                              {% else %}
+                              <div>
+                                    <h6 class="bold">
+                                          No hay momentos para mostrar
+                                    </h6>
+                                    <span>
+                                            ..
+                                    </span>
+                              </div>
+                        {% endif %}
+                  </div>
+             </div>
       </section>
 <script>
-            function UpperCaseImg(){
-            const images = document.querySelectorAll('.img');
-            images.forEach(img => {
-                  img.addEventListener('click', function() {
-                        if (this.classList.contains('img-gallery')) {
-                              this.classList.remove('img-gallery');
-                        } else {
-                              images.forEach(i => i.classList.remove('img-gallery'));
-                              this.classList.add('img-gallery');
-                        }
-                  });
-            });
-      }
+function UpperCaseImg() {
+    const images = document.querySelectorAll('.img');
+    images.forEach(img => {
+        img.onclick = function () {
+            const isActive = this.classList.contains('img-gallery');
+            document.querySelectorAll('.img-gallery').forEach(i => i.classList.remove('img-gallery'));
+            if (!isActive) {
+                this.classList.add('img-gallery');
+            }
+        };
+    });
+}
+
+// Ejecutar la función una vez que el DOM esté listo
+document.addEventListener('DOMContentLoaded', UpperCaseImg);
 </script>
 {% endblock  %}
