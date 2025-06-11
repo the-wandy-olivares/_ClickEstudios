@@ -88,6 +88,7 @@
          
                 },
                 dateClick: function (info) {
+                  document.querySelector('#id_time').disabled = false; // Deshabilitar el select de hora al inicio
                   // 1. Poner el valor en el input con formato dd/mm/yyyy
                   const partes = info.dateStr.split('-');
                   dateInput.value = `${partes[2]}/${partes[1]}/${partes[0]}`;
@@ -95,10 +96,11 @@
                   // 2. Remover selección anterior
                   document.querySelectorAll('.fc-selected-day').forEach(el => {
                   el.classList.remove('fc-selected-day');
-                  });
-
-                  // 3. Agregar clase al día seleccionado
-                  info.dayEl.classList.add('fc-selected-day');
+            });
+            
+            // 3. Agregar clase al día seleccionado
+            info.dayEl.classList.add('fc-selected-day');
+                        VerifyDateChoice();
                   },
               });
           
@@ -114,6 +116,46 @@
                   celda.classList.add('fc-selected-day');
                 }
               }, 0);
-            });
-            
+
+              document.querySelector('#id_time').disabled = true; // Deshabilitar el select de hora al inicio
+
+function VerifyDateChoice(){
+
+        $.ajax({
+            url: '/ajax/verify-date-choice/',
+            data: {
+                date_choice: convertirFecha(document.querySelector('#id_date_choice').value),
+            },
+            success: function(response) {
+                var timeSelect = document.querySelector('#id_time');
+                timeSelect.innerHTML = '<option value=""  selected> Seleccionar  hora </option>'; // Clear existing options and add default option
+
+                if (response.true) {
+                    // Handle the case where the date is available
+                    console.log("Date is available", response.available_hours);
+                    response.available_hours.forEach(function(hour) {
+                        var option = document.createElement('option');
+                        option.value = hour;
+                        option.text = hour;
+                        timeSelect.appendChild(option);
+                    });
+                } else {
+                    // Handle the case where the date is not available
+                    console.log("Date is not available. Available hours: ", response.available_hours);
+                    response.available_hours.forEach(function(hour) {
+                        var option = document.createElement('option');
+                        option.value = hour;
+                        option.text = hour;
+                        timeSelect.appendChild(option);
+                    });
+                }
+            },
+            error: function(error) {
+                console.log("An error occurred: ", error);
+            }
+        });        
+    }
+});
+
+
           </script>
