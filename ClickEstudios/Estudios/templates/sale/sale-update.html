@@ -1,10 +1,9 @@
 {% extends "base/base.html" %}
 {% block content %}
       <style>
-            .select-date-choice select,  .form-select, #id_time 
+            .select-date-choice select,  .form-select,  #id_time 
             {
-
-                  background-color: rgb(44, 44, 44) !important; 
+                  background-color: #191919 !important; 
                   border: 0;
                   color: white !important;
                   padding: 0.9rem;
@@ -12,11 +11,13 @@
                   margin: 0.3rem;
                   border-radius: 2rem !important;
             }
-             input
+      
+            input
             {
-                  background-color: rgb(44, 44, 44) !important; 
+                  outline: none !important;
+                  background-color: #191919 !important; 
                   border: none !important;
-                  color: white !important;
+                  color: rgba(255, 255, 255, 0.775) !important;
                   width: 100%;
                   border-radius: 2rem !important;
                   margin: 0.3rem;
@@ -54,8 +55,8 @@
                                           <i class="fi fi-sr-left align-content-center d-flex flex-wrap me-2 "></i> Atras
                                     </a>
                                     <div class="time-choice p-2  ms-3">
-                                          <button class="btn btn-primary rounded-5"
-                                                style="width: 9rem;" id="">
+                                          <button class="btn btn-primary  rounded-5 border-0"
+                                                style="width: 9rem; background-color: #191919;" id="">
                                                 Actualizar 
                                           </button>
                                     </div>

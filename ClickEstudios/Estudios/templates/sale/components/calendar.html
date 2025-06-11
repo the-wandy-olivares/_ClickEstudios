@@ -9,9 +9,11 @@
             #calendar {
                   min-width:400px;
                   max-width: 400px;
-                  background-color: transparent;
-                  padding: 0.9rem;
-                  border-radius: 1rem;
+                  min-height: 20rem;
+                  background-color: #191919;
+                  padding: 1rem;
+                  border-radius: 2rem;
+                  cursor: pointer;
             }
             .fc-toolbar {
                   background-color: transparent;
@@ -57,10 +59,10 @@
             }
       </style>
       {{form.date_choice}}
-      <div id="calendar" class="text-white" ></div>
+      <div id="calendar" class="text-white " ></div>
 
       <script>
-            document.addEventListener('DOMContentLoaded', function () {
+      document.addEventListener('DOMContentLoaded', function () {
               var calendarEl = document.getElementById('calendar');
               var dateInput = document.getElementById('id_date_choice');
           
@@ -98,12 +100,12 @@
                   el.classList.remove('fc-selected-day');
             });
             
+            
             // 3. Agregar clase al día seleccionado
-            info.dayEl.classList.add('fc-selected-day');
-                        VerifyDateChoice();
-                  },
+                  info.dayEl.classList.add('fc-selected-day');
+                              VerifyDateChoice();
+                        },
               });
-          
               calendar.render();
               
               // 4. Marcar el día inicial como seleccionado
