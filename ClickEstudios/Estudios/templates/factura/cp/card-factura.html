@@ -11,10 +11,18 @@
       .btns-factura i {
             background-color: #151515;
             border-radius: 2rem;
-            height: 2rem;
+            height: 3rem;
+            width: 3rem;
+            font-size: 20px;
             align-items: center;
             display: flex; justify-content: center;
-
+      }
+      .btns-factura i:hover {
+            background-color: #ffc107;
+            color: #101010;
+            transition: all 0.3s ease-in-out;
+            transform: scale(1.05);
+            cursor: pointer;
       }
 </style>
 <div style=" height: max-content; border-radius: 2.2rem;
@@ -73,11 +81,11 @@ background-color: #191919; border: 1px solid rgba(128, 128, 128, 0.162);"
       <h6 class='m-0 d-flex flex-wrap justify-content-start align-content-center p-2 bg-black bg-opacity-10 pe-4 ps-4 rounded-4  text-white-50' style="width: max-content;">
              CLICK-{{sale.id}}
       </h6>
-      <div class="d-flex mt-1 w-100 position-absolute top-0 end-0 justify-content-end btn-options-factura " style="max-width: 100px;">
+      <div class="d-flex flex-wrap align-content-center mt-1 w-100 position-absolute top-0 end-0 justify-content-end btn-options-factura " style="max-width: 63px; height: 100%;">
             <div class="w-100 btns-factura text-white-50 p-2" style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 5px;" >
-                  <i class="bi bi-send-fill"></i>
-                  <i class="bi bi-printer-fill"></i>
-                  <i class="bi bi-cloud-arrow-down-fill"></i>
+                  <i class="fi fi-brands-whatsapp"></i>
+                  <i class="fi fi-sr-clip-mail"></i>
+                  <i class="fi fi-sr-print-magnifying-glass"></i>
             </div>
       </div>
 </div>
