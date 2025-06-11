@@ -1,0 +1,119 @@
+<link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css' rel='stylesheet' />
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
+      <style>
+            #id_date_choice
+            {
+                  display: none;
+            }
+
+            #calendar {
+                  min-width:400px;
+                  max-width: 400px;
+                  background-color: transparent;
+                  padding: 0.9rem;
+                  border-radius: 1rem;
+            }
+            .fc-toolbar {
+                  background-color: transparent;
+                  border-radius: 2rem;
+                  /* padding: 10px; */
+                  font-size: 14px;
+            }
+            .fc-daygrid-day, .fc-daygrid-day-events {
+                  background-color: transparent !important;
+                  /* border: 4px solid #191919 !important; */
+                  border-radius: 0.8rem;
+                  margin: 0.2rem;
+                  /* font-weight: bold; */
+                  color: #ffffff9b !important;
+            }
+            .fc-next-button, .fc-prev-button {
+                  background-color: #191919 !important;
+                  color: white !important;
+                  border-radius: 50% !important;
+                  margin: 0.1rem !important;
+                  width: 3rem; height: 3rem;
+                  border: 1px solid #191919 !important;
+            }
+            .fc-toolbar-title {
+                  text-transform: capitalize;
+                  font-size: 16px !important;
+                  background-color: #191919;
+                  padding: 0.4rem 0.8rem;
+            
+                  border-radius: 0.8rem;
+            }
+            .fc-selected-day {
+                  background-color: #202020 !important;
+            }
+            .fc-day-today {
+                  background-color: transparent !important;
+            }
+            .fc-dayGridMonth-button, .fc-today-button , .fc-timeGridWeek-button, .fc-timeGridDay-button  {
+                  display: none !important;
+            }
+            table, thead, tr, td, th {
+                  border: 0 !important;
+            }
+      </style>
+      {{form.date_choice}}
+      <div id="calendar" class="text-white" ></div>
+
+      <script>
+            document.addEventListener('DOMContentLoaded', function () {
+              var calendarEl = document.getElementById('calendar');
+              var dateInput = document.getElementById('id_date_choice');
+          
+              // Convertir dd/mm/yyyy a yyyy-mm-dd
+              function convertirFecha(fecha) {
+                if (!fecha) return null;
+                const partes = fecha.split('/');
+                if (partes.length !== 3) return null;
+                return `${partes[2]}-${partes[1]}-${partes[0]}`; // yyyy-mm-dd
+              }
+          
+              var fechaInicial = convertirFecha(dateInput.value) || new Date().toISOString().split('T')[0];
+          
+              var calendar = new FullCalendar.Calendar(calendarEl, {
+                locale: 'es',
+                initialView: 'dayGridMonth',
+                initialDate: fechaInicial,
+                validRange: {
+                        start: new Date().toISOString().split('T')[0] 
+                  },
+                headerToolbar: {
+                  left: 'prev,next today',
+                  center: 'title',
+                  right: 'dayGridMonth,timeGridWeek,timeGridDay',
+         
+                },
+                dateClick: function (info) {
+                  // 1. Poner el valor en el input con formato dd/mm/yyyy
+                  const partes = info.dateStr.split('-');
+                  dateInput.value = `${partes[2]}/${partes[1]}/${partes[0]}`;
+
+                  // 2. Remover selección anterior
+                  document.querySelectorAll('.fc-selected-day').forEach(el => {
+                  el.classList.remove('fc-selected-day');
+                  });
+
+                  // 3. Agregar clase al día seleccionado
+                  info.dayEl.classList.add('fc-selected-day');
+                  },
+              });
+          
+              calendar.render();
+              
+              // 4. Marcar el día inicial como seleccionado
+              setTimeout(() => {
+                const diaInicial = calendar.view.currentStart; // primer día visible (usado para esperar render completo)
+                const fechaISO = fechaInicial; // ya está en formato yyyy-mm-dd
+
+                const celda = document.querySelector(`[data-date="${fechaISO}"]`);
+                if (celda) {
+                  celda.classList.add('fc-selected-day');
+                }
+              }, 0);
+            });
+            
+          </script>

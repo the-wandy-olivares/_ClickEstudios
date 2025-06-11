@@ -1,10 +1,6 @@
 {% extends "base/base.html" %}
 {% block content %}
       <style>
-            #id_date_choice
-            {
-                  display: none;
-            }
             .select-date-choice select,  .form-select, #id_time 
             {
 
@@ -33,48 +29,38 @@
 
 
       </style>
-      <head>
-            <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css' rel='stylesheet' />
-            <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
-      </head>
 
       <section class='overflow-auto d-flex w-100 justify-content-center'>
             <form action="" method="post" class="w-100">
                   {% csrf_token %}
-    
-
                   <section class="d-flex w-100 mt-4">
-                        
-                        <div class="w-25">
+                        <div class="w-100" style="max-width: 400px;">
                               {% include "plan/plan-select.html" %}
                         </div>
-                        <div class="w-75  position-relative" style="height: 27rem;">
-    
-                           
+                        <div class="w-100  position-relative" 
+                              style="height: 27rem; max-width: 700px;">
                               <!--Contact -->
                               <div class="contact w-100  ">
                                     {% include "sale/components/form-basic.html" %}
                               </div>
-                        
                               <!--Date Choice-->
                               <div class="date-choice select-date-choice p-2 d-flex w-100 justify-content-between">
-                                    {% include "sale/components/date_choice.html" %}
+                                    {% include "sale/components/calendar.html" %}
                                     {{form.time}}
                               </div>
-
                               <!--Time Choice-->
-                              <div class="time-choice p-2  ms-3">
-                                    <button class="btn btn-primary rounded-5"
-                                          style="width: 9rem;" id="">
-                                          Actualizar 
-                                    </button>
+                              <div class="d-flex">
+                                    <a href="{% url "estudios:pos" %}" class="btn border-0 btn-secondary accordion  bg-transparent rounded-4  align-content-center d-flex flex-wrap  text-white-50" style="font-weight: bold;"> 
+                                          <i class="fi fi-sr-left align-content-center d-flex flex-wrap me-2 "></i> Atras
+                                    </a>
+                                    <div class="time-choice p-2  ms-3">
+                                          <button class="btn btn-primary rounded-5"
+                                                style="width: 9rem;" id="">
+                                                Actualizar 
+                                          </button>
+                                    </div>
                               </div>
 
-                              {% comment %} <!-- Navigation Buttons -->
-                              <div class="navigation-buttons position-absolute bottom-0 d-flex justify-content-start w-100 mt-3">
-                                    <span type="button" class="btn me-2 btn-secondary bg-transparent border-0 d-none" id="prev_button" onclick="showPreviousSection()">Anterior</span>
-                                    <span type="button" class="btn btn-secondary bg-warning rounded-5 text-black d-none" style="font-weight: bold;" id="next_button" onclick="showNextSection()">Siguiente</span>
-                              </div> {% endcomment %}
                               <script>
                                           document.getElementById('id_name_client').addEventListener('input', function() {
                                           var nextButton = document.getElementById('next_button');
@@ -87,121 +73,6 @@
                               </script>
                         </div>
                   </section>
-
-                  <script>
-                                function showPreviousSection() {
-                                            var contactSection = document.querySelector('.contact');
-                                            var dateChoiceSection = document.querySelector('.date-choice');
-                                            var timeChoiceSection = document.querySelector('.time-choice');
-                                            var prevButton = document.getElementById('prev_button');
-                                            var nextButton = document.getElementById('next_button');
-
-                                            if (!timeChoiceSection.classList.contains('d-none')) {
-                                                            timeChoiceSection.classList.add('d-none');
-                                                            dateChoiceSection.classList.remove('d-none');
-                                                            nextButton.classList.remove('d-none');
-                                            } else if (!dateChoiceSection.classList.contains('d-none')) {
-                                                            dateChoiceSection.classList.add('d-none');
-                                                            contactSection.classList.remove('d-none');
-                                                            prevButton.classList.add('d-none');
-                                            }
-                                }
-
-                                function showNextSection() {
-                                            var contactSection = document.querySelector('.contact');
-                                            var dateChoiceSection = document.querySelector('.date-choice');
-                                            var timeChoiceSection = document.querySelector('.time-choice');
-                                            var prevButton = document.getElementById('prev_button');
-                                            var nextButton = document.getElementById('next_button');
-
-                                            if (!contactSection.classList.contains('d-none')) {
-                                                            contactSection.classList.add('d-none');
-                                                            dateChoiceSection.classList.remove('d-none');
-                                                            prevButton.classList.remove('d-none');
-                                            } else if (!dateChoiceSection.classList.contains('d-none')) {
-                                                            dateChoiceSection.classList.add('d-none');
-                                                            timeChoiceSection.classList.remove('d-none');
-                                                            nextButton.classList.add('d-none');
-                                            }
-                                }
-                  </script>
-                    </script>
-                  <div class="d-none">
-                
-                  </div>
             </form>
-
-      </section>
-
-      <script>
-            function updateDateChoice() {
-                var year = document.getElementById('year_choice').value;
-                var month = document.getElementById('month_choice').value;
-                var day = document.getElementById('day_choice').value;
-        
-                // Convertir a cadenas y rellenar con ceros
-                var formattedMonth = month.toString().padStart(2, '0');
-                var formattedDay = day.toString().padStart(2, '0');
-        
-                var dateChoice = year + '-' + formattedMonth + '-' + formattedDay;
-        
-
-                document.getElementById('id_date_choice').value = dateChoice;
-            }
-        </script>
-
-        <script>
-            function toggleContactFields() {
-                      var preference = document.getElementById('contact_preference').value;
-                      var phoneField = document.querySelector('#id_phone_client');
-                      var emailField = document.querySelector('#id_email_client');
-                      if (preference === 'none') {
-                              phoneField.style.display = 'none';
-                              emailField.style.display = 'none';
-                      } else if (preference === 'email') {
-                              phoneField.style.display = 'none';
-                              emailField.style.display = 'block';
-                      } else if (preference === 'phone') {
-                              phoneField.style.display = 'block';
-                              emailField.style.display = 'none';
-                      } else if (preference === 'both') {
-                              phoneField.style.display = 'block';
-                              emailField.style.display = 'block';
-                      }
-            }
-
-            // Initialize the fields based on the current selection
-            document.addEventListener('DOMContentLoaded', function() {
-                      toggleContactFields();
-            });
-
-          document.getElementById('id_name_client').addEventListener('input', function() {
-                var submitButton = document.getElementById('submit_button');
-                if (this.value.length > 4) {
-                      submitButton.classList.remove('d-none');
-                } else {
-                      submitButton.classList.add('d-none');
-                }
-          });
-            
-      document.addEventListener('DOMContentLoaded', function() {
-            var dateChoice = document.getElementById('id_date_choice');
-            var timeChoice = document.getElementById('id_time');
-            var submitButton = document.getElementById('submit_button');
-
-            function toggleSubmitButton() {
-                  if (dateChoice.value && timeChoice.value) {
-                        submitButton.classList.remove('d-none');
-                  } else {
-                        submitButton.classList.add('d-none');
-                  }
-            }
-
-            dateChoice.addEventListener('change', toggleSubmitButton);
-            timeChoice.addEventListener('change', toggleSubmitButton);
-
-            toggleSubmitButton(); // Initial check
-      });
-    </script>
-    
+      </section>  
 {% endblock  %}

@@ -71,7 +71,7 @@ class Sale(forms.ModelForm):
                     'start_proces_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date', 'placeholder': 'Fecha de inicio'}),
                     'end_proces_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date', 'placeholder': 'Fecha de fin'}),
                     'finalize': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
-                    'date_choice': forms.DateInput(attrs={'class': 'form-control', 'type': 'date', 'placeholder': 'Fecha de elección'}),
+     
 
                     'time': forms.Select(attrs={'class': 'form-control'}),               
                          

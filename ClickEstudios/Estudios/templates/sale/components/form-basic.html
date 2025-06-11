@@ -30,4 +30,19 @@
       document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('id_name_client').focus();
       });
+      function toggleContactFields() {
+            const contactPreference = document.getElementById('contact_preference').value;
+            const phoneField = document.querySelector('[name="phone_client"]');
+            const emailField = document.querySelector('[name="email_client"]');
+            if (contactPreference === 'phone') {
+                    phoneField.classList.remove('d-none');
+                    emailField.classList.add('d-none');
+            } else if (contactPreference === 'email') {
+                    phoneField.classList.add('d-none');
+                    emailField.classList.remove('d-none');
+            } else {
+                    phoneField.classList.remove('d-none');
+                    emailField.classList.remove('d-none');
+            }
+      }
 </script>
