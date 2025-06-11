@@ -10,7 +10,7 @@
             input {
                   background-color: rgb(24, 24, 24) !important;
                   border: none !important; 
-                  color: white !important;
+                  color: rgba(255, 255, 255, 0.738) !important;
                   border-radius: 1rem !important;
                   height: 3.1rem; max-width: 15rem;
             }
@@ -31,46 +31,31 @@
       
       <div class="container text-white  d-flex flex-wrap  align-content-start">
             <div class="w-100">
-                
+                  <div class="div-top d-flex text-white position-sticky top-0 z-2 blur-20 p-1  w-100 ">
+                        <div class="me-3 ms-2 d-flex flex-wrap align-content-center">
+                              <i class="fi fi-sr-wallet-money  d-flex flex-wrap p-3 rounded-circle" 
+                              style="font-size: 30px; background-color: #19191983;"></i>
+                        </div>
+                        <div class="d-flex flex-wrap align-content-center">
+                              <h5 class="m-0 mt-3">
+                                    Listado de gastos
+                              </h5>
+                              <p class="w-100" style="font-size: 14px;">
+                                    Administra tus gastos, esto llevara un control de tu flujo de caja
+                              </p>
+                        </div>
+                  </div>
+      
             </div>
             <form id="gastoForm" method="POST" class="w-100">
-                  <h6 class="text-white p-2 pe-3 ps-3 rounded-5"  style="font-weight: bold; width: max-content; background-color: #191919;">
-                        Listado de gastos
-                  </h6>
-                  <p class="text-white-50">
-                        Administra tus gastos, esto llevara un control de tu flujo de caja
-                  </p>
-            <div class="d-block  overflow-auto" style="width: 100%;">
-                  <table class=" table table-dark table-borderless  ">
-                        <thead>
-                              <tr>
-                                    <th>Nombre</th>
-                                    <th>Monto</th>
-                                    <th>Acciones</th>
-                              </tr>
-                        </thead>
-                        <tbody id="gastosTableBody">
-                        </tbody>
-                  </table>
-                  <h6 style="font-size: 14px; font-weight: bold;" class="text-white-50">Total: $<span id="totalAmount">0</span></h6>
-                  <button type="submit" class="btn btn-success border-0 rounded-4 p-2 pe-5 ps-5 " id="submitButton" style="display: none; font-weight: bold; 
-                  background-color: #003200;
-                  color: rgb(101, 255, 101);">
-                        Guardar listado
-                  </button>
-
-                  <div class="w-100 mt-5">
-                        <!-- <h6 class="text-white p-2 pe-3 ps-3 rounded-5"  style="font-weight: bold; width: max-content; background-color: #191919;">Gastos recientes</h6> -->
-                        <p class="text-white-50">
-                              Gastos de la caja abierta mas recientes
-                        </p>
-                        <table class=" table table-dark table-borderless  mt-3 ">
+                  <div class="w-100 ">
+                        <table class=" table table-dark table-borderless  mt-0">
                               <thead>
                                     <tr>
                                           <th>Nombre</th>
                                           <th>Monto</th>
                                           <th>
-                                                Realizado
+                                                Fecha 
                                           </th>
                                     </tr>
                               </thead>
@@ -86,10 +71,30 @@
                                     {% endfor %}
                               </tbody>
                         </table>
+                        <h6 style="font-size: 14px; font-weight: bold;" class="text-white-50 m-0">
+                              RD$<span >{{total_gastos|intcomma}}.00</span>
+                        </h6>
                   </div>
-                  <h6 style="font-size: 14px; font-weight: bold;" class="text-white-50">Total: $<span >{{total_gastos|intcomma}}.00</span></h6>
-
+                  <div class="d-block  overflow-auto mt-3" style="width: 100%;">
+                        <table class=" table table-dark table-borderless  ">
+                              <thead>
+                                    <tr>
+                                          <th>Nombre</th>
+                                          <th>Monto</th>
+                                          <th>Acciones</th>
+                                    </tr>
+                              </thead>
+                              <tbody id="gastosTableBody">
+                              </tbody>
+                        </table>
+                        <h6 style="font-size: 14px; font-weight: bold;" class="text-white-50">Total en lista: $<span id="totalAmount">0</span></h6>
+                        <button type="submit" class="btn btn-success border-0 rounded-4 p-2 pe-5 ps-5 " id="submitButton" style="display: none; font-weight: bold; 
+                        background-color: #003200;
+                        color: rgb(101, 255, 101);">
+                              Guardar 
+                        </button>
             </div>
+            
             
             <div class="" style="max-width: 30rem;">
                   
@@ -108,17 +113,22 @@
                               <div class="d-flex w-100">
                                     <input  type="number"  id="amount" class="m-1 d-none form-control" 
                                     style="width: 12rem;">
-                                    <input  type="text" id="name" placeholder="Nombre o descripcion"  class="m-1 form-control" style="width: 100%;">
-                                    <input  type="text" style="width: 100%;" placeholder="Precio: $329" id="amount-str" class="m-1 form-control" >
+                                    <input  type="text" id="name" placeholder="Nombre"  class="m-1 form-control" style="width: 100%;">
+                                    <input  type="text" style="width: 100%;" placeholder="Monto" id="amount-str" class="m-1 form-control" >
                               </div>
                         </div>
                         <input type="hidden" id="gastosData" name="gastosData">
                         <div class="d-flex justify-content-end">
+                              <a href="{% url "estudios:pos" %}" class="btn border-0 btn-secondary accordion bg-transparent rounded-4  align-content-center d-flex flex-wrap  text-white-50" style="font-weight: bold;"> 
+                                    <i class="fi fi-sr-left align-content-center d-flex flex-wrap me-2 "></i> Atras
+                              </a>
                               <button type="button" class="btn btn-primary p-2 pe-4 ps-4 border-0 mt-2 rounded-5 " style="font-weight: bold; background-color: #001232;
-                              color: rgb(101, 139, 255); width: max-content;" onclick="agregarGasto()"> Agregar a la lista </button>
+                              color: rgb(101, 139, 255); width: max-content;" onclick="agregarGasto()"> Añadir </button>
                         </div>
                   </div>
+                  
             </form>
+            
    
       </div>
 
