@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <a class="position-relative d-flex">
         <div class="d-flex flex-wrap align-content-center">
           ${cita.img ? 
-            `<img src="" style="width: 70px; height: 70px;" class="rounded-circle object-fit-cover mt-1 ms-2 me-3">` :
+            `<img src="/${cita.img}" style="width: 70px; height: 70px;" class="rounded-circle object-fit-cover mt-1 ms-2 me-3">` :
             `<i class="bi bi-file-earmark-image-fill mt-3 ms-3" style="font-size: 30px;"></i>`}
         </div>
         <div class="d-flex flex-wrap align-content-center">
@@ -57,15 +57,15 @@ document.addEventListener('DOMContentLoaded', function() {
         </p>
         <p class="mb-0">
           <strong><i class="fi fi-sc-phone-flip"></i></strong>
-          ${cita.phone_client ?? '(000) 000-0000'}
+          ${cita.phone_client || '(000) 000-0000'}
         </p>
         <p class="mb-1">
           <strong><i class="fi fi-sr-envelope"></i></strong>
-          ${cita.email_client ?? '@gmail.com'}
+          ${cita.email_client || '@gmail.com'}
         </p>
         <p class="mb-1">
           <strong><i class="fi fi-sr-daily-calendar"></i></strong>
-          ${cita.date_choice ?? '.../.../.../'}
+          ${cita.date_choice || '.../.../.../'}
         </p>
       </span>
     </div>
@@ -86,9 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
   </div>
 `;
-                              console.log(container);
-                              // document.querySelector('.result-citas').appendChild(container)
-                              // Append to the desired parent element
+
                         });
                   },
                   error: function(error) {
