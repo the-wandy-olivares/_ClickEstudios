@@ -21,71 +21,75 @@ document.addEventListener('DOMContentLoaded', function() {
                               const container = document.createElement('div');
                               
                               document.querySelector('.result-citas').innerHTML += `
-  <div data-aos="fade-left" style="
-        border: 2px solid #2f2f2f; color: #ffffffcf;
-        height: max-content; max-width: 410px;
-        border-radius: 2.5rem; cursor: pointer;"
-        class="m-2 w-100 p-2 container-sale ms-0 shadow-sm position-relative bg-white bg-opacity-10">
+                              <div data-aos="fade-in" style="
+                                          border: 2px solid #2f2f2f; color: #ffffffcf;
+                                          height: max-content; max-width: 410px;
+                                          border-radius: 2.5rem; cursor: pointer; 
+                                          background-color: #272727;
+                                          ${cita.is_reserve ? '' : 'background-color: #101010 !important;'}"
+                                          class="m-2 w-100 p-2 container-sale ms-0 shadow-sm position-relative ">
 
-    <div class="d-flex justify-content-end position-absolute flex-wrap align-content-center bottom-0 end-0"
-         style="margin-right: 8rem; margin-bottom: 1.2rem;">
-      <span class="rounded-circle" style="width: 10px; height: 10px; background-color: ${
-        cita.date_choice < cita.today ? 'red' :
-        cita.date_choice === cita.today && cita.time === cita.time_now ? '#ffc107' :
-        cita.date_choice === cita.today && cita.time > cita.time_now ? 'white' :
-        cita.date_choice === cita.today && cita.time < cita.time_now ? 'rgb(109,255,236)' : 'transparent'
-      };"></span>
-    </div>
+                                          <div class=" position-absolute  p-3  overflow-y-scroll d-flex flex-wrap top-0 end-0 me-3 " 
+                                          style="height: 7rem; width: 15rem; margin-top: 4.7rem; 
+                                          background-color: #191919;
+                                          border-radius: 1.5rem;">
+                                                <h6 class="m-0 p-0 text-white-50" style="font-size: 14px;" >
+                                                      <i class="fi fi-sr-edit"></i>
+                                                                  ${cita.descrition ? cita.descrition.slice(0, 50) : 'Sin nota'}
+                                                </h6>
+                                    </div>
 
-    <div class="d-flex flex-wrap w-100">
-      <a class="position-relative d-flex">
-        <div class="d-flex flex-wrap align-content-center">
-          ${cita.img ? 
-            `<img src="/${cita.img}" style="width: 70px; height: 70px;" class="rounded-circle object-fit-cover mt-1 ms-2 me-3">` :
-            `<i class="bi bi-file-earmark-image-fill mt-3 ms-3" style="font-size: 30px;"></i>`}
-        </div>
-        <div class="d-flex flex-wrap align-content-center">
-          <strong style="font-size: 16px; text-transform: uppercase;">${cita.name_plan ?? ''}</strong>
-          <span class="w-100" style="font-size: 14px;">RD$${Number(cita.price_plan).toLocaleString('es-DO')}.00</span>
-        </div>
-      </a>
-      <span class="w-100 mt-4 ps-3 datos-cliente">
-        <p class="mb-0">
-          <strong class="text-capitalize" style="font-weight: bold; font-size: 20px;">
-            ${cita.is_cliente ? cita.name : (cita.name_client ?? 'Sin nombre')}
-          </strong>
-        </p>
-        <p class="mb-0">
-          <strong><i class="fi fi-sc-phone-flip"></i></strong>
-          ${cita.phone_client || '(000) 000-0000'}
-        </p>
-        <p class="mb-1">
-          <strong><i class="fi fi-sr-envelope"></i></strong>
-          ${cita.email_client || '@gmail.com'}
-        </p>
-        <p class="mb-1">
-          <strong><i class="fi fi-sr-daily-calendar"></i></strong>
-          ${cita.date_choice || '.../.../.../'}
-        </p>
-      </span>
-    </div>
+                     
 
-    <div class="d-flex justify-content-center ms-2 mt-3">
-      <span class="w-100 d-flex align-content-center text-white-50">
-        ${cita.is_reserve && cita.debit_mount != 0 ? `
-          <span class="estado-monto rounded-end-3"><strong style="font-size: 12px;">Debe:</strong> $${cita.debit_mount}.00</span>
-          <span class="estado-monto rounded-start-3"><strong style="font-size: 12px;">Abonó:</strong> $${cita.mount}.00</span>
-        ` : ''}
-      </span>
-      <a href="" class="m-1">
-        <button class="text-white border-0 rounded-4 p-2 ps-3 pe-3"
-                style="font-weight: bold; font-size: 12px; background-color: #2f2f2f; border: 1px solid #5b5b5b86;">
-          ${cita.is_reserve ? 'Completar' : 'Reservar'}
-        </button>
-      </a>
-    </div>
-  </div>
-`;
+                                    <div class="d-flex flex-wrap w-100">
+                                          <a class="position-relative d-flex">
+                                          <div class="d-flex flex-wrap align-content-center">
+                                          ${cita.img ? 
+                                                `<img src="/${cita.img}" style="width: 70px; height: 70px;" class="rounded-circle object-fit-cover mt-1 ms-2 me-3">` :
+                                                `<i class="bi bi-file-earmark-image-fill mt-3 ms-3" style="font-size: 30px;"></i>`}
+                                          </div>
+                                          <div class="d-flex flex-wrap align-content-center">
+                                          <strong style="font-size: 16px; text-transform: uppercase;">${cita.name_plan ?? ''}</strong>
+                                          <span class="w-100" style="font-size: 14px;">RD$${Number(cita.price_plan).toLocaleString('es-DO')}.00</span>
+                                          </div>
+                                          </a>
+                                          <span class="w-100 mt-4 ps-3 datos-cliente">
+                                          <p class="mb-0">
+                                          <strong class="text-capitalize" style="font-weight: bold; font-size: 20px;">
+                                                ${cita.is_cliente ? cita.name : (cita.name_client ?? 'Sin nombre')}
+                                          </strong>
+                                          </p>
+                                          <p class="mb-0">
+                                          <strong><i class="fi fi-sc-phone-flip"></i></strong>
+                                          ${cita.phone_client || '(000) 000-0000'}
+                                          </p>
+                                          <p class="mb-1">
+                                          <strong><i class="fi fi-sr-envelope"></i></strong>
+                                          ${cita.email_client || '@gmail.com'}
+                                          </p>
+                                          <p class="mb-1">
+                                          <strong><i class="fi fi-sr-daily-calendar"></i></strong>
+                                          ${cita.date_choice || '.../.../.../'}
+                                          </p>
+                                          </span>
+                                    </div>
+
+                                    <div class="d-flex justify-content-center ms-2 mt-3">
+                                          <span class="w-100 d-flex align-content-center text-white-50">
+                                          ${cita.is_reserve && cita.debit_mount != 0 ? `
+                                            <span class="estado-monto rounded-end-3"><strong style="font-size: 12px;">Debe:</strong> $${Number(cita.debit_mount).toLocaleString('es-DO')}.00</span>
+                                            <span class="estado-monto rounded-start-3"><strong style="font-size: 12px;">Abonó:</strong> $${Number(cita.mount).toLocaleString('es-DO')}.00</span>
+                                          ` : ''}
+                                          </span>
+                                          <a href="" class="m-1">
+                                          <button class="text-white border-0 rounded-4 p-2 ps-3 pe-3"
+                                                style="font-weight: bold; font-size: 12px; background-color: #2f2f2f; border: 1px solid #5b5b5b86;">
+                                          ${cita.is_reserve ? 'Completar' : 'Reservar'}
+                                          </button>
+                                          </a>
+                                    </div>
+                                    </div>
+                                    `;
 
                         });
                   },
