@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
                      
 
                                     <div class="d-flex flex-wrap w-100">
-                                          <a class="position-relative d-flex">
+                                          <a href='/sale-update/${cita.id}/' class="position-relative d-flex">
                                           <div class="d-flex flex-wrap align-content-center">
                                           ${cita.img ? 
                                                 `<img src="/${cita.img}" style="width: 70px; height: 70px;" class="rounded-circle object-fit-cover mt-1 ms-2 me-3">` :
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                           </p>
                                           <p class="mb-1">
                                           <strong><i class="fi fi-sr-envelope"></i></strong>
-                                          ${cita.email_client || '@gmail.com'}
+                                          ${cita.email_client.slice(0, 24) || '@gmail.com'}
                                           </p>
                                           <p class="mb-1">
                                           <strong><i class="fi fi-sr-daily-calendar"></i></strong>
@@ -83,16 +83,16 @@ document.addEventListener('DOMContentLoaded', function() {
                                           </span>
                                     ${cita.finalize == false ? `
                                           ${cita.payment ? `
-                                          <a href="#">
+                                          <a href="/estudios/${cita.id}">
                                           <button class="bg-warning rounded-start-5 border-0 rounded-end-5 p-2 me-2 ps-3 pe-3 text-black" style="font-weight: bold; font-size: 14px;">
                                                 Terminar
                                           </button>
                                           </a>
                                           ` : `
-                                          <a href="#" class="m-1">
+                                          <a href="/sale-reserver/${cita.id}" class="m-1">
                                           <button class="text-white border-0 rounded-4 p-2 ps-3 pe-3"
                                                 style="font-weight: bold; font-size: 12px; background-color: #2f2f2f; border: 1px solid #5b5b5b86;">
-                                          ${cita.is_reserve ? 'Completar' : 'Reservar'}
+                                                ${cita.is_reserve ? 'Completar' : 'Reservar'}
                                           </button>
                                           </a>
                                           `}
