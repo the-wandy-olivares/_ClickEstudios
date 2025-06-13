@@ -19,8 +19,8 @@ document.addEventListener('DOMContentLoaded', function() {
                   success: function(citas) {
                         citas.forEach(function(cita) {
                               const container = document.createElement('div');
-
-                              document.querySelector('.result-citas').innerHTML = `
+                              
+                              document.querySelector('.result-citas').innerHTML += `
   <div data-aos="fade-left" style="
         border: 2px solid #2f2f2f; color: #ffffffcf;
         height: max-content; max-width: 410px;
