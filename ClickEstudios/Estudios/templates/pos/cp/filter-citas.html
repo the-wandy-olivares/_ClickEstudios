@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
                               const container = document.createElement('div');
                               
                               document.querySelector('.result-citas').innerHTML += `
-                              <div data-aos="fade-in" style="
+                              <div data-aos="fade-out" style="
                                           border: 2px solid #2f2f2f; color: #ffffffcf;
                                           height: max-content; max-width: 410px;
                                           border-radius: 2.5rem; cursor: pointer; 
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                           border-radius: 1.5rem;">
                                                 <h6 class="m-0 p-0 text-white-50" style="font-size: 14px;" >
                                                       <i class="fi fi-sr-edit"></i>
-                                                                  ${cita.descrition ? cita.descrition.slice(0, 50) : 'Sin nota'}
+                                                                  ${cita.descrition ? cita.descrition.slice(0, 50) : '...?'}
                                                 </h6>
                                     </div>
 
@@ -81,12 +81,22 @@ document.addEventListener('DOMContentLoaded', function() {
                                             <span class="estado-monto rounded-start-3"><strong style="font-size: 12px;">Abonó:</strong> $${Number(cita.mount).toLocaleString('es-DO')}.00</span>
                                           ` : ''}
                                           </span>
-                                          <a href="" class="m-1">
+                                    ${cita.finalize == false ? `
+                                          ${cita.payment ? `
+                                          <a href="#">
+                                          <button class="bg-warning rounded-start-5 border-0 rounded-end-5 p-2 me-2 ps-3 pe-3 text-black" style="font-weight: bold; font-size: 14px;">
+                                                Terminar
+                                          </button>
+                                          </a>
+                                          ` : `
+                                          <a href="#" class="m-1">
                                           <button class="text-white border-0 rounded-4 p-2 ps-3 pe-3"
                                                 style="font-weight: bold; font-size: 12px; background-color: #2f2f2f; border: 1px solid #5b5b5b86;">
                                           ${cita.is_reserve ? 'Completar' : 'Reservar'}
                                           </button>
                                           </a>
+                                          `}
+                                    ` : ''}
                                     </div>
                                     </div>
                                     `;

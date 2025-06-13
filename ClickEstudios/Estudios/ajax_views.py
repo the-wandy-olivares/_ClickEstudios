@@ -75,5 +75,5 @@ def SearchCitas(request):
       d = request.GET.get('search', '').strip()
       data = []
       if d:
-            data = models.Sale.objects.filter(name_client__icontains=d).values('id', 'name_client', 'email_client', 'phone_client', 'descrition', 'name_plan', 'price_plan', 'img', 'time', 'date_choice', 'is_reserve', 'mount', 'debit_mount')
+            data = models.Sale.objects.filter(name_client__icontains=d).values('id', 'name_client', 'email_client', 'phone_client', 'descrition', 'name_plan', 'price_plan', 'img', 'time', 'date_choice', 'is_reserve', 'mount', 'debit_mount', 'payment', 'finalize')
       return JsonResponse(list(data), safe=False)

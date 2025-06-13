@@ -1,6 +1,6 @@
 <style>
       .btn-pos button {
-            width: 9rem;
+            width: max-content;
             height: 2.8rem;
             text-align: center;
       }
@@ -25,11 +25,12 @@
 </style>
 <div class="btn-pos   d-flex">
       <button onclick="ShowFilterCitas()"
-      class="btn change-section-citas   border-0   ms-1 me-1 p-2 pe-4 ps-4 rounded-5 "
-      style="max-width: 4rem; font-weight: bold; display:snone; background-color: #191919; color: #ffffffc8;
-      font-size: 17px;
-            z-index: 1; " >
-            <i class="fi fi-sr-assessment"></i>
+      class="btn d-flex  change-section-citas   border-0   ms-1 me-1 p-2 pe-4 ps-4 rounded-5 "
+      style="width: 9rem; font-weight: bold; display:snone; background-color: #191919;
+      border: 1px solid rgba(255, 255, 255, 0.786) ;color: rgba(255, 255, 255, 0.786)  " >
+
+
+<i class="fi fi-sr-search me-2 d-flex justify-content-center align-content-center flex-wrap" ></i> <span style="margin-top: 2px;">Buscador</span>
       </button>
       
       <!-- <input type="text"  id="buscador"
@@ -39,17 +40,21 @@
       outline: none !important;"> -->
       <button onclick="OpenServicesChoices()" 
             class="btn btn-open-services ps-4 pe-4 rounded-5 border-0"
-            style="font-weight: bold; color: #ffffffc8;  transition: 0.5s; background-color: #191919;" >
+            style="font-weight: bold;   transition: 0.5s; background-color: #191919;color: rgba(255, 255, 255, 0.786) " >
+            <i class="fi fi-sr-box-open-full"></i>
             Servicos
       </button>
       <button onclick="window.location.href= '{% url "estudios:fast-sale" %}' "  
-            class="btn mt-0 ms-1 me-1  ps-4 pe-4 ms-0   p-0 ps-2 pe-0 rounded-5 d-flex flex-wrap align-content-center text-center" style="font-size: 14px; font-weight: bold;
+            class="btn mt-0 ms-1 me-1  ps-4 pe-4 ms-0   p-0 ps-2 pe-0 rounded-5 d-flex flex-wrap align-content-center text-center" style="font-size: 14px; font-weight: bold; width: 10rem; 
             background-color: #191919 !important;  color: rgba(255, 255, 255, 0.786) ;">
+            <i class="fi fi-sr-point-of-sale-bill"></i>
             Venta rapida
       </button>
       <button onclick="window.location.href= '{% url "estudios:gastos-create" %}' "  
             class="btn  border-0  d-flex flex-wrap align-content-center justify-content-center  ps-4 pe-4 rounded-5 " 
             style="font-size: 14px; font-weight: bold; color: #ffffffc8; background-color: #191919;">
+            <i class="fi fi-sr-wallet-money  " 
+          ></i>
             Gastos
       </button>
 </div>
