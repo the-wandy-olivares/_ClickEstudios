@@ -69,3 +69,11 @@ def SearchMove(request):
       if d:
             data = models.Movements.objects.filter(description__icontains=d).values('id', 'description', 'description', 'date', 'mount', 'type')
       return JsonResponse(list(data), safe=False)
+
+
+def SearchCitas(request):
+      d = request.GET.get('search', '').strip()
+      data = []
+      if d:
+            data = models.Sale.objects.filter(name_client__icontains=d).values('id', 'name_client', 'email_client', 'phone_client', 'descrition', 'name_plan', 'price_plan', 'img', 'time', 'date_choice', 'is_reserve', 'mount', 'debit_mount')
+      return JsonResponse(list(data), safe=False)

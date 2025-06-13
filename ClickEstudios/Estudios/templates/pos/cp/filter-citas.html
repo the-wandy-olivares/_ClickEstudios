@@ -1,83 +1,58 @@
 {% load humanize %}
-<style>
-      .sale-plus{
-            display: flex;
-            width: 60px;
-            height: 60px;
-            color: white;
-            flex-wrap: wrap;
-            align-items: center;
-            border-radius: 1rem;
-            justify-content: center;
-            background-color: rgba(104, 104, 104, 0.23);
-      }
-      .sale-plus a {
-            color: rgba(255, 255, 255, 0.75) !important;
-            text-decoration: none;
 
-      }
-      i {
-            font-size: 14px;
-            margin-right: 0.3rem;
-      }
-      .estado-monto {
-            background-color: #202020;
-            padding: 0.5rem 0.9rem;
-            margin: 0.1rem 0.1rem;
-            border-radius: 1rem;
-            width: 100%;
-            text-align: center;
-      }
-      @media (min-width: 600px) {
-            .container-sale {
-                  min-width: 510px; max-width: 510px;
-            }
-      }
-      .fi-sr-delete {
-            transition: 0.5s;
-            color: rgba(255, 255, 255, 0.606);
-      }
-      .fi-sr-delete:hover {
-            color: #ff4646 !important;
-      }
-</style>
-            <div data-aos="fade-left"  style="
-                  border: 2px solid #2f2f2f;color: #ffffffcf ;
-                  height: max-content; max-width: 410px; 
-                  {% if not s.is_reserve %}
-                        background-color: #101010 !important;
-                  {% endif %}
-                  border-radius: 2.5rem; cursor: pointer; " class='  m-2 w-100 p-2 container-sale ms-0 shadow-sm    position-relative bg-white bg-opacity-10'>
-                  {% include 'sale/components/note.html' %}
 
-                  
-                  <a href="{% url "estudios:sale-delete" s.id %}">
-                        <i class="fi fi-sr-delete position-absolute d-none top-0 end-0" style="font-size: 24px;"></i>
-                  </a>
 
-                  <div class="d-flex justify-content-end position-absolute flex-wrap align-content-center    bottom-0 end-0 "
-                        style='margin-right: 8rem; margin-bottom: 1.2rem;'>
-                        {% if s.date_choice == today %}
-                                    {% if s.time == time_now %}z
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('buscador').addEventListener('input', function() {
+            SearchCita();
+      });
+
+      function SearchCita() {
+            document.querySelector('.result-citas').innerHTML = ''
+            $.ajax({
+                  url: '/ajax/search-citas/',
+                  method: 'GET',
+                  data: {
+                        'search': document.getElementById('buscador').value,
+                  },
+                  success: function(citas) {
+                        citas.forEach(function(cita) {
+                              const container = document.createElement('div');
+                       
+                              container.innerHTML = `
+                  <div data-aos="fade-left"  style="
+                        border: 2px solid #2f2f2f;color: #ffffffcf ;
+                        height: max-content; max-width: 410px; 
+                        border-radius: 2.5rem; cursor: pointer; " class='  m-2 w-100 p-2 container-sale ms-0 shadow-sm    position-relative bg-white bg-opacity-10'>
+
+                        <a href="">
+                              <i class="fi fi-sr-delete position-absolute d-none top-0 end-0" style="font-size: 24px;"></i>
+                        </a>
+
+                        <div class="d-flex justify-content-end position-absolute flex-wrap align-content-center    bottom-0 end-0 "
+                              style='margin-right: 8rem; margin-bottom: 1.2rem;'>
+                              {% if cita.date_choice == today %}
+                                    {% if cita.time == time_now %}
                                           <span class="rounded-circle" style="width: 10px; height: 10px; background-color: #ffc107;"></span>  
                                     {% endif %}
-                                    {% if s.time > time_now %}
+                                    {% if cita.time > time_now %}
                                           <span class="rounded-circle" style="width: 10px; height: 10px; background-color:rgb(255, 255, 255);"></span>  
                               {% endif %}
-                              {% if s.time < time_now %}
+                              {% if cita.time < time_now %}
                                     <span class="rounded-circle" style="width: 10px; height: 10px; background-color:rgb(109, 255, 236);"></span>
-                                    {% endif %}
+                              {% endif %}
                         {% endif %}
-                        {% if s.date_choice < today %}
+                        {% if cita.date_choice < today %}
                               <span class="rounded-circle" style="width: 10px; height: 10px; background-color: rgb(255, 0, 0);"></span>
                               <span class="rounded-circle ms-1" style="width: 10px; height: 10px; background-color:rgb(255, 170, 0);"></span>
                         {% endif %}
                   </div>
                         <div class='d-flex flex-wrap w-100' >
-                              <a {% if s.pk_plan %} href="{% url "estudios:sale-update" s.id %}"  {% endif %}  class="position-relative d-flex">
+                              <a class="position-relative d-flex">
                                     <div class="d-flex flex-wrap align-content-center">
-                                          {% if s.img %}
-                                          <img src="{{s.img.url}}" 
+                                          {% if cita.img %}
+                                          <img src="{{cita.img.url}}" 
                                                 style='width: 70px; height: 70px;' class='rounded-circle object-fit-cover mt-1 ms-2 me-3'>
                                           {% else %}
                                                 <i class="bi bi-file-earmark-image-fill mt-3 ms-3" 
@@ -86,21 +61,21 @@
                                     </div>
                                     <div class="d-flex flex-wrap align-content-center">
                                           <strong style='font-size: 16px; text-transform: uppercase; '>
-                                                {{s.name_plan}}
+                                                {{cita.name_plan}}
                                           </strong>
                                           <span class="w-100" style="font-size: 14px;">
-                                                RD${{ s.price_plan|intcomma }}.00
+                                                RD${{ cita.price_plan|intcomma }}.00
                                           </span>
                                     </div>
                               </a>
                               <span class='w-100 mt-4 ps-3 datos-cliente' >
                                            <p class="mb-0">
                                           <strong class="text-capitalize " style="font-weight: bold; font-size: 20px;">
-                                                {% if s.is_cliente %}
-                                                      {{ s.name }} 
+                                                {% if cita.is_cliente %}
+                                                      {{ cita.name }} 
                                                 {% else %}
-                                                {% if s.name_client %}
-                                                      {{ s.name_client|slice:":20" }}
+                                                {% if cita.name_client %}
+                                                      {{ cita.name_client|slice:":20" }}
                                                 {% endif %}
                                                 </strong>
                                           </p>
@@ -108,8 +83,8 @@
                                                 <strong>
                                                       <i class="fi fi-sc-phone-flip"></i>
                                                 </strong> 
-                                                {% if s.phone_client %}
-                                                      {{ s.phone_client }} 
+                                                {% if cita.phone_client %}
+                                                      {{ cita.phone_client }} 
                                                 {% else %}
                                                       (000) 000-0000 
                                                 {% endif %}
@@ -118,8 +93,8 @@
                                                 <strong>
                                                       <i class="fi fi-sr-envelope"></i>
                                                 </strong> 
-                                                {% if s.email_client %}
-                                                      {{ s.email_client|slice:":49" }}
+                                                {% if cita.email_client %}
+                                                      {{ cita.email_client|slice:":49" }}
                                                 {% else %}
                                                       @gmail.com
                                                 {% endif %}
@@ -128,20 +103,20 @@
                                                 <strong>
                                                       <i class="fi fi-sr-daily-calendar"></i>
                                                 </strong> 
-                                                {% if s.date_choice %}
-                                                            {{ s.date_choice|date:"d/m/Y" }} -  {{ s.time }}
+                                                {% if cita.date_choice %}
+                                                            {{ cita.date_choice|date:"d/m/Y" }} -  {{ s.time }}
                                                       {% else %}
                                                             .../.../.../
                                                 {% endif %}
                                           </p>
                                     <div class='calendary{{s.id}} d-none position-absolute top-0 start-0 blur-20 bg-black bg-opacity-25 rounded-5   d-flex justify-content-center align-content-center flex-wrap '
                                           style="width: 10rem; height: 10rem;">
-                                          {% if s.date_choice %}
+                                          {% if cita.date_choice %}
                                                 <strong class="mb-3 text-white-50">
-                                                      {{ s.date_choice|date:"F" }} 
+                                                      {{ cita.date_choice|date:"F" }} 
                                                 </strong>
                                                 <span class="text-white text-center p-2 ps-0 w-100" style="font-size: 90px; line-height:40px;">
-                                                      {{ s.date_choice|date:"d" }} 
+                                                      {{ cita.date_choice|date:"d" }} 
                                                 </span>
                                           {% endif %}
                                     </div>
@@ -152,27 +127,32 @@
 
                         <div class='d-flex justify-content-center ms-2 mt-3 '>
                               <span class=" w-100 d-flex  align-content-center text-white-50">
-                                    {% if s.is_reserve %}
-                                          {% if s.debit_mount  != 0 %}
+                                    {% if cita.is_reserve %}
+                                          {% if cita.debit_mount  != 0 %}
                                                 <span class="estado-monto rounded-end-3"><strong 
-                                                      style="font-size: 12px;">Debe:  </strong> ${{ s.debit_mount|intcomma }}.00</span>
-                                                <span class="estado-monto rounded-start-3"><strong 
-                                                      style="font-size: 12px;">Abonó:  </strong>${{ s.mount|intcomma }}.00</span>
+                                                      style="font-size: 12px;">Debe:  </strong> 
+                                                      ${{ cita.debit_mount }}.00</span>
+                                                <span class="estado-monto rounded-start-3">
+                                                      <strong  style="font-size: 12px;">
+                                                            Abonó:
+                                                      </strong>
+                                                            ${{ cita.mount }}.00
+                                                      </span>
                                           {% endif %}
                                     {% endif %} 
                               </span>
                               {% if s.payment %}
-                                    <a href="{% url "estudios:estudios" s.id %}">
+                                    <a href="">
                                           <button id='reserve-{{ s.id }}'  class="bg-warning rounded-start-5 border-0 rounded-end-5 p-2 me-2 ps-3 pe-3  text-black " style="font-weight: bold; font-size: 14px;">
                                                 Teminar
                                           </button>
                                     </a>
                               {% else %}
-                                    <a href="{% url "estudios:sale-reserver" s.id %}" class="m-1">
+                                    <a href="" class="m-1">
                                           <button id='reserve-{{ s.id }}' 
                                                 class="text-white  border-0 rounded-4 p-2 ps-3 pe-3 " style="font-weight: bold; font-size: 12px; 
                                                 background-color: #2f2f2f; border: 1px solid #5b5b5b86;">
-                                                {% if s.is_reserve == True %} 
+                                                {% if cita.is_reserve == True %} 
                                                       Completar {% else %}  Reservar
                                                 {% endif %}
                                           </button>
@@ -180,22 +160,17 @@
                               {% endif %}
                         </div>
             </div>
+                                
+                              `;
 
-
-      <script>
-            document.querySelectorAll('.container-sale').forEach(container => {
-                  container.addEventListener('mouseenter', () => {
-                        const deleteIcon = container.querySelector('.fi-sr-delete');
-                        if (deleteIcon) {
-                              deleteIcon.classList.remove('d-none');
-                        }
-                  });
-
-                  container.addEventListener('mouseleave', () => {
-                        const deleteIcon = container.querySelector('.fi-sr-delete');
-                        if (deleteIcon) {
-                              deleteIcon.classList.add('d-none');
-                        }
-                  });
+                              document.querySelector('.result-citas').appendChild(container)
+                              // Append to the desired parent element
+                        });
+                  },
+                  error: function(error) {
+                        console.error('Error fetching citas:', error);
+                  }
             });
-      </script>
+      }
+});
+</script>

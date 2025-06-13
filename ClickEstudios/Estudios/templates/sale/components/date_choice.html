@@ -31,7 +31,7 @@
 
         // Populate month choices based on the current year
         function populateMonthChoices() {
-            monthChoice.innerHTML = '<option value="" disabled selected>Seleccione un mes</option>'; // Clear existing options and add default option
+            monthChoice.innerHTML = '<option value="" disabled selected> Mes</option>'; // Clear existing options and add default option
             const selectedYear = parseInt(yearChoice.value);
             const startMonth = (selectedYear === currentYear) ? currentMonth : 1;
 
@@ -50,7 +50,7 @@
 
         // Populate day choices based on the selected year and month
         function populateDayChoices() {
-            dayChoice.innerHTML = '<option value="" disabled selected>Seleccione un dia</option>'; // Clear existing options and add default option
+            dayChoice.innerHTML = '<option value="" disabled selected> Dia</option>'; // Clear existing options and add default option
             const selectedYear = parseInt(yearChoice.value);
             const selectedMonth = parseInt(monthChoice.value);
             const daysInMonth = new Date(selectedYear, selectedMonth, 0).getDate();
@@ -67,7 +67,7 @@
         // Add event listeners to populate month and day choices when year or month is changed
         yearChoice.addEventListener('change', function() {
             populateMonthChoices();
-            dayChoice.innerHTML = '<option value="" disabled selected>Seleccione un dia</option>'; // Clear day choices when year changes
+            dayChoice.innerHTML = '<option value="" disabled selected> Dia</option>'; // Clear day choices when year changes
         });
 
         monthChoice.addEventListener('change', function() {

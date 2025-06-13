@@ -43,8 +43,9 @@
       <div data-aos="fade-in"
             style="transition: 1s;  height: 100dvh;"
             class=" cartas d-flex flex-wrap m-2 mt-3 align-content-start w-100  ">
+            {% include "dashboard/cp/card.html" %}
             <div class=" w-100 d-flex flex-wrap justify-content-end mb-2  top-0 z-2">
-                  <div class="w-100 d-flex flex-wrap justify-content-start mb-2 ">
+                  <div class="w-100 d-flex flex-wrap justify-content-start mb-2 ms-2 ">
                         <button onclick="AlternarGrafic()"
                         class=" w-100 btn-alternar btn btn-primary border-0 mt-2 text-white p-2 ps-1 pe-1 rounded-5 "  
                         style="background-color: #191919; max-width: 11rem;
@@ -52,7 +53,6 @@
                         Graficos por ondas
                   </button>
             </div>
-                  {% include "dashboard/cp/card.html" %}
             </div>
 
             <div class=" graficos w-100 h-100 position-fixed bottom-0 mb-4  d-flex flex-wrap align-content-end "

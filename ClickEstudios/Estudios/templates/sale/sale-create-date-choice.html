@@ -32,6 +32,7 @@
             }
             #id_descrition {
                   max-height: 10rem;
+                  margin: 0rem !important;
             }
             #id_descrition::placeholder
             {
@@ -86,16 +87,22 @@
                               <!--Time Choice-->
                               <div class="time-choice  p-2 w-100 d-none d-flex justify-content-center align-content-center flex-wrap h-100">
                                     <div class="w-100 text-white">
-                                          <h6>
-                                                ~ Puedes agregar un comentario, ejemplo: <strong>
-                                                      "Quiero que la sesión sea en la mañana"
-                                                </strong>
+                                          <h6 class="m-0">
+                                                <i class="fi fi-sr-notes"></i>  Agregar un nota 
                                           </h6>
+                                          <p class="text-white-50">
+                                                      "Quiero que la sesión sea en la mañana"
+                                          </p>
                                           <div class="d-flex justify-content-center">
                                                 {{form.descrition}}
                                           </div>
-                                          <div>
-                                                <label for="id_contact">- Asociar contacto a esta venta</label>
+                                          <div class="mt-3">
+                                                <h6 class="m-0">
+                                                      <i class="fi fi-sr-user-add"></i>  Asociar contacto a esta venta
+                                                </h6>
+                                                <p class="text-white-50">
+                                                      Selecciona un contacto  para vincularlo con esta venta
+                                                </p>
                                                 {{form.contact}}
                                           </div>
                                     </div>
