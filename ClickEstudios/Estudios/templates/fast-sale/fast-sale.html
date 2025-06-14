@@ -55,8 +55,13 @@
                               style="height: 20rem;"></textarea>
                         </div> {% endcomment %}
                         <div class="d-flex justify-content-end">
-                              <button type="submit" class="btn bg-white d-none bg-opacity-10 text-white btn-facturar rounded-5 ps-4 pe-4 "
-                              style="font-weight: bold; width:7rem; "> Facturar </button>
+                              <a onclick="PreventSend(this.id)" id="back-space-sale-fast-sale" href="{% url "estudios:pos" %}" class="btn border-0 btn-secondary accordion bg-transparent rounded-4  align-content-center d-flex flex-wrap  text-white-50" style="font-weight: bold;"> 
+                                    <i class="fi fi-sr-left align-content-center d-flex flex-wrap me-2 "></i> Atras
+                              </a>
+                              <button onclick="PreventSend(this.id)" id="btn-facturar-ahora" type="submit" class="btn bg-white d-none bg-opacity-10 text-white btn-facturar rounded-5 ps-4 pe-4 "
+                              style="font-weight: bold; width:7rem; "> 
+                                    Facturar 
+                              </button>
                         </div>
                   </form>
             </div>

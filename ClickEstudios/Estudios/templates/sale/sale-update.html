@@ -70,12 +70,12 @@
                               </div>
                               <!--Time Choice-->
                               <div class="d-flex">
-                                    <a href="{% url "estudios:pos" %}" class="btn border-0 btn-secondary accordion  bg-transparent rounded-4  align-content-center d-flex flex-wrap  text-white-50" style="font-weight: bold;"> 
+                                    <a onclick="PreventSend(this.id)" id="atras-actualizar-sale" href="{% url "estudios:pos" %}" class="btn border-0 btn-secondary accordion  bg-transparent rounded-4  align-content-center d-flex flex-wrap  text-white-50" style="font-weight: bold;"> 
                                           <i class="fi fi-sr-left align-content-center d-flex flex-wrap me-2 "></i> Atras
                                     </a>
                                     <div class="time-choice p-2  ms-3">
-                                          <button class="btn btn-primary  rounded-5 border-0"
-                                                style="width: 9rem; background-color: #191919;" id="">
+                                          <button onclick="PreventSend(this.id)"   class="btn btn-primary  rounded-5 border-0"
+                                                style="width: 9rem; background-color: #191919;" id="btn-actualizar-sale">
                                                 Actualizar 
                                           </button>
                                     </div>

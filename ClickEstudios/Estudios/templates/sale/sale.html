@@ -139,13 +139,13 @@
                         <div class='d-flex justify-content-center ms-2 mt-3 '>
                               {% if s.payment %}
                               <a href="{% url "estudios:estudios" s.id %}">
-                                    <button id='reserve-{{ s.id }}'  class="bg-warning rounded-start-5 border-0 rounded-end-5 p-2 me-2 ps-3 pe-3  text-black " style="font-weight: bold; font-size: 14px;">
+                                    <button onclick="PreventSend(this.id)" id='reserve-{{ s.id }}'  class="bg-warning rounded-start-5 border-0 rounded-end-5 p-2 me-2 ps-3 pe-3  text-black " style="font-weight: bold; font-size: 14px;">
                                           Teminar
                                     </button>
                               </a>
                         {% else %}
                               <a href="{% url "estudios:sale-reserver" s.id %}" class="m-1">
-                                    <button id='reserve-{{ s.id }}' 
+                                    <button onclick="PreventSend(this.id)" id='reserve-{{ s.id }}' 
                                           class="text-white pay border-0 d-flex rounded-5 p-2 ps-3 pe-3 " style="font-weight: bold; font-size: 14px; 
                                     width: max-content; 
                                           color: #000000 !important;">
