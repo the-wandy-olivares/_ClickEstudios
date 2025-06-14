@@ -27,11 +27,14 @@
             border-radius: var(--border-radius-2);
       }
 </style>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-straight/css/uicons-solid-straight.css'>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&display=swap" rel="stylesheet">
-<section class="section-escritorio-nav">
-      <div class="nav-escritorio m-1 mt-0">
+<section class="section-escritorio-nav d-none ">
+      <div class="nav-escritorio m-1 mt-0 position-relative">
+            <i  onclick="TypeNav()" class="fi fi-ss-arrow-circle-left position-absolute  end-0 z-3 text-white-50 p-2 " style="font-size: 25px; top: 17%;"></i>
+            
             {% include "nav/new-nav/cp/nav-links.html" %}
             {% include "nav/new-nav/cp/info.html" %}
             <div class="w-100 d-flex justify-content-center p-1 mb-5 pb-5"

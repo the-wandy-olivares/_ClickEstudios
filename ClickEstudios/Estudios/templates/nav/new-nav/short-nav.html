@@ -1,0 +1,113 @@
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css">
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-brands/css/uicons-brands.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-chubby/css/uicons-solid-chubby.css'>
+<style>
+      .short-nav {
+            display: grid; grid-template-columns: repeat(1, 1fr);
+            gap: 10px;
+            padding: 2.5rem;
+            align-items: center;
+            align-content: center;
+            justify-items: center;
+      }
+      .short-nav span {
+            width: 100%;
+            display: none;
+      }
+      .short-nav a {
+            text-align: center;
+            font-size: 14px;
+            /* background-color: #252525; */
+            width: 100%; 
+            display: flex; justify-content: center ;
+            flex-wrap: wrap;
+      }
+      .short-nav a i {
+          font-size: 20px;
+          width: 3rem;
+          height: 3rem;
+          border-radius: 50%;
+          display: flex; justify-content: center;
+          align-content: center;
+          flex-wrap: wrap;
+          background-color: #4d4d4d5e;
+            border: 2px solid #ffffff17;
+            margin-bottom: 0.2rem;
+      }
+      .short-nav a i:hover {
+            background-color: #ffffff1a;
+            color: #ffc107 !important;
+            transition: 0.3s ease-in-out;
+      }
+      @media (max-width: 600px) { 
+            .short-nav {
+                  display: none  !important; 
+            }
+      }
+</style>
+
+<!-- Nav mobile -->
+<section onclick="OpenNav()" id="short-nav-section" class="short-nav-section  dvh-100 w-100  blur-10 z-3 d-none  d-flex  flex-wrap  position-relative"
+    style="
+ background: linear-gradient(to bottom, transparent, #101010), linear-gradient(to top,#1010107d , #10101081);">
+    <i  onclick="TypeNav()" class="fi fi-ss-arrow-circle-left position-absolute top-0 end-0 z-3 text-white-50" style="font-size: 25px;top: 17%; transform: rotate(180deg);"></i>
+
+    <div class="short-nav w-100  ">
+        <a href="{% url 'estudios:dashboard' %}" class="dashboard">
+            <i class="fi fi-sr-house-blank"></i>
+              <span>Dashboard</span>
+          </a>
+          <a href="{% url 'estudios:pos' %}" class="pos">
+              <i class="fi fi-sr-payment-pos"></i>
+              <span>POS</span>
+          </a>
+          <a href="{% url 'estudios:box' %}" class="caja">
+              <i class="fi fi-sr-safe-box"></i>
+              <span>Caja</span>
+          </a>
+          <a href="{% url 'estudios:contactos' %}" class="contactos">
+              <i class="fi fi-sr-users-alt"></i>
+              <span>Clientes</span>
+          </a>
+          <a href="{% url 'estudios:facturas' %}" class="facturas ">
+              <i class="fi fi-sr-receipt"></i>
+              <span>Facturas</span>
+          </a>
+          <a href="{% url 'estudios:service' %}" class="services">
+              <i class="fi fi-sr-box-open-full"></i>
+              <span>Servicios</span>
+          </a>
+          <a href="{% url 'estudios:plan' %}" class="plans">
+              <i class="fi fi-sr-balloons"></i>
+              <span>Planes</span>
+          </a>
+          <a href="{% url 'estudios:gallery' %}" class="galley-a">
+              <i class="fi fi-sr-gallery"></i>
+              <span>Galeria</span>
+          </a>
+          <a href="{% url 'estudios:correos' %}" class="correos">
+              <i class="fi fi-sr-envelope-dot"></i>
+              <span>Correos</span>
+          </a>
+          <a href="{% url 'estudios:admin' %}" class="admin">
+              <i class="fi fi-sr-user"></i>
+              <span>Cuentas</span>
+          </a>
+          <a href="{% url  'estudios:empleados' %}" class="seguridad">
+              <i class="fi fi-sr-lock"></i>
+              <span>Seguridad</span>
+          </a>
+          <a href="{% url 'estudios:configuration' %}" class="configuration">
+              <i class="fi fi-sr-settings"></i>
+              <span>Configura..</span>
+          </a>
+      
+    </div>
+    
+
+</section>
+
+<script>
+
+</script>
