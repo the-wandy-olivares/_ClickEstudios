@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                           class="m-2 w-100 p-2 container-sale ms-0 shadow-sm position-relative ">
 
                                           <div class=" position-absolute  p-3  overflow-y-scroll d-flex flex-wrap top-0 end-0 me-3 " 
-                                          style="height: 7rem; width: 15rem; margin-top: 4.7rem; 
+                                          style="height: 7rem; width: 15rem; margin-top: 6.7rem; 
                                           background-color: #191919;
                                           border-radius: 1.5rem;">
                                                 <h6 class="m-0 p-0 text-white-50" style="font-size: 14px;" >
@@ -75,13 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     </div>
 
                                     <div class="d-flex justify-content-center ms-2 mt-3">
-                                          <span class="w-100 d-flex align-content-center text-white-50">
-                                          ${cita.is_reserve && cita.debit_mount != 0 ? `
-                                            <span class="estado-monto rounded-end-3"><strong style="font-size: 12px;">Debe:</strong> $${Number(cita.debit_mount).toLocaleString('es-DO')}.00</span>
-                                            <span class="estado-monto rounded-start-3"><strong style="font-size: 12px;">Abonó:</strong> $${Number(cita.mount).toLocaleString('es-DO')}.00</span>
-                                          ` : ''}
-                                          </span>
-                                    ${cita.finalize == false ? `
+                                              ${cita.finalize == false ? `
                                           ${cita.payment ? `
                                           <a href="/estudios/${cita.id}">
                                           <button class="bg-warning rounded-start-5 border-0 rounded-end-5 p-2 me-2 ps-3 pe-3 text-black" style="font-weight: bold; font-size: 14px;">
@@ -97,6 +91,13 @@ document.addEventListener('DOMContentLoaded', function() {
                                           </a>
                                           `}
                                     ` : ''}
+                                          <span class="w-100 d-flex align-content-center text-white-50">
+                                          ${cita.is_reserve && cita.debit_mount != 0 ? `
+                                            <span class="estado-monto rounded-end-3"><strong style="font-size: 12px;">Debe:</strong> $${Number(cita.debit_mount).toLocaleString('es-DO')}.00</span>
+                                            <span class="estado-monto rounded-start-3"><strong style="font-size: 12px;">Abonó:</strong> $${Number(cita.mount).toLocaleString('es-DO')}.00</span>
+                                          ` : ''}
+                                          </span>
+                                
                                     </div>
                                     </div>
                                     `;

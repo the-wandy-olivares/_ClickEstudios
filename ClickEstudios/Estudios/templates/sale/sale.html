@@ -24,7 +24,7 @@
             background-color: #202020;
             padding: 0.5rem 0.9rem;
             margin: 0.1rem 0.1rem;
-            border-radius: 1rem;
+            border-radius: 2rem;
             width: 100%;
             text-align: center;
       }
@@ -39,6 +39,10 @@
       }
       .fi-sr-delete:hover {
             color: #ff4646 !important;
+      }
+      .pay:hover {
+            background-color: #ffc107 !important;
+            color: #000000 !important;
       }
 </style>
             <div data-aos="fade-left"  style="
@@ -133,33 +137,34 @@
                         </div>
 
                         <div class='d-flex justify-content-center ms-2 mt-3 '>
+                              {% if s.payment %}
+                              <a href="{% url "estudios:estudios" s.id %}">
+                                    <button id='reserve-{{ s.id }}'  class="bg-warning rounded-start-5 border-0 rounded-end-5 p-2 me-2 ps-3 pe-3  text-black " style="font-weight: bold; font-size: 14px;">
+                                          Teminar
+                                    </button>
+                              </a>
+                        {% else %}
+                              <a href="{% url "estudios:sale-reserver" s.id %}" class="m-1">
+                                    <button id='reserve-{{ s.id }}' 
+                                          class="text-white pay border-0 d-flex rounded-5 p-2 ps-3 pe-3 " style="font-weight: bold; font-size: 14px; 
+                                    width: max-content; 
+                                          color: #000000 !important;">
+                                          {% if s.is_reserve == True %} 
+                                          <i class="fi fi-sr-heart-half-stroke d-flex justify-content-center flex-wrap align-content-center" ></i> Completar {% else %}  <i class="fi fi-sr-challenge d-flex justify-content-center flex-wrap align-content-center"></i> Reservar
+                                          {% endif %}
+                                    </button>
+                              </a>
+                        {% endif %}
                               <span class=" w-100 d-flex  align-content-center text-white-50">
                                     {% if s.is_reserve %}
                                           {% if s.debit_mount  != 0 %}
                                                 <span class="estado-monto rounded-end-3"><strong 
                                                       style="font-size: 12px;">Debe:  </strong> ${{ s.debit_mount|intcomma }}.00</span>
-                                                <span class="estado-monto rounded-start-3"><strong 
+                                                <span class="estado-monto rounded-start-3 me-2"><strong 
                                                       style="font-size: 12px;">Abonó:  </strong>${{ s.mount|intcomma }}.00</span>
                                           {% endif %}
                                     {% endif %} 
                               </span>
-                              {% if s.payment %}
-                                    <a href="{% url "estudios:estudios" s.id %}">
-                                          <button id='reserve-{{ s.id }}'  class="bg-warning rounded-start-5 border-0 rounded-end-5 p-2 me-2 ps-3 pe-3  text-black " style="font-weight: bold; font-size: 14px;">
-                                                Teminar
-                                          </button>
-                                    </a>
-                              {% else %}
-                                    <a href="{% url "estudios:sale-reserver" s.id %}" class="m-1">
-                                          <button id='reserve-{{ s.id }}' 
-                                                class="text-white  border-0 rounded-4 p-2 ps-3 pe-3 " style="font-weight: bold; font-size: 12px; 
-                                                background-color: #2f2f2f; border: 1px solid #5b5b5b86;">
-                                                {% if s.is_reserve == True %} 
-                                                      Completar {% else %}  Reservar
-                                                {% endif %}
-                                          </button>
-                                    </a>
-                              {% endif %}
                         </div>
             </div>
 

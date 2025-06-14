@@ -21,11 +21,12 @@
                    {% if not object.is_reserve %}
                         background-color: #101010 !important;
                   {% endif %}
+                  max-width: 590px;
             border: 2px solid rgba(63, 63, 63, 0.553); transition: 0.4s ease-out;"
-            class="p-3 position-relative">
+            class="p-3 position-relative w-100">
             {% include 'sale/components/note.html' %}
         
-            <form method="post" style="max-width: 490px;" class="text-white" >
+            <form method="post" style="" class="text-white w" >
                   {% csrf_token %}
                   <div class="d-flex mb-3">
                         <div class="d-flex flex-wrap align-content-center ">
@@ -100,10 +101,9 @@
             <hr class="text-white-50">
             <h5 style="font-size: 16px;" class='text-white m-0 ms-1 mb-2'>
                   ¿Deseas eliminar esta reserva ?</h5>
-                  <h6 style="font-size: 14px; background-color: #191919;" 
+                  <h6 style="font-size: 14px; text-align: justify; background-color: #191919;" 
                   class="text-white-50 p-3 rounded-4" >
-                  
-                  <i class="fi fi-sr-info me-2 ms-2" style="font-size: 18px;"></i>
+            
                   Esta acción es irreversible, una vez eliminada no podrás recuperarla, los movimientos de pagos realizados previeamente en caja no sera afectados, pero no podrás ver la reserva mas en el pos o en el historial de reservas
             </h6>
                   <div class="mt-2">
