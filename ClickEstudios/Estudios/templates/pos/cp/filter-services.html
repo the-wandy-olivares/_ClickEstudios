@@ -1,8 +1,12 @@
 <style>
       .btn-pos button {
             width: max-content;
-            height: 2.8rem;
+            height: 2.2rem;
             text-align: center;
+      }
+      .btn-pos button:hover {
+            background-color: #252525 !important;
+            color: rgba(255, 255, 255, 0.786) !important;
       }
       #buscador::placeholder {
             color: #000000;
@@ -23,41 +27,39 @@
             transform-origin: top; 
       }
 </style>
-<div class="btn-pos   d-flex">
-      <button onclick="ShowFilterCitas()"
-      class="btn d-flex  change-section-citas   border-0   ms-1 me-1 p-2 pe-4 ps-4 rounded-5 "
-      style="width: 9rem; font-weight: bold; display:snone; background-color: #191919;
-      border: 1px solid rgba(255, 255, 255, 0.786) ;color: rgba(255, 255, 255, 0.786)  " >
-
-
-<i class="fi fi-sr-search me-2 d-flex justify-content-center align-content-center flex-wrap" ></i> <span style="margin-top: 2px;">Buscador</span>
-      </button>
-      
-      <!-- <input type="text"  id="buscador"
-      class="border-0 text-center  me-1" placeholder="Buscador"
-      style="background-color:  #ffc107 !important; border-radius: 2rem; 
-      height: 2.4rem; color: rgb(0, 0, 0) !important; width: 10rem ;
-      outline: none !important;"> -->
-      <button onclick="OpenServicesChoices()" 
-            class="btn btn-open-services ps-4 pe-4 rounded-5 border-0"
-            style="font-weight: bold;   transition: 0.5s; background-color: #191919;color: rgba(255, 255, 255, 0.786) " >
-            <i class="fi fi-sr-box-open-full"></i>
-            Servicos
-      </button>
-      <button onclick="window.location.href= '{% url "estudios:fast-sale" %}' "  
-            class="btn mt-0 ms-1 me-1  ps-4 pe-4 ms-0   p-0 ps-2 pe-0 rounded-5 d-flex flex-wrap align-content-center text-center" style="font-size: 14px; font-weight: bold; width: 10rem; 
-            background-color: #191919 !important;  color: rgba(255, 255, 255, 0.786) ;">
-            <i class="fi fi-sr-point-of-sale-bill"></i>
-            Venta rapida
-      </button>
-      <button onclick="window.location.href= '{% url "estudios:gastos-create" %}' "  
-            class="btn  border-0  d-flex flex-wrap align-content-center justify-content-center  ps-4 pe-4 rounded-5 " 
-            style="font-size: 14px; font-weight: bold; color: #ffffffc8; background-color: #191919;">
-            <i class="fi fi-sr-wallet-money  " 
-          ></i>
-            Gastos
-      </button>
-</div>
+<section class="d-flex flex-wrap w-100 justify-content-start">
+      <div class="w-100">
+            <!-- <span class="reloj show-reloj font-inter  end-0 me-3 z-3 mt-1 mb-3 d-flex justify-content-center align-content-center flex-wrap text-white"  
+            style="font-size: 18px;" ></span> -->
+      </div>
+      <div class="btn-pos d-flex " style="background-color: #191919; border-radius: 2rem; padding: 0.4rem;">
+            <button onclick="ShowFilterCitas()"
+            class="btn d-flex  change-section-citas   border-0 me-1  pe-4 ps-4 rounded-5 "
+            style="width: 9rem; font-weight: bold; display:snone; background-color: #252525;
+            border: 1px solid rgba(255, 255, 255, 0.786) ;color: rgba(255, 255, 255, 0.786)  " >
+                  <i class="fi fi-sr-search me-2 d-flex justify-content-center align-content-center flex-wrap" ></i> 
+                  <span style="margin-top: 0px;">Buscador</span>
+            </button>
+            <button onclick="OpenServicesChoices()" 
+                  class="btn btn-open-services ps-4 pe-4 rounded-5 border-0"
+                  style="font-weight: bold;   transition: 0.5s; background-color: #191919;color: rgba(255, 255, 255, 0.786) " >
+                  <i class="fi fi-sr-box-open-full"></i>
+                  Servicos
+            </button>
+            <button onclick="window.location.href= '{% url "estudios:fast-sale" %}' "  
+                  class="btn mt-0 ms-1 me-1  ps-4 pe-4 ms-0   p-0 ps-2 pe-0 rounded-5 d-flex flex-wrap align-content-center text-center" style="font-size: 14px; font-weight: bold; width: 10rem; 
+                    color: rgba(255, 255, 255, 0.786) ;">
+                  <i class="fi fi-sr-point-of-sale-bill"></i>
+                  Venta rapida
+            </button>
+            <button onclick="window.location.href= '{% url "estudios:gastos-create" %}' "  
+                  class="btn  border-0  d-flex flex-wrap align-content-center justify-content-center  ps-4 pe-4 rounded-5 " 
+                  style="font-size: 14px; font-weight: bold; color: #ffffffc8; background-color: #191919; width: max-content;">
+                  <i class="fi fi-sr-wallet-money  " ></i>
+                  Gestionar gastos
+            </button>
+      </div>
+</section>
 
 
 <script>
@@ -69,9 +71,7 @@
 
             } else {
                   document.querySelector('.btn-open-services').classList.add('text-black', 'bg-warning', )
-
-                  
-                  
+     
             }
 
             if (!document.querySelector('.div-dropdown').classList.contains('d-none')) {

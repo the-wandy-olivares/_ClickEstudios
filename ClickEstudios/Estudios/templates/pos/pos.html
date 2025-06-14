@@ -197,9 +197,9 @@
                               {% endfor %}
                         </div>
                   </div>
-                        <i class="fi fi-sr-clock-desk text-white position-absolute end-0  z-3 show-reloj" style='margin-right:7.6rem; 
-                        margin-top:0.6rem;'></i>
-                  <span class="reloj show-reloj font-inter position-absolute end-0 me-3 z-3 mt-2 d-flex justify-content-center align-content-center flex-wrap text-white"  
+                        <!-- <i class="fi fi-sr-clock-desk text-white position-absolute end-0  z-3 show-reloj" style='margin-right:7.6rem; 
+                        margin-top:0.6rem;'></i> -->
+                  <span class="reloj show-reloj font-inter position-absolute end-0 me-4 z-3 mt-2 d-flex justify-content-center align-content-center flex-wrap text-white"  
                   style="font-size: 18px;" ></span>
                   <div  style="transition: 1s;" class=' div-filter d-flex  w-100 z-2 '>
                         {% include "pos/cp/filter-services.html" %}
@@ -211,10 +211,10 @@
                         </div>
                   {% endif %}
                   <!--Seccion de citas no confirmadas-->
-                  <section class="section-citas-no-confirm   h-50 ">
-                        <div style="min-width: 520px; cursor: pointer; border: 0px solid rgb(47, 47, 47); border-radius: 2rem;" 
-                              class=' text-white m-2 shadow-sm  mt-0 d-flex justify-content-start align-content-center flex-wrap'>
-                              <h6 class="w-100 text-start m-0 mt-5"
+                  <section class="section-citas-no-confirm   " style="height: 45vh;">
+                        <div style="min-width: 520px; cursor: pointer; border: 0px solid rgb(47, 47, 47); border-radius: 2rem; " 
+                              class=' text-white  m-2 shadow-sm  mt-0 d-flex justify-content-start align-content-center flex-wrap'>
+                              <h6 class="w-100 text-start m-0 mt-3"
                                     style="font-weight: bold; font-size: 16px;">
                                     Reservas no confirmadas
                               </h6>
@@ -234,7 +234,7 @@
                         {% endif %}
                   </section>
                   <!--Seccion de citas confimadas-->
-                  <section class="section-citas-confirm  mt-3  h-50">
+                  <section class="section-citas-confirm  mt-3  " style="height: 45vh;" >
                         {% if sales_reservers %}
                         <hr class="text-white-50 me-5 ms-5">
                         <div class=' d-flex  overflow-auto  position-relative  sales-reservers ' >
@@ -267,7 +267,7 @@
                    const ampm = hours >= 12 ? 'pm' : 'am';
                   hours = hours % 12;
                   hours = hours ? hours : 12; // the hour '0' should be '12'
-                  const strTime = month + ' ' + hours + ':' + (minutes < 10 ? '0' + minutes : minutes)   + ' ' + ampm;
+                  const strTime =   hours + ':' + (minutes < 10 ? '0' + minutes : minutes)   + ' ' + ampm;
                   reloj.textContent =  strTime;
                   
             }
