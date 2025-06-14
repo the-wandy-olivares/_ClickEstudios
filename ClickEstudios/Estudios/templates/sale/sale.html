@@ -55,7 +55,7 @@
                   {% include 'sale/components/note.html' %}
 
                   
-                  <a href="{% url "estudios:sale-delete" s.id %}">
+                  <a href="{% url "estudios:sale-delete" s.id %}" onclick="PreventSend(this.id)" id="delete-sale-{{ s.id }}">
                         <i class="fi fi-sr-delete position-absolute d-none top-0 end-0" style="font-size: 24px;"></i>
                   </a>
 
