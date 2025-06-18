@@ -33,7 +33,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&display=swap" rel="stylesheet">
 <section class="section-escritorio-nav d-none ">
       <div class="nav-escritorio m-1 mt-0 position-relative">
-            <i  onclick="TypeNav()" class="show-arrow d-none fi fi-ss-arrow-circle-left position-absolute  end-0 z-3 text-white-50 p-2 " style="cursor: pointer; font-size: 25px; top: 17%;"></i>
+            <i  onclick="TypeNav()" class="show-arrow-1 d-none fi fi-ss-arrow-circle-left position-absolute  end-0 z-3 text-white-50 p-2 " style="cursor: pointer; font-size: 25px; top: 17%;"></i>
             
             {% include "nav/new-nav/cp/nav-links.html" %}
             {% include "nav/new-nav/cp/info.html" %}
@@ -61,10 +61,10 @@
 
       <script>
       document.querySelector('.nav-escritorio').addEventListener('mouseover', function() {
-            document.querySelector('.show-arrow').classList.remove('d-none');
+            document.querySelector('.show-arrow-1').classList.remove('d-none');
       });
-
+      
       document.querySelector('.nav-escritorio').addEventListener('mouseout', function() {
-            document.querySelector('.show-arrow').classList.add('d-none');
+            document.querySelector('.show-arrow-1').classList.add('d-none');
       });
       </script>
