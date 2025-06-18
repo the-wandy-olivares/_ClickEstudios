@@ -54,13 +54,16 @@
             <div class="d-flex  overflow-auto mb-4 ds d-none" style="height: 0px;">
                   {% include "plan/plan-list.html" %}
             </div>
-            <div class="mt-3 w-100 mb-1">
+            <div class="mt-3 w-100 mb-1 d-flex">
                   <a onclick="window.history.back()" class="btn border-0 btn-secondary accordion bg-transparent rounded-4  align-content-center d-flex flex-wrap  text-white-50" style="font-weight: bold;"> 
                         <i class="fi fi-sr-left align-content-center d-flex flex-wrap me-2 "></i> Atras
                   </a>
+                  <button onclick="toggleMoments()" class="btn  btn-danger mt-1 p-2  ps-4 pe-4 text-white-50 ps-3 pe-3 rounded-5 border-0" style='font-weight: bold; background-color: #191919;'>
+                        Mostrar momentos
+                  </button>
             </div>
 
-            <div   class='text-warning w-100 overflow-auto align-content-start-0 mb-5 justify-content-center   '>
+            <div   class='text-warning d-none w-100 overflow-auto align-content-start-0 mb-5 justify-content-center  show-moments-service '>
                   <div class="d-flex justify-content-center flex-wrap w-100 p-2">
                         {% if moments %}
                               {% for moment in moments %} 
@@ -148,6 +151,20 @@ setTimeout(() => {
             element.style.height = 'auto';
       }, 10);
 }, 0);
+
+function toggleMoments() {
+    const momentsSection = document.querySelector('.show-moments-service');
+    momentsSection.classList.toggle('d-none');
+    momentsSection.style.transition = 'transform 0.5s ease-out, opacity 0.5s ease-out';
+    momentsSection.style.transform = 'translateY(-20px)';
+    momentsSection.style.opacity = '0';
+
+    // For the animation to take effect
+    setTimeout(() => {
+        momentsSection.style.transform = 'translateY(0)';
+        momentsSection.style.opacity = '1';
+    }, 10);
+}
 
 </script>
 {% endblock  %}
