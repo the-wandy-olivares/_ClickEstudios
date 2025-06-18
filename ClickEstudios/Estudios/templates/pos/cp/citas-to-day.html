@@ -1,0 +1,10 @@
+<style>
+
+</style>
+<div class="position-fixed bottom-0 w-100 d-flex justify-content-end z-2">
+      <select class="form-select bg-warning text-black bold me-3 rounded-5 mb-2" style="width: max-content;" onchange="location.href='?filter=' + this.value;">
+            <option value="today" {% if filter_option == 'today' %}selected{% endif %}> Para hoy </option>
+            <option value="tomorrow" {% if filter_option == 'tomorrow' %}selected{% endif %}> Mañana </option>
+            <option value="all" {% if filter_option == 'all' %}selected{% endif %}> Todas </option>
+      </select>
+</div>
