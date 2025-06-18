@@ -52,7 +52,7 @@
                   border-radius: 2.8rem; cursor: pointer; " class='  m-2 w-100 p-2 container-sale ms-0 shadow-sm    position-relative '>
                   {% include 'sale/components/note.html' %}
 
-                  
+
                   <a href="{% url "estudios:sale-delete" s.id %}" onclick="PreventSend(this.id)" id="delete-sale-{{ s.id }}">
                         <i class="fi fi-sr-delete position-absolute d-none top-0 end-0" style="font-size: 24px;"></i>
                   </a>
