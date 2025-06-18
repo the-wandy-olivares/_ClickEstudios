@@ -4,67 +4,31 @@
             width: 22.5rem;
             height: 100dvh;
             overflow-x: hidden;
-            /* overflow-y: scroll; */
       }
-      .section-escritorio-nav .nav-escritorio {
-            /* background-color: aliceblue; */
-            width: 95%;
-            height:100%;
-            /* margin: 0.1rem; */
-            overflow: auto;
-            /* margin-right: 0rem; */
-            margin-bottom: 0;
-            border-radius: var(--border-radius-2);
-            /* border-bottom-left-radius: 5px !important;˝
-            border-bottom-right-radius: 5px !important; */
-      }
-      .section-escritorio-nav .perfil {
-            background-color: var(--bg-secundario);
-            width: 95%;
-            height: 5%;
-            margin: 1rem;
-            margin-top: 0px;
-            border-radius: var(--border-radius-2);
+      .show-arrow-1:hover {
+            transform: scale(1.2);
       }
 </style>
 <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-straight/css/uicons-solid-straight.css'>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&display=swap" rel="stylesheet">
-<section class="section-escritorio-nav d-none ">
-      <div class="nav-escritorio m-1 mt-0 position-relative">
-            <i  onclick="TypeNav()" class="show-arrow-1 d-none fi fi-ss-arrow-circle-left position-absolute  end-0 z-3 text-white-50 p-2 " style="cursor: pointer; font-size: 25px; top: 17%;"></i>
-            
-            {% include "nav/new-nav/cp/nav-links.html" %}
-            {% include "nav/new-nav/cp/info.html" %}
-            <div class="w-100 d-flex justify-content-center p-1 mb-5 pb-5"
-                  style="font-family: Delius Swash Caps, cursive; font-weight: 400;">
-                  <div style="font-size: 14px;  
-                        height: max-content; border-radius: 3rem;
-                        font-family: Delius Swash Caps, cursive;" 
-                        class="text-white-50  p-3">
-                        <h6 class="text-white-50 text-uppercase text-start  m-0  mt-0" 
-                              style=" font-family: Delius Swash Caps,
-                              cursive; font-size: 12px">
-                              <strong>V</strong>:  Negra ( 1.0.1)
-                        </h6>
-                        <hr>
-                        <p style="font-family: Delius Swash Caps, cursive; 
-                              font-size: 12px; text-align: justify !important;">
-                               " Se insinúa entre bordes suaves y sombras limpias,
-                               donde cada transición es un suspiro,
-                               y cada espera, una coreografía silenciosa "
-                        </p>
-                  </div>
-            </div>
-      </div>
+<section class="section-escritorio-nav d-none p-1 position-relative">
+      <i  onclick="TypeNav()" 
+      class="show-arrow-1 d-none fi fi-ss-arrow-circle-left position-fixed  z-3 text-white-50 p-2 " 
+      style="cursor: pointer; font-size: 20px; top: 17%; left: 20rem;"></i>
+      {% include "nav/new-nav/cp/nav-links.html" %}
+      {% include "nav/new-nav/cp/info.html" %}
+      <h6 class="text-white-50 w-100  text-uppercase text-center " 
+            style=" font-family: Delius Swash Caps, cursive; font-size: 12px">
+            <strong>V</strong>:  Negra ( 1.0.1)
+      </h6>
+</section>
 
-      <script>
+<script>
       document.querySelector('.nav-escritorio').addEventListener('mouseover', function() {
             document.querySelector('.show-arrow-1').classList.remove('d-none');
       });
-      
+
       document.querySelector('.nav-escritorio').addEventListener('mouseout', function() {
             document.querySelector('.show-arrow-1').classList.add('d-none');
       });
-      </script>
+</script>

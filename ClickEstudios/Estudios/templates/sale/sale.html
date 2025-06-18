@@ -21,12 +21,12 @@
             margin-right: 0.3rem;
       }
       .estado-monto {
-            background-color: #202020;
+            background-color: #20202000;
             padding: 0.5rem 0.9rem;
-            margin: 0.1rem 0.1rem;
+            /* margin: 0.1rem 0.1rem; */
             border-radius: 2rem;
-            width: 100%;
-            text-align: center;
+            width: max-content;
+            text-align: end;
       }
       @media (min-width: 600px) {
             .container-sale {
@@ -44,128 +44,138 @@
             background-color: #ffc107 !important;
             color: #000000 !important;
       }
+      .container-sale:hover {
+            
+            transform: scale(1.02);
+      }
 </style>
-            <div data-aos="fade-left"  style="
-                  border: 2px solid #2f2f2f;color: #ffffffcf ;
-                  height: max-content; max-width: 410px; 
-                  {% if not s.is_reserve %}
-                        background-color: #101010 !important;
-                  {% endif %}
-                  border-radius: 2.8rem; cursor: pointer; " class='  m-2 w-100 p-2 container-sale ms-0 shadow-sm    position-relative bg-white bg-opacity-10'>
-                  {% include 'sale/components/note.html' %}
+            <div style="
+                  border: 0px solid #2f2f2f92;color: #ffffffcf ;
+                  height: max-content; max-width: 410px;  transition: 0.3s;
+                  background-size: contain; background-repeat: no-repeat; 
+                  background-position: top;
+                  {% if s.img %} 
+                        background-image: url({{s.img.url}}); 
+                   {% endif %}
+                  border-radius: 2.8rem; cursor: pointer; " class='  m-2 w-100  container-sale ms-0 shadow-sm    position-relative '>
+                  <section class="p-2" style=" -webkit-backdrop-filter: blur(70px) !important;
+                  backdrop-filter: blur(70px) !important;   border-radius: 2.8rem;
+                  background: linear-gradient(to bottom, #10101086, #101010da), linear-gradient(to top,#1010107d , #10101081); ">
+                        {% include 'sale/components/note.html' %}
 
-                  
-                  <a href="{% url "estudios:sale-delete" s.id %}" onclick="PreventSend(this.id)" id="delete-sale-{{ s.id }}">
-                        <i class="fi fi-sr-delete position-absolute d-none top-0 end-0" style="font-size: 24px;"></i>
-                  </a>
-
-                        <div class='d-flex flex-wrap w-100' >
-                              <a {% if s.pk_plan %} href="{% url "estudios:sale-update" s.id %}"  {% endif %}  class="position-relative d-flex">
-                                    <div class="d-flex flex-wrap align-content-center">
-                                          {% if s.img %}
-                                          <img src="{{s.img.url}}" 
-                                                style='width: 70px; height: 70px;' class='rounded-circle object-fit-cover mt-1 ms-2 me-3'>
-                                          {% else %}
-                                                <i class="bi bi-file-earmark-image-fill mt-3 ms-3" 
-                                                style="font-size: 30px;"></i>
-                                          {% endif %}
-                                    </div>
-                                    <div class="d-flex flex-wrap align-content-center">
-                                          <strong style='font-size: 16px; text-transform: uppercase; '>
-                                                {{s.name_plan}}
-                                          </strong>
-                                          <span class="w-100" style="font-size: 14px;">
-                                                RD${{ s.price_plan|intcomma }}.00
-                                          </span>
-                                    </div>
-                              </a>
-                              <span class='w-100 mt-4 ps-3 datos-cliente' >
-                                           <p class="mb-0">
-                                          <strong class="text-capitalize " style="font-weight: bold; font-size: 20px;">
-                                                {% if s.is_cliente %}
-                                                      {{ s.name }} 
+                        <a href="{% url "estudios:sale-delete" s.id %}" onclick="PreventSend(this.id)" id="delete-sale-{{ s.id }}">
+                              <i class="fi fi-sr-delete position-absolute d-none top-0 end-0" style="font-size: 24px;"></i>
+                        </a>
+      
+                              <div class='d-flex flex-wrap w-100' >
+                                    <a {% if s.pk_plan %} href="{% url "estudios:sale-update" s.id %}"  {% endif %}  class="position-relative d-flex">
+                                          <div class="d-flex flex-wrap align-content-center">
+                                                {% if s.img %}
+                                                <img src="{{s.img.url}}" 
+                                                      style='width: 70px; height: 70px;' class='rounded-circle object-fit-cover mt-1 ms-2 me-3'>
                                                 {% else %}
-                                                {% if s.name_client %}
-                                                      {{ s.name_client|slice:":20" }}
+                                                      <i class="bi bi-file-earmark-image-fill mt-3 ms-3" 
+                                                      style="font-size: 30px;"></i>
                                                 {% endif %}
+                                          </div>
+                                          <div class="d-flex flex-wrap align-content-center">
+                                                <strong style='font-size: 16px; text-transform: uppercase; '>
+                                                      {{s.name_plan}}
                                                 </strong>
-                                          </p>
-                                          <p class="mb-0 ">
-                                                <strong>
-                                                      <i class="fi fi-sc-phone-flip"></i>
-                                                </strong> 
-                                                {% if s.phone_client %}
-                                                      {{ s.phone_client }} 
-                                                {% else %}
-                                                      (000) 000-0000 
-                                                {% endif %}
-                                          </p>
-                                          <p class="mb-1">
-                                                <strong>
-                                                      <i class="fi fi-sr-envelope"></i>
-                                                </strong> 
-                                                {% if s.email_client %}
-                                                      {{ s.email_client|slice:":49" }}
-                                                {% else %}
-                                                      @gmail.com
-                                                {% endif %}
-                                          </p>
-                                          <p class="mb-1">
-                                                <strong>
-                                                      <i class="fi fi-sr-daily-calendar"></i>
-                                                </strong> 
-                                                {% if s.date_choice %}
-                                                            {{ s.date_choice|date:"d/m/Y" }} -  {{ s.time }}
-                                                      {% else %}
-                                                            .../.../.../
-                                                {% endif %}
-                                          </p>
-                                    <div class='calendary{{s.id}} d-none position-absolute top-0 start-0 blur-20 bg-black bg-opacity-25 rounded-5   d-flex justify-content-center align-content-center flex-wrap '
-                                          style="width: 10rem; height: 10rem;">
-                                          {% if s.date_choice %}
-                                                <strong class="mb-3 text-white-50">
-                                                      {{ s.date_choice|date:"F" }} 
-                                                </strong>
-                                                <span class="text-white text-center p-2 ps-0 w-100" style="font-size: 90px; line-height:40px;">
-                                                      {{ s.date_choice|date:"d" }} 
+                                                <span class="w-100" style="font-size: 14px;">
+                                                      RD${{ s.price_plan|intcomma }}.00
                                                 </span>
-                                          {% endif %}
-                                    </div>
-                              </span>
-                                
+                                          </div>
+                                    </a>
+                                    <span class='w-100 mt-4 ps-3 datos-cliente' >
+                                                 <p class="mb-0">
+                                                <strong class="text-capitalize " style="font-weight: bold; font-size: 20px;">
+                                                      {% if s.is_cliente %}
+                                                            {{ s.name }} 
+                                                      {% else %}
+                                                      {% if s.name_client %}
+                                                            {{ s.name_client|slice:":20" }}
+                                                      {% endif %}
+                                                      </strong>
+                                                </p>
+                                                <p class="mb-0 ">
+                                                      <strong>
+                                                            <i class="fi fi-sc-phone-flip"></i>
+                                                      </strong> 
+                                                      {% if s.phone_client %}
+                                                            {{ s.phone_client }} 
+                                                      {% else %}
+                                                            (000) 000-0000 
+                                                      {% endif %}
+                                                </p>
+                                                <p class="mb-1">
+                                                      <strong>
+                                                            <i class="fi fi-sr-envelope"></i>
+                                                      </strong> 
+                                                      {% if s.email_client %}
+                                                            {{ s.email_client|slice:":49" }}
+                                                      {% else %}
+                                                            @gmail.com
+                                                      {% endif %}
+                                                </p>
+                                                <p class="mb-1">
+                                                      <strong>
+                                                            <i class="fi fi-sr-daily-calendar"></i>
+                                                      </strong> 
+                                                      {% if s.date_choice %}
+                                                                  {{ s.date_choice|date:"d/m/Y" }} -  {{ s.time }}
+                                                            {% else %}
+                                                                  .../.../.../
+                                                      {% endif %}
+                                                </p>
+                                          <div class='calendary{{s.id}} d-none position-absolute top-0 start-0 blur-20 bg-black bg-opacity-25 rounded-5   d-flex justify-content-center align-content-center flex-wrap '
+                                                style="width: 10rem; height: 10rem;">
+                                                {% if s.date_choice %}
+                                                      <strong class="mb-3 text-white-50">
+                                                            {{ s.date_choice|date:"F" }} 
+                                                      </strong>
+                                                      <span class="text-white text-center p-2 ps-0 w-100" style="font-size: 90px; line-height:40px;">
+                                                            {{ s.date_choice|date:"d" }} 
+                                                      </span>
+                                                {% endif %}
+                                          </div>
+                                    </span>
+                                      
+                                    {% endif %}
+                              </div>
+      
+                              <div class='d-flex justify-content-center ms-2 mt-4 detail-sale '>
+                                    {% if s.payment %}
+                                    <a href="{% url "estudios:estudios" s.id %}">
+                                          <button onclick="PreventSend(this.id)" id='reserve-{{ s.id }}'  class="bg-warning rounded-start-5 border-0 rounded-end-5 p-2 me-2 ps-3 pe-3  text-black " style="font-weight: bold; font-size: 14px;">
+                                                Teminar
+                                          </button>
+                                    </a>
+                              {% else %}
+                                    <a href="{% url "estudios:sale-reserver" s.id %}" class="m-1">
+                                          <button onclick="PreventSend(this.id)" id='reserve-{{ s.id }}' 
+                                                class="text-white pay border-0 d-flex rounded-5 p-2 ps-3 pe-3 " style="font-weight: bold; font-size: 14px; 
+                                          width: max-content; 
+                                                color: #000000 !important;">
+                                                {% if s.is_reserve == True %} 
+                                                <i class="fi fi-sr-heart-half-stroke d-flex justify-content-center flex-wrap align-content-center" ></i> Completar {% else %}  <i class="fi fi-sr-challenge d-flex justify-content-center flex-wrap align-content-center"></i> Reservar
+                                                {% endif %}
+                                          </button>
+                                    </a>
                               {% endif %}
-                        </div>
-
-                        <div class='d-flex justify-content-center ms-2 mt-3 '>
-                              {% if s.payment %}
-                              <a href="{% url "estudios:estudios" s.id %}">
-                                    <button onclick="PreventSend(this.id)" id='reserve-{{ s.id }}'  class="bg-warning rounded-start-5 border-0 rounded-end-5 p-2 me-2 ps-3 pe-3  text-black " style="font-weight: bold; font-size: 14px;">
-                                          Teminar
-                                    </button>
-                              </a>
-                        {% else %}
-                              <a href="{% url "estudios:sale-reserver" s.id %}" class="m-1">
-                                    <button onclick="PreventSend(this.id)" id='reserve-{{ s.id }}' 
-                                          class="text-white pay border-0 d-flex rounded-5 p-2 ps-3 pe-3 " style="font-weight: bold; font-size: 14px; 
-                                    width: max-content; 
-                                          color: #000000 !important;">
-                                          {% if s.is_reserve == True %} 
-                                          <i class="fi fi-sr-heart-half-stroke d-flex justify-content-center flex-wrap align-content-center" ></i> Completar {% else %}  <i class="fi fi-sr-challenge d-flex justify-content-center flex-wrap align-content-center"></i> Reservar
-                                          {% endif %}
-                                    </button>
-                              </a>
-                        {% endif %}
-                              <span class=" w-100 d-flex  align-content-center text-white-50">
-                                    {% if s.is_reserve %}
-                                          {% if s.debit_mount  != 0 %}
-                                                <span class="estado-monto rounded-end-3"><strong 
-                                                      style="font-size: 12px;">Debe:  </strong> ${{ s.debit_mount|intcomma }}.00</span>
-                                                <span class="estado-monto rounded-start-3 me-2"><strong 
-                                                      style="font-size: 12px;">Abonó:  </strong>${{ s.mount|intcomma }}.00</span>
-                                          {% endif %}
-                                    {% endif %} 
-                              </span>
-                        </div>
+                                    <span class=" w-100 d-flex justify-content-end  align-content-center text-white-50">
+                                          {% if s.is_reserve %}
+                                                {% if s.debit_mount  != 0 %}
+                                                      <span class="estado-monto rounded-end-3"><strong 
+                                                            style="font-size: 14px;">Debe:  </strong> ${{ s.debit_mount|intcomma }}.00</span>
+                                                      <span class="estado-monto rounded-start-3 me-2"><strong 
+                                                            style="font-size: 14px;">Abonó:  </strong>${{ s.mount|intcomma }}.00</span>
+                                                {% endif %}
+                                          {% endif %} 
+                                    </span>
+                              </div>
+                                             
+                  </section>
             </div>
 
 
@@ -185,4 +195,7 @@
                         }
                   });
             });
+
+
+
       </script>

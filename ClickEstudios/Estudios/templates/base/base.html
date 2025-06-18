@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{% static 'clickestudios/bootstrap-css/bootstrap.css' %}">
     
     <!--Icons-->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Boostrasp -->
     <link rel="icon" href="#" class='log-estudios'  media="(prefers-color-scheme: light)">
     <link rel="icon" href="#" class='log-estudios-black' media="(prefers-color-scheme: dark)">
@@ -26,7 +26,6 @@
 
   </head>
   <style>
-
 
 * {
       margin: 0;
@@ -74,12 +73,16 @@
       
     }
 
-
-    .blur-5 {
-      -webkit-backdrop-filter: blur(5px) !important;
-      backdrop-filter: blur(5px) !important;
-  }
- 
+    .blur-3 {
+		-webkit-backdrop-filter: blur(3px) !important;
+		backdrop-filter: blur(3px) !important;
+	}
+	
+	.blur-5 {
+		-webkit-backdrop-filter: blur(5px) !important;
+		backdrop-filter: blur(5px) !important;
+	}
+	
 
     .blur-10 {
         -webkit-backdrop-filter: blur(10px) !important;
@@ -101,13 +104,7 @@
       -webkit-backdrop-filter: blur(900px) !important;
       backdrop-filter: blur(900px) !important;
   }
-    .snowflake {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      background-color: rgba(255, 255, 255, 0.347);
 
-    }
     a {
 	text-decoration: none !important;
 	color: rgba(255, 255, 255, 0.894) !important;
@@ -182,62 +179,40 @@
                     transition: transform 0.3s ease-out;
             }
 
-
             .zoom-in-effect {
                     opacity: 1;
                     transform: scale(1.0) !important;
                     transition-property: opacity, transform;
                     transition-duration: 0.2s ;
-                    /* transition: ease-out;  ; */
                   }
                   
-           
-            .body main{
-              /* background: #3d3d3d !important; */
-                max-width: 1500px !important;
-            }
             .dvh-100 {
-              height: 100vh !important;
+          	    height: 100vh !important;
             }
 
   </style>
 
 <script src="http://localhost:35729/livereload.js"></script>
-<script src="http://tienda:35729/livereload.js"></script>
 <script src="http://127.0.0.1:35729/livereload.js"></script>
-<body class="p-0 body d-flex justify-content-center"
-	{% if request.user.config.mode %}  
-		style="background-color:#101010; "
-	{% else %} 
-		style="background-color: black;"
-	{% endif %} > 
+<body class="p-0 body d-flex justify-content-center overflow-hidden"
+		style="background-color:#101010; "> 
 	{% if  request.user.is_authenticated %}
-	{% if request.user.config.mode %} 
-		{% cache 500 user_config_mode request.user.config.mode %}
-			{% include "base/components/loads.html" %} 
-		{% endcache %}
-	{% endif %}
-		<main class='d-flex  z-3 position-absolute  position-relative top-0 p-0 w-100'  
-			style=" height: 100dvh; background-color:rgba(0, 0, 0, 0); 
-			transition: 0s !important;
-      ">
-			<div class='bg-grey nav-escritorio ms-0 me-0 z-3 mt-3' >  
-				    {% include "nav/nav.html" %} 
+		<main class='d-flex position-relative  w-100'  
+			style=" height: 100dvh;  
+			transition: 0s !important;  max-width: 1700px !important;">
+			<div class='bg-grey nav-escritorio '>  
 				    {% include "nav/new-nav/short-nav.html" %} 
 				    {% include "nav/new-nav/nav.html" %} 
 			</div>
-			<button onclick="BackSpace()" class="bg-transparent  border-0 ms-0  text-white-50 position-absolute bottom-0 start-0  mb-3 z-3 ms-3 btn-atras " style="font-size: 14px; font-weight: bold; margin-top: 20px;"> 
-				<i class="bi bi-arrow-left-circle-fill " style="font-size: 16px;"></i>   
-				<span> Atras </span>
-			</button>
 			{% block content %}
+				<!--Contenido-->
 			{% endblock %}
 			{% include "nav/nav-movile.html" %}
-      <div 
-        class="position-absolute sombra-down  w-100 bottom-0"
-        style=" min-height: 50px;
-        background: linear-gradient(to bottom, transparent, #101010), linear-gradient(to top,transparent , transparent);">
-      </div>
+			<div  class="position-absolute sombra-down  w-100 bottom-0"
+				style=" min-height: 50px;
+				background: linear-gradient(to bottom, transparent, #101010), linear-gradient(to top,transparent , transparent);">
+				<!--Sombra en el bottom-->
+			</div>
 		</main>
 	{% else %}
 		<script>
