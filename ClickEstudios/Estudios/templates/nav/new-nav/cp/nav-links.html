@@ -3,19 +3,15 @@
 <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
 <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-chubby/css/uicons-solid-chubby.css'>
 <style>
-      
+
       .nav-links {
             display: flex;
             flex-direction: column;
-            /* gap: 0.1rem; */
             padding: 0.4rem;
-            
       }
       .nav-links a {
-            /* background-color: var(--bg-secundario); */
             display: flex;
             align-items: center;
-            padding: 0px 0;
             text-decoration: none;
             color: #a5a5a5;
             font-size: 16px;
@@ -25,11 +21,8 @@
             transition: 0.2s;
       }
       .nav-links a:hover {
-            /* background-color: #101010; */
-            color: #ffc107 !important;
             font-weight: bold;
             transform: scale(1.01);
-            /* text-shadow: 2px 0px 10px rgba(255, 255, 255, 0.249); */
       }
       .nav-links a i {
             margin-right: 20px;
@@ -40,19 +33,15 @@
             width: 100%;
             font-size: 11px;
             color: #a5a5a5d6;
-
       }
       .div-icon {
-            /* background-color: var(--bg-secundario); */
             display: flex; flex-wrap: wrap; align-content: center;
       }
       .div-txt {
             display: flex;
             flex-wrap: wrap;
-            /* border: 1px solid #7e7e7e9f; */
             border-top: 0; border-left: 0; border-right: 0;
             width: 70%;
-            /* background-color: #2525259f; */
       }
       .nav-links h6 {
             margin: 0;
@@ -64,27 +53,16 @@
             background-color: #2525259f;
             padding: 0.5rem 0.9rem;
             border-radius: 1rem;
-            /* display: none; */
-      }
-      .nav-links  hr {
-            /* margin-top: 0.5rem; */
-            /* margin-bottom: 0.5rem; */
-            color: #a5a5a5a8;
-            display: none;;
       }
       .nav-links .sec-links {
-            /* background-color: var(--bg-secundario); */
-            /* padding: 0.5rem; */
             border-radius: 2rem;
-            /* margin-top: 0.9rem; */
       }
 </style>
 {% include "nav/new-nav/cp/head-company.html" %}
-<div class="nav-links ms-1 ">
+<div class="nav-links">
       <h6>
             Ventas y operaciones
       </h6>
-      <!-- <hr> -->
       <div class="sec-links">
             <a href="{% url 'estudios:dashboard' %}" class="dashboard">
                   <div class="div-icon">
@@ -141,8 +119,6 @@
       </div>
 
       <h6>Servicios y paquetes</h6>
-      <hr>
-
       <div class="sec-links">
             <a href="{% url 'estudios:service' %}" class="services">
                   <div class="div-icon">
@@ -169,7 +145,6 @@
       </div>
 
       <h6>Contenido y comunicación</h6>
-      <hr>
       <div class="sec-links">
             <a  href="{% url 'estudios:gallery' %}" class="galley-a">
                   <div class="div-icon">
@@ -196,7 +171,6 @@
       </div>
 
       <h6>Usuarios y ajustes</h6>
-      <hr>
       <div class="sec-links">
             <a href="{% url 'estudios:admin' %}"  class="admin">
                   <div class="div-icon">
@@ -231,22 +205,22 @@
       const enlaces = document.querySelectorAll('.nav-links a');
       enlaces.forEach(link => {
         link.addEventListener('mouseenter', () => {
-          const url = link.href;
-          // Solo precargar si no se ha hecho ya
-          if (!sessionStorage.getItem(url)) {
-            fetch(url, {
-              headers: {
-                'X-Requested-With': 'XMLHttpRequest' // Opcional, puedes manejarlo en el backend si quieres
-              }
-            }).then(response => {
-              if (response.ok) {
-                sessionStorage.setItem(url, 'precargado');
+            const url = link.href;
+            // Solo precargar si no se ha hecho ya
+            if (!sessionStorage.getItem(url)) {
+                  fetch(url, {
+                  headers: {
+                  'X-Requested-With': 'XMLHttpRequest' // Opcional, puedes manejarlo en el backend si quieres
+                  }
+                  }).then(response => {
+                  if (response.ok) {
+                  sessionStorage.setItem(url, 'precargado');
 
-              }
-            }).catch(err => {
-              console.warn('Error al precargar', url, err);
-            });
-          }
+                  }
+                  }).catch(err => {
+                  console.warn('Error al precargar', url, err);
+                  });
+             }
         });
       });
     </script>
