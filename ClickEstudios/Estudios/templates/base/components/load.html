@@ -1,0 +1,21 @@
+<style>
+</style>
+<section class="load vh-100 w-100 position-fixed z-3 blur-5 d-flex justify-content-center flex-wrap align-content-center"
+      style=" background: linear-gradient(to bottom, transparent, #101010), linear-gradient(to top,transparent , transparent);">
+      <div class="spinner-border d-block text-warning border-3" role="status">
+            <!-- <span class="">Loading...</span> -->
+      </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Hide the loading screen after a short delay
+    setTimeout(function() {
+        document.querySelector('.load').classList.add('d-none');
+}, 1000);
+
+window.addEventListener("beforeunload", function() {
+      document.querySelector('.load').classList.remove('d-none');
+});
+});
+</script>
