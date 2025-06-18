@@ -1,0 +1,124 @@
+<style>
+      .datos-cliente-notifi p {
+            font-size: 16px;
+      }
+</style>
+{% load humanize %}
+<div class="div-dropdown-notifi text-white p-3 d-none position-absolute top-0 end-0   blur-100 m-2   me-3 overflow-scroll overflow-x-hidden"
+style="z-index: 100; max-height: 70vh; box-shadow: 0px 0px 20px 4px  #101010; margin-top: 4rem !important;  max-width: 29rem; border-radius: 3rem;
+background-color:  #1919198a;">
+{% if sales%}
+  
+
+<div class="dropdown-content w-100 d-flex flex-wrap ">
+      {% for sale in sales %}
+            {% if forloop.counter > 1 %}
+                  <hr class="w-100 text-white-50">
+            {% endif %}
+            <li class="dropdown-item  w-100 mb-1  " style="width: max-content; min-width: 300px;">
+                  <a href="{% url "estudios:sale-delete" sale.id %}" onclick="PreventSend(this.id)" id="delete-sale-{{ sale.id }}">
+                        <i class="fi fi-sr-delete position-absolute d-none top-0 end-0" style="font-size: 24px;"></i>
+                  </a>
+                  <a  href="{% url "estudios:sale-reserver" sale.id %}">
+                        <div class="h-100 d-flex">
+                              <div class="align-content-center ">
+                                    {% if sale.img %}
+                                          <img src="{{sale.img.url}}" 
+                                                style='width: 70px; height: 70px;' class='rounded-circle object-fit-cover mt-1 ms-2 me-3'>
+                                          {% else %}
+                                                <i class="bi bi-file-earmark-image-fill mt-3 ms-3" 
+                                                style="font-size: 30px;"></i>
+                                          {% endif %}
+                              </div>
+                              
+                             <div class="d-flex flex-wrap align-content-start">
+                              
+                              <span class='w-100  ps-3 datos-cliente-notifi' >
+                                    <p class="mb-0">
+                                   <strong class="text-capitalize " style="font-weight: bold; font-size: 16px;">
+                                         {% if sale.is_cliente %}
+                                               {{ sale.name }} 
+                                         {% else %}
+                                         {% if sale.name_client %}
+                                               {{ sale.name_client|slice:":20" }}
+                                         {% endif %}
+                                      
+                                    {% endif %}
+                                         </strong>
+                                   </p>
+                                   <p class="mb-0  text-white-50">
+                                         <strong>
+                                               <i class="fi fi-sc-phone-flip"></i>
+                                         </strong> 
+                                         {% if sale.phone_client %}
+                                               {{ sale.phone_client }} 
+                                         {% else %}
+                                               (000) 000-0000 
+                                         {% endif %}
+                                   </p>
+                                   <p class="mb-1 text-white-50">
+                                         <strong>
+                                               <i class="fi fi-sr-envelope"></i>
+                                         </strong> 
+                                         {% if sale.email_client %}
+                                               {{ ssale.email_client|slice:":49" }}
+                                         {% else %}
+                                               @gmail.com
+                                         {% endif %}
+                                   </p>
+                                   <p class="mb-1 text-white-50">
+                                         <strong>
+                                               <i class="fi fi-sr-daily-calendar"></i>
+                                         </strong> 
+                                         {% if sale.date_choice %}
+                                                     {{ sale.date_choice|date:"d/m/Y" }} -
+                                                       {{ sale.time }}
+                                               {% else %}
+                                                     .../.../.../
+                                         {% endif %}
+                                   </p>
+                       </span>
+
+                             </div>
+                        </div>
+                  </a>
+            </li>
+
+          
+      {% endfor %}
+</div>
+{% else %}
+<div class="p-3">
+      <h6 class="bold text-center p-0 m-0">
+            No hay nuevas reservas
+      </h6>
+      <hr class="text-white-50">
+      <p class="text-white-50">
+            Por favor, revisa más tarde para nuevas actualizaciones
+      </p>
+</div>
+{% endif %}
+</div>
+
+<script>
+      function NoficationsCita(){
+            document.querySelector('.div-dropdown-notifi').classList.toggle('d-none')
+      }
+</script>
+<script>
+      document.querySelectorAll('.dropdown-item').forEach(container => {
+            container.addEventListener('mouseenter', () => {
+                  const deleteIcon = container.querySelector('.fi-sr-delete');
+                  if (deleteIcon) {
+                        deleteIcon.classList.remove('d-none');
+                  }
+            });
+
+            container.addEventListener('mouseleave', () => {
+                  const deleteIcon = container.querySelector('.fi-sr-delete');
+                  if (deleteIcon) {
+                        deleteIcon.classList.add('d-none');
+                  }
+            });
+      });
+</script>
