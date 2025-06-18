@@ -80,7 +80,7 @@ class Pos(TemplateView):
         context['service_choices'] = models.Service.objects.all()
         context['plan_choices'] = models.Plan.objects.all()
         context['sales'] = models.Sale.objects.filter(is_reserve=False,
-                            finalize=False).order_by('-id')
+                            finalize=False).order_by('-id')[:1]
         context['box_is_open'] = models.Box.objects.filter(open=True).exists() 
         context['today'] = timezone.now().date()
         context['time_now'] =  timezone.localtime(timezone.now(), timezone.get_current_timezone()).astimezone(timezone.get_fixed_timezone(-240)).replace(minute=0, second=0, microsecond=0).strftime('%H:%M')
@@ -93,9 +93,13 @@ class Pos(TemplateView):
             'today': models.Sale.objects.filter(date_choice=today),
             'hour': models.Sale.objects.filter(date_choice=today, time__gte=TIME_NOW),
             'past_hour': models.Sale.objects.filter(date_choice=today, time__lt=TIME_NOW),
+            'afternoon': models.Sale.objects.filter(date_choice=today, time__gte='12:00', time__lt='18:00'),
             'past': models.Sale.objects.filter(date_choice__lt=today),
             'future': models.Sale.objects.filter(date_choice__gt=today),
-            'all': models.Sale.objects.all(),
+            'tomorrow': models.Sale.objects.filter(date_choice=today + timezone.timedelta(days=1)),
+            # 'all': models.Sale.objects.all(),
+            'morning': models.Sale.objects.filter(date_choice=today, time__gte='06:00', time__lt='12:00'),
+            'week': models.Sale.objects.filter(date_choice__gte=today, date_choice__lt=today + timezone.timedelta(days=7)),
         }
         # Filtrar por reservas activas y no finalizadas
         sales_query = filters.get(filter_option, filters['hour']).filter(is_reserve=True, finalize=False)
@@ -103,7 +107,7 @@ class Pos(TemplateView):
 
     def get(self, request, *args, **kwargs):
         context = self.get_context_data()
-        filter_option = request.GET.get('filter', 'all')  # Si no se especifica, usa 'hour'
+        filter_option = request.GET.get('filter', 'today')  # Si no se especifica, usa 'hour'
         context['sales_reservers'] = self.filter_sales(filter_option)
         context['filter_option'] = filter_option
         return self.render_to_response(context)
