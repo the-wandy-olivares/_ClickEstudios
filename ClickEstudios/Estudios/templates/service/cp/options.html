@@ -12,7 +12,7 @@
                   background-color: rgba(70, 70, 70, 0.397);
                   margin-top: 0.2rem;
                   padding: 0.7rem;
-                  border-radius: 1rem;
+                  border-radius: 2rem;
                   font-weight: bold;
                   cursor: pointer;
             }
@@ -29,8 +29,9 @@
                     transition: transform 0.3s ease-out;
             }
 </style>
-<div id="options{{s.id}}" class="bg-white d-none  bg-opacity-10 p-2 moptions rounded-5 z-2 blur-50 w-100 position-absolute top-0 start-0 "
-      style="height: 10rem; max-width: 14rem; margin-top: 18.8rem;"> 
+<section id="options{{s.id}}" class="d-none p-1 moptions z-2 w-100 position-absolute top-0 start-0  d-flex flex-wrap justify-content-center align-content-end"
+style="height: 92%">
+      <div class="blur-10 p-2 rounded-5 w-100 bg-white bg-opacity-10" style="border: 2px solid rgba(0, 0, 0, 0.17);"> 
       <ul class="mt-1">
             <a href="{% url "estudios:service-update" s.id %}">
                   <li class="editar">  
@@ -60,4 +61,5 @@
             </a>
       </ul>
 </div>
+</section>
 

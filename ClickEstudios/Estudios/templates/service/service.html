@@ -60,7 +60,7 @@
             style='transition-duration: 1s;'>
                   {% if services %}
                         {% for s in services %}
-                                    <div class=" position-relative m-1 " style=' width: max-content;' >
+                                    <div class=" position-relative m-1 mt-2 " style=' width: max-content;' >
                                           {% include "service/cp/options.html" %}
                                           <div class="card-img-top w" style="
                                           background-position: center;
@@ -81,8 +81,8 @@
                                                       </span>
                                                 </button> 
                                                 <div>
-                                                      <h5 style='font-size: 18px; font-weight: bold; ' class='text-white-50 p-0 m-0 mt-2  ms-2 '>
-                                                            {{ s.name|truncatechars:10 }}
+                                                      <h5 style='font-size: 14px; font-weight: bold; ' class='text-white-50 p-0 m-0 mt-2  ms-2 '>
+                                                            {{ s.name|truncatechars:20}}
                                                       </h5>
                                                 </div>
                                           </div>

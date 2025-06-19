@@ -42,6 +42,12 @@
             transform: scale(1.2);
             transition: 0.3s ease-in-out;
       }
+      .nav-short-hover {
+            background-color: #ffffff00  !important;
+            color: #ffc107 !important;
+            transform: scale(1.2) !important;
+            transition: 0.3s ease-in-out !important;
+      }
       @media (max-width: 600px) { 
             .short-nav {
                   display: none  !important; 
@@ -118,4 +124,33 @@
     document.querySelector('.short-nav-section').addEventListener('mouseout', function() {
           document.querySelector('.show-arrow').classList.add('d-none');
     });
-    </script>
+
+
+    
+    const navLinks = document.querySelectorAll('.short-nav a');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            // Remueve la clase de todos los enlaces
+            navLinks.forEach(l => l.querySelector('i').classList.remove('nav-short-hover'));
+
+            // Agrega la clase solo al ícono del enlace clicado
+            const icon = this.querySelector('i');
+            icon.classList.add('nav-short-hover');
+
+            // Guarda en localStorage el identificador único del enlace activo
+            localStorage.setItem('activeShortNav', this.className);
+        });
+    });
+
+    // Restaurar estado desde localStorage
+    window.addEventListener('DOMContentLoaded', () => {
+        const activeClass = localStorage.getItem('activeShortNav');
+        if (activeClass) {
+            const activeLink = document.querySelector(`.short-nav a.${activeClass}`);
+            if (activeLink) {
+                activeLink.querySelector('i').classList.add('nav-short-hover');
+            }
+        }
+    });
+</script>

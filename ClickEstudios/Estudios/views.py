@@ -80,7 +80,7 @@ class Pos(TemplateView):
         context['service_choices'] = models.Service.objects.all()
         context['plan_choices'] = models.Plan.objects.all()
         context['sales'] = models.Sale.objects.filter(is_reserve=False,
-                            finalize=False).order_by('-id')[:1]
+                            finalize=False).order_by('-id')[:10]
         context['box_is_open'] = models.Box.objects.filter(open=True).exists() 
         context['today'] = timezone.now().date()
         context['time_now'] =  timezone.localtime(timezone.now(), timezone.get_current_timezone()).astimezone(timezone.get_fixed_timezone(-240)).replace(minute=0, second=0, microsecond=0).strftime('%H:%M')
