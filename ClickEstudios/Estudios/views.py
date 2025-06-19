@@ -107,7 +107,17 @@ class Pos(TemplateView):
 
     def get(self, request, *args, **kwargs):
         context = self.get_context_data()
-        filter_option = request.GET.get('filter', 'today')  # Si no se especifica, usa 'hour'
+
+        filter_option = request.GET.get('filter')
+        if not filter_option:
+            current_hour = timezone.localtime().hour
+            if 6 <= current_hour < 12:
+                filter_option = 'morning'
+            elif 12 <= current_hour < 18:
+                filter_option = 'afternoon'
+            else:
+                filter_option = 'today'
+        
         context['sales_reservers'] = self.filter_sales(filter_option)
         context['filter_option'] = filter_option
         return self.render_to_response(context)

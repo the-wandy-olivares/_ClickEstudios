@@ -11,45 +11,49 @@
             }
       }
 </style>
-<div data-aos='fade-up' style=' max-width: 40rem;
-      background-color: #202020; transition-duration: 2s;'  
-      class='d-flex  rounded-5 m-2 justify-content-center  p-1 align-content-center  mb-2  flex-wrap text-white shadow'>
-      <div  class=' div-svg w-100  p-3  d-flex  align-content-center  justify-content-start mb-2'>
-            <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" fill="currentColor" class="bi bi-x-diamond-fill" viewBox="0 0 16 16">
-            <path d="M9.05.435c-.58-.58-1.52-.58-2.1 0L4.047 3.339 8 7.293l3.954-3.954L9.049.435zm3.61 3.611L8.708 8l3.954 3.954 2.904-2.905c.58-.58.58-1.519 0-2.098l-2.904-2.905zm-.706 8.614L8 8.708l-3.954 3.954 2.905 2.904c.58.58 1.519.58 2.098 0l2.905-2.904zm-8.614-.706L7.292 8 3.339 4.046.435 6.951c-.58.58-.58 1.519 0 2.098z"/>
-            </svg>  
+<div data-aos='fade-up' style=' max-width:35rem;
+      background-color: #202020; transition-duration: 2s; border: 1px solid rgba(72, 72, 72, 0.668); border-radius: 2.5rem;'  
+      class='d-flex m-2 justify-content-center  p-3 align-content-center    flex-wrap text-white shadow'>
+      <div  class=' div-svg w-100  p-3  pt-1 d-flex  align-content-center  justify-content-start '>
+            <i class="fi fi-sr-info mt-3" style="font-size: 40px;"></i>
             <div class='w-100  d-flex ms-3 justify-content-start flex-wrap align-content-center'>
                   <h4 class='text-center m-0 p-0'>
                         <strong>
-                              Session expirada
+                              Caja actual, fuera de tiempo
                         </strong>
                   </h4>
                   <div class="w-100 text-start"> 
-                        {{ created_box }}
+                        Session fue expirada el {{ created_box|date:"d/m/Y" }}
                   </div>
             </div>
       </div>
-      <div  class='w-100 p-4 pt-1 align-content-center justify-content-start-0'>
-            <strong class='m-0 p-0'>
-                   Fecha actual - {{timemezone}}
-            </strong>
-            <p>
-                  Caja en uso desde el <strong>{{created_box}}</strong>, es recomendable abrir una nueva caja
+      <div  class='w-100  bg-black bg-opacity-10 p-3 rounded-5 d-flex flex-wrap align-content-center justify-content-start-0'>
+            <h6 class='m-0 p-0 w-100 text-white-50 bold' >
+                    Hoy es {{ timemezone|date:"d/m/Y" }}
+            </h6>
+            <p class="text-white-50 m-0 p-0" style="font-size: 14px;">
+                  Caja activa desde {{created_box}}, para una gestión más precisa, se sugiere abrir una nueva caja.
             </p>
+      </div>
+      <hr class="w-100  text-white-50">
+      <div class="  w-100  d-flex flex-wrap justify-content-start ">
+            <button class="btn  w-100  text-white  rounded-5 p-2 btn-abrir"
+                  style="max-width: 8rem; background-color: #181818;
+                         font-weight: bold; border: 0px solid rgba(84, 84, 84, 0.544);"
+                  onclick="window.location.href= '{% url "estudios:box-create" %}'">
+                  Abrir ahora
+            </button>
+            <style>
+                  .btn-abrir:hover {
+                        background-color: #191919 !important;
+                        border: none !important;
+                  }
+            </style>
+            <button class="btn  w-100 mb-0 btn-continue-box bg-opacity-10 text-white-50  rounded-5 p-2 ps-4 pe-4"
+             style="max-width: 11.5rem; font-weight: bold;">
+                    No, mas tarde 
+            </button>
 
-            <hr class="w-100 mt-1">
-            <div class="  w-100  d-flex flex-wrap justify-content-center mt-3">
-                  <button class="btn bg-white bg-opacity-10 w-100  text-white  rounded-5 p-2"
-                        style="max-width: 11rem; font-weight: bold; border: 1px solid rgb(84, 84, 84);"
-                        onclick="window.location.href= '{% url "estudios:box-create" %}'">
-                        Abrir nueva    
-                  </button>
-                  <button class="btn  w-100 mb-0 btn-continue-box bg-opacity-10 text-white-50  rounded-5 p-2 ps-4 pe-4"
-                   style="max-width: 11.5rem; font-weight: bold;">
-                          No, continuar 
-                  </button>
-
-            </div>
       </div>
 </div>
 

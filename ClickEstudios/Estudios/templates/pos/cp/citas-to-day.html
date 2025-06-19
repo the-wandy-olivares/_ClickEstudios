@@ -1,14 +1,16 @@
 <style>
 
 </style>
-<div class="position-fixed bottom-0 w-100 d-flex justify-content-end z-2">
-      <select class="form-select bg-warning text-black bold me-3 rounded-5 mb-2" style="width: max-content;" onchange="location.href='?filter=' + this.value;">
-            <option value="today" {% if filter_option == 'today' %}selected{% endif %}> Para hoy </option>
-            <option value="morning" {% if filter_option == 'morning' %}selected{% endif %}> Para esta mañana </option>
-            <option value="afternoon" {% if filter_option == 'afternoon' %}selected{% endif %}> Para esta tarde </option>
-            <option value="tomorrow" {% if filter_option == 'tomorrow' %}selected{% endif %}> Mañana </option>
-            <option value="week" {% if filter_option == 'week' %}selected{% endif %}> Para esta semana </option>
-            <!-- <option value="all" {% if filter_option == 'all' %}selected{% endif %}> Todas </option> -->
+<div class="position-absolute bottom-0 w-100 d-flex justify-content-end z-2 mb-2">
+      <select class="form-select bg-warning  text-black bold me-3 rounded-5 mb-2" 
+            style="width: max-content;" 
+            onchange="location.href='?filter=' + this.value;">
+            <option value="today" {% if filter_option == 'today' %}selected{% endif %}> ({{sales_reservers|length}}) Hoy </option>
 
+            <option value="morning" {% if filter_option == 'morning' %}selected{% endif %}> ({{sales_reservers|length}}) Esta mañana </option>
+            <option value="afternoon" {% if filter_option == 'afternoon' %}selected{% endif %}> ({{sales_reservers|length}}) Esta tarde </option>
+
+            <option value="tomorrow" {% if filter_option == 'tomorrow' %}selected{% endif %}>  ({{sales_reservers|length}}) Mañana </option>
+            <option value="week" {% if filter_option == 'week' %}selected{% endif %}> ({{sales_reservers|length}}) En esta semana </option>
       </select>
 </div>
