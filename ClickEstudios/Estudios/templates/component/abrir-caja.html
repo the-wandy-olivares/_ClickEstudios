@@ -11,25 +11,43 @@
             }
       }
 </style>
-<div data-aos='fade-in' style='transition-duration: 2s;'  
-      class='d-flex  rounded-5 justify-content-center p-2 align-content-center  mb-2 h-100 w-100 flex-wrap'>
-      <div class=' div-svg w-100 d-flex  align-content-center flex-wrap justify-content-start mb-4'>
-            <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" fill="currentColor" class="bi bi-x-diamond-fill" viewBox="0 0 16 16">
-            <path d="M9.05.435c-.58-.58-1.52-.58-2.1 0L4.047 3.339 8 7.293l3.954-3.954L9.049.435zm3.61 3.611L8.708 8l3.954 3.954 2.904-2.905c.58-.58.58-1.519 0-2.098l-2.904-2.905zm-.706 8.614L8 8.708l-3.954 3.954 2.905 2.904c.58.58 1.519.58 2.098 0l2.905-2.904zm-8.614-.706L7.292 8 3.339 4.046.435 6.951c-.58.58-.58 1.519 0 2.098z"/>
-            </svg>  
+<section class="d-flex flex-wrap justify-content-center position-absolute top-0 end-0 z-3 vh-100 blur-5 align-content-center w-100" style="      background: linear-gradient(to bottom, transparent, #101010), linear-gradient(to top,#101010 , #10101081);">
+      <div data-aos='fade-down' style=' max-width:30rem;
+      background-color: #191919; transition-duration: 2s; border: 1px solid rgba(255, 255, 255, 0.082); border-radius: 2.5rem;'  
+      class='d-flex m-2 justify-content-center  p-3 align-content-center    flex-wrap text-white shadow'>
+
+      <div  class='w-100  bg-black bg-opacity-10 p-3 rounded-5 d-flex ' style="margin-top: 2px;">
+            <div class="d-flex flex-wrap align-content-center">
+                  <i class="fi fi-sr-safe-box me-3 ms-2 text-white-50" style="font-size: 40px;"></i>
+            </div>
+            <div class="d-flex align-content-center flex-wrap">
+                  <h5 class='m-0 p-0 w-100 text-white-50 bold text-uppercase' >
+                        Caja cerrada
+                  </h5>
+                  <p class="text-white-50 m-0 p-0" style="font-size: 14px;">
+                        Caja cerrada. No se pueden registrar más movimientos hasta que se abra una nueva.
+                  </p>
+            </div>
       </div>
-      <div  class='w-100 align-content-center justify-content-start-0'>
-            <strong class='m-0 p-0'>
-                   Caja cerrada 
-            </strong>
-            <p>
-                  Abre una seccion de caja para comenzar a registrar movimientos
-            </p>
-            <a href="{% url "estudios:box-create" %}" class="w-100 text-center mt-4">
-                  <button class="btn bg-white bg-opacity-10 text-white  rounded-5 p-2 ps-4 pe-4"
-                        style="max-width: 12rem;">
-                        Abrir caja 
-                  </button>
-            </a>
+      <!-- <hr class="w-100  text-white-50"> -->
+      <div class="  w-100  d-flex flex-wrap justify-content-start  mt-2">
+            <button class="btn  w-100 bg-black bg-opacity-10  text-white-50  rounded-5 p-2 btn-abrir"
+                  style="
+                   /* background-color: #181818; */
+                         font-weight: bold; border: 0px solid rgba(84, 84, 84, 0.544);"
+                  onclick="window.location.href= '{% url "estudios:box-create" %}'">
+                  Abrir ahora
+            </button>
+            <style>
+                  .btn-abrir:hover {
+                        background-color: #191919 !important;
+                        border: none !important;
+                  }
+            </style>
+
       </div>
 </div>
+
+</section>
+
+
