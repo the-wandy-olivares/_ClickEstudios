@@ -101,9 +101,9 @@
                   </div>
             </div>
       </div>
-      <div data-aos="fade-in" class="container-box w-100 m-2 text-white overflow-auto d-flex flex-wrap align-content-start  justify-content-center  rounded-5" 
-            style="transition: 1s;">
-            {% if is_open %}
+      <div  class="container-box w-100 position-relative m-2 text-white overflow-auto d-flex flex-wrap align-content-start  justify-content-center  rounded-0" 
+            >
+
             <div class="w-100 h-100 overflow-auto mt-3">
                         <div class="d-flex justify-content-start mb-3 " >
                               <div onclick="OpenSearchMove()" style="width: 2.5rem; height: 2.5rem;"
@@ -158,9 +158,10 @@
                              </div>
                         </div>
                   </div>
-            {% else %}
-                  {% include "component/abrir-caja.html" %}
-            {% endif %}
+                  {% if not is_open %}
+                    
+                        {% include "component/abrir-caja.html" %}
+                  {% endif %}
       </div>
       <script>
             function filterMovimientos(tipo) {

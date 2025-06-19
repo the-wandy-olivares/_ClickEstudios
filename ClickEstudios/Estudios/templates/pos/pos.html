@@ -139,8 +139,8 @@
             {% include "pos/cp/filter-citas.html" %}
       </section>
 
-{% if box_is_open  %}     
-      <section  class="overflow-auto overflow-x-hidden container-pos  position-relative w-100 bg-transparent   pb-5 ">
+
+      <section  class="overflow-auto rounded-0 overflow-x-hidden container-pos  position-relative w-100 bg-transparent   pb-5 ">
             <!--  Seleccionar servicios  -->
             {% include "pos/cp/drop.html" %}
             {% include "pos/cp/notifications-cita.html" %}
@@ -184,12 +184,12 @@
                               {%  include "pos/cp/card-aviso.html" %}
                   {% endif %}
             </section>
-      </section>
-      {% else %}
-            <div class="text-white">
+            {% if not box_is_open  %}     
                   {% include "component/abrir-caja.html" %}
-            </div>
-      {% endif %}
+            {% endif %}
+      </section>
+
+
       <script>
             function updateClock() {
                   const reloj = document.querySelector('.reloj');
