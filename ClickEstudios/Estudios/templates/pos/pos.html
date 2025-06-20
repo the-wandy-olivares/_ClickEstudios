@@ -156,8 +156,8 @@
       }
 </script>
 
-{% if box_is_open  %}     
-<section data-aos="fade-in" style="transition: 1s;" class="overflow-auto overflow-x-hidden container-pos w-100 bg-transparent p-2  pb-5 ">
+
+<section data-aos="fade-in" style="transition: 0s;" class="overflow-auto overflow-x-hidden container-pos w-100 bg-transparent p-2  pb-5  position-relative">
                   <!-- Seleccionar servicios -->
                   <div class="div-dropdown text-white p-3 rounded-5 d-none position-absolute top-0 start-0   blur-100 m-2   overflow-scroll overflow-x-hidden"
                         style="z-index: 100; max-height: 70vh; box-shadow: 0px 0px 20px 4px  #101010; margin-top: 4rem !important;  max-width: 30rem;
@@ -244,12 +244,8 @@
                         </div>
                         {% endif %} 
                   </section>
+                  {% include "component/abrir-caja.html" %}
       </section>
-      {% else %}
-      <div class="text-white">
-            {% include "component/abrir-caja.html" %}
-      </div>
-      {% endif %}
       <script>
             function updateClock() {
                   const reloj = document.querySelector('.reloj');
