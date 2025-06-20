@@ -2,10 +2,9 @@
 {% block content %}
       {% load humanize %}
 
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
       <style>
             .sombra-down {
                   display: none !important; 
@@ -19,16 +18,18 @@
                   color: #ffc107;
             }
             .section-escritorio-nav .pos  {
-                  font-weight: bold;
                   color: #ffc107 !important;
+                  font-weight: bold;
             }
+   
             .section-escritorio-nav .pos span {
                   color: #ffc107;
             }
+
             .font-inter {
-                  font-style: normal;
-                  font-size: 14px !important;
                   font-family: "Inter", sans-serif;
+                  font-size: 14px !important;
+                  font-style: normal;
             }
             .search {
                   border: 0;
@@ -49,14 +50,15 @@
             }
             .result-client a {
                   width: 100%;
+                  color: rgba(255, 255, 255, 0.67);
                   margin-left: 1rem;
                   text-transform: capitalize;
-                  color: rgba(255, 255, 255, 0.67);
             }
             .result-client .result-client:hover {
-                  font-weight: bold;
                   color: #ffc107 !important;
+                  font-weight: bold;
             }
+
             .div-filter  .btn {
                   font-size: 14px !important;
             }
@@ -75,15 +77,17 @@
                   .div-filter {
                         height: 3rem;
                         position:sticky !important;
-                        overflow: scroll !important;
                         bottom: 10.5rem !important;
+                        overflow: scroll !important;
+                        
+
                   }
                   .show-reloj {
                         display: none !important;
                   }
                   .sales-reservers, .sale-no-confirm {
-                        padding-bottom: 5rem;
                         flex-wrap: wrap !important; 
+                        padding-bottom: 5rem;
                   }
                   .div-filter-reservers {
                         display: flex;
@@ -92,8 +96,11 @@
 
                   .div-dropdown {
                         margin-top: 0rem !important; 
-                  }    
+                  }
+                
             }
+
+
             .btn-open-nav {
                   border-radius: 0px !important;
             }
@@ -104,92 +111,145 @@
                   transition: 0.3s;
             }
             .dropdown-item:hover {
-                  border-radius: 1.5rem;
-                  transform: scale(1.06);
                   background-color: #00000018 !important;
+                  transform: scale(1.06);
+                  border-radius: 1.5rem;
             }
             .buscador {
                   width: 100%;
-                  height: 3.4rem;
                   max-width: 20rem;
+                  height: 3.4rem;
                   border-radius: 1.5rem;
-                  outline: none !important;
                   background-color: #191919;
                   border: 2px solid #464646b9;
                   color: rgba(255, 255, 255, 0.553);
+                  outline: none !important;
             }
             .buscador::placeholder {
                   color: rgba(255, 255, 255, 0.648) !important;;
             }
-      </style>
+</style>
 
-      <section class=" {% if ask_due_box != True %} d-none {% else %} d-flex {% endif %}  position-absolute  justify-content-center align-content-center flex-wrap  z-3  vh-100 w-100 blur-10 ask_last_box-section">  
-            {% include "component/ask_last_box.html" %}
-      </section>
-
-      <section  class="position-absolute filter-cita  justify-content-center align-content-start d-none flex-wrap  z-3  vh-100 w-100 blur-10" style="background: linear-gradient(to bottom, transparent, #101010), linear-gradient(to top,#1010107d , #10101081);">  
-            <div class="d-flex justify-content-center w-100 pt-3">
-                  <i onclick="ShowFilterCitas()" class="fi me-4 text-white fi-sr-circle-xmark" style="font-size: 20px; margin-top: 15px;"></i> 
-                  <input type="text" id="buscador" class="buscador border-0 text-center  me-1" placeholder="Buscador de citas">
-            </div>
+<section class=" {% if ask_due_box != True %} d-none {% else %} d-flex {% endif %}  position-absolute  justify-content-center align-content-center flex-wrap  z-3  vh-100 w-100 blur-5 ask_last_box-section">  
+      {% include "component/ask_last_box.html" %}
+</section>
+<section  class="position-absolute filter-cita  justify-content-center align-content-start d-none flex-wrap  z-3  vh-100 w-100 blur-10" style="    background: linear-gradient(to bottom, transparent, #101010), linear-gradient(to top,#1010107d , #10101081);">  
+      <div class="d-flex justify-content-center w-100 pt-3">
+            <i  onclick="ShowFilterCitas()" class="fi me-4 text-white fi-sr-circle-xmark" style="font-size: 20px; margin-top: 15px;"></i> <input type="text" id="buscador" class="buscador border-0 text-center  me-1" placeholder="Buscador de citas ">
+      </div>
             <div class="result-citas d-flex mt-4 justify-content-center
-            flex-wrap overflow-auto"
-                  style="max-height: 90vh;">
+            flex-wrap overflow-auto" style="max-height: 90vh;">
+
             </div>
             {% include "pos/cp/filter-citas.html" %}
       </section>
+</section>
+<script>
+      function ShowFilterCitas(){
+            document.querySelector('.filter-cita').classList.toggle('d-none')
+            if (!document.querySelector('.filter-cita').classList.contains('d-none')) {
+                  document.querySelector('#buscador').focus();
+            }
+            else {
+                  document.querySelector('.result-citas').innerHTML = '';
+            }
+      }
+</script>
 
-
-      <section  class="overflow-auto rounded-0 overflow-x-hidden container-pos  position-relative w-100 bg-transparent   pb-5 ">
-            <!--  Seleccionar servicios  -->
-            {% include "pos/cp/drop.html" %}
-            {% include "pos/cp/notifications-cita.html" %}
-            {% include "pos/cp/citas-to-day.html" %}                  
-            {% if service_select %}
-                  <div class='mt-5'>
-                        {% include "service/service-select.html" %}
+{% if box_is_open  %}     
+<section data-aos="fade-in" style="transition: 1s;" class="overflow-auto overflow-x-hidden container-pos w-100 bg-transparent p-2  pb-5 ">
+                  <!-- Seleccionar servicios -->
+                  <div class="div-dropdown text-white p-3 rounded-5 d-none position-absolute top-0 start-0   blur-100 m-2   overflow-scroll overflow-x-hidden"
+                        style="z-index: 100; max-height: 70vh; box-shadow: 0px 0px 20px 4px  #101010; margin-top: 4rem !important;  max-width: 30rem;
+                        background-color:  #1919198a;">
+                        <div class="dropdown-content w-100 d-flex flex-wrap ">
+                              {% for s in service_choices %}
+                                    <li class="dropdown-item  w-100 mb-3  " style="width: max-content; min-width: 320px;">
+                                          <a href="{% url 'estudios:service-detail' s.id %}" >
+                                                <div class="h-100 d-flex">
+                                                      <div>
+                                                            <img src="{{s.img.url}}" width="70" height="85" class="dropdown-image object-fit-cover rounded-4 me-4 ms-1">
+                                                      </div>
+                                                      
+                                                     <div class="d-flex flex-wrap align-content-start">
+                                                      
+                                                            <strong style="font-size: 18px;">  
+                                                                  {{ s.name }}  
+                                                           </strong>
+                                                           <span class="w-100 text-white-50" 
+                                                            style="font-size: 14px;">
+                                                                  {{ s.date }}
+                                                           </span>
+                                                           {% if s.is_offer %} 
+                                                           <span class="badge bg-warning rounded-pill ps-3 pe-3 text-dark">
+                                                                 ¡ Ofertas del 
+                                                                 {% if s.mount > 0 %}
+                                                                       ${{ s.mount|floatformat:0|intcomma }} 
+                                                                {% else %}
+                                                                       {{ s.discount }}%
+                                                                 {% endif %}!
+                                                           </span>
+                                                           {% endif %}
+                                                     </div>
+                                                </div>
+                                          </a>
+                                    </li>
+                              {% endfor %}
+                        </div>
                   </div>
-            {% endif %}
-            <!--  Seccion de citas no confirmadas  -->
-            <section>
-                  <div  data-aos="fade-down" style="transition: 1s;" 
-                        class='  d-flex position-sticky top-0  w-100 z-2 blur-3  '>
+                        <!-- <i class="fi fi-sr-clock-desk text-white position-absolute end-0  z-3 show-reloj" style='margin-right:7.6rem; 
+                        margin-top:0.6rem;'></i> -->
+                  <span class="reloj show-reloj font-inter position-absolute end-0 me-4 z-3 mt-2 d-flex justify-content-center align-content-center flex-wrap text-white"  
+                  style="font-size: 18px;" ></span>
+                  <div  style="transition: 1s;" class=' div-filter d-flex  w-100 z-2 '>
                         {% include "pos/cp/filter-services.html" %}
-                        <span onclick="NoficationsCita()" 
-                              class=" font-inter position-absolute end-0 me-4 z-3 mt-2 d-flex justify-content-center position-relative align-content-center flex-wrap text-white"  
-                              style="font-size: 18px;" >
-                              <i class="fi fi-sr-bell text-white   z-2 " 
-                              style=' font-size: 20px;'></i>
-                              <span class="bg-warning p-2 z-2 d-flex justify-content-center flex-wrap align-content-center rounded-circle text-black position-absolute top-0 end-0"
-                              style="height: 1rem; width: 1rem;">
-                                    {{sales|length}}
-                              </span>
-                        </span>
                   </div>
-                  <h6 class="w-100 text-start m-0 mt-3 ms-2 text-white"
-                        style="font-weight: bold; font-size: 14px;">
-                        <i class="fi fi-sr-invite-alt"></i> Citas agendas
-                  </h6>
-                  <p class="parrafo-p m-3  ms-0 mt-0 mb-0  ms-2 p-2 ps-0 pb-0 pt-0 text-white-50" 
-                        style="text-align: justify;">
-                        Las citas confirmadas son aquellas que han sido verificadas y cuentan con algún tipo de abono realizado
-                  </p>
-                  {% if sales_reservers %}
-                        <div class="mt-1 overflow-auto sale-no-confirm   w-100 d-flex flex-wrap"  >
+                  <!-- Service select -->
+                  {% if service_select %}
+                        <div class='mt-5'>
+                              {% include "service/service-select.html" %}
+                        </div>
+                  {% endif %}
+                  <!--Seccion de citas no confirmadas-->
+                  <section class="section-citas-no-confirm   " style="height: 45vh;">
+                        <div style="min-width: 520px; cursor: pointer; border: 0px solid rgb(47, 47, 47); border-radius: 2rem; " 
+                              class=' text-white  m-2 shadow-sm  mt-0 d-flex justify-content-start align-content-center flex-wrap'>
+                              <h6 class="w-100 text-start m-0 mt-3"
+                                    style="font-weight: bold; font-size: 16px;">
+                                    Reservas no confirmadas
+                              </h6>
+                              <p class="parrafo-p m-3  ms-0 mt-0 mb-0  p-2 ps-0 pb-0 pt-0 text-white-50" 
+                                    style="text-align: justify;">
+                                    Citas no confirmadas son aquellas citas que aún no han sido verificadas y no se ha realizado ningún tipo de abono
+                              </p>
+                        </div>
+                        {% if sales %}
+                              <div class="mt-2 d-flex  overflow-auto sale-no-confirm">
+                                    {% for s in sales %}
+                                          {% include "sale/sale.html" %}
+                                    {% endfor %}
+                              </div>
+                              {% else %}
+                                    {%  include "pos/cp/card-aviso.html" %}
+                        {% endif %}
+                  </section>
+                  <!--Seccion de citas confimadas-->
+                  <section class="section-citas-confirm  mt-3  " style="height: 45vh;" >
+                        {% if sales_reservers %}
+                        <hr class="text-white-50 me-5 ms-5">
+                        <div class=' d-flex  overflow-auto  position-relative  sales-reservers ' >
                               {% for s in sales_reservers %}
                                     {% include "sale/sale.html" %}
                               {% endfor %}
                         </div>
-                        {% else %}
-                              {%  include "pos/cp/card-aviso.html" %}
-                  {% endif %}
-            </section>
-            {% if not box_is_open  %}     
-                  {% include "component/abrir-caja.html" %}
-            {% endif %}
+                        {% endif %} 
+                  </section>
       </section>
-
-
+      {% else %}
+      <div class="text-white">
+            {% include "component/abrir-caja.html" %}
+      </div>
+      {% endif %}
       <script>
             function updateClock() {
                   const reloj = document.querySelector('.reloj');
@@ -200,29 +260,20 @@
                   ];
 
                   const month = meses[now.getUTCMonth()];
+
                   let hours = now.getHours();
                   const minutes = now.getMinutes();
                   const seconds = now.getSeconds();
                    const ampm = hours >= 12 ? 'pm' : 'am';
                   hours = hours % 12;
-                  hours = hours ? hours : 12; 
+                  hours = hours ? hours : 12; // the hour '0' should be '12'
                   const strTime =   hours + ':' + (minutes < 10 ? '0' + minutes : minutes)   + ' ' + ampm;
                   reloj.textContent =  strTime;
                   
             }
+
             setInterval(updateClock, 1000);
             updateClock();
-      </script>
-      <script>
-            function ShowFilterCitas(){
-                  document.querySelector('.filter-cita').classList.toggle('d-none')
-                  if (!document.querySelector('.filter-cita').classList.contains('d-none')) {
-                        document.querySelector('#buscador').focus();
-                  }
-                  else {
-                        document.querySelector('.result-citas').innerHTML = '';
-                  }
-            }
       </script>
 {% endblock  %}
 
