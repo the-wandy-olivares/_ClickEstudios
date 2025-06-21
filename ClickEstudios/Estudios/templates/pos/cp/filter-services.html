@@ -29,8 +29,8 @@
 </style>
 <section class="d-flex flex-wrap w-100 justify-content-start">
       <div class="w-100">
-            <!-- <span class="reloj show-reloj font-inter  end-0 me-3 z-3 mt-1 mb-3 d-flex justify-content-center align-content-center flex-wrap text-white"  
-            style="font-size: 18px;" ></span> -->
+            <span class="reloj show-reloj font-inter position-absolute end-0 me-4 z-3 mt-2 d-flex justify-content-center align-content-center flex-wrap text-white"  
+            style="font-size: 18px;" ></span>
       </div>
       <div class="btn-pos d-flex " style="background-color: #191919; border-radius: 2rem; padding: 0.4rem;">
             <button onclick="ShowFilterCitas()"
@@ -80,10 +80,29 @@
 
       }
 </script>
+<!-- Reloj -->
+<script>
+      function updateClock() {
+            const reloj = document.querySelector('.reloj');
+            const now = new Date();
+            const meses = [
+            "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+            "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+            ];
 
+            const month = meses[now.getUTCMonth()];
 
+            let hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+             const ampm = hours >= 12 ? 'pm' : 'am';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+            const strTime =   hours + ':' + (minutes < 10 ? '0' + minutes : minutes)   + ' ' + ampm;
+            reloj.textContent =  strTime;
+            
+      }
 
-
-
-
-
+      setInterval(updateClock, 1000);
+      updateClock();
+</script>
