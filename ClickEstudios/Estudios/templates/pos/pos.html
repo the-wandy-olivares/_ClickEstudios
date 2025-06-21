@@ -160,7 +160,7 @@
 <section data-aos="fade-in" style="transition: 0s;" class="overflow-hidden overflow-x-hidden container-pos w-100 bg-transparent p-2  position-relative">
                   {% include "pos/cp/filter-services.html" %}
                   {% include "pos/cp/drop-d.html" %}
-                  <section class="section-citas-no-confirm  bg-white bg-opacity-10  overflow-auto  " style="height: 45vh;">
+                  <section class="section-citas-no-confirm    overflow-auto  " style="height: 45vh;">
                         <div style="min-width: 520px; cursor: pointer; border: 0px solid rgb(47, 47, 47); border-radius: 2rem; " 
                               class=' text-white  m-2 shadow-sm  mt-0 d-flex justify-content-start align-content-center flex-wrap'>
                               <h6 class="w-100 text-start m-0 mt-3"
@@ -183,44 +183,61 @@
                         {% endif %}
                   </section>
                   <hr class="text-white-50 me-5 ms-5">
-                  <section class="section-citas-confirm  mt-3 position-relative d-flex flex-wrap align-content-center overflow-auto  bg-white bg-opacity-10" style="height: 45vh;" >
+                  <section class="section-citas-confirm  mt-3 position-relative d-flex flex-wrap align-content-center overflow-auto  " style="height: 45vh;" >
                         {% if sales_reservers %}
                         <div class=' d-flex  overflow-auto  position-relative  sales-reservers ' >
                               {% for s in sales_reservers %}
                                     {% include "sale/sale.html" %}
                               {% endfor %}
                         </div>
+                        {% else %}
+                        <div class="text-white ms-3">
+                              <h4 class="p-0 m-0">
+                                    Sin resultados
+                              </h4>
+                              <p style="font-size: 14px;" class="text-white-50">
+                                    No se encontraron resultados para esta página
+                              </p>
+                        </div>
                         {% endif %} 
-                        <div class="pagination d-flex justify-content-center mt-3 position-absolute top-0">
+               
+                      
+                        <div class="pagination blur-10 p-2 rounded-5 d-flex justify-content-center mt-3 position-absolute top-0">
                               {% if current_page > 1 %} 
-                                    <a href="?filter={{ filter_option }}&page={{ prev_page }}" class="btn btn-secondary me-2"><i class="fi fi-sr-angle-circle-left"></i></a>
+                                    <a  onclick="Action(this.id)" id="later-page"  href="?filter={{ filter_option }}&page={{ prev_page }}" class="btn btn-secondary me-2"><i class="fi fi-sr-angle-circle-left"></i></a>
                                     {% else %}
                                     <a href="?filter={{ filter_option }}&page={{ prev_page }}"
                                     class="btn btn-secondary me-2 disabled"><i class="fi fi-sr-angle-circle-left"></i></a>
                               {% endif %}
-                              <span class="btn btn-light " style="width: 2rem;"> {{ current_page }}</span>
-                              {% if sales_reservers|length > 0 %}
-                                    <a href="?filter={{ filter_option }}&page={{ next_page }}" 
-                                    class="btn btn-secondary ms-2"><i class="fi fi-sr-angle-circle-right"></i></a>
-                                    {% else %}
-                                    <a href="?filter={{ filter_option }}&page={{ next_page }}" 
-                                    class="btn btn-secondary ms-2 disabled"><i class="fi fi-sr-angle-circle-right"></i></a>
+                              <span class="btn span-p btn-light bg-transparent bold  text-white-50 justify-content-center border-0 " style="width: 1rem;"> {{ current_page }}</span>
+                              {% if sales_reservers %}
+                                    {% if sales_reservers|length > 0 %}
+                                          <a onclick="Action(this.id)" id="next-page" href="?filter={{ filter_option }}&page={{ next_page }}" 
+                                          class="btn btn-secondary ms-2"><i class="fi fi-sr-angle-circle-right"></i></a>
+                                          {% else %}
+                                          <a href="?filter={{ filter_option }}&page={{ next_page }}" 
+                                          class="btn btn-secondary ms-2 disabled"><i class="fi fi-sr-angle-circle-right"></i></a>
+                                    {% endif %}
                               {% endif %}
                         </div>
                         <style>
-                              .pagination a {
-                                    background-color: transparent;
-                                    width: 4rem;
-                                    height: 3rem;
+                              .pagination a, .span-p {
+                                    background-color: #191919;
+                                    width: 2.3rem;
+                                    height: 2.3rem;
+                                    border-radius: 50%;
                                     display: flex; justify-content: center; align-content: center;
                                     flex-wrap: wrap;
+                                    border: none;
                               }
                               .pagination i {
-                                    font-size: 20px;
+                                    color: rgba(255, 255, 255, 0.576);
+                                    font-size: 25px;
                                     display: flex; justify-content: center; align-content: center;
                                     flex-wrap: wrap;
                                     /* background-color: #101010; */
-                                    padding: 0.4rem;
+                                    /* padding: 0.1rem; */
+                                    margin: 0;
                                     border-radius: 50%;
                               }
 
