@@ -183,7 +183,7 @@
                         {% endif %}
                   </section>
                   <hr class="text-white-50 me-5 ms-5">
-                  <section class="section-citas-confirm  mt-3  d-flex flex-wrap align-content-center overflow-auto  bg-white bg-opacity-10" style="height: 45vh;" >
+                  <section class="section-citas-confirm  mt-3 position-relative d-flex flex-wrap align-content-center overflow-auto  bg-white bg-opacity-10" style="height: 45vh;" >
                         {% if sales_reservers %}
                         <div class=' d-flex  overflow-auto  position-relative  sales-reservers ' >
                               {% for s in sales_reservers %}
@@ -191,21 +191,47 @@
                               {% endfor %}
                         </div>
                         {% endif %} 
+                        <div class="pagination d-flex justify-content-center mt-3 position-absolute top-0">
+                              {% if current_page > 1 %} 
+                                    <a href="?filter={{ filter_option }}&page={{ prev_page }}" class="btn btn-secondary me-2"><i class="fi fi-sr-angle-circle-left"></i></a>
+                                    {% else %}
+                                    <a href="?filter={{ filter_option }}&page={{ prev_page }}"
+                                    class="btn btn-secondary me-2 disabled"><i class="fi fi-sr-angle-circle-left"></i></a>
+                              {% endif %}
+                              <span class="btn btn-light " style="width: 2rem;"> {{ current_page }}</span>
+                              {% if sales_reservers|length > 0 %}
+                                    <a href="?filter={{ filter_option }}&page={{ next_page }}" 
+                                    class="btn btn-secondary ms-2"><i class="fi fi-sr-angle-circle-right"></i></a>
+                                    {% else %}
+                                    <a href="?filter={{ filter_option }}&page={{ next_page }}" 
+                                    class="btn btn-secondary ms-2 disabled"><i class="fi fi-sr-angle-circle-right"></i></a>
+                              {% endif %}
+                        </div>
+                        <style>
+                              .pagination a {
+                                    background-color: transparent;
+                                    width: 4rem;
+                                    height: 3rem;
+                                    display: flex; justify-content: center; align-content: center;
+                                    flex-wrap: wrap;
+                              }
+                              .pagination i {
+                                    font-size: 20px;
+                                    display: flex; justify-content: center; align-content: center;
+                                    flex-wrap: wrap;
+                                    /* background-color: #101010; */
+                                    padding: 0.4rem;
+                                    border-radius: 50%;
+                              }
+
+                        </style>
                   </section>
                   {% if  not box_is_open %}
                         {% include "component/abrir-caja.html" %}
                   {% endif %}
       </section>
 
-      <div class="pagination d-flex justify-content-center mt-3">
-            {% if current_page > 1 %}
-                  <a href="?filter={{ filter_option }}&page={{ prev_page }}" class="btn btn-secondary me-2">Anterior</a>
-            {% endif %}
-            <span class="btn btn-light disabled">Página {{ current_page }}</span>
-            {% if sales_reservers|length > 0 %}
-                  <a href="?filter={{ filter_option }}&page={{ next_page }}" class="btn btn-secondary ms-2">Siguiente</a>
-            {% endif %}
-      </div>
+
 {% endblock  %}
 
 
