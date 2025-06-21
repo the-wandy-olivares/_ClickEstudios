@@ -988,7 +988,7 @@ class Box(TemplateView):
         year = request.POST.get('year')
         mes_inicio = request.POST.get('mes_inicio')
         mes_fin = request.POST.get('mes_fin')
-        print(tipo)
+        # print(tipo)
         movimientos = models.Movements.objects.all()
 
         if tipo and tipo != 'todos':
