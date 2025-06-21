@@ -244,7 +244,9 @@
                         </div>
                         {% endif %} 
                   </section>
-                  {% include "component/abrir-caja.html" %}
+                  {% if  not box_is_open %}
+                        {% include "component/abrir-caja.html" %}
+                  {% endif %}
       </section>
       <script>
             function updateClock() {
