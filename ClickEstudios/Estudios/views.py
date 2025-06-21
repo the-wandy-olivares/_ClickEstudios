@@ -79,14 +79,15 @@ class Pos(TemplateView):
 
         context['service_choices'] = models.Service.objects.all()
         context['plan_choices'] = models.Plan.objects.all()
-        context['sales'] = models.Sale.objects.filter(is_reserve=False,
-                            finalize=False).order_by('-id')
+        context['sales'] = models.Sale.objects.filter(
+            is_reserve=False, finalize=False
+        ).order_by('date_choice')
         context['box_is_open'] = models.Box.objects.filter(open=True).exists() 
         context['today'] = timezone.now().date()
         context['time_now'] =  timezone.localtime(timezone.now(), timezone.get_current_timezone()).astimezone(timezone.get_fixed_timezone(-240)).replace(minute=0, second=0, microsecond=0).strftime('%H:%M')
         return context
     
-    def filter_sales(self, filter_option):
+    def filter_sales(self, filter_option, page=1, per_page=3):
         today = timezone.localtime().date()  # Fecha actual en la zona horaria local    
         TIME_NOW = timezone.localtime(timezone.now(), timezone.get_current_timezone()).astimezone(timezone.get_fixed_timezone(-240)).replace(minute=0, second=0, microsecond=0).strftime('%H:%M')
         filters = {
@@ -99,13 +100,17 @@ class Pos(TemplateView):
         }
         # Filtrar por reservas activas y no finalizadas
         sales_query = filters.get(filter_option, filters['hour']).filter(is_reserve=True, finalize=False)
-        return sales_query.order_by('-date_choice', 'time')
+        return sales_query.order_by('date_choice', 'time')[(page - 1) * per_page:page * per_page]
 
     def get(self, request, *args, **kwargs):
         context = self.get_context_data()
         filter_option = request.GET.get('filter', 'all')  # Si no se especifica, usa 'hour'
-        context['sales_reservers'] = self.filter_sales(filter_option)
+        page = int(request.GET.get('page', 1))  # Página actual, por defecto es 1
+        context['sales_reservers'] = self.filter_sales(filter_option, page=page)
         context['filter_option'] = filter_option
+        context['current_page'] = page
+        context['next_page'] = page + 1
+        context['prev_page'] = page - 1 if page > 1 else None
         return self.render_to_response(context)
 
 
