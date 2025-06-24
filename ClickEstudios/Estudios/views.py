@@ -673,6 +673,7 @@ class Estudios(TemplateView):
         total_itebis = total * 0.18
         context['total_itebis'] = total_itebis
         context['sale'] = sale
+        context['s'] = sale
         if sale.discount:
             context['total_con_i'] = total 
         else:
@@ -690,6 +691,14 @@ class Estudios(TemplateView):
         context['sale_itebis'] = sale_itebis
         context['sale_price_unitario'] = sale.price_plan + sale_itebis
         context['ncf'] =utils.GetNCF(sale.sale_type)
+        ITBIS = 0
+        if not sale.discount:
+            total_con_i =+ total_itebis
+            ITBIS =+ total_itebis
+
+        context['debit_mount_total'] = sale.debit_mount + ITBIS
+
+        context['valor_a_pagar'] =  total - sale.price_plan  + ITBIS
         return context
 
 
@@ -712,6 +721,8 @@ class Estudios(TemplateView):
                     price= int(price)
             )
             a.save()
+            sale.debit_mount += a.price
+            sale.save()
 
 
         sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
@@ -735,6 +746,9 @@ class Estudios(TemplateView):
         # Eliminar adicional
         if request.POST.get('delete'):
                 adicional = models.Adicional.objects.get(pk=request.POST.get('delete'))
+                sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
+                sale.debit_mount -= adicional.price
+                sale.save()
                 messages.success(self.request, f"{adicional.name} Eliminado correctamente")
                 adicional.delete()
         
