@@ -142,9 +142,10 @@
       
       <!-- Footer -->
       <footer class='pb-4 start-0 d-flex align-content-center justify-content-start  nav-bar-bottom ' style="position: sticky; bottom: 0; width: 100%;  text-align: center; background-color: #101010;" >
-        
+            
             {% if sale.payment %}
                   <div>
+                        
                         {% if sale.finalize == False%}
                         {% if sale.sale_type != 'credito' %}
                         <form action="" method="post" style='width: 10rem;' class='p-1' 
@@ -181,13 +182,11 @@
                   <div class="d-flex">
                         <button class='show-button border-0  text-white pe-3 ps-3 bg-transparent'
                         style="font-weight: bold; width: 10rem;"> 
-                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
-                                    <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
-                              </svg>  Visualizar 
+                        <i class="fi fi-sr-eyes"></i> Visualizar 
                         </button>
                         <button onclick="PrintInvoice()" class=' rounded-3 bg-transparent p-1 pe-3 ps-3 text-white border-0 me-1' 
                               style="font-weight: bold;">
+                              <i class="fi fi-sr-print"></i>
                               Impirmir 
                         </button>
                   </div>
@@ -223,7 +222,11 @@
                   </div>
 
             {% endif %}
+        
       </footer>
+      <a onclick="PreventSend(this.id)" id="back-space-sale-reserver" href="{% url "estudios:pos" %}" class="btn border-0 btn-secondary accordion bg-transparent rounded-4  align-content-center d-flex flex-wrap  text-white-50" style="font-weight: bold;"> 
+            <i class="fi fi-sr-left align-content-center d-flex flex-wrap me-2 "></i> Atras
+      </a>
 </section>
 
 

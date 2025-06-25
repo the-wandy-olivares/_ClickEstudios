@@ -1,5 +1,5 @@
 {% load humanize %}
-<div class='  p-4 rounded-5' style="background-color: #191919;">
+<div class='  p-4 rounded-5' style="background-color: #19191900;">
       <table class="w-100">
             <thead>
                   <tr>
@@ -20,7 +20,8 @@
                               <form action="" method="post" class="d-inline">
                                     {% csrf_token %}
                                     <input type="hidden" name="delete" value="{{ adicional.id }}">
-                                    <button type="submit" class="btn bg-transparent text-danger rounded-5 btn-sm" style='font-weight: bold;'> - Eliminar</button>
+                                    <button type="submit" onclick="PreventSend(this.id)"
+                                     id="adicional-{{adicional.id}}" class="btn bg-transparent text-danger rounded-5 btn-sm" style='font-weight: bold;'> - Eliminar</button>
                               </form>
                               {% else %}
                               ...

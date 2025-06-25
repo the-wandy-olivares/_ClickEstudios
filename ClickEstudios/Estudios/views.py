@@ -422,10 +422,11 @@ class SaleReserver(TemplateView):
             sale.mount = (sale.mount or 0) + int(new_mount)
 
             sale.debit_mount -= new_mount # Reastando monto al monto debitado
-            if sale.mount >= sale.price_plan:
-                sale.mount = sale.price_plan
+            
+            if sale.debit_mount >= 0:
+                sale.mount +=  int(new_mount)
                 sale.payment = True
-                description = 'Pago completado' + ' ' + sale.name_client + '-' + sale.name_plan +  ' ( Restante: ' + f"${sale.debit_mount:,}" + ')'
+                description = 'Pago completado correctamente' + ' ' + sale.name_client + '-' + sale.name_plan +  ' ( Restante: ' + f"${sale.debit_mount:,}" + ')'
                 sale.saled_date = timezone.now() # Fecha en la que se completo la venta
             else:
                 description = 'Abono, ' + sale.name_client + ', ' + sale.name_plan + ' ( Restante: ' + f"${sale.debit_mount:,}" + ')'
