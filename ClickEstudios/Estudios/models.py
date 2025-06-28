@@ -281,6 +281,7 @@ class Adicional(models.Model):
       description = models.TextField(blank=True, null=True)
       price = models.IntegerField(blank=False, null=False)
       date = models.DateTimeField(auto_now_add=True)
+      pay = models.BooleanField(default=False) #Pago aun no aplicado en False vicerversa en True
       
       class Meta:
             verbose_name = 'adicional'

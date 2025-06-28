@@ -669,7 +669,7 @@ class Estudios(TemplateView):
         total = sale.price_plan 
         if sale.sale_adicionales.all():
             for adicional in sale.sale_adicionales.all():
-                total += adicional.price
+                    total += adicional.price
 
         total_itebis = total * 0.18
         context['total_itebis'] = total_itebis
@@ -752,6 +752,21 @@ class Estudios(TemplateView):
                 sale.save()
                 messages.success(self.request, f"{adicional.name} Eliminado correctamente")
                 adicional.delete()
+
+        if request.POST.get('aplicar-pay'):
+                adicional = models.Adicional.objects.get(pk=request.POST.get('aplicar-pay'))
+                sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
+                adicional_price = adicional.price  * 0.18 # CON ITBIS
+                if sale.discount:
+                    adicional_price = adicional.price
+
+                sale.debit_mount -= adicional_price 
+                sale.mount +=  adicional_price 
+
+                sale.save()
+                adicional.pay = True
+                adicional.save()
+
         
         # Finalizar venta
         if request.POST.get('end'):

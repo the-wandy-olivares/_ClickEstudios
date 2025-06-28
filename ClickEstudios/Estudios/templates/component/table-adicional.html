@@ -16,12 +16,18 @@
                         <td class='border-0 text-white-50'>{{ adicional.name }}</td>
                         <td class='border-0 text-white-50'>${{ adicional.price|intcomma }}.00</td>
                         <td class='border-0'>
-                              {% if sale.finalize == False%}
+                              {% if adicional.pay == False%}
                               <form action="" method="post" class="d-inline">
                                     {% csrf_token %}
                                     <input type="hidden" name="delete" value="{{ adicional.id }}">
                                     <button type="submit" onclick="PreventSend(this.id)"
-                                     id="adicional-{{adicional.id}}" class="btn bg-transparent text-danger rounded-5 btn-sm" style='font-weight: bold;'> - Eliminar</button>
+                                     id="adicional-delete-{{adicional.id}}" class="btn bg-transparent text-danger rounded-5 btn-sm" style='font-weight: bold;'> - Eliminar</button>
+                              </form>
+                              <form action="" method="post" class="d-inline">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="aplicar-pay" value="{{ adicional.id }}">
+                                    <button type="submit" onclick="PreventSend(this.id)"
+                                     id="adicional-pay-{{adicional.id}}" class="btn bg-transparent text-primary rounded-5 btn-sm" style='font-weight: bold;'> Aplicar pago</button>
                               </form>
                               {% else %}
                               ...
