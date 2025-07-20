@@ -201,7 +201,6 @@
 			style=" height: 100dvh;  
 			transition: 0s !important;  max-width: 1730px !important;">
 			<div class='bg-grey nav-escritorio me-2 '>  
-				    {% include "nav/new-nav/short-nav.html" %} 
 				    {% include "nav/new-nav/nav.html" %} 
 			</div>
 			{% block content %}
@@ -277,35 +276,6 @@
 
 
 
-
-   function TypeNav() {
-     const sectionEscritorioNav = document.querySelector('.section-escritorio-nav');
-     const shortNavSection = document.querySelector('.short-nav-section');
-
-     if (sectionEscritorioNav.classList.contains('d-none')) {
-       sectionEscritorioNav.classList.remove('d-none');
-       shortNavSection.classList.add('d-none');
-       localStorage.setItem('navType', 'long');
-     } else {
-       sectionEscritorioNav.classList.add('d-none');
-       shortNavSection.classList.remove('d-none');
-       localStorage.setItem('navType', 'short');
-     }
-   }
-
-   window.onload = function () {
-     const navType = localStorage.getItem('navType');
-     const sectionEscritorioNav = document.querySelector('.section-escritorio-nav');
-     const shortNavSection = document.querySelector('.short-nav-section');
-
-     if (navType === 'short') {
-       sectionEscritorioNav.classList.add('d-none');
-       shortNavSection.classList.remove('d-none');
-     } else {
-       sectionEscritorioNav.classList.remove('d-none');
-       shortNavSection.classList.add('d-none');
-     }
-   };
 
   
 

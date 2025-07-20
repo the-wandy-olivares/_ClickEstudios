@@ -412,25 +412,23 @@ class SaleReserver(TemplateView):
     
 
     def post(self, request, *args, **kwargs):
-        new_mount = request.POST.get('mount')
-        if new_mount:
+
+        if  request.POST.get('mount'):
             sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
+            sale.is_reserve = True # Reservar la venta
+            new_mount = int(request.POST.get('mount')) # Formateamos
+            # sale.mount = (sale.mount or 0) + int(new_mount)
+          
 
-            # Reservar la venta
-            sale.is_reserve = True
-            new_mount = int(new_mount)
-            sale.mount = (sale.mount or 0) + int(new_mount)
-
-            sale.debit_mount -= new_mount # Reastando monto al monto debitado
-            
-            if sale.debit_mount >= 0:
-                sale.mount +=  int(new_mount)
-                sale.payment = True
+            if sale.debit_mount > 0:
+                sale.debit_mount -= new_mount  # Reastando monto al monto debitado
+                sale.mount +=  new_mount # Le sumamos al abonado
                 description = 'Pago completado correctamente' + ' ' + sale.name_client + '-' + sale.name_plan +  ' ( Restante: ' + f"${sale.debit_mount:,}" + ')'
                 sale.saled_date = timezone.now() # Fecha en la que se completo la venta
-            else:
-                description = 'Abono, ' + sale.name_client + ', ' + sale.name_plan + ' ( Restante: ' + f"${sale.debit_mount:,}" + ')'
-                    # Restar monto 
+
+                if  sale.debit_mount  <=  0:
+                    sale.debit_mount = 0
+                    sale.payment = True 
 
             models.Movements.objects.create(
                 user=request.user,
@@ -442,7 +440,7 @@ class SaleReserver(TemplateView):
             sale.save()
 
             messages.success(request, f"${new_mount:,}.00  Aplicado correctamente, restante: ${sale.debit_mount:,}.00")
-            return redirect('estudios:pos')
+            return redirect('estudios:sale-reserver', sale.pk)
         return self.render_to_response(self.get_context_data())
 
 

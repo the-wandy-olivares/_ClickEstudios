@@ -190,6 +190,15 @@
                               Impirmir 
                         </button>
                   </div>
+                  <a href="{% url "estudios:sale-reserver" s.id %}" class=" text-white">
+                        <span onclick="PreventSend(this.id)" id='reserve-{{ s.id }}' 
+                              class="text-white pay border-0 d-flex text-white rounded-5 p-2 ps-3 pe-3 " style="font-weight: bold; font-size: 14px; 
+                        width: max-content; 
+                        ">
+                              <i class="fi fi-sr-pending d-flex justify-content-center flex-wrap align-content-center" ></i> 
+                              Historial
+                        </span>
+                  </a>
                   {% if sale.finalize == False%}
                         <form action="" method="post" class=' d-flex flex-wrap justify-content-center align-content-center'>
                               {% csrf_token %}
@@ -203,6 +212,7 @@
                                     <i class="fi fi-sr-heart-half-stroke d-flex justify-content-center flex-wrap align-content-center" ></i> Completar 
                               </span>
                         </a>
+                        
                         {% else %}
                         <button onclick="PreventSend(this.id)" id="concluir-cita" class=' border-0 p-1 rounded-3  pe-3 ps-3 '
                         style="font-weight: bold; background-color: rgb(26, 0, 0);
@@ -224,6 +234,23 @@
             {% endif %}
         
       </footer>
+      <div style=" height: 13rem; border-radius: 2rem; font-size: 14px;" 
+            class="p-3 w-100 text-white-50 ">
+            <hr>
+            <li>
+                  Si el descuento está activo, no se aplicará el ITBIS del 18 % sobre el precio del plan o adicionales
+            </li>
+            <li>
+                   Si no hay descuento y se concluye la venta, se asume que el ITBIS fue cobrado al cliente por lo que el sistema registra automáticamente en caja como “ITBIS”, esto al momento de pulsar "Concluir"
+            </li>
+            <li>
+                 Al gregar un adicional  ahora tienes dos opciones "eliminar" o "aplicar pago", una vez aplicado el pago no se puede aliminar el adiconal, ya que se entiende que fue cobrado.
+            </li>
+            <li>
+                  Se agrego un nuevo bottom llamado "Historial", donde puedes ver todos los moviemtos relacionado a dicha cita
+            </li>
+
+      </div>
       <a onclick="PreventSend(this.id)" id="back-space-sale-reserver" href="{% url "estudios:pos" %}" class="btn border-0 btn-secondary accordion bg-transparent rounded-4  align-content-center d-flex flex-wrap  text-white-50" style="font-weight: bold;"> 
             <i class="fi fi-sr-left align-content-center d-flex flex-wrap me-2 "></i> Atras
       </a>

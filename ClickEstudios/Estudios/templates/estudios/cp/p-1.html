@@ -109,7 +109,7 @@
                                                             <i class="fi fi-sr-envelope"></i>
                                                       </strong> 
                                                       {% if s.email_client %}
-                                                            {{ s.email_client|slice:":49" }}
+                                                      {{ s.email_client|slice:":20" }}{% if s.email_client|length > 20 %}...{% endif %}
                                                       {% else %}
                                                             @gmail.com
                                                       {% endif %}

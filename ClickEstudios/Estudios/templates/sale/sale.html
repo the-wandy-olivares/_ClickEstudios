@@ -90,7 +90,7 @@
                                                             {{ s.name }} 
                                                       {% else %}
                                                       {% if s.name_client %}
-                                                            {{ s.name_client|slice:":20" }}
+                                                            {{ s.name_client|slice:":19" }}{% if s.name_client|length > 19 %}...{% endif %}
                                                       {% endif %}
                                                       </strong>
                                                 </p>
@@ -109,7 +109,7 @@
                                                             <i class="fi fi-sr-envelope"></i>
                                                       </strong> 
                                                       {% if s.email_client %}
-                                                            {{ s.email_client|slice:":49" }}
+                                                      {{ s.email_client|slice:":20" }}{% if s.email_client|length > 20 %}...{% endif %}
                                                       {% else %}
                                                             @gmail.com
                                                       {% endif %}
