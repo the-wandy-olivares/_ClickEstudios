@@ -430,6 +430,11 @@ class SaleReserver(TemplateView):
                     sale.debit_mount = 0
                     sale.payment = True 
 
+                models.History.objects.create(
+                    user=request.user,  sale = sale,
+                    description=f'Pago de {sale.name_client} con monto de ${sale.debit_mount:,}'
+                )
+                
             models.Movements.objects.create(
                 user=request.user,
                 box=models.Box.objects.get(open=True),
@@ -665,11 +670,15 @@ class Estudios(TemplateView):
         sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
         sale_itebis = sale.price_plan * 0.18
         total = sale.price_plan 
+        adicional_exist = False
         if sale.sale_adicionales.all():
             for adicional in sale.sale_adicionales.all():
                     total += adicional.price
+                    if adicional.pay == False:
+                        adicional_exist = True
 
         total_itebis = total * 0.18
+        context['adicional_exist'] = adicional_exist
         context['total_itebis'] = total_itebis
         context['sale'] = sale
         context['s'] = sale

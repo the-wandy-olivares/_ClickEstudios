@@ -190,28 +190,30 @@
                               Impirmir 
                         </button>
                   </div>
-                  <a href="{% url "estudios:sale-reserver" s.id %}" class=" text-white">
-                        <span onclick="PreventSend(this.id)" id='reserve-{{ s.id }}' 
+
+                        <span onclick="Historial()"
                               class="text-white pay border-0 d-flex text-white rounded-5 p-2 ps-3 pe-3 " style="font-weight: bold; font-size: 14px; 
                         width: max-content; 
                         ">
                               <i class="fi fi-sr-pending d-flex justify-content-center flex-wrap align-content-center" ></i> 
                               Historial
                         </span>
-                  </a>
+
                   {% if sale.finalize == False%}
                         <form action="" method="post" class=' d-flex flex-wrap justify-content-center align-content-center'>
                               {% csrf_token %}
                               <input type="hidden" name="end" value="true" class=''>
                               {% if  s.debit_mount != 0 %} 
-                        <a href="{% url "estudios:sale-reserver" s.id %}" class="m-1 text-white">
-                              <span onclick="PreventSend(this.id)" id='reserve-{{ s.id }}' 
-                                    class="text-white pay border-0 d-flex text-white rounded-5 p-2 ps-3 pe-3 " style="font-weight: bold; font-size: 14px; 
-                              width: max-content; 
-                              ">
-                                    <i class="fi fi-sr-heart-half-stroke d-flex justify-content-center flex-wrap align-content-center" ></i> Completar 
-                              </span>
-                        </a>
+                              {% if adicional_exist == False %}
+                                    <a href="{% url "estudios:sale-reserver" s.id %}" class="m-1 text-white">
+                                          <span onclick="PreventSend(this.id)" id='reserve-{{ s.id }}' 
+                                                class="text-white pay border-0 d-flex text-white rounded-5 p-2 ps-3 pe-3 " style="font-weight: bold; font-size: 14px; 
+                                          width: max-content; 
+                                          ">
+                                                <i class="fi fi-sr-heart-half-stroke d-flex justify-content-center flex-wrap align-content-center" ></i> Completar 
+                                          </span>
+                                    </a>
+                              {% endif %}
                         
                         {% else %}
                         <button onclick="PreventSend(this.id)" id="concluir-cita" class=' border-0 p-1 rounded-3  pe-3 ps-3 '
@@ -223,19 +225,25 @@
                   {% endif %}
                   </form>
                   {% else %}
-                  <div class='d-flex justify-content-end'>
-                        <a href="{% url "estudios:sale-reserver" sale.id %}">
-                              <button id='reserve-{{ sale.id }}' class="bg-white bg-opacity-10 text-white border-0 rounded-5 p-2 pe-3 ps-3" style="font-weight: bold;">
-                                     {% if sale.is_reserve == True %} Completar pago {% else %} Reservar  {% endif %}
-                              </button>
-                        </a>
-                  </div>
-
+                        <div class='d-flex justify-content-end'>
+                              <a href="{% url "estudios:sale-reserver" sale.id %}">
+                                    <button id='reserve-{{ sale.id }}' class="bg-white bg-opacity-10 text-white border-0 rounded-5 p-2 pe-3 ps-3" style="font-weight: bold;">
+                                          {% if sale.is_reserve == True %} Completar pago {% else %} Reservar  {% endif %}
+                                    </button>
+                              </a>
+                        </div>
             {% endif %}
         
       </footer>
+      <div class="historial d-none">
+            {% for histori in sale.historial.all  %}
+                  <li>
+                       {{ forloop.counter }}  {{ histori.description }} {{ histori.created_at}}
+                  </li>
+            {% endfor %}
+      </div>
       <div style=" height: 13rem; border-radius: 2rem; font-size: 14px;" 
-            class="p-3 w-100 text-white-50 ">
+            class="p-3 w-100 text-white-50 " >
             <hr>
             <li>
                   Si el descuento está activo, no se aplicará el ITBIS del 18 % sobre el precio del plan o adicionales
@@ -430,6 +438,11 @@ function PrintInvoice() {
             e.target.value = Number(value).toLocaleString(); // Format with commas
       });
         
+</script>
+<script>
+      function Historial(){
+            document.querySelector('.historial').classList.toggle('d-none')
+      }
 </script>
 
 {% endblock  %}
