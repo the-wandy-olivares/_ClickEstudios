@@ -44,14 +44,15 @@
       <div data-aos="fade-in"
       style="transition: 1s; height: 100dvh; grid-template-rows: 2fr 1fr;"
             class=" cartas d-grid m-2 mt-3  w-100  " >
-            {% include "dashboard/cp/card.html" %}
+            <div>
+                  {% include "dashboard/cp/card.html" %}
+            </div>
             <div class=" w-100 d-flex  flex-wrap position-sticky bottom-0 mb-5  align-content-end justify-content-end pe-4   top-0 z-2">
                   <button id="installBtn"
-                              class=" w-100 ms-1 btn btn-primary border-0  text-white p-2 ps-1 pe-1 rounded-5 "  
-                              style="background-color: #191919; max-width: 11rem;
+                        class=" w-100 ms-1 btn btn-primary border-0  text-white p-2 ps-1 pe-1 rounded-5 "  
+                        style="background-color: #191919; max-width: 11rem;
                               color: #ffffffb9 !important;"> Instalar app</button>
-      
-                        <button onclick="AlternarGrafic()"
+                  <button onclick="AlternarGrafic()"
                         class=" w-100 btn-alternar btn btn-primary border-0  ms-1 text-white p-2 ps-1 pe-1 rounded-5 "  
                         style="background-color: #191919; max-width: 11rem;
                         color: #ffffffb9 !important;">
