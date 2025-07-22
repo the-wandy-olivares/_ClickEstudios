@@ -267,10 +267,13 @@
 		});
 
 		if (window.innerWidth < 700) {
-		function OpenNav(){
-		const superNav = document.querySelector('#new-nav-mobile-section');
-        superNav.classList.toggle('d-none')
-  }}
+
+      document.querySelector('#options-as').addEventListener('click', () => {
+  const superNav = document.querySelector('#new-nav-mobile-section');
+  superNav.classList.toggle('d-none');
+});
+
+  }
 
 
     
