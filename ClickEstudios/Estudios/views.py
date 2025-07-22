@@ -1645,3 +1645,8 @@ class OfertasService(TemplateView):
                 plan.is_offer = False
                 plan.save()
         return redirect('estudios:ofertas-service' , pk=service.id)
+    
+
+
+class Offline(TemplateView):
+    template_name = 'offline/offline.html'
