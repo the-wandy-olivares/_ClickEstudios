@@ -1232,6 +1232,7 @@ class Login(TemplateView):
         user = authenticate(username=username, password=password)
         if user:
             login(request, user)
+            messages.success(self.request, f"Bienvenido de nuevo {request.user.first_name} ")
             return redirect('estudios:dashboard')
         messages.error(request, 'Nombre de usuario o contraseña incorrectos')
         return self.render_to_response(self.get_context_data())
