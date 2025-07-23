@@ -1,8 +1,8 @@
-const CACHE_NAME = "clickestudios-cache-v2";
+const CACHE_NAME = "clickestudios-cache-v1";
 const urlsToCache = [
   "/",
   "/offline/",
-  // "/static/css/styles.css",
+  // "/static/css/styles.css",  // agrega tus rutas reales
   // "/static/js/app.js"
 ];
 
