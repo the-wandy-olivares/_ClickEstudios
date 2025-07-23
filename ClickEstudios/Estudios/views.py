@@ -1651,3 +1651,9 @@ class OfertasService(TemplateView):
 
 class Offline(TemplateView):
     template_name = 'offline/offline.html'
+
+
+
+
+def error_redirect_view(request, exception=None):
+    return redirect('estudios:pos')
