@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="theme-color" content="#101010">
-    <link rel="manifest" href="{% static '/scripts/manifest.json' %}">
+    <link rel="manifest" href="/Estudios/static/scripts/manifest.json">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title> ClickEstudios </title>
 
@@ -315,7 +315,7 @@
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {
       navigator.serviceWorker
-        .register("{% static '/scripts/sw.js' %}")
+        .register("/Estudios/static/scripts/sw.js")
         .then(reg => console.log("✅ Service Worker registrado"))
         .catch(err => console.error("❌ Error:", err));
     });
