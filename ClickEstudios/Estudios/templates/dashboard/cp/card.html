@@ -2,13 +2,15 @@
 <style>
       .card-section .card-info {
             width: 100%;
-            height: 180px;
-            background-color: #191919;
-            border-radius: 2rem;
+            height: 200px;
+            background-color: #19191998;
+            border-radius: 2.9rem;
             border: 1px solid #232323;
-            display: flex; 
+            display: flex; flex-wrap:  wrap;
+            align-content: start;
+
             color: white;
-            padding: 0.5rem;
+            padding: 1rem;
             border: 1px solid rgba(255, 255, 255, 0.064);
             
       }
@@ -29,13 +31,13 @@
       }
       .card-section i {
             color: white;
-            font-size: 25px;
+            font-size: 30px;
             background-color: #56565634;
             display: flex; flex-wrap: wrap; 
             align-content: center; justify-content: center;
             border-radius: 50%;
-            width: 3rem;
-            height: 3rem;
+            width: 4rem;
+            height: 4rem;
       }
       @media (max-width: 600px) {
             .card-section {
@@ -47,82 +49,82 @@
 
       }
 </style>
-<section class="card-section w-100 overflow-auto rounded-5 p-1 pt-0" 
-      style="display: grid; grid-template-columns: repeat(3, 1fr);
+<section class="card-section z-3 w-100 overflow-auto rounded-5 p-1 pt-0" 
+      style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
       gap: 10px; max-height: 50rem;">
-      <div class="card-info ">
+      <div class="card-info blur-10 ">
             <div>
                   <i class="fi fi-ss-selling"></i>
-            </div>
-            <div>
-                  <h6>
+                  <h6 class="d-flex flex-wrap align-content-center ms-4">
                         Panel de Ventas
                   </h6>
+            </div>
+            <div>
                   <p>
                         Visualiza el comportamiento mensual, detecta picos y caídas, y toma decisiones basadas en datos reales
                   </p>
             </div>
       </div>
-      <div class="card-info ">
+      <div class="card-info blur-10 ">
             <div>
                   <i class="fi fi-ss-comment-quote"></i>
-            </div>
-            <div>
-                  <h6>
+                  <h6 class="d-flex flex-wrap align-content-center ms-4">
                         Panel de Citas
                   </h6>
+            </div>
+            <div>
                   <p>
                         Revisa el historial, identifica horas pico y gestiona la disponibilidad de manera eficiente
                   </p>
             </div>
       </div>
-      <div class="card-info  ">
+      <div class="card-info blur-10  ">
             <div>
                   <i class="fi fi-sr-arrow-progress"></i>
-            </div>
-            <div>
-                  <h6>
+                  <h6 class="d-flex flex-wrap align-content-center ms-4">
                         Panel de Progreso
                   </h6>
+            </div>
+            <div>
                   <p>
                         Monitorea el avance de tus objetivos, identifica retrasos y mantén el enfoque en los resultados
                   </p>
             </div>
       </div>
-      <div class="card-info  ">
+      <div class="card-info blur-10  ">
             <div>
-                  <i class="fi fi-sr-coins"></i>
-            </div>
-            <div>
-                  <h6>
+                  <i class="fi fi-sr-safe-box"></i>
+                  <h6 class="d-flex flex-wrap align-content-center ms-4">
                         Caja
                   </h6>
+            </div>
+            <div>
                   <p>
                         Monitorea el avance de tus Activos, Costos, ingresos, pagos
                   </p>
             </div>
       </div>
-      <div class="card-info  ">
+      <div class="card-info blur-10  ">
             <div>
                   <i class="fi fi-sr-users-alt"></i>
-            </div>
-            <div>
-                  <h6>
+                  <h6 class="d-flex flex-wrap align-content-center ms-4">
                         Clientes
                   </h6>
+            </div>
+            <div>
                   <p>
                         Conoce mejor a tus clientes, mejora tu comunicación y potencia relaciones duraderas
                   </p>
             </div>
       </div>
-      <div class="card-info  ">
+      <div class="card-info blur-10  ">
             <div>
                   <i class="fi fi-sr-receipt"></i>
-            </div>
-            <div>
-                  <h6>
+                  <h6 class="d-flex flex-wrap align-content-center ms-4">
                         Facturas
                   </h6>
+            </div>
+            <div>
                   <p>
                         Supervisa tu facturación, detecta pagos pendientes y mantén tus finanzas en orden
                   </p>

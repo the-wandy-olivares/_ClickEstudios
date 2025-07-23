@@ -273,6 +273,14 @@ class Sale(models.Model):
             return f"Venta del {self.date.strftime('%d/%m/%Y')} - {self.name_client}"
 
 
+class History(models.Model):
+      user = models.ForeignKey(User, related_name='sale_historial', blank=True, null=True, on_delete=models.CASCADE)
+      sale = models.ForeignKey(Sale, related_name='historial', blank=True, null=True, on_delete=models.CASCADE)
+      description = models.TextField( blank=True, null=True)
+      created_at = models.DateTimeField(auto_now_add=True)
+
+      def __str__(self):
+            return f'{self.description} - {self.created_at}'
 
 
 class Adicional(models.Model):
@@ -281,6 +289,7 @@ class Adicional(models.Model):
       description = models.TextField(blank=True, null=True)
       price = models.IntegerField(blank=False, null=False)
       date = models.DateTimeField(auto_now_add=True)
+      pay = models.BooleanField(default=False) #Pago aun no aplicado en False vicerversa en True
       
       class Meta:
             verbose_name = 'adicional'

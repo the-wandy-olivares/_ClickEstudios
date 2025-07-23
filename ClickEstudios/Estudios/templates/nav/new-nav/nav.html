@@ -1,7 +1,7 @@
 <style>
       .section-escritorio-nav {
-            min-width: 22.5rem;
-            width: 22.5rem;
+            min-width: 20.5rem;
+            width: 20.5rem;
             height: 100dvh;
             overflow-x: hidden;
       }
@@ -11,24 +11,11 @@
 </style>
 <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-straight/css/uicons-solid-straight.css'>
 <link href="https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&display=swap" rel="stylesheet">
-<section class="section-escritorio-nav d-none p-1 position-relative">
-      <i  onclick="TypeNav()" 
-      class="show-arrow-1 d-none fi fi-ss-arrow-circle-left position-fixed  z-3 text-white-50 p-2 " 
-      style="cursor: pointer; font-size: 20px; top: 17%; left: 20rem;"></i>
+<section class="section-escritorio-nav p-1 position-relative">
       {% include "nav/new-nav/cp/nav-links.html" %}
-      {% include "nav/new-nav/cp/info.html" %}
-      <h6 class="text-white-50 w-100  text-uppercase text-center " 
-            style=" font-family: Delius Swash Caps, cursive; font-size: 12px">
-            <strong>V</strong>:  Negra ( 1.10.5)
+      <h6 class="text-white-50 w-100 position-sticky bottom-0  text-uppercase text-center " 
+            style=" font-family: Delius Swash Caps, cursive; font-size: 12px; height: 2rem;">
+            <strong>V</strong>:  Aura ( 1.0.0)
       </h6>
 </section>
 
-<script>
-      document.querySelector('.nav-escritorio').addEventListener('mouseover', function() {
-            document.querySelector('.show-arrow-1').classList.remove('d-none');
-      });
-
-      document.querySelector('.nav-escritorio').addEventListener('mouseout', function() {
-            document.querySelector('.show-arrow-1').classList.add('d-none');
-      });
-</script>

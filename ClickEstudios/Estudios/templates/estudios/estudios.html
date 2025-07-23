@@ -43,143 +43,78 @@
             }
       }
 </style>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
 <section style="position: relative; min-height: 100vh;  padding-bottom: 20rem;"
       class=' text-white overflow-auto w-100'>      
-      <section class="totales-fo w-100 d-flex">
-            <div class="p-2 bg-white bg-opacity-10 rounded-5">
-                  <p class='btn text-white  p-1 m-0'> Adicionales ${{ total_adicionales|intcomma }}.00  </p>
+      <div class="div-top d-flex text-white position-sticky top-0 z-2 blur-20 p-1  w-100 ">
+            <div class="me-3 ms-2 d-flex flex-wrap align-content-center">
+                  <i class="fi fi-sr-mode-portrait  d-flex flex-wrap p-3 rounded-circle" 
+                  style="font-size: 30px; background-color: #19191983;"></i>
             </div>
-            <div class="p-2 bg-white bg-opacity-10 rounded-5 ms-1">
-                  <p class='btn text-white p-1 m-0'>Totales    ${{total_con_i|intcomma}}.00</p>
+            <div class="d-flex flex-wrap align-content-center">
+                  <h5 class="m-0 mt-3">
+                        Estudios
+                  </h5>
+                  <p class="w-100" style="font-size: 14px;">
+                        Estudio hace referencia... 
+                  </p>
             </div>
-      </section>
-      
-      <main style="padding-top: 5px; padding-bottom: 60px; height: 100vh;">
-            
-            <div class='d-flex'>
-                  {% if plan %}
-                        {% include "plan/plan-select.html" %}
-                  {% endif %}
-                  {% if sale.descrition %}
-                        <div class=" position-absolute rounded-4 p-3 blur-5 bg-white bg-opacity-10 overflow-y-scroll d-flex flex-wrap top-0 end-0 me-3 " 
-                              style="height: 7rem; width: 16rem; margin-top: 0rem;">
-                                    <h6 class="m-0 p-0">
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16"><path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/><path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/></svg> Nota
-                                    </h6>
-                                    <p style="font-size: 12px;" class="text-white-50 w-100">
-                                                {{ sale.descrition|slice:":50" }}
-                                    </p>
-                        </div>
-                  {% endif %}
-                  <span class="ms-3">
-                        <span class='w-100  ps-3'>
-                              <p class="m-0">
-                                    {% if sale.name_client %}
-                                          <h3 class="text-white-50 m-0">{{ sale.name_client }}</h3>
-                                     {% endif %}
-                                 </p>
-                                 <p class="mb-0">
-                                     <strong>
-                                           <a href="https://wa.me/+1{{ s.phone_no_formate }}">
-                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill me-1" viewBox="0 0 16 16">
-                                                       <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
-                                                 </svg>
-                                           </a>
-                                       </strong> 
-                                           {% if sale.phone_client %}
-                                                   {{ sale.phone_client }}
-                                           {% else %}
-                                                 (000) 000-0000
-                                           {% endif %}
-                                 </p>
-                                 <p class="mb-0">
-                                     <strong>
-                                           <a href="mailto:{{ s.email_client }}?subject=Notificación&body=Hola, estamos encantados de contactarte.&cc={{ s.email_client }}&bcc={{ s.email_client }}" >
-                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-at-fill me-1" viewBox="0 0 16 16">
-                                                       <path d="M2 2A2 2 0 0 0 .05 3.555L8 8.414l7.95-4.859A2 2 0 0 0 14 2zm-2 9.8V4.698l5.803 3.546zm6.761-2.97-6.57 4.026A2 2 0 0 0 2 14h6.256A4.5 4.5 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586zM16 9.671V4.697l-5.803 3.546.338.208A4.5 4.5 0 0 1 12.5 8c1.414 0 2.675.652 3.5 1.671"/>
-                                                       <path d="M15.834 12.244c0 1.168-.577 2.025-1.587 2.025-.503 0-1.002-.228-1.12-.648h-.043c-.118.416-.543.643-1.015.643-.77 0-1.259-.542-1.259-1.434v-.529c0-.844.481-1.4 1.26-1.4.585 0 .87.333.953.63h.03v-.568h.905v2.19c0 .272.18.42.411.42.315 0 .639-.415.639-1.39v-.118c0-1.277-.95-2.326-2.484-2.326h-.04c-1.582 0-2.64 1.067-2.64 2.724v.157c0 1.867 1.237 2.654 2.57 2.654h.045c.507 0 .935-.07 1.18-.18v.731c-.219.1-.643.175-1.237.175h-.044C10.438 16 9 14.82 9 12.646v-.214C9 10.36 10.421 9 12.485 9h.035c2.12 0 3.314 1.43 3.314 3.034zm-4.04.21v.227c0 .586.227.8.581.8.31 0 .564-.17.564-.743v-.367c0-.516-.275-.708-.572-.708-.346 0-.573.245-.573.791"/>
-                                                     </svg>
-                                                 </a>
-                                       </strong> 
-                                           {% if sale.email_client %}
-                                                 {{ sale.email_client|slice:":49" }}
-                                           {% else %}
-                                                 @gmail.com
-                                           {% endif %}
-                                 </p>
-                                 <p class="mb-1">
-                                     <strong>
-                                           <svg onclick="Calendar(this.id)" id="{{s.id}}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event-fill me-1" viewBox="0 0 16 16">
-                                                 <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2m-3.5-7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5"/>
-                                           </svg>
-                                     </strong> 
-                                     {% if sale.date_choice %}
-                                          {{ sale.date_choice|date:"d/m/Y" }} -
-                                          {{ sale.time }}
-                                    {% else %}
-                                          .../.../ .../
-                                    {% endif %}
-                               </p>
-                               <div class='calendary{{sale.id}} d-none position-absolute top-0 start-0  bg-black bg-opacity-25 blur-20  rounded-5   d-flex justify-content-center align-content-center flex-wrap '
-                               style="width: 10rem; height: 10rem;">
-                                          <strong class="mb-3 text-white-50">
-                                                {{ s.date_choice|date:"F" }} 
-                                          </strong>
-                                          <span class="text-white text-center p-2 ps-0 w-100" style="font-size: 90px; line-height:40px;">
-                                                {{ s.date_choice|date:"d" }} 
-                                          </span>
+      </div>
+      <main style="padding-top: 5px; ">
+            <div class="d-flex">
+                  {% include "estudios/cp/p-1.html" %}
+                  <div class="w-100 p-2">
+                        <div class=" ps-3 d-flex " >
+                              <div>
+                                    {% if sale.finalize == False%}
+                                    <button id='open-adicional' class='bg-warning me-1 mt-2 rounded-5  d-flex justify-content-center align-content-center flex-wrap text-black border-0'
+                                    style='font-weight: bold; font-size: 14px; width: 30px; height: 30px;'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+                                        </svg>
+                                    </button>
+                              {% endif %}
                               </div>
-                               </span>
-                  </span>
-            </div>
-
-
-            <div class="mt-4 ps-3 d-flex">
-                  <div>
-                        {% if sale.finalize == False%}
-                        <button id='open-adicional' class='bg-warning me-1 mt-2 rounded-5  d-flex justify-content-center align-content-center flex-wrap text-black border-0'
-                        style='font-weight: bold; font-size: 14px; width: 30px; height: 30px;'>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-                              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
-                            </svg>
-                        </button>
-                  {% endif %}
-                  </div>
-                  <div>
-                        <strong class=''>
-                              Adicionales personalizados
-                        </strong>
-                        <p class="text-white-50" style="font-size: 14px;">
-                              Añade los complementos que prefieras
-                        </p>
-                  </div>
-            </div>
-            <div class='adicional d-none text-white '   >
-                  <form action="" method="post" >
-                        {% csrf_token %}
-                        <div class='d-flex  w-100'> 
-                              <input class='form-control bg-white  bg-opacity-10 border-0 w-50 m-0 me-1 p-3 adicionales-input text-white' type="text" name="name"  id="name"
-                               value=''   placeholder="Nombre del adicional" style="border-top-left-radius: 1.5rem;">
-                              <input class='form-control bg-white  text-white bg-opacity-10 border-0 w-50 m-0 p-3 adicionales-input' type="text" name="price" id="price" placeholder="Precio"
-                              style="border-top-right-radius: 1.5rem;">
+                              <div class="ms-3">
+                                    <strong class=''>
+                                          Adicionales personalizados
+                                    </strong>
+                                    <p class="text-white-50" style="font-size: 14px;">
+                                          Añade los complementos que prefieras
+                                    </p>
+                              </div>
                         </div>
-                        <div class='d-flex  w-100 mb-2 mt-1'>
-                              <textarea class='form-control text-white bg-white  bg-opacity-10 border-0 w-100 m-0 adicionales-input' 
-                              style='height: 180px; border-bottom-left-radius: 1.5rem; border-bottom-right-radius: 1.5rem;'
-                              name="description" id="description" placeholder="Descripción ejemplo, 3 fotografias, dos cambios de ropas."></textarea>
+      
+                        <div class='adicional  text-white d-none   w-100'   >
+                              <form action="" method="post" >
+                                    {% csrf_token %}
+                                    <div class='d-flex  w-100'> 
+                                          <input class='form-control bg-white  bg-opacity-10 border-0 w-50 m-0 me-1 p-3 adicionales-input text-white' type="text" name="name"  id="name"
+                                           value=''   placeholder="Nombre del adicional" style="border-top-left-radius: 1.5rem;">
+                                          <input class='form-control bg-white  text-white bg-opacity-10 border-0 w-50 m-0 p-3 adicionales-input' type="text" name="price" id="price" placeholder="Precio"
+                                          style="border-top-right-radius: 1.5rem;">
+                                    </div>
+                                    <div class='d-flex  w-100 mb-2 mt-1'>
+                                          <textarea class='form-control text-white bg-white  bg-opacity-10 border-0 w-100 m-0 adicionales-input' 
+                                          style='height: 180px; border-bottom-left-radius: 1.5rem; border-bottom-right-radius: 1.5rem;'
+                                          name="description" id="description" placeholder="Descripción ejemplo, 3 fotografias, dos cambios de ropas."></textarea>
+                                    </div>
+                                   <div class='d-flex  w-100 justify-content-end '>
+                                     <button class='btn-send d-none bg-primary rounded-5  mb-2 m p-2 pe-3 ps-3 text-white border-0' style='font-weight: bold; font-size: 14px;'>
+                                            Aplicar adicional
+                                    </button>
+                                   </div>
+                              </form>
                         </div>
-                       <div class='d-flex  w-100 justify-content-end '>
-                         <button class='btn-send d-none bg-primary rounded-5  mb-2 m p-2 pe-3 ps-3 text-white border-0' style='font-weight: bold; font-size: 14px;'>
-                                Aplicar adicional
-                        </button>
-                       </div>
-                  </form>
+
+                        {% if adicionales %}
+                              {% include "component/table-adicional.html" %}
+                        {% endif %}
+                  </div>
             </div>
 
-            {% if adicionales %}
-                  {% include "component/table-adicional.html" %}
-            {% endif %}
-
+           
+            
             <!-- Factura -->
              <div class='factura overflow-auto  d-flex d-none  flex-wrap blur-20 justify-content-center  align-content-center vh-100 position-fixed  start-0  top-0 z-3 w-100 '>
                   {% include "component/factura.html" %}
@@ -202,12 +137,15 @@
                   </div>
              </div>
       </main>
+
+      <hr class="text-white-50 ms-5 me-5">
       
       <!-- Footer -->
-      <footer class='pb-4 start-0 d-flex align-content-center justify-content-end w-100 nav-bar-bottom ' style="position: fixed; bottom: 0; width: 100%;  padding: 12px; text-align: center; background-color: #101010;" >
-        
+      <footer class='pb-4 start-0 d-flex align-content-center justify-content-start  nav-bar-bottom ' style="position: sticky; bottom: 0; width: 100%;  text-align: center; background-color: #101010;" >
+            
             {% if sale.payment %}
                   <div>
+                        
                         {% if sale.finalize == False%}
                         {% if sale.sale_type != 'credito' %}
                         <form action="" method="post" style='width: 10rem;' class='p-1' 
@@ -225,7 +163,7 @@
                                         </svg>
                                     {% endif %}
 
-                                     Descuento</label>
+                                     <strong>Descuento</strong></label>
                         </form>
                         {% endif %}
                         {% endif %}
@@ -244,38 +182,86 @@
                   <div class="d-flex">
                         <button class='show-button border-0  text-white pe-3 ps-3 bg-transparent'
                         style="font-weight: bold; width: 10rem;"> 
-                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
-                                    <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
-                              </svg>  Visualizar 
+                        <i class="fi fi-sr-eyes"></i> Visualizar 
                         </button>
-                        <button onclick="PrintInvoice()" class=' rounded-3 p-1 pe-3 ps-3 text-white border-0 me-1' 
-                              style="font-weight: bold; background-color: #191919;">
+                        <button onclick="PrintInvoice()" class=' rounded-3 bg-transparent p-1 pe-3 ps-3 text-white border-0 me-1' 
+                              style="font-weight: bold;">
+                              <i class="fi fi-sr-print"></i>
                               Impirmir 
                         </button>
                   </div>
+
+                        <span onclick="Historial()"
+                              class="text-white pay border-0 d-flex text-white rounded-5 p-2 ps-3 pe-3 " style="font-weight: bold; font-size: 14px; 
+                        width: max-content; 
+                        ">
+                              <i class="fi fi-sr-pending d-flex justify-content-center flex-wrap align-content-center" ></i> 
+                              Historial
+                        </span>
+
                   {% if sale.finalize == False%}
                         <form action="" method="post" class=' d-flex flex-wrap justify-content-center align-content-center'>
                               {% csrf_token %}
                               <input type="hidden" name="end" value="true" class=''>
-                              <button onclick="PreventSend(this.id)" id="concluir-cita" class=' border-0 p-1 rounded-3  pe-3 ps-3 '
-                              style="font-weight: bold; background-color: rgb(26, 0, 0);
+                              {% if  s.debit_mount != 0 %} 
+                              {% if adicional_exist == False %}
+                                    <a href="{% url "estudios:sale-reserver" s.id %}" class="m-1 text-white">
+                                          <span onclick="PreventSend(this.id)" id='reserve-{{ s.id }}' 
+                                                class="text-white pay border-0 d-flex text-white rounded-5 p-2 ps-3 pe-3 " style="font-weight: bold; font-size: 14px; 
+                                          width: max-content; 
+                                          ">
+                                                <i class="fi fi-sr-heart-half-stroke d-flex justify-content-center flex-wrap align-content-center" ></i> Completar 
+                                          </span>
+                                    </a>
+                              {% endif %}
+                        
+                        {% else %}
+                        <button onclick="PreventSend(this.id)" id="concluir-cita" class=' border-0 p-1 rounded-3  pe-3 ps-3 '
+                        style="font-weight: bold; background-color: rgb(26, 0, 0);
                               color: rgb(255, 93, 93);"> 
-                              Concuir 
+                              Concluir 
                         </button>
-                  </form>
+                        {% endif %}
                   {% endif %}
+                  </form>
                   {% else %}
-                  <div class='d-flex justify-content-end'>
-                        <a href="{% url "estudios:sale-reserver" sale.id %}">
-                              <button id='reserve-{{ sale.id }}' class="bg-white bg-opacity-10 text-white border-0 rounded-5 p-2 pe-3 ps-3" style="font-weight: bold;">
-                                     {% if sale.is_reserve == True %} Completar pago {% else %} Reservar  {% endif %}
-                              </button>
-                        </a>
-                  </div>
-
+                        <div class='d-flex justify-content-end'>
+                              <a href="{% url "estudios:sale-reserver" sale.id %}">
+                                    <button id='reserve-{{ sale.id }}' class="bg-white bg-opacity-10 text-white border-0 rounded-5 p-2 pe-3 ps-3" style="font-weight: bold;">
+                                          {% if sale.is_reserve == True %} Completar pago {% else %} Reservar  {% endif %}
+                                    </button>
+                              </a>
+                        </div>
             {% endif %}
+        
       </footer>
+      <div class="historial d-none">
+            {% for histori in sale.historial.all  %}
+                  <li>
+                       {{ forloop.counter }}  {{ histori.description }} {{ histori.created_at}}
+                  </li>
+            {% endfor %}
+      </div>
+      <div style=" height: 13rem; border-radius: 2rem; font-size: 14px;" 
+            class="p-3 w-100 text-white-50 " >
+            <hr>
+            <li>
+                  Si el descuento está activo, no se aplicará el ITBIS del 18 % sobre el precio del plan o adicionales
+            </li>
+            <li>
+                   Si no hay descuento y se concluye la venta, se asume que el ITBIS fue cobrado al cliente por lo que el sistema registra automáticamente en caja como “ITBIS”, esto al momento de pulsar "Concluir"
+            </li>
+            <li>
+                 Al gregar un adicional  ahora tienes dos opciones "eliminar" o "aplicar pago", una vez aplicado el pago no se puede aliminar el adiconal, ya que se entiende que fue cobrado.
+            </li>
+            <li>
+                  Se agrego un nuevo bottom llamado "Historial", donde puedes ver todos los moviemtos relacionado a dicha cita
+            </li>
+
+      </div>
+      <a onclick="PreventSend(this.id)" id="back-space-sale-reserver" href="{% url "estudios:pos" %}" class="btn border-0 btn-secondary accordion bg-transparent rounded-4  align-content-center d-flex flex-wrap  text-white-50" style="font-weight: bold;"> 
+            <i class="fi fi-sr-left align-content-center d-flex flex-wrap me-2 "></i> Atras
+      </a>
 </section>
 
 
@@ -305,6 +291,7 @@
 
 
 </script>
+
 <!-- Abril formulario-->
 <script>
       document.querySelector('#open-adicional').addEventListener('click', function() {
@@ -317,6 +304,7 @@
       document.querySelectorAll('.show-button').forEach(button => {
             button.addEventListener('click', ShoFactura);
       });
+
       function ShoFactura(){
             document.querySelector('.factura').classList.toggle('d-none');
 
@@ -327,6 +315,7 @@
       }
 </script>
 
+<!-- Visualizar factura-->
 <script>
 function PrintInvoice() {
             const invoice = document.querySelector('.invoice').innerHTML; // Obtener el contenido del div
@@ -449,6 +438,11 @@ function PrintInvoice() {
             e.target.value = Number(value).toLocaleString(); // Format with commas
       });
         
+</script>
+<script>
+      function Historial(){
+            document.querySelector('.historial').classList.toggle('d-none')
+      }
 </script>
 
 {% endblock  %}

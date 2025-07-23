@@ -412,25 +412,29 @@ class SaleReserver(TemplateView):
     
 
     def post(self, request, *args, **kwargs):
-        new_mount = request.POST.get('mount')
-        if new_mount:
+
+        if  request.POST.get('mount'):
             sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
+            sale.is_reserve = True # Reservar la venta
+            new_mount = int(request.POST.get('mount')) # Formateamos
+            # sale.mount = (sale.mount or 0) + int(new_mount)
+          
 
-            # Reservar la venta
-            sale.is_reserve = True
-            new_mount = int(new_mount)
-            sale.mount = (sale.mount or 0) + int(new_mount)
-
-            sale.debit_mount -= new_mount # Reastando monto al monto debitado
-            if sale.mount >= sale.price_plan:
-                sale.mount = sale.price_plan
-                sale.payment = True
-                description = 'Pago completado' + ' ' + sale.name_client + '-' + sale.name_plan +  ' ( Restante: ' + f"${sale.debit_mount:,}" + ')'
+            if sale.debit_mount > 0:
+                sale.debit_mount -= new_mount  # Reastando monto al monto debitado
+                sale.mount +=  new_mount # Le sumamos al abonado
+                description = 'Pago completado correctamente' + ' ' + sale.name_client + '-' + sale.name_plan +  ' ( Restante: ' + f"${sale.debit_mount:,}" + ')'
                 sale.saled_date = timezone.now() # Fecha en la que se completo la venta
-            else:
-                description = 'Abono, ' + sale.name_client + ', ' + sale.name_plan + ' ( Restante: ' + f"${sale.debit_mount:,}" + ')'
-                    # Restar monto 
 
+                if  sale.debit_mount  <=  0:
+                    sale.debit_mount = 0
+                    sale.payment = True 
+
+                models.History.objects.create(
+                    user=request.user,  sale = sale,
+                    description=f'Pago de {sale.name_client} con monto de ${new_mount:,}'
+                )
+                
             models.Movements.objects.create(
                 user=request.user,
                 box=models.Box.objects.get(open=True),
@@ -666,13 +670,18 @@ class Estudios(TemplateView):
         sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
         sale_itebis = sale.price_plan * 0.18
         total = sale.price_plan 
+        adicional_exist = False
         if sale.sale_adicionales.all():
             for adicional in sale.sale_adicionales.all():
-                total += adicional.price
+                    total += adicional.price
+                    if adicional.pay == False:
+                        adicional_exist = True
 
         total_itebis = total * 0.18
+        context['adicional_exist'] = adicional_exist
         context['total_itebis'] = total_itebis
         context['sale'] = sale
+        context['s'] = sale
         if sale.discount:
             context['total_con_i'] = total 
         else:
@@ -690,6 +699,14 @@ class Estudios(TemplateView):
         context['sale_itebis'] = sale_itebis
         context['sale_price_unitario'] = sale.price_plan + sale_itebis
         context['ncf'] =utils.GetNCF(sale.sale_type)
+        ITBIS = 0
+        if not sale.discount:
+            total_con_i =+ total_itebis
+            ITBIS =+ total_itebis
+
+        context['debit_mount_total'] = sale.debit_mount + ITBIS
+
+        context['valor_a_pagar'] =  total - sale.price_plan  + ITBIS
         return context
 
 
@@ -712,6 +729,8 @@ class Estudios(TemplateView):
                     price= int(price)
             )
             a.save()
+            sale.debit_mount += a.price
+            sale.save()
 
 
         sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
@@ -735,8 +754,26 @@ class Estudios(TemplateView):
         # Eliminar adicional
         if request.POST.get('delete'):
                 adicional = models.Adicional.objects.get(pk=request.POST.get('delete'))
+                sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
+                sale.debit_mount -= adicional.price
+                sale.save()
                 messages.success(self.request, f"{adicional.name} Eliminado correctamente")
                 adicional.delete()
+
+        if request.POST.get('aplicar-pay'):
+                adicional = models.Adicional.objects.get(pk=request.POST.get('aplicar-pay'))
+                sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
+                adicional_price = adicional.price  * 0.18 # CON ITBIS
+                if sale.discount:
+                    adicional_price = adicional.price
+
+                sale.debit_mount -= adicional_price 
+                sale.mount +=  adicional_price 
+
+                sale.save()
+                adicional.pay = True
+                adicional.save()
+
         
         # Finalizar venta
         if request.POST.get('end'):
@@ -988,7 +1025,7 @@ class Box(TemplateView):
         year = request.POST.get('year')
         mes_inicio = request.POST.get('mes_inicio')
         mes_fin = request.POST.get('mes_fin')
-        print(tipo)
+        # print(tipo)
         movimientos = models.Movements.objects.all()
 
         if tipo and tipo != 'todos':
@@ -1195,6 +1232,7 @@ class Login(TemplateView):
         user = authenticate(username=username, password=password)
         if user:
             login(request, user)
+            messages.success(self.request, f"Bienvenido de nuevo {request.user.first_name} ")
             return redirect('estudios:dashboard')
         messages.error(request, 'Nombre de usuario o contraseña incorrectos')
         return self.render_to_response(self.get_context_data())
@@ -1252,7 +1290,7 @@ class GastosCreate(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         gastos = models.Movements.objects.filter(type='gasto', 
-            box=models.Box.objects.get(open=True))
+            box=models.Box.objects.get(open=True)).order_by('-id')
         context['gastos'] = gastos
         context['total_gastos'] = sum(gasto.mount for gasto in gastos)
 
@@ -1268,7 +1306,7 @@ class GastosCreate(TemplateView):
                     box=models.Box.objects.get(open=True),
                     mount= gasto['amount'],
                     type='gasto',
-                    description=gasto['name'],
+                    description=f'{gasto['category']}: {gasto['name']} '  ,
                 )
                 g.save()
                 print(g)
@@ -1608,3 +1646,14 @@ class OfertasService(TemplateView):
                 plan.is_offer = False
                 plan.save()
         return redirect('estudios:ofertas-service' , pk=service.id)
+    
+
+
+class Offline(TemplateView):
+    template_name = 'offline/offline.html'
+
+
+
+
+def error_redirect_view(request, exception=None):
+    return redirect('estudios:pos')

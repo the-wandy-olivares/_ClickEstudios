@@ -45,7 +45,7 @@
             color: #000000 !important;
       }
       .container-sale:hover {
-            transform: scale(0.98);
+            transform: scale(1.01);
       }
 </style>
             <div style=" border: 0px solid #2f2f2f92;color: #ffffffcf ;
@@ -90,7 +90,7 @@
                                                             {{ s.name }} 
                                                       {% else %}
                                                       {% if s.name_client %}
-                                                            {{ s.name_client|slice:":19" }}{% if s.name_client|length > 19 %}...{% endif %}
+                                                            {{ s.name_client|slice:":20" }}
                                                       {% endif %}
                                                       </strong>
                                                 </p>
@@ -141,33 +141,22 @@
                               </div>
       
                               <div class='d-flex justify-content-center ms-2 mt-4 detail-sale '>
-                                    {% if s.payment %}
-                                    <a href="{% url "estudios:estudios" s.id %}">
-                                          <button onclick="PreventSend(this.id)" id='reserve-{{ s.id }}'  class="bg-warning rounded-start-5 border-0 rounded-end-5 p-2 me-2 ps-3 pe-3  text-black " style="font-weight: bold; font-size: 14px;">
-                                                Teminar
-                                          </button>
-                                    </a>
-                              {% else %}
-                                    <a href="{% url "estudios:sale-reserver" s.id %}" class="m-1">
-                                          <button onclick="PreventSend(this.id)" id='reserve-{{ s.id }}' 
-                                                class="text-white pay border-0 d-flex rounded-5 p-2 ps-3 pe-3 " style="font-weight: bold; font-size: 14px; 
-                                          width: max-content; 
-                                                color: #000000 !important;">
-                                                {% if s.is_reserve == True %} 
-                                                <i class="fi fi-sr-heart-half-stroke d-flex justify-content-center flex-wrap align-content-center" ></i> Completar {% else %}  <i class="fi fi-sr-challenge d-flex justify-content-center flex-wrap align-content-center"></i> Reservar
-                                                {% endif %}
-                                          </button>
-                                    </a>
-                              {% endif %}
                                     <span class=" w-100 d-flex justify-content-end  align-content-center text-white-50">
-                                          {% if s.is_reserve %}
-                                                {% if s.debit_mount  != 0 %}
-                                                      <span class="estado-monto rounded-end-3"><strong 
-                                                            style="font-size: 14px;">Debe:  </strong> ${{ s.debit_mount|intcomma }}.00</span>
-                                                      <span class="estado-monto rounded-start-3 me-2"><strong 
-                                                            style="font-size: 14px;">Abonó:  </strong>${{ s.mount|intcomma }}.00</span>
+                                          {% if sale.discount %}
+                                          <span class="estado-monto rounded-end-3">
+                                                <strong 
+                                                style="font-size: 14px;">
+                                                Con descuento debe:  </strong> ${{ debit_mount_total|intcomma }}.00
+                                                </span>
+                                                {% else %}
+
+                                                <span class="estado-monto ">    
+                                                      <strong style="font-size: 14px;"> Sin descuento debe: </strong> ${{ debit_mount_total|intcomma }}
+                                                </span>
                                                 {% endif %}
-                                          {% endif %} 
+
+                                          <span class="estado-monto rounded-start-3 me-2">
+                                                <strong  style="font-size: 14px;">Total pagado:  </strong>${{ s.mount|intcomma }}.00</span>
                                     </span>
                               </div>
                                              
