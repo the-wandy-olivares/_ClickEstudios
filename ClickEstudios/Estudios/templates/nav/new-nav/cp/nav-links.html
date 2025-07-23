@@ -21,8 +21,7 @@
             transition: 0.2s;
       }
       .nav-links a:hover {
-            font-weight: bold;
-            transform: scale(1.01);
+            transform: scale(0.93);
       }
       .nav-links a i {
             margin-right: 20px;
@@ -32,7 +31,7 @@
       .nav-links a span {
             width: 100%;
             font-size: 11px;
-            color: #cececed6;
+            color: #e4e4e4d6;
       }
       .div-icon {
             display: flex; flex-wrap: wrap; align-content: center;
@@ -164,7 +163,7 @@
                   <div class="div-txt">
                         Correos
                         <span>
-                              Recordatorios, entregas y promociones
+                              Recordatorios, avisos etc 
                         </span>
                   </div>
             </a>
@@ -172,7 +171,7 @@
 
       <h6>Usuarios y ajustes</h6>
       <div class="sec-links">
-            <a href="{% url 'estudios:admin' %}"  class="admin">
+            <a href="{% url 'accounts:accounts' %}"  class="accounts">
                   <div class="div-icon">
                         <i class="fi fi-sr-user"></i>
                   </div>

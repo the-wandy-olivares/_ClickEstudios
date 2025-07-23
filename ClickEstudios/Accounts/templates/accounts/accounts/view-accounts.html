@@ -1,0 +1,55 @@
+{% extends "base/base.html" %}
+{% block content %}
+      <style>
+            .div-cuenta {
+                  /* box-shadow: 0px 0px 20px 1px  rgba(255, 255, 255, 0.081); */
+                  border-radius: 3rem;
+            }
+            .cuentas {
+                  color: #ffffffdf !important; 
+            }
+      </style>
+      <section class=" position-relative div-cuenta">
+            <div class="div-top d-flex blur-5 mb-2  ">
+                  <div class="me-3">
+                        <i class="fi fi-sr-user d-flex flex-wrap p-3 rounded-circle" style="font-size: 50px; background-color: #19191900;"></i>
+                  </div>
+
+                  <div class="d-flex flex-wrap align-content-center">
+                        <h6 class="m-0 mt-3">
+                              Cuentas
+                        </h6>
+                        <p class="w-100">
+                                Crea, actualiza y gestionas todas tus cuentas de tu empresa <a class="text-decoration-none" href="/administracion-finanza"><strong>Ver más</strong></a>
+                        </p>
+                  </div>
+            </div>
+
+            <div class="p-0  border-0   w-100 d-flex justify-content-start flex-wrap align-content-start" 
+            style="top: 0%; height: 660px;  
+              /* border: 1px solid #232323; */
+            border-radius: 2rem;
+            ">
+                  <div class="d-flex p-0 d-none mt-0">
+                        <div class="d-flex p-2  align-content-center flex-wrap  ">
+                              <img src="https://img.freepik.com/vector-premium/logotipo-corona-real-corona-real-spa-yoga-belleza-moda-estrella-signo-lujo-elegante_752325-770.jpg"
+                              width="140" height="140" class="object-fit-cover ms-3 rounded-circle" style="border: 0px solid rgba(88, 88, 88, 0.452);"
+                              alt="">
+                        </div>
+                        <div class="d-flex align-content-center flex-wrap  ps-4">
+                              <h3 class="w-100 p-0 m-0"> Gestor Financiero SRL</h3>
+                              <h6 class="w-100  p-0 m-0">
+                                   Wandy Olivares - Administrador
+                              </h6>
+                              <span>
+                                    <p class="text-black-50 m-0 text-capitalize">
+                                          Gestor Financiero SRL es una empresa especializada en soluciones contables, administrativas y financieras para negocios y profesionales
+                                    </p>
+                              </span>
+                        </div>
+                  </div>
+                  
+            <!-- <hr class="w-100 m-3 mt-3 mb-2 text-black-50"> -->
+            {% include "accounts/cp/links.html" %}
+      </section>
+{% endblock  %}

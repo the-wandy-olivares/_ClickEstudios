@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    {% load i18n %}
+{% if user.is_authenticated %}
+  <script>
+    window.location.href = "/";
+  </script>
+{% endif %}
+<style>
+  .container {
+    font-family: sans-serif;
+    background: white;
+    max-width: 500px;
+    margin: 100px auto;
+    padding: 40px;
+    text-align: center;
+  }
+
+  .google-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #fff;
+    color: #5f6368;
+    border: 1px solid #dadce0;
+    border-radius: 2rem;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 20px;
+    text-decoration: none;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    transition: background-color 0.2s ease-in-out;
+    cursor: pointer;
+  }
+
+  .google-btn:hover {
+    background-color: #f7f8f8;
+  }
+
+  .google-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  h1 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #202124;
+  }
+
+  p {
+    font-size: 14px;
+    color: #5f6368;
+    margin-bottom: 20px;
+  }
+</style>
+  </head>
+  <body>
+    <div class="container ">
+      <!-- <h1>{% trans "Sesión mediante Google" %}</h1>  -->
+      <p>{% trans "Inicia sesion con google y olvidate de contraseñas." %}</p>
+      <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="google-btn">
+          <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google icon" class="google-icon">
+          {% trans "Continuar con Google" %}
+        </button> <br> <br>
+      </form>
+      
+      <a href="{% url 'home' %}" style="text-decoration: none; color: #5f6368;">
+          Ir al inicio
+      </a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+
+

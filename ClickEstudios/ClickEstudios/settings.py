@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'Asistente.apps.AsistenteConfig',
 
     # Eliminar al deployar o solo usar en desarrollo
+    'Accounts.apps.AccountsConfig',
     'livereload',
 
 ]
@@ -144,8 +145,6 @@ USE_TZ = True
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
-
-
 # Configuración del backend de correo electrónico
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -163,7 +162,6 @@ os.environ['SSL_CERT_FILE'] = certifi.where()
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-if DEBUG:
-    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]

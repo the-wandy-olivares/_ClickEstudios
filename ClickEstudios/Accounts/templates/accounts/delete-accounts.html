@@ -1,0 +1,23 @@
+{% extends "base/base.html" %}
+{% block content %}
+
+      <section>
+            <h6>
+                  Estas seguro de seas eliminar tu cuenta?
+            </h6>
+            <p>
+                  Esta acción no se puede deshacer y eliminará todos tus datos asociados a la cuenta, incluyendo pedidos, historial y preferencias. Si estás seguro de continuar, haz clic en el botón de abajo para proceder con la eliminación de tu cuenta.
+            </p>
+            <form action="" method="post">
+                  <input type="hidden" name="delelte-account" value="true">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger">
+                        Eliminar cuenta
+                  </button>
+                  <a href="{% url 'accounts:accounts' %}" class="btn btn-secondary">
+                        Cancelar
+                  </a>
+            </form>
+      </section>
+
+{% endblock %}
