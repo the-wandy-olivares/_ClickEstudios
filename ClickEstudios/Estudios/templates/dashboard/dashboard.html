@@ -41,23 +41,20 @@
       </style>
            
        
-      <div data-aos="fade-in"
-      style="transition: 1s; height: 100dvh; grid-template-rows: 2fr 1fr;"
-            class=" cartas d-grid m-2 mt-3  w-100  " >
-            <div>
+           <div data-aos="fade-in"
+           style="transition: 1s; height: 100dvh; grid-template-rows: 2fr 1fr;"
+           class=" cartass d-grid m-2 mt-3  w-100  " >
+           <div class=" w-100 d-flex  flex-wrap position-sticky top-0 mb-5 z-2  align-content-start justify-content-end pe-4   top-0 z-2">
+            <button id="install-btn"  class=" w-100 mb-2 ms-1 btn btn-primary border-0  text-white p-2 ps-1 pe-1 rounded-5 "  
+                  style="background-color: #191919; max-width: 11rem;
+                        color: #ffffffb9 !important;"> Instalar app</button>
+            <button onclick="AlternarGrafic()"
+                  class=" w-100 btn-alternar mb-2 btn btn-primary border-0  ms-1 text-white p-2 ps-1 pe-1 rounded-5 "  
+                  style="background-color: #191919; max-width: 11rem;
+                  color: #ffffffb9 !important;">
+                  Graficos por ondas
+            </button>
                   {% include "dashboard/cp/card.html" %}
-            </div>
-            <div class=" w-100 d-flex  flex-wrap position-sticky bottom-0 mb-5  align-content-end justify-content-end pe-4   top-0 z-2">
-                  <button id="installBtn"
-                        class=" w-100 ms-1 btn btn-primary border-0  text-white p-2 ps-1 pe-1 rounded-5 "  
-                        style="background-color: #191919; max-width: 11rem;
-                              color: #ffffffb9 !important;"> Instalar app</button>
-                  <button onclick="AlternarGrafic()"
-                        class=" w-100 btn-alternar btn btn-primary border-0  ms-1 text-white p-2 ps-1 pe-1 rounded-5 "  
-                        style="background-color: #191919; max-width: 11rem;
-                        color: #ffffffb9 !important;">
-                        Graficos por ondas
-                  </button>
             </div>
 
             <div class=" graficos w-100 h-50 position-fixed bottom-0   d-flex flex-wrap align-content-end "
@@ -123,41 +120,41 @@
             </script>
       </div>
       <script>
-            let deferredPrompt;
-            const installBtn = document.getElementById('installBtn');
-          
-            window.addEventListener('beforeinstallprompt', (e) => {
-              // Prevenir la mini barra de instalación automática
-              e.preventDefault();
-              deferredPrompt = e;
-              installBtn.classList.remove('d-none');
-          
-              installBtn.addEventListener('click', async () => {
-                installBtn.classList.add('d-none');
-                deferredPrompt.prompt();
-          
-                const { outcome } = await deferredPrompt.userChoice;
-                if (outcome === 'accepted') {
-                  console.log('✅ App instalada');
-                } else {
-                  console.log('❌ Usuario canceló la instalación');
-                }
-                deferredPrompt = null;
-              });
-            });
-          </script>
-<script>
+  let deferredPrompt;
+  const installBtn = document.getElementById('install-btn');
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+//     e.preventDefault();
+    deferredPrompt = e;
+    installBtn.classList.remove('d-none');
+
+    installBtn.addEventListener('click', async () => {
+      installBtn.classList.add('d-none');
+      deferredPrompt.prompt();
+
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === 'accepted') {
+        console.log('✅ App instalada');
+      } else {
+        console.log('❌ Usuario canceló la instalación');
+      }
+
+      deferredPrompt = null;
+    }, { once: true }); // Asegura que solo se ejecute una vez
+  });
+
       document.addEventListener('DOMContentLoaded', function () {
         // Detectar si está en modo standalone (modo app)
         const isInStandaloneMode = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
     
         if (isInStandaloneMode) {
-          const installBtn = document.getElementById('installBtn');
+          const installBtn = document.getElementById('install-btn');
           if (installBtn) {
             installBtn.style.display = 'none'; // Oculta el botón
           }
         }
       });
+      window.addEventListener('beforeinstallprompt', e => console.log('triggered', e))
     </script>
 
 {% endblock  %}
