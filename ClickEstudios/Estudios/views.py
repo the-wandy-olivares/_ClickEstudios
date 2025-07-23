@@ -9,7 +9,7 @@ from . import models, forms
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-
+from django.http import Http404
 
 # Utilidades
 from . import utils
@@ -1656,4 +1656,5 @@ class Offline(TemplateView):
 
 
 def error_redirect_view(request, exception=None):
+    messages.success(request,f"¡Ups! allgo salio mal, intenta nuevamente en un momento, si continúa, contáctanos al (829) 557-7196.")
     return redirect('estudios:pos')
