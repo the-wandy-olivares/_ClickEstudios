@@ -432,7 +432,7 @@ class SaleReserver(TemplateView):
 
                 models.History.objects.create(
                     user=request.user,  sale = sale,
-                    description=f'Pago de {sale.name_client} con monto de ${sale.debit_mount:,}'
+                    description=f'Pago de {sale.name_client} con monto de ${new_mount:,}'
                 )
                 
             models.Movements.objects.create(
