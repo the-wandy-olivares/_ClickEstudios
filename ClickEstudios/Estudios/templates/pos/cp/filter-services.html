@@ -81,28 +81,4 @@
       }
 </script>
 <!-- Reloj -->
-<script>
-      function updateClock() {
-            const reloj = document.querySelector('.reloj');
-            const now = new Date();
-            const meses = [
-            "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-            "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
-            ];
 
-            const month = meses[now.getUTCMonth()];
-
-            let hours = now.getHours();
-            const minutes = now.getMinutes();
-            const seconds = now.getSeconds();
-             const ampm = hours >= 12 ? 'pm' : 'am';
-            hours = hours % 12;
-            hours = hours ? hours : 12; // the hour '0' should be '12'
-            const strTime =   hours + ':' + (minutes < 10 ? '0' + minutes : minutes)   + ' ' + ampm;
-            reloj.textContent =  strTime;
-            
-      }
-
-      setInterval(updateClock, 1000);
-      updateClock();
-</script>

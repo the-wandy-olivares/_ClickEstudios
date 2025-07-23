@@ -33,6 +33,7 @@ build/
 
 # Carpeta de archivos estáticos recolectados
 /staticfiles/
+static/
 /static_root/
 
 # Archivos de bases de datos (⚠️ NO ignoramos db.sqlite3)

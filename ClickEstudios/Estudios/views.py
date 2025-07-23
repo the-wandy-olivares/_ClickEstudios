@@ -432,7 +432,7 @@ class SaleReserver(TemplateView):
 
                 models.History.objects.create(
                     user=request.user,  sale = sale,
-                    description=f'Pago de {sale.name_client} con monto de ${sale.debit_mount:,}'
+                    description=f'Pago de {sale.name_client} con monto de ${new_mount:,}'
                 )
                 
             models.Movements.objects.create(
@@ -1232,6 +1232,7 @@ class Login(TemplateView):
         user = authenticate(username=username, password=password)
         if user:
             login(request, user)
+            messages.success(self.request, f"Bienvenido de nuevo {request.user.first_name} ")
             return redirect('estudios:dashboard')
         messages.error(request, 'Nombre de usuario o contraseña incorrectos')
         return self.render_to_response(self.get_context_data())
@@ -1289,7 +1290,7 @@ class GastosCreate(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         gastos = models.Movements.objects.filter(type='gasto', 
-            box=models.Box.objects.get(open=True))
+            box=models.Box.objects.get(open=True)).order_by('-id')
         context['gastos'] = gastos
         context['total_gastos'] = sum(gasto.mount for gasto in gastos)
 
@@ -1305,7 +1306,7 @@ class GastosCreate(TemplateView):
                     box=models.Box.objects.get(open=True),
                     mount= gasto['amount'],
                     type='gasto',
-                    description=gasto['name'],
+                    description=f'{gasto['category']}: {gasto['name']} '  ,
                 )
                 g.save()
                 print(g)
@@ -1645,3 +1646,14 @@ class OfertasService(TemplateView):
                 plan.is_offer = False
                 plan.save()
         return redirect('estudios:ofertas-service' , pk=service.id)
+    
+
+
+class Offline(TemplateView):
+    template_name = 'offline/offline.html'
+
+
+
+
+def error_redirect_view(request, exception=None):
+    return redirect('estudios:pos')

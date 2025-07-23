@@ -1,99 +1,136 @@
-
 {% extends "base/base.html" %}
 {% block content %}
-      {% load humanize %}
+{% load humanize %}
 <style>
-      .nav .caja {
-            color: #ffc107;
-            font-weight: bolder;
-            transform: scale(1.1);
-      }
-      .btn {
-            width: 10rem;
-      }
-      #openAmount{
-            width: 20rem;
-      }
-      #openAmount::placeholder {
-            color: white !important;
-      }
-      @media (max-width: 600px) {
-            .div-svg {
-                  justify-content: center !important;
+  .nav .caja {
+    color: #0772ff;
+    font-weight: bolder;
+    transform: scale(1.1);
+  }
+  label {
+      color: #bfcad4 !important;
+
+  }
+  .btn {
+    width: 10rem;
+  }
+  #openAmount {
+    width: 20rem;
+  }
+  #openAmount::placeholder {
+    color: rgb(188, 184, 184) !important;
+  }
+  @media (max-width: 600px) {
+    .div-svg {
+      justify-content: center !important;
+    }
+    .btn, #openAmount {
+      width: 100%;
+    }
+  }
+  .form-control {
+                  background-color: rgb(37, 37, 37) !important;
+                  border: none !important; 
+                  color: rgba(255, 255, 255, 0.738) !important;
+                  border-radius: 1.4rem !important;
+                  min-width: 100%;
+                  height: 3.1rem; max-width: 15rem;
             }
-            .btn {
-                  width: 100%;
-            }
-            #openAmount{
-                  width: 100%;
-            }
-      }
+
+  .d-grid .form-check  label {
+      background-color: rgba(255, 255, 255, 0.04);
+      border-radius: 2.8rem;
+      padding: 3rem;
+      height: 12rem;
+      margin: 0.1rem;
+      
+  }
 </style>
 
-<div data-aos='fade-in' style='transition-duration: 2s !important;'
-      class="text-white p-2 d-flex justify-content-center align-content-center flex-wrap w-100  vh-100">
-      <div class=' div-svg w-100 align-content-center justify-content-start d-flex flex-wrap mb-3'>
-            <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" fill="currentColor" class="bi bi-x-diamond-fill" viewBox="0 0 16 16">
-            <path d="M9.05.435c-.58-.58-1.52-.58-2.1 0L4.047 3.339 8 7.293l3.954-3.954L9.049.435zm3.61 3.611L8.708 8l3.954 3.954 2.904-2.905c.58-.58.58-1.519 0-2.098l-2.904-2.905zm-.706 8.614L8 8.708l-3.954 3.954 2.905 2.904c.58.58 1.519.58 2.098 0l2.905-2.904zm-8.614-.706L7.292 8 3.339 4.046.435 6.951c-.58.58-.58 1.519 0 2.098z"/>
-            </svg>
+<div class="text-white p-2 d-flex justify-content-center align-content-center flex-wrap w-100 vh-100">
+  <div class="div-svg w-100 d-flex justify-content-start">
+    <i class="fi fi-sr-safe-box" style="font-size: 70px;"></i>
+  </div>
+  <div class="w-100">
+    <form method="post">
+      {% csrf_token %}
+      {% if is_open %}
+        <input type="hidden" name="close" value="true">
+        <h6 class="text-black-50 m-0 p-0">Cierre de caja</h6>
+        <p class="mb-3">Al cerrar la caja no se podrá registrar sus movimientos, ver contabilidad, métricas y más.</p>
+      <div class="d-flex">
+            <button type="submit" class="btn btn-danger rounded-3" style="font-weight: bolder; max-width: 12rem;">
+                  Confirmar cierre
+                </button>
+                <a href="{% url 'estudios:pos' %}" class="btn border-0 " style="width: max-content;">
+                    <span class="button bg-transparent border-0" style="font-weight: bold; color: #676c71;">
+                    <i class="fi fi-sr-undo me-2"></i> Atrás
+                    </span>
+              </a>
       </div>
-      <div class="w-100 align-content-center justify-content-start-0 "> 
-            <form method="post" action="">
-                  {% csrf_token %}
-                  {% if is_open %}
-                        <input type="hidden" name="close" value="false">
-                        <strong>
-                              Cierre de caja
-                        </strong>
-                        <p class="m-0 p-0 mb-3" style="line-height: 18px;">
-                              Al cerrar la caja no se podrá registrar sus movimientos, ver contabilidad, métricas y más
-                        </p>
-                        <button type="submit" 
-                        class="btn rounded-5 t ps-4 pe-4  border-1 btn-danger " style='font-weight: bolder; max-width: 12rem; background-color: rgb(24, 2, 2); color: #ff4646;'>
-                              Confirmar
-                        </button>
-                  {% else %}
-                        <input type="hidden" name="open" value="true">
-                        <strong>
-                              Apertura de caja 
-                        </strong>
-                        <p class="m-0 p-0  mb-3" style="line-height: 18px;">
-                              Al abrir la caja se podrá registrar sus movimientos, ver contabilidad, métricas y más
-                        </p>
-                        <div class="form-check mt-0">
-                              <input class="form-check-input rounded-circle" type="checkbox" value="" id="openAmountCheck" name="mount_aditional" onchange="toggleOpenAmountInput()">
-                              <label class="form-check-label" for="openAmountCheck" 
-                                    style='font-weight: bold; cursor: pointer;'> 
-                                    ¿Desea ingresar un monto de apertura?
-                              </label>
-                        </div>
-                        <div id="openAmountInput" class='p-0' style="display: none;">
-                              <input type="text" class="form-control rounded-5 bg-white text-white bg-opacity-10 border-0 p-3  " id="openAmount" name="open_amount" placeholder="Ingrese el monto">
-                        </div>
-                        <button type="submit" 
-                        class="btn  rounded-5 ps-4 mt-2 pe-4 bg-warning text-black" style='font-weight: bolder; max-width: 12rem;'>
-                              Si, abrir caja
-                        </button>
-                  {% endif %}
-            </form>
-      </div>
-</div>
-<script>
-      document.getElementById('openAmount').addEventListener('input', function (e) {
-            var value = e.target.value;
-            value = value.replace(/\D/g, '');
-            value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-            e.target.value = value;
-      });
-      function toggleOpenAmountInput() {
-            var checkBox = document.getElementById("openAmountCheck");
-            var inputField = document.getElementById("openAmountInput");
-            if (checkBox.checked == true){
-                  inputField.style.display = "block";
-            } else {
-                  inputField.style.display = "none";
-            }
-      }
-</script>
+      {% else %}
+        <input type="hidden" name="open" value="true">
+        <strong>Apertura de caja</strong>
 
-{% endblock  %}
+        <h5 class="fw-bold mt-2 mb-1">¿Cómo deseas iniciar la jornada?</h5>
+        <div class="d-grid" style="grid-template-columns: repeat(auto-fit, minmax(324px, 1fr));">
+            <div class="form-check " >
+                  <input class="form-check-input" type="radio" value="monto" id="checkMonto" name="openOption" onchange="handleChecks()">
+                  <label class="form-check-label" for="checkMonto">
+                       <strong>¿Ingresando un monto de apertura?</strong>
+                        <p class="small ">
+                              Esta opción permite definir un monto inicial con el que se abre la caja al comenzar la jornada.
+                        </p>
+                  </label>
+            </div>
+            <div class="form-check">
+                  <input class="form-check-input" type="radio" value="sin_monto" id="checkSinMonto" name="openOption" onchange="handleChecks()" checked>
+                  <label class="form-check-label" for="checkSinMonto">
+                       <strong> Iniciar sin monto inicial</strong>
+                        <p class="small ">
+                              Puede abrir la caja sin definir un monto inicial, y registrar ingresos conforme se realicen operaciones.
+                        </p>
+                  </label>
+            </div>
+        </div>
+
+        <div id="openAmountInput" style="display: none;">
+          <input type="text" class="form-control form-class text-black-50 border-0 p-3 mt-2"
+                 id="openAmount" name="open_amount" placeholder="Ingrese el monto"
+                 style="background-color: var(--bg-1);">
+        </div>
+
+        <div class="d-flex mt-3 flex-wrap">
+            <button id="submitButton" type="submit" class="btn p-2 bg-warning text-black rounded-5"
+                        style="font-weight: bolder; width: 8rem; display: block;">
+                  Abrir caja
+            </button>
+
+            <a href="{% url 'estudios:box' %}" class="btn border-0 mt-2  w-100 text-start" style="width: max-content;">
+                  <span class="button bg-transparent border-0" style="font-weight: bold; color: #676c71;">
+                  <i class="fi fi-sr-undo me-2"></i> Atrás
+                  </span>
+            </a>
+        </div>
+      {% endif %}
+    </form>
+  </div>
+</div>
+
+<script>
+  function handleChecks() {
+    const montoCheck = document.getElementById("checkMonto").checked;
+    const sinMontoCheck = document.getElementById("checkSinMonto").checked;
+    const inputField = document.getElementById("openAmountInput");
+    const submitButton = document.getElementById("submitButton");
+
+    inputField.style.display = montoCheck ? "block" : "none";
+    submitButton.style.display = (montoCheck || sinMontoCheck) ? "inline-block" : "none";
+  }
+
+  document.getElementById('openAmount')?.addEventListener('input', function (e) {
+    let value = e.target.value.replace(/\D/g, '');
+    e.target.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  });
+</script>
+{% endblock %}

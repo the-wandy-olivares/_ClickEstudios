@@ -7,11 +7,12 @@
                   color: #ffc107 !important;
                   font-weight: bolder;
             }
-            input {
-                  background-color: rgb(24, 24, 24) !important;
+            input, select {
+                  background-color: rgb(37, 37, 37) !important;
                   border: none !important; 
                   color: rgba(255, 255, 255, 0.738) !important;
-                  border-radius: 1rem !important;
+                  border-radius: 1.4rem !important;
+                  min-width: 100%;
                   height: 3.1rem; max-width: 15rem;
             }
             input::placeholder {
@@ -22,10 +23,15 @@
                   color: rgb(255, 101, 101) !important;
                   border: 0px;
             }
-            .container td {
+            .container td, tr {
                   font-size: 14px;
-                  color: rgba(255, 255, 255, 0.683);
-                  font-weight: bold;
+                  color: rgba(255, 255, 255, 0.683) !important;
+                  background-color: #00123200;
+                  padding: 0.2rem !important;;
+
+            }
+            .container p {
+                   color: #a0a0a0;
             }
       </style>
       
@@ -38,7 +44,7 @@
                         </div>
                         <div class="d-flex flex-wrap align-content-center">
                               <h5 class="m-0 mt-3">
-                                    Listado de gastos
+                                    ({{ gastos|length }}) Listado de gastos 
                               </h5>
                               <p class="w-100" style="font-size: 14px;">
                                     Administra tus gastos, esto llevara un control de tu flujo de caja
@@ -47,89 +53,125 @@
                   </div>
       
             </div>
-            <form id="gastoForm" method="POST" class="w-100">
-                  <div class="w-100 ">
-                        <table class=" table table-dark table-borderless  mt-0">
-                              <thead>
-                                    <tr>
-                                          <th>Nombre</th>
-                                          <th>Monto</th>
-                                          <th>
-                                                Fecha 
-                                          </th>
-                                    </tr>
-                              </thead>
-                              <tbody>
-                                    {% for gasto in gastos %}
-                                    <tr>
-                                          <td>{{ gasto.description }}</td>
-                                          <td> ${{ gasto.mount|intcomma }}.00</td>
-                                          <td>
-                                                {{ gasto.date|date:"d/m/Y" }}
-                                          </td>
-                                    </tr>
-                                    {% endfor %}
-                              </tbody>
-                        </table>
-                        <h6 style="font-size: 14px; font-weight: bold;" class="text-white-50 m-0">
-                              RD$<span >{{total_gastos|intcomma}}.00</span>
+            <form id="gastoForm" method="POST" class="w-100 mt-3">
+                  <div >
+                        <div class="w-100 overflow-scroll" style="max-height: 15rem;">
+                              <table class=" table table-dark table-borderless  mt-0">
+                                    <thead>
+                                          <tr>
+                                                <th>Nombre</th>
+                                                <th>Monto</th>
+                                                <th>
+                                                      Fecha 
+                                                </th>
+                                          </tr>
+                                    </thead>
+                                    <tbody>
+                                          {% for gasto in gastos %}
+                                          <tr>
+                                                <td>{{ gasto.description }}</td>
+                                                <td> ${{ gasto.mount|intcomma }}.00</td>
+                                                <td>
+                                                      {{ gasto.date|date:"d/m/Y - h:i A" }}
+                                                </td>
+                                          </tr>
+                                          {% endfor %}
+                                    </tbody>
+                              </table>
+                        </div>
+                        <hr class="w-100 text-white-50">
+                      <div class="d-flex justify-content-end w-100">
+                        <h6 style="font-size: 16px; font-weight: bold;  background-color: #202020;"
+                         class="text-white-50 m-0 p-2 pe-3 ps-3 rounded-5">
+                              Total = RD$<span >{{total_gastos|intcomma}}.00</span>
                         </h6>
+                      </div>
                   </div>
                   <div class="d-block  overflow-auto mt-3" style="width: 100%;">
-                        <table class=" table table-dark table-borderless  ">
-                              <thead>
-                                    <tr>
-                                          <th>Nombre</th>
-                                          <th>Monto</th>
-                                          <th>Acciones</th>
-                                    </tr>
-                              </thead>
-                              <tbody id="gastosTableBody">
-                              </tbody>
-                        </table>
-                        <h6 style="font-size: 14px; font-weight: bold;" class="text-white-50">Total en lista: $<span id="totalAmount">0</span></h6>
+                        <div id="tablaWrapper" style="display: none;">
+                              <h6 style="font-size: 14px; font-weight: bold;" class="text-white-50">
+                                    Vista previa 
+                              </h6>
+                              <p>
+                                    Dale un vistazo a tus gastos antes de agregarlos definitivamente 
+                              </p>
+                          <table class="table table-dark table-borderless">
+                            <thead>
+                              <tr>
+                                <th>Nombre</th>
+                                <th>Monto</th>
+                                <th>Acciones</th>
+                              </tr>
+                            </thead>
+                            <tbody id="gastosTableBody">
+                            </tbody>
+                          </table>
+                          <h6 style="font-size: 14px; font-weight: bold;" class="text-white-50 mb-3">Total en lista: $<span id="totalAmount">0</span></h6>
+                        </div>
                         <button type="submit" class="btn btn-success border-0 rounded-4 p-2 pe-5 ps-5 " id="submitButton" style="display: none; font-weight: bold; 
                         background-color: #003200;
                         color: rgb(101, 255, 101);">
-                              Guardar 
+                              Confirmar listado
                         </button>
             </div>
             
             
-            <div class="" style="max-width: 30rem;">
+                  <div class="d-grid  p-5 rounded-5 position-sticky bottom-0 mt-3 " 
+                        style=" grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+                         background-color: #191919; gap: 10px; ">
                   
                         {% csrf_token %}
                         <div class="form-group d-flex  justify-content-start flex-wrap" >
-                              <select id="category"  class="form-control border-0  m-1 w-100" 
-                                    style="           background-color: rgb(24, 24, 24) !important;
-                                    border-radius: 0.7rem;
-                                    outline: none !important;
-                                    min-width: 9rem; color: rgba(255, 255, 255, 0.67) !important;" >
-                                    <option value="Compras">Compras</option>
-                                    <option value="Servicios">Servicios</option>
-                                    <option value="Alquiler">Alquiler</option>
-                                    <option value="Egresos">Egresos</option>
+                              <h6 class="m-0 p-0 w-100">
+                                    Tipo de Gato
+                              </h6>
+                              <p class="m-0 p-0">
+                                    Selecciono el tipo de gasto que vas a registrar
+                              </p>
+                              <select id="category" name="category"  class="form-control border-0  m-1 w-100"  >
+                                    <option value="Compra">Compra – Adquisición de productos o materiales</option>
+                                    <option value="Servicio">Servicio – Pago por servicios contratados</option>
+                                    <option value="Alquiler">Alquiler – Renta de espacios o equipos</option>
+                                    <option value="Nómina">Nómina – Sueldos y salarios de empleados</option>
+                                    <option value="Impuestos">Impuestos – Obligaciones fiscales</option>
+                                    <option value="Mantenimiento">Mantenimiento – Reparaciones o ajustes</option>
+                                    <option value="Suministros">Suministros – Papelería, limpieza, etc.</option>
+                                    <option value="Transporte">Transporte – Combustible, envíos, movilidad</option>
+                                    <option value="Publicidad">Publicidad – Marketing, anuncios y redes sociales</option>
+                                    <option value="Tecnología">Tecnología – Software, hardware y herramientas</option>
+                                    <option value="Licencias y Suscripciones">Licencias y Suscripciones – Pagos por plataformas o software</option>
+                                    <option value="Egreso">Egreso – Salida general de dinero</option>
+                                    <option value="Otro">Otro – Gasto no especificado</option>
                               </select>
-                              <div class="d-flex w-100">
-                                    <input  type="number"  id="amount" class="m-1 d-none form-control" 
-                                    style="width: 12rem;">
-                                    <input  type="text" id="name" placeholder="Nombre"  class="m-1 form-control" style="width: 100%;">
-                                    <input  type="text" style="width: 100%;" placeholder="Monto" id="amount-str" class="m-1 form-control" >
+                        </div>
+                        <div class=" w-100">
+                              <h6 class="m-0 p-0">
+                                    Nombre de entidad o generico
+                              </h6>
+                              <p class="m-0 p-0">
+                                    Nombre la entidas o solo agregue un nombre descriptivo
+                              </p>
+                              <input  type="text" id="name" placeholder="Nombre"  class="m-1 form-control" style="min-width: 100% !important;">
+                        </div>
+                        <div class="w-100">
+                              <input  type="number"  id="amount" class="m-1 d-none form-control" 
+                              style="width: 12rem;">
+                              <input  type="text" style="min-width: 100% !important;" placeholder="$" id="amount-str" class="m-1 w-100 form-control" >
+                        </div>
+                        <div class="d-flex justify-content-end">
+                                    <input type="hidden" id="gastosData" name="gastosData">
+                                    <button type="button" class="btn btn-primary p-2 pe-4 ps-4 border-0 mt-2 rounded-5 " style="font-weight: bold; background-color: #001232;
+                                    color: rgb(101, 139, 255); width: max-content;" onclick="agregarGasto()"> Añadir </button>
                               </div>
                         </div>
-                        <input type="hidden" id="gastosData" name="gastosData">
-                        <div class="d-flex justify-content-end">
-                              <a href="{% url "estudios:pos" %}" class="btn border-0 btn-secondary accordion bg-transparent rounded-4  align-content-center d-flex flex-wrap  text-white-50" style="font-weight: bold;"> 
-                                    <i class="fi fi-sr-left align-content-center d-flex flex-wrap me-2 "></i> Atras
-                              </a>
-                              <button type="button" class="btn btn-primary p-2 pe-4 ps-4 border-0 mt-2 rounded-5 " style="font-weight: bold; background-color: #001232;
-                              color: rgb(101, 139, 255); width: max-content;" onclick="agregarGasto()"> Añadir </button>
-                        </div>
-                  </div>
+                        <a href="{% url "estudios:pos" %}" class="btn border-0 btn-secondary accordion bg-transparent rounded-4  align-content-center d-flex flex-wrap  text-white-50" style="font-weight: bold;"> 
+                              <i class="fi fi-sr-left align-content-center d-flex flex-wrap me-2 "></i> Atras
+                        </a>
+
+                        
+                  </form>
                   
-            </form>
-            
-   
+                  
       </div>
 
       <script>
@@ -146,15 +188,15 @@
                         const row = document.createElement('tr');
 
                         row.innerHTML = `
-                              <td>${name}</td>
+                              <td>${category}: ${name}</td>
                               <td>${amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
                               <td><button class="btn btn-danger" onclick="eliminarGasto(this, ${amount})">Eliminar</button></td>
                         `;
 
                         tableBody.appendChild(row);
 
-                   total += amount;
-                    document.getElementById('totalAmount').innerText = total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                        total += amount;
+                        document.getElementById('totalAmount').innerText = total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
                         gastos.push({ name, category, amount });
                         document.getElementById('gastosData').value = JSON.stringify(gastos);
@@ -165,7 +207,7 @@
                               document.getElementById('submitButton').style.display = 'block';
                         }
 
-
+                        actualizarVisibilidadTabla();
                   }
             }
 
@@ -177,7 +219,7 @@
                   row.remove();
 
                   total -= amount;
-                    document.getElementById('totalAmount').innerText = total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                  document.getElementById('totalAmount').innerText = total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
                   gastos = gastos.filter(gasto => !(gasto.name === name && gasto.category === category && gasto.amount === amount));
                   document.getElementById('gastosData').value = JSON.stringify(gastos);
@@ -186,6 +228,7 @@
                         document.getElementById('submitButton').style.display = 'none';
                   }
 
+                  actualizarVisibilidadTabla();
             }
 
             document.getElementById('amount-str').addEventListener('input', function (e) {
@@ -196,6 +239,18 @@
 
                   document.getElementById('amount').value = value.replace(/,/g, '');
             });
+      </script>
+
+      <script>
+      function actualizarVisibilidadTabla() {
+        const tablaWrapper = document.getElementById('tablaWrapper');
+        const body = document.getElementById('gastosTableBody');
+        if (body.children.length === 0) {
+          tablaWrapper.style.display = 'none';
+        } else {
+          tablaWrapper.style.display = 'block';
+        }
+      }
       </script>
 
 {% endblock %}

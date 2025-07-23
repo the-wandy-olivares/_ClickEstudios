@@ -105,7 +105,8 @@ urlpatterns = [
             path('contacto-delete<int:pk>', views.ContactoDelete.as_view(), name='contacto-delete'),
 # Correos
       path('correos/', views.Correos.as_view(), name='correos'),
-
+            path('offline/', views.Offline.as_view(), name='offline'),
+            
 ]
 
 
