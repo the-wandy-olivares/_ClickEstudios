@@ -14,58 +14,58 @@
 
             }
       </style>
-      <section class="d-flex justify-content-center align-self-center flex-wrap w-100 ">
-            
-            <div class=" text-white d-flex flex-wrap align-content-start  p-2"
-                  style="min-width:20rem ;">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" fill="currentColor" class="bi bi-receipt" viewBox="0 0 16 16">
-                        <path d="M1.92.506a.5.5 0 0 1 .434.14L3 1.293l.646-.647a.5.5 0 0 1 .708 0L5 1.293l.646-.647a.5.5 0 0 1 .708 0L7 1.293l.646-.647a.5.5 0 0 1 .708 0L9 1.293l.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .801.13l.5 1A.5.5 0 0 1 15 2v12a.5.5 0 0 1-.053.224l-.5 1a.5.5 0 0 1-.8.13L13 14.707l-.646.647a.5.5 0 0 1-.708 0L11 14.707l-.646.647a.5.5 0 0 1-.708 0L9 14.707l-.646.647a.5.5 0 0 1-.708 0L7 14.707l-.646.647a.5.5 0 0 1-.708 0L5 14.707l-.646.647a.5.5 0 0 1-.708 0L3 14.707l-.646.647a.5.5 0 0 1-.801-.13l-.5-1A.5.5 0 0 1 1 14V2a.5.5 0 0 1 .053-.224l.5-1a.5.5 0 0 1 .367-.27m.217 1.338L2 2.118v11.764l.137.274.51-.51a.5.5 0 0 1 .707 0l.646.647.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.509.509.137-.274V2.118l-.137-.274-.51.51a.5.5 0 0 1-.707 0L12 1.707l-.646.647a.5.5 0 0 1-.708 0L10 1.707l-.646.647a.5.5 0 0 1-.708 0L8 1.707l-.646.647a.5.5 0 0 1-.708 0L6 1.707l-.646.647a.5.5 0 0 1-.708 0L4 1.707l-.646.647a.5.5 0 0 1-.708 0z"/>
-                        <path d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5m8-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5"/>
-                      </svg>
-                  <h6 class="p-0 m-0 w-100">
-                        Crea una venta rapida
-                  </h6>
-                  <p class="text-white-50 p-0 m-0 mb-2">
-                        Ideal para ventas sin necesidad de un servicio o un plan.
-                  </p>
-            </div>
-            <div style="width: 44rem;" class="text-white inputs">
-                  <form action="" method="post">
-                        
-                        {% csrf_token %}
-                        <div class="d-flex w-100 flex-wrap">
-                              
-                              <input placeholder="Nombre" maxlength="20" class="w-50 text-white rounded-5 p-3 w-100" type="text" name="name" id="name" required> 
-                              
-                              <input placeholder="Precio" class="w-100 text-white rounded-5 p-3" type="text" name="preci" id="preci" required>
-                              
-                              <script>
-                                    document.getElementById('name').addEventListener('input', function (e) {
-                                          var maxLength = 20;
-                                          var currentLength = e.target.value.length;
-                                          var remainingChars = maxLength - currentLength;
-                                          document.getElementById('charCount').textContent = remainingChars;
-                                    });
-                              </script>
-                        </div>
-                        <span id="charCount" class="ms-2 text-white-50">20</span>/20
-                        {% comment %} <div class="w-100">
-                              <textarea name="descripcion" id="descripcion"
-                              class="w-100 rounded-5 p-3 text-white" placeholder="Descripcion (opcional)"
-                              style="height: 20rem;"></textarea>
-                        </div> {% endcomment %}
-                        <div class="d-flex justify-content-end">
-                              <a onclick="PreventSend(this.id)" id="back-space-sale-fast-sale" href="{% url "estudios:pos" %}" class="btn border-0 btn-secondary accordion bg-transparent rounded-4  align-content-center d-flex flex-wrap  text-white-50" style="font-weight: bold;"> 
-                                    <i class="fi fi-sr-left align-content-center d-flex flex-wrap me-2 "></i> Atras
-                              </a>
-                              <button onclick="PreventSend(this.id)" id="btn-facturar-ahora" type="submit" class="btn bg-white d-none bg-opacity-10 text-white btn-facturar rounded-5 ps-4 pe-4 "
-                              style="font-weight: bold; width:7rem; "> 
-                                    Facturar 
-                              </button>
-                        </div>
-                  </form>
-            </div>
-      </section>
+      <div class="d-flex justify-content-center w-100">
+            <section class="d-grid w-100  align-content-center  p-2" 
+            style="grid-template-columns: repeat(1, 1fr); gap: 10px; max-width: 700px;">
+           
+           <div class=" text-white d-flex flex-wrap align-content-start  p-2"  >
+                 <i class="fi fi-sr-point-of-sale-bill" style="font-size: 120px;"></i>
+                 <h6 class="p-0 m-0 w-100">
+                       Session rapida
+                 </h6>
+                 <p class="text-white-50 p-0 m-0 mb-2">
+                  Registra una venta sin fecha, ideal para fotos 2x2 o sesiones rápidas sin necesidad de largas horas de estudio.
+                 </p>
+           </div>
+           <div class="text-white inputs w-100">
+                 <form action="" method="post" class="w-100 ">
+                       
+                       {% csrf_token %}
+                       <div class="d-grid w-100 " 
+                             style="grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 10px;">
+                             
+                             <input placeholder="Nombre" maxlength="20" class="w-100 text-white rounded-5 p-3 w-100" type="text" name="name" id="name" required> 
+                             
+                             <input placeholder="Precio" class="w-100 text-white rounded-5 p-3" type="text" name="preci" id="preci" required>
+                             
+                             <script>
+                                   document.getElementById('name').addEventListener('input', function (e) {
+                                         var maxLength = 20;
+                                         var currentLength = e.target.value.length;
+                                         var remainingChars = maxLength - currentLength;
+                                         document.getElementById('charCount').textContent = remainingChars;
+                                   });
+                             </script>
+                       </div>
+                       <span id="charCount" class="ms-2 text-white-50">20</span>/20
+                       {% comment %} <div class="w-100">
+                             <textarea name="descripcion" id="descripcion"
+                             class="w-100 rounded-5 p-3 text-white" placeholder="Descripcion (opcional)"
+                             style="height: 20rem;"></textarea>
+                       </div> {% endcomment %}
+                       <div class="d-flex justify-content-end">
+                             <a onclick="PreventSend(this.id)" id="back-space-sale-fast-sale" href="{% url "estudios:pos" %}" class="btn border-0 btn-secondary accordion bg-transparent rounded-4  align-content-center d-flex flex-wrap  text-white-50" style="font-weight: bold;"> 
+                                   <i class="fi fi-sr-left align-content-center d-flex flex-wrap me-2 "></i> Atras
+                             </a>
+                             <button onclick="PreventSend(this.id)" id="btn-facturar-ahora" type="submit" class="btn bg-white d-none bg-opacity-10 text-white btn-facturar rounded-5 ps-4 pe-4 "
+                             style="font-weight: bold; width:7rem; "> 
+                                   Facturar 
+                             </button>
+                       </div>
+                 </form>
+           </div>
+     </section>
+      </div>
       <script>
             document.getElementById('preci').addEventListener('input', function (e) {
                   var value = e.target.value;

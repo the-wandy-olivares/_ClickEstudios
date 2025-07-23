@@ -154,9 +154,13 @@ os.environ['SSL_CERT_FILE'] = certifi.where()
 
 
 
+
+
 # Configuración de archivos estáticos
-STATIC_URL = 'static/'  # URL de los archivos estáticos 
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+if DEBUG:
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
