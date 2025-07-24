@@ -17,7 +17,7 @@ class Login(LoginView):
     redirect_authenticated_user = True
 
     def get_success_url(self):
-        return self.get_redirect_url() or "/accounts/view-account"
+        return self.get_redirect_url() or "/"
 
     def form_invalid(self, form):
         messages.error(self.request, "Usuario o contraseña incorrectos")

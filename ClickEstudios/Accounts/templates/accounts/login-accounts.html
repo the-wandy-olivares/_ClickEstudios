@@ -1,5 +1,4 @@
-{% extends "home/base/base.html" %}
-{% block content %}
+
 <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css">
       <style>
             .logout {
@@ -55,7 +54,8 @@
                               Iniciar sesión
                             </button>
                         </div>
-                          <a class="w-100 text-center btn mt-2 p-2 text-white-50 bold d-flex justify-content-center text-decoration-none   " href="{% url 'accounts:view-accounts' %}">
+                          <a class="w-100 text-center btn mt-2 p-2 text-white-50 bold d-flex justify-content-center text-decoration-none   " 
+                              href="{% url 'estudios:home' %}">
                                 No, volver atrás
                           </a>
                       </form>
@@ -70,4 +70,4 @@
                         }
             });
       </script>
-{% endblock  %}
+

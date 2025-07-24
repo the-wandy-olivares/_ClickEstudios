@@ -1,7 +1,7 @@
 {% extends "base/base.html" %}
 {% block content %}
 <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css">
-      <section class="logout d-flex  flex-wrap justify-content-center  align-content-center  vh-100 w-100">
+      <section class="logout d-flex text-white  flex-wrap justify-content-center  align-content-center  vh-100 w-100">
 
                       <h5 class="w-100 text-center">
                             ¿Deseas cerrar session?
@@ -9,7 +9,7 @@
                     <p>  Al cerrar tu sesión, se finaliza el acceso a tu cuenta en este navegador</p>
                  
                   <div class="d-flex w-100 justify-content-center">
-                        <a class=" text-center btn p-2 me-3 bold d-flex justify-content-center text-decoration-none   " 
+                        <a class=" text-center btn p-2 me-3 border-0 bold d-flex justify-content-center text-decoration-none   " 
                         href="{% url 'accounts:accounts' %}" style="width: max-content;">
       
                                No, volver atrás
@@ -17,11 +17,10 @@
       
                         <form method="POST" class=" ">
                               {% csrf_token %}
-                              <button type="submit" class="btn bold   rounded-5 p-2 ps-4 d-flex flex-wrap align-content-center  pe-4"
+                              <button type="submit" class="btn bold  border-danger text-danger  rounded-5 p-2 ps-4 d-flex flex-wrap align-content-center  pe-4"
                               style="background-color: var(--bg-1);
                               /* border: 1px solid #b8b8b8; */
                               /* background-color: #ff00007a; */
-                              color: #4c4c4c;
                               width: max-content;">
                               Cerrar sesión</button>
                         </form>
