@@ -31,16 +31,17 @@
                   </div>
                   <div class="d-flex flex-wrap align-content-center">
                         <h5 class="m-0 mt-3">
-                              Facturas
+                            ({{ sales|length }})  Facturas
                         </h5>
                         <p class="w-100" style="font-size: 14px;">
-                              Cobros y pagos de clientes  
+                              Cobros y pagos de clientes, reenvia facturas o verifica algun tipo de venta
                         </p>
                   </div>
             </div>
             <div class='d-flex w-100 flex-wrap'>
-                  <div class='facturas-sales w-100 ' 
-                        style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;"  >
+                  <div class='facturas-sale w-100 ' 
+                        style="display: grid;
+                         grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 5px;"  >
                         {% for sale in sales %}
                                      {% include "factura/cp/card-factura.html" %}
                         {% endfor %}

@@ -1439,7 +1439,7 @@ class Mhia(TemplateView):
 
 
 class Configuration(TemplateView):
-    template_name = 'configuration/configuration.html'
+    template_name = 'configuracion/configuracion.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

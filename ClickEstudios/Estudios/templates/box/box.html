@@ -127,29 +127,29 @@
                                     <span> ${{total_movimientos|intcomma}}.00 </span>
                               </div>
                         </div>
-                        <div class="overflow-visible container-table " style="height: 80vh;">
+                        <div class="overflow-visible container-table " style="height: 100vh;">
                               {% include "box/components/filter.html" %}
-                             <div style="height: 59vh;" class="overflow-auto ">
+                             <div style="height: 100vh;" class="overflow-auto ">
                                     {% include "box/components/table.html" %}
                              </div>
-                             <div class="detail-resulst ">
+                             <div class="detail-resulst blur-5 rounded-5 ">
                                     <table class="w-100">
                                           <thead>
                                                 <tr>
-                                                      <th scope="col" class="text-center"> Ingresos</th>
-                                                      <th scope="col" class="text-center">Gastos</th>
-                                                      <th scope="col" class="text-center">Balance</th>
+                                                      <th scope="col" class="text-center" style="font-size: 14px;">Balance</th>
+                                                      <th scope="col" class="text-center" style="font-size: 14px;"> Ingresos</th>
+                                                      <th scope="col" class="text-center" style="font-size: 14px;">Gastos</th>
                                                 </tr>
                                           </thead>
                                           <tbody>
                                                 <tr>
+                                                      <td class="text-center">${{ balance_caja|intcomma }}.00</td>
                                                       <td class="text-center">${{ ingresos|intcomma }}.00</td>
                                                       <td class="text-center">${{ egresos|intcomma }}.00</td>
-                                                      <td class="text-center">${{ balance_caja|intcomma }}.00</td>
                                                       <td>
                                                             <a href="{% url "estudios:box-create" %}" class='btn-cerrar'> 
-                                                                  <button style=" font-weight: bold; background-color: #191919;"  
-                                                                  class=' btn rounded-3  text-white  m'> Cerrar   </button>
+                                                                  <button style=" font-weight: bold; background-color: #1919196c;"  
+                                                                  class=' btn rounded-5  text-white  m'> Cerrar  session </button>
                                                             </a>
                                                       </td>
                                                 </tr>

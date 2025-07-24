@@ -5,17 +5,13 @@
             height: 100dvh;
             overflow-x: hidden;
       }
-      .show-arrow-1:hover {
-            transform: scale(1.2);
-      }
 </style>
 <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-straight/css/uicons-solid-straight.css'>
 <link href="https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&display=swap" rel="stylesheet">
-<section class="section-escritorio-nav p-1 position-relative">
+<section class="section-escritorio-nav p-1 pb-0 position-relative">
       {% include "nav/new-nav/cp/nav-links.html" %}
-      <h6 class="text-white-50 w-100 position-sticky bottom-0  text-uppercase text-center " 
-            style=" font-family: Delius Swash Caps, cursive; font-size: 12px; height: 2rem;">
-            <strong>V</strong>:  Aurora ( 1.9.2)
-      </h6>
+      <div class="position-fixed bottom-0 mt-3 z-2" >
+            {% include "nav/new-nav/cp/user-profile.html" %}
+      </div>
 </section>
 

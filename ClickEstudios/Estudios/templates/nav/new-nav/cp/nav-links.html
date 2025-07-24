@@ -17,12 +17,12 @@
             font-size: 16px;
             border-radius: 1rem;
             width: 100%;
+            height: 2.7rem;
             padding: 0.2rem;
             transition: 0.2s;
       }
       .nav-links a:hover {
-            font-weight: bold;
-            transform: scale(1.01);
+            transform: scale(0.93);
       }
       .nav-links a i {
             margin-right: 20px;
@@ -32,7 +32,7 @@
       .nav-links a span {
             width: 100%;
             font-size: 11px;
-            color: #cececed6;
+            color: #e4e4e4d6;
       }
       .div-icon {
             display: flex; flex-wrap: wrap; align-content: center;
@@ -64,7 +64,8 @@
             Ventas y operaciones
       </h6>
       <div class="sec-links">
-            <a href="{% url 'estudios:dashboard' %}" class="dashboard">
+            <a href="{% url 'estudios:dashboard' %}" 
+                  class="dashboard" id="dashboard" onclick="PreventSend(this.id)">
                   <div class="div-icon">
                         <i class="fi fi-sr-house-blank"></i>
                   </div>
@@ -75,7 +76,8 @@
                         </span>
                   </div>
             </a>
-            <a href="{% url 'estudios:pos' %}" class="pos">
+            <a href="{% url 'estudios:pos' %}" 
+                  class="pos" id="pos" onclick="PreventSend(this.id)">
                   <div class="div-icon">
                         <i class="fi fi-sr-payment-pos"></i>
                   </div>
@@ -84,7 +86,7 @@
                         <span>Punto de venta</span>
                   </div>
             </a>
-            <a href="{% url 'estudios:box' %}" class="caja">
+            <a onclick="PreventSend(this.id)" href="{% url 'estudios:box' %}" id="caja" class="caja">
                   <div class="div-icon">
                         <i class="fi fi-sr-safe-box"></i>
                   </div>
@@ -95,7 +97,7 @@
                         </span>
                   </div>
             </a>
-            <a href="{% url 'estudios:contactos' %}" class="contactos   position-relative">
+            <a onclick="PreventSend(this.id)" href="{% url 'estudios:contactos' %}" id="clientes" class="contactos   position-relative">
                   <div class="div-icon">
                         <i class="fi fi-sr-users-alt"></i>
                   </div>
@@ -106,7 +108,7 @@
                         </span>
                   </div>
             </a>
-            <a href="{% url 'estudios:facturas' %}" class="facturas position-relative">
+            <a onclick="PreventSend(this.id)" href="{% url 'estudios:facturas' %}" id="facturas" class="facturas position-relative">
                   <div class="div-icon">
                         <i class="fi fi-sr-receipt"></i>
                   </div>
@@ -120,7 +122,7 @@
 
       <h6>Servicios y paquetes</h6>
       <div class="sec-links">
-            <a href="{% url 'estudios:service' %}" class="services">
+            <a onclick="PreventSend(this.id)" href="{% url 'estudios:service' %}" id="services" class="services">
                   <div class="div-icon">
                         <i class="fi fi-sr-box-open-full"></i>
                   </div>
@@ -131,7 +133,7 @@
                         </span>
                   </div>
             </a>
-            <a href="{% url 'estudios:plan' %}" class="plans">
+            <a onclick="PreventSend(this.id)" href="{% url 'estudios:plan' %}" id="plans" class="plans">
                   <div class="div-icon">
                         <i class="fi fi-sr-balloons"></i>
                   </div>
@@ -146,7 +148,7 @@
 
       <h6>Contenido y comunicación</h6>
       <div class="sec-links">
-            <a  href="{% url 'estudios:gallery' %}" class="galley-a">
+            <a  onclick="PreventSend(this.id)" href="{% url 'estudios:gallery' %}" id="gallery" class="galley-a">
                   <div class="div-icon">
                         <i class="fi fi-sr-gallery"></i>
                   </div>
@@ -157,14 +159,14 @@
                         </span>
                   </div>
             </a>
-            <a href="{% url 'estudios:correos' %}" class="correos">
+            <a onclick="PreventSend(this.id)" href="{% url 'estudios:correos' %}" id="correos" class="correos">
                   <div class="div-icon">
                         <i class="fi fi-sr-envelope-dot"></i>
                   </div>
                   <div class="div-txt">
                         Correos
                         <span>
-                              Recordatorios, entregas y promociones
+                              Recordatorios, avisos etc 
                         </span>
                   </div>
             </a>
@@ -172,7 +174,7 @@
 
       <h6>Usuarios y ajustes</h6>
       <div class="sec-links">
-            <a href="{% url 'estudios:admin' %}"  class="admin">
+            <a onclick="PreventSend(this.id)" href="{% url 'accounts:accounts' %}" id="accounts"  class="accounts">
                   <div class="div-icon">
                         <i class="fi fi-sr-user"></i>
                   </div>
@@ -181,7 +183,7 @@
                         <span>Usuarios, permisos, perfiles</span>
                   </div>
             </a>
-            <a href="{% url  'estudios:empleados' %}" class="seguridad">
+            <a onclick="PreventSend(this.id)" href="{% url  'estudios:empleados' %}" id="seguridad" class="seguridad">
                   <div class="div-icon">
                         <i class="fi fi-sr-lock"></i>
                   </div>
@@ -190,7 +192,7 @@
                         <span>Roles, accesos, logs</span>
                   </div>
             </a>
-            <a href="{% url 'estudios:configuration' %}" class="configuration">
+            <a onclick="PreventSend(this.id)" href="{% url 'estudios:configuration' %}" id="configuration" class="configuration">
                   <div class="div-icon">
                         <i class="fi fi-sr-settings"></i>
                   </div>

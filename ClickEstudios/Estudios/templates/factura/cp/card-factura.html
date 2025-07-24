@@ -1,91 +1,360 @@
+{% load humanize %} {% load static %}
 <style>
-      .btn-options-factura .bi {
-            font-size: 20px !important;
+    .invoice   * {
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+      .invoice {
+        background: #ffffff;
+        /* width: 800px; */
+        padding: 20px;
+        border-radius: 1rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        color: black;
+        border: 2px  dotted rgb(55, 55, 55) !important;
+        transition: 0.3s;
+        height: 37rem;
+        overflow: auto;
+        opacity: 0.4;
       }
-      .btn-options-factura .bi:hover {
-            color: #ffc107 !important;
-            transition: all 0.3s ease-in-out;
-            transform: scale(1.2);
-            cursor: pointer;
-      }
-      .btns-factura i {
-            background-color: #151515;
+      .invoice:hover {
+            transform: scale(0.98);
+            opacity: 0.9;
             border-radius: 2rem;
-            height: 3rem;
-            width: 3rem;
-            font-size: 20px;
-            align-items: center;
-            display: flex; justify-content: center;
-      }
-      .btns-factura i:hover {
-            background-color: #ffc107;
-            color: #101010;
-            transition: all 0.3s ease-in-out;
-            transform: scale(1.05);
-            cursor: pointer;
-      }
+    }
+    .invoice   .header, .footer {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .invoice  .header img {
+        max-width: 200px;
+        /* margin-bottom: 10px; */
+    }
+    .invoice  .details {
+        margin-bottom: 20px;
+    }
+    .invoice  .details p {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+    .invoice  .table-container {
+        margin-bottom: 20px;
+    }
+    .invoice    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .invoice  table th, table td {
+        text-align: left;
+        border: 1px solid #f0f0f0;
+        padding: 10px;
+        font-size: 12px;
+    }
+    .invoice  table th {
+        background: #f0f0f0;
+        font-weight: bold;
+    }
+    .invoice  .observations {
+        margin-bottom: 20px;
+    }
+    .invoice  .observations textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #e7e7e7;
+        background-color: #f0f0f0;
+        border-radius: 1rem;
+        font-size: 12px;
+        resize: none;
+    }
+    .invoice .totals {
+        text-align: right;
+    }
+    .invoice .totals p {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+    .invoice .totals p span {
+        font-weight: bold;
+    }
 </style>
-<div style=" height: max-content; border-radius: 2.2rem;
-background-color: #191919; border: 1px solid rgba(128, 128, 128, 0.162);"
-      class=" w-100  text-white p-3 position-relative" >
-      <div class='w-100 m-1 text-white-50'>
-            <p class="mb-0 text-white-50">
-                  <strong class="text-capitalize" style="font-weight: bold; font-size: 22px;" >
-                  {% comment %} {% if sale.name_client %}/\ {% endcomment %}
-                        {{ sale.name_client|slice:":18" }}
-                  {% comment %} {% endif %} {% endcomment %}
-                  </strong>
-            </p>
-            <p class="mb-0  text-white-50">
-                  <strong>
-                        <a href="https://wa.me/+1{{ s.phone_no_formate }}">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone-fill me-1 text-white-50" viewBox="0 0 16 16">
-                              <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
-                              </svg>
-                        </a>
-                  </strong> 
-                  {% if sale.phone_client %}
-                              {{ sale.phone_client }} 
-                  {% else %}
-                              (000) 000-0000
+<section class=''>
+    <div class="invoice " >
+        <div class="header  d-flex  m-0 p-0 position-relative" style="height: 9rem;">
+                  {% if  request.user.profile.estudio.img_2  %}
+                  <img src="{{ request.user.profile.estudio.img_2.url }}"   class=" object-fit-cover position-absolute   start-0"  width="150"  alt="Click Estudios">
                   {% endif %}
-            </p>
-            <p class="mb-1 ">
-                  <strong>
-                        <a href="mailto:{{ s.email_client }}?subject=Notificación&body=Hola, estamos encantados de contactarte.&cc={{ s.email_client }}&bcc={{ s.email_client }}" >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-at-fill me-1 text-white-50" viewBox="0 0 16 16">
-                              <path d="M2 2A2 2 0 0 0 .05 3.555L8 8.414l7.95-4.859A2 2 0 0 0 14 2zm-2 9.8V4.698l5.803 3.546zm6.761-2.97-6.57 4.026A2 2 0 0 0 2 14h6.256A4.5 4.5 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586zM16 9.671V4.697l-5.803 3.546.338.208A4.5 4.5 0 0 1 12.5 8c1.414 0 2.675.652 3.5 1.671"/>
-                              <path d="M15.834 12.244c0 1.168-.577 2.025-1.587 2.025-.503 0-1.002-.228-1.12-.648h-.043c-.118.416-.543.643-1.015.643-.77 0-1.259-.542-1.259-1.434v-.529c0-.844.481-1.4 1.26-1.4.585 0 .87.333.953.63h.03v-.568h.905v2.19c0 .272.18.42.411.42.315 0 .639-.415.639-1.39v-.118c0-1.277-.95-2.326-2.484-2.326h-.04c-1.582 0-2.64 1.067-2.64 2.724v.157c0 1.867 1.237 2.654 2.57 2.654h.045c.507 0 .935-.07 1.18-.18v.731c-.219.1-.643.175-1.237.175h-.044C10.438 16 9 14.82 9 12.646v-.214C9 10.36 10.421 9 12.485 9h.035c2.12 0 3.314 1.43 3.314 3.034zm-4.04.21v.227c0 .586.227.8.581.8.31 0 .564-.17.564-.743v-.367c0-.516-.275-.708-.572-.708-.346 0-.573.245-.573.791"/>
-                              </svg>
-                        </a>
-                        </strong> 
-                  {% if sale.email_client %}
-                              {{ sale.email_client|slice:":49" }}
-                  {% else %}
-                        @gmail.com
-                  {% endif %}
-            </p>
-            <p class="mb-1 ">
-                  <strong>
-                        <svg onclick="Calendar(this.id)" id="{{s.id}}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event-fill me-1 text-white-50" viewBox="0 0 16 16">
-                              <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2m-3.5-7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5"/>
-                        </svg>
-                  </strong> 
-                  {% if sale.date_choice %}
-                        {{ sale.date_choice|date:"d/m/Y" }} -  {{ sale.time }}
-                  {% else %}
-                        .../.../.../
-                  {% endif %}
-            </p>
-      </div>
-      <h6 class='m-0 d-flex flex-wrap justify-content-start align-content-center p-2 bg-black bg-opacity-10 pe-4 ps-4 rounded-4  text-white-50' style="width: max-content;">
-             CLICK-{{sale.id}}
-      </h6>
-      <div class="d-flex flex-wrap align-content-center mt-1 w-100 position-absolute top-0 end-0 justify-content-end btn-options-factura " style="max-width: 63px; height: 100%;">
-            <div class="w-100 btns-factura text-white-50 p-2" style="display: grid; grid-template-columns: repeat(1, 1fr); gap: 5px;" >
-                  <i class="fi fi-brands-whatsapp"></i>
-                  <i class="fi fi-sr-clip-mail"></i>
-                  <i class="fi fi-sr-print-magnifying-glass"></i>
+
+        </div>
+    
+        <!-- Encabezado -->
+        <div class="details d-flex flex-wrap m-0 mb-2 " style="margin-top: 0rem !important;">
+    
+                <p class="w-100" style="font-size: 12px !important;">
+                    <strong>RNC:</strong> 133-22445-3
+                </p>
+                <p class="w-100" style="font-size: 12px !important;">
+                    <strong>FECHA:</strong>  <span class="date "></span> 
+                </p>
+    
+                {% if sale.sale_type != 'consumidor'  %}
+                    <p class="w-100" style="font-size: 12px !important;">
+                            <strong>RNC CLIENTE:</strong> 
+                            {{sale.rnc_client}}    
+                            <span class="rnc_cliente">
+                            </span>
+                    </p>
+                    <p class="w-100" style="font-size: 12px !important;">
+                        <strong class="text-capitalize">NOMBRE:</strong> 
+                        {{sale.name_company_client}}
+                        <span  class="name_cliente">
+                        </span> 
+                    </p>
+                {% endif %}
+                <p class="w-100" style="font-size: 12px !important;">
+                    <strong>NCF: </strong> 
+                    {{ncf}} 
+                </p>
+                {% if sale.type_sale_ncf == True %}
+                    <p class="w-100" style="font-size: 12px !important;">
+                            <strong>NCF válido hasta:</strong> 31/12/2026
+                    </p>
+                {% endif %}
+                <p class="w-100" style="font-size: 12px !important;">
+                    <strong>FACTURA ID:</strong> CLICK-{{sale.id}}
+                </p>
+        </div>
+        
+        <div class="w-100 text-center credito-fiscal ">
+                <hr class='m-0 p-0 mb-1 '>
+                <p  style="font-size: 12px !important;" class='p-0 m-0'> 
+                      Válido para
+                      {% if sale.sale_type == 'consumidor'  %}
+                      consumidor final
+                      {% else %}
+                      crédito fiscal 
+                      {% endif %}
+                </p>
+                <hr class='m-0 p-0 mb-4 mt-1'>
             </div>
+    
+        <!-- Tabla de productos -->
+          <div class="table-container"  style="font-size: 14px !important;">
+              <table>
+                    <thead>
+                      <tr>
+                          <th style="font-size: 10px !important;">CT.</th>
+                          <th style="font-size: 10px !important;">DESCRIPCIÓN</th>
+                          <th style="font-size: 10px !important;">UNITARIO</th>
+                          <th style="font-size: 10px !important;">ITBIS</th>
+                          <th style="font-size: 10px !important;">TOTAL</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <input type="number"  class="d-none" style="display: none;"  value="{{sale.plan.price}}" id="plan-price">
+                    <input type="number"  class="d-none" style="display: none;" value="{{sale.itbis}}"  id="itbis">
+                    <tr>
+                          <td>1</td>
+                          <td> {{sale.name_plan}} - {{sale.description_plan}} </td>
+                          <td class='price-unitario'>
+                              ${{sale.price_plan|intcomma}}.00 
+                              
+                            </td>
+                            <td class="ITIBIS"> ${{sale_itebis}} </td>
+                            <td class="TOTAL">
+                                ${{sale_price_unitario|intcomma}}
+                            </td>
+                    </tr>
+                    {% if sale.sale_adicionales.all %}
+                            {% for option in sale.sale_adicionales.all %}
+                                <tr>
+                                    <td>1</td>
+                                    <td class='text-capitalize'>{{ option.name }} - {{ option.description }}</td>
+                                    <td > ${{option.price|intcomma}}.00 </td>
+                                    <td class='option-itibis' data-price="{{ option.price }}">{{ option.sale.itbis }}%</td> 
+                                    <td class='option-total' data-price="{{ option.price }}">
+                                            ${{ option.price|floatformat:2|intcomma }}
+                                    </td> 
+                                </tr>
+                            {% endfor %}
+                    {% endif %}
+                  </tbody>
+              </table>
+          </div>
+          <div class="observations w-100">
+              <p class="m-0 text-white"><strong style="font-size: 13px;">...</strong></p>
+              <textarea rows="9"  placeholder="Escribe tus observaciones aquí… ¡Queremos escucharte!"></textarea>
+          </div>
+          <div class="totals d-flex justify-content-end d-none" >
+                <table style="border-collapse: collapse; width: 12rem; font-family: Arial, sans-serif;">
+                      <tbody>
+                          <tr>
+                              <td style="padding: 8px; font-weight: bold; color: black;">Neto</td>
+                              <td style="padding: 8px; text-align: right;" class="NETsO" > ${{total|intcomma}} </td> 
+                          </tr>
+                          <tr>
+                              <td style="padding: 8px; font-weight: bold; color: black;">ITBIS</td>
+                              <td style="padding: 8px; text-align: right; " class="ITIBIS_NETOz">${{total_itebis|intcomma}}</td>
+                          </tr>
+                          {% if sale.discount %}
+                          <tr>
+                            <td style="padding: 8px; font-weight: bold; color: black;">Descuento</td>
+                            <td style="padding: 8px; text-align: right;" class="TOTAL_NETOz">
+                               ${{total_itebis|intcomma}}</td>
+                          </tr>
+                          {% endif %}
+                          <tr>
+                              <td style="padding: 8px; font-weight: bold; color: black;">Total</td>
+                              <td style="padding: 8px; text-align: right;" class="TOTAL_NETOz">
+                                        ${{total_con_i|intcomma}}
+                            </td>
+                          </tr>
+                      </tbody>
+                  </table>
+          </div>
       </div>
-</div>
+    <div>
+        {% if sale.payment %}
+        {% if sale.sale_type == 'credito' %}
+    <div  style="transition-delay: 1s; transform-origin: 1s; width: 30rem;" class='text-white  d-flex justify-content-center flex-wrap search-auto d-none' >
+                <div class="w-100 text-start">
+                    <h4 class="text-centers">
+                        Buscar empresa en la DGII
+                    </h4>
+                    <p style="font-size: 14px;" class="text-white-50 p-0">
+                        Busca un cliente por nombre o RNC/Cedula
+                    </p>
+                </div>
+    
+                <iframe src="https://dgii.gov.do/app/WebApps/ConsultasWeb2/ConsultasWeb/consultas/rnc.aspx?RNC" class=" rounded-5" style="height: 600px; border: 24px solid white; width: 100%;"></iframe>
+    
+                <form action="" method="post">
+    
+                    {% csrf_token %}
+                <div class="d-flex mt-3">
+                        <input type="text" name="search_name" id="search_name" class='form-control text-white rounded-5 border-0 p-1 me-1 pe-3 ps-3 text-center m-0' 
+                        placeholder="Nombre"
+                        style="background-color: rgb(26, 26, 26) !important; height: 3.1rem;">
+    
+                        <input type="text" name="search_rnc" id="search_rnc" class='form-control text-white rounded-5 border-0 p-1 ms-1 pe-3 ps-3 text-center m-0' 
+                        placeholder="RNC/Cedula"
+                        style="background-color: rgb(26, 26, 26) !important; height: 3.1rem;">
+                    </div>
+                    <button id="applyButton" class="btn btn-primary p-1 rounded-5 w-100 m-0 mt-2 ms-2 pe-4 ps-4" 
+                    style="font-weight: bold; height: 2.9rem; display: none;">
+                    Aplicar a factura
+                </button>
+            </form>
+    
+                <script>
+    
+                   
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const searchName = document.getElementById('search_name');
+                        const searchRnc = document.getElementById('search_rnc');
+                        const applyButton = document.getElementById('applyButton');
+    
+                        function toggleButton() {
+                            if (searchName.value.trim() !== '' && searchRnc.value.trim() !== '') {
+                                applyButton.style.display = 'block';
+                            } else {
+                                applyButton.style.display = 'none';
+                            }
+                        }
+    
+                        searchName.addEventListener('input', toggleButton);
+                        searchRnc.addEventListener('input', toggleButton);
+    
+                        searchRnc.addEventListener('input', function() {
+                            toggleButton();
+                            document.querySelector('.rnc_cliente').textContent = searchRnc.value;
+                        });
+                        searchName.addEventListener('input', function() {
+                            toggleButton();
+                            document.querySelector('.name_cliente').textContent = searchName.value;
+                        });
+    
+                        searchRnc.addEventListener('input', function() {
+                            toggleButton();
+                            let rncValue = searchRnc.value.replace(/\D/g, ''); // Remove non-numeric characters
+                            if (rncValue.length > 11) {
+                                rncValue = rncValue.slice(0, 11); // Limit to 11 digits
+                            }
+                            searchRnc.value = rncValue.replace(/(\d{3})(\d{5})(\d{1})/, '$1-$2-$3'); // Format as RNC
+                            document.querySelector('.rnc_cliente').textContent = searchRnc.value;
+                        });
+
+
+                    });
+
+
+                </script>
+        </div>
+        {% endif %}
+    
+        {% endif %}
+    </div>
+    
+</section>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+            let itibis = 0; // Variable para acumular el ITBIS total
+        
+            const optionTotals = document.querySelectorAll('.option-total'); // Seleccionar todas las opciones
+            const planPrice = parseInt(document.querySelector('#plan-price').value) || 0;
+            const itbis_2 = parseInt(document.querySelector('#itbis').value) || 0;
+            const itbisAmount_32s = (planPrice * itbis_2) / 100; // Calcular ITBIS del plan
+        
+            // Iterar sobre cada opción
+            optionTotals.forEach(function(optionTotal) {
+                const price = parseFloat(optionTotal.getAttribute('data-price')); // Obtener el precio base
+                const itbisAmount = price * 0.18; // Calcular el ITBIS individual (18%)
+                itibis += itbisAmount; // Acumular ITBIS total
+        
+                // Actualizar la celda de la columna anterior con el ITBIS individual
+                optionTotal.previousElementSibling.innerHTML = '$' + itbisAmount.toLocaleString('en-US', { 
+                    minimumFractionDigits: 2, 
+                    maximumFractionDigits: 2 
+                });
+        
+                // Mostrar el precio total (precio base + ITBIS) en la columna actual
+                const totalWithItbis = price + itbisAmount;
+                optionTotal.innerHTML = '$' + totalWithItbis.toLocaleString('en-US', { 
+                    minimumFractionDigits: 2, 
+                    maximumFractionDigits: 2 
+                });
+            });
+        
+            // Calcular el total general incluyendo el ITBIS del plan
+            let total = itbisAmount_32s + itibis;
+            document.querySelector('.ITIBIS_NETO').innerHTML = '$' + total.toLocaleString('en-US', { 
+                minimumFractionDigits: 2, 
+                maximumFractionDigits: 2 
+            });
+        });
+
+
+    // Fecha actual
+    const dateElement = document.querySelector('.date');
+    const currentDate = new Date();
+    const formattedDate = `${currentDate.getDate()}/${String(currentDate.getMonth() + 1).padStart(2, '0')}/${currentDate.getFullYear()}`;
+    dateElement.textContent = formattedDate;
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+            Estudios_Factura();
+    });
+
+      let Estudios_Factura = () => {
+            $.ajax({
+                url: '/ajax/get-estudios/',
+                method: 'GET',
+                success: function(D) {
+                  document.querySelector('.img2-estudios').src = D.img2;
+                },
+            });
+        };
+
+
+</script>

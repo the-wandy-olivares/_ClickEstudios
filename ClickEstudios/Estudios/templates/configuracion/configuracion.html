@@ -1,0 +1,22 @@
+
+{% extends "base/base.html" %}
+{% block content %}
+
+<section style="color: rgb(225, 225, 225);" class="w-100">
+      <div class="div-top d-flex blur-5 mb-2 mt-2 position-sticky top-0">
+            <div class="me-3">
+                  <i class="fi fi-sr-settings d-flex flex-wrap p-3 rounded-circle" style="font-size: 50px; background-color: #19191900;"></i>
+            </div>
+            <div class="d-flex flex-wrap align-content-center">
+                  <h6 class="m-0 mt-3">
+                        Configuracion del sistema
+                  </h6>
+                  <p class="w-100">
+                        Preferencias generales del sistema. <a class="text-decoration-none text-primary" href="/administracion-finanza"><strong>Ver más</strong></a>
+                  </p>
+            </div>
+      </div>
+      {% include "configuracion/cp/form.html" %}
+</section>
+
+{% endblock  %}

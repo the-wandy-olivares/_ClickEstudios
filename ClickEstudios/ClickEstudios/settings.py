@@ -55,7 +55,13 @@ INSTALLED_APPS = [
     'Asistente.apps.AsistenteConfig',
 
     # Eliminar al deployar o solo usar en desarrollo
+    'Accounts.apps.AccountsConfig',
     'livereload',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 
 ]
 
@@ -67,7 +73,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'Estudios.middleware.force_error_handlers.ForceErrorHandlersMiddleware',
+    # 'Estudios.middleware.force_error_handlers.ForceErrorHandlersMiddleware', # Rederic By any error
+
+    # LOGIN_REDIRECT_URL = "/"
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 
@@ -144,8 +153,6 @@ USE_TZ = True
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
-
-
 # Configuración del backend de correo electrónico
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -163,7 +170,16 @@ os.environ['SSL_CERT_FILE'] = certifi.where()
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-if DEBUG:
-    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SITE_ID = 1
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = "/dashboard/"

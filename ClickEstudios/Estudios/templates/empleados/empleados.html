@@ -1,8 +1,10 @@
 {% extends "base/base.html" %}
 {% block content %}
 <style>
-      td {
+      td, th {
             color: rgba(255, 255, 255, 0.647);
+            font-size: 14px;
+
       }
       .seguridad  {
             color: #ffc107 !important;
@@ -27,33 +29,24 @@
                         Gestiona accesos, protege tu información y garantiza el control total de tu sistema 
                   </p>
             </div>
-            <!-- <a href="{% url "estudios:moment-create" %}" class="z-2 position-absolute top-0 end-0 mt-2 me-2">
-                  <i class="fi fi-sr-multiple" 
-                  style="font-size: 20px; background-color: #3a3a39;"></i> 
-            </a> -->
       </div>
    
-      <div class='w-100 d-flex mt-1  p-3 rounded-4'
+      <div class='w-100 d-flex mt-1  p-5 rounded-5'
             style="background-color: #191919;">
             {% if empleados %}
             <table class="w-100  text-white">
                   <thead >
                         <tr>
-                              <th  data-aos="fade-left" style="transition-delay: 0s; width: 2%;">
-                                    #
-                              </th>
                               <th data-aos="fade-left" style="transition-delay: 0s; width: 20%;">Nombre</th>
                               <th data-aos="fade-left" style="transition-delay: 0.2s; width: 20%;">Apellidos</th>
-
                               <th data-aos="fade-left" style="transition-delay: 0.3s; width: 25%;">Role</th>
                               <th data-aos="fade-left" style="transition-delay: 0.4s; width: 20%;">Correo</th>
-
+                              <th data-aos="fade-left" style="transition-delay: 0.4s; width: 20%;">Acciones</th>
                         </tr>
                   </thead>
                   <tbody>
                         {% for empleado in empleados %}
                         <tr class="pt-1">
-                              <td data-aos="fade-left" style="transition-delay: 0s;">{{ forloop.counter }}</td>
                               <td data-aos="fade-left" style="transition-delay: 0.1s;">{{ empleado.first_name }}</td>
                               <td data-aos="fade-left" style="transition-delay: 0.2s;">{{ empleado.last_name }} </td>
 
@@ -71,15 +64,21 @@
                                                   </select>
                                           </form>
                                 </td>
-                              <td data-aos="fade-left" style="transition-delay: 0.4s;">{{ empleado.email }}</td>
+                              <td data-aos="fade-left" style="transition-delay: 0.4s;">
+                                    {{ empleado.email|slice:":20" }}
+                              </td>
                               {% if request.user.id != empleado.id %}
 
                                 <td data-aos="fade-left" class="d-flex" style="transition-delay: 0.6s;">
                                       <a href="{% url 'estudios:empleados-delete' empleado.id %}"
-                                      class="btn btn-danger border-0 mt-1 bg-transparent text-white"
-                                      style="font-weight: bold;">Eliminar</a>
-                                      <a href="{% url 'estudios:empleados-update' empleado.id %}" class="btn  mt-1 rounded-5 btn-primary" 
-                                      style="font-weight: bold; width: 7rem;"> Modificar </a>
+                                      class="btn btn-danger border-0 p-0 bg-transparent text-white"
+                                      style="font-weight: bold;">
+                                      <i class="fi fi-sr-trash-can-list"></i> </a>
+
+                                      <a href="{% url 'estudios:empleados-update' empleado.id %}" class="btn  p-0  rounded-5  d-flex flex-wrap align-content-center justify-content-center" 
+                                      style="font-weight: bold; width: 3rem;">
+                                      
+                                      <i class="fi fi-sr-user-pen m-0 p-0"></i> </a>
                                     </td>
 
                               {% endif %}
@@ -90,8 +89,9 @@
             {% endif %}
       </div>
       <div>
-            <button class="bg-white bg-opacity-10 border-0 p-2 text-white mt-2 rounded-5 ps-3 pe-3">
-                  <i class="fi fi-brands-google"></i>
+            <button 
+                  style="background-color: #191919; font-size: 14px;"
+                  class=" border-0 p-2 text-white bold mt-2 rounded-5 ps-3 pe-3">
                   Agregar usuario
             </button>
       </div>
