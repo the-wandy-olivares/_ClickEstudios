@@ -2,7 +2,7 @@
 <style>
       .accounts-section {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
         gap: 10px;
       
       }
@@ -19,7 +19,7 @@
       }
     
       .account-link {
-            height: 190px;
+            height: 170px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -84,7 +84,7 @@
  
 </style>
 <div class="accounts-section p-3 mt-4 w-100">
-      <a href="#" class="account-link register">
+      <a href="https://myaccount.google.com/data-and-privacy" class="account-link register">
             <div>
                   <i class="fi fi-brands-google"></i>
                   <span>
@@ -95,7 +95,7 @@
             </div>
       </a>
       
-      <a href="{% url 'accounts:delete-account' request.user.id %}" class="account-link profile">
+      <a href="{% url 'accounts:delete-account' request.user.id %}" class="account-link d-none profile">
             <div>
                   <i class="fi fi-sr-heart-crack"></i>
                   <span>
