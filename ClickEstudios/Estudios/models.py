@@ -265,6 +265,8 @@ class Sale(models.Model):
       name_company_client = models.CharField(default='', max_length=255, blank=True, null=True)
       discount = models.BooleanField(default=True)  # Aplica para descuento
 
+      description = models.TextField(blank=True, null=True)
+
       # Asociar venta  aun contacto (cliente)
       contact = models.ForeignKey('Contact', on_delete=models.CASCADE, blank=True, null=True, 
                               related_name='sale_contact')

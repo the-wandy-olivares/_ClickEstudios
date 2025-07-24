@@ -57,7 +57,7 @@ class Sale(forms.ModelForm):
                   'date_choice', 'time',
                   'credit_fiscal', 'credito_fiscal', 'cosumidor_final', 'sale_type',
                   'rnc_client', 'name_company_client', 'discount',
-                  'contact'
+                  'contact', 'description'
                   ]
             widgets = {
                     'client': forms.Select(attrs={'class': 'form-control'}),
