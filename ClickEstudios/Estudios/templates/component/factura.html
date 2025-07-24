@@ -11,7 +11,7 @@
         background: #ffffff;
         width: 800px;
         padding: 20px;
-        border-radius: 20px;
+        border-radius: 1rem !important;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         color: black;
     }
@@ -52,7 +52,7 @@
     }
     .invoice  .observations textarea {
         width: 100%;
-        padding: 10px;
+        padding: 20px;
         border: 1px solid #e7e7e7;
         background-color: #f0f0f0;
         border-radius: 1rem;
@@ -65,6 +65,10 @@
     .invoice .totals p {
         font-size: 14px;
         margin-bottom: 5px;
+
+    }
+    .invoice .details p {
+        color: rgb(0, 0, 0);
     }
     .invoice .totals p span {
         font-weight: bold;
@@ -73,9 +77,9 @@
 <section class='d-flex w-100 justify-content-center'>
     <div class="invoice rounded-5" style='width:42rem;'>
         <div class="header  d-flex  m-0 p-0 position-relative" style="height: 9rem;">
-                {% comment %} {% if company.logo.url %} {% endcomment %}
-                    <img src=""   class="img2-estudios object-fit-cover position-absolute   start-0"  width="150"  alt="Click Estudios">
-                {% comment %} {% endif %} {% endcomment %}
+                {% if request.user.profile.estudio.img %}
+                <img src="{{ request.user.profile.estudio.img.url }}"   class="img2-estudios object-fit-cover position-absolute   start-0"  width="150"  alt="Click Estudios">
+                {% endif %}
         </div>
     
         <!-- Encabezado -->
@@ -85,7 +89,7 @@
                     <strong>RNC:</strong> 133-22445-3
                 </p>
                 <p class="w-100" style="font-size: 14px !important;">
-                    <strong>FECHA:</strong>  <span class="date text-black"></span> 
+                    <strong>FECHA:</strong>  <span class="date"></span> 
                 </p>
     
                 {% if sale.sale_type != 'consumidor'  %}
@@ -118,7 +122,7 @@
         
         <div class="w-100 text-center credito-fiscal ">
                 <hr class='m-0 p-0 mb-1 '>
-                <p  style="font-size: 14px !important;" class='p-0 m-0'> 
+                <p  style="font-size: 14px !important;" class='p-0 m-0 text-black'> 
                       Válido para
                       {% if sale.sale_type == 'consumidor'  %}
                       consumidor final
@@ -173,8 +177,12 @@
               </table>
           </div>
           <div class="observations w-100">
-              <p class="m-0 text-white"><strong style="font-size: 13px;">...</strong></p>
-              <textarea rows="9"  placeholder="Escribe tus observaciones aquí… ¡Queremos escucharte!"></textarea>
+              <p class="m-0 text-white"><strong style="font-size: 13px;"></strong></p>
+              {% if sale.descrition %}
+              <textarea id="observacionesTextarea" rows="9"   placeholder="{{sale.descrition}}"></textarea>
+              {% else %}
+              <textarea id="observacionesTextarea" rows="9" placeholder="Escribe tus observaciones aquí… ¡Queremos escucharte!"></textarea>
+              {% endif %}
           </div>
           <div class="totals d-flex justify-content-end" >
                 <table style="border-collapse: collapse; width: 12rem; font-family: Arial, sans-serif;">
@@ -207,7 +215,8 @@
     <div>
         {% if sale.payment %}
         {% if sale.sale_type == 'credito' %}
-    <div  style="transition-delay: 1s; transform-origin: 1s; width: 30rem;" class='text-white  d-flex justify-content-center flex-wrap search-auto' >
+    <div  style="transition-delay: 1s; transform-origin: 1s; width: 30rem;"
+             class='text-white ms-2  d-flex justify-content-center flex-wrap search-auto' >
                 <div class="w-100 text-start">
                     <h4 class="text-centers">
                         Buscar empresa en la DGII
@@ -347,5 +356,24 @@
             });
         };
 
+        // Guardar datosz
+
 
 </script>
+<script>
+    const observacionesTextarea = document.getElementById('observacionesTextarea');
+    // Cada vez que se escribe, copia el contenido al placeholder
+    observacionesTextarea.addEventListener('input', () => {
+      observacionesTextarea.setAttribute('placeholder', observacionesTextarea.value);
+    });
+  
+    // Antes de imprimir, vacía el textarea para que se vea el placeholder
+    window.addEventListener('beforeprint', () => {
+      observacionesTextarea.value = '';
+    });
+  
+    // Después de imprimir, opcional: volver a poner el texto si quieres
+    window.addEventListener('afterprint', () => {
+      observacionesTextarea.value = observacionesTextarea.getAttribute('placeholder');
+    });
+  </script>
