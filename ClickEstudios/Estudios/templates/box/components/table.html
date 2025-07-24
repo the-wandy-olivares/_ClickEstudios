@@ -34,7 +34,10 @@
                   {% for movimiento in movimientos %}
                   <tr class="movimiento-row" data-tipo="{{ movimiento.tipo }}">
                         <td style="font-size: 10px;">  {{ forloop.counter }}</td>
-                        <td>{{ movimiento.date|date:"d/m/Y" }}</td>
+                        <td>
+                              {{ movimiento.date|date:"d/m/Y - h:i a" }}
+                              
+                        </td>
                         <td class="description">{{ movimiento.description }}</td>
                         <td>
                               {% if movimiento.type == "ingreso" %}

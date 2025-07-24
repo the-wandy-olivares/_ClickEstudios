@@ -1,0 +1,188 @@
+{% load socialaccount %}
+<style>
+      .accounts-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 10px;
+      
+      }
+    
+      .accounts-section h2 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        color: #333;
+      }
+    
+      .accounts-section p {
+            font-size: 1rem;
+            color: #666;
+      }
+    
+      .account-link {
+            height: 170px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-decoration: none;
+            padding: 0.8rem;
+            border-radius: 2.9rem;
+            transition: 0.3s ;
+            background-color: rgba(32, 32, 32, 0.805);
+            border: 1px solid #34343427;
+            color: #858585;
+      }
+
+      .account-link:hover {
+            transform: scale(1.02);
+      }
+      
+      .account-link div {
+            display: flex;  align-content: center;
+      }
+      .account-link div span {
+            display: flex;
+            flex-wrap: wrap;
+            align-content: center;
+      }
+      .account-link h3 {
+            width: 100%;
+            margin: 0 !important;
+            font-size: 1rem;
+            font-weight: bold;
+            color: inherit;
+
+      }
+    
+      .accounts-section i {
+            min-width: 70px; min-height: 70px;
+            max-width: 70px; max-height: 70px;
+            border-radius: 50%;
+            font-size: 25px;
+            margin: 0;
+            margin-right: 1rem;
+            margin-left: 0.6rem;
+            display: flex; align-content: center; flex-wrap: wrap;
+            justify-content: center;
+            background-color: var(--bg-0);
+      }
+
+      .account-link p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: inherit;
+      }
+    
+      .logout { 
+            background-color: rgba(255, 0, 0, 0.094); 
+      }
+      .logout h3 {
+           color: rgba(255, 255, 255, 0.751);
+      }
+      .logout p {
+            color: rgba(255, 255, 255, 0.515);
+      }
+ 
+</style>
+<div class="accounts-section p-3 mt-4 w-100">
+      <a href="https://myaccount.google.com/data-and-privacy" class="account-link register">
+            <div>
+                  <i class="fi fi-brands-google"></i>
+                  <span>
+                  <h3>
+                        Cuenta de google      
+                  </h3>
+                  <p>Editar datos de mi google</p></span>
+            </div>
+      </a>
+      
+      <a href="{% url 'accounts:delete-account' request.user.id %}" class="account-link d-none profile">
+            <div>
+                  <i class="fi fi-sr-heart-crack"></i>
+                  <span>
+                        <h3>
+                              Eliminar cuenta
+                        </h3>
+                        <p>
+                              Eliminacion total de tu cuenta existente en el sistema
+                        </p>
+                  </span>
+            </div>
+      </a>
+      
+      <a href="#" class="account-link login d-none">
+            <div>
+                  <i class="fi fi-sr-list"></i>
+                  <span>
+                        <h3>
+                              Lista de cuentas</h3>
+                        <p>Consulta todas las cuentas registradas</p>
+                  </span>
+            </div>
+      </a>
+      
+      <a href="#" class="account-link reset d-none">
+            <div>
+                  <i class="fi fi-sr-time-twenty-four"></i>
+                  <span>
+                        <h3>
+                              Historial de sesiones
+                        </h3>
+                        <p>
+                              Ver desde dónde y cuándo se ha logueado un usuario</p>
+                  </span>
+            </div>
+      </a>
+      <a href="{% url 'accounts:update-accounts' request.user.id %}"   class="account-link reset">
+            <div>
+                  <i class="fi fi-sr-info"></i>
+                  <span>
+                        <h3>
+                              información de cuenta
+                        </h3>
+                        <p>
+                              Consulta y actualiza la información de tu cuenta personal
+                        </p>
+                  </span>
+            </div>
+      </a>
+      <a class="account-link reset">
+            <div>
+                  <i class="fi fi-sr-building"></i>
+                  <span>
+                        <h3>
+                              Administrador empresa
+                        </h3>
+                        <p>
+                              Consulta y actualiza la información de la empresa
+                        </p>
+                  </span>
+            </div>
+      </a>
+      <a href="#" class="account-link reset d-none">
+            <div>
+                  <i class="fi fi-sr-download"></i>
+                  <span>
+                        <h3>
+                              Exportar datos
+                        </h3>
+                        <p>
+                              Para permitir al usuario exportar su información o la de su cuenta
+                        </p>
+                  </span>
+            </div>
+      </a>
+      <a href=" {% url 'accounts:logout' %} " class="account-link reset">
+            <div>
+                  <i class="fi fi-sr-user-logout"></i>
+                  <span>
+                        <h3>
+                              Cerrar session
+                        </h3>
+                        <p>
+                                Finaliza tu sesión de manera segura
+                        </p>
+                  </span>
+            </div>
+      </a>
+</div>
+

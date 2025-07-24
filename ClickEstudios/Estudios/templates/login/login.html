@@ -10,25 +10,56 @@
 <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+       .google-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #30303053;
+    color: #dbdbdb;
+    border: 1px solid #525252;
+    border-radius: 2rem;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 13px 20px;
+    text-decoration: none;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    transition: background-color 0.2s ease-in-out;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .google-btn:hover {
+
+    transform: scale(0.95);
+  }
+
+  .google-icon {
+    width: 18px;
+    height: 18px;
+  }
+    </style>
   </head>
   <body>
 
     <section class=' text-white d-flex justify-content-center   align-content-center flex-wrap w-100' style="height: 100vh; 
                     background-image: url('{{estudios.background_img.url}}'); 
                     background-size: cover; background-position: center; background-repeat: no-repeat;">
-          <div class="h-100 w-100 p-2 d-flex flex-wrap align-content-center justify-content-center " style="background: linear-gradient(to bottom, transparent, #101010), linear-gradient(to top,#1010107d , #10101081);">
-            <form method="post" class="w-100 form" style="max-width: 25rem; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; ">
+          <div class="h-100 w-100 p-2 d-flex flex-wrap align-content-end pb-5 justify-content-center " style="background: linear-gradient(to bottom, transparent, #101010), linear-gradient(to top,#1010107d , #10101081);">
+            <form method="post" class="w-100 form" style="max-width:30rem; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; ">
               {% csrf_token %}
               <div>
-                <h5  data-aos="zoom-in" class="text-white text-center  m-0 p-0  " 
+                <h3  data-aos="zoom-in" class="text-white text-center  m-0 p-0  " 
                 style="transition-delay: 0.3s !important;
                         transition-duration: 3s !important;
                         font-family: Syncopate, serif;
                         font-weight: bold;
-                        font-size: 20px;">
-                        Iniciar session 
-                      </h5>
-                      <p  data-aos="fade-in" style="transition-delay: 0.8s; transition-duration: 2s;" class="p-dets  w-100 text-center  text-white-50">
+                        font-size: 26px;">
+                        ClickEstudios
+                        <!-- Iniciar session  -->
+                      </h3>
+                      <p  data-aos="fade-in" style="transition-delay: 0.8s; transition-duration: 2s; font-size: 14px;" 
+                      class="p-dets  w-100 text-center  text-white-50">
                       </p>
                    
               </div>
@@ -41,7 +72,7 @@
               {% endfor %}
           {% endif %}
               <div class="d-flex justify-content-center  w-100  ">
-                    <input data-aos="fade-in" style="transition-delay: 1s; transition-duration: 1s;" type="text" id="username" name="username" placeholder="Correo o usuario" required>
+                    <input data-aos="fade-in" style="transition-delay: 1s; transition-duration: 1s;" type="text" id="username" name="username" placeholder="Usuario" required>
                 </div>
                 <div class="d-flex justify-content-center">
                       <input data-aos="fade-in" style="transition-delay: 1.4s; transition-duration: 1s;"  type="password" id="password" name="password" placeholder="Contraseña" required class=" w-100">
@@ -49,9 +80,24 @@
               </div>
               <div data-aos="fade-in" style="transition-delay: 2s; transition-duration: 1s;" class="w-100 d-flex flex-wrap justify-content-end mt-1" style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
           
+                <hr class="w-100 text-white-50">
               </div>
         
         </form>
+          <div data-aos="fade-in" class="w-100 d-flex justify-content-center flex-wrap"
+            style="transition-delay: 2s; transition-duration: 1s;">
+
+            <a href="/accounts/google/login/" class="text-decoration-none">
+              <span type="submit" class="google-btn  text-center d-flex justify-content-center" >
+                <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google icon" class="google-icon"> Iniciar con google
+              </span>
+            </a>
+            <a class=" text-center w-100  mt-2 text-white-50 btn p-2 border-0 bold d-flex justify-content-center text-decoration-none   " 
+            href="{% url 'estudios:home' %}" style="width: max-content; font-weight: bold;">
+
+                    Volver al inicio
+            </a>
+          </div>
           </div>
 
       <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -137,18 +183,18 @@
     
 </script>
 <script>
-  const frasesLogin = [
-    "Donde cada imagen comienza con tu mirada",
-    "Capturamos historias. Tú comienzas la siguiente",
-    "Tu visión. Nuestra lente",
-    "Inicia sesión. Enfoca tu próxima historia",
-    "El arte de congelar el tiempo empieza aquí",
-    "Cada clic es un recuerdo esperando ser contado",
-    "Transformamos momentos en eternidad",
-    "Tu historia merece ser bien iluminada",
-    "Más que fotos, creamos legado",
-    "Bienvenido al lugar donde nace la luz"
-  ];
+const frasesLogin = [
+  "En este espacio, cada imagen nace a partir de tu mirada, guiando la historia que está por contarse.",
+  "Nos dedicamos a capturar historias auténticas; la próxima comienza contigo y tu forma única de ver el mundo.",
+  "Tu visión es la inspiración; nosotros la interpretamos a través de nuestra lente para darle vida.",
+  "Ingresa a tu cuenta y comienza a enfocar lo que será tu próxima gran historia visual.",
+  "Aquí es donde comienza el verdadero arte de detener el tiempo y convertir los instantes en memorias eternas.",
+  "Detrás de cada clic hay un recuerdo latente, aguardando su turno para ser contado y revivido una y otra vez.",
+  "Tomamos los momentos más fugaces y los transformamos en fragmentos de eternidad para que vivan por siempre.",
+  "Creemos que cada historia merece la luz adecuada para brillar con toda su fuerza y belleza.",
+  "No solo capturamos fotografías, creamos un legado visual que trasciende generaciones.",
+  "Has llegado al lugar donde la luz encuentra propósito, y cada fotografía se convierte en una obra de arte."
+];
 
   const fraseAleatoria = frasesLogin[Math.floor(Math.random() * frasesLogin.length)];
   document.querySelector('.p-dets').textContent = fraseAleatoria;

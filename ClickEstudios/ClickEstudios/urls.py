@@ -11,6 +11,8 @@ urlpatterns = [
     path('' , include('Estudios.urls')),
     path('asistente/', include('Asistente.urls')),
     path('admin/', admin.site.urls),
+    path('accouns/', include('Accounts.urls')),
+    path('accounts/', include('allauth.urls')),
 ]
 
 handler404 = 'Estudios.views.Status404'

@@ -1,0 +1,73 @@
+
+<link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css">
+      <style>
+            .logout {
+                  background-image: url('https://img.freepik.com/free-vector/blurred-background-with-light-colors_1034-245.jpg?semt=ais_hybrid&w=740');
+                  background-position: center; background-repeat: no-repeat;
+                  background-size: cover;
+            }
+      </style>
+      <section class="logout d-flex  flex-wrap justify-content-center  align-content-center  vh-100 w-100">
+            <div style=" background: linear-gradient(to bottom, transparent, #101010), linear-gradient(to top, transparent, #101010);"
+                      class="vh-100 w-100 d-flex position-relative align-content-end flex-wrap p-3 ">
+                      {% if messages %}
+                      <div class="d-flex position-absolute justify-content-center top-0 start-0 w-100" >
+                            {% for message in messages %}
+                            <div class="alert alert-danger bg-black bg-opacity-25  mt-2 ps-5 pe-5 rounded-5" style="color: #fdfdfdb6;
+                                font-size: 0.9rem;
+                                border: 0px solid #fdfdfd54;
+                                margin-bottom: 0.5rem;
+                                max-width: max-content;">
+                                      {{ message }}
+                                {% endfor %}
+                          </div>
+                      </div>
+                      <script>
+                        setTimeout(() => {
+                              const alerts = document.querySelectorAll('.alert');
+                              alerts.forEach(alert => {
+                                    alert.style.display = 'none';
+                              });
+                        }, 5000);
+                      </script>
+                    {% endif %}
+                      <form method="post" action="" style="
+                      background: #19191900; padding: 0.2rem;
+                       border-radius: 1.5rem;
+                        width: 100%; max-width: 500px; font-family: 'Segoe UI', sans-serif;">
+                        {% csrf_token %}
+                        <!-- <h2 style="margin-bottom: 0.3rem; font-size: 1.5rem; color: #fff; text-align: start;">Iniciar sesión</h2> -->
+                          <p class="text-white-50" style="font-size: 14px;">
+                              Accede a tu cuenta para gestionar tus pedidos, revisar tu perfil y utilizar todas las funcionalidades disponibles
+                          </p>
+                        <div style="margin-bottom: 0.3rem;">
+                          <input type="text" id="username" name="username" placeholder="Usuario o correo" required
+                            style="width: 100%; padding: 1rem; background-color: #101010a2; color: #eee; border: 1px solid #202020; border-radius: 2rem; font-size: 1rem;">
+                        </div>
+                        <div style="margin-bottom: 1.5rem;">
+                          <input type="password" id="password" name="password" placeholder="Contraseña" required
+                            style="width: 100%; padding: 1rem; background-color: #101010a2; color: #eee; border: 1px solid #202020; border-radius:2rem; font-size: 1rem;">
+                        </div>
+                        <div class="w-100 d-flex justify-content-center">
+                              <button type="submit" class="bold"
+                              style="width: 200px; padding: 0.75rem; background-color: #4d4d4d56; color: white; border: none; border-radius: 2rem; font-size: 1rem; cursor: pointer;">
+                              Iniciar sesión
+                            </button>
+                        </div>
+                          <a class="w-100 text-center btn mt-2 p-2 text-white-50 bold d-flex justify-content-center text-decoration-none   " 
+                              href="{% url 'estudios:home' %}">
+                                No, volver atrás
+                          </a>
+                      </form>
+            </div>
+      </section>
+      <script>
+            document.getElementById('username').addEventListener('input', function (event) {
+                        const input = event.target;
+                        const regex = /^[a-z0-9@.]*$/; // Allow only lowercase letters, numbers, '@', and '.'
+                        if (!regex.test(input.value)) {
+                                      input.value = input.value.replace(/[^a-z0-9@.]/g, ''); // Remove invalid characters
+                        }
+            });
+      </script>
+

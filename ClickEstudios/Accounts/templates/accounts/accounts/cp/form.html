@@ -1,0 +1,79 @@
+<style>
+  form label {
+    display: none;
+  }
+  form input {
+    height: 3rem;
+    width: 100%;
+    border-radius: 1rem;
+    background-color: var(--bg-1);
+    border: 1px solid gainsboro;
+    padding: 0.9rem;
+  }
+  form p, h5 {
+    margin: 0; padding: 0 ;
+  }
+</style>
+<form method="post" class="w-100 d-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px;">
+  {% csrf_token %}
+
+  <!-- Sección: Información de usuario -->
+<div>
+  <h5 class="mt-4"><i class="fi fi-sr-info"></i> Información de usuario</h5>
+  <p>
+    Datos básicos para ingresar al sistema
+  </p>
+  <div class="d-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px;">
+    <div>
+      <label for="id_username">Usuario</label>
+      <input type="text" name="username" id="id_username" class="form-class" placeholder="Nombre de usuario">
+    </div>
+    <div>
+      <label for="id_email">Correo electrónico</label>
+      <input type="email" name="email" id="id_email" class="form-class" placeholder="Correo electrónico">
+    </div>
+  </div>
+</div>
+
+<div>
+    <!-- Sección: Información personal -->
+    <h5 class="mt-4"><i class="fi fi-sr-circle-user"></i> Información personal</h5>
+    <p>
+      Nombre y apellido del usuario
+    </p>
+    <div class="d-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px;">
+      <div>
+        <label for="id_first_name">Nombre</label>
+        <input type="text" name="first_name" id="id_first_name" class="form-class" placeholder="Nombre">
+      </div>
+      <div>
+        <label for="id_last_name">Apellido</label>
+        <input type="text" name="last_name" id="id_last_name" class="form-class" placeholder="Apellido">
+      </div>
+    </div>
+</div>
+
+<div>
+    <!-- Sección: Seguridad -->
+    <h5 class="mt-4"><i class="fi fi-sr-lock"></i> Seguridad</h5>
+    <p>
+      Credenciales y acceso seguro
+    </p>
+    <div class="d-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px;">
+      <div>
+        <label for="id_password">Contraseña</label>
+        <input type="password" name="password" id="id_password" class="form-class" placeholder="Contraseña">
+      </div>
+    </div>
+</div>
+  <div class="">
+    <button type="submit" class="btn btn-primary mt-4 border-0 rounded-4">Guardar</button>
+    <a href="{% url 'accounts:accounts' %}" class="btn border-0 cancl justify-content-center d-flex"
+style="width: max-content; ">
+<span class="button   d-flex bg-transparent border-0" type="button"  style="width: max-content; font-weight: bold; color: #676c71;" >
+      <i class="fi fi-sr-undo d-flex justify-content-center align-content-center flex-wrap me-2"></i>  <span style="color: #676c71 ;" >Atras</span>
+</span>
+</a>
+
+  </div>
+</form>
