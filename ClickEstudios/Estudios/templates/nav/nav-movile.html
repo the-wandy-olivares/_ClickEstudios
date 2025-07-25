@@ -3,11 +3,9 @@
             display: none;
             width: 100%;  
             align-content: center; 
-            /* flex-wrap: wrap; justify-content: center; */
       }
       .btn-open-nav button {
             display: flex; flex-wrap: wrap; justify-content: center;
-
             background-color: transparent;
             color: rgba(255, 255, 255, 0.921);
             border: 0px;
@@ -23,10 +21,15 @@
       }
       .btn-open-nav button i {
             /* margin-top: 0.4rem; */
-            font-size:27px;
+            font-size:30px;
             /* width: 32px !important;
             height: 32px; */
-            color: #dddddd ;
+            background: rgba(255, 255, 255, 0);  /* fondo blanco translúcido */
+            backdrop-filter: blur(2px);            /* blur al fondo */
+            -webkit-backdrop-filter: blur(2px);    /* para Safari */
+            color: #ffffffb3 ;
+            padding: 10px 20px;
+            border-radius: 10px;
             /* background-color: aliceblue; */
             display: flex; flex-wrap: wrap; align-content: center;
             justify-content: center;
@@ -46,36 +49,37 @@
     
 
 </style>
-<div  class="position-fixed btn-open-nav z-2 bottom-0 d-none d-flex flex-wrap    w-100  end-0  text-black  justify-content-center "
-      style="  background: linear-gradient(to bottom, transparent, #101010), linear-gradient(to top,transparent , transparent);">
-      <section class="blur-50  w-100 ms-3 me-3  m-1  mb-1"
-            style="border-radius: 3rem; background-color: #10101054;
-            border: 1px solid rgba(255, 255, 255, 0.144); max-width: 88vw;">      
-
-            <section class="w-100 p-2 mt-1"
-                  style="display: grid; grid-template-columns: repeat(4, 1fr); 
-                  ">
+<div  class="position-fixed btn-open-nav z-2 bottom-0 d-none d-flex flex-wrap  w-100  end-0  text-black  justify-content-center "
+      style="height: max-content;
+       background: linear-gradient(to bottom, transparent, #101010), linear-gradient(to top,transparent , transparent);">
+      <section class=" w-100 ms-2 me-2  m-1  mb-1"
+            style="border-radius: 1rem;
+             /* background-color: #10101054; */
+            border: 0px solid rgba(255, 255, 255, 0.144); max-width: 88vw;">      
+            <section class="w-100 p-2 mt-1 d-flex"
+                  style="display: grid;  ">
                   <button class="button btn-dashboard" 
                         onclick="window.location.href = '{% url "estudios:dashboard" %}'">
-                        <i class="fi fi-sr-house-blank"></i>
+                        <i class="fi fi-sr-house-blank mt-2"></i>
                         <span>
                               Dashboard
                         </span>
                   </button>
-                  <button class="button btn-pos" onclick="window.location.href = '{% url "estudios:pos" %}'">
-                        <i class="fi fi-sr-hands-typing-keyboard"></i>
+                  <button class="button btn-pos" 
+                        onclick="window.location.href = '{% url "estudios:pos" %}'">
+                        <i class="fi fi-sr-payment-pos" style="font-size: 30px;"></i>
                         <span>POS </span>
                   </button>
-                  <button class="button btn-caja " onclick="window.location.href = '{% url "estudios:box" %}'">
-                        <i class="fi fi-sr-drawer-empty"></i>
+                  <button class="button btn-caja "
+                         onclick="window.location.href = '{% url "estudios:box" %}'">
+                        <i class="fi fi-sr-safe-box" style="font-size: 30px;"></i>
                         <span>Caja</span>
                   </button>
-                  <button  class="button" id="options-as">
-                        <i class="fi fi-sr-bars-staggered"></i>
+                  <button  class="button"  onclick="OpenNav()">
+                        <i class="fi fi-sr-category mt-2"></i>
                         <span>Opciones</span>
                   </button>
             </section>
-
       </section>
 </div>
 

@@ -9,7 +9,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+    <!-- <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> -->
     <style>
        .google-btn {
     display: inline-flex;
@@ -17,7 +21,7 @@
     gap: 10px;
     background-color: #30303053;
     color: #dbdbdb;
-    border: 1px solid #525252;
+    border: 1px solid #5252523f;
     border-radius: 2rem;
     font-size: 14px;
     font-weight: 500;
@@ -27,6 +31,8 @@
     transition: background-color 0.2s ease-in-out;
     cursor: pointer;
     transition: 0.3s;
+    -webkit-backdrop-filter: blur(5px) !important;
+		backdrop-filter: blur(5px) !important;
   }
 
   .google-btn:hover {
@@ -45,59 +51,78 @@
     <section class=' text-white d-flex justify-content-center   align-content-center flex-wrap w-100' style="height: 100vh; 
                     background-image: url('{{estudios.background_img.url}}'); 
                     background-size: cover; background-position: center; background-repeat: no-repeat;">
-          <div class="h-100 w-100 p-2 d-flex flex-wrap align-content-end pb-5 justify-content-center " style="background: linear-gradient(to bottom, transparent, #101010), linear-gradient(to top,#1010107d , #10101081);">
-            <form method="post" class="w-100 form" style="max-width:30rem; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; ">
-              {% csrf_token %}
-              <div>
-                <h3  data-aos="zoom-in" class="text-white text-center  m-0 p-0  " 
-                style="transition-delay: 0.3s !important;
-                        transition-duration: 3s !important;
-                        font-family: Syncopate, serif;
-                        font-weight: bold;
-                        font-size: 26px;">
-                        ClickEstudios
-                        <!-- Iniciar session  -->
-                      </h3>
-                      <p  data-aos="fade-in" style="transition-delay: 0.8s; transition-duration: 2s; font-size: 14px;" 
-                      class="p-dets  w-100 text-center  text-white-50">
-                      </p>
-                   
-              </div>
-              {% if messages %}
-              {% for message in messages %}
-                  <div class="alert alert-{{ message.tags }} alert-dismissible text-center fade text-danger show" role="alert"
-                    style='font-size: 10px;'>
-                      {{ message }}
-                  </div>
-              {% endfor %}
-          {% endif %}
-              <div class="d-flex justify-content-center  w-100  ">
-                    <input data-aos="fade-in" style="transition-delay: 1s; transition-duration: 1s;" type="text" id="username" name="username" placeholder="Usuario" required>
-                </div>
-                <div class="d-flex justify-content-center">
-                      <input data-aos="fade-in" style="transition-delay: 1.4s; transition-duration: 1s;"  type="password" id="password" name="password" placeholder="Contraseña" required class=" w-100">
-                      <button data-aos="fade-in" type="submit" class="border-0 text-white btn-sesssion   rounded-5 " style="font-weight: bold; width: 14rem; height: 3.3rem; margin-top: 5px; background-color: #16161672; transition-delay: 1.8s; padding: 14px;" disabled> ¡Todo listo! </button>
-              </div>
-              <div data-aos="fade-in" style="transition-delay: 2s; transition-duration: 1s;" class="w-100 d-flex flex-wrap justify-content-end mt-1" style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
-          
-                <hr class="w-100 text-white-50">
-              </div>
-        
-        </form>
-          <div data-aos="fade-in" class="w-100 d-flex justify-content-center flex-wrap"
-            style="transition-delay: 2s; transition-duration: 1s;">
+          <div class="vh-100  sdjdssds w-100 p-2 d-flex flex-wrap align-content-end pb-5 justify-content-center " style="background: linear-gradient(to bottom, transparent, #000000ec), linear-gradient(to top,#101010ab , #10101081);">
+            <style>
+                    @media (max-width: 600px) { 
+                        .sdjdssds {
+                            align-content: end !important;
+                            padding-bottom: 7rem !important;
+                        }
+                    }
+            </style>
+        <section class="animate__animated animate__slideInDown w-100 flex-wrap d-flex justify-content-center"
+         style=" ">
+          <div class="d-flex flex-wrap  align-content-start mt-3   justify-content-center me-3 " style="max-width: 400px; ">
+            <h3  data-aos="zoom-in" class="text-white d-flex   justify-content-center w-100 text-center  m-0 p-0   " 
+            style="transition-delay: 0.3s !important;
 
+                    font-family: Syncopate, serif;
+                    font-weight: bold;
+                    font-size: 26px;">
+            <img src="{{estudios.img.url}}" width="50" alt="">
+                  <span class="d-flex flex-wrap align-items-center">
+                    ClickEstudios
+                  </span>
+                    <!-- Iniciar session  -->
+                  </h3>
+                  <p  data-aos="fade-in" style="transition-delay: 0.8s; transition-duration: 2s; font-size: 14px; text-align: justify; " 
+                  class="p-dets  w-100   text-white-50 p-2 pb-0 pt-0">
+                  </p>
+          </div>
+          <form method="post" class="w-100 form" style="max-width:25rem; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; ">
+            {% csrf_token %}
+    
+            {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible text-center fade text-danger show" role="alert"
+                  style='font-size: 10px;'>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+            <div class="d-flex justify-content-center  w-100  ">
+                  <input data-aos="fade-in" style="transition-delay: 0.1s; transition-duration: 1s; 		-webkit-backdrop-filter: blur(5px) !important;
+  backdrop-filter: blur(5px) !important;" type="text" id="username" name="username" placeholder="Usuario" required>
+              </div>
+              <div class="d-flex justify-content-center">
+                    <input data-aos="fade-in" style="transition-delay: 0.1s; transition-duration: 1s; 		-webkit-backdrop-filter: blur(5px) !important;
+  backdrop-filter: blur(5px) !important;"  type="password" id="password" name="password" placeholder="Contraseña" required class=" w-100">
+                    <button data-aos="fade-in" type="submit" class="border-0 text-white btn-sesssion   rounded-5 " style="font-weight: bold; width: 14rem; height: 3.3rem; margin-top: 5px; background-color: #16161672; transition-delay: 1.8s; padding: 14px;
+
+
+" disabled> ¡Todo listo! </button>
+            </div>
+            <div data-aos="fade-in" style="transition-delay: 2s; transition-duration: 1s;" class="w-100 d-flex flex-wrap justify-content-end mt-1" style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+        
+              <hr class="w-100 text-white-50">
+            </div>
+            <div data-aos="fade-in" class="w-100 p-2 d-flex  flex-wrap justify-content-center "
+            style="transition-delay: 2s; transition-duration: 1s;">
             <a href="/accounts/google/login/" class="text-decoration-none">
-              <span type="submit" class="google-btn  text-center d-flex justify-content-center" >
+              <span type="submit" class="google-btn w-100  text-center d-flex justify-content-center" style="min-width: 13rem;" >
                 <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google icon" class="google-icon"> Iniciar con google
               </span>
             </a>
             <a class=" text-center w-100  mt-2 text-white-50 btn p-2 border-0 bold d-flex justify-content-center text-decoration-none   " 
             href="{% url 'estudios:home' %}" style="width: max-content; font-weight: bold;">
-
-                    Volver al inicio
+                    Atras
             </a>
+
           </div>
+      
+      </form>
+        </section>
+      
           </div>
 
       <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
