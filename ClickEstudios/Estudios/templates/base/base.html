@@ -20,7 +20,7 @@
     <link rel="icon" href="#" class='log-estudios'  media="(prefers-color-scheme: light)">
     <link rel="icon" href="#" class='log-estudios-black' media="(prefers-color-scheme: dark)">
     <!--AOS-->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> -->
     <!-- Font Awesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -210,7 +210,7 @@
 		style="background-color:#101010; "> 
 	{% if  request.user.is_authenticated %}
 		<main class='d-flex position-relative  w-100'  
-			style=" height: 100dvh;  
+			style=" min-height: 100dvh;  
 			transition: 0s !important;  max-width: 1730px !important;">
           {% include "nav/new-nav/cp/info.html" %} 
           <!-- Notificaciones -->
@@ -219,17 +219,20 @@
 			</div>
 			{% block content %}
 				<!--Contenido-->
-			{% endblock %}
-			{% include "nav/nav-movile.html" %}
-			<div  class="position-absolute sombra-down  w-100 bottom-0"
+        {% endblock %}
+
+          {% include "nav/nav-movile.html" %}
+        {% include "nav/nav.html" %}
+        <div  class="position-absolute sombra-down  w-100 bottom-0"
 				style=" min-height: 50px;
 				background: linear-gradient(to bottom, transparent, #101010c3), linear-gradient(to top,transparent , transparent);">
-        <h6 class="text-white-50     text-uppercase text-end me-5 " 
-        style=" font-family: Delius Swash Caps, cursive; font-size: 10px; height: 2rem;">
-        <strong>V</strong>:  Aurora ( 2.5.6)
+          <h6 class="text-white-50     text-uppercase text-end me-5 " 
+          style=" font-family: Delius Swash Caps, cursive; font-size: 10px; height: 2rem;">
+          <strong>V</strong>:  Aurora ( 2.5.6)
         </h6>
-			</div>
-		</main>
+    </div>
+   
+  </main>
 	{% else %}
 		<script>
 			window.location.href = "{% url 'estudios:login' %}";
@@ -341,7 +344,13 @@
       e.preventDefault(); // evitar menú del navegador
 
       });
+
+      function OpenNav(){
+          document.querySelector('.new-nav-mobile-section').classList.toggle('d-none')
+      }
   </script>
+
+
 
  
 </html>

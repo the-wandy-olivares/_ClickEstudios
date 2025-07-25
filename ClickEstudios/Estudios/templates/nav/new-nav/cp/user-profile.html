@@ -3,7 +3,7 @@ class="text-decoration-none">
 <div class="p-2  ps-2 blur-0 d-flex" 
             style="background: linear-gradient(to bottom, transparent, #101010), linear-gradient(to top, transparent,#101010c3, #10101025);">
       {% with account=user.socialaccount_set.first %} 
-      <img  width="30" height="30" class="rounded-circle me-2"
+      <img  width="35" height="35" class="rounded-circle me-2"
             style="border: 2px solid rgba(186, 186, 186, 0.283);"
       {% if account and account.extra_data.picture %}
             src="{{ account.extra_data.picture }}" 

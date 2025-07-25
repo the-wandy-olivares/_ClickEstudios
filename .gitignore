@@ -24,7 +24,7 @@ local_settings.py
 
 # Static files
 
-
+media/
 
 # Django migrations
 */migrations/__pycache__/
