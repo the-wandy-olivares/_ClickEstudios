@@ -1656,5 +1656,6 @@ class Offline(TemplateView):
 
 
 def error_redirect_view(request, exception=None):
-    messages.success(request,f"¡Ups! allgo salio mal, intenta nuevamente en un momento, si continúa, contáctanos al (829) 557-7196.")
+    status_code = getattr(exception, 'status_code', 500)
+    messages.error(request, f"¡Ups! allgo salio mal, intenta nuevamente en un momento, si continúa ({status_code})")
     return redirect('estudios:pos')
