@@ -1653,6 +1653,9 @@ class Offline(TemplateView):
     template_name = 'offline/offline.html'
 
 
+class Citas(TemplateView):
+    template_name = 'citas/citas.html'
+
 
 
 def error_redirect_view(request, exception=None):

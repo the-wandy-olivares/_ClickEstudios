@@ -73,7 +73,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'Estudios.middleware.force_error_handlers.ForceErrorHandlersMiddleware', # Rederic By any error
+    'Estudios.middleware.force_error_handlers.ForceErrorHandlersMiddleware',
+    # Rederic By any error
 
     # LOGIN_REDIRECT_URL = "/"
     'allauth.account.middleware.AccountMiddleware',
