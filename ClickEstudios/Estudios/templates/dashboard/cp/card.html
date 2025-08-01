@@ -2,9 +2,9 @@
 <style>
       .card-section .card-info {
             width: 100%;
-            height: 200px;
+            height: 240px;
             background-color: #19191998;
-            border-radius: 2.9rem;
+            border-radius: 3.7rem;
             border: 1px solid #232323;
             display: flex; flex-wrap:  wrap;
             align-content: start;
@@ -12,7 +12,11 @@
             color: white;
             padding: 1rem;
             border: 1px solid rgba(255, 255, 255, 0.064);
-            
+            transition: 0.2s;
+      }
+      .card-section .card-info:hover {
+            transform: scale(0.97);
+            background-color: #202020;
       }
       .card-section .card-info div {
             display: flex; flex-wrap:  wrap;
@@ -30,14 +34,14 @@
             /* text-align: justify; */
       }
       .card-section i {
-            color: white;
-            font-size: 30px;
+            color: rgba(255, 255, 255, 0.837);
+            font-size: 39px;
             background-color: #56565634;
             display: flex; flex-wrap: wrap; 
             align-content: center; justify-content: center;
             border-radius: 50%;
-            width: 4rem;
-            height: 4rem;
+            width: 5rem;
+            height: 5rem;
       }
       @media (max-width: 600px) {
             .card-section {
@@ -49,86 +53,98 @@
 
       }
 </style>
-<section class="card-section  p-1 pt-0" 
+<section class="card-section  p-1 pt-0 animate__animated animate__fadeInDown" 
       style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
       gap: 10px; max-height: 50rem;">
-      <div class="card-info ">
-            <div>
-                  <i class="fi fi-ss-selling"></i>
-                  <h6 class="d-flex flex-wrap align-content-center ms-4">
-                        Panel de Ventas
-                  </h6>
+      <a href="{% url 'estudios:pos' %}">
+            <div class="card-info ">
+                  <div>
+                        <i class="fi fi-sr-money-laptop"></i>
+                        <h6 class="d-flex flex-wrap align-content-center ms-4">
+                              Punto de venta (POS)
+                        </h6>
+                  </div>
+                  <div>
+                        <p>
+                              Visualiza el comportamiento mensual, detecta picos y caídas, y toma decisiones basadas en datos reales
+                        </p>
+                  </div>
             </div>
-            <div>
-                  <p>
-                        Visualiza el comportamiento mensual, detecta picos y caídas, y toma decisiones basadas en datos reales
-                  </p>
+      </a>
+      <a href="{% url 'estudios:citas' %}">
+            <div class="card-info blur-10 ">
+                  <div>
+                        <i class="fi fi-ss-comment-quote"></i>
+                        <h6 class="d-flex flex-wrap align-content-center ms-4">
+                              Panel de Citas
+                        </h6>
+                  </div>
+                  <div>
+                        <p>
+                              Revisa el historial, identifica horas pico y gestiona la disponibilidad de manera eficiente
+                        </p>
+                  </div>
             </div>
-      </div>
-      <div class="card-info blur-10 ">
-            <div>
-                  <i class="fi fi-ss-comment-quote"></i>
-                  <h6 class="d-flex flex-wrap align-content-center ms-4">
-                        Panel de Citas
-                  </h6>
+      </a>
+      <a href="{% url 'estudios:configuration' %}">
+            <div class="card-info blur-10  ">
+                  <div>
+                        <i class="fi fi-sr-arrow-progress"></i>
+                        <h6 class="d-flex flex-wrap align-content-center ms-4">
+                              Configuración
+                        </h6>
+                  </div>
+                  <div>
+                        <p>
+                              Configura opciones clave del sistema, como idioma, tema, accesibilidad, y más. Personaliza tu entorno como prefieras.
+                        </p>
+                  </div>
             </div>
-            <div>
-                  <p>
-                        Revisa el historial, identifica horas pico y gestiona la disponibilidad de manera eficiente
-                  </p>
+      </a>
+      <a href="{% url 'estudios:box' %}">
+            <div class="card-info blur-10  ">
+                  <div>
+                        <i class="fi fi-sr-safe-box"></i>
+                        <h6 class="d-flex flex-wrap align-content-center ms-4">
+                              Caja
+                        </h6>
+                  </div>
+                  <div>
+                        <p>
+                              Monitorea el avance de tus Activos, Costos, ingresos, pagos
+                        </p>
+                  </div>
             </div>
-      </div>
-      <div class="card-info blur-10  ">
-            <div>
-                  <i class="fi fi-sr-arrow-progress"></i>
-                  <h6 class="d-flex flex-wrap align-content-center ms-4">
-                        Panel de Progreso
-                  </h6>
+      </a>
+      <a href="{% url 'estudios:contactos' %}">
+            <div class="card-info blur-10  ">
+                  <div>
+                        <i class="fi fi-sr-users-alt"></i>
+                        <h6 class="d-flex flex-wrap align-content-center ms-4">
+                              Clientes
+                        </h6>
+                  </div>
+                  <div>
+                        <p>
+                              Conoce mejor a tus clientes, mejora tu comunicación y potencia relaciones duraderas
+                        </p>
+                  </div>
             </div>
-            <div>
-                  <p>
-                        Monitorea el avance de tus objetivos, identifica retrasos y mantén el enfoque en los resultados
-                  </p>
+      </a>
+      <a href="{% url 'estudios:facturas' %}">
+            <div class="card-info blur-10  ">
+                  <div>
+                        <i class="fi fi-sr-receipt"></i>
+                        <h6 class="d-flex flex-wrap align-content-center ms-4">
+                              Facturas
+                        </h6>
+                  </div>
+                  <div>
+                        <p>
+                              Supervisa tu facturación, detecta pagos pendientes y mantén tus finanzas en orden
+                        </p>
+                  </div>
             </div>
-      </div>
-      <div class="card-info blur-10  ">
-            <div>
-                  <i class="fi fi-sr-safe-box"></i>
-                  <h6 class="d-flex flex-wrap align-content-center ms-4">
-                        Caja
-                  </h6>
-            </div>
-            <div>
-                  <p>
-                        Monitorea el avance de tus Activos, Costos, ingresos, pagos
-                  </p>
-            </div>
-      </div>
-      <div class="card-info blur-10  ">
-            <div>
-                  <i class="fi fi-sr-users-alt"></i>
-                  <h6 class="d-flex flex-wrap align-content-center ms-4">
-                        Clientes
-                  </h6>
-            </div>
-            <div>
-                  <p>
-                        Conoce mejor a tus clientes, mejora tu comunicación y potencia relaciones duraderas
-                  </p>
-            </div>
-      </div>
-      <div class="card-info blur-10  ">
-            <div>
-                  <i class="fi fi-sr-receipt"></i>
-                  <h6 class="d-flex flex-wrap align-content-center ms-4">
-                        Facturas
-                  </h6>
-            </div>
-            <div>
-                  <p>
-                        Supervisa tu facturación, detecta pagos pendientes y mantén tus finanzas en orden
-                  </p>
-            </div>
-      </div>
+      </a>
 
 </section>
