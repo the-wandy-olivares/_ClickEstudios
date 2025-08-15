@@ -1,3 +1,4 @@
+<section class=" {% if ask_due_box != True %} d-none {% else %} d-flex {% endif %}  position-absolute start-0  justify-content-center align-content-center flex-wrap  z-3  vh-100 w-100   blur-5 ask_last_box-section">  
 <style>
       .btn {
             width: 10rem;
@@ -11,22 +12,23 @@
             }
       }
 </style>
-<div data-aos='fade-up' style=' max-width:26rem;
-      background-color: #202020; transition-duration: 2s; border: 1px solid rgba(72, 72, 72, 0.668); border-radius: 2.5rem;'  
-      class='d-flex m-2 justify-content-center  p-2 align-content-center    flex-wrap text-white shadow'>
-      <div  class='w-100  bg-black bg-opacity-10 p-3 rounded-5 d-flex flex-wrap align-content-center justify-content-start-0'>
-            <div class='w-100  d-flex  justify-content-start flex-wrap align-content-center'>
-                  <h5 class='text-start m-0 p-0'>
+<div style=' max-width:40rem;
+      background-color: #202020; transition-duration: 2s; border: 1px solid rgba(72, 72, 72, 0.668); border-radius: 3.3rem;'  
+      class='d-flex m-2 justify-content-center  p-4 align-content-center    flex-wrap text-white shadow'>
+      <div  class='w-100  h-100  p-3 rounded-5 d-flex flex-wrap align-content-center justify-content-start-0'>
+            <div class='w-100  d-flex  justify-content-center flex-wrap align-content-center'>
+                  <h6 class='text-center m-0 p-0'>
                         <strong>
-                              Caja actual, fuera de tiempo
+                              Apertura de caja anterior
                         </strong> desde el {{ created_box|date:"d/m/Y" }}
-                  </h5>
+                  </h6>
             </div>
-            <hr class="w-100">
+            <hr class="w-100 mt-2">
             <p class="text-white-50 m-0 p-0" style="font-size: 14px;">
                   Abre una nueva hoy {{ timemezone|date:"d/m/Y" }} para una gestión más precisa, se recomendable abrir una nueva caja cada dia
             </p>
-            <div class="  w-100  d-flex flex-wrap justify-content-start mt-2 ">
+            <hr class="w-100">
+            <div class="  w-100  d-flex flex-wrap justify-content-center mt-2 ">
                         <button class="btn  w-100  bg-black bg-opacity-10 text-white  rounded-5 p-2 btn-abrir"
                         style="max-width: 10rem;
                                font-weight: bold; border: 0px solid rgba(84, 84, 84, 0.544);"
@@ -68,3 +70,4 @@ if (localStorage.getItem('ask_last_box_hidden') === 'true') {
       }
 }
 </script>
+</section>

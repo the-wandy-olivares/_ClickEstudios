@@ -221,9 +221,11 @@
 			<div class='bg-grey nav-escritorio me-2 '>  
 				    {% include "nav/new-nav/nav.html" %} 
 			</div>
-			{% block content %}
+      <div class="position-relative w-100"> 
+        {% block content %}
 				<!--Contenido-->
         {% endblock %}
+      </div>
 
           {% include "nav/nav-movile.html" %}
         {% include "nav/nav.html" %}

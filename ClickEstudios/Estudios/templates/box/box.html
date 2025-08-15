@@ -135,7 +135,7 @@
                              <div class="detail-resulst  blur-5 rounded-5 position-fixed bottom-0 ">
                                     <table class="w-100">
                                           <thead>
-                                                <tr>
+                                                <tr class="d-none">
                                                       <th scope="col" class="text-center" style="font-size: 14px;">Balance</th>
                                                       <th scope="col" class="text-center" style="font-size: 14px;"> Ingresos</th>
                                                       <th scope="col" class="text-center" style="font-size: 14px;">Gastos</th>
@@ -143,9 +143,9 @@
                                           </thead>
                                           <tbody>
                                                 <tr>
-                                                      <td class="text-center">${{ balance_caja|intcomma }}.00</td>
-                                                      <td class="text-center">${{ ingresos|intcomma }}.00</td>
-                                                      <td class="text-center">${{ egresos|intcomma }}.00</td>
+                                                      <td class="text-center"> = ${{ balance_caja|intcomma }}.00</td>
+                                                      <td class="text-center">+ ${{ ingresos|intcomma }}.00</td>
+                                                      <td class="text-center">- ${{ egresos|intcomma }}.00</td>
                                                       <td>
                                                             <a href="{% url "estudios:box-create" %}" class='btn-cerrar'> 
                                                                   <button style=" font-weight: bold; background-color: #1919196c;"  
