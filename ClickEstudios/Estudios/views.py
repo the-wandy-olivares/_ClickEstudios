@@ -513,6 +513,7 @@ class SaleUpdate(UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['plan'] = models.Plan.objects.filter(pk=self.object.pk_plan).last()
+        context['plans'] = models.Plan.objects.all()
         return context
 
     def form_valid(self, form):
