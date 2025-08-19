@@ -513,6 +513,7 @@ class SaleUpdate(UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['plan'] = models.Plan.objects.filter(pk=self.object.pk_plan).last()
+        context['plans'] = models.Plan.objects.all()
         return context
 
     def form_valid(self, form):
@@ -670,7 +671,7 @@ class Estudios(TemplateView):
         sale = models.Sale.objects.get(pk=self.kwargs.get('pk'))
         sale_itebis = sale.price_plan * 0.18
         total = sale.price_plan 
-        adicional_exist = False
+        adicional_exist = True
         if sale.sale_adicionales.all():
             for adicional in sale.sale_adicionales.all():
                     total += adicional.price
@@ -699,6 +700,7 @@ class Estudios(TemplateView):
         context['sale_itebis'] = sale_itebis
         context['sale_price_unitario'] = sale.price_plan + sale_itebis
         context['ncf'] =utils.GetNCF(sale.sale_type)
+
         ITBIS = 0
         if not sale.discount:
             total_con_i =+ total_itebis
@@ -751,6 +753,7 @@ class Estudios(TemplateView):
             sale.discount = False
             messages.success(self.request, f"Factura para: {sale.sale_type.upper()}")
             sale.save()
+
         # Eliminar adicional
         if request.POST.get('delete'):
                 adicional = models.Adicional.objects.get(pk=request.POST.get('delete'))
