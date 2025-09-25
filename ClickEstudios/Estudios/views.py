@@ -945,6 +945,13 @@ class Box(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
+        # mv  = models.Movements.objects.all()
+
+        # with open("movements_export.txt", "w", encoding="utf-8") as f:
+        #     for m in mv:
+        #         line = f"{m.mount}\t{m.description}\t{m.date}\t{m.type}\n"
+        #         f.write(line)
+
         try:
             last_box = models.Box.objects.filter(open=False).latest('id')
             last_movimientos = models.Movements.objects.filter(box=last_box)

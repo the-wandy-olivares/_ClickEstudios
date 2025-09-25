@@ -1,0 +1,828 @@
+1000	Pago Asistente actividad en colegio	2025-06-04 16:10:39.139184+00:00	gasto
+225	papel fotográfico	2025-06-04 18:50:22.191262+00:00	gasto
+50	Sobres	2025-06-04 18:51:28.079823+00:00	gasto
+300	Pago completado Foto escolar 2x2	2025-06-04 21:02:24.714951+00:00	ingreso
+250	Pago completado Escolar 2x2	2025-06-04 21:12:43.983863+00:00	ingreso
+500	combustible 	2025-06-05 13:42:10.955724+00:00	gasto
+3600	Compras en el ole	2025-06-05 15:36:48.772675+00:00	gasto
+250	Pago completado Escolar 2x2	2025-06-05 15:37:34.406759+00:00	ingreso
+500	Pago completado reserva estudio	2025-06-05 20:56:16.883965+00:00	ingreso
+250	Comida Albert	2025-06-06 15:08:50.557004+00:00	gasto
+500	Pago completado Completivo reserva	2025-06-06 15:41:58.713115+00:00	ingreso
+50	Albert	2025-06-06 19:16:44.627499+00:00	gasto
+4160	Impresión y enmarcado 	2025-06-06 20:08:39.603775+00:00	gasto
+900	Pago completado 3 fotos pasaporte2x2	2025-06-06 20:39:35.653564+00:00	ingreso
+70	Botellon de agua	2025-06-06 21:18:50.976738+00:00	gasto
+7179	Pago completado Balance anterior	2025-06-08 16:08:03.033365+00:00	ingreso
+500	Pago completado Reserva cli especial	2025-06-08 16:11:01.767257+00:00	ingreso
+250	Pago completado Escolar 2x2	2025-06-08 16:11:23.434602+00:00	ingreso
+50	Pago completado albert	2025-06-08 16:11:51.919544+00:00	ingreso
+500	Abono, Albertina Rosario, PLAN B ( Restante: $2,800)	2025-06-08 16:14:24.889069+00:00	ingreso
+2800	Pago completado Albertina Rosario-PLAN B ( Restante: $0)	2025-06-08 16:14:43.219972+00:00	ingreso
+300	Impresion de las fotos digitales 6	2025-06-08 16:16:51.712683+00:00	ingreso
+1800	Diseño grafico	2025-06-08 16:19:22.347541+00:00	gasto
+500	Transporte	2025-06-08 16:19:22.355403+00:00	gasto
+50	Pago completado Impresion	2025-06-08 16:22:15.040903+00:00	ingreso
+500	Abono, Julianny Fajardo, PLAN B ( Restante: $2,800)	2025-06-08 16:27:13.645945+00:00	ingreso
+100	Pago completado Impresion	2025-06-08 16:28:25.622314+00:00	ingreso
+300	Pago completado Pasaporte 2x2	2025-06-08 16:29:12.796091+00:00	ingreso
+250	Pago completado Escolar 2x2	2025-06-08 16:29:56.961667+00:00	ingreso
+300	Pago completado Pasaporte 2x2	2025-06-08 16:30:28.459823+00:00	ingreso
+12400	Pago completado Recuerdo escolar	2025-06-08 16:31:08.211750+00:00	ingreso
+300	Token	2025-06-08 16:33:30.885783+00:00	gasto
+105	Cartulina, folder y notas	2025-06-08 16:33:30.895421+00:00	gasto
+20	Sobres 2x2	2025-06-08 16:33:30.903250+00:00	gasto
+882	Prime video	2025-06-08 16:33:30.910505+00:00	gasto
+335	Promoción de Facebook	2025-06-08 16:33:30.917559+00:00	gasto
+7014	Nota de credito	2025-06-08 16:50:03.821955+00:00	gasto
+500	Abono, Rossiel Jasmin Encarnacion castillo, PLAN BABY ( Restante: $4,100)	2025-06-08 20:40:21.295475+00:00	ingreso
+250	Pago completado Foto 2x2	2025-06-08 21:19:24.080297+00:00	ingreso
+1600	Pago completado Erika Acosta-PLAN A ( Restante: $0)	2025-06-10 19:07:46.432877+00:00	ingreso
+240	Impresion	2025-06-10 20:32:01.010867+00:00	gasto
+250	Pago completado Escolar 2x2	2025-06-10 21:44:54.132761+00:00	ingreso
+1000	Pago completado Fotos express	2025-06-10 22:01:36.938746+00:00	ingreso
+250	Pago completado Escolar 2x2	2025-06-11 13:42:35.648778+00:00	ingreso
+2000	Abono, Rosanna Lebron, PLAN C ( Restante: $1,600)	2025-06-11 18:47:20.350441+00:00	ingreso
+250	Pago completado Escolar 2x2	2025-06-11 19:24:00.269710+00:00	ingreso
+250	Pago completado Escolar 2x2	2025-06-11 22:11:43.393323+00:00	ingreso
+1000	Pago completado Miercoles loco	2025-06-12 14:13:42.019404+00:00	ingreso
+50	Azucar	2025-06-12 14:14:13.555866+00:00	gasto
+1500	Pago completado Enmarcado Albertina	2025-06-12 15:18:56.072004+00:00	ingreso
+500	Pago completado reserva Mier. Lc Luz	2025-06-12 16:12:49.736147+00:00	ingreso
+500	Abono, Flor leticia de jesus arias, PLAN BABY JUNIOR ( Restante: $2,500)	2025-06-12 16:41:25.152044+00:00	ingreso
+250	Pago completado Escolar 2x2	2025-06-12 19:44:20.246166+00:00	ingreso
+300	Pago completado Pasaporte 2x2	2025-06-12 20:53:37.518310+00:00	ingreso
+250	Pago completado Escolar 2x2	2025-06-12 21:15:24.164169+00:00	ingreso
+250	Pago completado Escolar 2x2	2025-06-12 21:16:08.485627+00:00	ingreso
+1600	Pago completado Julianna Francisco-PLAN A ( Restante: $0)	2025-06-12 21:21:38.082670+00:00	ingreso
+2400	expres y fotos extras F	2025-06-12 21:24:56.389988+00:00	ingreso
+500	Abono, Camil Matos, PLAN A ( Restante: $1,100)	2025-06-13 13:57:46.473259+00:00	ingreso
+500	Abono, Lisa Rodriguez, PLAN B ( Restante: $2,140)	2025-06-13 14:10:28.932286+00:00	ingreso
+500	Abono, Odette Marie Florián Hernández, PLAN A ( Restante: $1,100)	2025-06-13 16:36:39.412803+00:00	ingreso
+250	Pago completado Escolar 2x2	2025-06-13 19:43:04.114224+00:00	ingreso
+3100	Pago completado Completivo cli. espe	2025-06-13 22:01:07.447926+00:00	ingreso
+500	Abono, Lara, PLAN C ( Restante: $3,100)	2025-06-13 22:03:47.869251+00:00	ingreso
+300	Felix motor	2025-06-14 14:15:38.777595+00:00	gasto
+1100	Pago completado Camil Matos-PLAN A ( Restante: $0)	2025-06-14 14:27:32.979738+00:00	ingreso
+2640	Pago completado Estrella	2025-06-14 14:29:19.946929+00:00	ingreso
+1467	Promocion de facebook	2025-06-14 14:44:19.145068+00:00	gasto
+924	prime video	2025-06-14 14:44:19.154558+00:00	gasto
+600	promocion de facebook	2025-06-14 14:44:19.163173+00:00	gasto
+745	promocion de facebook 	2025-06-14 14:44:19.171227+00:00	gasto
+121	google	2025-06-14 14:45:35.513224+00:00	gasto
+3084	memorias para la camara	2025-06-14 14:46:09.858488+00:00	gasto
+427	capcut	2025-06-14 14:46:36.826454+00:00	gasto
+427	capcut	2025-06-14 14:52:49.932421+00:00	gasto
+1706	Programa de edicion	2025-06-14 14:59:25.292130+00:00	gasto
+1500	fotografo	2025-06-14 14:59:25.303427+00:00	gasto
+1437	flota	2025-06-14 14:59:25.312101+00:00	gasto
+2095	internet	2025-06-14 14:59:25.321522+00:00	gasto
+2219	luz oficina	2025-06-14 14:59:25.330634+00:00	gasto
+1095	Luz estudio	2025-06-14 14:59:25.339315+00:00	gasto
+500	Expreso	2025-06-14 14:59:25.348232+00:00	gasto
+4500	Pago completado Arianna Matos 	2025-06-14 15:01:55.305986+00:00	ingreso
+4500	Pago completado Arianna Matos	2025-06-14 15:03:03.169729+00:00	ingreso
+1500	Fotografo	2025-06-14 15:03:26.649650+00:00	gasto
+183	facebook	2025-06-14 15:10:29.258885+00:00	gasto
+367	facebook	2025-06-14 15:10:29.269498+00:00	gasto
+1800	Forro de mueble y accesorios	2025-06-14 15:14:38.636924+00:00	gasto
+917	facebook	2025-06-14 15:25:13.631091+00:00	gasto
+500	Abono, Mercedes Licelot, PLAN C ( Restante: $3,100)	2025-06-14 16:13:42.227166+00:00	ingreso
+500	Pago completado Reserva mier lc glad	2025-06-14 16:31:18.985582+00:00	ingreso
+1600	Pago completado Espenser-PLAN A ( Restante: $0)	2025-06-14 17:59:54.886565+00:00	ingreso
+2000	Pago completado Álvaro-PLAN A ( Restante: $0)	2025-06-14 19:43:07.433569+00:00	ingreso
+500	Pago completado Reserva mier loc key	2025-06-14 19:45:20.919726+00:00	ingreso
+50	Pago completado Impresion 2x2	2025-06-14 19:45:45.873377+00:00	ingreso
+1600	Pago completado Rosanna Lebron-PLAN C ( Restante: $0)	2025-06-15 15:36:29.425244+00:00	ingreso
+2400	Pago completado Katherine Ricon-PLAN BABY JUNIOR ( Restante: $0)	2025-06-15 18:03:00.263383+00:00	ingreso
+500	Pago completado Reserv mier lc nicol	2025-06-15 18:04:27.624370+00:00	ingreso
+200	comida Albert 	2025-06-15 18:08:22.822115+00:00	gasto
+300	Pago completado Pasaporte 2x2	2025-06-15 18:29:38.874033+00:00	ingreso
+1100	Pago completado Odette Marie Florián Hernández-PLAN A ( Restante: $0)	2025-06-15 18:42:48.595032+00:00	ingreso
+1500	Pago completado Maquillaje Odette	2025-06-15 18:43:44.110663+00:00	ingreso
+3100	Pago completado Lara-PLAN C ( Restante: $0)	2025-06-15 19:25:00.965539+00:00	ingreso
+1500	Pago completado Maquillaje Rubiz	2025-06-15 19:25:43.593763+00:00	ingreso
+3000	pago maquillaje daniela 2	2025-06-15 19:28:22.476347+00:00	gasto
+300	Daniela uber 	2025-06-15 19:29:05.858940+00:00	gasto
+300	Daniela uber 	2025-06-15 19:29:07.977580+00:00	gasto
+500	Felix motor llaves	2025-06-17 14:03:34.432728+00:00	gasto
+1000	Transporte	2025-06-17 14:03:34.443440+00:00	gasto
+300	uber	2025-06-17 14:03:34.451684+00:00	gasto
+8000	Nomina	2025-06-17 14:03:34.459592+00:00	gasto
+100	Transferencia	2025-06-17 14:03:34.468074+00:00	gasto
+2750	Pago completado Odette 11 ft extras	2025-06-17 18:11:10.005377+00:00	ingreso
+180	Pilas	2025-06-17 18:11:34.138772+00:00	gasto
+250	Pago completado Escolar 2x2	2025-06-17 19:04:10.728859+00:00	ingreso
+300	Pago completado Pasaporte 2x2	2025-06-17 19:04:47.627794+00:00	ingreso
+250	Pago completado Escolar	2025-06-17 19:19:41.230310+00:00	ingreso
+450	Abono, Ruth tinea, PLAN A ( Restante: $1,150)	2025-06-17 19:25:09.019938+00:00	ingreso
+288	Itbis:  Espenser	2025-06-17 19:52:33.630710+00:00	ingreso
+648	Itbis:  Lara	2025-06-17 19:52:46.003614+00:00	ingreso
+360	Itbis:  Álvaro	2025-06-17 19:52:59.404171+00:00	ingreso
+648	Itbis:  Rosanna Lebron	2025-06-17 19:53:23.718225+00:00	ingreso
+288	Itbis:  Camil Matos	2025-06-17 19:53:35.686539+00:00	ingreso
+288	Itbis:  Odette Marie Florián Hernández	2025-06-17 19:53:59.739463+00:00	ingreso
+432	Itbis:  Katherine Ricon	2025-06-17 19:54:10.853199+00:00	ingreso
+2640	Pago completado Clary Melo-PLAN B ( Restante: $0)	2025-06-17 20:40:32.492087+00:00	ingreso
+2300	Pago completado Clary del Rosario	2025-06-17 22:24:56.102200+00:00	ingreso
+750	Pago completado Camil fotos extra	2025-06-18 13:27:49.188116+00:00	ingreso
+15	Silicon	2025-06-18 14:07:39.492538+00:00	gasto
+300	Pago completado Pasaporte 2x2	2025-06-18 14:21:35.416295+00:00	ingreso
+2912	Nota de credito 	2025-06-18 14:32:54.674559+00:00	gasto
+500	Pago completado Completivo Glabys	2025-06-18 15:01:47.838799+00:00	ingreso
+500	Abono, Gladys Garcia, PLAN A ( Restante: $1,100)	2025-06-18 15:06:01.644318+00:00	ingreso
+500	Pago completado Completivo nicol mie	2025-06-18 15:29:46.959129+00:00	ingreso
+500	Pago completado Compl. kaymary mierc	2025-06-18 15:56:54.872480+00:00	ingreso
+500	Abono, Abril Tovar Álvarez, PLAN C ( Restante: $3,100)	2025-06-18 16:28:50.881435+00:00	ingreso
+350	Pago completado Nicole foto extra	2025-06-18 16:29:13.905350+00:00	ingreso
+25	Sobre 2x2	2025-06-18 16:30:27.852866+00:00	gasto
+500	Abono, Elianny Reyes, PLAN BABY ( Restante: $3,180)	2025-06-18 18:04:40.210333+00:00	ingreso
+500	Pago completado Comple mier lc luz	2025-06-18 18:06:21.942924+00:00	ingreso
+1416	Compras ole 	2025-06-18 19:07:10.956780+00:00	gasto
+210	Ferretería 	2025-06-18 19:07:38.876020+00:00	gasto
+1000	Albert	2025-06-18 21:23:17.863878+00:00	gasto
+1000	Pago completado Yordania mierco loco	2025-06-20 14:13:06.643735+00:00	ingreso
+250	Pago completado Escolar 2x2	2025-06-20 14:38:47.625043+00:00	ingreso
+500	Abono, Raul vazquez, PLAN B ( Restante: $2,140)	2025-06-20 15:12:49.142126+00:00	ingreso
+2140	Pago completado Raul vazquez-PLAN B ( Restante: $0)	2025-06-20 15:23:13.162637+00:00	ingreso
+500	Abono, Leicy Ester Sena felipe, PLAN B ( Restante: $2,800)	2025-06-20 15:30:44.298244+00:00	ingreso
+300	Pago completado Transporte 17/06/25	2025-06-20 20:02:27.474028+00:00	ingreso
+1600	Pago completado Marie Sarah-PLAN A ( Restante: $0)	2025-06-20 20:32:51.342693+00:00	ingreso
+600	Transporte 17/06/25	2025-06-20 22:01:49.687885+00:00	gasto
+500	Abono, Rosmery, PLAN A ( Restante: $1,100)	2025-06-21 16:44:53.937614+00:00	ingreso
+500	Pago completado Escolar 2x2	2025-06-21 19:06:37.485832+00:00	ingreso
+500	Abono, Andreina Peña, PLAN B ( Restante: $2,140)	2025-06-21 19:45:39.313363+00:00	ingreso
+1500	Daniela maquillaje	2025-06-21 21:16:43.965045+00:00	gasto
+2140	Pago completado Andreina Peña-PLAN B ( Restante: $0)	2025-06-21 21:27:37.939456+00:00	ingreso
+1500	Maquillaje servicio de maquillaje 	2025-06-21 21:29:05.841377+00:00	ingreso
+2640	Pago completado Ruth Tinea-PLAN B ( Restante: $0)	2025-06-21 21:36:42.061847+00:00	ingreso
+3100	Pago completado Abril Tovar Álvarez-PLAN C ( Restante: $0)	2025-06-22 15:05:08.560257+00:00	ingreso
+500	Servicio express Expreso	2025-06-22 15:06:08.735640+00:00	ingreso
+1050	Pago completado Gladys fotos extras	2025-06-22 15:06:59.538610+00:00	ingreso
+3100	Pago completado Alanna 	2025-06-22 15:07:46.005012+00:00	ingreso
+3716	Facebook 	2025-06-22 15:10:53.714714+00:00	gasto
+160	Envio de memorias	2025-06-22 15:10:53.722651+00:00	gasto
+3500	Viatico Sección Roul 	2025-06-22 15:12:34.973277+00:00	gasto
+3180	Pago completado Elianny Reyes-PLAN BABY ( Restante: $0)	2025-06-22 18:33:13.129873+00:00	ingreso
+1100	Pago completado Rosmery-PLAN A ( Restante: $0)	2025-06-22 21:10:57.537568+00:00	ingreso
+1000	 Fotos extras  4 Extras	2025-06-22 21:12:59.373512+00:00	ingreso
+250	Comida albert	2025-06-22 22:02:51.357643+00:00	gasto
+2500	Combustible y pago fotografo	2025-06-24 13:53:48.137188+00:00	gasto
+8000	Pago completado Cumpleaños Gissel	2025-06-24 14:04:27.483478+00:00	ingreso
+1000	Pago completado Andreina Peña extras	2025-06-24 14:18:42.189038+00:00	ingreso
+1000	Pago completado Miercole loco Leslie	2025-06-24 14:39:11.070999+00:00	ingreso
+1000	Pago completado Vianna Lisselle Pere	2025-06-24 18:23:31.588064+00:00	ingreso
+1100	Pago completado Gladys Garcia-PLAN A ( Restante: $0)	2025-06-24 21:00:48.262575+00:00	ingreso
+250	Pago completado Escolar 2x2	2025-06-24 21:25:39.198279+00:00	ingreso
+100	sobres	2025-06-24 21:32:46.741950+00:00	gasto
+250	Pago completado Escolar 2x2	2025-06-24 21:33:59.015283+00:00	ingreso
+100	Pago completado Impresion	2025-06-25 14:05:22.161297+00:00	ingreso
+645	Compras Bravo	2025-06-25 14:10:53.549690+00:00	gasto
+50	Pago completado Impresión	2025-06-25 19:04:47.371413+00:00	ingreso
+250	Pago completado Escolar 2x2 	2025-06-25 19:12:13.757348+00:00	ingreso
+1550	Pago completado Michelle Rodriguez 	2025-06-25 20:56:21.619450+00:00	ingreso
+125	Botellon de agua 	2025-06-26 13:45:59.916673+00:00	gasto
+500	Abono, Mary Dalia Mena, PLAN B ( Restante: $2,800)	2025-06-26 14:06:35.839159+00:00	ingreso
+2300	Cubos	2025-06-26 16:27:33.361301+00:00	gasto
+8260	Bandeja	2025-06-26 16:27:33.370504+00:00	gasto
+250	Pago completado Escolar 2x2	2025-06-26 16:28:11.592660+00:00	ingreso
+3600	Reembolso Lisa Cuevas	2025-06-26 16:58:23.163777+00:00	gasto
+235	Uber	2025-06-26 20:28:28.172156+00:00	gasto
+150	Motor	2025-06-26 20:28:41.373143+00:00	gasto
+500	Abono, Maria sanchez, PLAN A ( Restante: $1,100)	2025-06-26 21:04:18.972352+00:00	ingreso
+500	Abono, Britney shahony, PLAN B ( Restante: $2,800)	2025-06-27 19:19:33.085051+00:00	ingreso
+500	Pago completado Reser. Boda Nairolsy	2025-06-27 19:20:13.516338+00:00	ingreso
+10	Hojas de maquinilla	2025-06-27 20:30:15.437908+00:00	gasto
+1000	Transporte cobertura de ayer	2025-06-28 13:18:48.402285+00:00	gasto
+2000	Abono, Virginia Pimentel peña, PLAN B ( Restante: $2,000)	2025-06-28 15:28:17.562175+00:00	ingreso
+500	Uber	2025-06-28 18:01:05.691116+00:00	gasto
+250	Pago completado Escolar 2x2	2025-06-28 18:01:32.130063+00:00	ingreso
+250	Pago completado Escolar 2x2	2025-06-28 18:03:03.134976+00:00	ingreso
+500	Pago completado Felix	2025-06-28 18:11:35.278022+00:00	ingreso
+2640	Pago completado Julianny Fajardo-PLAN B ( Restante: $0)	2025-06-28 19:21:14.858059+00:00	ingreso
+0	Aplicar descuento Se borro y agrego con descuento	2025-06-28 19:44:47.066989+00:00	ingreso
+700	Pago completado Leslie fotos extras	2025-06-28 20:15:52.571714+00:00	ingreso
+400	Pago completado Propina erika 10/06	2025-06-28 20:30:00.122485+00:00	ingreso
+400	Propina erika del 10/06	2025-06-28 20:33:03.713038+00:00	gasto
+750	Pago completado Erika Acosta ft extr	2025-06-28 20:46:15.964403+00:00	ingreso
+1100	Pago completado Maria sanchez-PLAN A ( Restante: $0)	2025-06-28 21:55:50.857508+00:00	ingreso
+1500	Maquillaje maquillaje	2025-06-28 21:57:05.206203+00:00	ingreso
+500	Abono, Luisanna Minyety Pujols, PLAN BABY ( Restante: $3,180)	2025-06-28 21:57:27.985965+00:00	ingreso
+500	Abono, Ariela Morillo Lora, PLAN BABY JUNIOR ( Restante: $1,900)	2025-06-28 21:57:38.369549+00:00	ingreso
+400	Pago completado Felix	2025-06-28 21:58:58.753531+00:00	ingreso
+5830	Marcos para recuerdo escolar	2025-06-29 13:42:00.937393+00:00	gasto
+550	Pago completado Kalia fotos extras	2025-06-29 18:36:16.582694+00:00	ingreso
+3180	Pago completado Luisanna Minyety Pujols-PLAN BABY ( Restante: $0)	2025-06-29 19:05:38.232233+00:00	ingreso
+20	. .	2025-06-29 19:06:14.048316+00:00	ingreso
+3100	Pago completado Mercedes Licelot-PLAN C ( Restante: $0)	2025-06-29 19:07:05.456232+00:00	ingreso
+1900	Pago completado Ariela Morillo Lora-PLAN BABY JUNIOR ( Restante: $0)	2025-06-29 19:20:10.222501+00:00	ingreso
+1500	Daniela maquillaje	2025-06-29 22:21:51.716298+00:00	gasto
+8000	Nomina Mya Sencion	2025-07-01 15:17:40.285670+00:00	gasto
+50	Hielo	2025-07-01 19:39:09.067757+00:00	gasto
+2980	Llaveros y papel	2025-07-01 19:39:09.076148+00:00	gasto
+122	Google	2025-07-01 19:39:09.082482+00:00	gasto
+2283	Capcut y programa	2025-07-01 19:39:09.088226+00:00	gasto
+900	Fondo y taxis Mya	2025-07-01 19:39:09.094260+00:00	gasto
+2150	Vicente 	2025-07-01 19:39:09.100140+00:00	gasto
+2000	Retoque	2025-07-01 19:39:09.105995+00:00	gasto
+1500	Fotógrafo 	2025-07-01 19:39:09.112431+00:00	gasto
+6000	Comida Felix	2025-07-01 19:39:09.118759+00:00	gasto
+48000	Pago locales	2025-07-01 19:39:09.124498+00:00	gasto
+500	Combustible	2025-07-01 19:39:09.130168+00:00	gasto
+2640	Pago completado Miller Seccion planB	2025-07-01 19:40:37.807182+00:00	ingreso
+6500	Pago completado Cobertura Baby Party	2025-07-01 19:41:11.573625+00:00	ingreso
+500	Pago completado Fondo de caja	2025-07-03 13:46:01.592590+00:00	ingreso
+500	Pago completado Fotos extras Gladys	2025-07-03 13:46:53.057233+00:00	ingreso
+1500	Pago completado Fotos extra Mercedes	2025-07-03 13:50:26.105657+00:00	ingreso
+500	Abono, Nashell Batista, PLAN B ( Restante: $2,800)	2025-07-03 13:57:20.827841+00:00	ingreso
+500	Pago completado Nashell cobertura	2025-07-03 13:58:05.540407+00:00	ingreso
+500	Abono, Maite Ariza, PLAN C ( Restante: $4,000)	2025-07-03 14:00:31.665974+00:00	ingreso
+2640	Pago completado Starlin Mateo Seccio	2025-07-03 14:01:22.077615+00:00	ingreso
+500	Abono, Yiniel Maria Molina, PLAN A ( Restante: $2,000)	2025-07-03 14:04:45.051182+00:00	ingreso
+500	Abono, José Pérez Medina, PLAN C ( Restante: $5,000)	2025-07-03 14:06:44.169009+00:00	ingreso
+43110	Pago completado Roel Joyas	2025-07-03 14:07:20.220520+00:00	ingreso
+1500	Pago completado Gladys fotos extras	2025-07-03 14:08:08.353518+00:00	ingreso
+2000	Pago completado Yiniel Maria Molina-PLAN A ( Restante: $0)	2025-07-03 14:08:46.213726+00:00	ingreso
+350	Cambio de ropa Vestuario adicional	2025-07-03 14:09:33.083400+00:00	ingreso
+250	Pago completado Escolar 2x2	2025-07-03 14:09:51.203904+00:00	ingreso
+3300	Pago completado Oscar rincon-PLAN B ( Restante: $0)	2025-07-03 14:11:15.639321+00:00	ingreso
+350	Pago completado Mercedes fotos extra	2025-07-03 14:11:54.203630+00:00	ingreso
+1915	Impresiones	2025-07-03 14:17:03.145588+00:00	gasto
+2500	Prestamo mes julio	2025-07-03 14:17:03.153871+00:00	gasto
+150	sobre 2x2	2025-07-03 14:17:03.160613+00:00	gasto
+23000	Video Roel 	2025-07-03 14:17:03.167269+00:00	gasto
+6000	Fotógrafo Roel	2025-07-03 14:17:03.173467+00:00	gasto
+4500	Fondo y combustible	2025-07-03 14:17:03.180312+00:00	gasto
+1178	Compra ole 	2025-07-03 14:17:03.187427+00:00	gasto
+100	Felix edicion de foto mercedes	2025-07-03 14:17:03.194361+00:00	gasto
+300	Pago completado Pasaporte 2x2	2025-07-03 14:49:40.628033+00:00	ingreso
+400	Pago completado 12 fotos 2x2	2025-07-03 21:23:14.741141+00:00	ingreso
+4100	Pago completado Rossiel Jasmin Encarnacion castillo-PLAN BABY ( Restante: $0)	2025-07-04 13:04:32.238403+00:00	ingreso
+250	Pago completado Escolar 2x2	2025-07-04 14:17:35.060825+00:00	ingreso
+750	Pago completado Felix presto	2025-07-04 14:18:39.407735+00:00	ingreso
+50	Hojas de maquinilla	2025-07-04 16:15:57.534761+00:00	gasto
+750	Pago completado Michelle Fotos extra	2025-07-04 18:59:18.508889+00:00	ingreso
+750	Pago prestamo felix	2025-07-04 19:00:54.246046+00:00	gasto
+500	Abono, Miguelina Almonte, PLAN A ( Restante: $1,500)	2025-07-04 21:12:49.498888+00:00	ingreso
+500	Abono, Manuel emelio rodriguez feliz, PLAN BABY JUNIOR ( Restante: $2,500)	2025-07-04 21:16:05.417422+00:00	ingreso
+70	botellon de agua	2025-07-04 21:43:04.440896+00:00	gasto
+5000	Pago completado José Pérez Medina-PLAN C ( Restante: $0)	2025-07-05 16:33:29.819973+00:00	ingreso
+1000	servicio Maquillaje	2025-07-05 16:34:21.857964+00:00	ingreso
+2250	Pago completado Jazmin fotos extras	2025-07-05 16:38:00.075371+00:00	ingreso
+1500	Yorgelis maquillaje	2025-07-05 16:39:41.210329+00:00	gasto
+3500	Dominio y mantenimiento de la wed	2025-07-05 16:39:41.217532+00:00	gasto
+2000	Pago completado Virginia Pimentel peña-PLAN B ( Restante: $0)	2025-07-05 18:47:09.264024+00:00	ingreso
+1500	cambio al Plan c	2025-07-05 18:48:35.425494+00:00	ingreso
+1500	Daniela maquillaje	2025-07-05 19:12:10.920642+00:00	gasto
+2800	Pago completado Mary Dalia Mena-PLAN B ( Restante: $0)	2025-07-05 19:26:59.187871+00:00	ingreso
+1500	Servicio Maquillaje	2025-07-05 19:28:05.991468+00:00	ingreso
+100	Pago completado Felix presto	2025-07-05 19:29:59.832189+00:00	ingreso
+9000	Pago completado Cobertura de evento	2025-07-06 00:02:28.681501+00:00	ingreso
+1000	Asistente	2025-07-06 00:03:28.404788+00:00	gasto
+1500	fotografo	2025-07-06 00:03:28.411608+00:00	gasto
+1000	Hora extra	2025-07-06 00:03:28.417557+00:00	gasto
+1000	Abono, Esthefany sahira baez sanchez, PLAN BABY JUNIOR ( Restante: $2,000)	2025-07-06 18:46:47.285922+00:00	ingreso
+500	uber marcos	2025-07-06 19:52:23.377920+00:00	gasto
+6300	toga y esclavinas	2025-07-06 19:52:53.215167+00:00	gasto
+500	combustible 	2025-07-06 19:53:11.906641+00:00	gasto
+200	viatico 	2025-07-06 19:57:17.854076+00:00	gasto
+870	combustible graduacion	2025-07-06 19:57:17.861491+00:00	gasto
+1500	almuerzo	2025-07-06 19:57:17.866858+00:00	gasto
+453	facebook	2025-07-06 19:57:17.872212+00:00	gasto
+304	facebook	2025-07-06 19:57:17.877545+00:00	gasto
+1000	asistente	2025-07-06 19:59:12.463337+00:00	gasto
+6850	marcos	2025-07-06 20:02:26.206495+00:00	gasto
+6000	Promo	2025-07-06 20:48:28.341429+00:00	gasto
+2800	Pago completado Leicy Ester Sena felipe-PLAN B ( Restante: $0)	2025-07-06 21:21:04.012059+00:00	ingreso
+1278	facebook	2025-07-06 22:01:03.358639+00:00	gasto
+250	Mantel	2025-07-06 22:01:52.323880+00:00	gasto
+12350	Pago completado Saldo 	2025-07-08 13:43:52.695424+00:00	ingreso
+18000	Pago completado Abono 50% Graduacion	2025-07-08 13:52:28.423413+00:00	ingreso
+500	Abono, Navidad Ivelisse Minyety Delgado, PLAN C ( Restante: $5,000)	2025-07-08 14:39:58.021075+00:00	ingreso
+500	Abono, Altagracia Medina, HAPPY BABY ( Restante: $5,500)	2025-07-08 14:42:07.627462+00:00	ingreso
+5000	Fotógrafo	2025-07-08 18:09:11.451223+00:00	gasto
+5000	Fotografo 	2025-07-08 18:09:11.459406+00:00	gasto
+500	Pago completado 2 Escolares 2x2	2025-07-08 18:23:06.563913+00:00	ingreso
+2000	Pago completado Esthefany sahira baez sanchez-PLAN BABY JUNIOR ( Restante: $0)	2025-07-08 21:56:19.691364+00:00	ingreso
+500	Servicio express .	2025-07-08 21:58:05.114898+00:00	ingreso
+500	expres felix	2025-07-08 21:58:52.162193+00:00	gasto
+200	mya	2025-07-09 18:07:51.847970+00:00	gasto
+200	Pago completado Felix presto	2025-07-10 15:23:53.125045+00:00	ingreso
+250	Pago completado Escolar 2x2	2025-07-10 15:24:53.727828+00:00	ingreso
+300	Pago prestamos a felix	2025-07-10 15:25:51.994792+00:00	gasto
+240	Domex fondos	2025-07-10 16:21:51.301616+00:00	gasto
+125	Carmona impresion	2025-07-10 16:37:33.986956+00:00	gasto
+1200	Reparacion de computadora	2025-07-10 17:02:36.375870+00:00	gasto
+1000	Pago completado Erik rubio alq.  est	2025-07-10 19:38:41.876425+00:00	ingreso
+500	Abono, Pamela Sosa Ledesma, PLAN C ( Restante: $5,000)	2025-07-10 19:47:35.701098+00:00	ingreso
+500	Abono, Ana Iris Pérez, PLAN BABY ( Restante: $4,100)	2025-07-10 22:05:30.643011+00:00	ingreso
+500	Abono, Pamela Cristal de Jesus Ventura, PLAN C ( Restante: $4,000)	2025-07-11 20:02:22.118231+00:00	ingreso
+135	teipi	2025-07-11 20:03:15.104160+00:00	gasto
+600	Pago completado Viccalia tours	2025-07-11 21:50:54.604284+00:00	ingreso
+250	Pago completado Escolar 2x2	2025-07-12 15:54:16.568241+00:00	ingreso
+100	botellon de agua	2025-07-12 16:50:46.616756+00:00	gasto
+3000	Pago completado Laiza moquete-PLAN BABY JUNIOR ( Restante: $0)	2025-07-12 19:23:55.357895+00:00	ingreso
+2500	Pago completado Flor leticia de jesus arias-PLAN BABY JUNIOR ( Restante: $0)	2025-07-12 19:49:08.522201+00:00	ingreso
+500	Vestuario Marinero	2025-07-12 19:50:43.624796+00:00	ingreso
+1000	Abono, Diana, PLAN A ( Restante: $1,000)	2025-07-12 20:50:13.832319+00:00	ingreso
+4000	Pago completado Maite Ariza-PLAN C ( Restante: $0)	2025-07-12 20:50:26.596104+00:00	ingreso
+1470	Viatico	2025-07-12 23:29:34.421498+00:00	gasto
+2800	Pago completado Nairolsy Santana-PLAN B ( Restante: $0)	2025-07-13 11:43:26.425663+00:00	ingreso
+500	Abono, Darielis Bonilla, PLAN BABY ( Restante: $4,100)	2025-07-13 13:39:04.121071+00:00	ingreso
+1500	Pago completado Miguelina Almonte-PLAN A ( Restante: $0)	2025-07-13 14:15:20.550575+00:00	ingreso
+1000	Fotos en el exterior	2025-07-13 14:16:24.514809+00:00	ingreso
+945	Amazon prime	2025-07-14 00:53:33.771555+00:00	gasto
+500	Abono, Gaudy Camil Jiménez Díaz, PLAN C ( Restante: $4,000)	2025-07-15 13:54:51.716462+00:00	ingreso
+1000	Abono, Rossy Santos, PLAN B ( Restante: $3,000)	2025-07-15 14:04:25.337484+00:00	ingreso
+3500	Pago completado Maite Ariza Album 	2025-07-15 14:05:13.689468+00:00	ingreso
+500	Abono, Marileine de la Cruz vizcaino, HAPPY BABY ( Restante: $5,500)	2025-07-15 14:09:14.610338+00:00	ingreso
+2500	Pago completado Manuel emelio rodriguez feliz-PLAN BABY JUNIOR ( Restante: $0)	2025-07-15 14:23:00.641898+00:00	ingreso
+300	Mya gratificación	2025-07-15 15:04:37.293784+00:00	gasto
+500	Abono, Leslie Paola asencio ferreras, PLAN BABY JUNIOR ( Restante: $2,500)	2025-07-15 16:32:16.049388+00:00	ingreso
+8000	Nomina Mya	2025-07-15 19:31:42.037508+00:00	gasto
+2089	Internet	2025-07-15 19:31:42.046672+00:00	gasto
+1358	Flota	2025-07-15 19:31:42.053902+00:00	gasto
+1953	Luz local	2025-07-15 19:31:42.061246+00:00	gasto
+2988	Impresiones y enmarcado	2025-07-15 19:31:42.068178+00:00	gasto
+5611	Evoto	2025-07-15 19:33:33.769329+00:00	gasto
+1000	Nota de credito	2025-07-15 19:56:26.863249+00:00	gasto
+1000	Abono, Diana Contreras, PLAN C ( Restante: $3,500)	2025-07-15 19:58:41.791845+00:00	ingreso
+5000	Pago completado Pamela Sosa Ledesma-PLAN C ( Restante: $0)	2025-07-15 21:30:09.236023+00:00	ingreso
+750	Pago completado Miguelina Foto extra	2025-07-15 21:34:32.790332+00:00	ingreso
+300	Pago completado Pasaporte 2x2	2025-07-16 13:44:46.172993+00:00	ingreso
+500	Abono, Leinol Nova, PLAN A ( Restante: $1,500)	2025-07-16 14:09:39.565689+00:00	ingreso
+750	Pago completado Nairolsy fotos extra	2025-07-16 14:27:58.211710+00:00	ingreso
+800	Bizcocho plim plim	2025-07-16 14:28:51.999065+00:00	gasto
+436	Capcut	2025-07-16 14:28:52.007973+00:00	gasto
+500	Pago completado 2 escolares 2x2	2025-07-16 20:53:39.735668+00:00	ingreso
+300	Pago completado Pasaporte 2x2	2025-07-16 20:54:01.272330+00:00	ingreso
+2500	Pago completado Leslie Paola asencio ferreras-PLAN BABY JUNIOR ( Restante: $0)	2025-07-16 21:30:51.332645+00:00	ingreso
+500	Abono, Jisette Martínez, PLAN B ( Restante: $2,800)	2025-07-17 13:47:20.255321+00:00	ingreso
+500	Abono, Clara Lupe de Jesús Herrera, PLAN B ( Restante: $2,800)	2025-07-17 14:25:43.542161+00:00	ingreso
+500	Abono, Mariel Pamela Rodríguez, PLAN B ( Restante: $2,800)	2025-07-17 15:59:34.105289+00:00	ingreso
+500	Abono, Josefina medina volquez, PLAN A ( Restante: $1,500)	2025-07-17 18:41:25.574980+00:00	ingreso
+4100	Pago completado Darielis Bonilla-PLAN BABY ( Restante: $0)	2025-07-17 19:30:43.223143+00:00	ingreso
+500	Pago completado Leslie Asencio extra	2025-07-17 19:54:37.861201+00:00	ingreso
+1500	Pago completado Leinol Nova-PLAN A ( Restante: $0)	2025-07-17 20:56:46.274025+00:00	ingreso
+700	3 Fotos  Extras	2025-07-17 20:58:17.773099+00:00	ingreso
+2800	Pago completado Jisette Martínez-PLAN B ( Restante: $0)	2025-07-17 22:15:02.041817+00:00	ingreso
+250	Pago completado escolar 2x2	2025-07-17 22:17:08.066539+00:00	ingreso
+300	Pago completado Pasaporte 2x2	2025-07-18 15:09:24.590252+00:00	ingreso
+500	Abono, Monce Vargas, PLAN C ( Restante: $4,000)	2025-07-18 18:36:04.007128+00:00	ingreso
+500	Abono, Yasmirys Enoelia Polanco, HAPPY BABY ( Restante: $5,500)	2025-07-18 18:41:25.288669+00:00	ingreso
+500	Pago completado Fotos extras Jisette	2025-07-18 18:44:22.839546+00:00	ingreso
+1623	Promo	2025-07-18 19:59:09.635940+00:00	gasto
+1000	Pago completado Fotos extras Darieli	2025-07-18 20:00:23.477691+00:00	ingreso
+1000	Abono, Aviga iris anglón Sánchez, Unico plan ( Restante: $4,800)	2025-07-18 20:06:01.884849+00:00	ingreso
+3500	Pago completado Diana Contreras-PLAN C ( Restante: $0)	2025-07-18 21:42:27.948815+00:00	ingreso
+1500	Servicio maquillaje	2025-07-18 21:43:52.108168+00:00	ingreso
+1000	Pago completado fotos extras manuel	2025-07-18 22:09:11.242083+00:00	ingreso
+800	Biscocho lazos	2025-07-18 22:11:03.559542+00:00	gasto
+1500	Daniela maquillaje	2025-07-18 22:16:15.269198+00:00	gasto
+3338	Alexa	2025-07-18 22:17:45.610001+00:00	gasto
+250	Pago completado Restante Elianny	2025-07-19 16:53:00.883944+00:00	ingreso
+500	Abono, Audry Rodriguez, PLAN B ( Restante: $2,140)	2025-07-19 16:55:32.267687+00:00	ingreso
+4400	Pago completado Pamela Sosa fs extra	2025-07-19 18:33:02.217272+00:00	ingreso
+400	Viatico	2025-07-19 19:39:35.044719+00:00	gasto
+70	Botellon de agua	2025-07-19 19:55:21.197719+00:00	gasto
+350	Pago completado pasaporte	2025-07-19 20:15:10.819631+00:00	ingreso
+300	Pago completado pasaporte 2x2	2025-07-19 20:23:28.243129+00:00	ingreso
+5000	retoque	2025-07-19 20:24:19.439775+00:00	gasto
+500	Abono, Nashell batista reyes, PLAN B ( Restante: $3,500)	2025-07-19 21:19:43.624127+00:00	ingreso
+4600	Pago completado Carolina Alexandra volquez cueva-PLAN BABY ( Restante: $0)	2025-07-19 21:20:43.472243+00:00	ingreso
+3500	Pago completado Nashell batista reyes-PLAN B ( Restante: $0)	2025-07-19 21:46:35.117959+00:00	ingreso
+800	Agrandar  11x14	2025-07-19 21:48:43.123067+00:00	ingreso
+500	Comision por venta albert	2025-07-19 21:59:10.584739+00:00	gasto
+500	Abono, Andrelys Acero, PLAN BABY JUNIOR ( Restante: $2,500)	2025-07-20 13:14:16.905087+00:00	ingreso
+500	Abono, Dilenny de los santos, PLAN BABY ( Restante: $3,180)	2025-07-20 13:59:56.499747+00:00	ingreso
+500	Nota de crédito	2025-07-20 19:42:18.366236+00:00	gasto
+500	Abono, Andrelys Acero, PLAN BABY ( Restante: $4,100)	2025-07-20 19:44:43.560219+00:00	ingreso
+1500	Pago completado Josefina medina volquez-PLAN A ( Restante: $0)	2025-07-20 20:26:58.320042+00:00	ingreso
+300	8x11 Impresion	2025-07-20 20:28:48.605382+00:00	ingreso
+4000	Pago completado Monce Vargas-PLAN C ( Restante: $0)	2025-07-20 20:47:19.060876+00:00	ingreso
+100	Mya gratificación 	2025-07-20 21:24:13.094934+00:00	gasto
+5500	Pago completado Marileine de la Cruz vizcaino-HAPPY BABY ( Restante: $0)	2025-07-20 22:10:49.613793+00:00	ingreso
+500	Abono, Giselle Reyes, PLAN B ( Restante: $3,500)	2025-07-22 13:15:34.273974+00:00	ingreso
+500	Abono, Francisca zarzuela, PLAN BABY JUNIOR ( Restante: $2,500)	2025-07-22 13:25:28.771248+00:00	ingreso
+1750	Pago completado Monce fotos extras	2025-07-22 13:26:11.738626+00:00	ingreso
+5000	Pago completado Navidad Ivelisse Minyety Delgado-PLAN C ( Restante: $0)	2025-07-22 13:45:41.735411+00:00	ingreso
+2000	Abono, Carla concepcion mañon, PLAN BABY JUNIOR ( Restante: $1,000)	2025-07-22 18:13:46.263181+00:00	ingreso
+750	Pago completado Mya Sencion extra ft	2025-07-22 19:06:14.804591+00:00	ingreso
+4400	Impresion 	2025-07-22 19:09:47.100247+00:00	gasto
+200	Mya gratificación 	2025-07-22 19:09:47.110655+00:00	gasto
+250	Pago completado Escolar 2x2	2025-07-22 21:26:03.427279+00:00	ingreso
+4800	Pago completado Navidad fotos extras	2025-07-23 14:55:01.660143+00:00	ingreso
+360	Compra: Barra principe 	2025-07-23 19:00:38.843426+00:00	gasto
+2630	Compra: Omega 	2025-07-23 19:00:38.855193+00:00	gasto
+2150	Compra: Compra sirena  	2025-07-23 19:02:12.757731+00:00	gasto
+870	Compra: Combustible 	2025-07-23 19:02:12.768124+00:00	gasto
+90	Compra: Propina 	2025-07-23 19:02:12.777124+00:00	gasto
+9400	Compra: Marcos 	2025-07-23 19:02:12.786065+00:00	gasto
+647	Compra: Compra ole 	2025-07-23 19:02:12.794696+00:00	gasto
+2000	Pago completado Diana fotos extras	2025-07-23 19:04:59.326609+00:00	ingreso
+4100	Pago completado correctamente Andrelys Acero-PLAN BABY ( Restante: $0)	2025-07-23 20:53:56.938462+00:00	ingreso
+500	Servicio expreso	2025-07-23 21:01:15.946492+00:00	ingreso
+500	Compra: expreso felix 	2025-07-23 21:02:02.132581+00:00	gasto
+500	Pago completado 2 Escolares 2x2	2025-07-23 22:06:26.711150+00:00	ingreso
+300	Pago completado Pasaporte 2x2	2025-07-24 18:28:19.353762+00:00	ingreso
+198	Compra: Compra bravo 	2025-07-24 18:32:50.469769+00:00	gasto
+2875	Compra: Oficentro Oriental 	2025-07-24 18:32:50.479753+00:00	gasto
+1125	Compra: primavera 	2025-07-24 18:32:50.487875+00:00	gasto
+1500	Pago completado Andrelys Fotos extra	2025-07-24 19:16:17.104946+00:00	ingreso
+3300	Pago completado correctamente Laigen Ashira-PLAN B ( Restante: $0)	2025-07-24 20:54:52.592620+00:00	ingreso
+6000	Compra: Comida felix david 	2025-07-24 22:02:54.352517+00:00	gasto
+500	Pago completado correctamente Marieni Heredia Paniagua-PLAN A ( Restante: $1,500)	2025-07-25 15:22:18.500532+00:00	ingreso
+3032	Compra: Promocion  	2025-07-25 16:29:28.673978+00:00	gasto
+1000	Pago completado correctamente Rossina Arias-PLAN B ( Restante: $2,300)	2025-07-25 17:11:47.088201+00:00	ingreso
+650	Pago completado Marileidy Foto extra	2025-07-25 20:02:11.134076+00:00	ingreso
+25	Compra: Impresion  	2025-07-25 21:33:15.912200+00:00	gasto
+3000	Pago completado correctamente Rossy Santos-PLAN B ( Restante: $0)	2025-07-26 14:03:07.513138+00:00	ingreso
+2000	Servicio de maquillaje y ondas .	2025-07-26 14:07:58.497101+00:00	ingreso
+4200	Compra: Construcion  	2025-07-26 14:42:26.533857+00:00	gasto
+1500	Pago completado correctamente Marieni Heredia Paniagua-PLAN A ( Restante: $0)	2025-07-26 15:34:15.019672+00:00	ingreso
+600	2 personas adicionales .	2025-07-26 15:37:04.475478+00:00	ingreso
+70	Compra: Botellon de agua 	2025-07-26 18:55:39.675218+00:00	gasto
+100	Compra: Mya gratificacion 	2025-07-26 19:20:47.438513+00:00	gasto
+4000	Servicio: Daniela 2 maquillajes y ondas 	2025-07-26 19:43:27.794252+00:00	gasto
+4800	Pago completado correctamente Aviga iris anglón Sánchez-Unico plan ( Restante: $0)	2025-07-26 20:30:42.141163+00:00	ingreso
+2700	Servicio de maquillaje y ondas, expreso Propina asistente $200	2025-07-26 20:35:44.695428+00:00	ingreso
+500	Pago completado correctamente Génesis Acevedo Suero-PLAN B ( Restante: $2,800)	2025-07-26 20:36:45.190862+00:00	ingreso
+1820	Compra: Globos y velas 	2025-07-26 20:39:10.699793+00:00	gasto
+500	Egreso: Expreso felix 	2025-07-26 20:39:10.708337+00:00	gasto
+200	Egreso: Propina asistente 	2025-07-26 20:39:10.715887+00:00	gasto
+4100	Pago completado correctamente Ana Iris Pérez-PLAN BABY ( Restante: $0)	2025-07-26 21:09:55.911651+00:00	ingreso
+1000	Pago completado Estudio 	2025-07-29 13:23:02.439751+00:00	ingreso
+2000	Pago completado Fotos extras Aviga	2025-07-29 13:23:56.304171+00:00	ingreso
+1750	Pago completado Fotos extras Ana	2025-07-29 13:24:36.698889+00:00	ingreso
+4000	Pago completado Fotos extras Rossy	2025-07-29 13:25:08.797921+00:00	ingreso
+1000	Pago completado correctamente Carla concepcion mañon-PLAN BABY JUNIOR ( Restante: $0)	2025-07-29 13:26:50.988760+00:00	ingreso
+4000	Pago completado correctamente Pamela Cristal de Jesus Ventura-PLAN C ( Restante: $0)	2025-07-29 13:29:21.673023+00:00	ingreso
+1300	Compra: Viatico 	2025-07-29 13:31:09.151173+00:00	gasto
+485	Suministros: Ferreteria 	2025-07-29 18:09:54.932988+00:00	gasto
+100	Compra: Mya gratificacion 	2025-07-29 21:34:42.218226+00:00	gasto
+500	Pago completado 2 escolares 2x2	2025-07-29 21:43:56.559773+00:00	ingreso
+2500	Pago completado correctamente Francisca zarzuela-PLAN BABY JUNIOR ( Restante: $0)	2025-07-29 22:16:32.187545+00:00	ingreso
+8000	Nómina: Nomina Mya 	2025-07-30 13:25:16.853651+00:00	gasto
+2000	Pago completado correctamente Giselle Reyes-PLAN B ( Restante: $1,500)	2025-07-30 15:36:52.482943+00:00	ingreso
+500	Pago completado correctamente Yliana Cadet-PLAN C ( Restante: $5,000)	2025-07-30 16:29:55.862215+00:00	ingreso
+3952	Compra: Impresion y enmarcado 	2025-07-30 18:04:01.085456+00:00	gasto
+2000	Pago completado correctamente Lorenza Agramonte-PLAN C ( Restante: $2,500)	2025-07-30 18:26:10.280491+00:00	ingreso
+2500	Pago completado correctamente Onice Feliz,-KID BABY ( Restante: $2,500)	2025-07-30 20:07:33.331559+00:00	ingreso
+18000	Pago completado Completivo Colegio	2025-07-30 22:04:29.968494+00:00	ingreso
+335	Compra: Teipi 	2025-07-30 22:10:01.700618+00:00	gasto
+1432	Egreso: Comida felix 	2025-07-30 22:10:50.412207+00:00	gasto
+800	Pago completado Keyra Enmarcado extr	2025-07-31 14:48:25.015409+00:00	ingreso
+75	Compra: Impresion  	2025-07-31 18:36:33.640885+00:00	gasto
+1560	Compra: Set nuevo 	2025-07-31 18:48:50.566644+00:00	gasto
+2820	Pago completado Pamela extras fotos	2025-07-31 18:50:49.911465+00:00	ingreso
+48000	Alquiler: Alquiler 	2025-07-31 18:51:36.995871+00:00	gasto
+2000	Otro: Albert  	2025-07-31 18:52:34.107432+00:00	gasto
+50	Compra: impresion 	2025-07-31 22:35:57.921210+00:00	gasto
+35	Pago completado nota de credito	2025-07-31 22:43:31.067588+00:00	ingreso
+300	Pago completado Pasaporte 2x2	2025-07-31 22:43:59.947156+00:00	ingreso
+63200	Otro:  fondos y dividendos 	2025-08-01 20:34:07.816818+00:00	gasto
+545	Transporte: Combustible 	2025-08-01 20:39:07.112714+00:00	gasto
+450	Suministros: Tienda china 	2025-08-01 20:39:07.123493+00:00	gasto
+2360	Suministros: Encajes La Rosario 	2025-08-01 20:39:07.132200+00:00	gasto
+1290	Suministros: Bombas de confetis 	2025-08-01 20:39:07.141179+00:00	gasto
+60	Otro: Parqueo 	2025-08-01 20:39:07.149426+00:00	gasto
+690	Otro: Comida 	2025-08-01 20:39:07.157341+00:00	gasto
+485	Suministros: Foto Astro 	2025-08-01 20:39:07.166019+00:00	gasto
+1500	Pago completado correctamente Giselle Reyes-PLAN B ( Restante: $0)	2025-08-01 20:42:17.958780+00:00	ingreso
+500	Pago completado Josefina foto extra	2025-08-01 20:49:09.961541+00:00	ingreso
+1500	Pago completado Diana fotos extras	2025-08-01 20:49:33.754907+00:00	ingreso
+2300	Pago completado correctamente Rossina Arias-PLAN B ( Restante: $0)	2025-08-02 16:10:53.757077+00:00	ingreso
+1500	Servicio maquillaje	2025-08-02 16:14:53.688447+00:00	ingreso
+1550	Servicio globos .	2025-08-02 16:14:53.694298+00:00	ingreso
+250	Pago completado Escolar 2x2	2025-08-02 16:34:17.058340+00:00	ingreso
+25	Suministros: Impresion 	2025-08-02 16:34:42.339428+00:00	gasto
+1500	Compra: Globos 	2025-08-02 19:46:35.499396+00:00	gasto
+300	Pago completado Pasaporte	2025-08-02 20:44:48.456363+00:00	ingreso
+2000	Otro: Maquillaje 	2025-08-02 21:22:25.282368+00:00	gasto
+500	Pago completado correctamente Yanina Altagracia Luna Ogando-PLAN BABY ( Restante: $4,100)	2025-08-03 13:10:32.721424+00:00	ingreso
+100	Otro: Mya gratificacion  	2025-08-03 14:57:21.378515+00:00	gasto
+100	Otro: Botellon de agua 	2025-08-03 15:08:03.603534+00:00	gasto
+4608	Servicio: Diseño de planes 	2025-08-03 15:28:47.979155+00:00	gasto
+2800	Pago completado correctamente Génesis Acevedo Suero-PLAN B ( Restante: $0)	2025-08-05 13:18:28.920643+00:00	ingreso
+2500	Pago completado correctamente Lorenza Agramonte-PLAN C ( Restante: $0)	2025-08-05 16:30:05.204543+00:00	ingreso
+300	Pago completado Carmen impresion 	2025-08-05 18:00:38.535523+00:00	ingreso
+500	Pago completado correctamente Nailea Villegas del Rosario-HAPPY BABY ( Restante: $5,500)	2025-08-07 19:42:39.381148+00:00	ingreso
+4314	Pago completado Rossina Arias fotos 	2025-08-07 19:44:10.292690+00:00	ingreso
+500	Pago completado correctamente Anderson Ramirez-PLAN C ( Restante: $4,000)	2025-08-07 19:46:55.450855+00:00	ingreso
+4600	Pago completado correctamente Mildy Duran-PLAN BABY ( Restante: $0)	2025-08-07 19:48:53.550275+00:00	ingreso
+600	 2 Impresion 8x11	2025-08-07 19:51:26.581050+00:00	ingreso
+450	3 llaveros .	2025-08-07 19:51:26.588977+00:00	ingreso
+3000	Pago completado correctamente Dilenny de los santos-PLAN BABY ( Restante: $180)	2025-08-07 19:51:45.839463+00:00	ingreso
+400	Pago completado Francisca foto extra	2025-08-07 19:52:07.401932+00:00	ingreso
+380	Suministros: Sumi Copias 	2025-08-08 13:18:29.886000+00:00	gasto
+250	Pago completado Escolar 2x2	2025-08-08 13:19:04.044198+00:00	ingreso
+50	Suministros: Sumi copias 	2025-08-08 13:54:33.544111+00:00	gasto
+75	Suministros: Sumi copias 	2025-08-08 14:14:35.306810+00:00	gasto
+750	Pago completado 3 escolares 2x2 	2025-08-08 14:14:52.034443+00:00	ingreso
+3720	Otro: Album expreso 	2025-08-08 14:19:48.559979+00:00	gasto
+1800	Otro: 2 pasteles plan happy 	2025-08-08 14:21:30.623493+00:00	gasto
+500	Pago completado correctamente Moisés Sánchez Romero-PLAN BABY ( Restante: $4,100)	2025-08-08 18:14:18.793138+00:00	ingreso
+500	Pago completado 2 escolares 2x2	2025-08-08 18:52:54.560601+00:00	ingreso
+50	Suministros: Sumi copia 	2025-08-08 19:04:11.944112+00:00	gasto
+3600	Pago completado correctamente Wendy mariano Mejía-PLAN BABY ( Restante: $1,000)	2025-08-09 14:58:58.805423+00:00	ingreso
+500	Pago completado 2 escolares 2x2	2025-08-09 15:30:54.092163+00:00	ingreso
+50	Suministros: Sumi copias 	2025-08-09 15:31:18.180278+00:00	gasto
+4100	Pago completado correctamente Moisés Sánchez Romero-PLAN BABY ( Restante: $0)	2025-08-09 18:35:39.331911+00:00	ingreso
+500	Servicio expreso .	2025-08-09 18:39:33.724642+00:00	ingreso
+600	Pago completado 2 pasaporte 2x2	2025-08-09 18:50:13.115061+00:00	ingreso
+3000	Compra: Vestidos 	2025-08-09 18:52:13.794529+00:00	gasto
+825	Otro: comida 	2025-08-09 18:52:13.811055+00:00	gasto
+500	Otro: Expreso felix 	2025-08-09 18:52:13.825541+00:00	gasto
+300	Compra: Astro  	2025-08-09 18:52:13.839118+00:00	gasto
+2500	Pago completado correctamente Onice Feliz,-KID BABY ( Restante: $0)	2025-08-10 13:00:14.193356+00:00	ingreso
+500	Pago completado correctamente Erinelda ramos adames-PLAN A ( Restante: $1,500)	2025-08-10 13:15:41.459279+00:00	ingreso
+2500	Servicio: Fotografo  	2025-08-10 13:16:38.263926+00:00	gasto
+600	Otro: Mya gratificacion  	2025-08-10 16:57:24.256760+00:00	gasto
+1500	Cambio a plan C Cmbio de plan B a C	2025-08-12 14:40:12.867295+00:00	ingreso
+1500	Pago completado correctamente Erinelda ramos adames-PLAN A ( Restante: $0)	2025-08-12 14:40:26.656053+00:00	ingreso
+500	Servicio expreso Expreso 24 horas o menos	2025-08-12 14:42:25.150773+00:00	ingreso
+500	Otro: Felix expreso 	2025-08-12 15:41:48.781376+00:00	gasto
+1200	Pago completado correctamente Indy Leidys Duvernay Ramírez-PLAN A ( Restante: $800)	2025-08-12 16:07:46.521804+00:00	ingreso
+500	Pago completado Fotos extra Erinelda	2025-08-12 16:56:28.863749+00:00	ingreso
+180	Pago completado correctamente Dilenny de los santos-PLAN BABY ( Restante: $0)	2025-08-13 13:06:38.497355+00:00	ingreso
+2250	Fotos extras 12 adicionales 	2025-08-13 13:10:30.938088+00:00	ingreso
+1000	Pago completado correctamente Wendy mariano Mejía-PLAN BABY ( Restante: $0)	2025-08-13 13:36:58.397827+00:00	ingreso
+500	Pago completado correctamente Railini Aquino-PLAN B ( Restante: $2,800)	2025-08-13 16:49:54.050999+00:00	ingreso
+100	Otro: Botellon de agua 	2025-08-13 21:08:26.404894+00:00	gasto
+300	Pago completado Pasaporte 2x2	2025-08-13 21:20:26.318670+00:00	ingreso
+25	Otro: Sumi copias 	2025-08-13 22:00:35.371301+00:00	gasto
+250	Pago completado Foto escolar 2x2	2025-08-13 22:00:54.238322+00:00	ingreso
+1000	Pago completado correctamente Ruth esther Martinez López-PLAN A ( Restante: $1,000)	2025-08-14 21:39:58.339528+00:00	ingreso
+973	Licencias y Suscripciones: Amazon prime 	2025-08-15 13:29:23.369145+00:00	gasto
+3225	Otro: Luz oficina  	2025-08-15 13:29:23.396096+00:00	gasto
+1060	Otro: Luz estudio 	2025-08-15 13:29:23.418912+00:00	gasto
+1358	Otro: Flota 	2025-08-15 13:29:23.440350+00:00	gasto
+2089	Otro: internet 	2025-08-15 13:29:23.465126+00:00	gasto
+500	Pago completado correctamente Nairobis Severino de León-PLAN A ( Restante: $1,500)	2025-08-15 21:34:47.597840+00:00	ingreso
+1180	Suministros: Encajes la rosario  	2025-08-15 21:51:19.516549+00:00	gasto
+545	Suministros: encajes la rosario 	2025-08-15 21:51:19.533034+00:00	gasto
+1180	Compra: Encajes La Rosario 	2025-08-15 21:51:19.548954+00:00	gasto
+545	Compra: Encajes La Rosario 	2025-08-15 21:51:19.563850+00:00	gasto
+200	Compra: Ole 	2025-08-15 21:51:19.580585+00:00	gasto
+550	Transporte: Combustible 	2025-08-15 21:51:19.594842+00:00	gasto
+100	Otro: Parqueo 	2025-08-15 21:51:19.609028+00:00	gasto
+100	Otro: Mya gratificacion  	2025-08-15 21:51:19.623093+00:00	gasto
+1725	Pago completado Nota de credito	2025-08-15 21:58:00.712709+00:00	ingreso
+500	Pago completado correctamente Katia Perdomo.-PLAN BABY JUNIOR ( Restante: $2,500)	2025-08-17 14:57:12.532181+00:00	ingreso
+1500	Pago completado correctamente Nairobis Severino de León-PLAN A ( Restante: $0)	2025-08-17 14:59:27.516127+00:00	ingreso
+1000	Pago completado correctamente Ruth esther Martinez López-PLAN A ( Restante: $0)	2025-08-17 15:31:56.024723+00:00	ingreso
+1500	Servicio de maquillaje Maquillaje	2025-08-17 15:35:51.452883+00:00	ingreso
+500	Servicio expreso expreso	2025-08-17 15:35:51.460674+00:00	ingreso
+2140	Pago completado correctamente Railini Aquino-PLAN B ( Restante: $660)	2025-08-17 15:40:23.325849+00:00	ingreso
+600	Pago completado Onice fotos extras	2025-08-17 16:06:31.933155+00:00	ingreso
+2640	Pago completado correctamente Florangel barberia-PLAN B ( Restante: $0)	2025-08-17 16:09:53.912102+00:00	ingreso
+360	Petalos de rosa rosas	2025-08-17 16:10:40.607261+00:00	ingreso
+8000	Nómina: Mya Sencion 	2025-08-17 16:12:04.571168+00:00	gasto
+2100	Servicio: Lavanderia 	2025-08-17 16:12:04.584390+00:00	gasto
+500	Otro: Expreso felix 	2025-08-17 16:12:04.598710+00:00	gasto
+3300	Servicio: Daniela 2 maquillajes + $300 pendientes 	2025-08-17 18:09:45.094106+00:00	gasto
+800	Pago completado correctamente Indy Leidys Duvernay Ramírez-PLAN A ( Restante: $0)	2025-08-17 18:45:03.054802+00:00	ingreso
+1500	Servicio maquillaje maquillaje	2025-08-17 18:47:15.262516+00:00	ingreso
+250	Foto adicional  1 foto	2025-08-17 18:47:15.269675+00:00	ingreso
+5500	Pago completado correctamente Yasmirys Enoelia Polanco-HAPPY BABY ( Restante: $0)	2025-08-17 21:04:22.740156+00:00	ingreso
+500	Tardanza Multa por tardanza	2025-08-17 21:06:21.022634+00:00	ingreso
+500	Pago completado Fotos extras Ruth	2025-08-17 22:16:29.005283+00:00	ingreso
+200	Otro: Mya gratificacion 	2025-08-17 22:39:35.282913+00:00	gasto
+1800	Pago completado Fotos extras Enoelia	2025-08-19 14:29:20.733349+00:00	ingreso
+2000	Pago completado Onice fotos extras	2025-08-20 15:04:38.092758+00:00	ingreso
+300	Pago completado Pasaporte 2x2	2025-08-20 15:05:15.191049+00:00	ingreso
+1000	Pago completado correctamente Nairoby Rodríguez-PLAN B ( Restante: $2,300)	2025-08-20 15:08:58.265904+00:00	ingreso
+1650	Pago completado Completivo Mildy 	2025-08-20 15:09:42.722150+00:00	ingreso
+25	Suministros: Sumi copias 	2025-08-20 15:12:48.280537+00:00	gasto
+40	Suministros: Sumi copias 	2025-08-20 15:12:48.294896+00:00	gasto
+200	Compra: Petalos de rosa 	2025-08-20 15:12:48.305480+00:00	gasto
+1200	Mantenimiento: Mantenimiento Computadora 	2025-08-20 15:12:48.316458+00:00	gasto
+300	Pago completado Pasaporte 2x2	2025-08-20 18:40:24.384022+00:00	ingreso
+2340	Compra: Foto astro 	2025-08-20 18:41:42.843098+00:00	gasto
+342	Compra: Foto astro 	2025-08-20 18:41:42.856918+00:00	gasto
+500	Pago completado Pasaporte 2x2	2025-08-20 19:22:11.915730+00:00	ingreso
+2800	Pago completado correctamente Clara Lupe de Jesús Herrera-PLAN B ( Restante: $0)	2025-08-21 13:22:18.538513+00:00	ingreso
+1000	Exterior La playita	2025-08-21 13:25:50.464881+00:00	ingreso
+500	Pago completado correctamente Rafelina Hurtado Rodriguez-PLAN B ( Restante: $2,800)	2025-08-21 14:02:13.425760+00:00	ingreso
+1000	Pago completado correctamente Rafelina Hurtado Rodriguez-PLAN B ( Restante: $2,300)	2025-08-21 14:07:24.302491+00:00	ingreso
+300	Pago completado Pasaporte 2x2	2025-08-21 16:32:18.687567+00:00	ingreso
+75	Suministros: Sumi copias 	2025-08-21 16:32:49.887751+00:00	gasto
+3100	Pago completado correctamente Maurel Roel-PLAN B ( Restante: $200)	2025-08-21 21:30:22.864387+00:00	ingreso
+500	Pago completado correctamente Pamela Cristal de Jesus Ventura-PLAN C ( Restante: $4,000)	2025-08-21 21:49:38.408457+00:00	ingreso
+500	Pago completado correctamente Yasmina Antigua-PLAN A ( Restante: $1,500)	2025-08-22 14:04:15.778081+00:00	ingreso
+1050	Pago completado Juan Abreu impresión	2025-08-22 14:05:01.508783+00:00	ingreso
+500	Pago completado correctamente Paloma Matos-PLAN BABY ( Restante: $4,100)	2025-08-22 16:37:15.674767+00:00	ingreso
+2800	Pago completado correctamente Lionny Mariell Matos Severino-PLAN B ( Restante: $0)	2025-08-22 18:45:54.476351+00:00	ingreso
+1900	Globos Estrella 	2025-08-22 18:49:21.806920+00:00	ingreso
+500	Fotos adicionales 2 fotos	2025-08-22 18:49:21.812276+00:00	ingreso
+250	Pago completado Escolar 2x2	2025-08-22 19:46:06.245460+00:00	ingreso
+25	Suministros: Sumi copias 	2025-08-22 19:46:54.347941+00:00	gasto
+50	Suministros: Sumi copias 	2025-08-22 20:00:42.401081+00:00	gasto
+500	Pago completado Pasaporte 2x2	2025-08-22 20:01:00.263093+00:00	ingreso
+250	Pago completado Escolar 2x2	2025-08-22 20:38:44.152869+00:00	ingreso
+4000	Pago completado correctamente Pamela Cristal de Jesus Ventura-PLAN C ( Restante: $0)	2025-08-23 22:11:31.229784+00:00	ingreso
+1500	Exterior Jardin botanico 	2025-08-23 22:12:20.188602+00:00	ingreso
+1000	Otro: Asistente 	2025-08-23 22:12:44.271554+00:00	gasto
+350	Otro: Pica pollo 	2025-08-23 22:12:57.021671+00:00	gasto
+2000	Pago completado correctamente Mariel Pamela Rodríguez-PLAN A ( Restante: $0)	2025-08-24 13:30:40.250390+00:00	ingreso
+500	Servicio expreso entrega express	2025-08-24 13:37:45.814446+00:00	ingreso
+500	Otro: Reembolso Katia Perdomo  	2025-08-24 13:51:35.268088+00:00	gasto
+1900	Servicio: Servicio de globos 	2025-08-24 13:51:35.276583+00:00	gasto
+25	Suministros: Sumi copias 	2025-08-24 16:30:47.332879+00:00	gasto
+500	Otro: Felix expreso 	2025-08-24 16:31:00.678400+00:00	gasto
+1000	Otro: Impresion y combustible 	2025-08-24 16:31:21.389504+00:00	gasto
+350	Pago completado Pago de pica pollo	2025-08-24 16:31:58.557621+00:00	ingreso
+500	Pago completado correctamente Yanelly Mesa Díaz-PLAN C ( Restante: $4,000)	2025-08-24 19:31:38.037918+00:00	ingreso
+500	Pago completado correctamente María Lourdes López de la Cruz-PLAN C ( Restante: $4,000)	2025-08-24 20:00:32.740218+00:00	ingreso
+500	Pago completado Marie Sarah ft exta	2025-08-24 20:22:41.208020+00:00	ingreso
+1000	Pago completado Pamela fotos extras	2025-08-24 20:27:27.141424+00:00	ingreso
+175	Otro: Cerveza cliente 	2025-08-24 20:53:28.323568+00:00	gasto
+1500	Servicio: Maquillaje daniela 	2025-08-24 21:02:46.915260+00:00	gasto
+100	Otro: Mya gratificacion 	2025-08-24 21:33:11.054220+00:00	gasto
+500	Pago completado correctamente Daiyana Rondón Paredes-PLAN B ( Restante: $2,800)	2025-08-26 13:36:56.045632+00:00	ingreso
+500	Pago completado correctamente Gloribel Sanchez Encarnación-PLAN B ( Restante: $2,800)	2025-08-26 19:26:26.868680+00:00	ingreso
+580	Transporte: Combustible 	2025-08-26 20:47:47.703395+00:00	gasto
+770	Otro: Comida 	2025-08-26 20:47:47.713247+00:00	gasto
+380	Transporte: Uber 	2025-08-26 20:47:47.722131+00:00	gasto
+25	Suministros: Sumi copias 	2025-08-26 21:07:25.816861+00:00	gasto
+300	Pago completado Pasaporte 2x2	2025-08-26 21:10:32.338777+00:00	ingreso
+500	Pago completado Felix presto al estu	2025-08-26 21:10:56.274453+00:00	ingreso
+100	Otro: Mya gratificacion 	2025-08-26 21:11:34.887857+00:00	gasto
+2000	Pago completado Sesion de estudio	2025-08-27 13:43:00.930526+00:00	ingreso
+500	Pago completado correctamente Darielis Gissel Garcia-PLAN B ( Restante: $3,500)	2025-08-27 16:38:41.612605+00:00	ingreso
+500	Pago completado correctamente Anyeli Crisbel Martínez Ferreras-PLAN B ( Restante: $3,500)	2025-08-27 19:07:46.227174+00:00	ingreso
+250	Pago completado Escolar 2x2	2025-08-27 20:40:33.535969+00:00	ingreso
+25	Otro: sumi copias 	2025-08-27 20:41:25.585361+00:00	gasto
+500	Pago completado correctamente Naian Perez Balbuena-PLAN C ( Restante: $5,000)	2025-08-27 21:37:42.421348+00:00	ingreso
+500	Pago completado correctamente Rachell Stephanny Díaz Bautista-HAPPY BABY ( Restante: $5,500)	2025-08-27 21:41:21.572508+00:00	ingreso
+2000	Pago completado correctamente Espenser-PLAN A ( Restante: $0)	2025-08-27 21:43:03.521078+00:00	ingreso
+500	Pago completado correctamente Rosa Navarro-PLAN B ( Restante: $2,800)	2025-08-28 13:46:41.744564+00:00	ingreso
+25	Suministros: Sumi copias 	2025-09-09 16:36:15.016152+00:00	gasto
+3164	Publicidad: Promoción Facebook 	2025-09-09 16:36:15.023390+00:00	gasto
+300	Pago completado Escolar 2x2	2025-09-09 16:36:50.466435+00:00	ingreso
+2800	Pago completado correctamente Daiyana Rondón Paredes-PLAN B ( Restante: $0)	2025-09-09 16:37:30.754675+00:00	ingreso
+1026	Otro: Impresion y enmarcado 	2025-09-09 16:38:39.447606+00:00	gasto
+70	Mantenimiento: Cloro 	2025-09-09 16:40:35.171356+00:00	gasto
+500	Otro: Pago felix prestamo 	2025-09-09 16:40:35.179978+00:00	gasto
+250	Suministros: Sumi copias 	2025-09-09 16:40:35.186975+00:00	gasto
+225	Pago completado Nota de credito	2025-09-09 16:41:14.942307+00:00	ingreso
+250	Pago completado Escolares 2x2	2025-09-09 16:42:53.780163+00:00	ingreso
+2000	Pago completado Jose Guzman-PLAN A	2025-09-09 20:17:14.051374+00:00	ingreso
+1500	Pago completado correctamente Yasmina Antigua-PLAN A ( Restante: $0)	2025-09-09 20:22:03.422512+00:00	ingreso
+2800	Pago completado correctamente Rosa Navarro-PLAN B ( Restante: $0)	2025-09-09 20:22:28.796152+00:00	ingreso
+2000	Pago completado correctamente Joy-PLAN A ( Restante: $0)	2025-09-09 20:24:09.057303+00:00	ingreso
+500	Pago completado Multa tardanza	2025-09-09 20:25:33.718928+00:00	ingreso
+500	Pago completado correctamente Dayree Recio-PLAN B ( Restante: $2,800)	2025-09-09 20:29:43.512105+00:00	ingreso
+1500	Servicio: Maquillaje 	2025-09-09 20:30:37.133857+00:00	gasto
+200	Servicio: Maquillista 	2025-09-09 20:30:37.144670+00:00	gasto
+2300	Pago completado correctamente Nairoby Rodríguez-PLAN B ( Restante: $0)	2025-09-09 20:31:21.595403+00:00	ingreso
+1500	Pago completado Maquillaje Nairobys 	2025-09-09 20:42:10.947198+00:00	ingreso
+500	Pago completado Expreso	2025-09-09 20:42:41.691987+00:00	ingreso
+500	Otro: Felix expreso 	2025-09-09 20:43:14.964197+00:00	gasto
+5500	Pago completado correctamente Nailea Villegas del Rosario-HAPPY BABY ( Restante: $0)	2025-09-09 20:43:49.598451+00:00	ingreso
+1500	Personas adicionales  4 personas  	2025-09-09 20:46:26.381941+00:00	ingreso
+4100	Pago completado correctamente Paloma Matos-PLAN BABY ( Restante: $0)	2025-09-09 20:46:56.772476+00:00	ingreso
+1200	Otro: Mya y Felix gratificacion 	2025-09-09 20:47:43.479899+00:00	gasto
+100	Otro: Botellon de agua 	2025-09-09 20:50:20.104651+00:00	gasto
+2000	Pago completado correctamente Gamely Mancebo-PLAN A ( Restante: $0)	2025-09-09 21:01:59.683082+00:00	ingreso
+500	Servicio expreso 24 horas o menos  	2025-09-09 21:03:15.192768+00:00	ingreso
+1125	Pago completado Genesis fotos extras	2025-09-09 21:05:02.889966+00:00	ingreso
+2000	Pago completado correctamente Ashley Baez-PLAN A ( Restante: $0)	2025-09-09 21:06:54.756567+00:00	ingreso
+8000	Nómina: Nomina Mya Sencion 	2025-09-09 21:07:49.976395+00:00	gasto
+500	Otro: Felix Expreso  	2025-09-09 21:08:17.826972+00:00	gasto
+500	Pago completado correctamente Kristy Elizabeth Inoa De los Santos-PLAN B ( Restante: $2,800)	2025-09-09 21:09:34.230398+00:00	ingreso
+608	Transporte: Combustible 	2025-09-09 21:11:32.810913+00:00	gasto
+500	Suministros: Señora de limpieza 	2025-09-09 21:11:32.822568+00:00	gasto
+125	Suministros: Impresion  	2025-09-09 21:11:32.832661+00:00	gasto
+125	Otro: Impresion y planificado carmona 	2025-09-09 21:11:32.841810+00:00	gasto
+500	Pago completado correctamente Pamela de Leon Familia-PLAN A ( Restante: $1,500)	2025-09-09 21:14:10.878751+00:00	ingreso
+500	Pago completado correctamente Rosa Annery Santana-PLAN A ( Restante: $1,500)	2025-09-10 15:48:37.419345+00:00	ingreso
+500	Pago completado correctamente Nicole Rojas-PLAN B ( Restante: $2,800)	2025-09-10 15:49:59.235565+00:00	ingreso
+300	Pago completado Pasaporte 2x2	2025-09-10 15:51:35.226374+00:00	ingreso
+3300	Pago completado correctamente Elva baez-PLAN B ( Restante: $0)	2025-09-10 15:56:13.907967+00:00	ingreso
+750	Pago completado Ashley 3 foto extras	2025-09-10 15:58:13.417305+00:00	ingreso
+2000	Pago completado correctamente Madelin Gonzales Alberto-PLAN A ( Restante: $0)	2025-09-10 16:00:40.389372+00:00	ingreso
+500	Servicio expreso 24 horas o menos	2025-09-10 16:02:32.674191+00:00	ingreso
+500	Multa Tandanza Llegar tarde	2025-09-10 16:02:32.682303+00:00	ingreso
+500	Fotos extras 2 adicionales	2025-09-10 16:02:32.687492+00:00	ingreso
+1500	Pago completado correctamente Rosa Annery Santana-PLAN A ( Restante: $0)	2025-09-10 16:02:49.609721+00:00	ingreso
+5500	Pago completado correctamente Ana Sobierky Díaz Mercedes-PLAN C ( Restante: $0)	2025-09-10 16:08:21.344963+00:00	ingreso
+900	Pago completado 4 fotos extras Diana	2025-09-10 16:09:22.821752+00:00	ingreso
+2500	Pago completado correctamente Dannery Pérez-PLAN A ( Restante: $0)	2025-09-10 16:10:36.494652+00:00	ingreso
+4500	Pago completado correctamente Yokasta Almonte-PLAN C ( Restante: $0)	2025-09-10 16:12:21.345434+00:00	ingreso
+4600	Pago completado correctamente Angela Alfonseca-PLAN BABY ( Restante: $0)	2025-09-10 16:14:01.433283+00:00	ingreso
+100	Otro: Mya Gratificacion  	2025-09-10 16:17:20.526580+00:00	gasto
+25	Suministros: Sumi copias 	2025-09-10 16:17:57.974328+00:00	gasto
+500	Compra: Felix Expreso 	2025-09-10 16:21:10.731898+00:00	gasto
+60	Compra: botellitas de agua 	2025-09-10 16:21:10.742659+00:00	gasto
+2945	Publicidad: Promocion Facebook  	2025-09-10 16:21:10.751757+00:00	gasto
+7389	Licencias y Suscripciones: Evoto 	2025-09-10 16:21:10.760898+00:00	gasto
+500	Transporte: Combustible 	2025-09-10 16:21:10.770688+00:00	gasto
+1850	Pago completado Impresión y marco El	2025-09-10 19:03:21.928333+00:00	ingreso
+500	Pago completado correctamente Daniela Semo Ramírez-PLAN B ( Restante: $2,800)	2025-09-10 20:35:49.443254+00:00	ingreso
+750	Pago completado Carolina Foto extra	2025-09-11 20:46:59.353208+00:00	ingreso
+200	Otro: Mya Gratificacion 	2025-09-11 20:47:35.718956+00:00	gasto
+185	Otro: Espuma 	2025-09-11 20:48:03.030697+00:00	gasto
+565	Otro: Comida 	2025-09-11 20:48:25.014702+00:00	gasto
+65093	Otro: cuadre por fallo 	2025-09-12 14:19:18.191082+00:00	gasto
+2800	Pago completado correctamente Nicole Rojas-PLAN B ( Restante: $0)	2025-09-12 16:59:33.725700+00:00	ingreso
+1400	Fotos extras .	2025-09-12 17:00:43.850813+00:00	ingreso
+2000	Pago completado correctamente Fatima Alcantara-PLAN BABY ( Restante: $2,600)	2025-09-12 18:07:57.836081+00:00	ingreso
+750	Pago completado Jose 3 fotos extras	2025-09-12 21:16:36.466706+00:00	ingreso
+1000	Pago completado correctamente Albairis Veras-PLAN C ( Restante: $3,500)	2025-09-13 13:32:52.986816+00:00	ingreso
+800	Pago completado Gregory enmarcado	2025-09-13 13:34:35.577548+00:00	ingreso
+49	Otro: 2 Jeringas 	2025-09-13 13:35:17.080304+00:00	gasto
+500	Pago completado correctamente Gloria Estefani Montero Morillo-PLAN B ( Restante: $3,500)	2025-09-13 16:00:54.245282+00:00	ingreso
+1650	Compra: Impresiones y enmarcados 	2025-09-13 16:26:28.536317+00:00	gasto
+560	Compra: Impresiones y enmarcados  	2025-09-13 16:26:28.545509+00:00	gasto
+4688	Pago completado Pamela 25 foto extra	2025-09-13 18:37:59.158338+00:00	ingreso
+600	Pago completado 2 pasaporte 2x2	2025-09-13 18:38:45.791949+00:00	ingreso
+2300	Pago completado correctamente Albairis Veras-PLAN B ( Restante: $0)	2025-09-13 19:22:56.337574+00:00	ingreso
+3000	Maquillaje  Dos maquillajes mas tardanza	2025-09-13 19:25:09.705927+00:00	ingreso
+500	Tardanza Tarde	2025-09-13 19:25:09.712197+00:00	ingreso
+3000	Servicio: 2 Maquillaje Daniela 	2025-09-13 19:25:38.414686+00:00	gasto
+985	Licencias y Suscripciones: Amazon prime 	2025-09-13 21:03:05.488675+00:00	gasto
+4294	Publicidad: Promocion facebook 	2025-09-13 21:03:05.503527+00:00	gasto
+391	Compra: Velcro fondos 	2025-09-13 21:03:05.514412+00:00	gasto
+577	Transporte: Combustible  	2025-09-13 21:06:31.232230+00:00	gasto
+500	Otro: Nicole Rojas reembolso  	2025-09-13 21:16:32.908107+00:00	gasto
+100	Otro: Mya gratificacion 	2025-09-13 21:54:02.850986+00:00	gasto
+300	Pago completado Pasaporte 2x2	2025-09-13 22:01:54.086810+00:00	ingreso
+1300	Compra: Esclavina 	2025-09-14 13:32:01.486246+00:00	gasto
+2800	Pago completado correctamente Kristy Elizabeth Inoa De los Santos-PLAN B ( Restante: $0)	2025-09-14 16:07:46.147967+00:00	ingreso
+700	Cambio a plan de graduacion Plan B	2025-09-14 16:13:38.984426+00:00	ingreso
+600	Pago completado Paloma impresiones 	2025-09-14 16:14:07.862525+00:00	ingreso
+500	Pago completado 2 escolares 2x2	2025-09-14 18:04:53.351701+00:00	ingreso
+200	Pago completado Llavero 	2025-09-14 18:05:22.067749+00:00	ingreso
+500	Pago completado correctamente Benilda Frías-PLAN A ( Restante: $1,500)	2025-09-14 18:13:06.263019+00:00	ingreso
+1500	Pago completado correctamente Benilda Frías-PLAN A ( Restante: $0)	2025-09-14 22:43:36.670623+00:00	ingreso
+4100	Pago completado correctamente Yanina Altagracia Luna Ogando-PLAN BABY ( Restante: $0)	2025-09-14 22:43:46.426516+00:00	ingreso
+5000	Pago completado correctamente Naian Perez Balbuena-PLAN C ( Restante: $0)	2025-09-14 22:47:55.193150+00:00	ingreso
+1850	Pago completado Albairis Veras	2025-09-14 22:50:06.006013+00:00	ingreso
+1000	Pago completado Genesis hora  extra	2025-09-14 22:51:03.357528+00:00	ingreso
+2500	Servicio: Fotografo polanco 	2025-09-14 22:52:25.612923+00:00	gasto
+510	Otro: Yoguen 	2025-09-14 22:52:25.622472+00:00	gasto
+8000	Nómina: Nomina Mya Sencion 	2025-09-14 22:52:25.630013+00:00	gasto
+500	Pago completado correctamente Nairoby Ramirez-PLAN BABY ( Restante: $4,100)	2025-09-16 14:58:55.764819+00:00	ingreso
+2600	Pago completado correctamente Fatima Alcantara-PLAN BABY ( Restante: $0)	2025-09-16 14:59:15.791637+00:00	ingreso
+1400	Pago completado Kristy 7 fotos extra	2025-09-16 16:07:31.006604+00:00	ingreso
+2800	Pago completado correctamente Daniela Semo Ramírez-PLAN B ( Restante: $0)	2025-09-16 16:07:41.164874+00:00	ingreso
+750	Fotos extras 3	2025-09-16 16:09:06.713141+00:00	ingreso
+500	Pago completado correctamente Rosa María Luna Medin-PLAN A ( Restante: $1,500)	2025-09-16 16:18:45.206908+00:00	ingreso
+5800	Pago completado correctamente Leanny Reyes-HAPPY BABY ( Restante: $200)	2025-09-17 13:29:19.709359+00:00	ingreso
+2000	Pago completado Yanira 12 foto extra	2025-09-17 13:30:30.423204+00:00	ingreso
+50	Otro: Reembolso Paloma Matos 	2025-09-17 13:31:16.365270+00:00	gasto
+100	Otro: Mya Gratificacion  	2025-09-17 13:33:25.050426+00:00	gasto
+981	Servicio: Luz estudio 	2025-09-17 14:10:33.592333+00:00	gasto
+1358	Servicio: Flota 	2025-09-17 14:12:35.942499+00:00	gasto
+2095	Servicio: Telefono y internet 	2025-09-17 14:12:35.954798+00:00	gasto
+500	Pago completado correctamente Dariana Ozuna Florian-PLAN BABY ( Restante: $4,100)	2025-09-17 18:26:09.121775+00:00	ingreso
+1500	Pago completado correctamente Pamela de Leon Familia-PLAN A ( Restante: $0)	2025-09-17 19:20:04.045700+00:00	ingreso
+2800	Pago completado correctamente Yulian Mordan-PLAN B ( Restante: $0)	2025-09-17 19:21:55.630637+00:00	ingreso
+700	Cambio de plan De plan B a graduacion B	2025-09-17 19:32:34.225831+00:00	ingreso
+5000	Pago completado correctamente Rossina Arias-PARTY ( Restante: $3,500)	2025-09-17 19:32:42.135805+00:00	ingreso
+100	Otro: Botellon de agua 	2025-09-17 19:34:43.931089+00:00	gasto
+162	Otro: Velcro fondos Domex 	2025-09-17 19:34:43.941663+00:00	gasto
+1913	Publicidad: Promocion de Facebook 	2025-09-17 19:36:36.547712+00:00	gasto
+6000	Otro: Comida Mensual Felix 	2025-09-17 21:55:13.518520+00:00	gasto
+2107	Compra: Completivo fondo navidad 	2025-09-17 22:06:31.157239+00:00	gasto
+250	Pago completado Yanira comp. FT EXTA	2025-09-18 13:34:20.001210+00:00	ingreso
+4100	Pago completado correctamente Dariana Ozuna Florian-PLAN BABY ( Restante: $0)	2025-09-18 20:46:36.482989+00:00	ingreso
+500	Pago completado correctamente Ashelyn Moscoso-PLAN A ( Restante: $1,500)	2025-09-18 22:28:33.602801+00:00	ingreso
+2800	Pago completado correctamente Dayree Recio-PLAN B ( Restante: $0)	2025-09-18 22:42:42.946886+00:00	ingreso
+100	Otro: Mya gratificacion  	2025-09-18 22:43:50.122293+00:00	gasto
+205	Compra: Desayuno 	2025-09-19 12:49:11.559010+00:00	gasto
+500	Pago completado correctamente Laura Lorenzo-PLAN BABY ( Restante: $4,100)	2025-09-19 16:05:02.627288+00:00	ingreso
+4000	Pago completado correctamente Alexa Marie Duvernay Ramírez-Unico plan ( Restante: $3,000)	2025-09-19 16:40:24.205271+00:00	ingreso
+1500	Pago completado Yulian Maquillaje	2025-09-19 20:04:44.734688+00:00	ingreso
+691	Compra: Compra ole 	2025-09-19 20:06:13.918415+00:00	gasto
+1700	Servicio: 2 bizcocho verde y azul 	2025-09-19 20:06:13.927510+00:00	gasto
+1500	Servicio: Daniela maquillaje 	2025-09-19 20:06:13.936414+00:00	gasto
+200	Pago completado Impresion 2x2 	2025-09-19 20:32:14.599831+00:00	ingreso
+1500	Servicio: Globos blanco H'elio 	2025-09-19 21:10:29.054879+00:00	gasto
+3288	Compra: Foto astro impresiones 	2025-09-19 21:10:29.067253+00:00	gasto
+1600	Transporte: Transporte zona colonial 	2025-09-20 16:37:34.975871+00:00	gasto
+3000	Compra: Titulos universitario 	2025-09-20 16:38:51.405393+00:00	gasto
+120	Otro: Desayuno 	2025-09-20 16:38:51.416182+00:00	gasto
+500	Pago completado correctamente Arlene Florenzan-PLAN BABY ( Restante: $4,100)	2025-09-20 20:59:40.944158+00:00	ingreso
+2800	Pago completado correctamente Gloribel Sanchez Encarnación-PLAN B ( Restante: $0)	2025-09-20 21:39:28.610357+00:00	ingreso
+100	Otro: Mya Gratificacion 	2025-09-20 21:46:37.608380+00:00	gasto
+3500	Pago completado correctamente Anyeli Crisbel Martínez Ferreras-PLAN B ( Restante: $0)	2025-09-21 15:47:16.928999+00:00	ingreso
+3500	Pago completado correctamente Darielis Gissel Garcia-PLAN B ( Restante: $0)	2025-09-21 18:55:42.121415+00:00	ingreso
+440	Compra: Globos  y velas 	2025-09-21 18:57:39.333505+00:00	gasto
+3500	Pago completado correctamente Gloria Estefani Montero Morillo-PLAN B ( Restante: $0)	2025-09-21 20:24:15.318930+00:00	ingreso
+300	Persona extra 2	2025-09-21 20:25:04.602143+00:00	ingreso
+500	Pago completado 2 ft extra Ana Diaz	2025-09-21 20:29:35.183355+00:00	ingreso
+4100	Pago completado correctamente Laura Lorenzo-PLAN BABY ( Restante: $0)	2025-09-21 21:25:37.826467+00:00	ingreso
+1900	Fotoa adicionales 10 fotos extras	2025-09-21 21:33:50.065525+00:00	ingreso
+1500	Pago completado correctamente Rosa María Luna Medin-PLAN A ( Restante: $0)	2025-09-21 21:53:39.869424+00:00	ingreso
+1500	Otro: Liempieza de Mueble 	2025-09-21 22:41:53.685933+00:00	gasto
+1500	Pago completado correctamente Ashelyn Moscoso-PLAN A ( Restante: $0)	2025-09-21 23:10:11.156064+00:00	ingreso
+3000	Pago completado correctamente Alexa Marie Duvernay Ramírez-Unico plan ( Restante: $0)	2025-09-23 14:01:17.796737+00:00	ingreso
+500	Pago completado correctamente Maria ynes Méndez Cuevas-PLAN C ( Restante: $5,000)	2025-09-23 14:02:59.732354+00:00	ingreso
+1350	Pago completado Darieli 6 foto extra	2025-09-23 14:03:36.823498+00:00	ingreso
+500	Pago completado correctamente Angélica María hernandez Reyes-PLAN BABY JUNIOR ( Restante: $2,500)	2025-09-23 14:39:21.137358+00:00	ingreso
+2250	Pago completado Anyeli 12 foto extra	2025-09-23 15:00:52.478697+00:00	ingreso
+2100	Compra: Compra bravo + propina 	2025-09-23 18:19:16.724104+00:00	gasto
+100	Compra: Mya gratificacion 	2025-09-23 18:19:16.734192+00:00	gasto
+540	Otro: Cena Felix 	2025-09-23 22:07:34.561487+00:00	gasto
