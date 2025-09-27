@@ -5,7 +5,7 @@
 
 
 ## Descripción
-Click es una aplicación diseñada para facilitar la gestión de tareas de estudios. Con una interfaz intuitiva y funcionalidades avanzadas, Click te ayuda a mantenerte organizado y productivo.
+Click es una aplicación en producion diseñada para facilitar la gestión de tareas de estudios. Con una interfaz intuitiva y funcionalidades avanzadas, Click te ayuda a mantenerte organizado y productivo, puedes acceder pacialmente en ella atravez de https://clickestudios.com
 
 ## Características
 - Gestión de citas
